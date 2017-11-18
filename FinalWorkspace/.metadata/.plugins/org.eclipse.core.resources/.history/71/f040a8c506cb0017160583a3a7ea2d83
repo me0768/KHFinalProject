@@ -1,0 +1,7 @@
+<!-- css 파일 로드 -->
+<link rel="stylesheet" href="/fitnessground/resources/css/bootstrap.css">
+<!-- 자바 스크립트 로드 -->
+<script type="text/javascript" src="/fitnessground/resources/js/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="/fitnessground/resources/js/jquery-bootstrap.js"></script>
+</head>
+<body>

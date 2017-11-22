@@ -2595,3 +2595,8 @@
 2017-11-21 04:15:50,725 [Worker-200] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
 2017-11-21 04:15:50,734 [Worker-200] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
 2017-11-21 04:15:50,752 [Worker-200] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-11-22 22:30:14,645 [Worker-15] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.kh:first:1.0.0-BUILD-SNAPSHOT @ C:\Users\DongKyun\Documents\GitHub\KHFinalProject\FinalWorkspace\FitnessGround\pom.xml.
+2017-11-22 22:30:19,681 [Worker-15] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-22 22:30:19,701 [Worker-15] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2017-11-22 22:30:19,713 [Worker-15] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-22 22:30:19,753 [Worker-15] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource

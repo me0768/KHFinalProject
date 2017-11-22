@@ -8943,3 +8943,34 @@ java.lang.NullPointerException
 
 !ENTRY org.eclipse.core.resources 2 10035 2017-11-22 22:30:24.662
 !MESSAGE The workspace will exit with unsaved changes in this session.
+!SESSION 2017-11-22 23:16:40.504 -----------------------------------------------
+eclipse.buildId=4.7.1.M20170906-1700
+java.version=1.8.0_151
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=ko_KR
+Framework arguments:  -product org.eclipse.epp.package.jee.product --vm C:\Program Files\Java\jdk1.8.0_151\bin\javaw.exe
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product --vm C:\Program Files\Java\jdk1.8.0_151\bin\javaw.exe
+
+!ENTRY org.eclipse.core.resources 2 10035 2017-11-22 23:17:07.878
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.jface 2 0 2017-11-22 23:17:12.800
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2017-11-22 23:17:12.800
+!MESSAGE A conflict occurred for CTRL+SHIFT+T:
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
+		Open a type in a Java editor,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@1651bd68,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.lsp4e.symbolinworkspace,Go to Symbol in Workspace,
+		,
+		Category(org.eclipse.lsp4e.category,Language Servers,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@44a25dc7,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)

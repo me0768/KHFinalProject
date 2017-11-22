@@ -12,8 +12,10 @@
     <persistedState key="show_in_time" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;show_in_time/>"/>
     <tags>topLevel</tags>
     <tags>shellMaximized</tags>
-    <children xsi:type="basic:PartSashContainer" xmi:id="_ummUUs4mEeeXUMIi__eWIQ" selectedElement="_ummUU84mEeeXUMIi__eWIQ" horizontal="true">
-      <children xsi:type="advanced:PerspectiveStack" xmi:id="_ummUU84mEeeXUMIi__eWIQ" elementId="org.eclipse.ui.ide.perspectivestack" containerData="7500" selectedElement="_ummUVM4mEeeXUMIi__eWIQ">
+    <children xsi:type="basic:PartSashContainer" xmi:id="_ummUUs4mEeeXUMIi__eWIQ" selectedElement="_ummUb84mEeeXUMIi__eWIQ" horizontal="true">
+      <children xsi:type="advanced:PerspectiveStack" xmi:id="_ummUU84mEeeXUMIi__eWIQ" elementId="org.eclipse.ui.ide.perspectivestack" visible="false" containerData="7500" selectedElement="_ummUVM4mEeeXUMIi__eWIQ">
+        <tags>Minimized</tags>
+        <tags>MinimizedByZoom</tags>
         <children xsi:type="advanced:Perspective" xmi:id="_ummUVM4mEeeXUMIi__eWIQ" elementId="org.eclipse.jst.j2ee.J2EEPerspective" selectedElement="_ummUVc4mEeeXUMIi__eWIQ" label="Java EE" iconURI="platform:/plugin/org.eclipse.jst.j2ee.ui/icons/full/cview16/j2ee_perspective.gif">
           <persistedState key="persp.hiddenItems" value="persp.hideToolbarSC:print,persp.hideToolbarSC:org.eclipse.ui.edit.text.toggleShowSelectedElementOnly,persp.hideToolbarSC:org.eclipse.debug.ui.commands.RunToLine,persp.hideToolbarSC:org.eclipse.jdt.ui.actions.OpenProjectWizard,"/>
           <tags>persp.actionSet:org.eclipse.rse.core.search.searchActionSet</tags>
@@ -110,7 +112,6 @@
                 <children xsi:type="advanced:Placeholder" xmi:id="_ummUW84mEeeXUMIi__eWIQ" elementId="org.eclipse.jdt.ui.PackagesView" toBeRendered="false" ref="_umwGFM4mEeeXUMIi__eWIQ"/>
               </children>
               <children xsi:type="basic:PartStack" xmi:id="_ummUXM4mEeeXUMIi__eWIQ" elementId="PartStack@1193d400" containerData="2998" selectedElement="_ummUXc4mEeeXUMIi__eWIQ">
-                <tags>active</tags>
                 <children xsi:type="advanced:Placeholder" xmi:id="_ummUXc4mEeeXUMIi__eWIQ" elementId="org.eclipse.wst.server.ui.ServersView" ref="_umwGG84mEeeXUMIi__eWIQ"/>
               </children>
             </children>
@@ -138,9 +139,11 @@
           </children>
         </children>
       </children>
-      <children xsi:type="basic:PartStack" xmi:id="_ummUb84mEeeXUMIi__eWIQ" elementId="stickyFolderRight" toBeRendered="false" containerData="2500">
+      <children xsi:type="basic:PartStack" xmi:id="_ummUb84mEeeXUMIi__eWIQ" elementId="stickyFolderRight" containerData="2500" selectedElement="_ummUcc4mEeeXUMIi__eWIQ">
+        <tags>active</tags>
+        <tags>Maximized</tags>
         <children xsi:type="advanced:Placeholder" xmi:id="_ummUcM4mEeeXUMIi__eWIQ" elementId="org.eclipse.help.ui.HelpView" toBeRendered="false" ref="_umwFuc4mEeeXUMIi__eWIQ"/>
-        <children xsi:type="advanced:Placeholder" xmi:id="_ummUcc4mEeeXUMIi__eWIQ" elementId="org.eclipse.ui.internal.introview" toBeRendered="false" ref="_umwFus4mEeeXUMIi__eWIQ"/>
+        <children xsi:type="advanced:Placeholder" xmi:id="_ummUcc4mEeeXUMIi__eWIQ" elementId="org.eclipse.ui.internal.introview" ref="_umwFus4mEeeXUMIi__eWIQ"/>
         <children xsi:type="advanced:Placeholder" xmi:id="_ummUcs4mEeeXUMIi__eWIQ" elementId="org.eclipse.ui.cheatsheets.views.CheatSheetView" toBeRendered="false" ref="_umwFvc4mEeeXUMIi__eWIQ"/>
       </children>
     </children>
@@ -156,11 +159,13 @@
       <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;view>&#xD;&#xA;&lt;presentation currentPage=&quot;qroot&quot; restore=&quot;true&quot;/>&#xD;&#xA;&lt;standbyPart/>&#xD;&#xA;&lt;/view>"/>
       <tags>View</tags>
       <tags>categoryTag:General</tags>
+      <tags>active</tags>
+      <tags>activeOnClose</tags>
       <menus xmi:id="_umwFu84mEeeXUMIi__eWIQ" elementId="org.eclipse.ui.internal.introview">
         <tags>ViewMenu</tags>
         <tags>menuContribution:menu</tags>
       </menus>
-      <toolbar xmi:id="_umwFvM4mEeeXUMIi__eWIQ" elementId="org.eclipse.ui.internal.introview" visible="false"/>
+      <toolbar xmi:id="_umwFvM4mEeeXUMIi__eWIQ" elementId="org.eclipse.ui.internal.introview"/>
     </sharedElements>
     <sharedElements xsi:type="basic:Part" xmi:id="_umwFvc4mEeeXUMIi__eWIQ" elementId="org.eclipse.ui.cheatsheets.views.CheatSheetView" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Cheat Sheets" iconURI="platform:/plugin/org.eclipse.ui.cheatsheets/icons/view16/cheatsheet_view.gif" tooltip="" closeable="true">
       <persistedState key="originalCompatibilityViewClass" value="org.eclipse.ui.internal.cheatsheets.views.CheatSheetView"/>
@@ -242,8 +247,6 @@
       <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;view CommonNavigator.LINKING_ENABLED=&quot;0&quot;>&#xD;&#xA;&lt;lastRecentlyUsedFilters/>&#xD;&#xA;&lt;/view>"/>
       <tags>View</tags>
       <tags>categoryTag:Server</tags>
-      <tags>active</tags>
-      <tags>activeOnClose</tags>
       <menus xmi:id="_umwGHM4mEeeXUMIi__eWIQ" elementId="org.eclipse.wst.server.ui.ServersView">
         <tags>ViewMenu</tags>
         <tags>menuContribution:menu</tags>
@@ -369,7 +372,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_umwGXc4mEeeXUMIi__eWIQ" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="__Vd6gM-IEeeBhLImhhPPfA" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_um4DBs4mEeeXUMIi__eWIQ"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_1baoAM-PEee1OpdWnNjHqQ" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_um4DBs4mEeeXUMIi__eWIQ"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_umwsYc4mEeeXUMIi__eWIQ" elementId="additions" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -402,7 +405,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_umwsy84mEeeXUMIi__eWIQ" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="__VnrgM-IEeeBhLImhhPPfA" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_um4CrM4mEeeXUMIi__eWIQ"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_1be5cM-PEee1OpdWnNjHqQ" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_um4CrM4mEeeXUMIi__eWIQ"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_umws1c4mEeeXUMIi__eWIQ" elementId="org.eclipse.jst.jsp.core.jspsource.source" visible="false">
         <tags>Draggable</tags>
@@ -442,8 +445,8 @@
         <tags>Draggable</tags>
       </children>
     </trimBars>
-    <trimBars xmi:id="_umws9M4mEeeXUMIi__eWIQ" elementId="org.eclipse.ui.trim.vertical1" toBeRendered="false" side="Left">
-      <children xsi:type="menu:ToolControl" xmi:id="_umws9c4mEeeXUMIi__eWIQ" elementId="org.eclipse.ui.ide.perspectivestack(minimized)" toBeRendered="false" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.addons.swt/org.eclipse.e4.ui.workbench.addons.minmax.TrimStack">
+    <trimBars xmi:id="_umws9M4mEeeXUMIi__eWIQ" elementId="org.eclipse.ui.trim.vertical1" side="Left">
+      <children xsi:type="menu:ToolControl" xmi:id="_umws9c4mEeeXUMIi__eWIQ" elementId="org.eclipse.ui.ide.perspectivestack(minimized)" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.addons.swt/org.eclipse.e4.ui.workbench.addons.minmax.TrimStack">
         <tags>TrimStack</tags>
         <tags>Draggable</tags>
       </children>

@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<div class="modal fade" id="login">
-	<div class="modal-dialog">
+<div class="modal fade bs-example-modal-sm" id="login">
+	<div class="modal-dialog modal-sm">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal"
@@ -10,24 +10,44 @@
 					<span aria-hidden="true">&times;</span>
 				</button>
 				<img src="/fitnessground/resources/images/큰이미지로고.jpg">
-				<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
-					<div class="input-group">
-						<span class="input-group-addon" id="basic-addon1"> 
-							<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-						</span>
-						<input type="email" class="form-control" placeholder="abc@iei.co.kr" aria-describedby="basic-addon1" name="email">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div id="loginfield">
+						<div class="input-group">
+							<span class="input-group-addon" id="basic-addon1"> 
+								<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+							</span>
+							<input type="email" class="form-control" placeholder="abc@iei.co.kr" aria-describedby="basic-addon1" name="email">
+						</div>
 					</div>
-					<div class="input-group">
-						<span class="input-group-addon" id="basic-addon1"> 
-							<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-						</span>
-						<input type="password" class="form-control"	placeholder="password" aria-describedby="basic-addon1" name="pwd">
+					<div id="loginfield">
+						<div class="input-group">
+							<span class="input-group-addon" id="basic-addon1"> 
+								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+							</span>
+							<input type="password" class="form-control"	placeholder="password" aria-describedby="basic-addon1" name="pwd">
+						</div>
+					</div>
+					<div id="loginfield" class="btn-group btn-group-justified" role="group">
+						<div class="btn-group" role="group">
+							<button type="button" class="btn btn-primary">Login</button>
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="fulldiv">
+						<div id="loginfield" class="btn-group btn-group-justified" role="group">
+						<div class="btn-group" role="group">
+							<button type="button" class="btn btn-danger" onclick="return register();">회원가입</button>
+						</div>
+					</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="fulldiv" style="padding-top: 10px;">
+						<h6>
+							<a href="#" onclick="return detectid();">아이디 찾기</a>
+						</h6>
+						<h6>
+							<a href="#" onclick="return detectpwd();">비밀번호 찾기</a>
+						</h6>
 					</div>
 				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary">Save changes</button>
 			</div>
 		</div>
 		<!-- /.modal-content -->
@@ -43,16 +63,54 @@
 	</div>
 </div>
 
+<div class="modal fade bs-example-modal-md" tabindex="-1" role="dialog"
+	aria-labelledby="myLargeModalLabel" aria-hidden="true" id="detectid">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content" style="height: 200px;">
+			<h5>아이디찾기</h5>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade bs-example-modal-md" tabindex="-1" role="dialog"
+	aria-labelledby="myLargeModalLabel" aria-hidden="true" id="detectpwd">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content" style="height: 200px;">
+			<h5>비밀번호찾기</h5>
+		</div>
+	</div>
+</div>
+
 <script type="text/javascript">
 	function login() {
 		$("#login").show();
 		$("#register").hide();
+		$("#detectid").hide();
+		$("#detectpwd").hide();
 		$("#login").modal();
 	}
 
 	function register() {
 		$("#login").hide();
+		$("#detectid").hide();
+		$("#detectpwd").hide();
 		$("#register").show();
 		$("#register").modal();
+	}
+	
+	function detectid(){
+		$("#login").hide();
+		$("#register").hide();
+		$("#detectid").show();
+		$("#detectpwd").hide();
+		$("#detectid").modal();
+	}
+	
+	function detectpwd(){
+		$("#login").hide();
+		$("#register").hide();
+		$("#detectid").hide();
+		$("#detectpwd").show();
+		$("#detectpwd").modal();
 	}
 </script>

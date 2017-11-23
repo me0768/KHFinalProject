@@ -5,5 +5,16 @@
 }
 
 .modal-header {
-	height: 500px;
+	height: 400px;
+}
+
+#loginfield {
+	display: inline-block;
+	margin-top: 10px;
+
+}
+
+#fulldiv {
+	padding-left: 0px;
+	padding-right: 0px;
 }

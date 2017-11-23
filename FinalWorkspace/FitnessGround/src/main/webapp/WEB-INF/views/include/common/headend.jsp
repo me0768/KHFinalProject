@@ -3,11 +3,11 @@
 
 <!-- css 파일 로드-->
 <link rel="stylesheet" href="/fitnessground/resources/css/bootstrap.css">
+<link rel="stylesheet" href="/fitnessground/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="/fitnessground/resources/css/compiled_main.css" />
 <link rel="stylesheet" href="/fitnessground/resources/css/main.css" />
 <link rel="stylesheet" href="/fitnessground/resources/css/font-awesome.min.css" />
 <link rel="stylesheet" href="/fitnessground/resources/css/login.css" />
-
 </head>
 <body class="homepage">
 

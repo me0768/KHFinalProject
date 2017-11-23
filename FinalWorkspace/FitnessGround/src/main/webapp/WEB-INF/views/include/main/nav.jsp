@@ -22,7 +22,7 @@
 		<li><a href="left-sidebar.html">운동시설찾기</a></li>
 		<li><a href="right-sidebar.html">커뮤니티</a></li>
 		<c:if test="${ sessionScope.user == null}">
-			<li><a href="#" onclick="return logintest();">로그인</a></li>
+			<li><a href="#" onclick="return login();">로그인</a></li>
 		</c:if>
 		<c:if test="${ sessionScope.user != null}">
 			<li><a href="#" onclick="return logout();">로그아웃</a></li>
@@ -31,4 +31,3 @@
 </nav>
 
 <c:import url="./user/login.jsp"/>
-<c:import url="./user/logout.jsp"/>

@@ -25,9 +25,11 @@
 			<li><a href="#" onclick="return login();">로그인</a></li>
 		</c:if>
 		<c:if test="${ sessionScope.user != null}">
-			<li><a href="#" onclick="return logout();">로그아웃</a></li>
+			<li><a href="logout.do">로그아웃</a></li>
 		</c:if>
 	</ul>
 </nav>
 
 <c:import url="./user/login.jsp"/>
+<c:import url="./user/findidpwd.jsp"/>
+<c:import url="./user/register.jsp"/>

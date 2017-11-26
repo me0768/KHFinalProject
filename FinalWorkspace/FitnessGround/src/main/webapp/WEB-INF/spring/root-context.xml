@@ -9,8 +9,8 @@
    <bean destroy-method="close" class="org.apache.commons.dbcp.BasicDataSource" id="dataSource">
       <property value="oracle.jdbc.driver.OracleDriver" name="driverClassName"/>
       <property value="jdbc:oracle:thin:@localhost:1521:xe" name="url"/>
-      <property value="student" name="username"/>
-      <property value="student" name="password"/>
+      <property value="fitnessground" name="username"/>
+      <property value="fitnessground" name="password"/>
    </bean>
    
    <!-- Spring & Mybatis 연동설정 -->

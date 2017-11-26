@@ -12,4 +12,8 @@ public interface UserService {
 
 	User emailCheck(String email);
 
+	User nicknameCheck(String nickname);
+
+	void registerCheck(User user);
+
 }

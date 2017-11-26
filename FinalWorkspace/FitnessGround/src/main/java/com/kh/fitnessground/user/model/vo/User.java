@@ -8,14 +8,14 @@ public class User {
 	private String pwd;
 	private String name;
 	private String nickname;
-	private int phone;
+	private String phone;
 	private int user_level;
 	private Date delete_date;
 	private int tmppwd_tf;
 	
 	public User() {}
 
-	public User(int user_no, String email, String pwd, String name, String nickname, int phone, int user_level,
+	public User(int user_no, String email, String pwd, String name, String nickname, String phone, int user_level,
 			Date delete_date, int tmppwd_tf) {
 		super();
 		this.user_no = user_no;
@@ -69,11 +69,11 @@ public class User {
 		this.nickname = nickname;
 	}
 
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 

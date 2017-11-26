@@ -46,7 +46,7 @@
 		]]>
 	</select>
 	
-	<select id="emailcheck" parameterType="string" resultType="User"
+	<select id="emailCheck" parameterType="string" resultType="User"
 		resultMap="resultUser">
 		<![CDATA[
 			select *
@@ -54,6 +54,23 @@
 			where email = #{email}
 		]]>
 	</select>
+	
+	<select id="nicknameCheck" parameterType="string" resultType="User"
+		resultMap="resultUser">
+		<![CDATA[
+			select *
+			from tb_user
+			where nickname = #{nickname}
+		]]>	
+	</select>
+	
+	<insert id="register" parameterType="User" flushCache="true"
+		statementType="PREPARED" useGeneratedKeys="true" >
+		<![CDATA[
+			insert into tb_user
+			values (user_seq.nextval, #{email}, #{pwd}, #{name}, #{nickname}, #{phone}, #{user_level}, null, 0)
+		]]>
+	</insert>
 	
 	<!-- <select id="selectAll" resultType="list" resultMap="resultList">
 	<![CDATA[

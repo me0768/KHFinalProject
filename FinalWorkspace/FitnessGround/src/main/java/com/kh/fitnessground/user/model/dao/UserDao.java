@@ -26,6 +26,14 @@ public class UserDao {
 	}
 
 	public User emailcheck(String vo) {
-		return sqlSession.selectOne("user.emailcheck", vo);
+		return sqlSession.selectOne("user.emailCheck", vo);
+	}
+
+	public User nicknameCheck(String nickname) {
+		return sqlSession.selectOne("user.nicknameCheck", nickname);
+	}
+
+	public void registerCheck(User user) {
+		sqlSession.insert("user.register", user);
 	}
 }

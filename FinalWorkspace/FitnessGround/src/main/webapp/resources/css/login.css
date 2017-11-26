@@ -10,7 +10,7 @@
 
 
 
-#loginfield, #emailfield, #pwdfield, #namefield {
+#loginfield, #emailfield, #pwdfield, #nicknamefield, #emailboader {
 	display: inline-block;
 	margin-top: 10px;
 

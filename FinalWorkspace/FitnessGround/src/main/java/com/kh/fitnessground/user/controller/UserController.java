@@ -27,10 +27,7 @@ public class UserController {
 			// 관리자 페이지 나오면 이부분 수정
 			ModelAndView mv = new ModelAndView();
 			return mv;
-		} else {
-			User test = userService.list(2);
-			System.out.println(test);
-			
+		} else {			
 			ModelAndView mv = new ModelAndView("main");
 			User u = userService.loginCheck(user);
 			mv.addObject("user",u);
@@ -50,13 +47,31 @@ public class UserController {
 		return "main";
 	}
 	
-	@RequestMapping(value="/emailcheck.do")
-	public ModelAndView emailcheckMethod(User user, HttpServletRequest request, HttpServletResponse response) {
+	@RequestMapping(value="/emailCheck.do")
+	public ModelAndView emailCheckMethod(User user, HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView("main");
-		System.out.println(user);
 		User u = userService.emailCheck(user.getEmail());
-		mv.addObject("email", u.getEmail());
+		mv.addObject("user", u);
 		mv.setViewName("jsonView");
+		return mv;
+	}
+	
+	@RequestMapping(value="/nicknameCheck.do")
+	public ModelAndView nicknameCheckMethod(User user, HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mv = new ModelAndView("main");
+		User u = userService.nicknameCheck(user.getNickname());
+		mv.addObject("user", u);
+		mv.setViewName("jsonView");
+		return mv;
+	}
+	
+	@RequestMapping(value="/register.do")
+	public ModelAndView registerMethod(User user, HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mv = new ModelAndView("main");
+		int user_level = Integer.parseInt(request.getParameter("userlevel"));
+		user.setUser_level(user_level);
+		System.out.println(user);
+		userService.registerCheck(user);
 		return mv;
 	}
 	

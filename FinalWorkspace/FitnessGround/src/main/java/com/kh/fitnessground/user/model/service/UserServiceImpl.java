@@ -28,4 +28,14 @@ public class UserServiceImpl implements UserService {
 		return userDao.emailcheck(vo);
 	}
 
+	@Override
+	public User nicknameCheck(String nickname) {
+		return userDao.nicknameCheck(nickname);
+	}
+
+	@Override
+	public void registerCheck(User user) {
+		userDao.registerCheck(user);
+	}
+
 }

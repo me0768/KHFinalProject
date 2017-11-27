@@ -35,4 +35,7 @@
 	</ul>
 </nav>
 
+<<<<<<< HEAD
 <c:import url="./user/login.jsp"/>
+=======
+>>>>>>> master

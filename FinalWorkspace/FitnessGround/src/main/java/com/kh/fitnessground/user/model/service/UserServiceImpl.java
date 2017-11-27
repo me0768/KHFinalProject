@@ -38,4 +38,9 @@ public class UserServiceImpl implements UserService {
 		userDao.registerCheck(user);
 	}
 
+	@Override
+	public User findid(User user) {
+		return userDao.findid(user);
+	}
+
 }

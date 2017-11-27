@@ -35,4 +35,10 @@ public class UserDao {
 	public void registerCheck(User user) {
 		sqlSession.insert("user.register", user);
 	}
+
+	public User findid(User user) {
+		User u = sqlSession.selectOne("user.findid", user);
+		System.out.println(u);
+		return u;
+	}
 }

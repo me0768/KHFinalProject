@@ -37,8 +37,14 @@ public class UserDao {
 	}
 
 	public User findid(User user) {
-		User u = sqlSession.selectOne("user.findid", user);
-		System.out.println(u);
-		return u;
+		return sqlSession.selectOne("user.findid", user);
+	}
+
+	public User findpwdCheck(User user) {
+		return sqlSession.selectOne("user.findpwdcheck", user);
+	}
+
+	public int tmppwd(User user) {
+		return sqlSession.update("user.tmppwd", user);
 	}
 }

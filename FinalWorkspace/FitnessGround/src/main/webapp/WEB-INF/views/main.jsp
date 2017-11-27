@@ -7,16 +7,20 @@
 
     </style>
 
-    <c:import url="./include/common/headend.jsp" />
+    <c:import url="include/common/headend.jsp" />
 
     <div id="page-wrapper">
         <!-- Header -->
         <div id="header">
             <!-- Inner -->
-            <c:import url="./include/main/maininner.jsp" />
+            <c:import url="include/main/maininner.jsp" />
 
             <!-- Nav -->
-            <c:import url="./include/main/nav.jsp" />
+            <c:import url="include/main/nav.jsp" />
+            
+            <c:import url="user/login.jsp"/>
+			<c:import url="user/findidpwd.jsp"/>
+			<c:import url="user/register.jsp"/>
         </div>
         <!-- Banner -->
         <section id="banner">

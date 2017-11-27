@@ -16,4 +16,6 @@ public interface UserService {
 
 	void registerCheck(User user);
 
+	User findid(User user);
+
 }

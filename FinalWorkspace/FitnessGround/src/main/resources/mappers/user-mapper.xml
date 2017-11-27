@@ -71,6 +71,16 @@
 		]]>
 	</insert>
 	
+	<select id="findid" parameterType="User" resultType="User"
+		resultMap="resultUser">
+		<![CDATA[
+			select *
+			from tb_user
+			where phone = #{phone}
+			and name = #{name}
+		]]>	
+	</select>
+	
 	<!-- <select id="selectAll" resultType="list" resultMap="resultList">
 	<![CDATA[
 		select * from member

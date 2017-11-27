@@ -22,6 +22,12 @@
 		<beans:property name="contentType" value="text/html; charset=UTF-8"/>
 	</beans:bean>
 	
+	<!-- ajax JSON parsing -->
+	<beans:bean id="jsonView" class="net.sf.json.spring.web.servlet.view.JsonView"/>  
+	<beans:bean id="viewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver">  
+	    <beans:property name="order" value="1"></beans:property>
+	</beans:bean>  
+	
 	<context:component-scan base-package="com.kh.fitnessground" />
 	
 	

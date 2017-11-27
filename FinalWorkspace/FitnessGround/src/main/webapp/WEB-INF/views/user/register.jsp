@@ -66,6 +66,11 @@ function register() {
 	$("#login").hide();
 	$("#detectidpwd").hide();
 	$("#register").show();
+	$("#registeremail").val('');
+	$("#registerpwd").val('');
+	$("#registername").val('');
+	$("#registernickname").val('');
+	$("#registerphone").val('');
 	$("#register").modal();
 }
 var emailval = 0;

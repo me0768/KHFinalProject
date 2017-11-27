@@ -117,6 +117,8 @@ function detectid(){
 	$("#login").hide();
 	$("#register").hide();
 	$("#detectidpwd").show();
+	$("#findidname").val('');
+	$("#findidphone").val('');
 	$("#detectidpwd").modal();
 }
 
@@ -124,12 +126,17 @@ function selecttab1(){
 	$("#findliid").css({"background-color":"#337ab7", "color":"white"});
 	$("#findlipwd").css({"background-color":"#fff", "color":"black"});
 	$("#find_header").css({ "display": "inline-block", "height": "500px"});
+	$("#findidname").val('');
+	$("#findidphone").val('');
 }
 
 function selecttab2(){
 	$("#findlipwd").css({"background-color":"#337ab7", "color":"white"});
 	$("#findliid").css({"background-color":"#fff", "color":"black"});
 	$("#find_header").css({ "display": "inline-block", "height": "470px"});
+	$("#findpwdemail").val('');
+	$("#findpwdname").val('');
+	$("#findpwdphone").val('');
 }
 
 function findid(){
@@ -143,20 +150,28 @@ function findid(){
 		dataType : "json",
 		type : "get",
 		success: function(responseData){
-			var data = responseData.user.email;
 			var value = '';
-			console.log(data);
-			$("#ajax").remove();
-			if(data == null){
+			if(responseData.user == null){
 				value += "일치하는 이메일이 없습니다.."
-				$("#resultfindid").html(value);
-				return false;
+					$("#resultfindid").html(value);
+					return false;
 			} else {
+				var data = responseData.user.email;
 				var substr = data.split('@');
-				var sub1 = substr[0];
-				var sub2 = substr[1];
-				value += "회원님의 이메일은 <br>" + substr[0].substr(0,sub1) + "**@**" + substr[1].substr(2,sub2) + "<br>입니다."; 
+				var sub1 = substr[0].length-2;
+				var sub2 = substr[1].length;
+				if(sub1 < 6 && sub2 < 10){
+					value += "회원님의 이메일은 <br>" + substr[0].substr(0,sub1) + "**@**" + substr[1].substr(2,sub2) + "<br>입니다.";	
+				} else {
+					sub1 = sub1-1;
+					value += "회원님의 이메일은 <br>" + substr[0].substr(0,sub1) + "***@***" + substr[1].substr(3,sub2) + "<br>입니다.";
+				}
 				$("#resultfindid").html(value);
+				var value2 = '';
+				value2 += 	"<div class='btn-group' role='group'>" +
+								"<button type='button' class='btn btn-danger' onclick='return login();'>로그인하러 가기</button>" +
+							"</div>";
+				$("#findidbtn").html(value2);
 			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {

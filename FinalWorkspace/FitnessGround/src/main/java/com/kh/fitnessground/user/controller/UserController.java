@@ -79,7 +79,6 @@ public class UserController {
 		// BCrypt 로 암호화
 		String hashPassword = BCrypt.hashpw(user.getPwd(), BCrypt.gensalt());
 		user.setPwd(hashPassword);
-		System.out.println(user);
 		userService.registerCheck(user);
 		return mv;
 	}
@@ -92,9 +91,8 @@ public class UserController {
 	@RequestMapping(value="/findid.do")
 	public ModelAndView findIdMethod(User user, HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView("main");
-		System.out.println(user);
 		User u = userService.findid(user);
-		mv.addObject("user", u);
+		mv.addObject("user", u.getEmail());
 		mv.setViewName("jsonView");
 		return mv;
 	}

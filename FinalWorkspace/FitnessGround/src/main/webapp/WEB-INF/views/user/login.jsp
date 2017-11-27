@@ -59,6 +59,8 @@
 		$("#login").show();
 		$("#register").hide();
 		$("#detectidpwd").hide();
+		$("#email").val('');
+		$("#pwd").val('');
 		$("#login").modal();
 	}
 

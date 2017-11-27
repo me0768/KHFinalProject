@@ -1,0 +1,80 @@
+@CHARSET "UTF-8";
+
+#myPageBar {
+	margin-left: 240px;
+	margin-top: 100px;
+}
+
+#myPageBar nav ul li {
+	float: left;
+}
+
+#myPageBar nav ul li:nth-child(1) {
+	font-size: 60px;
+	margin-right: 130px;
+}
+
+#myPageBar nav ul li:nth-child(1) a:hover {
+	text-decoration: none;
+}
+
+#myPageBar nav ul li:nth-child(2), #myPageBar nav ul li:nth-child(3),
+	#myPageBar nav ul li:nth-child(4), #myPageBar nav ul li:nth-child(5),
+	#myPageBar nav ul li:nth-child(6) {
+	font-size: 20px;
+	margin-right: 80px;
+	margin-top: 35px;
+}
+
+.mypage_info {
+	clear:left;
+	/* border-radius: 6px; */
+	box-shadow: 2px 2px 2px rgba(204, 197, 185, 0.5);
+	background-color: #FFFFFF;
+	color: #252422;
+	position: relative;
+	z-index: 1;
+	margin-top: 280px;
+	margin-left: 230px;
+	width: 350px;
+	height: 500px;
+}
+.mypage_info_title {
+	/* border-radius: 6px; */
+	box-shadow: 2px 2px 2px rgba(204, 197, 185, 0.5);
+	background-color: #4f3d57;
+	color: #252422;
+	position: relative;
+	z-index: 1;
+	margin-top: 100px;
+	width: 350px;
+	height: 230px;
+}
+.mypage_info_title img {
+	width: 100px;
+	height: 100px;
+	margin-left:125px;
+	margin-top:45px;
+}
+.mypage_info_title p {
+	color:white;
+	text-align:center;
+}
+.mypage_info_content {
+	float:left;
+	padding:20px;
+}
+.mypage_info_content p {
+	font-size:11pt;
+}
+.mypage_info_content p span {
+	margin-right:15px;
+}
+.mypage_info_content #mypage_btn {
+	margin-top:25px;
+}
+
+.mypage_info_content #mypage_btn_up {
+	margin-left:35px;
+	margin-right:20px;
+}

@@ -31,6 +31,3 @@
 	</ul>
 </nav>
 
-<c:import url="./user/login.jsp"/>
-<c:import url="./user/findidpwd.jsp"/>
-<c:import url="./user/register.jsp"/>

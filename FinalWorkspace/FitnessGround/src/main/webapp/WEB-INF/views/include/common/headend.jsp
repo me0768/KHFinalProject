@@ -8,7 +8,6 @@
 <link rel="stylesheet" href="/fitnessground/resources/css/main.css" />
 <link rel="stylesheet" href="/fitnessground/resources/css/font-awesome.min.css" />
 <link rel="stylesheet" href="/fitnessground/resources/css/login.css" />
-<link rel="stylesheet" href="/fitnessground/resources/css/mypage.css" />
 </head>
 <body class="homepage">
 

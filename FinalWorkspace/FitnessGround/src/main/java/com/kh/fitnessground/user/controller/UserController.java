@@ -75,4 +75,9 @@ public class UserController {
 		return mv;
 	}
 	
+	@RequestMapping(value="/mypage.do")
+	public String myPageMethod(User user, HttpServletRequest request, HttpServletResponse response) {
+		return "user/myPage";
+	}
+	
 }

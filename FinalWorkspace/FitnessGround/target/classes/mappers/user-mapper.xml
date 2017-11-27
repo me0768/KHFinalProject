@@ -63,6 +63,15 @@
 		]]>	
 	</select>
 	
+	<select id="phonecheck" parameterType="string" resultType="User"
+		resultMap="resultUser">
+		<![CDATA[
+			select *
+			from tb_user
+			where phone = #{phone}
+		]]>	
+	</select>
+	
 	<insert id="register" parameterType="User" flushCache="true"
 		statementType="PREPARED" useGeneratedKeys="true" >
 		<![CDATA[

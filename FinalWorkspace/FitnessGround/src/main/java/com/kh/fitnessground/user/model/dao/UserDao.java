@@ -31,6 +31,10 @@ public class UserDao {
 	public User nicknameCheck(String nickname) {
 		return sqlSession.selectOne("user.nicknameCheck", nickname);
 	}
+	
+	public User phonecheck(String phone) {
+		return sqlSession.selectOne("user.phonecheck", phone);
+	}
 
 	public void registerCheck(User user) {
 		sqlSession.insert("user.register", user);

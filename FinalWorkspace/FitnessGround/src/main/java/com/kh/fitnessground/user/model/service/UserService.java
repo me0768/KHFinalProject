@@ -13,6 +13,8 @@ public interface UserService {
 	User emailCheck(String email);
 
 	User nicknameCheck(String nickname);
+	
+	User phonecheck(String phone);
 
 	void registerCheck(User user);
 
@@ -21,5 +23,4 @@ public interface UserService {
 	User findpwdCheck(User user);
 
 	int tmppwd(User user);
-
 }

@@ -90,10 +90,12 @@
 </div>
 
 <script type="text/javascript">
+// 아이디찾기 탭 색
 $(function(){
 	$("#findliid").css({"background-color":"#337ab7", "color":"white"});
 });
 
+// 화면 크기에 따른 글씨크기 변화
 $( window ).resize(function open_chatroom(){
 	var windowWidth = $( window ).width();
 	if(windowWidth < 375) {
@@ -113,6 +115,7 @@ $( window ).resize(function open_chatroom(){
 	}
 });
 
+// 아이디,비번찾기 모달창 열림
 function detectid(){
 	$("#login").hide();
 	$("#register").hide();
@@ -122,6 +125,7 @@ function detectid(){
 	$("#detectidpwd").modal();
 }
 
+// 아이디찾기 탭 눌렀을 때
 function selecttab1(){
 	$("#findliid").css({"background-color":"#337ab7", "color":"white"});
 	$("#findlipwd").css({"background-color":"#fff", "color":"black"});
@@ -130,6 +134,7 @@ function selecttab1(){
 	$("#findidphone").val('');
 }
 
+// 비밀번호 탭 눌렀을 때
 function selecttab2(){
 	$("#findlipwd").css({"background-color":"#337ab7", "color":"white"});
 	$("#findliid").css({"background-color":"#fff", "color":"black"});
@@ -139,8 +144,8 @@ function selecttab2(){
 	$("#findpwdphone").val('');
 }
 
+// 아이디 찾기 ajax
 function findid(){
-	// ajax로 아이디찾기
 	var name = $("#findidname").val();
 	var phone = $("#findidphone").val();
 	var queryString = { "name": name, "phone": phone };
@@ -180,6 +185,7 @@ function findid(){
 	});
 }
 
+// 비밀번호 찾기 ajax (이메일 발송)
 function findpwd(){
 	var email = $("#findpwdemail").val();
 	var name = $("#findpwdname").val();
@@ -200,11 +206,15 @@ function findpwd(){
 				return false;
 			}
 			alert("임시비밀번호가 등록된 이메일로 발송되었습니다.");
+			$("#findpwdemail").val('');
+			$("#findpwdname").val('');
+			$("#findpwdphone").val('');
 			login();
 		}
 	});
 }
 
+// 전화번호에 자동으로 하이픈(-) 추가
 function findphonecheck(data){
 	if(data == 1){
 		var phone = $("#findidphone").val();	

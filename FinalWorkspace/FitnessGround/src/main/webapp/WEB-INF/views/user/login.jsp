@@ -54,16 +54,19 @@
 <!-- /.modal -->
 
 <script type="text/javascript">
-
+	// 로그인 모달창 열림
 	function login() {
 		$("#login").show();
 		$("#register").hide();
 		$("#detectidpwd").hide();
 		$("#email").val('');
 		$("#pwd").val('');
+		$("#findidname").val('');
+		$("#findidphone").val('');
 		$("#login").modal();
 	}
 
+	// 이메일과 비번이 비었으면 로그인버튼 비활성화
 	function emptycheck(){
 		var email = $("#email").val();
 		var pwd = $("#pwd").val();
@@ -74,6 +77,7 @@
 		}
 	}
 	
+	// 로그인 체크 ajax
 	function logincheck(){
 		var email = $("#email").val();
 		var pwd = $("#pwd").val();
@@ -85,7 +89,6 @@
 			data : queryString,
 			success : function(responseData){
 				var data = responseData.user;
-				$("#ajax").remove();
 				if(data == null){
 					alert("아이디와 비밀번호를 확인해주세요.");
 					return false;

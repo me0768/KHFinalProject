@@ -32,6 +32,11 @@ public class UserServiceImpl implements UserService {
 	public User nicknameCheck(String nickname) {
 		return userDao.nicknameCheck(nickname);
 	}
+	
+	@Override
+	public User phonecheck(String phone) {
+		return userDao.phonecheck(phone);
+	}
 
 	@Override
 	public void registerCheck(User user) {
@@ -52,5 +57,4 @@ public class UserServiceImpl implements UserService {
 	public int tmppwd(User user) {
 		return userDao.tmppwd(user);
 	}
-
 }

@@ -15,9 +15,8 @@ public class UserDao {
 	
 	public UserDao() {}
 
-	public User logincheck(User vo) {
-		User user = sqlSession.selectOne("user.selectUser", vo);
-		System.out.println("222 = " + user);
+	public User logincheck(String email) {
+		User user = sqlSession.selectOne("user.selectUser", email);
 		return user;
 	}
 
@@ -35,5 +34,11 @@ public class UserDao {
 
 	public void registerCheck(User user) {
 		sqlSession.insert("user.register", user);
+	}
+
+	public User findid(User user) {
+		User u = sqlSession.selectOne("user.findid", user);
+		System.out.println(u);
+		return u;
 	}
 }

@@ -14,8 +14,8 @@ public class UserServiceImpl implements UserService {
 	UserDao userDao;
 
 	@Override
-	public User loginCheck(User vo) {
-		return userDao.logincheck(vo);
+	public User loginCheck(String email) {
+		return userDao.logincheck(email);
 	}
 
 	@Override
@@ -36,6 +36,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void registerCheck(User user) {
 		userDao.registerCheck(user);
+	}
+
+	@Override
+	public User findid(User user) {
+		return userDao.findid(user);
 	}
 
 }

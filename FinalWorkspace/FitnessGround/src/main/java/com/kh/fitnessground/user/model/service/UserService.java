@@ -6,7 +6,7 @@ import com.kh.fitnessground.user.model.vo.User;
 
 public interface UserService {
 
-	User loginCheck(User vo);
+	User loginCheck(String email);
 
 	User list(int user_no);
 
@@ -15,5 +15,7 @@ public interface UserService {
 	User nicknameCheck(String nickname);
 
 	void registerCheck(User user);
+
+	User findid(User user);
 
 }

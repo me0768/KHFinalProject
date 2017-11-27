@@ -230,6 +230,7 @@ function registerCheck(){
 		data : queryString,
 		success : function(responseDate){
 			alert("성공");
+			// 수정 - 회원가입 성공 후 페이지 이동이나 뭐 해야함
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 	        alert("에러 발생~~ \n" + textStatus + " : " + errorThrown);

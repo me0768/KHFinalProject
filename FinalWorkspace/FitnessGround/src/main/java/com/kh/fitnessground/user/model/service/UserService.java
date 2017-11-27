@@ -18,4 +18,8 @@ public interface UserService {
 
 	User findid(User user);
 
+	User findpwdCheck(User user);
+
+	int tmppwd(User user);
+
 }

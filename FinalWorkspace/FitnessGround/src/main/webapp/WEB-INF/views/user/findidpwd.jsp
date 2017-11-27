@@ -181,7 +181,28 @@ function findid(){
 }
 
 function findpwd(){
-	// 이메일로 보낼거
+	var email = $("#findpwdemail").val();
+	var name = $("#findpwdname").val();
+	var phone = $("#findpwdphone").val();
+	var queryString = { "email": email, "name": name, "phone": phone };
+	$.ajax({
+		url : 'findpwdcheck.do',
+		data : queryString,
+		dataType : "json",
+		type : "get",
+		success: function(responseData){
+			var data = responseData.user;
+			if(data == null){
+				alert("일치하는 계정이 없습니다.");
+				$("#findpwdemail").val('');
+				$("#findpwdname").val('');
+				$("#findpwdphone").val('');
+				return false;
+			}
+			alert("임시비밀번호가 등록된 이메일로 발송되었습니다.");
+			login();
+		}
+	});
 }
 
 function findphonecheck(data){

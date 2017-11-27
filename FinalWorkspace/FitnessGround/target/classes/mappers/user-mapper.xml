@@ -81,6 +81,26 @@
 		]]>	
 	</select>
 	
+	<select id="findpwdcheck" parameterType="User" resultType="User"
+		resultMap="resultUser">
+	<![CDATA[
+		select *
+		from tb_user
+		where email = #{email}
+		and name = #{name}
+		and phone = #{phone}
+	]]>
+	</select>
+	
+	<update id="tmppwd" parameterType="User"
+		flushCache="true" statementType="PREPARED" >
+		<![CDATA[
+		update tb_user 
+		set pwd = #{pwd}, tmppwd_tf = 1
+		where email = #{email} and name = #{name}
+		]]>
+	</update>
+	
 	<!-- <select id="selectAll" resultType="list" resultMap="resultList">
 	<![CDATA[
 		select * from member

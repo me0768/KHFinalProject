@@ -43,4 +43,14 @@ public class UserServiceImpl implements UserService {
 		return userDao.findid(user);
 	}
 
+	@Override
+	public User findpwdCheck(User user) {
+		return userDao.findpwdCheck(user);
+	}
+
+	@Override
+	public int tmppwd(User user) {
+		return userDao.tmppwd(user);
+	}
+
 }

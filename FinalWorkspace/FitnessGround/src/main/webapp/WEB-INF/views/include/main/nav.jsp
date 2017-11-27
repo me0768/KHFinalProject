@@ -26,6 +26,7 @@
 		</c:if>
 		<c:if test="${ sessionScope.user != null}">
 			<li><a href="logout.do">로그아웃</a></li>
+			<li><a href="mypage.do">MyPage</a></li>
 		</c:if>
 	</ul>
 </nav>

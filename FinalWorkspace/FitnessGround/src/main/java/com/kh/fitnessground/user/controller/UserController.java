@@ -89,4 +89,13 @@ public class UserController {
 		return "user/myPage";
 	}
 	
+	@RequestMapping(value="/findid.do")
+	public ModelAndView findIdMethod(User user, HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mv = new ModelAndView("main");
+		System.out.println(user);
+		User u = userService.findid(user);
+		mv.addObject("user", u);
+		mv.setViewName("jsonView");
+		return mv;
+	}
 }

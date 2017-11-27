@@ -1,6 +1,3 @@
-﻿CREATE USER fitnessground IDENTIFIED BY fitnessground;
+create user fitnessground IDENTIFIED by fitnessground;
 
-GRANT CONNECT, RESOURCE, DBA TO fitnessground;
-GRANT ADVISOR TO fitnessground;
-GRANT ADMINISTER SQL TUNING SET TO fitnessground;
-GRANT SELECT ANY DICTIONARY TO fitnessground;
+GRANT connect, resource, dba TO fitnessground;

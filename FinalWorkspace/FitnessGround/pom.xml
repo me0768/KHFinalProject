@@ -160,12 +160,6 @@
 		    <version>1.0.2</version>
 		</dependency>
 		
-		<!-- BCrypt -->
-		<dependency>
-		    <groupId>org.mindrot</groupId>
-		    <artifactId>jbcrypt</artifactId>
-		    <version>0.3m</version>
-		</dependency>
 
 	</dependencies>
 	<build>

@@ -1,0 +1,21 @@
+﻿-- 회원탈퇴 프로시저 생성 --
+CREATE PROCEDURE DEL_USER_PROCEDURE
+IS
+BEGIN
+  DELETE FROM TB_USER 
+  WHERE DELETE_DATE = SYSDATE;
+  COMMIT;
+END;
+
+-- 회원탈퇴 잡 스케줄러 실행 -- 
+DECLARE
+   J_NO NUMBER;
+BEGIN
+   DBMS_JOB.SUBMIT (
+      J_NO,
+      'DEL_USER_PROCEDURE;',
+      SYSDATE,
+      ‘TRUNC(SYSDATE + 1) + 5 / 24',
+      FALSE
+   );
+END;

@@ -15,9 +15,8 @@ public class UserDao {
 	
 	public UserDao() {}
 
-	public User logincheck(User vo) {
-		User user = sqlSession.selectOne("user.selectUser", vo);
-		System.out.println("222 = " + user);
+	public User logincheck(String email) {
+		User user = sqlSession.selectOne("user.selectUser", email);
 		return user;
 	}
 

@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,16 +24,21 @@ public class UserController {
 	@RequestMapping(value="/login.do")
 	public ModelAndView loginMethod(User user, HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
-		if(user.getUser_level() == 2) {
-			// 관리자 페이지 나오면 이부분 수정
-			ModelAndView mv = new ModelAndView();
-			return mv;
-		} else {			
-			ModelAndView mv = new ModelAndView("main");
-			User u = userService.loginCheck(user);
+		ModelAndView mv = new ModelAndView("main");
+		User u = userService.loginCheck(user.getEmail());
+		if(BCrypt.checkpw(user.getPwd(), u.getPwd())) {
+			if(u.getUser_level() == 2) {
+				// 관리자 페이지 나오면 이부분 수정
+				
+			}			
+				
 			mv.addObject("user",u);
 			mv.setViewName("jsonView");
 			session.setAttribute("user", u);
+			return mv;
+		} else {
+			mv.addObject("user", null);
+			mv.setViewName("jsonView");
 			return mv;
 		}
 	}
@@ -70,6 +76,9 @@ public class UserController {
 		ModelAndView mv = new ModelAndView("main");
 		int user_level = Integer.parseInt(request.getParameter("userlevel"));
 		user.setUser_level(user_level);
+		// BCrypt 로 암호화
+		String hashPassword = BCrypt.hashpw(user.getPwd(), BCrypt.gensalt());
+		user.setPwd(hashPassword);
 		System.out.println(user);
 		userService.registerCheck(user);
 		return mv;

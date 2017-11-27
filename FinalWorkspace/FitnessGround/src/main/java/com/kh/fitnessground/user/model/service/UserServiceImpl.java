@@ -14,8 +14,8 @@ public class UserServiceImpl implements UserService {
 	UserDao userDao;
 
 	@Override
-	public User loginCheck(User vo) {
-		return userDao.logincheck(vo);
+	public User loginCheck(String email) {
+		return userDao.logincheck(email);
 	}
 
 	@Override

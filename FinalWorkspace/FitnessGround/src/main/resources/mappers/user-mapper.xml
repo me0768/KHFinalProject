@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user">
+
+	<resultMap id="resultUser" type="User">
+		<id property="user_no" column="USER_NO" />
+		<result property="email" column="EMAIL" />
+		<result property="pwd" column="PWD" />
+		<result property="name" column="NAME" />
+		<result property="nickname" column="NICKNAME" />
+		<result property="phone" column="PHONE" />
+		<result property="user_level" column="USER_LEVEL" />
+		<result property="delete_date" column="DELETE_DATE" />
+		<result property="tmppwd_tf" column="TMPPWD_TF" />
+	</resultMap>
+	
+	<resultMap id="resultList" type="User">
+		<result property="user_no" column="USER_NO" />
+		<result property="email" column="EMAIL" />
+		<result property="pwd" column="PWD" />
+		<result property="name" column="NAME" />
+		<result property="nickname" column="NICKNAME" />
+		<result property="phone" column="PHONE" />
+		<result property="user_level" column="USER_LEVEL" />
+		<result property="delete_date" column="DELETE_DATE" />
+		<result property="tmppwd_tf" column="TMPPWD_TF" />
+	</resultMap>
+
+	<select id="selectUser" parameterType="String" resultType="User"
+		resultMap="resultUser">
+		<![CDATA[
+			select * 
+			from tb_user 
+			where email = #{email} 
+		]]>
+		
+	</select>
+
+	<select id="selectInfo" parameterType="_int" resultType="User"
+		resultMap="resultUser">
+		<![CDATA[
+		select * from tb_user where user_no = #{user_no}
+		]]>
+	</select>
+	
+	<select id="emailCheck" parameterType="string" resultType="User"
+		resultMap="resultUser">
+		<![CDATA[
+			select *
+			from tb_user
+			where email = #{email}
+		]]>
+	</select>
+	
+	<select id="nicknameCheck" parameterType="string" resultType="User"
+		resultMap="resultUser">
+		<![CDATA[
+			select *
+			from tb_user
+			where nickname = #{nickname}
+		]]>	
+	</select>
+	
+	<insert id="register" parameterType="User" flushCache="true"
+		statementType="PREPARED" useGeneratedKeys="true" >
+		<![CDATA[
+			insert into tb_user
+			values (user_seq.nextval, #{email}, #{pwd}, #{name}, #{nickname}, #{phone}, #{user_level}, null, 0)
+		]]>
+	</insert>
+	
+	<select id="findid" parameterType="User" resultType="User"
+		resultMap="resultUser">
+		<![CDATA[
+			select *
+			from tb_user
+			where phone = #{phone}
+			and name = #{name}
+		]]>	
+	</select>
+	
+	<select id="findpwdcheck" parameterType="User" resultType="User"
+		resultMap="resultUser">
+	<![CDATA[
+		select *
+		from tb_user
+		where email = #{email}
+		and name = #{name}
+		and phone = #{phone}
+	]]>
+	</select>
+	
+	<update id="tmppwd" parameterType="User"
+		flushCache="true" statementType="PREPARED" >
+		<![CDATA[
+		update tb_user 
+		set pwd = #{pwd}, tmppwd_tf = 1
+		where email = #{email} and name = #{name}
+		]]>
+	</update>
+	
+	<!-- <select id="selectAll" resultType="list" resultMap="resultList">
+	<![CDATA[
+		select * from member
+		]]>
+	</select>
+	
+	<insert id="insertMember" parameterType="Member" flushCache="true" 
+	statementType="PREPARED" useGeneratedKeys="true" >
+	<![CDATA[
+		insert into member
+		values (#{member_id}, #{member_pwd}, #{member_name}, 
+			   #{gender}, #{age}, #{email}, #{phone}, #{address}, #{hobby}, default)
+			   ]]>
+	</insert>
+
+	<update id="updateMember" parameterType="Member"
+		flushCache="true" statementType="PREPARED" >
+		<![CDATA[
+		update member 
+		set member_pwd = #{member_pwd}, member_name = #{member_name}, 
+			age = #{age}, email = #{email}, phone = #{phone}, 
+			address = #{address}, hobby = #{hobby}
+		where member_id = #{member_id}
+		]]>
+	</update>
+
+	<delete id="deleteMember" parameterType="string"
+		flushCache="true" statementType="PREPARED" >
+		<![CDATA[
+		delete from member where member_id = #{member_id}
+		]]>
+	</delete>
+ -->
+</mapper>

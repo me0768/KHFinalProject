@@ -119,7 +119,6 @@
          <scope>runtime</scope>
       </dependency>
 
-<<<<<<< HEAD
       <!-- @Inject -->
       <dependency>
          <groupId>javax.inject</groupId>
@@ -195,7 +194,7 @@
             
         </plugins>
     </build>
-=======
+    
 	<repositories>
 		<repository>
 			<id>oracle</id>
@@ -403,5 +402,4 @@
 
 		</plugins>
 	</build>
->>>>>>> master
 </project>

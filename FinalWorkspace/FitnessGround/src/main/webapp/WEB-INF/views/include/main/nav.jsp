@@ -25,7 +25,12 @@
 			<li><a href="#" onclick="return login();">로그인</a></li>
 		</c:if>
 		<c:if test="${ sessionScope.user != null}">
+<<<<<<< HEAD
 			<li><a href="#" onclick="return logout();">로그아웃</a></li>
+=======
+			<li><a href="logout.do">로그아웃</a></li>
+			<li><a href="mypage.do">MyPage</a></li>
+>>>>>>> master
 		</c:if>
 	</ul>
 </nav>

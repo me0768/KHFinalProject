@@ -157,7 +157,7 @@ function findid(){
 					return false;
 			} else {
 				var data = responseData.user.email;
-				var substr = data.split('@');
+				var substr = data.split("@");
 				var sub1 = substr[0].length-2;
 				var sub2 = substr[1].length;
 				if(sub1 < 6 && sub2 < 10){

@@ -98,7 +98,7 @@ public class UserController {
 	public ModelAndView findIdMethod(User user, HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView("main");
 		User u = userService.findid(user);
-		mv.addObject("user", u.getEmail());
+		mv.addObject("user", u);
 		mv.setViewName("jsonView");
 		return mv;
 	}

@@ -451,5 +451,32 @@ INSERT INTO TB_USER VALUES(USER_SEQ.NEXTVAL, 'ADMIN', '$2a$10$Fr8KsAskrldajwgHTa
 INSERT INTO TB_USER VALUES(USER_SEQ.NEXTVAL, 'user11@iei.or.kr', '$2a$10$UWJxBhRjk8rH4CTKattaEOfkcKX20nYKrsImhve/0OLfrRipPRrwG', '양동균', '양뚝', '010-8366-3828', 0, NULL, 0);
 
 COMMIT;
+
+﻿-- 회원탈퇴 프로시저 생성 --
+PROMPT 회원탈퇴 프로시저 생성...
+CREATE OR REPLACE PROCEDURE DEL_USER_PROCEDURE
+IS
+BEGIN
+  DELETE FROM TB_USER 
+  WHERE DELETE_DATE = SYSDATE;
+  COMMIT;
+END;
+/
+
+-- 회원탈퇴 잡 스케줄러 실행 -- 
+PROMPT 회원탈퇴 잡 스케줄러 실행....
+DECLARE
+   J_NO NUMBER;
+BEGIN
+   DBMS_JOB.SUBMIT (
+      J_NO,
+      'DEL_USER_PROCEDURE;',
+      SYSDATE,
+      'TRUNC(SYSDATE + 1) + 5 / 24',
+      FALSE
+   );
+END;
+/
   
 PROMPT FITNESSGORUND 자료입력 끝...
+

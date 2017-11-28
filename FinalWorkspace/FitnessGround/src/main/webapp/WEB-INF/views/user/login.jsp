@@ -41,7 +41,7 @@
 					</div>
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="fulldiv" style="margin-top: 10px; color: black; font-size: 7pt;">
 						<div>
-							<a href="#" onclick="return detectid();">아이디&nbsp;또는&nbsp;비밀번호를<br>잊어버리셨나요?</a>
+							<a href="#" onclick="return detectid();" id="finda">아이디&nbsp;또는&nbsp;비밀번호를<br>잊어버리셨나요?</a>
 						</div>
 					</div>
 				</div>

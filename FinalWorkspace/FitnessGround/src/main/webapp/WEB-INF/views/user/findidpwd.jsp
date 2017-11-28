@@ -103,15 +103,19 @@ $( window ).resize(function open_chatroom(){
 		$("#findpwdfield").css("font-size","60%");
 		$("#findliid").css("font-size", "80%");
 		$("#findlipwd").css("font-size", "80%");
+		$("#finda").css("font-size", "80%");
 	} else if (windowWidth < 425){
 		$("#findidfield").css("font-size","90%");
 		$("#findpwdfield").css("font-size","90%");
+		$("#finda").css("font-size", "80%");
 	} else if (windowWidth < 720){
 		$("#findidfield").css("font-size","110%");
 		$("#findpwdfield").css("font-size","110%");
+		$("#finda").css("font-size", "80%");
 	} else {
 		$("#findidfield").css("font-size","110%");
 		$("#findpwdfield").css("font-size","110%");
+		$("#finda").css("font-size", "80%");
 	}
 });
 

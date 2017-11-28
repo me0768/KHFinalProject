@@ -94,7 +94,11 @@
 					return false;
 				}
 				$("#login").modal("hide");
-				location.href = "main.do";
+				if( responseData.user.user_level == 2){
+					location.href = "adminMain.do";
+				} else {
+					location.href = "main.do";
+				}
 				/* 수정 - 비밀번호 변경 나오면 여기에 tmppwd_tf여부 확인하고 변경 페이지로 */
 			},
 			error : function(jqXHR, textStatus, errorThrown) {

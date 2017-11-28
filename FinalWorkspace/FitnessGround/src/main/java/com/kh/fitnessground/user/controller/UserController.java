@@ -167,4 +167,9 @@ public class UserController {
 		}
 		return mv;
 	}
+	
+	@RequestMapping(value="/moveregistergym.do")
+	public String moveRegisterGymMethod(HttpSession session) {
+		return "gym/registergym";
+	}
 }

@@ -29,7 +29,7 @@
 					</div>
 					<div id="loginfield" class="btn-group btn-group-justified" role="group">
 						<div class="btn-group" role="group">
-							<button type="button" class="btn btn-primary" id="loginbtn" onclick="logincheck(); " disabled>Login</button>
+							<button type="button" class="btn btn-primary" id="loginbtn" onclick="logincheck();" disabled>Login</button>
 						</div>
 					</div>
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="fulldiv">
@@ -103,6 +103,10 @@
 		});
 	}
 	
-	
-	
+	$("#pwd").on("keypress", function (event) {
+		if (event.keyCode == 13) {
+			logincheck();
+		}
+	});
+
 </script>

@@ -12,11 +12,13 @@ public class User {
 	private int user_level;
 	private Date delete_date;
 	private int tmppwd_tf;
+	private String original_image;
+	private String rename_image;
 	
 	public User() {}
 
 	public User(int user_no, String email, String pwd, String name, String nickname, String phone, int user_level,
-			Date delete_date, int tmppwd_tf) {
+			Date delete_date, int tmppwd_tf, String original_image, String rename_image) {
 		super();
 		this.user_no = user_no;
 		this.email = email;
@@ -27,6 +29,8 @@ public class User {
 		this.user_level = user_level;
 		this.delete_date = delete_date;
 		this.tmppwd_tf = tmppwd_tf;
+		this.original_image = original_image;
+		this.rename_image = rename_image;
 	}
 
 	public int getUser_no() {
@@ -101,10 +105,27 @@ public class User {
 		this.tmppwd_tf = tmppwd_tf;
 	}
 
+	public String getOriginal_image() {
+		return original_image;
+	}
+
+	public void setOriginal_image(String original_image) {
+		this.original_image = original_image;
+	}
+
+	public String getRename_image() {
+		return rename_image;
+	}
+
+	public void setRename_image(String rename_image) {
+		this.rename_image = rename_image;
+	}
+
 	@Override
 	public String toString() {
 		return "User [user_no=" + user_no + ", email=" + email + ", pwd=" + pwd + ", name=" + name + ", nickname="
 				+ nickname + ", phone=" + phone + ", user_level=" + user_level + ", delete_date=" + delete_date
-				+ ", tmppwd_tf=" + tmppwd_tf + "]";
-	}	
+				+ ", tmppwd_tf=" + tmppwd_tf + ", original_image=" + original_image + ", rename_image=" + rename_image
+				+ "]";
+	}
 }

@@ -39,11 +39,6 @@ public class UserController {
 			return mv;
 		} else {
 			if(BCrypt.checkpw(user.getPwd(), u.getPwd())) { // 이메일 같은게 있으면 암호화 데이터 비교
-				if(u.getUser_level() == 2) {
-					// 관리자 페이지 나오면 이부분 수정
-					
-				}			
-					
 				mv.addObject("user",u);
 				mv.setViewName("jsonView");
 				session.setAttribute("user", u);  		// 아디비번이 같을 경우 세션값으로 넘김

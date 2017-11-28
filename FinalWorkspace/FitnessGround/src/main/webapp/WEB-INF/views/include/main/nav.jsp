@@ -20,7 +20,7 @@
 				</li> 
 			</ul></li>
 		<li><a href="left-sidebar.html">운동시설찾기</a></li>
-		<li><a href="right-sidebar.html">커뮤니티</a></li>
+		<li><a href="community.do">커뮤니티</a></li>
 		<c:if test="${ sessionScope.user == null}">
 			<li><a href="#" onclick="return login();">로그인</a></li>
 		</c:if>

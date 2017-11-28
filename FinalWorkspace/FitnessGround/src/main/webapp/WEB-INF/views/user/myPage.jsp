@@ -57,5 +57,7 @@
 	<div>
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	</div>
-</body>
-</html>
+	
+    <c:import url="../include/main/footer.jsp" />
+
+    <c:import url="../include/common/end.jsp" />

@@ -129,7 +129,6 @@ function emailcheck(){
 function pwdcheck(){
 	var pwd1 = $("#registerpwd").val();
 	var pwd2 = $("#registerpwd2").val();
-	console.log(pwd1 + "," + pwd2);
 	var value = '';
 	 if(pwd1 != pwd2){
 		$("#registerpwd").css({'boader-color':'#F60808', 'box-shadow':'0 0 1px 1px rgb(232, 13, 13)'});
@@ -227,7 +226,6 @@ function phonecheck(){
 // 전화번호가 중복인지 체크 ajax
 function phonecheckajax(phone){
 	var queryString = { "phone": phone };
-	console.log(phone);
 	$.ajax({
 		url : "phonecheck.do",
 		dataType : "json",

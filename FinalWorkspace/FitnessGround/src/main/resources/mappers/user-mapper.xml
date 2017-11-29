@@ -28,13 +28,12 @@
 		<result property="tmppwd_tf" column="TMPPWD_TF" />
 	</resultMap>
 
-	<select id="selectUser" parameterType="User" resultType="User"
+	<select id="selectUser" parameterType="String" resultType="User"
 		resultMap="resultUser">
 		<![CDATA[
 			select * 
 			from tb_user 
 			where email = #{email} 
-			  and pwd = #{pwd}	
 		]]>
 		
 	</select>
@@ -64,13 +63,52 @@
 		]]>	
 	</select>
 	
+	<select id="phonecheck" parameterType="string" resultType="User"
+		resultMap="resultUser">
+		<![CDATA[
+			select *
+			from tb_user
+			where phone = #{phone}
+		]]>	
+	</select>
+	
 	<insert id="register" parameterType="User" flushCache="true"
 		statementType="PREPARED" useGeneratedKeys="true" >
 		<![CDATA[
 			insert into tb_user
-			values (user_seq.nextval, #{email}, #{pwd}, #{name}, #{nickname}, #{phone}, #{user_level}, null, 0)
+			values (user_seq.nextval, #{email}, #{pwd}, #{name}, #{nickname}, #{phone}, #{user_level}, null, 0, null, null)
 		]]>
 	</insert>
+	
+	<select id="findid" parameterType="User" resultType="User"
+		resultMap="resultUser">
+		<![CDATA[
+			select *
+			from tb_user
+			where phone = #{phone}
+			and name = #{name}
+		]]>	
+	</select>
+	
+	<select id="findpwdcheck" parameterType="User" resultType="User"
+		resultMap="resultUser">
+	<![CDATA[
+		select *
+		from tb_user
+		where email = #{email}
+		and name = #{name}
+		and phone = #{phone}
+	]]>
+	</select>
+	
+	<update id="tmppwd" parameterType="User"
+		flushCache="true" statementType="PREPARED" >
+		<![CDATA[
+		update tb_user 
+		set pwd = #{pwd}, tmppwd_tf = 1
+		where email = #{email} and name = #{name}
+		]]>
+	</update>
 	
 	<!-- <select id="selectAll" resultType="list" resultMap="resultList">
 	<![CDATA[

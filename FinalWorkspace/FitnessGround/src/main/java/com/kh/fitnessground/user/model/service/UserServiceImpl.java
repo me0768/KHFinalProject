@@ -14,8 +14,8 @@ public class UserServiceImpl implements UserService {
 	UserDao userDao;
 
 	@Override
-	public User loginCheck(User vo) {
-		return userDao.logincheck(vo);
+	public User loginCheck(String email) {
+		return userDao.logincheck(email);
 	}
 
 	@Override
@@ -32,10 +32,29 @@ public class UserServiceImpl implements UserService {
 	public User nicknameCheck(String nickname) {
 		return userDao.nicknameCheck(nickname);
 	}
+	
+	@Override
+	public User phonecheck(String phone) {
+		return userDao.phonecheck(phone);
+	}
 
 	@Override
 	public void registerCheck(User user) {
 		userDao.registerCheck(user);
 	}
 
+	@Override
+	public User findid(User user) {
+		return userDao.findid(user);
+	}
+
+	@Override
+	public User findpwdCheck(User user) {
+		return userDao.findpwdCheck(user);
+	}
+
+	@Override
+	public int tmppwd(User user) {
+		return userDao.tmppwd(user);
+	}
 }

@@ -29,7 +29,7 @@
 					</div>
 					<div id="loginfield" class="btn-group btn-group-justified" role="group">
 						<div class="btn-group" role="group">
-							<button type="button" class="btn btn-primary" id="loginbtn" onclick="logincheck(); " disabled>Login</button>
+							<button type="button" class="btn btn-primary" id="loginbtn" onclick="logincheck();" disabled>Login</button>
 						</div>
 					</div>
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="fulldiv">
@@ -41,7 +41,7 @@
 					</div>
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="fulldiv" style="margin-top: 10px; color: black; font-size: 7pt;">
 						<div>
-							<a href="#" onclick="return detectid();">아이디&nbsp;또는&nbsp;비밀번호를<br>잊어버리셨나요?</a>
+							<a href="#" onclick="return detectid();" id="finda">아이디&nbsp;또는&nbsp;비밀번호를<br>잊어버리셨나요?</a>
 						</div>
 					</div>
 				</div>
@@ -54,14 +54,19 @@
 <!-- /.modal -->
 
 <script type="text/javascript">
-
+	// 로그인 모달창 열림
 	function login() {
 		$("#login").show();
 		$("#register").hide();
 		$("#detectidpwd").hide();
+		$("#email").val('');
+		$("#pwd").val('');
+		$("#findidname").val('');
+		$("#findidphone").val('');
 		$("#login").modal();
 	}
 
+	// 이메일과 비번이 비었으면 로그인버튼 비활성화
 	function emptycheck(){
 		var email = $("#email").val();
 		var pwd = $("#pwd").val();
@@ -72,6 +77,7 @@
 		}
 	}
 	
+	// 로그인 체크 ajax
 	function logincheck(){
 		var email = $("#email").val();
 		var pwd = $("#pwd").val();
@@ -83,13 +89,17 @@
 			data : queryString,
 			success : function(responseData){
 				var data = responseData.user;
-				$("#ajax").remove();
 				if(data == null){
 					alert("아이디와 비밀번호를 확인해주세요.");
 					return false;
 				}
 				$("#login").modal("hide");
-				location.href = "main.do";
+				if( responseData.user.user_level == 2){
+					location.href = "adminMain.do";
+				} else {
+					location.href = "main.do";
+				}
+				/* 수정 - 비밀번호 변경 나오면 여기에 tmppwd_tf여부 확인하고 변경 페이지로 */
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
 		        alert("에러 발생~~ \n" + textStatus + " : " + errorThrown);
@@ -97,6 +107,10 @@
 		});
 	}
 	
-	
-	
+	$("#pwd").on("keypress", function (event) {
+		if (event.keyCode == 13) {
+			logincheck();
+		}
+	});
+
 </script>

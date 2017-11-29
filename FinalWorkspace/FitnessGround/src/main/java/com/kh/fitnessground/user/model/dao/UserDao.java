@@ -1,12 +1,14 @@
 package com.kh.fitnessground.user.model.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.fitnessground.user.model.vo.User;
+import com.kh.fitnessground.user.model.vo.UserSchedule;
 
 @Repository("userDao")
 public class UserDao {
@@ -50,5 +52,15 @@ public class UserDao {
 
 	public int tmppwd(User user) {
 		return sqlSession.update("user.tmppwd", user);
+	}
+
+	public ArrayList<UserSchedule> yesterdaySchedule(int userNo) {
+		List<UserSchedule> list = sqlSession.selectList("user.yesterdaySchedule", userNo);
+		return new ArrayList<UserSchedule>(list);
+	}
+
+	public ArrayList<UserSchedule> todaySchedule(int userNo) {
+		List<UserSchedule> list = sqlSession.selectList("user.todaySchedule", userNo);
+		return new ArrayList<UserSchedule>(list);
 	}
 }

@@ -1,4 +1,4 @@
-<div id="footer">
+<div id="footer" style="clear:left;">
             <div class="container">
                 <div class="row">
 

@@ -7,6 +7,15 @@
 	
     <c:import url="../include/common/headend.jsp" />
     
+    <c:if test="${ sessionScope.user == null }">
+		<script type="text/javascript">
+			$(function (){
+				alert("로그인이 필요합니다.");
+				location.href="main.do";
+			});
+		</script>
+	</c:if>
+    <c:if test="${ sessionScope.user != null }">
 	<div id="page-wrapper">
 		<!-- Header -->
 		<div id="mypage_header">
@@ -127,7 +136,7 @@
 		</div>
 		<div id="moreS" align="right"><button class="btn btn-default">MORE</button></div>
 	</div>
-	
+	</c:if>
     <c:import url="../include/main/footer.jsp" />
 
     <c:import url="../include/common/end.jsp" />

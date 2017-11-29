@@ -27,6 +27,14 @@
 		<result property="delete_date" column="DELETE_DATE" />
 		<result property="tmppwd_tf" column="TMPPWD_TF" />
 	</resultMap>
+	
+	<resultMap id="resultUserSchedule" type="UserSchedule">
+		<id property="s_no" column="s_no" />
+		<result property="v_no" column="v_no" />
+		<result property="user_no" column="user_no" />
+		<result property="content" column="content" />
+		<result property="upload_date" column="upload_date" />
+	</resultMap>
 
 	<select id="selectUser" parameterType="String" resultType="User"
 		resultMap="resultUser">
@@ -109,6 +117,17 @@
 		where email = #{email} and name = #{name}
 		]]>
 	</update>
+	
+	<select id="yesterdaySchedule" parameterType="_int" resultMap="resultUserSchedule" resultType="list">
+		<![CDATA[ 
+		select * from tb_mypage_schedule where user_no=#{userNo} and to_char(UPLOAD_DATE,'rr/MM/dd')=to_char(sysdate-1, 'rr/MM/dd')
+		]]>
+	</select>
+	<select id="todaySchedule" parameterType="_int" resultMap="resultUserSchedule" resultType="list">
+		<![CDATA[ 
+		select * from tb_mypage_schedule where user_no=#{userNo} and to_char(UPLOAD_DATE,'rr/MM/dd')=to_char(sysdate, 'rr/MM/dd')
+		]]>
+	</select>
 	
 	<!-- <select id="selectAll" resultType="list" resultMap="resultList">
 	<![CDATA[

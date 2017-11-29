@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.fitnessground.user.model.dao.UserDao;
 import com.kh.fitnessground.user.model.vo.User;
+import com.kh.fitnessground.user.model.vo.UserSchedule;
 
 @Service("userService")
 public class UserServiceImpl implements UserService {
@@ -56,5 +57,15 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public int tmppwd(User user) {
 		return userDao.tmppwd(user);
+	}
+
+	@Override
+	public ArrayList<UserSchedule> yesterdaySchedule(int userNo) {
+		return userDao.yesterdaySchedule(userNo);
+	}
+
+	@Override
+	public ArrayList<UserSchedule> todaySchedule(int userNo) {
+		return userDao.todaySchedule(userNo);
 	}
 }

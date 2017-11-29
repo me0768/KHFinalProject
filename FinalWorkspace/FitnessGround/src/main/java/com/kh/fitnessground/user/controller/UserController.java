@@ -1,6 +1,9 @@
 package com.kh.fitnessground.user.controller;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.fitnessground.user.model.service.UserService;
 import com.kh.fitnessground.user.model.vo.User;
+import com.kh.fitnessground.user.model.vo.UserSchedule;
 
 @Controller
 public class UserController {
@@ -107,8 +111,27 @@ public class UserController {
 	
 	// 마이페이지로 뷰 이동
 	@RequestMapping(value="/mypage.do")
-	public String myPageMethod(User user, HttpServletRequest request, HttpServletResponse response) {
-		return "user/myPage";
+	public ModelAndView myPageMethod(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView("user/myPage");
+		int userNo = Integer.parseInt(request.getParameter("userno"));
+		mv.addObject("yesterday", userService.yesterdaySchedule(userNo));
+		mv.addObject("today", userService.todaySchedule(userNo));
+		/*System.out.println(userService.yesterdaySchedule(userNo));
+		System.out.println(userService.todaySchedule(userNo));*/
+		String currentDate = new SimpleDateFormat("yyyy.MM.dd").format(new Date(System.currentTimeMillis()));
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date(System.currentTimeMillis()));
+		cal.add(Calendar.DATE, -1);
+		String yesterDate = new SimpleDateFormat("yyyy.MM.dd").format(cal.getTime());
+		mv.addObject("currentDate", currentDate);
+		mv.addObject("yesterDate", yesterDate);
+		return mv; 
+	}
+	
+	@RequestMapping(value="/udetail.do")
+	public ModelAndView userDetailMethod(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView("user/userDetail");
+		return mv; 
 	}
 	
 	// 아이디 찾기

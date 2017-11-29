@@ -3,7 +3,6 @@
 
 <!-- css 파일 로드-->
 <link rel="stylesheet" href="/fitnessground/resources/css/bootstrap.css">
-<link rel="stylesheet" href="/fitnessground/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="/fitnessground/resources/css/common/compiled_main.css" />
 <link rel="stylesheet" href="/fitnessground/resources/css/common/main.css" />
 <link rel="stylesheet" href="/fitnessground/resources/css/common/font-awesome.min.css" />
@@ -19,3 +18,4 @@
 <script type="text/javascript" src="/fitnessground/resources/js/common/skel.min.js"></script>
 <script type="text/javascript" src="/fitnessground/resources/js/common/util.js"></script>
 <script type="text/javascript" src="/fitnessground/resources/js/common/main.js"></script>
+<script type="text/javascript" src="/fitnessground/resources/js/bootstrap.js"></script>

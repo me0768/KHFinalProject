@@ -17,6 +17,18 @@
 		.row {
 			margin-left: 0px;
 		}
+		
+		#mainimage {
+			width: 70%;
+			height: 50%;
+		}
+		
+		#botimage {
+			width: 100%;
+			height: 10%;
+		}
+		
+		
 	</style>
 	
 	<c:import url="../include/common/headend.jsp" />
@@ -172,7 +184,7 @@
 			$(".hide-bullets").empty();
 			
 			// 캐러셀 좌우버튼
-			var prevnext = 	"<a class='left carousel-control' href=''#myCarousel' role='button' data-slide='prev'>" +
+			var prevnext = 	"<a class='left carousel-control' href='#myCarousel' role='button' data-slide='prev'>" +
 							"<span class='glyphicon glyphicon-chevron-left'></span>" +                                       
 					  		"</a>" +
 							"<a class='right carousel-control' href='#myCarousel' role='button' data-slide='next'>" +

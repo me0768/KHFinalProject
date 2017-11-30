@@ -133,6 +133,21 @@ public class UserController {
 		ModelAndView mv = new ModelAndView("user/userDetail");
 		return mv; 
 	}
+	@RequestMapping(value="/userpwd.do")
+	public ModelAndView userPwdModifyMethod(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView("user/userPwdModify");
+		return mv; 
+	}
+	@RequestMapping(value="/userdel.do")
+	public ModelAndView userDeleteMethod(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView("user/userDelete");
+		return mv; 
+	}
+	@RequestMapping(value="/userboard.do")
+	public ModelAndView userBoardModifyMethod(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView("user/userBoard");
+		return mv; 
+	}
 	
 	// 아이디 찾기
 	@RequestMapping(value="/findid.do")

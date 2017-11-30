@@ -3,24 +3,22 @@
 #myPageBar {
 	margin-top: 100px;
 }
-
+#myPageBar h1 a:hover, #myPageBar h1 a:visited, #myPageBar h1 a:link{
+	text-decoration: none;
+}
 #myPageBar #sm_title {
 	font-size: 25px;
 }
-
 #myPageBar nav ul li {
 	float: left;
 }
-
 #myPageBar nav ul li:nth-child(1) {
 	font-size: 55px;
 	margin-right: 110px;
 }
-
 #myPageBar nav ul li:nth-child(1) a:hover {
 	text-decoration: none;
 }
-
 #myPageBar nav ul li:nth-child(2), #myPageBar nav ul li:nth-child(3),
 	#myPageBar nav ul li:nth-child(4), #myPageBar nav ul li:nth-child(5),
 	#myPageBar nav ul li:nth-child(6) {
@@ -29,19 +27,22 @@
 	margin-top: 35px;
 }
 
+
+
+/*  */
 .mypage_info {
 	box-shadow: 2px 2px 2px rgba(204, 197, 185, 0.5);
 	background-color: #FFFFFF;
 	color: #252422;
 	margin-top: 100px;
-	margin-bottom:100px;
+	margin-bottom:120px;
 	height:500px;
 }
 .mypage_info_title {
 	box-shadow: 2px 2px 2px rgba(204, 197, 185, 0.5);
 	background-color: #4f3d57;
 	color:white;
-	height:220px;
+	height:194px;
 	width:100%;
 }
 .mypage_info_title img {
@@ -70,13 +71,12 @@
 	width:90%;
 }
 
-
 .mypage_schedule {
 	box-shadow: 2px 2px 2px rgba(204, 197, 185, 0.5);
 	background-color: #FFFFFF;
 	color: #252422;
 	margin-top: 100px;
-	margin-bottom:100px;
+	margin-bottom:120px;
 	height:500px;
 }
 .mypage_schedule #moreS {
@@ -103,26 +103,190 @@
 }
 
 
+
 /* */
-#userDetailTitle {
+/* #userDetailTitle {
 	margin-top:100px;
 }
 #userDetailTitle h1 {
-	font-size:50px;
+	font-size:40px;
 }
 #userDetailTitle p{
 	font-size:13pt;
 	margin-left:10px;
 }
+#userDetailTitle #smallH {
+	font-size:25px;
+}
+#userDetailTitle #smallP {
+	font-size:9pt;
+	margin-left:5px;
+} */
+#userDetailTitle {
+	margin-top:100px;	
+}
+#userDetailTitle img {
+	width:100px;
+	height:100px;
+	background:#e0e0e0;
+}
+#userDetailTitle #userDetailTitleInfo {
+	margin-top:12px;
+	font-size:12pt;
+}
+#userDetailTitle #userDetailTitleInfo h1 {
+	font-size:40px;
+}
+#userDetailTitle #smallH {
+	font-size:25px;
+}
+#userDetailTitle #smallP {
+	font-size:9pt;
+	margin-left:5px;
+}
+#userDetailContentForm {
+	margin-bottom:120px;
+}
 #userDetailContent {
 	box-shadow: 2px 2px 2px rgba(204, 197, 185, 0.5);
 	background-color: #FFFFFF;
 	color: #252422;
-	margin-top: 30px;
+	margin-top: 50px;
+	padding:40px;
+	padding-bottom:60px;
+}
+#userDetailContent table tr td {
+	padding-top:20px;
+}
+#userInfoModify {
+	margin-top:50px;
 	margin-bottom:120px;
-	height:500px;
+}
+#userInfoModify button {
+	width:100px;
+}
+#userDetailContentSmall {
+	box-shadow: 2px 2px 2px rgba(204, 197, 185, 0.5);
+	background-color: #FFFFFF;
+	color: #252422;
+	margin-top:20px;
+	padding:20px;
+}
+#userInfoModifySmall {
+	margin-top:30px;
+	margin-bottom:120px;
+}
+#userInfoModifySmall button {
+	width:100%;
+}
+
+
+
+/* */
+#userPwdMTitle {
+	margin-top:100px;	
+}
+#userPwdMTitle img {
+	width:100px;
+	height:100px;
+	background:#e0e0e0;
+}
+#userPwdMTitle #userPwdTitleInfo {
+	margin-top:12px;
+	font-size:12pt;
+}
+#userPwdMTitle #userPwdTitleInfo h1 {
+	font-size:40px;
+}
+#userPwdMTitle #smallH {
+	font-size:25px;
+}
+#userPwdMTitle #smallP {
+	font-size:9pt;
+	margin-left:5px;
+}
+#userPwdContentForm {
+	margin-bottom:120px;
+}
+#userPwdContent {
+	box-shadow: 2px 2px 2px rgba(204, 197, 185, 0.5);
+	background-color: #FFFFFF;
+	color: #252422;
+	margin-top: 50px;
+	padding:40px;
+	padding-bottom:40px;
+}
+#userPwdContent table tr td {
+	padding-top:20px;
+}
+#userPwdModify {
+	margin-top:50px;
+	margin-bottom:120px;
+}
+#userPwdModify button {
+	width:100px;
+}
+#userPwdContentSmall {
+	box-shadow: 2px 2px 2px rgba(204, 197, 185, 0.5);
+	background-color: #FFFFFF;
+	color: #252422;
+	margin-top:30px;
+	padding:20px;
+	font-size:10pt;
+}
+#userPwdContentSmall input {
+	width:80%;
+}
+#userPwdSmall {
+	margin-top:30px;
+	margin-bottom:120px;
+}
+#userPwdSmall button {
+	width:100%;
+}
+
+
+
+/*  */
+.userBoardNav {
+	margin-top:100px;
+	margin-bottom:120px;
+}
+.userBoardNav li a {
+	text-align:center;
+}
+
+
+
+/*  */
+#deleteInfo {
+	box-shadow: 2px 2px 2px rgba(194, 194, 194, 0.5);
+	height:250px;
+	background:#f0f2f2;
+	border-radius: 5px;
+	margin-bottom:40px;
 	padding:40px;
 }
-#userDetailContent table tr {
-	height:84px;
+#deleteInfo h1 {
+	font-weight:bold;
+}
+#deleteInfo p {
+	font-size:10pt;
+	margin-top:20px;
+}
+#deleteInfoSm {
+	box-shadow: 2px 2px 2px rgba(194, 194, 194, 0.5);
+	background:#f0f2f2;
+	border-radius: 5px;
+	margin-bottom:40px;
+	padding:40px;
+	
+}
+#deleteInfoSm h1 {
+	font-weight:bold;
+	font-size:13pt;
+}
+#deleteInfoSm p {
+	font-size:10pt;
+	margin-top:20px;
 }

@@ -1,10 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-	<c:import url="../include/common/head.jsp" />
-	
-	<link rel="stylesheet" href="/fitnessground/resources/css/user/mypage.css" />
-	
+	<c:import url="../include/common/head.jsp" />	
+	<link rel="stylesheet" href="/fitnessground/resources/css/user/mypage.css" />	
     <c:import url="../include/common/headend.jsp" />
     
     <c:if test="${ sessionScope.user == null }">
@@ -15,6 +13,7 @@
 			});
 		</script>
 	</c:if>
+	
     <c:if test="${ sessionScope.user != null }">
 	<div id="page-wrapper">
 		<!-- Header -->
@@ -26,37 +25,14 @@
 			<c:import url="register.jsp"/>
 		</div>
     </div>
+    
 	<div id="myPageBar">
-		<div class="col-md-8 col-md-offset-2 hidden-xs hidden-sm hidden-md visible-lg"><nav>
-			<ul>
-				<li><h1><a href="#">My Page</a></h1></li>
-				<li id="myPageBarText"><a href="udetail.do">회원정보</a></li>
-				<li id="myPageBarText"><a href="#">비밀번호변경</a></li>
-				<li id="myPageBarText"><a href="#">게시글관리</a></li>
-				<li id="myPageBarText"><a href="#">운동스케줄</a></li>
-				<li id="myPageBarText"><a href="#">회원탈퇴</a></li>
-			</ul>
-		</nav></div>
-		<div class="col-sm-12 visible-xs visible-sm visible-md hidden-lg">
-			<ul class="nav nav-tabs">
-			  <li role="presentation" class="dropdown">
-			    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false" id="sm_title">
-			      My Page <span class="caret"></span>
-			    </a>
-			    <ul class="dropdown-menu" role="menu">
-				<li><a href="udetail.do">회원정보</a></li>
-				<li><a href="#">비밀번호변경</a></li>
-				<li><a href="#">게시글관리</a></li>
-				<li><a href="#">운동스케줄</a></li>
-				<li><a href="#">회원탈퇴</a></li>
-			    </ul>
-			  </li>
-			</ul>
-		</div>
+		<c:import url="../include/user/myPageBar.jsp"/>
 	</div>
+	
 	<div class="mypage_info col-md-3 col-md-offset-2 col-sm-12">
 		<div class="mypage_info_title" align="center">
-			<img alt="user sample image" src="/fitnessground/resources/images/myimages/nullimage.png">
+			<img alt="user sample image" src="/fitnessground/resources/images/myimages/nullicon.png" class="img-circle" style="background:#87798f;">
 			<p align="center">${sessionScope.user.name} 님</p>
 		</div>
 		<div class="mypage_info_content">
@@ -75,8 +51,8 @@
 			<div id="mypage_btn">
 				<table>
 					<tr align="center">
-						<td><button class="btn btn-default"  onclick="location.href='udetail.do'">회원정보수정</button></td>
-						<td><button class="btn btn-default">비밀번호변경</button></td>
+						<td><button class="btn btn-default" onclick="location.href='udetail.do'">회원정보수정</button></td>
+						<td><button class="btn btn-default" onclick="location.href='userpwd.do'">비밀번호변경</button></td>
 					</tr>
 				</table>
 			</div>
@@ -136,7 +112,7 @@
 		</div>
 		<div id="moreS" align="right"><button class="btn btn-default">MORE</button></div>
 	</div>
-	</c:if>
+	</c:if>	
+	
     <c:import url="../include/main/footer.jsp" />
-
     <c:import url="../include/common/end.jsp" />

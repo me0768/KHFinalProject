@@ -1,12 +1,227 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
-<html>
-	<c:import url="../include/common/head.jsp" />
-	
-	
-	
-    <c:import url="../include/common/headend.jsp" />
 
-</html>
+<c:import url="../include/common/head.jsp" />
+<link rel="stylesheet" href="/fitnessground/resources/css/workout/workout.css"/>	
+	
+<c:import url="../include/common/headend.jsp" />
+    
+<script type="text/javascript"
+	src="/fitnessground/resources/js/workout/workout.js"></script>
+     
+<!-- Header -->
+<div id="mypage_header">
+	<!-- Nav -->
+	<c:import url="../include/main/nav.jsp"/>
+</div>
+	
+<!-- health head -->
+<div id="workout-head">
+	<h2 id="workout-title">Health</h2>
+</div>
+	
+	<!-- Health Body -->
+<div class="col-sm-12 col-md-12 col-lg-12 col-xs-12" id="workout-body">	
+	<!-- 사이드바  -->
+	<div class="col-sm-2 col-md-2 col-lg-2">
+		<div class="workout_sidebar">
+			<ul>
+				<li><a href="#">헬스</a>
+					<ul class="active">
+						<li>부위별 헬스 자세</li>
+						<li>다양한 헬스 운동</li>
+					</ul></li>
+				<li><a href="#">요가</a>
+					<ul class="closed">
+						<li>빈야사 </li>
+						<li>체형교정</li>
+						<li>다이어트</li>
+						<li>부위별 요가</li>
+						<li>초보자</li>
+					</ul></li>
+				<li><a href="#">필라테스</a>
+					<ul class="closed">
+						<li>스트레칭</li>
+						<li>전신운동</li>
+						<li>복근집중운동</li>
+						<li>하체운동</li>
+					</ul></li>
+				<li><a>맨몸운동</a>
+					<ul class="closed">
+						<li>팔굽혀 펴기</li>
+						<li>하체</li>
+						<li>복근</li>
+						<li>철봉</li>
+						<li>전신 프로그램</li>
+						<li>(초보자)3개월 운동</li>
+					</ul></li>
+			</ul>
+		</div>
+	</div>	<!-- 사이드바 끝 -->
+	
+<!-- 근육 이미지 -->
+	<div class ="col-sm-offset-3">
+		<div id="menu"> 
+		<div id="diagram" style="background-position: 0px 0px;">
+			<img src="/fitnessground/resources/images/health/muscle.jpg" width="350"
+				height="250" border="0" alt="Click on a muscle group"
+				usemap="#bodyMap">
+
+
+			<map name="bodyMap">
+				<area shape="poly"
+					coords="94,62,72,56,65,68,66,79,74,85,88,85,92,81,100,86,117,83,124,72,115,57"
+					href="#" alt="Chest" onmouseover="hilite('chest');"
+					onmouseout="restore();" onclick="popUp('chest'); return false;">
+				<!-- 가슴 -->
+				<area shape="poly"
+					coords="60,51,48,53,48,53,48,53,45,62,56,68,67,65,70,56" href="#"
+					alt="Shoulders" onmouseover="hilite('shoulders');"
+					onmouseout="restore();" onclick="popUp('shoulders'); return false;">
+				<!--  왼쪽 어깨 -->
+				<area shape="poly"
+					coords="134,52,116,49,114,62,126,69,135,65,138,62,138,62" href="#"
+					alt="Shoulders" onmouseover="hilite('shoulders');"
+					onmouseout="restore();" onclick="popUp('shoulders'); return false;">
+				<!-- 오른쪽 어깨 -->
+
+				<area shape="poly" coords="47,65,36,75,51,87" href="#"
+					alt="Left biceps" onmouseover="hilite('leftbiceps');"
+					onmouseout="restore();" onclick="popUp('forearms'); return false;">
+				<!-- 위팔 앞 왼쪽 이두 -->
+				<area shape="poly" coords="137,84,145,67,131,63" href="#"
+					alt="Right biceps" onmouseover="hilite('rightbiceps');"
+					onmouseout="restore();" onclick="popUp('biceps'); return false;">
+				<!-- 위팔 앞 오른쪽 이두 -->
+
+				<area shape="poly" coords="46,66,49,85,61,83,61,73,60,67,60,67"
+					href="#" alt="Left biceps" onmouseover="hilite('leftbiceps');"
+					onmouseout="restore();" onclick="popUp('forearms'); return false;">
+				<!-- 위팔 뒤 왼쪽 삼두 -->
+				<area shape="poly"
+					coords="140,66,124,69,126,86,136,85,139,79,139,79" href="#"
+					alt="Right biceps" onmouseover="hilite('rightbiceps');"
+					onmouseout="restore();" onclick="popUp('biceps'); return false;">
+				<!-- 위팔 뒤 오른쪽 삼두 -->
+
+				<area shape="poly" coords="38,96,39,111,50,111,54,91" href="#"
+					alt="Right biceps" onmouseover="hilite('rightbiceps');"
+					onmouseout="restore();" onclick="popUp('biceps'); return false;">
+				<!-- 아래팔 왼쪽 전완-->
+
+				<area shape="poly" coords="132,90,149,98,146,111,133,110" href="#"
+					alt="Right biceps" onmouseover="hilite('rightbiceps');"
+					onmouseout="restore();" onclick="popUp('biceps'); return false;">
+				<!-- 아래팔 오른쪽 전완-->
+
+				<area shape="poly"
+					coords="92,163,79,166,63,137,62,115,81,121,91,140" href="#"
+					alt="Left Thigh" onmouseover="hilite('leftthigh');"
+					onmouseout="restore();" onclick="popUp('leftthigh'); return false;">
+				<!-- 앞 왼쪽 허벅지 -->
+				<area shape="poly"
+					coords="100,168,96,155,98,137,104,123,119,114,123,131,118,153"
+					href="#" alt="Right Thigh" onmouseover="hilite('rightthigh');"
+					onmouseout="restore();"
+					onclick="popUp('rightthigh'); return false;">
+				<!-- 앞 오른쪽 허벅지 -->
+
+				<area shape="poly"
+					coords="235,103,226,117,256,126,282,117,274,104,274,104" href="#"
+					alt="Hips" onmouseover="hilite('hips');" onmouseout="restore();"
+					onclick="popUp('hips'); return false;">
+				<!-- 엉덩이 -->
+
+				<area shape="poly" coords="79,168,68,180,78,204,89,206,87,167"
+					href="#" alt="Left Calf" onmouseover="hilite('leftcalf');"
+					onmouseout="restore();"
+					onclick="popUp('innerthighs'); return false;">
+				<!-- 앞 왼쪽 종아리 -->
+				<area shape="poly"
+					coords="100,172,109,165,116,184,106,206,96,207,93,192" href="#"
+					alt="Right Calf" onmouseover="hilite('rightcalf');"
+					onmouseout="restore();" onclick="popUp('rightcalf'); return false;">
+				<!-- 앞 오른쪽 종아리 -->
+
+				<area shape="poly" coords="94,88,71,96,85,125,101,125,112,95,112,95"
+					href="#" alt="Center Abdominals" onmouseover="hilite('centerabs');"
+					onmouseout="restore();" onclick="popUp('centerabs'); return false;">
+				<!-- 중앙복부 -->
+
+				<area shape="poly"
+					coords="229,49,215,50,208,62,238,67,256,61,271,66,297,63,290,49,286,49"
+					href="#" alt="Shoulders" onmouseover="hilite('shoulders');"
+					onmouseout="restore();" onclick="popUp('shoulders'); return false;">
+				<!-- 뒤쪽 어깨 -->
+
+				<area shape="poly"
+					coords="220,70,221,86,233,93,250,91,257,83,266,93,281,93,287,86,290,70"
+					href="#" alt="Shoulders" onmouseover="hilite('shoulders');"
+					onmouseout="restore();" onclick="popUp('shoulders'); return false;">
+				<!-- 등 -->
+
+
+				<area shape="poly" coords="229,95,236,105,279,105,282,93" href="#"
+					alt="Shoulders" onmouseover="hilite('shoulders');"
+					onmouseout="restore();" onclick="popUp('shoulders'); return false;">
+				<!-- 허리 -->
+
+				<area shape="poly" coords="227,118,233,159,250,163,251,128,251,128"
+					href="#" alt="Shoulders" onmouseover="hilite('shoulders');"
+					onmouseout="restore();" onclick="popUp('shoulders'); return false;">
+				<!-- 뒤 왼쪽 허벅지 -->
+
+				<area shape="poly" coords="261,128,282,115,276,159,251,164" href="#"
+					alt="Shoulders" onmouseover="hilite('shoulders');"
+					onmouseout="restore();" onclick="popUp('shoulders'); return false;">
+				<!-- 뒤 오른쪽 허벅지 -->
+				<area shape="poly" coords="238,167,230,180,244,206,253,206,252,185"
+					href="#" alt="Shoulders" onmouseover="hilite('shoulders');"
+					onmouseout="restore();" onclick="popUp('shoulders'); return false;">
+				<!-- 뒤 왼쪽 종아리-->
+
+				<area shape="poly" coords="257,187,271,170,275,181,267,210,256,207"
+					href="#" alt="Shoulders" onmouseover="hilite('shoulders');"
+					onmouseout="restore();" onclick="popUp('shoulders'); return false;">
+				<!-- 뒤 오른쪽 종아리-->
+
+
+				<area shape="poly"
+					coords="204,65,199,75,207,82,218,88,216,66,216,66" href="#"
+					alt="Shoulders" onmouseover="hilite('shoulders');"
+					onmouseout="restore();" onclick="popUp('shoulders'); return false;">
+				<!-- 뒤 왼쪽 삼두-->
+
+
+
+				<area shape="poly" coords="292,71,303,63,306,84,301,89,286,81"
+					href="#" alt="Shoulders" onmouseover="hilite('shoulders');"
+					onmouseout="restore();" onclick="popUp('shoulders'); return false;">
+				<!-- 뒤 오른쪽 삼두-->
+
+			</map>
+		</div>
+		<!-- <p class="disclaimer">Please note: All sets and reps are suggested starting points. Consult a Gold&rsquo;s Gym trainer if you would like a workout plan specifically created for your fitness level.</p> -->
+	</div>
+	<!-- /menu -->
+	</div>
+</div><!-- 사람인체 이미지 끝 -->
+
+<script type="text/javascript">
+	function hilite(part){
+		
+	}
+	
+	function restore(){
+		
+	}
+	
+	function popUp(part){
+		
+	}
+</script>
+
+
+<c:import url="../include/main/footer.jsp"></c:import>
+<c:import url="../include/common/end.jsp"></c:import>

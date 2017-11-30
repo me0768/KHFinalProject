@@ -18,4 +18,4 @@
 <script type="text/javascript" src="/fitnessground/resources/js/common/skel.min.js"></script>
 <script type="text/javascript" src="/fitnessground/resources/js/common/util.js"></script>
 <script type="text/javascript" src="/fitnessground/resources/js/common/main.js"></script>
-<script type="text/javascript" src="/fitnessground/resources/js/bootstrap.js"></script>
+<!-- <script type="text/javascript" src="/fitnessground/resources/js/bootstrap.js"></script> -->

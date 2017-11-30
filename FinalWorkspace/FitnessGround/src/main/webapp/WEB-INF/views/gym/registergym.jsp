@@ -4,9 +4,31 @@
 	<c:import url="../include/common/head.jsp" />
 	
 	<style type="text/css">
-		.my_button{
-			margin-top: 20px;
+		.hide-bullets {
+			list-style:none;
+			margin-left: -40px;
+			margin-top:20px;
 		}
+		
+		.hide-bullets{
+			margin-left: 0px;
+		}
+		
+		.row {
+			margin-left: 0px;
+		}
+		
+		#mainimage {
+			width: 70%;
+			height: 50%;
+		}
+		
+		#botimage {
+			width: 100%;
+			height: 10%;
+		}
+		
+		
 	</style>
 	
 	<c:import url="../include/common/headend.jsp" />
@@ -44,13 +66,27 @@
 		    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
 		      <div class="panel-body">
 
-		        
-		    	<div>
-		    		<div class="imgs_wrap">
-		    			<img id="img" />
-		    		</div>
-		    	</div>
-		    	
+		        <div class="row">
+                    <div class="col-xs-12" id="slider">
+                        <!-- Top part of the slider -->
+                        <div class="row">
+                            <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12" id="carousel-bounding-box">
+                                <div class="carousel slide" id="myCarousel">
+                                    <!-- Carousel items -->
+                                    <div class="carousel-inner">
+                                        <!-- 캐러셀 이미지 -->
+	                                    </div><!-- Carousel nav -->
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div><!--/Slider-->
+			        <div class="row hidden-xs" id="slider-thumbs">
+	                        <!-- Bottom switcher of slider -->
+	                        <ul class="hide-bullets">
+	 							<!-- 미리보기 이미지 -->
+	                        </ul>                 
+	                </div>
+
 		    	<div>
 		        	<div class="input_wrap">
 		        		<a href="javascript:" onclick="fileUploadAction();" class="btn btn-danger my_button">이미지 업로드</a>
@@ -58,7 +94,7 @@
 		        	</div>
 		        </div>
 		        
-		        
+		        </div>
 		      </div>
 		    </div>
 		  </div>
@@ -71,9 +107,11 @@
 		        </a>
 		      </h4>
 		    </div>
-		    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+		    <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
 		      <div class="panel-body">
-		        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+		     
+		     	헬스장 정보
+		        
 		      </div>
 		    </div>
 		  </div>
@@ -120,11 +158,18 @@
 		$("#panelFour").css({'boader-color':'#F60808', 'box-shadow':'0 0 1px 1px rgb(232, 13, 13)'});
 		$("#headingFour").css("color","red");
 		
+		
 		// 이미지 미리보기
 		var sel_files = [];
 		$(document).ready(function(){
 			$("#input_imgs").on("change", handleImgFileSelect);
 			$("#input_imgs").hide();
+			
+			$('#myCarousel').carousel({
+                interval: 5000
+	        });
+	 
+	        $('#carousel-text').html($('#slide-content-0').html());
 		});
 		
 		function fileUploadAction(){
@@ -135,7 +180,16 @@
 		function handleImgFileSelect(e) {
 			//이미지 정보들을 초기화
 			sel_files = [];
-			$(".imgs_wrap").empty();
+			$(".carousel-inner").empty();
+			$(".hide-bullets").empty();
+			
+			// 캐러셀 좌우버튼
+			var prevnext = 	"<a class='left carousel-control' href='#myCarousel' role='button' data-slide='prev'>" +
+							"<span class='glyphicon glyphicon-chevron-left'></span>" +                                       
+					  		"</a>" +
+							"<a class='right carousel-control' href='#myCarousel' role='button' data-slide='next'>" +
+							"<span class='glyphicon glyphicon-chevron-right'></span>" +                                       
+							"</a>";		
 			
 			var files = e.target.files;
 			var filesArr = Array.prototype.slice.call(files);
@@ -151,27 +205,38 @@
 				
 				var reader = new FileReader();
 				reader.onload = function(e){
-					var html = 	"<a href=\"#\" id=\"img_id_"+index+"\">" + 
-									"<img src=\""+e.target.result+"\" style='height: 100px; width: 100px; z-index: 1; margin-left: 20px; margin-top: 10px;'>" +
-									/* "<a href=\"javascript:void(0);\"  data-file='"+f.name+"' class='selProductFile'  style='position: absolute;' >" +  */
-										"<span class='glyphicon glyphicon-remove' onclick=\"deleteImageAction("+index+")\" aria-hidden='true' title='Click to remove' style='z-index: 100; margin-left: -20px; top: -80px;'></span>" + 
-									/* "</a>" + */
-								"</a>";
-					$(".imgs_wrap").append(html);
+					if( index == 0){ // 인덱스가 0이면 이미지가 액티브 상태
+						var mainimage = "<div class='active item' data-slide-number='" + index + "' id='imagemaindiv" + index + "'>" +
+										"<img src='" + e.target.result + "' class='img-responsive center-block' id='mainimage'></div>";
+						$(".carousel-inner").append(mainimage);
+					} else if ( index == 12){ 
+						alert("이미지는 최대 12장까지 업로드 할 수 있습니다.");
+						$("#myCarousel").append(prevnext); // 인덱스가 12가 되면 리턴전에 캐러셀 좌우버튼 생성
+						return;
+					}else {			// 인덱스가 0이아니면 일반 아이템으로 들어감
+						var mainimage = "<div class='item' data-slide-number='" + index + "' id='imagemaindiv" + index + "'>" +
+										"<img src='" + e.target.result + "' class='img-responsive center-block' id='mainimage'></div>";
+						$(".carousel-inner").append(mainimage);
+					}
+					var botimage = "<li class='col-sm-2' id='botimageli" + index + "'>" +
+                    					"<a class='thumbnail' onclick='carouselck(" + index + ")' id='carousel-selector-" + index + "'>" +
+	                    					"<img src='" + e.target.result + "' style='margin-bottom: 5px;' id='botimage'>" +
+	                    					"<h6>" + index + "</h6>" +
+                    					"</a>" +
+                					"</li>";
+                	$(".hide-bullets").append(botimage);
 					index++;
 				}
 				reader.readAsDataURL(f);
 			});
+			
+			// 이미지가 다 삽입되고나면 캐러셀 좌우 버튼 생성
+			$("#myCarousel").append(prevnext);
 		}
 		
-		function deleteImageAction(index){
-			console.log("index : " + index);
-			sel_files.splice(index, 1);
-			
-			var img_id = "#img_id_" + index;
-			$(img_id).remove();
-			
-			console.log(sel_files)
+		// 아래 미리보기 이미지 버튼 클릭시 큰 미리보기 화면 전환
+		function carouselck(index){
+			$('#myCarousel').carousel(index);
 		}
 	</script>
 

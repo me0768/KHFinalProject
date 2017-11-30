@@ -39,15 +39,26 @@
 	
 	#image_list {
 		disyplay: inline-block;
-		border: 1px solid #333;
+		border: 1px solid #3333338a;
 		border-radius: 10px;
 		height: 150px;
 		padding: 0px;
+		margin-top: 10px;
+	}
+	
+	#mainimage{
+		disyplay: inline-block;
+		border: 1px solid #3333338a;
+		border-radius: 10px;
+		padding: 0px;
+		height: 400px;
+		padding-top: 20px;
 	}
 	
 	#Carousel{
 		display: block;
-		padding-top: 15px;
+		padding-top: 20px;
+		padding-bottom: 0px;
 	}
 	
 	#imagelist{
@@ -57,6 +68,16 @@
 	
 	a.thumbnail{
 		padding: 0px;
+		border: 0px;
+	}
+	
+	.my_button{
+		margin-top: 10px;
+	}
+	
+	.bigimage {
+		margin-left: auto;
+		margin-right: auto;
 	}
 </style>
 
@@ -92,8 +113,8 @@
 				<h4 class="panel-title">
 					<a data-toggle="collapse" data-parent="#accordion"
 						href="#collapseOne" aria-expanded="true"
-						aria-controls="collapseOne"> <span
-						class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+						aria-controls="collapseOne" id="panel1">
+						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 						&nbsp;&nbsp;헬스장 사진
 					</a>
 				</h4>
@@ -101,15 +122,17 @@
 			<div id="collapseOne" class="panel-collapse collapse in"
 				role="tabpanel" aria-labelledby="headingOne">
 				<div class="panel-body">
-
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="mainimage">
+						
+					</div>
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="image_list">
 						<div>
 							<div class="col-md-12">
 					                <div id="Carousel" class="carousel slide">
 					                 
 					                <ol class="carousel-indicators">
-					                    <li data-target="#Carousel" data-slide-to="0" class="active"></li>
-					                    <li data-target="#Carousel" data-slide-to="1"></li>
+					                    <!-- <li data-target="#Carousel" data-slide-to="0" class="active"></li>
+					                    <li data-target="#Carousel" data-slide-to="1"></li> -->
 					                </ol>
 					                 
 					                <!-- Carousel items -->
@@ -211,102 +234,7 @@
 	</div>
 </c:if>
 
-<script type="text/javascript">
-		$("#panelOne").css({'boader-color':'#F60808', 'box-shadow':'0 0 1px 1px rgb(232, 13, 13)'});
-		$("#headingOne").css("color","red");
-		$("#panelTwo").css({'boader-color':'#F60808', 'box-shadow':'0 0 1px 1px rgb(232, 13, 13)'});
-		$("#headingTwo").css("color","red");
-		$("#panelThree").css({'boader-color':'#B0F6AC', 'box-shadow':'0 0 1px 1px rgb(117, 254, 109)'});
-		$("#headingThree").css("color","green");
-		$("#panelFour").css({'boader-color':'#F60808', 'box-shadow':'0 0 1px 1px rgb(232, 13, 13)'});
-		$("#headingFour").css("color","red");
-		
-		
-		// 이미지 미리보기
-		var sel_files = [];
-		$(document).ready(function(){
-			$("#input_imgs").on("change", handleImgFileSelect);
-			$("#input_imgs").hide();
-			
-			$('#myCarousel').carousel({
-                interval: 5000
-	        });
-	 
-	        $('#carousel-text').html($('#slide-content-0').html());
-		});
-		
-		function fileUploadAction(){
-			console.log("fileUploadAction");
-			$("#input_imgs").trigger("click");
-		}
-		
-		function handleImgFileSelect(e) {
-			//이미지 정보들을 초기화
-			sel_files = [];
-			$("#li1").empty();
-			$("#div2").remove();
-			
-			// 캐러셀 좌우버튼
-			var prevnext = 	"<a data-slide='prev' href='#Carousel' class='left carousel-control' id='prev'>‹</a>" +
-           					"<a data-slide='next' href='#Carousel' class='right carousel-control' id='next'>›</a>";
-			
-			var files = e.target.files;
-			var filesArr = Array.prototype.slice.call(files);
-			
-			var index = 0;
-			filesArr.forEach(function(f){
-				if(!f.type.match("image.*")){
-					alert("확장자는 이미지 확장자만 가능합니다.");
-					return;
-				}
-				
-				sel_files.push(f);
-				
-				var reader = new FileReader();
-				reader.onload = function(e){
-					var imgli = "<div class='col-lg-2 col-md-2 col-sm-2 col-xs-4'><a href='#' class='thumbnail'><img src='" + e.target.result + "' alt='Image' id='imagelist'></a></div>";
-					if(index < 6){
-						if(index == 5){
-							// 아이템 div 생성
-							var item = "<div class='item' id='div2'>" +
-										"<div id='li2'></div>" +
-										"</div>";
-							$(".carousel-inner").append(item);
-						}
-						// 목록 붙임
-						$("#li1").append(imgli);
-					} else if (index < 12 && index > 5){
-						// 목록 붙임
-						$("#li2").append(imgli);
-					} else {
-						alert("이미지는 최대 12장까지 업로드 할 수 있습니다.");
-						$('#Carousel').append(prevnext);
-						return;
-					}
-					index++;
-				}
-				reader.readAsDataURL(f);
-			});
-			
-			// 이미지가 다 삽입되고나면 캐러셀 좌우 버튼 생성
-			$("#Carousel").append(prevnext);
-		}
-		
-		$( window ).resize(function open_chatroom(){
-			var windowWidth = window.innerWidth;
-			if(windowWidth < 376) {
-				$("#image_list").css({"height":"150px"});
-				$("#imagelist").css({"height":"60px;"});
-			} else if (windowWidth < 430){
-				$("#image_list").css({"height":"150px"});
-				$("#imagelist").css({"height":"35%"});
-			} else if (windowWidth < 769){
-				$("#image_list").css({"height":"120px"});
-			} else {
-				$("#image_list").css({"height":"150px"});
-			}
-		});
-	</script>
+<script type="text/javascript" src="/fitnessground/resources/js/gym/registergym.js"></script>
 
 <c:import url="../include/main/footer.jsp" />
 

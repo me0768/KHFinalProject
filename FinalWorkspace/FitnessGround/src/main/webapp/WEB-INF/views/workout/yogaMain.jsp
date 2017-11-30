@@ -96,6 +96,61 @@
 
 		</div>
 	</div>
+	
+	<!-- YoutubeAPI 호출, Ajax  -->
+	<script type="text/javascript">
+    	var playlist1 = 'PL59_4lUZbIwO80AlZBTfoVfF12IoxAfvG'; //빈야사 playlistid
+    	var vTitle;
+    	var vDesc;
+    	var vId;
+    	var job;
+    	 $(document).ready(function(){
+    	       $.get(
+    	           "https://www.googleapis.com/youtube/v3/playlistItems", {
+    	               part: 'snippet',
+    	               maxResults: 50,
+    	               playlistId: playlist1,
+    	               key: 'AIzaSyACiHNLQp0NoZLhAx6u2JbtMGjCp3STK3A'},
+    	               function(data){
+    	                   var output;
+    	                   var vmap = new Map();
+    	                   
+    	                   $.each(data.items, function(i, item){
+    	                	   vTitle = item.snippet.title.replace(/&/gi, "+");
+    	                       vDesc = item.snippet.description.replace(/&/gi, "+");
+    	                       vId = item.snippet.resourceId.videoId;
+    	                   });
+    	                   job = new Object();
+    	                   job.title = vTitle;
+    	                   job.content = vDesc;
+    	                   job.url = vId;
+    	                 console.log("json객체:"+job);
+    	               }
+    	               ); 
+    	 /*Controller로 넘기기 */
+    	 	$.ajax({
+    	 		url : "ylist.do",
+    	 		data: JSON.stringify(),
+    	 		type: "post",
+    	 		contentType : "application/json; charset=utf-8",
+    	 		success : function(result){
+    	 			console.log("전송성공");
+    	 		},
+    	 		error : function(request, status, errorData){
+    	 			alert("error code : " + request.status + "\n"
+    	 					+ "message : " + request.responseText
+    	 					+ "\n" + "error : " + errorData);
+    	 		}
+    	 	});
+    	 });
+    
+    
+    
+    
+    </script>
+	
+	
+	
 </div>
 
 

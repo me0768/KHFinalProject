@@ -24,7 +24,10 @@
 							<span class="input-group-addon" id="basic-addon1"> 
 								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 							</span>
-							<input type="password" class="form-control"	placeholder="password" aria-describedby="basic-addon1" id="pwd" name="pwd" oninput="emptycheck(); ">
+							<input type="password" class="form-control"	placeholder="password" aria-describedby="basic-addon1" id="pwd" name="pwd" oninput="emptycheck(); "
+								data-toggle="tooltip" data-placement="bottom" title="Caps Lock 이 켜져 있습니다."
+								ONKEYPRESS="fnKeyPress(event);" ONKEYDOWN="fnKeyDown(event);"
+								>
 						</div>
 					</div>
 					<div id="loginfield" class="btn-group btn-group-justified" role="group">
@@ -107,10 +110,29 @@
 		});
 	}
 	
+	// 엔터키로 로그인
 	$("#pwd").on("keypress", function (event) {
 		if (event.keyCode == 13) {
 			logincheck();
 		}
 	});
+	
+	// Caps Lock 키 확인
+	function fnKeyPress(e){
+		var keyCode = 0;
+		var shiftKey = false;
+		keyCode = e.keyCode;
+		shiftKey = e.shiftKey;
+		if ((keyCode >= 65 && keyCode <= 90) && !shiftKey)
+			$('[data-toggle="tooltip"]').tooltip("show");
+		else
+			$('[data-toggle="tooltip"]').tooltip("hide");
+	}
+	function fnKeyDown(e){
+	var keyCode  = 0;
+		keyCode = e.keyCode;
+		if (keyCode == 20)
+			$('[data-toggle="tooltip"]').tooltip("hide");
+	}
 
 </script>

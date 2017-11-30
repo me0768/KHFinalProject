@@ -1,4 +1,4 @@
-package com.kh.fitnessground.workout.pilatesandyoga.model.vo;
+package com.kh.fitnessground.workout.yoga.model.vo;
 
 public class Yoga {
 	private int v_no;

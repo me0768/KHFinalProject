@@ -8,7 +8,7 @@
 		<li><a href="#">운동법</a>
 			<ul>
 				<li><a href="#">헬스</a></li>
-				<li><a href="#">요가</a></li>
+				<li><a href="ylist.do">요가</a></li>
 				<li><a href="#">필라테스</a></li>
 				<li><a href="#">맨몸운동</a>
 					<!-- <ul>

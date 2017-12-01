@@ -36,4 +36,16 @@ public class HealthDao {
 	public void addReadCount(int v_no) {
 		sqlSession.update("health.addReadCount",v_no);
 	}
+
+	public void updateHealth(int v_no) {
+		// TODO Auto-generated method stub
+		sqlSession.update("health.updateHealth",v_no);
+		
+	}
+	public void deleteHealth(int v_no){
+		sqlSession.delete("health.deleteHealth",v_no);
+	}
+	public void deleteHealthList(ArrayList<Health> list){
+		sqlSession.delete("health.deleteHealthList",list);
+	}
 }

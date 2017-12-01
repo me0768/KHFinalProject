@@ -11,7 +11,9 @@ public interface HealthService {
 	Health selectWorkout(int vno); //번호에 따라서 띄워줄 객체 불러오는 메서드
 	ArrayList<Health> selectWorkoutCategoryList(String category1,String category2); //카테고리별 리스트 불러오는 메서드
 	void addReadCount(int v_no);
-	void updateHealth(Health health, HttpServletRequest request);
+	void updateHealth(int v_no);
 	ArrayList<Health> selectAllList();
+	void deleteHealth(int v_no);
+	void deleteHealthList(ArrayList<Health> dellist);
 	
 }

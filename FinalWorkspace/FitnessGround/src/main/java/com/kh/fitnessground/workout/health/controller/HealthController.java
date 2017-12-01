@@ -77,13 +77,34 @@ public class HealthController {
 	}
 	
 	@RequestMapping(value="/healthupdate.do") //관리자 영상 내용 수정
-	public ModelAndView HealthUpdateMethod(Health health,HttpServletRequest request){
+	public ModelAndView healthUpdateMethod(Health health){
 		ModelAndView mv = new ModelAndView("/workout/healthPlaylist");
-		healthService.updateHealth(health,request);
+		healthService.updateHealth(health.getV_no());
 		ArrayList<Health> list = healthService.selectAllList();
 		mv.addObject("list",list);
 		return mv;
 	}
+	
+	@RequestMapping(value="/hdelete.do") //관리자 한개 영상 삭제
+	public ModelAndView healthDeleteMethod(Health health){
+		ModelAndView mv = new ModelAndView("/workout/healthPlaylist");
+		healthService.deleteHealth(health.getV_no());
+		ArrayList<Health> list = healthService.selectAllList();
+		mv.addObject("list",list);
+		return mv;
+		
+	}
+	
+	@RequestMapping(value="/listdelete.do")	//관리자 영상 복수 삭제
+	public ModelAndView healthListDeleteMethod(ArrayList<Health> dellist){
+		ModelAndView mv = new ModelAndView("/workout/healthPlaylist");
+		healthService.deleteHealthList(dellist);
+		ArrayList<Health> list = healthService.selectAllList();
+		mv.addObject("list",list);
+		
+		return mv;
+	}
+	
 	//헬스 끝
 	
 	//주변 헬스장 검색 페이지 이동
@@ -93,8 +114,5 @@ public class HealthController {
 	}
 	
 	
-	//맨몸운동 
 	
-	
-	//맨몸운동 끝
 }

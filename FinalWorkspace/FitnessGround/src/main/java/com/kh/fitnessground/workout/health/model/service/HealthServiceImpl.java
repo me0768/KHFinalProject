@@ -2,6 +2,8 @@ package com.kh.fitnessground.workout.health.model.service;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,11 @@ public class HealthServiceImpl implements HealthService{
 	@Autowired
 	HealthDao healthDao;
 
+	@Override
+	public ArrayList<Health> selectAllList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	@Override
 	public Health selectWorkout(int vno) {
@@ -31,4 +38,24 @@ public class HealthServiceImpl implements HealthService{
 		healthDao.addReadCount(v_no);
 		
 	}
+
+	@Override
+	public void updateHealth(int v_no) {
+		healthDao.updateHealth(v_no);
+		
+	}
+	
+	@Override
+	public void deleteHealth(int v_no) {
+		healthDao.deleteHealth(v_no);
+		
+	}
+
+	@Override
+	public void deleteHealthList(ArrayList<Health> dellist) {
+		healthDao.deleteHealthList(dellist);
+		
+	}
+
+	
 }

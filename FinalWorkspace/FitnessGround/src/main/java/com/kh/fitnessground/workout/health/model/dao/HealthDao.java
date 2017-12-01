@@ -23,4 +23,9 @@ public class HealthDao {
 		return sqlSession.selectOne("health.selectOneWorkout",vno);
 		
 	}
+
+	public ArrayList<Health> selectWorkoutCategoryList(String category) {
+		// TODO Auto-generated method stub
+		return (ArrayList)sqlSession.selectList("health.selectWorkoutCategoryList",category);
+	}
 }

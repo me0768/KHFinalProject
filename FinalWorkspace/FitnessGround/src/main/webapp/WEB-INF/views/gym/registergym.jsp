@@ -39,7 +39,7 @@
 	
 	#image_list {
 		disyplay: inline-block;
-		border: 1px solid #3333338a;
+		border: 2px solid #3333338a;
 		border-radius: 10px;
 		height: 150px;
 		padding: 0px;
@@ -48,7 +48,7 @@
 	
 	#mainimage{
 		disyplay: inline-block;
-		border: 1px solid #3333338a;
+		border: 2px dashed #3333338a;
 		border-radius: 10px;
 		padding: 0px;
 		height: 400px;
@@ -79,9 +79,14 @@
 		margin-left: auto;
 		margin-right: auto;
 	}
+	
+	.panel-body .input-group, .btn-group{
+		margin-bottom: 10px;
+	}
 </style>
 
 <link rel="stylesheet" href="/fitnessground/resources/css/bootstrap.min.css">
+<link rel="stylesheet" href="/fitnessground/resources/css/gym/registergym.css">
 
 <c:import url="../include/common/headend.jsp" />
 
@@ -119,11 +124,14 @@
 					</a>
 				</h4>
 			</div>
-			<div id="collapseOne" class="panel-collapse collapse in"
+			<div id="collapseOne" class="panel-collapse collapse"
 				role="tabpanel" aria-labelledby="headingOne">
 				<div class="panel-body">
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="mainimage">
-						
+						<!-- 이미지 드래그 앤 드롭 -->
+						<div class='bigimage' id='bigimage' style='width: 360px; height: 360px;'>
+							<img src="/fitnessground/resources/images/gymimages/draganddrop.png" style="width: 300px; height: 108px; border-radius: 10px; margin-top: 126; margin-left: 30px;">
+						</div>
 					</div>
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="image_list">
 						<div>
@@ -170,15 +178,86 @@
 				<h4 class="panel-title">
 					<a class="collapsed" data-toggle="collapse"
 						data-parent="#accordion" href="#collapseTwo" aria-expanded="false"
-						aria-controls="collapseTwo"> <span
-						class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+						aria-controls="collapseTwo" id="panel2">
+						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 						&nbsp;&nbsp;헬스장 정보
 					</a>
 				</h4>
 			</div>
-			<div id="collapseTwo" class="panel-collapse collapse"
+			<div id="collapseTwo" class="panel-collapse collapse in"
 				role="tabpanel" aria-labelledby="headingTwo">
-				<div class="panel-body">헬스장 정보</div>
+				<div class="panel-body">
+				
+						<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+							<div class="input-group">
+							<span class="input-group-addon" id="basic-addon1">
+								<span class="glyphicon glyphicon-pencil" class="input-group-addon" aria-hidden="true"></span>
+							</span>
+							<input type="text" class="form-control" aria-describedby="basic-addon1" id="gymname" name="gymname" placeholder="헬스장 이름"  oninput="gymemptycheck();">
+							</div>
+							
+							<div class="input-group">
+							<span class="input-group-addon" id="basic-addon1">
+								<span class="glyphicon glyphicon-time" class="input-group-addon" aria-hidden="true"></span>
+							</span>
+							<input type="text" class="form-control" aria-describedby="basic-addon1" id="optime" name="optime" placeholder="헬스장 운영시간 ex) 10:00 ~ 24:00"  oninput="gymemptycheck();">
+							</div>
+							
+							<div class="input-group">
+							<span class="input-group-addon" id="basic-addon1">
+								<span class="glyphicon glyphicon-phone-alt" class="input-group-addon" aria-hidden="true"></span>
+							</span>
+							<input type="text" class="form-control" aria-describedby="basic-addon1" id="tel" name="tel" placeholder="헬스장 번호" oninput="gymemptycheck();">
+							</div>
+							
+							<div class="input-group">
+							<span class="input-group-addon" id="basic-addon1">
+								<span class="glyphicon glyphicon-earphone" class="input-group-addon" aria-hidden="true"></span>
+							</span>
+							<input type="text" class="form-control" aria-describedby="basic-addon1" id="phone" name="phone" placeholder="핸드폰 번호" oninput="gymemptycheck();">
+							</div>
+							
+							<div class="input-group">
+							<span class="input-group-addon" id="basic-addon1">
+								<span class="glyphicon glyphicon-usd" class="input-group-addon" aria-hidden="true"></span>
+							</span>
+							<input type="text" class="form-control" aria-describedby="basic-addon1" id="price" name="price" placeholder="월 회비 ex) 1개월 *만원 / 3개월 * 만원" oninput="gymemptycheck();">
+							</div>
+							
+						</div>
+						<div class="col-lg-8 col-md-8 col-sm-6 col-xs-0" style="height: 200px;">
+							
+						</div>
+						
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							
+								<div class="checks etrans">
+									<a href="javascript:gymemptycheck();">
+								 		<input type="checkbox" id="ex_chk0"> 
+								  		<label for="ex_chk0">헬스</label> 
+									</a>
+								  
+								  	<a href="javascript:gymemptycheck();">
+								  		<input type="checkbox" id="ex_chk1"> 
+								  		<label for="ex_chk1">요가</label> 
+								  	</a>
+								  
+								  	<a href="javascript:gymemptycheck();">
+								  		<input type="checkbox" id="ex_chk2"> 
+								  		<label for="ex_chk2">필라테스</label> 
+								  	</a>
+								  
+								  	<a href="javascript:gymemptycheck();">
+								  		<input type="checkbox" id="ex_chk3"> 
+								  		<label for="ex_chk3">맨몸운동</label> 
+								  	</a>
+								</div>				
+								
+											
+								<textarea class="col-lg-12 col-md-12 col-sm-12 col-xs-12" placeholder="헬스장 설명" style="height: 300px;" id="gymdesc" oninput="gymemptycheck();"></textarea>
+						</div>
+				
+				</div>
 			</div>
 		</div>
 		<div class="panel panel-default" id="panelThree">

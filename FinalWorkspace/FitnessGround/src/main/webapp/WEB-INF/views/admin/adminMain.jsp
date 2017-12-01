@@ -35,7 +35,7 @@
 						<div class="card-body-icon">
 							<i class="fa fa-fw fa-comments"></i>
 						</div>
-						<div class="mr-5">26 New Messages!</div>
+						<div class="mr-5">3개의 새로운 문의가<br> 있습니다!</div>
 					</div>
 					<a class="card-footer text-white clearfix small z-1" href="#">
 						<span class="float-left">View Details</span> <span
@@ -50,7 +50,7 @@
 						<div class="card-body-icon">
 							<i class="fa fa-fw fa-list"></i>
 						</div>
-						<div class="mr-5">11 New Tasks!</div>
+						<div class="mr-5">10개의 헬스장 등록<br> 요청이 있습니다!</div>
 					</div>
 					<a class="card-footer text-white clearfix small z-1" href="#">
 						<span class="float-left">View Details</span> <span
@@ -65,7 +65,7 @@
 						<div class="card-body-icon">
 							<i class="fa fa-fw fa-shopping-cart"></i>
 						</div>
-						<div class="mr-5">123 New Orders!</div>
+						<div class="mr-5">운동법 게시글 관리</div>
 					</div>
 					<a class="card-footer text-white clearfix small z-1" href="#">
 						<span class="float-left">View Details</span> <span
@@ -80,7 +80,7 @@
 						<div class="card-body-icon">
 							<i class="fa fa-fw fa-support"></i>
 						</div>
-						<div class="mr-5">13 New Tickets!</div>
+						<div class="mr-5">게시판 관리</div>
 					</div>
 					<a class="card-footer text-white clearfix small z-1" href="#">
 						<span class="float-left">View Details</span> <span
@@ -911,7 +911,7 @@
 				<div class="modal-footer">
 					<button class="btn btn-secondary" type="button"
 						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="login.html">Logout</a>
+					<a class="btn btn-primary" href="adminlogout.do">Logout</a>
 				</div>
 			</div>
 		</div>

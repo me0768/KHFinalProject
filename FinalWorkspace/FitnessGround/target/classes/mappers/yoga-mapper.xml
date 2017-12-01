@@ -4,25 +4,71 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="yoga">
 	<resultMap id="yogaResult" type="Yoga">
-		<id property="v_no" column="v_no"/>
+		<id property="v_no" column="v_no" />
 		<result property="title" column="title" />
-		<result property="content" column="content"/>
-		<result property="category1" column="category1"/>
-		<result property="category2" column="category2"/>
-		<result property="url" column="url"/>
-		<result property="readcount" column="readcount"/>	
+		<result property="content" column="content" />
+		<result property="category1" column="category1" />
+		<result property="category2" column="category2" />
+		<result property="url" column="url" />
+		<result property="readcount" column="readcount" />
 	</resultMap>
-	
-	<select id="selectList" resultType="list" resultMap="yogaResult">
+
+	<!-- 전체리스트select -->
+	<select id="selectAllList" resultType="list" resultMap="yogaResult">
 		<![CDATA[
 		select * from tb_video_board order by v_no desc
 		]]>
 	</select>
+	<!-- 카테고리별 list select-->
+	<select id="selectCList" parameterType="String" resultType="list" resultMap="yogaResult">
+		select * from tb_video_board where category2 = #{_parameter} order by v_no desc
+	</select>
 	
-	<insert id="insertYoga" parameterType="Yoga" flushCache="true" statementType="PREPARED" useGeneratedKeys="true">
-		<![CDATA[
-		insert into tb_video_board values (vb_seq.nextval, #{title}, #{content}, 
+	<!-- 조회수 count -->
+	<update id="addReadCount" parameterType="_int" flushCache="true" statementType="PREPARED">
+		update tb_video_board set readcount = readcount + 1 where v_no = #{v_no}
+	</update>
+
+	<!-- 플레이리스트 동영상 한번에 insert하기 Multi-row Insert -->
+	<insert id="insertYoga" parameterType="java.util.List" flushCache="true"
+		statementType="PREPARED" useGeneratedKeys="true">
+		insert all
+		<foreach item="video" collection="list">
+		 into tb_video_board values (vb_seq.nextval, #{title}, #{content}, 
 		#{category1}, #{category2}, #{url}, default)
-		]]>
+		</foreach>
+		select * from dual
 	</insert>
+
+	<!-- delete one video -->
+	<delete id="deleteYoga" parameterType="_int" flushCache="true" statementType="PREPARED">
+	delete from tb_video_board where #{v_no}
+	</delete>
+
+	<!-- Multi-row Delete -->
+	<delete id="deleteYogaList" parameterType="_int" flushCache="true" statementType="PREPARED">
+	delete from tb_video_board where v_no in 
+	<foreach item="item" index="index" collection="list"
+     			open="(" separator="," close=")">
+       		#{v_no}
+ 	</foreach>
+ 	</delete>
+ 	
+ 	<!-- video title, description 수정하기 -->
+ 	<update id="updateYoga" parameterType="Yoga" flushCache="true" statementType="PREPARED">
+ 		<![CDATA[
+ 		update tb_video_board
+ 		]]>
+ 		<set>
+ 			<if test="title != null">title = #{title},</if>
+ 			<if test="content != null">content = #{content},</if>
+ 			<if test="category1 != null">category1 = #{category1},</if>
+ 			<if test="category2 != null">category2 = #{category2},</if>
+ 		</set>
+ 		<![CDATA[
+ 		where v_no = #{v_no}
+ 		]]>
+ 	
+ 	</update>
+
 </mapper>

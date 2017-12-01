@@ -110,7 +110,7 @@
 				</tbody>
 			</table>
 		</div>
-		<div id="moreS" align="right"><button class="btn btn-default">MORE</button></div>
+		<div id="moreS" align="right"><button class="btn btn-default" onclick="location.href='uschedule.do?userno=${sessionScope.user.user_no}'">MORE</button></div>
 	</div>
 	</c:if>	
 	

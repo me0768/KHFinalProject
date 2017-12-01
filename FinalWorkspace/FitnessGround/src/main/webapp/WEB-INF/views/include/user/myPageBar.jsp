@@ -5,7 +5,7 @@
 				<li id="myPageBarText"><a href="udetail.do">회원정보</a></li>
 				<li id="myPageBarText"><a href="userpwd.do">비밀번호변경</a></li>
 				<li id="myPageBarText"><a href="userboard.do">게시글관리</a></li>
-				<li id="myPageBarText"><a href="#">운동스케줄</a></li>
+				<li id="myPageBarText"><a href="uschedule.do?userno=${sessionScope.user.user_no}">운동스케줄</a></li>
 				<li id="myPageBarText"><a href="userdel.do">회원탈퇴</a></li>
 			</ul>
 		</nav></div>
@@ -20,7 +20,7 @@
 				<li><a href="udetail.do">회원정보</a></li>
 				<li><a href="userpwd.do">비밀번호변경</a></li>
 				<li><a href="userboard.do">게시글관리</a></li>
-				<li><a href="#">운동스케줄</a></li>
+				<li><a href="uschedule.do?userno=${sessionScope.user.user_no}">운동스케줄</a></li>
 				<li><a href="userdel.do">회원탈퇴</a></li>
 			    </ul>
 			  </li>

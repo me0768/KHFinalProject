@@ -42,7 +42,7 @@
 	box-shadow: 2px 2px 2px rgba(204, 197, 185, 0.5);
 	background-color: #4f3d57;
 	color:white;
-	height:194px;
+	height:230px;
 	width:100%;
 }
 .mypage_info_title img {
@@ -65,7 +65,7 @@
 	margin-right:15px;
 }
 .mypage_info_content #mypage_btn {
-	margin-top:25px;
+	margin-top:35px;
 }
 .mypage_info_content button {
 	width:90%;
@@ -128,7 +128,7 @@
 #userDetailTitle img {
 	width:100px;
 	height:100px;
-	background:#e0e0e0;
+	background:#cecece;
 }
 #userDetailTitle #userDetailTitleInfo {
 	margin-top:12px;
@@ -189,7 +189,7 @@
 #userPwdMTitle img {
 	width:100px;
 	height:100px;
-	background:#e0e0e0;
+	background:#cecece;
 }
 #userPwdMTitle #userPwdTitleInfo {
 	margin-top:12px;
@@ -249,11 +249,47 @@
 
 /*  */
 .userBoardNav {
-	margin-top:100px;
-	margin-bottom:120px;
+	margin-top:120px;
+	margin-bottom:20px;
 }
-.userBoardNav li a {
+.userBoardNav #navTitle li a {
 	text-align:center;
+	padding:20px;
+	text-size:20pt;
+	text-weight:bold;
+}
+#searchBt a:hover, #searchBt a:visited, #searchBt a:link {
+	text-decoration: none;
+}
+#qnaT tr:nth-child(1) th{
+	padding-top:40px;
+	padding-bottom:15px;
+	text-align:center;
+}
+#qnaT th {
+	text-align:center;
+	text-weight:bold;
+}
+#qnaT td {
+	text-align:center;
+}
+#qnaT tr:nth-child(1) td {
+	width:30px;
+}
+#communityT tr:nth-child(1) th{
+	padding-top:40px;
+	padding-bottom:15px;
+	text-align:center;
+}
+#communityT th {
+	text-align:center;
+	text-weight:bold;
+}
+#communityT td {
+	text-align:center;
+}
+.boardPage {
+	margin-bottom:120px;
 }
 
 
@@ -290,3 +326,6 @@
 	font-size:10pt;
 	margin-top:20px;
 }
+
+
+/**/

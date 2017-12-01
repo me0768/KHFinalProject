@@ -68,4 +68,29 @@ public class UserServiceImpl implements UserService {
 	public ArrayList<UserSchedule> todaySchedule(int userNo) {
 		return userDao.todaySchedule(userNo);
 	}
+
+	@Override
+	public void userUpdate(User u) {
+		userDao.userUpdate(u);
+	}
+	
+	@Override
+	public void userPwdUpdate(User u) {
+		userDao.userPwdUpdate(u);
+	}
+
+	@Override
+	public void userDelete(User u) {
+		userDao.userDelete(u);
+	}
+
+	@Override
+	public ArrayList userBoardSearch(String keyword) {
+		return userDao.userBoardSearch(keyword);
+	}
+
+	@Override
+	public ArrayList<UserSchedule> userAllSchedule(int userNo) {
+		return userDao.userAllSchedule(userNo);
+	}
 }

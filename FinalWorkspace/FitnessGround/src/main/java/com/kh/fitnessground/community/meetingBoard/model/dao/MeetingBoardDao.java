@@ -2,7 +2,7 @@ package com.kh.fitnessground.community.meetingBoard.model.dao;
 
 import org.springframework.stereotype.Repository;
 
-@Repository("communityDao")
+@Repository("MeetingBoardDao")
 public class MeetingBoardDao {
 
 }

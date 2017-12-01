@@ -63,4 +63,25 @@ public class UserDao {
 		List<UserSchedule> list = sqlSession.selectList("user.todaySchedule", userNo);
 		return new ArrayList<UserSchedule>(list);
 	}
+
+	public void userUpdate(User u) {
+		sqlSession.update("user.userUpdate", u);
+	}
+
+	public void userPwdUpdate(User u) {
+		sqlSession.update("user.userPwdUpdate", u);		
+	}
+
+	public void userDelete(User u) {
+		sqlSession.delete("user.userDelete", u);
+	}
+
+	public ArrayList userBoardSearch(String keyword) {
+		return (ArrayList) sqlSession.selectList("user.userBoardSearch", keyword);
+	}
+
+	public ArrayList<UserSchedule> userAllSchedule(int userNo) {
+		List<UserSchedule> list = sqlSession.selectList("user.userAllSchedule", userNo);
+		return new ArrayList<UserSchedule>(list);
+	}
 }

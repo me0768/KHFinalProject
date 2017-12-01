@@ -28,4 +28,14 @@ public interface UserService {
 	ArrayList<UserSchedule> yesterdaySchedule(int userNo);
 
 	ArrayList<UserSchedule> todaySchedule(int userNo);
+
+	void userUpdate(User u);
+
+	void userPwdUpdate(User u);
+
+	void userDelete(User u);
+
+	ArrayList userBoardSearch(String parameter);
+
+	ArrayList<UserSchedule> userAllSchedule(int userNo);
 }

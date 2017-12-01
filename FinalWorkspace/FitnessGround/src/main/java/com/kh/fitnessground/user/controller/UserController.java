@@ -127,10 +127,15 @@ public class UserController {
 		mv.addObject("yesterDate", yesterDate);
 		return mv; 
 	}
-	
 	@RequestMapping(value="/udetail.do")
 	public ModelAndView userDetailMethod(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("user/userDetail");
+		return mv; 
+	}
+	@RequestMapping(value="/uupdate.do")
+	public ModelAndView userUpdateMethod(User u, HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView("user/myPage");
+		userService.userUpdate(u);
 		return mv; 
 	}
 	@RequestMapping(value="/userpwd.do")
@@ -138,14 +143,54 @@ public class UserController {
 		ModelAndView mv = new ModelAndView("user/userPwdModify");
 		return mv; 
 	}
+	@RequestMapping(value="/upwdupdate.do")
+	public ModelAndView userPwdUpdateMethod(User u, HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView("main");
+		userService.userPwdUpdate(u);
+		HttpSession session = request.getSession();
+		if(session != null) {
+			session.invalidate();
+		}
+		return mv;
+	}
 	@RequestMapping(value="/userdel.do")
-	public ModelAndView userDeleteMethod(HttpServletRequest request) {
+	public ModelAndView userDeleteViewMethod(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("user/userDelete");
 		return mv; 
 	}
+	@RequestMapping(value="/userdelete.do")
+	public ModelAndView userDeleteMethod(User u, HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView("main");
+		userService.userDelete(u);
+		HttpSession session = request.getSession();
+		if(session != null) {
+			session.invalidate();
+		}
+		return mv; 
+	}
 	@RequestMapping(value="/userboard.do")
-	public ModelAndView userBoardModifyMethod(HttpServletRequest request) {
+	public ModelAndView userBoardMethod(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("user/userBoard");
+		return mv; 
+	}
+	@RequestMapping(value="/userboarddetail.do")
+	public ModelAndView userBoardDetailMethod(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView("");
+		// mv에 글 번호 값 추가
+		return mv; 
+	}
+	@RequestMapping(value="/userboardsearch.do")
+	public ModelAndView userBoardSearchMethod(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView("user/userBoard");
+		userService.userBoardSearch(request.getParameter("keyword")); //리턴된 리스트값 저장하는 변수 만들어서 받기
+		// mv에 추가
+		return mv; 
+	}
+	@RequestMapping(value="/uschedule.do")
+	public ModelAndView userScheduleMethod(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView("user/userSchedule");
+		int userNo = Integer.parseInt(request.getParameter("userno"));
+		//mv.addObject("userSchedule", userService.userAllSchedule(userNo));
 		return mv; 
 	}
 	

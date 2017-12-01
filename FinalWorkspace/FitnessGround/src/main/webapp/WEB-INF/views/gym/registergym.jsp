@@ -4,87 +4,6 @@
 
 <c:import url="../include/common/head.jsp" />
 
-<style type="text/css">
-	.carousel-control {
-		left: -12px;
-	    height: 40px;
-		width: 40px !important;
-	    background: none repeat scroll 0 0 #222222;
-	    border: 4px solid #FFFFFF;
-	    border-radius: 23px 23px 23px 23px;
-	    margin-top: 55px;
-	}
-	.carousel-control.right {
-		right: -12px;
-	}
-	/* The indicators */
-	.carousel-indicators {
-		right: 50%;
-		top: auto;
-		bottom: -10px;
-		margin-right: -19px;
-	}
-	/* The colour of the indicators */
-	.carousel-indicators li {
-		background: #cecece;
-	}
-	.carousel-indicators .active {
-	background: #428bca;
-	}
-	
-	.carousel-inner{
-		padding-left: 30px;
-		padding-right: 30px;
-	}
-	
-	#image_list {
-		disyplay: inline-block;
-		border: 2px solid #3333338a;
-		border-radius: 10px;
-		height: 150px;
-		padding: 0px;
-		margin-top: 10px;
-	}
-	
-	#mainimage{
-		disyplay: inline-block;
-		border: 2px dashed #3333338a;
-		border-radius: 10px;
-		padding: 0px;
-		height: 400px;
-		padding-top: 20px;
-	}
-	
-	#Carousel{
-		display: block;
-		padding-top: 20px;
-		padding-bottom: 0px;
-	}
-	
-	#imagelist{
-		width: 100%;
-		height: 70%;
-	}
-	
-	a.thumbnail{
-		padding: 0px;
-		border: 0px;
-	}
-	
-	.my_button{
-		margin-top: 10px;
-	}
-	
-	.bigimage {
-		margin-left: auto;
-		margin-right: auto;
-	}
-	
-	.panel-body .input-group, .btn-group{
-		margin-bottom: 10px;
-	}
-</style>
-
 <link rel="stylesheet" href="/fitnessground/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="/fitnessground/resources/css/gym/registergym.css">
 
@@ -184,7 +103,7 @@
 					</a>
 				</h4>
 			</div>
-			<div id="collapseTwo" class="panel-collapse collapse in"
+			<div id="collapseTwo" class="panel-collapse collapse"
 				role="tabpanel" aria-labelledby="headingTwo">
 				<div class="panel-body">
 				
@@ -232,23 +151,23 @@
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							
 								<div class="checks etrans">
-									<a href="javascript:gymemptycheck();">
-								 		<input type="checkbox" id="ex_chk0"> 
+									<a>
+								 		<input type="checkbox" id="ex_chk0" onclick="boxcheck(0);"> 
 								  		<label for="ex_chk0">헬스</label> 
 									</a>
 								  
-								  	<a href="javascript:gymemptycheck();">
-								  		<input type="checkbox" id="ex_chk1"> 
+								  	<a>
+								  		<input type="checkbox" id="ex_chk1" onclick="boxcheck(1);"> 
 								  		<label for="ex_chk1">요가</label> 
 								  	</a>
 								  
-								  	<a href="javascript:gymemptycheck();">
-								  		<input type="checkbox" id="ex_chk2"> 
+								  	<a>
+								  		<input type="checkbox" id="ex_chk2" onclick="boxcheck(2);"> 
 								  		<label for="ex_chk2">필라테스</label> 
 								  	</a>
 								  
-								  	<a href="javascript:gymemptycheck();">
-								  		<input type="checkbox" id="ex_chk3"> 
+								  	<a>
+								  		<input type="checkbox" id="ex_chk3" onclick="boxcheck(3);"> 
 								  		<label for="ex_chk3">맨몸운동</label> 
 								  	</a>
 								</div>				
@@ -265,24 +184,17 @@
 				<h4 class="panel-title">
 					<a class="collapsed" data-toggle="collapse"
 						data-parent="#accordion" href="#collapseThree"
-						aria-expanded="false" aria-controls="collapseThree"> <span
+						aria-expanded="false" aria-controls="collapseThree"  id="panel3"> <span
 						class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 						&nbsp;&nbsp;헬스장 일정
 					</a>
 				</h4>
 			</div>
-			<div id="collapseThree" class="panel-collapse collapse"
+			<div id="collapseThree" class="panel-collapse collapse in"
 				role="tabpanel" aria-labelledby="headingThree">
-				<div class="panel-body">Anim pariatur cliche reprehenderit,
-					enim eiusmod high life accusamus terry richardson ad squid. 3 wolf
-					moon officia aute, non cupidatat skateboard dolor brunch. Food
-					truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-					sunt aliqua put a bird on it squid single-origin coffee nulla
-					assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer
-					labore wes anderson cred nesciunt sapiente ea proident. Ad vegan
-					excepteur butcher vice lomo. Leggings occaecat craft beer
-					farm-to-table, raw denim aesthetic synth nesciunt you probably
-					haven't heard of them accusamus labore sustainable VHS.</div>
+				<div class="panel-body">
+					
+				</div>
 			</div>
 		</div>
 		<div class="panel panel-default" id="panelFour">
@@ -290,7 +202,7 @@
 				<h4 class="panel-title">
 					<a class="collapsed" data-toggle="collapse"
 						data-parent="#accordion" href="#collapsefour"
-						aria-expanded="false" aria-controls="collapsefour"> <span
+						aria-expanded="false" aria-controls="collapsefour"  id="panel4"> <span
 						class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 						&nbsp;&nbsp;헬스장 위치
 					</a>

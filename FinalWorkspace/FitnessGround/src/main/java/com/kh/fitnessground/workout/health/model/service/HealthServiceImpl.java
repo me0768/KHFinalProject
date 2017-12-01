@@ -13,15 +13,16 @@ public class HealthServiceImpl implements HealthService{
 	@Autowired
 	HealthDao healthDao;
 
-	@Override
-	public ArrayList<Health> getList() {
-		// TODO Auto-generated method stub
-		return healthDao.getList();
-	}
-
+	
 	@Override
 	public Health selectWorkout(int vno) {
 		// TODO Auto-generated method stub
 		return healthDao.selectOneWorkout(vno);
+	}
+
+	@Override
+	public ArrayList<Health> selectWorkoutCategoryList(String category) {
+		// TODO Auto-generated method stub
+		return healthDao.selectWorkoutCategoryList(category);
 	}
 }

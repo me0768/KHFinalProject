@@ -3,6 +3,20 @@
 "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="health">
-
+	<resultMap id="resultCategoryList" type="Health">
+		<id property="v_no" column="v_no"/>
+		<result property="title" column="title" />
+		<result property="content" column="content"/>
+		<result property="category1" column="category1"/>
+		<result property="category2" column="category2"/>
+		<result property="url" column="url"/>
+		<result property="readcount" column="readcount"/>	
+	</resultMap>
+	
+	<select id="selectCategoryList" parameterType = "string" resultType="list" resultMap="resultCategoryList">
+		<![CDATA[
+			select * from tb_video_board category2 where category1 = #{category1} and like '%' + #{category} + '%'
+		]]>
+	</select>
 	
 </mapper>

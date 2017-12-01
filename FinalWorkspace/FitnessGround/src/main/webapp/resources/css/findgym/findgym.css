@@ -6,11 +6,27 @@
 	/* display: inline-block; */
 	float: left;
 }
+
 #maparea{
 	width: 60vw;
 	height: 90vh;
 	display: inline-block;
 }
+
 #map{
  height: 700px;
+}
+
+#check{
+	margin-left: 50px;
+}
+
+#thumbnail{
+	display: inline-block;
+	width: 55px;
+	height: 55px;
+}
+
+#paging{
+	
 }

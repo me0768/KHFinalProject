@@ -7,18 +7,21 @@
 	<c:import url="../include/common/head.jsp" />
 	<c:import url="../include/common/headend.jsp" />
     
-	 <div id="page-wrapper">
+	<div id="page-wrapper">
 		<!-- Header -->
 		<div id="mypage_header">
             <!-- Nav -->
 			<c:import url="../include/main/nav.jsp" />
-		
-		
+			
+			<c:import url="../user/login.jsp"/>
+			<c:import url="../user/findidpwd.jsp"/>
+			<c:import url="../user/register.jsp"/>
 		</div>
-    </div> 
- 
+    </div>
+    
   <style type="text/css">
     h1#community_title{
+    font-family:"Lato";
     font-size:40pt;
     font-weight:bold;
     color:purple;

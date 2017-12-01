@@ -24,6 +24,12 @@ public class Yoga {
 		this.readcount = readcount;
 	}
 
+	public Yoga(String title, String content, String url) {
+		this.title = title;
+		this.content = content;
+		this.url = url;
+	}
+
 	public int getV_no() {
 		return v_no;
 	}

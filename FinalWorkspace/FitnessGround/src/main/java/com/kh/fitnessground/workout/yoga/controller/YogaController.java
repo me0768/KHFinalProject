@@ -5,13 +5,20 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.fitnessground.workout.yoga.model.service.YogaService;
 import com.kh.fitnessground.workout.yoga.model.vo.Yoga;
+
 
 @Controller
 public class YogaController {
@@ -49,13 +56,26 @@ public class YogaController {
 	/*-----Authority=관리자-------*/
 	
 	//동영상 insert (playlist단위로:: 관리자가 playlist입력->자바스크립트에서 api로 video리스트를 json객체로 담아 컨트롤러에보냄)
-	@RequestMapping(value="/yinsert.do")
-	public ModelAndView YogaInsertMethod(Yoga yoga, HttpServletRequest request) {
-		yogaService.insertYoga(yoga, request);
-		ModelAndView mv = new ModelAndView("/workout/yogaMain");
-		mv.addObject("list", yogaService.selectAllList());
-		return mv;
+	@RequestMapping(value="/yinsert.do", method=RequestMethod.POST)
+	public ResponseEntity<String> YogaInsertMethod(HttpServletRequest request, @RequestBody String param) throws Exception{
+		request.setCharacterEncoding("utf-8");
+		//전송온 문자열(ajax에서 JSON.stringify로 해서 문자열이 옴)을 json배열-->객체배열로 바꾸기... 
+		JSONParser parser = new JSONParser();
+		JSONObject job = (JSONObject)parser.parse(param);
+		 //for문으로 해야할것... 
+		String title = (String)job.get("title");
+		String content = (String)job.get("content");
+		String url = (String)job.get("url");
+		Yoga yoga = new Yoga(title, content, url);
+		
+		//List<Yoga> ylist = new List<Yoga>();
+		//ylist.add(yoga);
+		
+		//System.out.println(ylist);
+		//yogaService.insertYoga(ylist, request);
+		return new ResponseEntity<String>("success", HttpStatus.OK);
 	}
+
 	
 	//동영상 수정하기 뷰 메소드
 	@RequestMapping(value="/yupdateview.do")

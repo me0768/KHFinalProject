@@ -103,7 +103,9 @@
     	var vTitle;
     	var vDesc;
     	var vId;
-    	var job;
+    	var job = new Object();
+    	var jarr;
+    	var sendJarr;
     	 $(document).ready(function(){
     	       $.get(
     	           "https://www.googleapis.com/youtube/v3/playlistItems", {
@@ -112,30 +114,31 @@
     	               playlistId: playlist1,
     	               key: 'AIzaSyACiHNLQp0NoZLhAx6u2JbtMGjCp3STK3A'},
     	               function(data){
-    	                   var output;
-    	                   var vmap = new Map();
     	                   
     	                   $.each(data.items, function(i, item){
     	                	   vTitle = item.snippet.title.replace(/&/gi, "+");
     	                       vDesc = item.snippet.description.replace(/&/gi, "+");
     	                       vId = item.snippet.resourceId.videoId;
-    	                       //하나가 아니라서 json array에 담고 그걸 다시 json객체에 담아서 컨트롤러에 보내야할것..... 
+    	                       //하나가 아니라서 json array에 담고 그걸 다시 json객체에 담아서 컨트롤러에 보내야.....
+        	                   job.title = vTitle;
+        	                   job.content = vDesc;
+        	                   job.url = vId;
+        	                   console.log(job.url+"url//");
+        	                   jarr.push(job);
     	                   });
-    	                   /* job = new Object();
-    	                   job.title = vTitle;
-    	                   job.content = vDesc;
-    	                   job.url = vId; */
-    	                 console.log("json객체:"+job);
+    	                    
+    	                 console.log("json객체:"+jarr);
+    	                 var sendJarr = new Object("ylist", jarr);
     	               }
     	               ); 
     	 /*Controller로 넘기기 */
     	 	$.ajax({
     	 		url : "yinsert.do",
-    	 		data: JSON.stringify(),
+    	 		data: JSON.stringify(sendJarr),
     	 		type: "post",
     	 		contentType : "application/json; charset=utf-8",
     	 		success : function(result){
-    	 			console.log("전송성공");
+    	 			console.log("전송성공: sendJarr.jarr[0].job.title");
     	 		},
     	 		error : function(request, status, errorData){
     	 			alert("error code : " + request.status + "\n"

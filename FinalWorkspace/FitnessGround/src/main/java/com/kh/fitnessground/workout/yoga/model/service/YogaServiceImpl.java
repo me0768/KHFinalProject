@@ -40,8 +40,8 @@ public class YogaServiceImpl implements YogaService{
 	
 	
 	@Override
-	public void insertYoga(Yoga yoga, HttpServletRequest request) {
-		yogaDao.insertYoga(yoga);
+	public void insertYoga(List<Yoga> ylist, HttpServletRequest request) {
+		yogaDao.insertYoga(ylist);
 	}
 	@Override
 	public void updateYoga(Yoga yoga, HttpServletRequest request) {

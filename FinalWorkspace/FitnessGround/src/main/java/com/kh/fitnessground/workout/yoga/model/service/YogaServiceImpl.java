@@ -1,6 +1,7 @@
 package com.kh.fitnessground.workout.yoga.model.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -18,8 +19,13 @@ public class YogaServiceImpl implements YogaService{
 	YogaDao yogaDao;
 	
 	@Override
-	public ArrayList<Yoga> selectList(){
-		return yogaDao.selectYogaList();
+	public ArrayList<Yoga> selectAllList(){
+		return yogaDao.selectAllList();
+	}
+	
+	@Override
+	public ArrayList<Yoga> selectCList(String category){
+		return yogaDao.selectCList(category);
 	}
 	
 	@Override
@@ -28,7 +34,25 @@ public class YogaServiceImpl implements YogaService{
 	}
 	
 	@Override
+	public void addReadCount(int v_no, HttpServletRequest request) {
+		yogaDao.addReadCount(v_no);
+	}
+	
+	
+	@Override
 	public void insertYoga(Yoga yoga, HttpServletRequest request) {
-		
+		yogaDao.insertYoga(yoga);
+	}
+	@Override
+	public void updateYoga(Yoga yoga, HttpServletRequest request) {
+		yogaDao.updateYoga(yoga);
+	}
+	@Override
+	public void deleteYoga(Yoga yoga, HttpServletRequest request) {
+		yogaDao.deleteYoga(yoga);
+	}
+	@Override
+	public void deleteYogaList(List<Yoga> dellist, HttpServletRequest request) {
+		yogaDao.deleteYogaList(dellist);
 	}
 }

@@ -99,7 +99,7 @@
 	
 	<!-- YoutubeAPI 호출, Ajax  -->
 	<script type="text/javascript">
-    	var playlist1 = 'PL59_4lUZbIwO80AlZBTfoVfF12IoxAfvG'; //빈야사 playlistid
+    	var playlist1 = 'PL59_4lUZbIwO80AlZBTfoVfF12IoxAfvG'; //관리자가 입력한playlistId
     	var vTitle;
     	var vDesc;
     	var vId;
@@ -119,17 +119,18 @@
     	                	   vTitle = item.snippet.title.replace(/&/gi, "+");
     	                       vDesc = item.snippet.description.replace(/&/gi, "+");
     	                       vId = item.snippet.resourceId.videoId;
+    	                       //하나가 아니라서 json array에 담고 그걸 다시 json객체에 담아서 컨트롤러에 보내야할것..... 
     	                   });
-    	                   job = new Object();
+    	                   /* job = new Object();
     	                   job.title = vTitle;
     	                   job.content = vDesc;
-    	                   job.url = vId;
+    	                   job.url = vId; */
     	                 console.log("json객체:"+job);
     	               }
     	               ); 
     	 /*Controller로 넘기기 */
     	 	$.ajax({
-    	 		url : "ylist.do",
+    	 		url : "yinsert.do",
     	 		data: JSON.stringify(),
     	 		type: "post",
     	 		contentType : "application/json; charset=utf-8",

@@ -13,9 +13,15 @@ import com.kh.fitnessground.workout.yoga.model.vo.Yoga;
 public class YogaDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
+	
+	public ArrayList<Yoga> selectAllList() {
+		List<Yoga> ylist = sqlSession.selectList("yoga.selectAllList");
+		ArrayList<Yoga> list = new ArrayList<Yoga>(ylist);
+		return list;
+	}
 
-	public ArrayList<Yoga> selectYogaList() {
-		List<Yoga> ylist = sqlSession.selectList("yoga.selectList");
+	public ArrayList<Yoga> selectCList(String category) {
+		List<Yoga> ylist = sqlSession.selectList("yoga.selectCList", category);
 		ArrayList<Yoga> list = new ArrayList<Yoga>(ylist);
 		return list;
 	}
@@ -25,6 +31,22 @@ public class YogaDao {
 	}
 	public void insertYoga(Yoga yoga) {
 		sqlSession.insert("yoga.insertYoga", yoga);
+	}
+
+	public void updateYoga(Yoga yoga) {
+		sqlSession.update("yoga.updateYoga", yoga);
+	}
+
+	public void deleteYoga(Yoga yoga) {
+		sqlSession.delete("yoga.deleteYoga", yoga);
+	}
+
+	public void deleteYogaList(List<Yoga> dellist) {
+		sqlSession.delete("yoga.deleteYogaList", dellist);
+	}
+
+	public void addReadCount(int v_no) {
+		sqlSession.update("yoga.addReadCount", v_no);
 	}
 
 }

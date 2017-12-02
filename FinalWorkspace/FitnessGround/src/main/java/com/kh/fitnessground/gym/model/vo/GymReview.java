@@ -1,4 +1,4 @@
-package com.kh.fitnessground.gymreview.model.vo;
+package com.kh.fitnessground.gym.model.vo;
 
 public class GymReview implements java.io.Serializable{
 	private int gcno;

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.2" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <package id="1" language="java" name="com.kh.fitnessground.user" project="FitnessGround" 
+    file="/FitnessGround/src/main/java/com/kh/fitnessground/user" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="538" width="408" x="2152" y="118"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="2" language="java" name="com.kh.fitnessground.user.controller" project="FitnessGround" 
+    file="/FitnessGround/src/main/java/com/kh/fitnessground/user/controller" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="73" width="341" x="2185" y="188"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="3" language="java" name="com.kh.fitnessground.user.model" project="FitnessGround" 
+    file="/FitnessGround/src/main/java/com/kh/fitnessground/user/model" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="328" width="354" x="2184" y="281"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="4" language="java" name="com.kh.fitnessground.user.model.dao" project="FitnessGround" 
+    file="/FitnessGround/src/main/java/com/kh/fitnessground/user/model/dao" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2358" y="382"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="5" language="java" name="com.kh.fitnessground.user.model.service" project="FitnessGround" 
+    file="/FitnessGround/src/main/java/com/kh/fitnessground/user/model/service" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2357" y="471"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="6" language="java" name="com.kh.fitnessground.user.model.vo" project="FitnessGround" 
+    file="/FitnessGround/src/main/java/com/kh/fitnessground/user/model/vo" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2354" y="553"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="7" language="java" name="com.kh.fitnessground.gym" project="FitnessGround" 
+    file="/FitnessGround/src/main/java/com/kh/fitnessground/gym" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="543" width="433" x="1655" y="120"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="8" language="java" name="com.kh.fitnessground.gym.controller" project="FitnessGround" 
+    file="/FitnessGround/src/main/java/com/kh/fitnessground/gym/controller" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="387" x="1678" y="200"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="9" language="java" name="com.kh.fitnessground.gym.model" project="FitnessGround" 
+    file="/FitnessGround/src/main/java/com/kh/fitnessground/gym/model" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="361" width="388" x="1679" y="284"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="10" language="java" name="com.kh.fitnessground.gym.model.dao" project="FitnessGround" 
+    file="/FitnessGround/src/main/java/com/kh/fitnessground/gym/model/dao" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1872" y="380"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="11" language="java" name="com.kh.fitnessground.gym.model.service" project="FitnessGround" 
+    file="/FitnessGround/src/main/java/com/kh/fitnessground/gym/model/service" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1875" y="476"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="12" language="java" name="com.kh.fitnessground.gym.model.vo" project="FitnessGround" 
+    file="/FitnessGround/src/main/java/com/kh/fitnessground/gym/model/vo" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1872" y="576"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="13" language="java" name="com.kh.fitnessground.admin" project="FitnessGround" 
+    file="/FitnessGround/src/main/java/com/kh/fitnessground/admin" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="478" width="490" x="1107" y="114"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="14" language="java" name="com.kh.fitnessground.admin.controller" project="FitnessGround" 
+    file="/FitnessGround/src/main/java/com/kh/fitnessground/admin/controller" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="58" width="392" x="1151" y="200"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="15" language="java" name="com.kh.fitnessground.admin.model" project="FitnessGround" 
+    file="/FitnessGround/src/main/java/com/kh/fitnessground/admin/model" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="259" width="404" x="1146" y="300"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="16" language="java" name="com.kh.fitnessground.admin.model.dao" project="FitnessGround" 
+    file="/FitnessGround/src/main/java/com/kh/fitnessground/admin/model/dao" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1345" y="408"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="17" language="java" name="com.kh.fitnessground.admin.model.service" project="FitnessGround" 
+    file="/FitnessGround/src/main/java/com/kh/fitnessground/admin/model/service" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1351" y="500"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="18" language="java" name="com.kh.fitnessground.workout" project="FitnessGround" 
+    file="/FitnessGround/src/main/java/com/kh/fitnessground/workout" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="699" width="1041" x="20" y="76"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="19" language="java" name="com.kh.fitnessground.workout.health" project="FitnessGround" 
+    file="/FitnessGround/src/main/java/com/kh/fitnessground/workout/health" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="567" width="477" x="61" y="170"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="20" language="java" name="com.kh.fitnessground.workout.yoga" project="FitnessGround" 
+    file="/FitnessGround/src/main/java/com/kh/fitnessground/workout/yoga" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="555" width="468" x="560" y="177"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="21" language="java" name="com.kh.fitnessground.workout.health.controller" project="FitnessGround" 
+    file="/FitnessGround/src/main/java/com/kh/fitnessground/workout/health/controller" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="55" width="416" x="85" y="256"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="22" language="java" name="com.kh.fitnessground.workout.health.model" project="FitnessGround" 
+    file="/FitnessGround/src/main/java/com/kh/fitnessground/workout/health/model" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="348" width="425" x="79" y="344"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="23" language="java" name="com.kh.fitnessground.workout.health.model.dao" project="FitnessGround" 
+    file="/FitnessGround/src/main/java/com/kh/fitnessground/workout/health/model/dao" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="286" y="441"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="24" language="java" name="com.kh.fitnessground.workout.health.model.service" project="FitnessGround" 
+    file="/FitnessGround/src/main/java/com/kh/fitnessground/workout/health/model/service" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="288" y="533"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="25" language="java" name="com.kh.fitnessground.workout.health.model.vo" project="FitnessGround" 
+    file="/FitnessGround/src/main/java/com/kh/fitnessground/workout/health/model/vo" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="287" y="625"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="26" language="java" name="com.kh.fitnessground.workout.yoga.controller" project="FitnessGround" 
+    file="/FitnessGround/src/main/java/com/kh/fitnessground/workout/yoga/controller" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="55" width="402" x="594" y="259"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="27" language="java" name="com.kh.fitnessground.workout.yoga.model" project="FitnessGround" 
+    file="/FitnessGround/src/main/java/com/kh/fitnessground/workout/yoga/model" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="347" width="406" x="590" y="344"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="28" language="java" name="com.kh.fitnessground.workout.yoga.model.dao" project="FitnessGround" 
+    file="/FitnessGround/src/main/java/com/kh/fitnessground/workout/yoga/model/dao" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="794" y="446"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="29" language="java" name="com.kh.fitnessground.workout.yoga.model.service" project="FitnessGround" 
+    file="/FitnessGround/src/main/java/com/kh/fitnessground/workout/yoga/model/service" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="792" y="525"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="30" language="java" name="com.kh.fitnessground.workout.yoga.model.vo" project="FitnessGround" 
+    file="/FitnessGround/src/main/java/com/kh/fitnessground/workout/yoga/model/vo" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="795" y="619"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

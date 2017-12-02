@@ -117,3 +117,82 @@
   text-align: center;
   border: 1px solid #6cc0e5;
 }
+
+.carousel-control {
+		left: -12px;
+	    height: 40px;
+		width: 40px !important;
+	    background: none repeat scroll 0 0 #222222;
+	    border: 4px solid #FFFFFF;
+	    border-radius: 23px 23px 23px 23px;
+	    margin-top: 55px;
+	}
+	.carousel-control.right {
+		right: -12px;
+	}
+	/* The indicators */
+	.carousel-indicators {
+		right: 50%;
+		top: auto;
+		bottom: -10px;
+		margin-right: -19px;
+	}
+	/* The colour of the indicators */
+	.carousel-indicators li {
+		background: #cecece;
+	}
+	.carousel-indicators .active {
+	background: #428bca;
+	}
+	
+	.carousel-inner{
+		padding-left: 30px;
+		padding-right: 30px;
+	}
+	
+	#image_list {
+		disyplay: inline-block;
+		border: 2px solid #3333338a;
+		border-radius: 10px;
+		height: 150px;
+		padding: 0px;
+		margin-top: 10px;
+	}
+	
+	#mainimage{
+		disyplay: inline-block;
+		border: 2px dashed #3333338a;
+		border-radius: 10px;
+		padding: 0px;
+		height: 400px;
+		padding-top: 20px;
+	}
+	
+	#Carousel{
+		display: block;
+		padding-top: 20px;
+		padding-bottom: 0px;
+	}
+	
+	#imagelist{
+		width: 100%;
+		height: 70%;
+	}
+	
+	a.thumbnail{
+		padding: 0px;
+		border: 0px;
+	}
+	
+	.my_button{
+		margin-top: 10px;
+	}
+	
+	.bigimage {
+		margin-left: auto;
+		margin-right: auto;
+	}
+	
+	.panel-body .input-group, .btn-group{
+		margin-bottom: 10px;
+	}

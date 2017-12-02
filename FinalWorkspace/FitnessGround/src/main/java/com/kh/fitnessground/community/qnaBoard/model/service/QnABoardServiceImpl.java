@@ -12,47 +12,47 @@ import com.kh.fitnessground.community.qnaBoard.model.dao.QnABoardDao;
 public class QnABoardServiceImpl implements QnABoardService{
 	
 	@Autowired
-	QnABoardDao QnABoardDao;
+	QnABoardDao qnaBoardDao;
 
 	@Override
 	public int getListCount() {
 		// TODO Auto-generated method stub
-		return 0;
+		return qnaBoardDao.ListCount();
 	}
 
 	@Override
-	public ArrayList<CommunityBoard> QnAListView(int page, int limit) {
+	public ArrayList<CommunityBoard> qnaListView(int page, int limit) {
 		// TODO Auto-generated method stub
-		return null;
+		return qnaBoardDao.qnaListView(page, limit);
 	}
 
 	@Override
-	public int QnAInsert(CommunityBoard communityboard) {
+	public int qnaInsert(CommunityBoard communityboard) {
 		// TODO Auto-generated method stub
-		return 0;
+		return qnaBoardDao.qnaInsert(communityboard);
 	}
 
 	@Override
-	public int QnADelete(int mb_no) {
+	public int qnaDelete(int mb_no) {
 		// TODO Auto-generated method stub
-		return 0;
+		return qnaBoardDao.qnaDelete(mb_no);
 	}
 
 	@Override
-	public int QnAUpdate(CommunityBoard communityboard) {
+	public int qnaUpdate(CommunityBoard communityboard) {
 		// TODO Auto-generated method stub
-		return 0;
+		return qnaBoardDao.qnaUpdate(communityboard);
 	}
 
 	@Override
-	public CommunityBoard QnADetail(int mb_no) {
+	public CommunityBoard qnaDetail(int mb_no) {
 		// TODO Auto-generated method stub
-		return null;
+		return qnaBoardDao.qnadDtail(mb_no);
 	}
 
 	@Override
-	public ArrayList<CommunityBoard> QnASearch(int page, int limit, String findType, String searchKey) {
+	public ArrayList<CommunityBoard> qnaSearch(int page, int limit, String findType, String searchKey) {
 		// TODO Auto-generated method stub
-		return null;
+		return qnaBoardDao.qnaSearch(page,limit,findType,searchKey);
 	}
 }

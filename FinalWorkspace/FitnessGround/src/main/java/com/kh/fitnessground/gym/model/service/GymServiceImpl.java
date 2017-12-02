@@ -26,31 +26,26 @@ public class GymServiceImpl implements GymService{
 	
 	@Override
 	public int getListCount() {
-		// TODO Auto-generated method stub
-		return 0;
+		return gymDao.getListCount();
 	}
 
 	@Override
 	public ArrayList<GymReview> selectList(int limit) {
-		// TODO Auto-generated method stub
-		return null;
+		return gymDao.selectList(limit);
 	}
 
 	@Override
 	public int enrollReview(GymReview gymreview) {
-		// TODO Auto-generated method stub
-		return 0;
+		return gymDao.enrollReview(gymreview);
 	}
 
 	@Override
 	public int deleteReview(int gcno) {
-		// TODO Auto-generated method stub
-		return 0;
+		return gymDao.deleteReview(gcno);
 	}
 
 	@Override
 	public int updateReview(int gcno, GymReview gymreview) {
-		// TODO Auto-generated method stub
-		return 0;
+		return gymDao.updateReview(gcno,gymreview);
 	}
 }

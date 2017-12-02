@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.kh.fitnessground.admin.service.AdminService;
+import com.kh.fitnessground.admin.model.service.AdminService;
 import com.kh.fitnessground.community.meetingBoard.model.service.MeetingBoardService;
 import com.kh.fitnessground.community.qnaBoard.model.service.QnABoardService;
 import com.kh.fitnessground.community.reviewBoard.model.service.ReviewBoardService;
@@ -44,6 +44,9 @@ public class AdminController {
 
 	@Autowired
 	private YogaService yogaService;
+	
+	@Autowired
+	private AdminService adminService;
 
 	// 관리자 메인뷰 이동
 	@RequestMapping(value = "adminMain.do")
@@ -89,7 +92,7 @@ public class AdminController {
 	@RequestMapping(value = "adminuserlist.do")
 	public ModelAndView UserListMethod(User user, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView("#");
-		ArrayList<User> list = AdminService.userlist(user.getUser_no(), user.getUser_level());
+		ArrayList<User> list = adminService.userlist(user.getUser_no(), user.getUser_level());
 		mv.addObject("list", list);
 		return mv;
 	}
@@ -98,7 +101,7 @@ public class AdminController {
 	@RequestMapping(value = "adminbuisnesslist.do")
 	public ModelAndView BuisnessListMethod(User user, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView("#");
-		ArrayList<User> list = AdminService.buisnesslist(user.getUser_no(), user.getUser_level());
+		ArrayList<User> list = adminService.buisnesslist(user.getUser_no(), user.getUser_level());
 		mv.addObject("list", list);
 		return mv;
 	}

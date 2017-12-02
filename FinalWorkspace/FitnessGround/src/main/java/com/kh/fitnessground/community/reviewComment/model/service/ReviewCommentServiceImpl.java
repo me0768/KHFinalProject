@@ -17,7 +17,7 @@ public class ReviewCommentServiceImpl implements ReviewCommentService{
 	@Override
 	public ArrayList<CommunityComment> communityCommentList(int mbc_no) {
 		// TODO Auto-generated method stub
-		return null;
+		return communityCommentList(mbc_no);
 	}
 
 	@Override

@@ -9,16 +9,16 @@ public interface ReviewBoardService {
 	//게시글 갯수
 	int getListCount();
 	//목록
-	ArrayList<CommunityBoard> ReviewlistView(int page, int limit);
+	ArrayList<CommunityBoard> reviewListView(int page, int limit);
 	//등록
-	int ReviewInsert(CommunityBoard communityboard);
+	int reviewInsert(CommunityBoard communityboard);
 	//삭제
-	int ReviewDelete(int mb_no);
+	int reviewDelete(int mb_no);
 	//수정
-	int ReviewUpdate(CommunityBoard communityboard);
+	int reviewUpdate(CommunityBoard communityboard);
 	//디테일
-	CommunityBoard ReviewDetail(int mb_no);
+	CommunityBoard reviewDetail(int mb_no);
 	//찾기
-	ArrayList<CommunityBoard> ReviewSearch(int page, int limit,String findType, String searchKey);
+	ArrayList<CommunityBoard> reviewSearch(int page, int limit,String findType, String searchKey);
 	
 }

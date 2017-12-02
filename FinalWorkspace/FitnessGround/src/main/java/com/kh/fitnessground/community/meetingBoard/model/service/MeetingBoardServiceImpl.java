@@ -11,48 +11,48 @@ import com.kh.fitnessground.community.meetingBoard.model.dao.MeetingBoardDao;
 @Service("MeetingBoardService")
 public class MeetingBoardServiceImpl implements MeetingBoardService{
 	@Autowired
-	MeetingBoardDao MeetingBoardDao;
+	MeetingBoardDao meetingBoardDao;
 
 	@Override
 	public int getListCount() {
 		// TODO Auto-generated method stub
-		return 0;
+		return meetingBoardDao.listCount();
 	}
 
 	@Override
-	public ArrayList<MeetingBoard> MeetingListView(int page, int limit) {
+	public ArrayList<MeetingBoard> meetingListView(int page, int limit) {
 		// TODO Auto-generated method stub
-		return null;
+		return meetingBoardDao.meetingListView();
 	}
 
 	@Override
-	public int MeetingInsert(MeetingBoard meetingboard) {
+	public int meetingInsert(MeetingBoard meetingboard) {
 		// TODO Auto-generated method stub
-		return 0;
+		return meetingBoardDao.meetingInsert(meetingboard);
 	}
 
 	@Override
-	public int MeetingDelete(int mb_no) {
+	public int meetingDelete(int mb_no) {
 		// TODO Auto-generated method stub
-		return 0;
+		return meetingBoardDao.meetingDelete(mb_no);
 	}
 
 	@Override
-	public int MeetingUpdate(MeetingBoard meetingboard) {
+	public int meetingUpdate(MeetingBoard meetingboard) {
 		// TODO Auto-generated method stub
-		return 0;
+		return meetingBoardDao.meetingUpdate(meetingboard);
 	}
 
 	@Override
-	public MeetingBoard MeetingDetail(int mb_no) {
+	public MeetingBoard meetingDetail(int mb_no) {
 		// TODO Auto-generated method stub
-		return null;
+		return meetingBoardDao.meetingDetail(mb_no);
 	}
 
 	@Override
-	public ArrayList<MeetingBoard> MeetingSearch(int page, int limit, String findType, String searchKey) {
+	public ArrayList<MeetingBoard> meetingSearch(int page, int limit, String findType, String searchKey) {
 		// TODO Auto-generated method stub
-		return null;
+		return meetingSearch(page,limit,findType,searchKey);
 	}
 	
 	

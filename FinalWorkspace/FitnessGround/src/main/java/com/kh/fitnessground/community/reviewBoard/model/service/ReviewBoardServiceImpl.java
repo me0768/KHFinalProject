@@ -12,47 +12,47 @@ import com.kh.fitnessground.community.reviewBoard.model.dao.ReviewBoardDao;
 public class ReviewBoardServiceImpl implements ReviewBoardService {
 
 	@Autowired
-	ReviewBoardDao ReviewBoardDao;
+	ReviewBoardDao reviewBoardDao;
 
 	@Override
 	public int getListCount() {
 		// TODO Auto-generated method stub
-		return 0;
+		return reviewBoardDao.ListCount();
 	}
 
 	@Override
-	public ArrayList<CommunityBoard> ReviewlistView(int page, int limit) {
+	public ArrayList<CommunityBoard> reviewListView(int page, int limit) {
 		// TODO Auto-generated method stub
-		return null;
+		return reviewBoardDao.reviewListView(page,limit);
 	}
 
 	@Override
-	public int ReviewInsert(CommunityBoard communityboard) {
+	public int reviewInsert(CommunityBoard communityboard) {
 		// TODO Auto-generated method stub
-		return 0;
+		return reviewBoardDao.reviewInsert(communityboard);
 	}
 
 	@Override
-	public int ReviewDelete(int mb_no) {
+	public int reviewDelete(int mb_no) {
 		// TODO Auto-generated method stub
-		return 0;
+		return reviewBoardDao.reviewDelete(mb_no);
 	}
 
 	@Override
-	public int ReviewUpdate(CommunityBoard communityboard) {
+	public int reviewUpdate(CommunityBoard communityboard) {
 		// TODO Auto-generated method stub
-		return 0;
+		return reviewBoardDao.reviewUpdate(communityboard);
 	}
 
 	@Override
-	public CommunityBoard ReviewDetail(int mb_no) {
+	public CommunityBoard reviewDetail(int mb_no) {
 		// TODO Auto-generated method stub
-		return null;
+		return reviewBoardDao.reviewDetail(mb_no);
 	}
 
 	@Override
-	public ArrayList<CommunityBoard> ReviewSearch(int page, int limit, String findType, String searchKey) {
+	public ArrayList<CommunityBoard> reviewSearch(int page, int limit, String findType, String searchKey) {
 		// TODO Auto-generated method stub
-		return null;
+		return reviewBoardDao.reviewSearch(page,limit,findType,searchKey);
 	}
 }

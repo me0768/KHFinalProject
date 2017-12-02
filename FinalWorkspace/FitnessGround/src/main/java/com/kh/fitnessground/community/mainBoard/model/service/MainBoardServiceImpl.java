@@ -13,18 +13,18 @@ import com.kh.fitnessground.community.mainBoard.model.vo.MeetingBoard;
 public class MainBoardServiceImpl implements MainBoardService {
 	
 	@Autowired
-	MainBoardDao MainBoardDao;
+	MainBoardDao mainBoardDao;
 
 	@Override
-	public ArrayList<MeetingBoard> MeetingView() {
+	public ArrayList<MeetingBoard> meetingView() {
 		// TODO Auto-generated method stub
-		return null;
+		return mainBoardDao.meetingView();
 	}
 
 	@Override
-	public ArrayList<CommunityBoard> CommunityView(String keyword) {
+	public ArrayList<CommunityBoard> communityView(String keyword) {
 		// TODO Auto-generated method stub
-		return null;
+		return mainBoardDao.communityView(keyword);
 	}
 	
 	

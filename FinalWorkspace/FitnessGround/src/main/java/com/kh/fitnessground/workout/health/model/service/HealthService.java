@@ -12,7 +12,7 @@ public interface HealthService {
 	ArrayList<Health> selectWorkoutCategoryList(String category1,String category2); //카테고리별 리스트 불러오는 메서드
 	void addReadCount(int v_no);
 	void updateHealth(int v_no);
-	ArrayList<Health> selectAllList();
+	ArrayList<Health> selectAllList(String category1);
 	void deleteHealth(int v_no);
 	void deleteHealthList(ArrayList<Health> dellist);
 	

@@ -27,7 +27,7 @@ public class HealthController {
 	}
 	
 	//헬스
-	@RequestMapping(value="/part.do")	//부위별 카테고리 ajax 통신
+	@RequestMapping(value="/part.do")	//부위별 카테고리 ajax 통신 들어오는 카테고리에 따라서 리스트 뿌리기
 	public void selectCategorytListMethod(Health health,HttpServletResponse response){
 		ModelAndView mv = new ModelAndView();
 		ArrayList<Health> list = healthService.selectWorkoutCategoryList(health.getCategory1(),health.getCategory2());
@@ -35,7 +35,7 @@ public class HealthController {
 		mv.setViewName("jsonView");
 	}
 	
-	@RequestMapping(value="/detail.do")	//썸네일 누르면 누른 v_no로 모달창에서 동영상 재생..
+	@RequestMapping(value="/detail.do")	//썸네일 누르면 누른 v_no로 모달창에서 동영상 재생.. 썸네일은 어케하지..
 	public ModelAndView workOutDetail(Health health, HttpServletResponse response){
 		//v_no를 파라미터로 보내면 v_no에 따른 health 객체 v_no 만
 		int v_no = health.getV_no();
@@ -54,13 +54,14 @@ public class HealthController {
 
 	//관리자 youtube 에서 플레이리스트 동영상
 	
-	//다양한 헬스운동 페이지 이동
+	//다양한 헬스운동 페이지 이동 
+	
 	@RequestMapping(value="/youtubePlaylistView.do")
 	public String playListView(){
 		return "/workout/playlistview";
 	}
 	
-	@RequestMapping(value="/playListinsert.do")	//input 태그에 playlist 값 입력 하면 db에 데이터를 넣어야됨..
+	@RequestMapping(value="/playListinsert.do")	//input 태그에 playlist 값 입력 하면 db에 데이터를 넣어야됨..	//미향 부분 view 페이지 보고 참조...
 	public ModelAndView HealthInsertMethod(ArrayList<Health> healthList,HttpServletRequest request){
 		//insert 작업 해야됨
 		
@@ -78,28 +79,31 @@ public class HealthController {
 	
 	@RequestMapping(value="/healthupdate.do") //관리자 영상 내용 수정
 	public ModelAndView healthUpdateMethod(Health health){
+		String category1 = health.getCategory1();
 		ModelAndView mv = new ModelAndView("/workout/healthPlaylist");
 		healthService.updateHealth(health.getV_no());
-		ArrayList<Health> list = healthService.selectAllList();
+		ArrayList<Health> list = healthService.selectAllList(category1);
 		mv.addObject("list",list);
 		return mv;
 	}
 	
 	@RequestMapping(value="/hdelete.do") //관리자 한개 영상 삭제
 	public ModelAndView healthDeleteMethod(Health health){
+		String category1 = health.getCategory1();
 		ModelAndView mv = new ModelAndView("/workout/healthPlaylist");
 		healthService.deleteHealth(health.getV_no());
-		ArrayList<Health> list = healthService.selectAllList();
+		ArrayList<Health> list = healthService.selectAllList(category1);
 		mv.addObject("list",list);
 		return mv;
 		
 	}
 	
 	@RequestMapping(value="/listdelete.do")	//관리자 영상 복수 삭제
-	public ModelAndView healthListDeleteMethod(ArrayList<Health> dellist){
+	public ModelAndView healthListDeleteMethod(ArrayList<Health> dellist,Health health){
+		String category1 = health.getCategory1();
 		ModelAndView mv = new ModelAndView("/workout/healthPlaylist");
 		healthService.deleteHealthList(dellist);
-		ArrayList<Health> list = healthService.selectAllList();
+		ArrayList<Health> list = healthService.selectAllList(category1);
 		mv.addObject("list",list);
 		
 		return mv;
@@ -113,6 +117,6 @@ public class HealthController {
 		return "";
 	}
 	
-	
+	//맨몸운동... 다양한 헬스 운동 하고 나서 .. 생각.. 필요한 메서드들은 다양한 헬스운동과 같음
 	
 }

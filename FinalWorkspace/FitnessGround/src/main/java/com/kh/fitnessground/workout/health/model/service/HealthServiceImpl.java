@@ -16,7 +16,7 @@ public class HealthServiceImpl implements HealthService{
 	HealthDao healthDao;
 
 	@Override
-	public ArrayList<Health> selectAllList() {
+	public ArrayList<Health> selectAllList(String category1) {
 		// TODO Auto-generated method stub
 		return null;
 	}

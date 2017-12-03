@@ -10,10 +10,10 @@ import com.kh.fitnessground.community.model.vo.MeetingBoard;
 import com.kh.fitnessground.community.model.vo.MeetingCommnet;
 
 
-@Repository("communityBoardDao")
+@Repository("CommunityBoardDao")
 public class CommunityBoardDao {
 
-	public CommunityBoardDao() {}
+	
 	
 	//메인 게시판
 	public ArrayList<MeetingBoard> meetingView() {

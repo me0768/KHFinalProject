@@ -1,6 +1,7 @@
 package com.kh.fitnessground.admin.controller;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,12 +9,15 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.fitnessground.admin.model.service.AdminService;
-import com.kh.fitnessground.community.model.service.CommunityBoardService;
+import com.kh.fitnessground.community.meetingBoard.model.service.MeetingBoardService;
+import com.kh.fitnessground.community.qnaBoard.model.service.QnABoardService;
+import com.kh.fitnessground.community.reviewBoard.model.service.ReviewBoardService;
 import com.kh.fitnessground.user.model.service.UserService;
 import com.kh.fitnessground.user.model.vo.User;
 import com.kh.fitnessground.workout.health.model.service.HealthService;
@@ -27,7 +31,13 @@ public class AdminController {
 	private UserService userService;
 
 	@Autowired
-	private CommunityBoardService communityBoardService;
+	private MeetingBoardService mettingBoardService;
+
+	@Autowired
+	private QnABoardService qnaBoardService;
+
+	@Autowired
+	private ReviewBoardService reviewBoardService;
 
 	@Autowired
 	private HealthService healthService;

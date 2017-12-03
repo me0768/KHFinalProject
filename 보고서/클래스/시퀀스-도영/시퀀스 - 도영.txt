@@ -1,0 +1,50 @@
+
+-----------------------------리스트---------------------------------------------------------
+title CommunityBoardList
+
+CommunityBoardListView->DispatherServlet: Select Request
+DispatherServlet->Controller[CommunityBoardList]: ArrayList<CommunityBoardList> BoardList(page, limit)
+Controller[CommunityBoardList]->Service: Service.CommunityBoardListView(page, limit);
+Service->Dao:BoardDao.CommunityBoardListView(page, limit); 
+Dao->DB:selectBoard()
+DB->Dao:result return;
+Dao->DispatherServlet:result return;
+DispatherServlet->CommunityBoardListView: result return;
+
+
+
+------------------------------삭제---------------------------------------------------------
+title CommunityBoardDelete
+
+CommunityBoardDeleteView->DispatherServlet: Select Request
+DispatherServlet->Controller[CommunityBoardDelete]: int BoardDeleteList(int cb_no)
+Controller[CommunityBoardDelete]->Service: Service.CommunityBoardDelete(int cb_no);
+Service->Dao:BoardDao.CommunityBoardDelete(int cb_no); 
+Dao->DB:deleteBoard()
+DB->Dao:result return;
+Dao->DispatherServlet:result return;
+DispatherServlet->CommunityBoardDeleteView: result return;
+
+---------------------------------삽입---------------------------------------------------
+title CommunityBoardInsert
+
+CommunityBoardInsertView->DispatherServlet: Select Request
+DispatherServlet->Controller[CommunityBoardInsert]: int BoardInsertList(CommunityBoard communityBoard)
+Controller[CommunityBoardInsert]->Service: Service.CommunityBoardInsert(CommunityBoard communityBoard);
+Service->Dao:BoardDao.CommunityBoardInsert(CommunityBoard communityBoard); 
+Dao->DB:insertBoard()
+DB->Dao:result return;
+Dao->DispatherServlet:result return;
+DispatherServlet->CommunityBoardInsertView: result return;
+
+----------------------------------수정--------------------------------------------------
+title CommunityBoardUpdate
+
+CommunityBoardUpdateView->DispatherServlet: Select Request
+DispatherServlet->Controller[CommunityBoardUpdate]: int BoardUpdateList(CommunityBoard communityBoard)
+Controller[CommunityBoardUpdate]->Service: Service.CommunityBoardUpdate(CommunityBoard communityBoard);
+Service->Dao:BoardDao.CommunityBoardUpdate(CommunityBoard communityBoard); 
+Dao->DB:UpdateBoard()
+DB->Dao:result return;
+Dao->DispatherServlet:result return;
+DispatherServlet->CommunityBoardUpdateView: result return;

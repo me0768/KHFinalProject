@@ -1,10 +1,16 @@
 package com.kh.fitnessground.user.model.service;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.fitnessground.common.util.FileUtils;
 import com.kh.fitnessground.user.model.dao.UserDao;
 import com.kh.fitnessground.user.model.vo.User;
 import com.kh.fitnessground.user.model.vo.UserSchedule;
@@ -13,6 +19,9 @@ import com.kh.fitnessground.user.model.vo.UserSchedule;
 public class UserServiceImpl implements UserService {
 	@Autowired
 	UserDao userDao;
+	
+	@Resource(name="fileUtils")
+	private FileUtils fileUtils;
 
 	@Override
 	public User loginCheck(String email) {
@@ -92,5 +101,26 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public ArrayList<UserSchedule> userAllSchedule(int userNo) {
 		return userDao.userAllSchedule(userNo);
+	}
+	
+	@Override
+	public User userPwdSelect(int user_no) {
+		return userDao.userPwdSelect(user_no);
+	}
+
+	@Override
+	public void userProfileImgUpdate(User u, HttpServletRequest request) throws Exception {
+		List<Map<String,Object>> list = fileUtils.parseInsertFileInfo(request);
+		System.out.println(list);
+		String originalFileName="", renameFileName="";
+		for(int i=0, size=list.size(); i<size; i++){
+			originalFileName = (String) list.get(i).get("original_fileName");
+			renameFileName = (String) list.get(i).get("rename_fileName");
+		}
+		if(originalFileName!="" || !originalFileName.equals("")) {
+			u.setOriginal_image(originalFileName);
+			u.setRename_image(renameFileName);
+		}
+		userDao.userProfileImgUpdate(u);
 	}
 }

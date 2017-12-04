@@ -84,4 +84,12 @@ public class UserDao {
 		List<UserSchedule> list = sqlSession.selectList("user.userAllSchedule", userNo);
 		return new ArrayList<UserSchedule>(list);
 	}
+
+	public User userPwdSelect(int user_no) {
+		return sqlSession.selectOne("user.userPwdSelect", user_no);
+	}
+
+	public void userProfileImgUpdate(User u) {
+		sqlSession.update("user.userProfileImgUpdate", u);
+	}
 }

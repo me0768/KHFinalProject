@@ -27,7 +27,7 @@ import com.kh.fitnessground.workout.yoga.model.vo.Yoga;
 public class AdminController {
 	@Autowired
 	private UserService userService;
-
+	
 	@Autowired
 	private CommunityBoardService communityBoardService;
 

@@ -99,7 +99,7 @@
 	
 	<!-- YoutubeAPI 호출, Ajax  -->
 	<script type="text/javascript">
-    	var playlist1 = 'PL59_4lUZbIwO80AlZBTfoVfF12IoxAfvG'; //관리자가 입력한playlistId
+    	var playlist1 = 'PL59_4lUZbIwO80AlZBTfoVfF12IoxAfvG'; //관리자가 입력한playlistId//테스트성공하면 admin input태그 넣어 화면만들기
     	var vTitle;
     	var vDesc;
     	var vId;

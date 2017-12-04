@@ -41,7 +41,7 @@
 		<![CDATA[
 			select * 
 			from tb_user 
-			where email = #{email} 
+			where email = #{email} and DELETE_DATE is null
 		]]>
 		
 	</select>
@@ -128,6 +128,48 @@
 		select * from tb_mypage_schedule where user_no=#{userNo} and to_char(UPLOAD_DATE,'rr/MM/dd')=to_char(sysdate, 'rr/MM/dd')
 		]]>
 	</select>
+	
+	<select id="userPwdSelect" parameterType="_int" resultType="User"
+		resultMap="resultUser">
+		<![CDATA[
+			select *
+			from tb_user
+			where user_no = #{user_no}
+		]]>	
+	</select>
+	<update id="userUpdate" parameterType="User"
+		flushCache="true" statementType="PREPARED" >
+		<![CDATA[
+		update tb_user 
+		set name=#{name}, nickname=#{nickname}, phone=#{phone} 
+		where user_no = #{user_no}
+		]]>
+	</update>
+	<update id="userPwdUpdate" parameterType="User"
+		flushCache="true" statementType="PREPARED" >
+		<![CDATA[
+		update tb_user 
+		set pwd=#{pwd}  
+		where user_no = #{user_no}
+		]]>
+	</update>
+	<update id="userDelete" parameterType="User"
+		flushCache="true" statementType="PREPARED" >
+		<![CDATA[
+		update tb_user 
+		set DELETE_DATE=sysdate+7   
+		where user_no = #{user_no}
+		]]>
+	</update>
+	<update id="userProfileImgUpdate" parameterType="User"
+		flushCache="true" statementType="PREPARED" >
+		<![CDATA[
+		update tb_user 
+		set original_image=#{original_image}, rename_image=#{rename_image}  
+		where user_no = #{user_no}
+		]]>
+	</update>
+	
 	
 	<!-- <select id="selectAll" resultType="list" resultMap="resultList">
 	<![CDATA[

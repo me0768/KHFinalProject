@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -17,7 +18,9 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.kh.fitnessground.user.model.service.UserService;
 import com.kh.fitnessground.user.model.vo.User;
@@ -127,47 +130,80 @@ public class UserController {
 		mv.addObject("yesterDate", yesterDate);
 		return mv; 
 	}
+	// 회원정보 뷰 이동
 	@RequestMapping(value="/udetail.do")
 	public ModelAndView userDetailMethod(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("user/userDetail");
 		return mv; 
 	}
-	@RequestMapping(value="/uupdate.do")
-	public ModelAndView userUpdateMethod(User u, HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView("user/myPage");
-		userService.userUpdate(u);
+	// 회원정보 수정 및 비밀번호 수정, 회원탈퇴에서 원비밀번호 확인 ajax
+	@RequestMapping(value="/pwdCk.do")
+	@ResponseBody
+	public String PwdCheckMethod(User user, HttpServletRequest request, HttpServletResponse response) {
+		response.setContentType("application/json; charset=utf-8");	
+		JSONObject job = new JSONObject();
+		User u = userService.userPwdSelect(user.getUser_no());
+		if(u!=null && BCrypt.checkpw(user.getPwd(), u.getPwd())) 
+			job.put("result", 1);
+		else
+			job.put("result", -1);
+		return job.toJSONString();
+	}
+	// 회원 프로필 이미지 수정
+	@RequestMapping(value="/profileImgModify.do")
+	public ModelAndView userProfileImgModifyMethod(User u, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView(new RedirectView("forward:/myPage.do?userno="+u.getUser_no()));
+		userService.userProfileImgUpdate(u, request);
+		HttpSession session = request.getSession();
+		session.setAttribute("user", userService.loginCheck(u.getEmail()));
 		return mv; 
 	}
+	// 회원정보 수정 ajax
+	@RequestMapping(value="/uupdate.do")
+	public ModelAndView userUpdateMethod(User u, ModelAndView mv, HttpServletRequest request) {
+		System.out.println(u);
+		userService.userUpdate(u);
+		HttpSession session = request.getSession();
+		session.setAttribute("user", userService.loginCheck(u.getEmail()));
+		mv.setViewName("jsonView");
+		return mv; 
+	}
+	// 비밀번호 수정 뷰 이동
 	@RequestMapping(value="/userpwd.do")
 	public ModelAndView userPwdModifyMethod(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("user/userPwdModify");
 		return mv; 
 	}
+	// 비밀번호 수정 ajax
 	@RequestMapping(value="/upwdupdate.do")
-	public ModelAndView userPwdUpdateMethod(User u, HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView("main");
-		userService.userPwdUpdate(u);
+	public ModelAndView userPwdUpdateMethod(User user, ModelAndView mv, HttpServletRequest request) {
+		String hashPassword = BCrypt.hashpw(user.getPwd(), BCrypt.gensalt()); // 비밀번호 암호화
+		user.setPwd(hashPassword);
+		userService.userPwdUpdate(user);
 		HttpSession session = request.getSession();
-		if(session != null) {
+		if(session != null)
 			session.invalidate();
-		}
+		mv.setViewName("jsonView");
 		return mv;
 	}
+	// 회원탈퇴 뷰 이동
 	@RequestMapping(value="/userdel.do")
 	public ModelAndView userDeleteViewMethod(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("user/userDelete");
 		return mv; 
 	}
+	// 회원탈퇴 ajax
 	@RequestMapping(value="/userdelete.do")
-	public ModelAndView userDeleteMethod(User u, HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView("main");
+	public ModelAndView userDeleteMethod(User u, ModelAndView mv, HttpServletRequest request) {
 		userService.userDelete(u);
 		HttpSession session = request.getSession();
 		if(session != null) {
 			session.invalidate();
 		}
+		mv.setViewName("jsonView");
 		return mv; 
 	}
+	// 마이페이지 작성 글 목록 뷰
 	@RequestMapping(value="/userboard.do")
 	public ModelAndView userBoardMethod(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("user/userBoard");

@@ -9,7 +9,7 @@
 <c:import url="../include/common/headend.jsp" />
 <script type="text/javascript"
 	src="/fitnessground/resources/js/workout/workout.js"></script>
-
+<script type="text/javascript" src="/fitnessground/resources/js/workout/muscle.js"></script>
 <!-- Header -->
 <div id="mypage_header">
 	<!-- Nav -->
@@ -65,192 +65,233 @@
 		<div id="diagram" style="background-position: 0px 0px;">
 			<img src="/fitnessground/resources/images/health/muscle.jpg" width="350"
 				height="250" border="0" alt="Click on a muscle group"
-				usemap="#bodyMap" class="map">
+				usemap="#bodyMap" >
 
 
-			<map name="bodyMap">
+			<map name="bodyMap" id="muscle_img_map">
 				<!-- 가슴 -->
 				<area shape="poly" 
 					coords="94,62,72,56,65,68,66,79,74,85,88,85,92,81,100,86,117,83,124,72,115,57"
-					href="#" alt="Chest" onmouseover="hilite('chest');"
-					onmouseout="restore();" onclick="popUp('chest'); return false;">
+					href="#" alt="Chest" state="Chest" full="chest" onclick="popUp('chest');">
 				<!--  왼쪽 어깨 -->
 				<area shape="poly"
 					coords="60,51,48,53,48,53,48,53,45,62,56,68,67,65,70,56" href="#"
-					alt="Shoulders" onmouseover="hilite('shoulders');"
-					onmouseout="restore();" onclick="popUp('shoulders'); return false;">
+					alt="Shoulders" state="Shoulders" full="shoulders" onclick="popUp('shoulders'); return false;">
 				<!-- 오른쪽 어깨 -->
 				<area shape="poly"
 					coords="134,52,116,49,114,62,126,69,135,65,138,62,138,62" href="#"
-					alt="Shoulders" onmouseover="hilite('shoulders');"
-					onmouseout="restore();" onclick="popUp('shoulders'); return false;">
-				<!-- 위팔 앞 왼쪽 이두 -->
-				<area shape="poly" coords="47,65,36,75,51,87" href="#"
-					alt="Left biceps" onmouseover="hilite('biceps');"
-					onmouseout="restore();" onclick="popUp('biceps'); return false;">
-				<!-- 위팔 앞 오른쪽 이두 -->				
-				<area shape="poly" coords="137,84,145,67,131,63" href="#"
-					alt="Right biceps" onmouseover="hilite('biceps');"
-					onmouseout="restore();" onclick="popUp('biceps'); return false;">
-				<!-- 위팔 뒤 왼쪽 삼두 -->
-				<area shape="poly" coords="46,66,49,85,61,83,61,73,60,67,60,67"
-					href="#" alt="Left triceps" onmouseover="hilite('triceps');"
-					onmouseout="restore();" onclick="popUp('triceps'); return false;">
+					alt="Shoulders" state="Shoulders" full="shoulders" onclick="popUp('shoulders'); return false;">
 				
-				<!-- 위팔 뒤 오른쪽 삼두 -->
+				<!-- 뒤쪽 어깨 -->
 				<area shape="poly"
-					coords="140,66,124,69,126,86,136,85,139,79,139,79" href="#"
-					alt="Right biceps" onmouseover="hilite('triceps');"
-					onmouseout="restore();" onclick="popUp('triceps'); return false;">
+					coords="302,63,296,52,263,41,241,44,215,52,205,60,204,65" href="#"
+					alt="Shoulders" state="Shoulders" full="shoulders" onclick="popUp('shoulders'); return false;">
+												
+				<!-- 위팔 앞 왼쪽 삼두 -->
+				<area shape="poly" coords="47,65,36,75,51,87" href="#"
+					alt="triceps" state="TR" full="Triceps" onclick="popUp('triceps'); return false;">
+				
+				<!-- 위팔 앞 오른쪽 삼두 -->				
+				<area shape="poly" coords="137,84,145,67,131,63" href="#"
+					alt="triceps" state = "Triceps" full="Triceps" onclick="popUp('triceps'); return false;">
+				
+				<!-- 뒤 왼쪽 삼두 -->
+				<area shape="poly"
+					coords="204,65,199,75,207,82,218,88,216,66,216,66" href="#"
+					alt="Triceps" state = "Triceps" full="triceps" onclick="popUp('triceps'); return false;">
+			
+
+				<!-- 뒤 오른쪽 삼두-->
+				<area shape="poly" coords="292,71,303,63,306,84,301,89,286,81"
+					href="#" alt="Triceps" state = "Triceps" full="triceps"
+					onclick="popUp('triceps'); return false;">
+						
+				
+				
+				<!-- 위팔 뒤 왼쪽 이두 -->
+				<area shape="poly" coords="46,66,49,85,61,83,61,73,60,67,60,67"
+					href="#" alt="Biceps" state="BI" full="Biceps" onclick="popUp('biceps'); return false;">
+				
+				<!-- 위팔 뒤 오른쪽 이두 -->
+				<area shape="poly"
+					coords="121,73,130,67,137,85,131,88,124,85,123,84" href="#"
+					alt="Biceps" state = "BI" full="Biceps" onclick="popUp('biceps'); return false;">
 				
 				<!-- 아래팔 왼쪽 전완-->
 				<area shape="poly" coords="38,96,39,111,50,111,54,91" href="#"
-					alt="Left lowerarm" onmouseover="hilite('lowerarm');"
-					onmouseout="restore();" onclick="popUp('lowerarm'); return false;">
+					alt="lowerarm" state="LowArm" full="Lowarm" onclick="popUp('lowerarm'); return false;">
 				
 				<!-- 아래팔 오른쪽 전완-->
 				<area shape="poly" coords="132,90,149,98,146,111,133,110" href="#"
-					alt="Right lowerarm" onmouseover="hilite('lowerarm');"
-					onmouseout="restore();" onclick="popUp('lowerarm'); return false;">
+					alt="lowerarm" state="LowArm" full="Lowarm" onclick="popUp('lowerarm'); return false;">
 
 				<!-- 등 -->
 				<area shape="poly"
 					coords="220,70,221,86,233,93,250,91,257,83,266,93,281,93,287,86,290,70"
-					href="#" alt="Back" onmouseover="hilite('back');"
-					onmouseout="restore();" onclick="popUp('back'); return false;">
+					href="#" alt="Back" state = "Back" full="back" onclick="popUp('back'); return false;">
 
-				
 				<!-- 허리 -->
-				<area shape="poly" coords="229,95,236,105,279,105,282,93" href="#"
-					alt="Waits" onmouseover="hilite('waist');"
-					onmouseout="restore();" onclick="popUp('waist'); return false;">
+				<area shape="poly" coords="237,100,275,100,283,86,260,89,257,84,248,90,226,87" href="#"
+					alt="Waits" state ="Waites" full="waites"
+					onclick="popUp('waist'); return false;">
 					
 				<!-- 중앙복부 -->
 				<area shape="poly" coords="94,88,71,96,85,125,101,125,112,95,112,95"
-					href="#" alt="Center Abdominals" onmouseover="hilite('centerabs');"
-					onmouseout="restore();" onclick="popUp('centerabs'); return false;">
+					href="#" alt="Abdominals" state = "Abdominals" full="abs"
+					onclick="popUp('abs'); return false;">
 				
 				<!-- 엉덩이 -->
 				<area shape="poly"
 					coords="235,103,226,117,256,126,282,117,274,104,274,104" href="#"
-					alt="Hips" onmouseover="hilite('hips');" onmouseout="restore();"
+					alt="Hips" state = "Hips" full="hips"
 					onclick="popUp('hips'); return false;">
 							
 				
 				<!-- 앞 왼쪽 허벅지 -->
 				<area shape="poly"
 					coords="92,163,79,166,63,137,62,115,81,121,91,140" href="#"
-					alt="Left Thigh" onmouseover="hilite('tight');"
-					onmouseout="restore();" onclick="popUp('tight'); return false;">
+					alt="Thighs" state = "Thighs" full="thighs"
+					 onclick="popUp('thighs'); return false;">
 			
 				<!-- 앞 오른쪽 허벅지 -->
 				<area shape="poly"
 					coords="100,168,96,155,98,137,104,123,119,114,123,131,118,153"
-					href="#" alt="Right Thigh" onmouseover="hilite('tight');"
-					onmouseout="restore();"
-					onclick="popUp('tight'); return false;">
+					href="#" alt="Thighs" state="Thighs" full="thighs"
+					onclick="popUp('thighs'); return false;">
 				
 				
 				<!-- 앞 왼쪽 종아리 -->
 				<area shape="poly" coords="79,168,68,180,78,204,89,206,87,167"
-					href="#" alt="Left Calf" onmouseover="hilite('#003366');"
-					onmouseout="restore();"
+					href="#" alt="Calf" state = "Calf" full="calf"
 					onclick="popUp('calf'); return false;">
 				
 				<!-- 앞 오른쪽 종아리 -->
 				<area shape="poly"
 					coords="100,172,109,165,116,184,106,206,96,207,93,192" href="#"
-					alt="Right Calf" onmouseover="hilite('calf');"
-					onmouseout="restore();" onclick="popUp('calf'); return false;">
-							
-				<!-- 뒤 왼쪽 허벅지 -->
-				<area shape="poly" coords="227,118,233,159,250,163,251,128,251,128"
-					href="#" alt="Back Left Tight" onmouseover="hilite('backtight');"
-					onmouseout="restore();" onclick="popUp('backtight'); return false;">
-			
-				<!-- 뒤 오른쪽 허벅지 -->
-				<area shape="poly" coords="261,128,282,115,276,159,251,164" href="#"
-					alt="Back Right Tight" onmouseover="hilite('backtight');"
-					onmouseout="restore();" onclick="popUp('backtight'); return false;">
-
+					alt="Calf" state = "Calf" full="calf"
+					onclick="popUp('calf'); return false;">
+												
 				<!-- 뒤 오른쪽 종아리-->
 				<area shape="poly" coords="238,167,230,180,244,206,253,206,252,185"
-					href="#" alt="Back Right Calf" onmouseover="hilite('backcalf');"
-					onmouseout="restore();" onclick="popUp('backcalf'); return false;">
+					href="#" alt="Calf" state = "Calf" full="calf"
+					onclick="popUp('calf'); return false;">
 				
 				<!-- 뒤 왼쪽 종아리-->
 				<area shape="poly" coords="257,187,271,170,275,181,267,210,256,207"
-					href="#" alt="Back Left Calf" onmouseover="hilite('backcalf');"
-					onmouseout="restore();" onclick="popUp('backcalf'); return false;">
-
-				<!-- 뒤 왼쪽 삼두 -->
-				<area shape="poly"
-					coords="204,65,199,75,207,82,218,88,216,66,216,66" href="#"
-					alt="Back Left triceps" onmouseover="hilite('triceps');"
-					onmouseout="restore();" onclick="popUp('triceps'); return false;">
+					href="#" alt="Calf" state ="Calf" full="calf"
+					onclick="popUp('calf'); return false;">
+					
+				<!-- 뒤 왼쪽 허벅지 -->
+				<area shape="poly" coords="227,118,233,159,250,163,251,128,251,128"
+					href="#" alt="Back Thighs" state="Back Thighs" full="backthighs"
+					 onclick="popUp('backthighs'); return false;">
 			
+				<!-- 뒤 오른쪽 허벅지 -->
+				<area shape="poly" coords="261,128,282,115,276,159,251,164" href="#"
+					alt="Back Thighs" state="Back Thighs" full="backthighs"
+					onclick="popUp('backthighs'); return false;">
 
-				<!-- 뒤 오른쪽 삼두-->
-				<area shape="poly" coords="292,71,303,63,306,84,301,89,286,81"
-					href="#" alt="Back Left triceps" onmouseover="hilite('triceps');"
-					onmouseout="restore();" onclick="popUp('triceps'); return false;">
 				
 
+				
 			</map>
 		</div>
 		<!-- <p class="disclaimer">Please note: All sets and reps are suggested starting points. Consult a Gold&rsquo;s Gym trainer if you would like a workout plan specifically created for your fitness level.</p> -->
 	</div>
 	<!-- /menu -->
+	</div><!-- 사람인체 이미지 끝 -->
+	<hr>	<!-- for문 돌면서 추출  db엣 src title, 등 가져옴-->
+	<div class = "container">
+		<div class = "row">
+			<div class ="col-sm-offset-1">
+				<div class="col-sm-9 col-md-9 col-lg-9 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
+					<div class="workout_videos">
+						<div class="row justify-content-center">
+							<div class="video">
+								<iframe width="250" src="http://serviceapi.rmcnmv.naver.com/flash/outKeyPlayer.nhn?vid=31479A5CD8B2B74D5D6E021DC9E8493B2099&outKey=V128e2483d923e7fcc55066fb526a2c868b1e4b800fa344a8341066fb526a2c868b1e&controlBarMovable=true&jsCallable=true&isAutoPlay=true&skinName=tvcast_white"
+									frameborder="0" gesture="media" allow="encrypted-media"
+									allowfullscreen></iframe>
+								<p id="video_text">title</p>
+								<p id="video_text">description</p>
+							</div>		
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-</div><!-- 사람인체 이미지 끝 -->
+</div>
+<hr>
+
+
 
 <script type="text/javascript">
-	function hilite(text){
-		window.status=text; return true;
-	}
 	
-	function restore(){
-		window.status=""; return true;
-	}
+	var basic_opts = {
+	    mapKey: 'state'
+	};
+
+	var initial_opts = $.extend({},basic_opts, 
+	    { 
+	        staticState: true,
+	        fill: false,
+	        stroke: true,
+	        strokeWidth: 0,
+	        strokeColor:'FFFFFF',
+	     });
+
+	$('img').mapster(initial_opts)
+	    .mapster('set',true,'CA', {
+	        fill: true,
+	        fillColor: '00ff00'
+	    })
+	    .mapster('snapshot')
+	    .mapster('rebind',basic_opts);
+
 
 	
 	function popUp(part){	//ajax 처리..
+		console.log("part : " + part);
 		var category1 = "헬스";
-		var category2 = "";
+		var category2 = part;
 		
-		if ( part == chest)
-			category2 = { "category2": "가슴" };
+		if ( part == 'chest')
+			category2 = "가슴";
 		else if (part == shoulders)
-			category2 = {"category2" : "어깨"};
+			category2 = "어깨";
 		else if(part == biceps)
-			category2 = {"category2":"위팔 앞"};
+			category2 = "위팔 앞";
 		else if(part == triceps)
-			category2 ={"category2" :"위팔 뒤"};
+			category2 ="위팔 뒤";
 		else if(part == lowerarm)
-			category2 = {"category2" : "아래팔 전완"};
+			category2 = "아래팔 전완";
 		else if(part == back)
-			category2 = {"category2" : "등"};
+			category2 =  "등";
 		else if(part == waist)
-			category2 = {"category2" : "허리"};
+			category2 = "허리";
 		else if(part == centerabs)
-			category2 = {"category2" : "복부"};
+			category2 = "복부";
 		else if(part == hips)
-			category2 = {"category2" : "엉덩이"};
+			category2 = "엉덩이";
 		else if(part == tight)
-			category2 = {"category2" : "허벅지"};
+			category2 = "허벅지";
 		else if(part == backtight)
-			category2 = {"category2" : "뒤 허벅지"};
+			category2 = "뒤 허벅지";
 		else if(part ==calf)
-			category2 = {"category2" : "종아리"};
-		else if(part ==backcalf)
-			category2 ={"category2" : "뒤 종아리"};
+			category2 = "종아리";
 				
+		console.log("category1 : " + category1  + " // category2 : " + category2);
 		$.ajax({
 			url: "part.do",
 			dataType:"json",
 			data : {"category1":category1, "category2":category2},
 			success: function(data){
-				alert("성공");
+				alert("성공!");
+				$("#healthVideo").html(
+				
+				);
+				
+				
 			},
 			error: function(request, status, errorData){
 				alert("error code : " + request.status + "\n"
@@ -263,5 +304,5 @@
 </script>
 
 
-<c:import url="../include/main/footer.jsp"></c:import>
+<%-- <c:import url="../include/main/footer.jsp"></c:import> --%>
 <c:import url="../include/common/end.jsp"></c:import>

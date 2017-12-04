@@ -13,10 +13,32 @@
 		<result property="readcount" column="readcount"/>	
 	</resultMap>
 	
-	<select id="selectCategoryList" parameterType = "string" resultType="list" resultMap="resultCategoryList">
+	<resultMap id="resultWorkOut" type="Health">
+		<id property="v_no" column="v_no"/>
+		<result property="title" column="title" />
+		<result property="content" column="content"/>
+		<result property="category1" column="category1"/>
+		<result property="category2" column="category2"/>
+		<result property="url" column="url"/>
+		<result property="readcount" column="readcount"/>	
+	</resultMap>
+	
+	<select id="selectOneWorkout" parameterType ="int" resultMap="resultWorkOut">
 		<![CDATA[
-			select * from tb_video_board category2 where category1 = #{category1} and like '%' + #{category} + '%'
+			select * from tb_video_board where v_no = #{v_no};
 		]]>
 	</select>
+	<select id="selectCategoryList" parameterType = "health" resultType="list" resultMap="resultCategoryList">
+		<![CDATA[
+			select * from tb_video_board where category1 = #{category1} and category2 like '%' ||#{category2}|| '%'
+		]]>
+	</select>
+	
+	<update id="addReadCount" parameterType="int">
+		<![CDATA[
+			update tb_video_board set readcount = readcount+1 where v_no =#{v_no}
+		]]>
+		
+	</update>
 	
 </mapper>

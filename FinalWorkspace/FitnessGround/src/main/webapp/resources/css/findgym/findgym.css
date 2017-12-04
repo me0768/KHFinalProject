@@ -23,10 +23,12 @@
 
 #thumbnail{
 	display: inline-block;
-	width: 55px;
-	height: 55px;
+	width: 60px;
+	height: 60px;
 }
 
-#paging{
-	
+#pagination{
+	display: block;
+	margin-left: 50px;
+	align: center;
 }

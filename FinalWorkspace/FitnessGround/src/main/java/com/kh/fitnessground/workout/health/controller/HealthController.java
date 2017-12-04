@@ -46,7 +46,7 @@ public class HealthController {
 		
 		Health detailHealth = healthService.selectWorkout(v_no);
 		
-		mv.addObject(detailHealth);
+		mv.addObject("health",detailHealth);
 		
 		return mv;
 	}	

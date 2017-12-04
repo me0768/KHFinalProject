@@ -29,8 +29,8 @@ public class YogaDao {
 	public Yoga selectYoga(int no) {
 		return (Yoga)sqlSession.selectOne("yoga.selectYoga", no);
 	}
-	public void insertYoga(Yoga yoga) {
-		sqlSession.insert("yoga.insertYoga", yoga);
+	public void insertYoga(List<Yoga> ylist) {
+		sqlSession.insert("yoga.insertYoga", ylist);
 	}
 
 	public void updateYoga(Yoga yoga) {

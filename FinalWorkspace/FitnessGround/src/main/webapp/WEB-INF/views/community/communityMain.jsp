@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.kh.fitnessground.community.model.vo.MeetingBoard,
-    					 com.kh.fitnessground.community.model.vo.CommunityBoard, java.sql.Date, java.util.ArrayList" %>
+    pageEncoding="UTF-8" import="com.kh.fitnessground.community.mainBoard.model.vo.MeetingBoard,
+    					 com.kh.fitnessground.community.mainBoard.model.vo.CommunityBoard, java.sql.Date, java.util.ArrayList" %>
 <%@ taglib uri= "http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <html>

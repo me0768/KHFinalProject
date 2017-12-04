@@ -19,7 +19,8 @@
 		<!-- Header -->
 		<div id="mypage_header">
             <!-- Nav -->
-			<c:import url="../include/main/nav.jsp" />			
+			<c:import url="../include/main/nav.jsp" />	
+			<c:import url="profileEdit.jsp"/>		
 			<c:import url="login.jsp"/>
 			<c:import url="findidpwd.jsp"/>
 			<c:import url="register.jsp"/>
@@ -32,7 +33,14 @@
 	
 	<div class="mypage_info col-md-3 col-md-offset-2 col-sm-12">
 		<div class="mypage_info_title" align="center">
-			<img alt="user sample image" src="/fitnessground/resources/images/myimages/nullicon.png" class="img-circle" style="background:#87798f;">
+			<a href="javascript:profileEdit()">
+				<c:if test="${ sessionScope.user.rename_image == null }">
+				<img alt="user sample image" src="/fitnessground/resources/images/myimages/nullicon.png" class="img-circle" style="background:#87798f;">
+				</c:if>
+				<c:if test="${ sessionScope.user.rename_image != null }">
+				<img alt="user sample image" src="/fitnessground/resources/images/myimages/${sessionScope.user.rename_image}" class="img-circle" style="background:#87798f;">
+				</c:if>
+			</a>
 			<p align="center">${sessionScope.user.name} 님</p>
 		</div>
 		<div class="mypage_info_content">

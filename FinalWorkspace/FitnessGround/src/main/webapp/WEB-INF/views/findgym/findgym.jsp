@@ -18,13 +18,17 @@
 <br>
 <br>
 <br>
-<script type="text/javascript"
-	src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=vWkJuuK8gXcwBG8Rijlh&submodules=geocoder">
+
+<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=vWkJuuK8gXcwBG8Rijlh&submodules=geocoder">
 	$('#myTab a').click(function(e) {
 		e.preventDefault();
 		$(this).tab('show');
 
 	});
+</script>
+
+<script type="text/javascript" src="http://openAPI.seoul.go.kr:8088/784645794a6b616931377242486776/xml/ListPublicPhysicalPlant/1/5/">
+
 </script>
 
 <link rel="stylesheet"
@@ -52,41 +56,86 @@
 			<!-- /.col-lg-6 -->
 		</div>
 		
-		<div role="tabpanel">
+			<div role="tabpanel">
 
-			<!-- Nav tabs -->
-			<ul class="nav nav-tabs" role="tablist">
-				<li role="presentation" class="active"><a href="#home"
-					aria-controls="health" role="tab" data-toggle="tab">헬스장 찾기</a></li>
-				<li role="presentation"><a href="#profile"
-					aria-controls="public" role="tab" data-toggle="tab">공공체육시설 찾기</a></li>
-			</ul>
+  			<!-- Nav tabs -->
+  			<ul class="nav nav-tabs" role="tablist">
+    			<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">헬스장 찾기</a></li>
+    			<li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">공공체육시설 찾기</a></li>    			
+  			</ul>
 
-			<!-- Tab panes -->
-			<div class="tab-content">
-				<div role="tabpanel" class="tab-pane active" id="health">
-					<ul class="list-group">
-  						<li class="list-group-item">
-  						<div id="thumbnail">
+			  <!-- Tab panes -->
+  			<div class="tab-content">
+    			<div role="tabpanel" class="tab-pane active" id="home">
+    				<ul>
+    					<li>
+    					<div id="thumbnail">
   							<a href=""><img src=""></a>
   						</div>
-  							헬스장1
-  						</li>
-  						<li class="list-group-item">
-  						Dapibus ac facilisis in
-  						</li>
-  						<li class="list-group-item">
-  						Morbi leo risus
-  						</li>
-  						<li class="list-group-item">
-  						Porta ac consectetur ac
-  						</li>
-  						<li class="list-group-item">
-  						Vestibulum at eros
-  						</li>
-					</ul>
-				</div>
-				
+  							헬스장1<br>주소 : 
+    					</li>
+    					<li>
+    					<div id="thumbnail">
+  							<a href=""><img src=""></a>
+  						</div>
+  							헬스장2
+    					</li>
+    					<li>
+    					<div id="thumbnail">
+  							<a href=""><img src=""></a>
+  						</div>
+  							헬스장3
+    					</li>
+    					<li>
+    					<div id="thumbnail">
+  							<a href=""><img src=""></a>
+  						</div>
+  							헬스장4
+    					</li>
+    					<li>
+    					<div id="thumbnail">
+  							<a href=""><img src=""></a>
+  						</div>
+  							헬스장5
+    					</li>
+    				</ul>
+    			</div>
+    			<div role="tabpanel" class="tab-pane" id="profile">
+    			<ul>
+    				<li>
+    				<div id="thumbnail">
+  							<a href=""><img src=""></a>
+  						</div>
+  							공공체육시설1
+    				</li>
+    				<li>
+    				<div id="thumbnail">
+  							<a href=""><img src=""></a>
+  						</div>
+  							공공체육시설2
+    				</li>
+    				<li>
+    				<div id="thumbnail">
+  							<a href=""><img src=""></a>
+  						</div>
+  							공공체육시설3
+    				</li>
+    				<li>
+    				<div id="thumbnail">
+  							<a href=""><img src=""></a>
+  						</div>
+  							공공체육시설4
+    				</li>
+    				<li>
+    				<div id="thumbnail">
+  							<a href=""><img src=""></a>
+  						</div>
+  							공공체육시설5
+    				</li>
+    			</ul>
+    			</div>
+  			</div>
+
 			</div>
 			<div id="paging">
 			<nav>
@@ -111,6 +160,7 @@
 			</div>
 		</div>
 	</div>
+	
 	<div id="maparea">
 		<div id="map"></div>
 

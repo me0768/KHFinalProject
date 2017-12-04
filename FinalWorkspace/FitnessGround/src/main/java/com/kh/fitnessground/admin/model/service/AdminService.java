@@ -8,10 +8,11 @@ public interface AdminService {
 
 	
 
-	ArrayList<User> userlist(int userno, int userlevel);
-		
 
-    ArrayList<User> buisnesslist(int userno, int userlevel);
+    ArrayList<User> buisnesslist(int level);
+
+
+	ArrayList<User> userlist(int level);
 
 
 

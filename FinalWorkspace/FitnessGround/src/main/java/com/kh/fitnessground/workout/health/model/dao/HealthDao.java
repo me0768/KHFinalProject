@@ -1,6 +1,7 @@
 package com.kh.fitnessground.workout.health.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,25 @@ public class HealthDao {
 		
 	}
 
-	public ArrayList<Health> selectWorkoutCategoryList(String category) {
+	public ArrayList<Health> selectWorkoutCategoryList(Health health) {
 		// TODO Auto-generated method stub
-		return (ArrayList)sqlSession.selectList("health.selectWorkoutCategoryList",category);
+		
+		return (ArrayList)sqlSession.selectList("health.selectCategoryList",health);
+	}
+
+	public void addReadCount(int v_no) {
+		sqlSession.update("health.addReadCount",v_no);
+	}
+
+	public void updateHealth(int v_no) {
+		// TODO Auto-generated method stub
+		sqlSession.update("health.updateHealth",v_no);
+		
+	}
+	public void deleteHealth(int v_no){
+		sqlSession.delete("health.deleteHealth",v_no);
+	}
+	public void deleteHealthList(ArrayList<Health> list){
+		sqlSession.delete("health.deleteHealthList",list);
 	}
 }

@@ -2,6 +2,8 @@ package com.kh.fitnessground.user.model.service;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.kh.fitnessground.user.model.vo.User;
 import com.kh.fitnessground.user.model.vo.UserSchedule;
 
@@ -35,7 +37,11 @@ public interface UserService {
 
 	void userDelete(User u);
 
-	ArrayList userBoardSearch(String parameter);
+	ArrayList userBoardSearch(String searchkeyword);
 
 	ArrayList<UserSchedule> userAllSchedule(int userNo);
+	
+	User userPwdSelect(int user_no);
+
+	void userProfileImgUpdate(User u, HttpServletRequest request) throws Exception;
 }

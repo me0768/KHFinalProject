@@ -1,10 +1,15 @@
 package com.kh.fitnessground.workout.health.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,11 +33,39 @@ public class HealthController {
 	
 	//헬스
 	@RequestMapping(value="/part.do")	//부위별 카테고리 ajax 통신 들어오는 카테고리에 따라서 리스트 뿌리기
-	public void selectCategorytListMethod(Health health,HttpServletResponse response){
+	public void selectCategorytListMethod(Health health,HttpServletResponse response) throws IOException{
+		response.setContentType("application/json; charset=utf-8");
 		ModelAndView mv = new ModelAndView();
-		ArrayList<Health> list = healthService.selectWorkoutCategoryList(health.getCategory1(),health.getCategory2());
-		mv.addObject("list",list);
-		mv.setViewName("jsonView");
+		
+		
+		ArrayList<Health> list = healthService.selectWorkoutCategoryList(health);
+				
+		System.out.println("list  : " + list);
+		
+		JSONObject sendJson = new JSONObject();
+		JSONArray jarr = new JSONArray();
+		
+		for(Health h : list){
+			JSONObject jhealth = new JSONObject();
+			jhealth.put("v_no", h.getV_no());
+			jhealth.put("title", URLEncoder.encode(h.getTitle(),"utf-8"));
+			jhealth.put("content", URLEncoder.encode(h.getContent(),"utf-8"));
+			jhealth.put("category1", URLEncoder.encode(h.getCategory1(),"utf-8"));
+			jhealth.put("category2", URLEncoder.encode(h.getCategory2(),"utf-8"));
+			jhealth.put("url", URLEncoder.encode(h.getUrl(),"utf-8"));
+			
+			jhealth.put("readcount", h.getReadcount());
+			jarr.add(jhealth);
+		}
+		
+		sendJson.put("list", jarr);
+		
+		response.setContentType("aplication/json; charset=utf-8"); 
+		PrintWriter out = response.getWriter();
+		out.println(sendJson.toJSONString());
+		out.flush();
+		out.close();
+	
 	}
 	
 	@RequestMapping(value="/detail.do")	//썸네일 누르면 누른 v_no로 모달창에서 동영상 재생.. 썸네일은 어케하지..

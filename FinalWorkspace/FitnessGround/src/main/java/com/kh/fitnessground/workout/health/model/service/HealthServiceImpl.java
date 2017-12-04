@@ -28,9 +28,10 @@ public class HealthServiceImpl implements HealthService{
 	}
 
 	@Override
-	public ArrayList<Health> selectWorkoutCategoryList(String category1,String category2) {
+	public ArrayList<Health> selectWorkoutCategoryList(Health health) {
 		// TODO Auto-generated method stub
-		return healthDao.selectWorkoutCategoryList(category1,category2);
+		/*System.out.println("Service 단 category1 : " + category1 + "Service 단 category2 : " + category2);*/
+		return healthDao.selectWorkoutCategoryList(health);
 	}
 
 	@Override

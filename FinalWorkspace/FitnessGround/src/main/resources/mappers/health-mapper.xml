@@ -28,9 +28,9 @@
 			select * from tb_video_board where v_no = #{v_no};
 		]]>
 	</select>
-	<select id="selectCategoryList" parameterType = "hashmap" resultType="list" resultMap="resultCategoryList">
+	<select id="selectCategoryList" parameterType = "health" resultType="list" resultMap="resultCategoryList">
 		<![CDATA[
-			select * from tb_video_board category2 where category1 = #{category1} and like '%' + #{category} + '%'
+			select * from tb_video_board where category1 = #{category1} and category2 like '%' ||#{category2}|| '%'
 		]]>
 	</select>
 	

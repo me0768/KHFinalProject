@@ -25,12 +25,10 @@ public class HealthDao {
 		
 	}
 
-	public ArrayList<Health> selectWorkoutCategoryList(String category1,String category2) {
+	public ArrayList<Health> selectWorkoutCategoryList(Health health) {
 		// TODO Auto-generated method stub
-		HashMap<String,String> category = new HashMap<String,String>();	//파라미터 두개 못보냄.. hashmap 으로..
-		category.put("category1", category1);
-		category.put("category2", category2);
-		return (ArrayList)sqlSession.selectList("health.selectCategoryList",category);
+		
+		return (ArrayList)sqlSession.selectList("health.selectCategoryList",health);
 	}
 
 	public void addReadCount(int v_no) {

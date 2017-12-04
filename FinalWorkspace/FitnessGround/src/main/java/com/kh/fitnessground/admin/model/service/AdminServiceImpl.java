@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.fitnessground.admin.model.dao.AdminDao;
-import com.kh.fitnessground.user.model.dao.UserDao;
 import com.kh.fitnessground.user.model.vo.User;
 
 @Service("adminService")

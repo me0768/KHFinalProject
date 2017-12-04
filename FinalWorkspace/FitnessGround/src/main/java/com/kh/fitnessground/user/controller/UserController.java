@@ -246,6 +246,7 @@ public class UserController {
 		return mv;
 	}
 	
+	//헬스장등록으로 이동
 	@RequestMapping(value="/moveregistergym.do")
 	public String moveRegisterGymMethod(HttpSession session) {
 		return "gym/registergym";

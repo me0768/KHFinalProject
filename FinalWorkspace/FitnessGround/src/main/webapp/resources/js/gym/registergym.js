@@ -388,10 +388,10 @@ $("#panelOne").css({'boader-color':'#F60808', 'box-shadow':'0 0 1px 1px rgb(232,
 		var checktel = 0;
 		var checkphone = 0;
 		var checkprice = 0;
+		var checkbox0 = 0;
 		var checkbox1 = 0;
 		var checkbox2 = 0;
 		var checkbox3 = 0;
-		var checkbox4 = 0;
 		var checkdesc = 0;		
 		
 		function gymemptycheck(){
@@ -420,27 +420,6 @@ $("#panelOne").css({'boader-color':'#F60808', 'box-shadow':'0 0 1px 1px rgb(232,
 			} else {
 				checkprice = 0;
 			}
-			/*if($("#ex_chk0").is(":checked")){
-				checkbox1 = 1;
-			} else if($("#ex_chk0").is(":checked")) {
-				checkbox1 = 0;
-				console.log(checkbox1);
-			}
-			if($("#ex_chk1").is(":checked")){
-				checkbox2 = 1;
-			} else if ((!$("#ex_chk1").is(":checked"))) {
-				checkbox2 = 0;
-			}
-			if($("#ex_chk2").is(":checked")){
-				checkbox3 = 1;
-			} else if ((!$("#ex_chk2").is(":checked"))) {
-				checkbox3 = 0;
-			}
-			if($("#ex_chk3").is(":checked")){
-				checkbox4 = 1;
-			} else if ((!$("#ex_chk3").is(":checked"))) {
-				checkbox4 = 0;
-			}*/
 			if($("#gymdesc").val() != ""){
 				checkdesc = 1;
 			} else {
@@ -449,9 +428,34 @@ $("#panelOne").css({'boader-color':'#F60808', 'box-shadow':'0 0 1px 1px rgb(232,
 			borderchange();
 		}
 		
+		function boxcheck(id){
+			if(id == 0){
+				if( checkbox0 == 0)
+					checkbox0 = 1;
+				else
+					checkbox0 = 0;
+			} else if(id == 1){
+				if( checkbox1 == 0)
+					checkbox1 = 1;
+				else
+					checkbox1 = 0;
+			} else if(id == 2){
+				if( checkbox2 == 0)
+					checkbox2 = 1;
+				else
+					checkbox2 = 0;
+			} else if(id == 3){
+				if( checkbox3 == 0)
+					checkbox3 = 1;
+				else
+					checkbox3 = 0;
+			}
+			borderchange();
+		}
+		
 		function borderchange(){
 			var sum = checkgymname + checkoptime + checktel + checkphone + checkprice + checkdesc;
-			var checkbox = checkbox1 + checkbox2 + checkbox3 + checkbox4;
+			var checkbox = checkbox0 + checkbox1 + checkbox2 + checkbox3;	
 			if( sum == 6 && checkbox > 0 ){
 				var check = "<span class='glyphicon glyphicon-ok' aria-hidden='true'></span>&nbsp;&nbsp;헬스장 정보";
 				$("#panel2").html(check);
@@ -464,3 +468,11 @@ $("#panelOne").css({'boader-color':'#F60808', 'box-shadow':'0 0 1px 1px rgb(232,
 				$("#headingTwo").css("color","red");
 			}
 		}
+		
+		
+		
+		// *********************************************
+		// 달력
+		// *********************************************
+		
+		

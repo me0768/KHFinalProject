@@ -37,8 +37,7 @@ public class YogaServiceImpl implements YogaService{
 	public void addReadCount(int v_no, HttpServletRequest request) {
 		yogaDao.addReadCount(v_no);
 	}
-	
-	
+
 	@Override
 	public void insertYoga(List<Yoga> ylist, HttpServletRequest request) {
 		yogaDao.insertYoga(ylist);

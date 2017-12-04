@@ -65,9 +65,9 @@
 						<div class="card-body-icon">
 							<i class="fa fa-fw fa-shopping-cart"></i>
 						</div>
-						<div class="mr-5">운동법 게시글 관리</div>
+						<div class="mr-5">일반회원 관리</div>
 					</div>
-					<a class="card-footer text-white clearfix small z-1" href="#">
+					<a class="card-footer text-white clearfix small z-1" href="adminuserlist.do">
 						<span class="float-left">View Details</span> <span
 						class="float-right"> <i class="fa fa-angle-right"></i>
 					</span>
@@ -80,7 +80,7 @@
 						<div class="card-body-icon">
 							<i class="fa fa-fw fa-support"></i>
 						</div>
-						<div class="mr-5">게시판 관리</div>
+						<div class="mr-5">사업자회원 관리</div>
 					</div>
 					<a class="card-footer text-white clearfix small z-1" href="#">
 						<span class="float-left">View Details</span> <span

@@ -45,6 +45,25 @@
 		]]>
 		
 	</select>
+	
+	<select id="userList" parameterType="_int" resultType="User"
+		resultMap="resultUser">
+		<![CDATA[
+			select * 
+			from tb_user 
+			where user_level = #{level} 
+		]]>
+		
+	</select>
+	<select id="businessList" parameterType="_int" resultType="User"
+		resultMap="resultUser">
+		<![CDATA[
+			select * 
+			from tb_user 
+			where user_level = #{level} 
+		]]>
+		
+	</select>
 
 	<select id="selectInfo" parameterType="_int" resultType="User"
 		resultMap="resultUser">

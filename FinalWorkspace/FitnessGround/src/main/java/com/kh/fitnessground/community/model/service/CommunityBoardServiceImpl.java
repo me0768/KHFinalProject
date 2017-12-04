@@ -12,7 +12,7 @@ import com.kh.fitnessground.community.model.vo.MeetingBoard;
 import com.kh.fitnessground.community.model.vo.MeetingCommnet;
 
 
-@Service("communityBoardService")
+@Service("CommunityBoardService")
 public class CommunityBoardServiceImpl implements CommunityBoardService {
 
 	@Autowired

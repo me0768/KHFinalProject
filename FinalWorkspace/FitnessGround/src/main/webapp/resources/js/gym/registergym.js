@@ -22,7 +22,6 @@ $("#panelOne").css({'boader-color':'#F60808', 'box-shadow':'0 0 1px 1px rgb(232,
 		});
 		
 		function fileUploadAction(){
-			console.log("fileUploadAction");
 			$("#input_imgs").trigger("click");
 		}
 		
@@ -85,6 +84,10 @@ $("#panelOne").css({'boader-color':'#F60808', 'box-shadow':'0 0 1px 1px rgb(232,
 			var index = 0;
 			filesArr.forEach(function(f){
 				if(!f.type.match("image.*")){
+					var bigimagerr = "<div class='bigimage' id='bigimage' style='width: 360px; height: 360px;'>" +
+									"<img src='/fitnessground/resources/images/gymimages/draganddrop.png' style='width: 300px; height: 108px; border-radius: 10px; margin-top: 126; margin-left: 30px;'>" +					
+									"</div>";
+					$("#mainimage").append(bigimagerr);
 					alert("확장자는 이미지 확장자만 가능합니다.");
 					return;
 				}
@@ -192,7 +195,7 @@ $("#panelOne").css({'boader-color':'#F60808', 'box-shadow':'0 0 1px 1px rgb(232,
 			//이미지 정보들을 초기화
 			sel_files = [];
 			$("#li1").empty();
-			$("#mainimage").empty();
+			
 			$(".carousel-indicators").empty();
 			$("#div2").remove();
 			$("#div3").remove();
@@ -208,10 +211,14 @@ $("#panelOne").css({'boader-color':'#F60808', 'box-shadow':'0 0 1px 1px rgb(232,
 			var index = 0;
 			filesArr.forEach(function(f){
 				if(!f.type.match("image.*")){
+					/*var bigimagerr = "<div class='bigimage' id='bigimage' style='width: 360px; height: 360px;'>" +
+									"<img src='/fitnessground/resources/images/gymimages/draganddrop.png' style='width: 300px; height: 108px; border-radius: 10px; margin-top: 126; margin-left: 30px;'>" +					
+									"</div>";
+					$("#mainimage").append(bigimagerr);*/
 					alert("확장자는 이미지 확장자만 가능합니다.");
 					return;
 				}
-				
+				$("#mainimage").empty();
 				sel_files.push(f);
 				
 				var reader = new FileReader();

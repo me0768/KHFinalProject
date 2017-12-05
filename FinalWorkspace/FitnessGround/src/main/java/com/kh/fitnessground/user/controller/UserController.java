@@ -1,5 +1,6 @@
 package com.kh.fitnessground.user.controller;
 
+import java.io.File;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.kh.fitnessground.gym.model.vo.GymQnABoard;
 import com.kh.fitnessground.user.model.service.UserService;
 import com.kh.fitnessground.user.model.vo.User;
 import com.kh.fitnessground.user.model.vo.UserSchedule;
@@ -152,16 +154,38 @@ public class UserController {
 	// 회원 프로필 이미지 수정
 	@RequestMapping(value="/profileImgModify.do")
 	public ModelAndView userProfileImgModifyMethod(User u, HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView(new RedirectView("forward:/myPage.do?userno="+u.getUser_no()));
+		User user = userService.loginCheck(u.getEmail());		
+		// 기존 이미지가 있을 경우, 파일 삭제
+		String fileName = user.getRename_image();
+		if(fileName != null) {
+			File file = new File("C:\\git\\KHFinalProject\\FinalWorkspace\\FitnessGround\\src\\main\\webapp\\resources\\images\\myimages\\"+ fileName);
+			if(file.exists()) file.delete();
+		}		
+		ModelAndView mv = new ModelAndView("redirect:/mypage.do?userno="+u.getUser_no());
 		userService.userProfileImgUpdate(u, request);
 		HttpSession session = request.getSession();
-		session.setAttribute("user", userService.loginCheck(u.getEmail()));
+		session.setAttribute("user", user);
+		return mv; 
+	}
+	// 회원 프로필 이미지 삭제
+	@RequestMapping(value="/profileImgRemove.do")
+	public ModelAndView userProfileImgRemoveMethod(User u, HttpServletRequest request) {
+		User user = userService.loginCheck(u.getEmail());		
+		// 기존 이미지 파일 삭제
+		String fileName = user.getRename_image();
+		if(fileName != null) {
+			File file = new File("C:\\git\\KHFinalProject\\FinalWorkspace\\FitnessGround\\src\\main\\webapp\\resources\\images\\myimages\\"+ fileName);
+			if(file.exists()) file.delete();
+		}
+		ModelAndView mv = new ModelAndView("redirect:/mypage.do?userno="+u.getUser_no());
+		userService.userProfileImgRemove(u);
+		HttpSession session = request.getSession();
+		session.setAttribute("user", user);
 		return mv; 
 	}
 	// 회원정보 수정 ajax
 	@RequestMapping(value="/uupdate.do")
 	public ModelAndView userUpdateMethod(User u, ModelAndView mv, HttpServletRequest request) {
-		System.out.println(u);
 		userService.userUpdate(u);
 		HttpSession session = request.getSession();
 		session.setAttribute("user", userService.loginCheck(u.getEmail()));
@@ -207,6 +231,8 @@ public class UserController {
 	@RequestMapping(value="/userboard.do")
 	public ModelAndView userBoardMethod(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("user/userBoard");
+//		ArrayList<GymQnABoard> list = userService.anABoardList(Integer.parseInt(request.getParameter("userno")));
+//		mv.addObject("list", list);
 		return mv; 
 	}
 	@RequestMapping(value="/userboarddetail.do")

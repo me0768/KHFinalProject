@@ -44,4 +44,6 @@ public interface UserService {
 	User userPwdSelect(int user_no);
 
 	void userProfileImgUpdate(User u, HttpServletRequest request) throws Exception;
+
+	void userProfileImgRemove(User u);
 }

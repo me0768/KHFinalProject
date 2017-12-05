@@ -1,7 +1,9 @@
 package com.kh.fitnessground.workout.yoga.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +32,9 @@ public class YogaDao {
 		return (Yoga)sqlSession.selectOne("yoga.selectYoga", no);
 	}
 	public void insertYoga(List<Yoga> ylist) {
-		sqlSession.insert("yoga.insertYoga", ylist);
+		for(Yoga yoga : ylist) {
+			sqlSession.insert("yoga.insertYoga", yoga);
+		}
 	}
 
 	public void updateYoga(Yoga yoga) {

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="com.kh.fitnessground.workout.yoga.model.vo.Yoga, java.util.List" %>
 
 <c:import url="../include/common/head.jsp" />
 
@@ -32,136 +33,74 @@
    <div class="col-sm-2 col-md-2 col-lg-2">
       <div class="workout_sidebar">
          <ul>
-            <li><a href="#">헬스</a>
-               <ul class="active">
-                  <li>one</li>
-                  <li>two</li>
-                  <li>three</li>
-                  <li>four</li>
-                  <li>five</li>
-               </ul></li>
-            <li><a href="#">요가</a>
-               <ul class="closed">
-                  <li>빈야사 </li>
-                  <li>체형교정</li>
-                  <li>다이어트</li>
-                  <li>부위별 요가</li>
-                  <li>초보자</li>
-               </ul></li>
-            <li><a href="#">필라테스</a>
-               <ul class="closed">
-                  <li>스트레칭</li>
-                  <li>전신운동</li>
-                  <li>복근집중운동</li>
-                  <li>하체운동</li>
-               </ul></li>
-            <li><a>맨몸운동</a>
-               <ul class="closed">
-                  <li>one</li>
-                  <li>two</li>
-                  <li>three</li>
-                  <li>four</li>
-                  <li>five</li>
-               </ul></li>
-         </ul>
+				<li><a href="#">헬스</a>
+					<ul class="closed">
+						<li>다양한 헬스 운동</li>
+					</ul></li>
+				<li><a href="#">요가</a>
+					<ul class="active">
+						<li>빈야사 </li>
+						<li>체형교정</li>
+						<li>다이어트</li>
+						<li>부위별 요가</li>
+						<li>초보자</li>
+					</ul></li>
+				<li><a href="#">필라테스</a>
+					<ul class="closed">
+						<li>스트레칭</li>
+						<li>전신운동</li>
+						<li>복근집중운동</li>
+						<li>하체운동</li>
+					</ul></li>
+				<li><a>맨몸운동</a>
+					<ul class="closed">
+						<li>팔굽혀 펴기</li>
+						<li>하체</li>
+						<li>복근</li>
+						<li>철봉</li>
+						<li>전신 프로그램</li>
+						<li>(초보자)3개월 운동</li>
+					</ul></li>
+			</ul>
       </div>
    </div>
    <!-- 동영상 리스트  -->
-   <div
-      class="col-sm-9 col-md-9 col-lg-9 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
-      <div class="workout_videos">
-         <div class="row justify-content-center">
-            <div class="video">
-               <iframe width="250" src="https://www.youtube.com/embed/x7L4rhfJt7U"
-                  frameborder="0" gesture="media" allow="encrypted-media"
-                  allowfullscreen></iframe>
-               <p id="video_text">title</p>
-               <p id="video_text">description</p>
-            </div>
-            <div class="video">
-               <iframe width="250" src="https://www.youtube.com/embed/x7L4rhfJt7U"
-                  frameborder="0" gesture="media" allow="encrypted-media"
-                  allowfullscreen></iframe>
-                  <p id="video_text">title</p>
-               <p id="video_text">description</p>
-            </div>
-            <div class="video">
-               <iframe width="250" src="https://www.youtube.com/embed/x7L4rhfJt7U"
-                  frameborder="0" gesture="media" allow="encrypted-media"
-                  allowfullscreen></iframe>
-                  <p id="video_text">title</p>
-               <p id="video_text">description</p>
-            </div>
-         </div>
+	  
+	<c:if test="${!empty list}">
+	   <c:forEach items="${list}" var="y" varStatus="st">
+	   <div
+	      class="col-sm-9 col-md-9 col-lg-9 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
+	      <div class="workout_videos">
+	         <div class="row justify-content-center">
+	            <div class="video">
+	               <iframe width="250" src="https://www.youtube.com/embed/${y.url}"
+	                  frameborder="0" gesture="media" allow="encrypted-media"
+	                  allowfullscreen></iframe>
+	               <p id="video_text">${y.title}</p>
+	               <p id="video_text"><c:url var="detail" value="#detail" /></p>
+	            </div>
+	            <div class="video">
+	               <iframe width="250" src="https://www.youtube.com/embed/x7L4rhfJt7U"
+	                  frameborder="0" gesture="media" allow="encrypted-media"
+	                  allowfullscreen></iframe>
+	                  <p id="video_text">title</p>
+	               <p id="video_text">description</p>
+	            </div>
+	            <div class="video">
+	               <iframe width="250" src="https://www.youtube.com/embed/x7L4rhfJt7U"
+	                  frameborder="0" gesture="media" allow="encrypted-media"
+	                  allowfullscreen></iframe>
+	                  <p id="video_text">title</p>
+	               <p id="video_text">description</p>
+	            </div>
+	         </div>
+	
+	      </div>
+	   </div>
+    </c:forEach>
+   </c:if>
+   
 
-      </div>
-   </div>
-   
-   <!-- YoutubeAPI, Ajax  -->
-   <script type="text/javascript">
-       var playlist1 = 'PL59_4lUZbIwO80AlZBTfoVfF12IoxAfvG'; //관리자가 입력한playlistId//테스트성공하면 admin input태그 넣어 화면만들기
-       var vTitle;
-       var vDesc;
-       var vId;
-      var job = new Object();
-       var jarr = [];   
-       /* job.title = "먕"; 
-       job.url = "eraefjdklf";
-       jarr.push(job); */
-       /* var job = new Object();
-         */
-       var j;
-        $(document).ready(function(){
-           $.get(
-                  "https://www.googleapis.com/youtube/v3/playlistItems", {
-                      part: 'snippet',
-                      maxResults: 50,
-                      playlistId: playlist1,
-                      key: 'AIzaSyACiHNLQp0NoZLhAx6u2JbtMGjCp3STK3A'},
-                      function(data){
-                          
-                          $.each(data.items, function(i, item){
-                             vTitle = item.snippet.title.replace(/&/gi, "+");
-                              vDesc = item.snippet.description.replace(/&/gi, "+");
-                              vId = item.snippet.resourceId.videoId;
-                              //하나가 아니라서 json array에 담고 그걸 다시 json객체에 담아서 컨트롤러에 보내야.....
-                               var job = new Object(); 
-                               job.title = vTitle;
-                               /* job.content = vDesc; */
-                               job.url = vId;
-                               jarr.push(job);
-                            
-                           });
-                          console.log(JSON.stringify(jarr));
-                      }
-                      );
-       
-        });
-        
-       window.onload = function ajaxFunction(){
-        /*Controller로 넘기기 */
-        console.log("ajaxFunction실행");
-        $.ajax({
-           url : "yinsert.do",
-           data: JSON.stringify(jarr),
-           type: "post",
-           contentType : "application/json; charset=utf-8",
-           success : function(result){
-              console.log("전송성공:");
-           },
-           error : function(request, status, errorData){
-              alert("error code : " + request.status + "\n"
-                    + "message : " + request.responseText
-                    + "\n" + "error : " + errorData);
-           }
-        });
-        }
-    
-    
-    </script>
-   
-   
-   
 </div>
 
 

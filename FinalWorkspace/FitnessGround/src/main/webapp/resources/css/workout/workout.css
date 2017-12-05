@@ -9,7 +9,7 @@
 }
 #workout-body{
 	margin-top: 5vh;
-	height: 80vh;
+	height: auto;
 }
 .workout_videos{
 	display: inline-block;

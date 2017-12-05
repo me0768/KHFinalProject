@@ -193,7 +193,9 @@
 			<div id="collapseThree" class="panel-collapse collapse in"
 				role="tabpanel" aria-labelledby="headingThree">
 				<div class="panel-body">
-					
+					<div id="calendar" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<!-- 캘린더 ajax -->
+					</div>
 				</div>
 			</div>
 		</div>

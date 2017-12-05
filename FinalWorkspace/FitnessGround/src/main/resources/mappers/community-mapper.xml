@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="community">
+
+	<resultMap id="MeetingResult" type="Meeting">
+		<id property="mb_no" column="MB_NO" />
+		<result property="user_no" column="USER_NO" />
+		<result property="title" column="TITLE" />
+		<result property="content" column="CONTENT" />
+		<result property="meeting_date" column="MEETING_DATE" />
+		<result property="upload_date" column="UPLOAD_DATE" />
+		<result property="readcount" column="READCOUNT" />
+	</resultMap>
+	
+	<!-- 전체리스트select -->
+	<select id="selectListView" resultType="list" resultMap="MeetingResult">
+		<![CDATA[select * from tb_meeting_board order by mb_no desc]]>
+	</select>
+	
+	</mapper>

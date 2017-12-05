@@ -71,22 +71,23 @@ public class AdminController {
 		return "main";
 	}
 
-	// 헬스 동영상(준일) 리스트 출력
+	/*// 헬스 동영상(준일) 리스트 출력
 	@RequestMapping(value = "adminpart.do")
 	public ModelAndView HealthListMethod(Health health, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView("#");
 		ArrayList<Health> list = healthService.selectWorkoutCategoryList(health.getCategory2());
 		mv.addObject("list", list);
 		return mv;
-	}
+	}*/
 
 	// 회원 리스트 출력
 	@RequestMapping(value = "adminuserlist.do")
 	public ModelAndView UserListMethod(User user, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView("admin/tables");
-		int level = 0;
+		int level = 1;
 		ArrayList<User> list = adminService.userlist(level);
 		mv.addObject("list", list);
+		System.out.println(mv.toString());
 		return mv;
 	}
 
@@ -103,7 +104,7 @@ public class AdminController {
 	// 요가 동영상(미향) 리스트 출력
 	@RequestMapping(value = "adminylist.do")
 	public ModelAndView YogaListMethod(Yoga yoga, HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView("#");
+		ModelAndView mv = new ModelAndView("admin/workoutVideo");
 		ArrayList<Yoga> list = yogaService.selectAllList();
 		mv.addObject("list", list);
 		return mv;

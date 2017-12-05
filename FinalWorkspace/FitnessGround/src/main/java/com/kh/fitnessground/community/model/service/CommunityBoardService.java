@@ -18,7 +18,7 @@ public interface CommunityBoardService {
 			//게시글 갯수
 			int getListCount();
 			//목록
-			ArrayList<MeetingBoard> meetingListView(int page, int limit);
+			ArrayList<MeetingBoard> meetingListView();
 			//등록
 			int meetingInsert(MeetingBoard meetingboard);
 			//삭제

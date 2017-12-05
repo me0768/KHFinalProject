@@ -18,7 +18,7 @@
     </div>
     
    <style type="text/css">
-	body {
+ 	body {
 		font-family: "Open Sans", sans-serif;
 		line-height: 1.25;
 	}
@@ -30,12 +30,13 @@
 	}
 	
 	
-	div#qna_category_div {
-		padding-left: 15%;
-	}
-	div#qna_search_div{
+	div#meeting_category_div {
+		padding-left: 23%;
 		
-		margin-left: 15%;
+	}
+	div#meeting_search_div{
+		
+		margin-left: 23%;
 	}
 	select#findType{
 		height: 30px;
@@ -43,53 +44,67 @@
 		font-size: 14px;
 	}
 	input#searchKey{
+	
 		height: 25px; 
 		width: 200px;
 		}
+	button#searchSubmit{
+		background:#210B61;
+	}	
+	button#community_detail{
+		background:#210B61;
+		width:22%;
+		height:6%;
+		font-size: 14pt;
+	}
 	input#searchKey placeholder{
 		color: #F3F3F3;
 		font-size: 14px;
 	}
-	button#qna_writer_btn{
-		left:72%;
+	button#meeting_writer_btn{
+		left:63%;
 		width:70pt;
 		height:25pt;
-		font-size:8pt;
+		font-size:6pt;
+		background:#210B61;
 		
 	}
-	div#qna_table_div{
-		padding-left:15%;
+	div#meeting_table_div{
+		padding-left:23%;
+		padding-right:9%;
 	}
-	table {
+	table#meeting_table {
 		
 		border: 1px solid #ccc;
-		border-collapse: collapse;
+		border-collapse: separate;
 		table-layout: fixed;
 		width: 80%;
+		font-size: 10pt;
+		color:black;
 	}
 	
-	table tr {
+	table#meeting_table tr {
 		border: 1px solid #ddd;
 		padding: .35em;
 	}
 	
-	table tr:nth-child(even) {
+	table#meeting_table tr:nth-child(even) {
 		background: #f8f8f8;
 	}
 	
-	table th, table td {
+	table#meeting_table th, table td {
 		padding: .625em;
 		text-align: center;
 	}
 	
-	table th {
+	table#meeting_table th {
 		background: #D8D8D8;
 		font-size: .85em;
 		letter-spacing: .1em;
 		text-transform: uppercase;
 	}
 	
-	table td {
+	table#meeting_table td {
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
@@ -107,18 +122,21 @@
 		function qnaPage() {
 			location.href = "qna.do";
 		}
+		function meetingInsert() {
+			location.href = "meetingInsert.do";
+		}
 	</script>
-<body>
+
 <br><br>
 <h1 align="center">Q & A</h1>
-<br><br>
-<div id="qna_category_div">
-<button id="community_detail"onclick="meetingPage();">운동같이해요</button>
-<button id="community_detail"onclick="reviewPage();">후기</button>
+<br>
+<div id="meeting_category_div">
+<button id="community_detail"onclick="meetingPage();">운동같이해요</button> &nbsp;&nbsp;&nbsp;
+<button id="community_detail"onclick="reviewPage();">후기</button>	&nbsp;&nbsp;&nbsp;
 <button id="community_detail"onclick="qnaPage();">Q & A</button>
 </div>
 <br>
-<div id="qna_search_div" align="left">
+<div id="meeting_search_div" align="left">
 			<div align="left">
 			<form class="form-group" role="form" action="#" method="get" >
 				<select class="btn" name="searchValue" id="findType">
@@ -127,22 +145,19 @@
 					<option value="findCategory">카테고리</option>
 				</select> 
 				<input name ="searchValue" type="search" id="searchKey" placeholder="검색어를 입력해주세요 " class="btn2">
-				<button type="submit" id="searchSubmit" value="검색" class="btn">검색</button><br>
-							
+				<button type="submit" id="searchSubmit" value="검색" class="btn">검색</button>				
 			</form>
-			
-				<button id="qna_writer_btn">글쓰기</button><br><br>
+				<button id="meeting_writer_btn" onclick="meetingInsert();">글쓰기</button>					
 </div>
+<br>
 </div>
-<div id="qna_table_div">
-<table>
+<div id="meeting_table_div">
+<table id="meeting_table">
   <thead>
     <tr>
       <th>번호</th>
-      <th>카테고리</th>
       <th>제목</th>
       <th>글쓴이</th>
-      <th>모임날짜</th>
       <th>작성일</th>
       <th>조회수</th>
     </tr>
@@ -150,37 +165,29 @@
   <tbody>
     <tr>
       <td>1</td>
-      <td>헬스</td>
       <td><a href="#">운동하러가실분</a></td>
       <td>kdy123</td>
-      <td>2017/12/21</td>
       <td>2017/12/21</td>
       <td>30</td>
     </tr>
   <tr>
       <td>1</td>
-      <td>헬스</td>
-      <td>Q & A</td>
+      <td><a href="#">운동하러가실분</a></td>
       <td>kdy123</td>
-      <td>2017/12/21</td>
       <td>2017/12/21</td>
       <td>30</td>
     </tr>
    <tr>
-      <td>1</td>
-      <td>헬스</td>
-      <td>운동하러가실분</td>
+     <td>1</td>
+      <td><a href="#">운동하러가실분</a></td>
       <td>kdy123</td>
-      <td>2017/12/21</td>
       <td>2017/12/21</td>
       <td>30</td>
     </tr>
     <tr>
-      <td>1</td>
-      <td>헬스</td>
-      <td>운동하러가실분</td>
+     <td>1</td>
+      <td><a href="#">운동하러가실분</a></td>
       <td>kdy123</td>
-      <td>2017/12/21</td>
       <td>2017/12/21</td>
       <td>30</td>
     </tr>
@@ -193,5 +200,3 @@
 
     <c:import url="../../include/main/footer.jsp" />
     <c:import url="../../include/common/end.jsp" />
-</body>
-</html>

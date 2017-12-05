@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.kh.fitnessground.community.model.vo.MeetingBoard,
-    					 com.kh.fitnessground.community.model.vo.CommunityBoard, java.sql.Date, java.util.ArrayList" %>
+    pageEncoding="UTF-8" import="java.sql.Date, java.util.ArrayList" %>
 <%@ taglib uri= "http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<html>
+
 	<c:import url="../include/common/head.jsp" />
 	<c:import url="../include/common/headend.jsp" />
     
@@ -55,8 +54,7 @@ function qnaPage(){
 }
 </script>
 
-</head>
-<body>
+
 <br><br><br>
 <div id="community_main">
 <h1 id=community_title>커뮤니티</h1>
@@ -78,10 +76,8 @@ function qnaPage(){
 <hr>
 </div>
 </div>
-</body>
 
 
     <c:import url="../include/main/footer.jsp" />
 
     <c:import url="../include/common/end.jsp" />
-</html>

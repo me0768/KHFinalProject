@@ -8,6 +8,7 @@
 		<typeAlias type="com.kh.fitnessground.user.model.vo.UserSchedule" alias="UserSchedule" />
 		<typeAlias type="com.kh.fitnessground.workout.health.model.vo.Health" alias="Health"/>
 		<typeAlias type="com.kh.fitnessground.workout.yoga.model.vo.Yoga" alias="Yoga"/>
+		<typeAlias type="com.kh.fitnessground.community.model.vo.MeetingBoard" alias="Meeting"/>
 	</typeAliases>
 	
 	<!-- 사용할 매퍼 파일 등록 : 필수 -->
@@ -16,6 +17,7 @@
 		<mapper resource="mappers/user-mapper.xml" />
 		<mapper resource="mappers/health-mapper.xml"/>
 		<mapper resource="mappers/yoga-mapper.xml"/> 
+		<mapper resource="mappers/community-mapper.xml"/>
 	</mappers>
 </configuration>
 

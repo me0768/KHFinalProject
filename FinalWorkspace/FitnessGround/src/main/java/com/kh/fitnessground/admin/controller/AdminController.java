@@ -22,7 +22,7 @@ import com.kh.fitnessground.workout.health.model.service.HealthService;
 import com.kh.fitnessground.workout.health.model.vo.Health;
 import com.kh.fitnessground.workout.yoga.model.service.YogaService;
 import com.kh.fitnessground.workout.yoga.model.vo.Yoga;
-
+	
 @Controller
 public class AdminController {
 	@Autowired

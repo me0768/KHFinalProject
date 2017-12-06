@@ -34,13 +34,11 @@ public class HealthController {
 	//헬스
 	@RequestMapping(value="/part.do")	//부위별 카테고리 ajax 통신 들어오는 카테고리에 따라서 리스트 뿌리기
 	public void selectCategorytListMethod(Health health,HttpServletResponse response) throws IOException{
-		response.setContentType("application/json; charset=utf-8");
-		ModelAndView mv = new ModelAndView();
 		
-		
+				
 		ArrayList<Health> list = healthService.selectWorkoutCategoryList(health);
 				
-		System.out.println("list  : " + list);
+		System.out.println("Controller list  : " + list);
 		
 		JSONObject sendJson = new JSONObject();
 		JSONArray jarr = new JSONArray();
@@ -53,8 +51,8 @@ public class HealthController {
 			jhealth.put("category1", URLEncoder.encode(h.getCategory1(),"utf-8"));
 			jhealth.put("category2", URLEncoder.encode(h.getCategory2(),"utf-8"));
 			jhealth.put("url", URLEncoder.encode(h.getUrl(),"utf-8"));
-			
 			jhealth.put("readcount", h.getReadcount());
+			
 			jarr.add(jhealth);
 		}
 		

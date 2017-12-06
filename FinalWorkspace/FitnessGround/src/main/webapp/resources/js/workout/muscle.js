@@ -2830,6 +2830,7 @@ A jQuery plugin to enhance image maps.
 
         function clickArea(ar) {
             var areaOpts, target;
+            //선택할수 있는 영역이고, 선택할수 없거나 선택되어있지 않으면
             canChangeState = (ar.isSelectable() &&
                 (ar.isDeselectable() || !ar.isSelected()));
 

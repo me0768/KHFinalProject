@@ -60,9 +60,11 @@
 	</div>	<!-- 사이드바 끝 -->
 	
 <!-- 근육 이미지 -->
+
 	<div class ="col-sm-offset-3">
 		<div id="menu"> 
 		<div id="diagram" style="background-position: 0px 0px;">
+			<div class="col-md-5">
 			<img src="/fitnessground/resources/images/health/muscle.jpg" width="350"
 				height="250" border="0" alt="Click on a muscle group"
 				usemap="#bodyMap" >
@@ -89,7 +91,7 @@
 												
 				<!-- 위팔 앞 왼쪽 삼두 -->
 				<area shape="poly" coords="47,65,36,75,51,87" href="#"
-					alt="triceps" state="TR" full="Triceps" onclick="popUp('triceps'); return false;">
+					alt="triceps" state="Triceps" full="Triceps" onclick="popUp('triceps'); return false;">
 				
 				<!-- 위팔 앞 오른쪽 삼두 -->				
 				<area shape="poly" coords="137,84,145,67,131,63" href="#"
@@ -104,8 +106,7 @@
 				<!-- 뒤 오른쪽 삼두-->
 				<area shape="poly" coords="292,71,303,63,306,84,301,89,286,81"
 					href="#" alt="Triceps" state = "Triceps" full="triceps"
-					onclick="popUp('triceps'); return false;">
-						
+					onclick="popUp('triceps'); return false;">					
 				
 				
 				<!-- 위팔 뒤 왼쪽 이두 -->
@@ -190,38 +191,36 @@
 				<area shape="poly" coords="261,128,282,115,276,159,251,164" href="#"
 					alt="Back Thighs" state="Back Thighs" full="backthighs"
 					onclick="popUp('backthighs'); return false;">
-
-				
-
-				
+			
 			</map>
+			</div>
+			
+			<div id="workoutTitle" class="col-md-5">
+				
+			</div>
 		</div>
-		<!-- <p class="disclaimer">Please note: All sets and reps are suggested starting points. Consult a Gold&rsquo;s Gym trainer if you would like a workout plan specifically created for your fitness level.</p> -->
+
 	</div>
+	
 	<!-- /menu -->
 	</div><!-- 사람인체 이미지 끝 -->
-	<hr>	<!-- for문 돌면서 추출  db엣 src title, 등 가져옴-->
+
+	<!-- video 뿌려주는 곳 -->
 	<div class = "container">
 		<div class = "row">
-			<div class ="col-sm-offset-1">
-				<div class="col-sm-9 col-md-9 col-lg-9 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
+			<div class ="col-sm-offset-2">
+				<p><h4>운동 동영상</h4></p>
 					<div class="workout_videos">
-						<div class="row justify-content-center">
-							<div class="video">
-								<iframe width="250" src="http://serviceapi.rmcnmv.naver.com/flash/outKeyPlayer.nhn?vid=31479A5CD8B2B74D5D6E021DC9E8493B2099&outKey=V128e2483d923e7fcc55066fb526a2c868b1e4b800fa344a8341066fb526a2c868b1e&controlBarMovable=true&jsCallable=true&isAutoPlay=true&skinName=tvcast_white"
-									frameborder="0" gesture="media" allow="encrypted-media"
-									allowfullscreen></iframe>
-								<p id="video_text">title</p>
-								<p id="video_text">description</p>
-							</div>		
+						<div class="row justify-content-center" id="healthVideo">
+							
+							
 						</div>
-					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	
 </div>
-<hr>
 
 
 
@@ -241,14 +240,17 @@
 	     });
 
 	$('img').mapster(initial_opts)
-	    .mapster('set',true,'CA', {
+		.mapster('set',true,'click', {
 	        fill: true,
 	        fillColor: '00ff00'
 	    })
 	    .mapster('snapshot')
 	    .mapster('rebind',basic_opts);
 
-
+	
+	$('img').mapster({
+		staticState: false
+	})
 	
 	function popUp(part){	//ajax 처리..
 		console.log("part : " + part);
@@ -257,39 +259,60 @@
 		
 		if ( part == 'chest')
 			category2 = "가슴";
-		else if (part == shoulders)
+		else if (part == 'shoulders')
 			category2 = "어깨";
-		else if(part == biceps)
+		else if(part == 'biceps')
 			category2 = "위팔 앞";
-		else if(part == triceps)
+		else if(part == 'triceps')
 			category2 ="위팔 뒤";
-		else if(part == lowerarm)
+		else if(part == 'lowerarm')
 			category2 = "아래팔 전완";
-		else if(part == back)
+		else if(part == 'back')
 			category2 =  "등";
-		else if(part == waist)
+		else if(part == 'waist')
 			category2 = "허리";
-		else if(part == centerabs)
+		else if(part == 'centerabs')
 			category2 = "복부";
-		else if(part == hips)
+		else if(part == 'hips')
 			category2 = "엉덩이";
-		else if(part == tight)
+		else if(part == 'tight')
 			category2 = "허벅지";
-		else if(part == backtight)
+		else if(part == 'backtight')
 			category2 = "뒤 허벅지";
-		else if(part ==calf)
+		else if(part =='calf')
 			category2 = "종아리";
 				
-		console.log("category1 : " + category1  + " // category2 : " + category2);
 		$.ajax({
 			url: "part.do",
 			dataType:"json",
 			data : {"category1":category1, "category2":category2},
 			success: function(data){
-				alert("성공!");
-				$("#healthVideo").html(
+				var jsonStr = JSON.stringify(data);
+				var json = JSON.parse(jsonStr);
 				
-				);
+				var values = "";
+				
+				for(var i in json.list){
+					values +="<div class='video'>" +
+						"<iframe width='250' src="+ decodeURIComponent(json.list[i].url).replace(/\^/g,"&") +
+							"frameborder='0' gesture='media' allow='encrypted-media' allowfullscreen name='iframe'></iframe>"+
+
+						"<p id='video_text'>"+ decodeURIComponent(json.list[i].title.replace(/\+/g," "))+"</p>"+
+						"<p id='video_text'>"+ "description"  + "</p>"+
+					"</div>"		
+					
+				/* 	
+					
+					values += json.list[i].v_no + "<br>" +
+					decodeURIComponent(json.list[i].title.replace(/\+/g," ")) + "<br>" +
+					decodeURIComponent(json.list[i].content.replace(/\+/g," ")) + "<br>" +
+					decodeURIComponent(json.list[i].category1) + "<br>" +
+					decodeURIComponent(json.list[i].category2.replace(/\+/g," ")) + "<br>" + 
+					decodeURIComponent(json.list[i].url).replace(/\^/g,"&") + "<br>" + 
+					json.list[i].readcount; */
+				}
+				
+				$("#healthVideo").html(values);
 				
 				
 			},

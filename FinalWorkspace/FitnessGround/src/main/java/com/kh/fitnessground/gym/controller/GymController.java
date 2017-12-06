@@ -1,5 +1,7 @@
 package com.kh.fitnessground.gym.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.fitnessground.community.model.vo.MeetingBoard;
 import com.kh.fitnessground.gym.model.service.GymService;
 import com.kh.fitnessground.gym.model.vo.Gym;
 
@@ -92,9 +95,14 @@ public class GymController {
 	}
 	
 	@RequestMapping(value="findhealth.do")
-	public void findHealth()
+	public ModelAndView findHealth()
 	{
+		ModelAndView mv = new ModelAndView("findgym/findgym");
+		ArrayList<Gym> list = gymService.healthList();
 		
+		System.out.println(list);
+		mv.addObject("list", list);
+		return mv;
 	}
 	
 	@RequestMapping(value="findpublicfacilities.do")

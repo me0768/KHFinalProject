@@ -12,12 +12,18 @@
 
 <c:import url="../include/common/head.jsp" />
 
-<c:import url="../include/main/nav.jsp" />
-
-<title>운동시설 찾기</title>
-<br>
-<br>
-<br>
+<c:import url="../include/common/headend.jsp" />
+<div id="page-wrapper">
+		<!-- Header -->
+		<div id="mypage_header">
+            <!-- Nav -->
+			<c:import url="../include/main/nav.jsp" />
+			
+			<c:import url="../user/login.jsp"/>
+			<c:import url="../user/findidpwd.jsp"/>
+			<c:import url="../user/register.jsp"/>
+		</div>
+    </div>
 
 <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=vWkJuuK8gXcwBG8Rijlh&submodules=geocoder">
 	$('#myTab a').click(function(e) {
@@ -27,9 +33,9 @@
 	});
 </script>
 
-<script type="text/javascript" src="http://openAPI.seoul.go.kr:8088/784645794a6b616931377242486776/xml/ListPublicPhysicalPlant/1/5/">
+<!-- <script type="text/javascript" src="http://openAPI.seoul.go.kr:8088/784645794a6b616931377242486776/xml/ListPublicPhysicalPlant/1/5/">
 
-</script>
+</script> -->
 
 <link rel="stylesheet"
 	href="/fitnessground/resources/css/findgym/findgym.css" />
@@ -68,36 +74,14 @@
   			<div class="tab-content">
     			<div role="tabpanel" class="tab-pane active" id="home">
     				<ul>
+    				<c:forEach items="${list}" var="hlist">
     					<li>
     					<div id="thumbnail">
   							<a href=""><img src=""></a>
   						</div>
-  							헬스장1<br>주소 : 
+  							${hlist.gym_name }<br>${hlist.location } 
     					</li>
-    					<li>
-    					<div id="thumbnail">
-  							<a href=""><img src=""></a>
-  						</div>
-  							헬스장2
-    					</li>
-    					<li>
-    					<div id="thumbnail">
-  							<a href=""><img src=""></a>
-  						</div>
-  							헬스장3
-    					</li>
-    					<li>
-    					<div id="thumbnail">
-  							<a href=""><img src=""></a>
-  						</div>
-  							헬스장4
-    					</li>
-    					<li>
-    					<div id="thumbnail">
-  							<a href=""><img src=""></a>
-  						</div>
-  							헬스장5
-    					</li>
+    				</c:forEach>
     				</ul>
     			</div>
     			<div role="tabpanel" class="tab-pane" id="profile">
@@ -223,6 +207,8 @@
 		        if (status === naver.maps.Service.Status.ERROR) {
 		            return alert('올바른 주소가 아닙니다.');
 		        }
+		        
+		        	var marker;
 
 		        var item = response.result.items[0],
 		            addrType = item.isRoadAddress ? '[도로명 주소]' : '[지번 주소]',
@@ -272,7 +258,7 @@
 		       
 		    });		   
 
-		    searchAddressToCoordinate('역삼동');
+		    searchAddressToCoordinate('용산구');
 		}
 		 
 		

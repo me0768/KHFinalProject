@@ -39,6 +39,15 @@ public class Gym {
 		this.delete_date = delete_date;
 		this.approval_state = approval_state;
 	}
+	
+	public Gym(int gym_no, String gym_name, String location, String tel)
+	{
+		super();
+		this.gym_no = gym_no;
+		this.gym_name = gym_name;
+		this.location = location;
+		this.tel = tel;
+	}
 
 	public int getGym_no() {
 		return gym_no;

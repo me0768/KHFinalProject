@@ -1,12 +1,15 @@
 package com.kh.fitnessground.user.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.fitnessground.gym.model.vo.GymQnABoard;
+import com.kh.fitnessground.gym.model.vo.GymQnABoardPage;
 import com.kh.fitnessground.user.model.vo.User;
 import com.kh.fitnessground.user.model.vo.UserSchedule;
 
@@ -76,10 +79,6 @@ public class UserDao {
 		sqlSession.delete("user.userDelete", u);
 	}
 
-	public ArrayList userBoardSearch(String keyword) {
-		return (ArrayList) sqlSession.selectList("user.userBoardSearch", keyword);
-	}
-
 	public ArrayList<UserSchedule> userAllSchedule(int userNo) {
 		List<UserSchedule> list = sqlSession.selectList("user.userAllSchedule", userNo);
 		return new ArrayList<UserSchedule>(list);
@@ -91,5 +90,23 @@ public class UserDao {
 
 	public void userProfileImgUpdate(User u) {
 		sqlSession.update("user.userProfileImgUpdate", u);
+	}
+
+	public ArrayList<GymQnABoard> qnABoardList(HashMap<String, Object> parameters) {
+		List<GymQnABoard> list = sqlSession.selectList("gym.myPageQnABoardList", parameters); 
+		return new ArrayList<GymQnABoard>(list);
+	}
+
+	public int qnABoardCount(int user_no) {
+		return sqlSession.selectOne("gym.myPageQnABoardCount", user_no);
+	}
+
+	public int qnABoardSearchCount(HashMap<String, Object> parameters) {
+		return sqlSession.selectOne("gym.myPageQnABoardSearchCount", parameters);
+	}
+
+	public ArrayList<GymQnABoard> qnaBoardSearch(HashMap<String, Object> parameters) {
+		List<GymQnABoard> list = sqlSession.selectList("gym.myPageQnABoardSearchList", parameters);
+		return new ArrayList<GymQnABoard>(list);
 	}
 }

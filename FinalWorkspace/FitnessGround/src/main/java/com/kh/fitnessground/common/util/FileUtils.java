@@ -15,9 +15,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 @Component("fileUtils")
 public class FileUtils {
-	private static final String filePath = "C:\\git\\KHFinalProject\\FinalWorkspace\\FitnessGround\\src\\main\\webapp\\resources\\images\\myimages\\";
 
 	public List<Map<String, Object>> parseInsertFileInfo(HttpServletRequest request) throws Exception {
+		final String filePath = request.getSession().getServletContext().getRealPath("/resources/images/myimages/");
 		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
 		Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
 		MultipartFile multipartFile = null;

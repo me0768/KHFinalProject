@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.kh.fitnessground.gym.model.vo.GymQnABoard;
+import com.kh.fitnessground.gym.model.vo.GymQnABoardPage;
 import com.kh.fitnessground.user.model.vo.User;
 import com.kh.fitnessground.user.model.vo.UserSchedule;
 
@@ -37,8 +39,6 @@ public interface UserService {
 
 	void userDelete(User u);
 
-	ArrayList userBoardSearch(String searchkeyword);
-
 	ArrayList<UserSchedule> userAllSchedule(int userNo);
 	
 	User userPwdSelect(int user_no);
@@ -46,4 +46,13 @@ public interface UserService {
 	void userProfileImgUpdate(User u, HttpServletRequest request) throws Exception;
 
 	void userProfileImgRemove(User u);
+
+	ArrayList<GymQnABoard> qnABoardList(GymQnABoardPage qPage, int user_no);
+
+	int qnABoardCount(int user_no);
+
+	int qnABoardSearchCount(int user_no, String keyword);
+
+	ArrayList<GymQnABoard> qnABoardSearch(GymQnABoardPage qPage, String keyword, int user_no);
+	
 }

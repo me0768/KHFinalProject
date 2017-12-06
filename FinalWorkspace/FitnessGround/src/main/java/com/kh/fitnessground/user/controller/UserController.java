@@ -18,15 +18,13 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 
 import com.kh.fitnessground.gym.model.vo.GymQnABoard;
+import com.kh.fitnessground.gym.model.vo.GymQnABoardPage;
 import com.kh.fitnessground.user.model.service.UserService;
 import com.kh.fitnessground.user.model.vo.User;
-import com.kh.fitnessground.user.model.vo.UserSchedule;
 
 @Controller
 public class UserController {
@@ -114,148 +112,6 @@ public class UserController {
 		return mv;
 	}
 	
-	// 마이페이지로 뷰 이동
-	@RequestMapping(value="/mypage.do")
-	public ModelAndView myPageMethod(HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView("user/myPage");
-		int userNo = Integer.parseInt(request.getParameter("userno"));
-		mv.addObject("yesterday", userService.yesterdaySchedule(userNo));
-		mv.addObject("today", userService.todaySchedule(userNo));
-		/*System.out.println(userService.yesterdaySchedule(userNo));
-		System.out.println(userService.todaySchedule(userNo));*/
-		String currentDate = new SimpleDateFormat("yyyy.MM.dd").format(new Date(System.currentTimeMillis()));
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(new Date(System.currentTimeMillis()));
-		cal.add(Calendar.DATE, -1);
-		String yesterDate = new SimpleDateFormat("yyyy.MM.dd").format(cal.getTime());
-		mv.addObject("currentDate", currentDate);
-		mv.addObject("yesterDate", yesterDate);
-		return mv; 
-	}
-	// 회원정보 뷰 이동
-	@RequestMapping(value="/udetail.do")
-	public ModelAndView userDetailMethod(HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView("user/userDetail");
-		return mv; 
-	}
-	// 회원정보 수정 및 비밀번호 수정, 회원탈퇴에서 원비밀번호 확인 ajax
-	@RequestMapping(value="/pwdCk.do")
-	@ResponseBody
-	public String PwdCheckMethod(User user, HttpServletRequest request, HttpServletResponse response) {
-		response.setContentType("application/json; charset=utf-8");	
-		JSONObject job = new JSONObject();
-		User u = userService.userPwdSelect(user.getUser_no());
-		if(u!=null && BCrypt.checkpw(user.getPwd(), u.getPwd())) 
-			job.put("result", 1);
-		else
-			job.put("result", -1);
-		return job.toJSONString();
-	}
-	// 회원 프로필 이미지 수정
-	@RequestMapping(value="/profileImgModify.do")
-	public ModelAndView userProfileImgModifyMethod(User u, HttpServletRequest request) throws Exception {
-		User user = userService.loginCheck(u.getEmail());		
-		// 기존 이미지가 있을 경우, 파일 삭제
-		String fileName = user.getRename_image();
-		if(fileName != null) {
-			File file = new File("C:\\git\\KHFinalProject\\FinalWorkspace\\FitnessGround\\src\\main\\webapp\\resources\\images\\myimages\\"+ fileName);
-			if(file.exists()) file.delete();
-		}		
-		ModelAndView mv = new ModelAndView("redirect:/mypage.do?userno="+u.getUser_no());
-		userService.userProfileImgUpdate(u, request);
-		HttpSession session = request.getSession();
-		session.setAttribute("user", user);
-		return mv; 
-	}
-	// 회원 프로필 이미지 삭제
-	@RequestMapping(value="/profileImgRemove.do")
-	public ModelAndView userProfileImgRemoveMethod(User u, HttpServletRequest request) {
-		User user = userService.loginCheck(u.getEmail());		
-		// 기존 이미지 파일 삭제
-		String fileName = user.getRename_image();
-		if(fileName != null) {
-			File file = new File("C:\\git\\KHFinalProject\\FinalWorkspace\\FitnessGround\\src\\main\\webapp\\resources\\images\\myimages\\"+ fileName);
-			if(file.exists()) file.delete();
-		}
-		ModelAndView mv = new ModelAndView("redirect:/mypage.do?userno="+u.getUser_no());
-		userService.userProfileImgRemove(u);
-		HttpSession session = request.getSession();
-		session.setAttribute("user", user);
-		return mv; 
-	}
-	// 회원정보 수정 ajax
-	@RequestMapping(value="/uupdate.do")
-	public ModelAndView userUpdateMethod(User u, ModelAndView mv, HttpServletRequest request) {
-		userService.userUpdate(u);
-		HttpSession session = request.getSession();
-		session.setAttribute("user", userService.loginCheck(u.getEmail()));
-		mv.setViewName("jsonView");
-		return mv; 
-	}
-	// 비밀번호 수정 뷰 이동
-	@RequestMapping(value="/userpwd.do")
-	public ModelAndView userPwdModifyMethod(HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView("user/userPwdModify");
-		return mv; 
-	}
-	// 비밀번호 수정 ajax
-	@RequestMapping(value="/upwdupdate.do")
-	public ModelAndView userPwdUpdateMethod(User user, ModelAndView mv, HttpServletRequest request) {
-		String hashPassword = BCrypt.hashpw(user.getPwd(), BCrypt.gensalt()); // 비밀번호 암호화
-		user.setPwd(hashPassword);
-		userService.userPwdUpdate(user);
-		HttpSession session = request.getSession();
-		if(session != null)
-			session.invalidate();
-		mv.setViewName("jsonView");
-		return mv;
-	}
-	// 회원탈퇴 뷰 이동
-	@RequestMapping(value="/userdel.do")
-	public ModelAndView userDeleteViewMethod(HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView("user/userDelete");
-		return mv; 
-	}
-	// 회원탈퇴 ajax
-	@RequestMapping(value="/userdelete.do")
-	public ModelAndView userDeleteMethod(User u, ModelAndView mv, HttpServletRequest request) {
-		userService.userDelete(u);
-		HttpSession session = request.getSession();
-		if(session != null) {
-			session.invalidate();
-		}
-		mv.setViewName("jsonView");
-		return mv; 
-	}
-	// 마이페이지 작성 글 목록 뷰
-	@RequestMapping(value="/userboard.do")
-	public ModelAndView userBoardMethod(HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView("user/userBoard");
-//		ArrayList<GymQnABoard> list = userService.anABoardList(Integer.parseInt(request.getParameter("userno")));
-//		mv.addObject("list", list);
-		return mv; 
-	}
-	@RequestMapping(value="/userboarddetail.do")
-	public ModelAndView userBoardDetailMethod(HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView("");
-		// mv에 글 번호 값 추가
-		return mv; 
-	}
-	@RequestMapping(value="/userboardsearch.do")
-	public ModelAndView userBoardSearchMethod(HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView("user/userBoard");
-		userService.userBoardSearch(request.getParameter("keyword")); //리턴된 리스트값 저장하는 변수 만들어서 받기
-		// mv에 추가
-		return mv; 
-	}
-	@RequestMapping(value="/uschedule.do")
-	public ModelAndView userScheduleMethod(HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView("user/userSchedule");
-		int userNo = Integer.parseInt(request.getParameter("userno"));
-		//mv.addObject("userSchedule", userService.userAllSchedule(userNo));
-		return mv; 
-	}
-	
 	// 아이디 찾기
 	@RequestMapping(value="/findid.do")
 	public ModelAndView findIdMethod(User user, HttpServletRequest request, HttpServletResponse response) {
@@ -312,5 +168,195 @@ public class UserController {
 	@RequestMapping(value="/moveregistergym.do")
 	public String moveRegisterGymMethod(HttpSession session) {
 		return "gym/registergym";
+	}
+	
+
+	
+	// 마이페이지로 뷰 이동
+	@RequestMapping(value="/mypage.do")
+	public ModelAndView myPageMethod(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView("user/myPage");
+		int userNo = Integer.parseInt(request.getParameter("userno"));
+		mv.addObject("yesterday", userService.yesterdaySchedule(userNo));
+		mv.addObject("today", userService.todaySchedule(userNo));
+		/*System.out.println(userService.yesterdaySchedule(userNo));
+		System.out.println(userService.todaySchedule(userNo));*/
+		String currentDate = new SimpleDateFormat("yyyy.MM.dd").format(new Date(System.currentTimeMillis()));
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date(System.currentTimeMillis()));
+		cal.add(Calendar.DATE, -1);
+		String yesterDate = new SimpleDateFormat("yyyy.MM.dd").format(cal.getTime());
+		mv.addObject("currentDate", currentDate);
+		mv.addObject("yesterDate", yesterDate);
+		return mv; 
+	}
+	// 회원정보 뷰 이동
+	@RequestMapping(value="/udetail.do")
+	public ModelAndView userDetailMethod(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView("user/userDetail");
+		return mv; 
+	}
+	// 회원정보 수정 및 비밀번호 수정, 회원탈퇴에서 원비밀번호 확인 ajax
+	@RequestMapping(value="/pwdCk.do")
+	@ResponseBody
+	public String PwdCheckMethod(User user, HttpServletRequest request, HttpServletResponse response) {
+		response.setContentType("application/json; charset=utf-8");	
+		JSONObject job = new JSONObject();
+		User u = userService.userPwdSelect(user.getUser_no());
+		if(u!=null && BCrypt.checkpw(user.getPwd(), u.getPwd())) 
+			job.put("result", 1);
+		else
+			job.put("result", -1);
+		return job.toJSONString();
+	}
+	// 회원 프로필 이미지 수정
+	@RequestMapping(value="/profileImgModify.do")
+	public ModelAndView userProfileImgModifyMethod(User u, HttpServletRequest request) throws Exception {
+		User user = userService.loginCheck(u.getEmail());		
+		// 기존 이미지가 있을 경우, 파일 삭제
+		String fileName = user.getRename_image();
+		if(fileName != null) {
+			File file = new File(request.getSession().getServletContext().getRealPath("/resources/images/myimages/"+fileName));
+			if(file.exists()) file.delete();
+		}		
+		ModelAndView mv = new ModelAndView("redirect:/mypage.do?userno="+u.getUser_no());
+		userService.userProfileImgUpdate(u, request);
+		HttpSession session = request.getSession();
+		session.setAttribute("user", user);
+		return mv; 
+	}
+	// 회원 프로필 이미지 삭제
+	@RequestMapping(value="/profileImgRemove.do")
+	public ModelAndView userProfileImgRemoveMethod(User u, HttpServletRequest request) {
+		User user = userService.loginCheck(u.getEmail());		
+		// 기존 이미지 파일 삭제
+		String fileName = user.getRename_image();
+		if(fileName != null) {
+			File file = new File(request.getSession().getServletContext().getRealPath("/resources/images/myimages/"+fileName));
+			if(file.exists()) file.delete();
+		}	
+		ModelAndView mv = new ModelAndView("redirect:/mypage.do?userno="+u.getUser_no());
+		userService.userProfileImgRemove(u);
+		HttpSession session = request.getSession();
+		session.setAttribute("user", user);
+		return mv; 
+	}
+	// 회원정보 수정 ajax
+	@RequestMapping(value="/uupdate.do")
+	public ModelAndView userUpdateMethod(User u, ModelAndView mv, HttpServletRequest request) {
+		userService.userUpdate(u);
+		HttpSession session = request.getSession();
+		session.setAttribute("user", userService.loginCheck(u.getEmail()));
+		mv.setViewName("jsonView");
+		return mv; 
+	}
+	// 비밀번호 수정 뷰 이동
+	@RequestMapping(value="/userpwd.do")
+	public ModelAndView userPwdModifyMethod(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView("user/userPwdModify");
+		return mv; 
+	}
+	// 비밀번호 수정 ajax
+	@RequestMapping(value="/upwdupdate.do")
+	public ModelAndView userPwdUpdateMethod(User user, ModelAndView mv, HttpServletRequest request) {
+		String hashPassword = BCrypt.hashpw(user.getPwd(), BCrypt.gensalt()); // 비밀번호 암호화
+		user.setPwd(hashPassword);
+		userService.userPwdUpdate(user);
+		HttpSession session = request.getSession();
+		if(session != null)
+			session.invalidate();
+		mv.setViewName("jsonView");
+		return mv;
+	}
+	// 회원탈퇴 뷰 이동
+	@RequestMapping(value="/userdel.do")
+	public ModelAndView userDeleteViewMethod(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView("user/userDelete");
+		return mv; 
+	}
+	// 회원탈퇴 ajax
+	@RequestMapping(value="/userdelete.do")
+	public ModelAndView userDeleteMethod(User u, ModelAndView mv, HttpServletRequest request) {
+		userService.userDelete(u);
+		HttpSession session = request.getSession();
+		if(session != null) {
+			session.invalidate();
+		}
+		mv.setViewName("jsonView");
+		return mv; 
+	}
+	// 내 게시글 목록
+	@RequestMapping(value="/userboard.do")
+	public ModelAndView userBoardMethod(HttpServletRequest request) {
+		int user_no = Integer.parseInt(request.getParameter("userno"));
+		
+		// 문의하기 목록 조회
+		int qCurrentPage = 1;
+		int limit = 10;
+		if (request.getParameter("page") != null)
+			qCurrentPage = Integer.parseInt(request.getParameter("page"));
+		int listCount = userService.qnABoardCount(user_no);
+		GymQnABoardPage qPage = new GymQnABoardPage(qCurrentPage, limit);
+		int qMaxPage = (int) ((double) listCount / limit + 0.9);
+		int qStartPage = ((int) ((double) qCurrentPage / limit + 0.9) - 1) * limit + 1;
+		int qEndPage = qStartPage + limit - 1;
+		if (qMaxPage < qEndPage)	qEndPage = qMaxPage;
+		ArrayList<GymQnABoard> qlist = userService.qnABoardList(qPage, user_no);
+		
+		// 커뮤니티 목록 조회
+		
+		
+		ModelAndView mv = new ModelAndView("user/userBoard");
+		if(request.getParameter("com")!=null)
+			mv.addObject("com","ok");
+		else mv.addObject("com","no");
+		mv.addObject("qlist", qlist);
+		mv.addObject("qCurrentPage", qCurrentPage);
+    	mv.addObject("qMaxPage", qMaxPage);
+    	mv.addObject("qStartPage", qStartPage);
+    	mv.addObject("qEndPage", qEndPage);
+		return mv; 
+	}
+	// 문의하기 검색
+	@RequestMapping(value="/qSearch.do")
+	public ModelAndView userBoardSearchMethod(HttpServletRequest request) {
+		
+		ModelAndView mv = new ModelAndView("user/userBoard");
+		
+		String keyword = request.getParameter("searchKeyword");
+		int user_no = Integer.parseInt(request.getParameter("userno"));
+		int qCurrentPage = 1;
+		int limit = 10;
+		if (request.getParameter("page") != null)
+			qCurrentPage = Integer.parseInt(request.getParameter("page"));
+		int listCount = userService.qnABoardSearchCount(user_no, keyword);
+		GymQnABoardPage qPage = new GymQnABoardPage(qCurrentPage, limit);
+		int qMaxPage = (int) ((double) listCount / limit + 0.9);
+		int qStartPage = ((int) ((double) qCurrentPage / limit + 0.9) - 1) * limit + 1;
+		int qEndPage = qStartPage + limit - 1;
+		if (qMaxPage < qEndPage)	qEndPage = qMaxPage;
+		
+		ArrayList<GymQnABoard> qlist = userService.qnABoardSearch(qPage, keyword, user_no);
+		mv.addObject("qlist", qlist);
+		mv.addObject("qCurrentPage", qCurrentPage);
+    	mv.addObject("qMaxPage", qMaxPage);
+    	mv.addObject("qStartPage", qStartPage);
+    	mv.addObject("qEndPage", qEndPage);
+		
+		return mv; 
+	}
+	// 내 게시글 상세보기
+	@RequestMapping(value="/userboarddetail.do")
+	public ModelAndView userBoardDetailMethod(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView("");
+		// mv에 글 번호 값 추가
+		return mv; 
+	}
+	@RequestMapping(value="/uschedule.do")
+	public ModelAndView userScheduleMethod(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView("user/userSchedule");
+		int userNo = Integer.parseInt(request.getParameter("userno"));
+		//mv.addObject("userSchedule", userService.userAllSchedule(userNo));
+		return mv; 
 	}
 }

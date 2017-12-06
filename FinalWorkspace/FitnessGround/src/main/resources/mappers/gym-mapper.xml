@@ -4,7 +4,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="gym">
 
-	<resultMap id="resultUser" type="GymQnABoard">
+	<resultMap id="resultGymQnABoard" type="GymQnABoard">
 		<id property="q_no" column="q_no" />
 		<result property="sender" column="sender" />
 		<result property="receiver" column="receiver" />
@@ -16,5 +16,35 @@
 		<result property="q_level" column="q_level" />
 		<result property="ref_no" column="ref_no" />
 	</resultMap>
+	
+	<select id="myPageQnABoardList" parameterType="hashmap" resultMap="resultGymQnABoard" resultType="list">
+		<![CDATA[ 
+		select * from (
+			select rownum rnum, q_no, sender, receiver, title, content, original_filename, rename_filename, write_date, q_level, ref_no
+			from (select * from tb_qna where (sender=#{user_no} or receiver=#{user_no}) order by ref_no desc, q_level asc)
+		) where (rnum>=#{qPage.startRow} and rnum<=#{qPage.endRow})
+		]]>
+	</select>
+	
+	<select id="myPageQnABoardCount" parameterType="_int" resultType="_int">
+		<![CDATA[ 
+		select count(*) from tb_qna where sender=#{userNo} or receiver=#{userNo}
+		]]>
+	</select>
+	
+	<select id="myPageQnABoardSearchList" parameterType="hashmap" resultMap="resultGymQnABoard" resultType="list">
+		<![CDATA[ 
+		select * from (
+			select rownum rnum, q_no, sender, receiver, title, content, original_filename, rename_filename, write_date, q_level, ref_no
+			from (select * from tb_qna where (sender=#{user_no} or receiver=#{user_no}) and (title like #{keyword}) order by ref_no desc, q_level asc)
+		) where (rnum>=#{qPage.startRow} and rnum<=#{qPage.endRow})
+		]]>
+	</select>
+	
+	<select id="myPageQnABoardSearchCount" parameterType="hashmap" resultType="_int">
+		<![CDATA[ 
+		select count(*) from tb_qna where (sender=#{user_no} or receiver=#{user_no}) and (title like #{keyword})
+		]]>
+	</select>
 	
 </mapper>

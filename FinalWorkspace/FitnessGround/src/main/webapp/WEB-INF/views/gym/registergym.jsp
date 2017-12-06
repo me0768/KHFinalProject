@@ -1,11 +1,60 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Calendar"%>
 
 <c:import url="../include/common/head.jsp" />
 
 <link rel="stylesheet" href="/fitnessground/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="/fitnessground/resources/css/gym/registergym.css">
+<style type="text/css">
+	.wrap {
+	width: 500px;
+	margin: 0 auto;
+}
+.btn-holder {
+	text-align: center;
+	margin: 10px 0 10px 0;
+}
+#calendar table {
+	border-collapse: collapse;
+	text-align: center;
+}
+#calendar table thead td {
+	height: 30px;
+	font-weight: bold;
+}	
+#calendar table td {
+	border: solid 1px #000;
+}
+#calendar table td.date-cell {
+	height: 50px;
+}
+#calendar table td.sun {
+	color: red;
+}
+#calendar table td.sat {
+	color: blue;
+}
+#calendar table td.not-this-month {
+	background: #ddd;
+	color: #999;
+}
+
+#datesettings{
+	position: fixed;
+	display: none;
+	width: 100vw;
+	height: 30vh;
+	top: 70vh;
+	background-color: white;
+	left: 0;
+	z-index: 999;
+	border: 1px solid black;
+}
+
+</style>
 
 <c:import url="../include/common/headend.jsp" />
 
@@ -193,9 +242,20 @@
 			<div id="collapseThree" class="panel-collapse collapse in"
 				role="tabpanel" aria-labelledby="headingThree">
 				<div class="panel-body">
-					<div id="calendar" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-						<!-- 캘린더 ajax -->
+					
+					<div class='col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-12 col-xs-12'>
+						<div class='btn-holder'>
+							<button id='btnPrev' class="btn btn-danger">&lt;</button>
+							 <span id='currentDate'></span> 
+							<button id='btnNext' class="btn btn-danger">&gt;</button>
+						</div>
+						<div id="calendar"></div>
 					</div>
+					<script type="text/javascript" src="/fitnessground/resources/js/common/calendar.js"></script>
+					<div id="datesettings">
+						ㅇㅇ
+						</div>
+					
 				</div>
 			</div>
 		</div>

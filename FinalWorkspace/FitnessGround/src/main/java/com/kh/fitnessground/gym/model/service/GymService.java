@@ -15,6 +15,9 @@ public interface GymService {
 		int getListCount();
 		// 목록 가져오기
 		ArrayList<GymReview> selectList(int limit);
+		
+		// 헬스장 목록 가져오기
+		ArrayList<Gym> healthList();
 		//등록
 		int enrollReview(GymReview gymreview);
 		//삭제

@@ -48,4 +48,9 @@ public class GymServiceImpl implements GymService{
 	public int updateReview(int gcno, GymReview gymreview) {
 		return gymDao.updateReview(gcno,gymreview);
 	}
+
+	@Override
+	public ArrayList<Gym> healthList() {
+		return gymDao.healthList();
+	}
 }

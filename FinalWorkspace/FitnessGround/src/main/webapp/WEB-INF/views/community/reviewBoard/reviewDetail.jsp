@@ -3,6 +3,20 @@
 <%@ taglib uri= "http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 	<c:import url="../../include/common/head.jsp" />
+	
+	<style type="text/css">
+    h1{
+    font-size: 30pt;
+    }
+    div#detail_all_div{
+    padding: 5%;
+    }
+    div#detail_div{
+    border: 1px solid;
+    }
+    </style>
+	
+	
 	<c:import url="../../include/common/headend.jsp" />
   
 <script src="//cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>
@@ -19,17 +33,7 @@
 		</div>
     </div>
     
-    <style type="text/css">
-    h1{
-    font-size: 30pt;
-    }
-    div#detail_all_div{
-    padding: 5%;
-    }
-    div#detail_div{
-    border: 1px solid;
-    }
-    </style>
+    
       
     
     <br>

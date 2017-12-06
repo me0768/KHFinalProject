@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
 <meta http-equiv="Content-Type"
 	content="text/html; charset=UTF-8; IE=edge">
 <meta name="viewport"
@@ -11,6 +8,9 @@
 	maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
 
 <c:import url="../include/common/head.jsp" />
+
+<link rel="stylesheet"
+	href="/fitnessground/resources/css/findgym/findgym.css" />
 
 <c:import url="../include/common/headend.jsp" />
 <div id="page-wrapper">
@@ -36,11 +36,6 @@
 <!-- <script type="text/javascript" src="http://openAPI.seoul.go.kr:8088/784645794a6b616931377242486776/xml/ListPublicPhysicalPlant/1/5/">
 
 </script> -->
-
-<link rel="stylesheet"
-	href="/fitnessground/resources/css/findgym/findgym.css" />
-</head>
-<c:import url="../include/common/headend.jsp" />
 <div id="container">
 	<div id="navigator">
 		
@@ -269,4 +264,3 @@
 </div>
 <c:import url="../include/common/end.jsp" />
 <c:import url="../include/main/footer.jsp" />
-</html>

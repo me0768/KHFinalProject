@@ -5,21 +5,8 @@
 
 <html>
 	<c:import url="../include/common/head.jsp" />
-	<c:import url="../include/common/headend.jsp" />
-    
-	<div id="page-wrapper">
-		<!-- Header -->
-		<div id="mypage_header">
-            <!-- Nav -->
-			<c:import url="../include/main/nav.jsp" />
-			
-			<c:import url="../user/login.jsp"/>
-			<c:import url="../user/findidpwd.jsp"/>
-			<c:import url="../user/register.jsp"/>
-		</div>
-    </div>
-    
-  <style type="text/css">
+	
+	<style type="text/css">
     h1#community_title{
     font-family:"Lato";
     font-size:40pt;
@@ -42,6 +29,23 @@
 	font-size:10pt;
 	} 
   </style>
+	
+	
+	<c:import url="../include/common/headend.jsp" />
+    
+	<div id="page-wrapper">
+		<!-- Header -->
+		<div id="mypage_header">
+            <!-- Nav -->
+			<c:import url="../include/main/nav.jsp" />
+			
+			<c:import url="../user/login.jsp"/>
+			<c:import url="../user/findidpwd.jsp"/>
+			<c:import url="../user/register.jsp"/>
+		</div>
+    </div>
+    
+  
 
 <script type="text/javascript">
 function meetingPage(){
@@ -55,8 +59,6 @@ function qnaPage(){
 }
 </script>
 
-</head>
-<body>
 <br><br><br>
 <div id="community_main">
 <h1 id=community_title>커뮤니티</h1>
@@ -78,10 +80,7 @@ function qnaPage(){
 <hr>
 </div>
 </div>
-</body>
-
 
     <c:import url="../include/main/footer.jsp" />
 
     <c:import url="../include/common/end.jsp" />
-</html>

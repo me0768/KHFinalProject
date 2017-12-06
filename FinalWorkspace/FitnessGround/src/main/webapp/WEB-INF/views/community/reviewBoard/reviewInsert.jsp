@@ -4,21 +4,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <c:import url="../../include/common/head.jsp" />
-<c:import url="../../include/common/headend.jsp" />
-
-<script src="//cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>
-
-<div id="page-wrapper">
-	<!-- Header -->
-	<div id="mypage_header">
-		<!-- Nav -->
-		<c:import url="../../include/main/nav.jsp" />
-
-		<c:import url="../../user/login.jsp" />
-		<c:import url="../../user/findidpwd.jsp" />
-		<c:import url="../../user/register.jsp" />
-	</div>
-</div>
 
 <style type="text/css">
 h1 {
@@ -62,6 +47,24 @@ textarea#editor1 {
 	rows: 40;
 }
 </style>
+
+<c:import url="../../include/common/headend.jsp" />
+
+<script src="//cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>
+
+<div id="page-wrapper">
+	<!-- Header -->
+	<div id="mypage_header">
+		<!-- Nav -->
+		<c:import url="../../include/main/nav.jsp" />
+
+		<c:import url="../../user/login.jsp" />
+		<c:import url="../../user/findidpwd.jsp" />
+		<c:import url="../../user/register.jsp" />
+	</div>
+</div>
+
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#list").on("click", function(e) { //목록으로

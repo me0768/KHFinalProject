@@ -3,21 +3,8 @@
 <%@ taglib uri= "http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 	<c:import url="../../include/common/head.jsp" />
-	<c:import url="../../include/common/headend.jsp" />
-    
-	<div id="page-wrapper">
-		<!-- Header -->
-		<div id="mypage_header">
-            <!-- Nav -->
-			<c:import url="../../include/main/nav.jsp" />
-			
-			<c:import url="../../user/login.jsp"/>
-			<c:import url="../../user/findidpwd.jsp"/>
-			<c:import url="../../user/register.jsp"/>
-		</div>
-    </div>
-    
-   <style type="text/css">
+	
+	 <style type="text/css">
 	body {
 		font-family: "Open Sans", sans-serif;
 		line-height: 1.25;
@@ -95,6 +82,22 @@
 		text-overflow: ellipsis;
 	}
 </style>
+	
+	<c:import url="../../include/common/headend.jsp" />
+    
+	<div id="page-wrapper">
+		<!-- Header -->
+		<div id="mypage_header">
+            <!-- Nav -->
+			<c:import url="../../include/main/nav.jsp" />
+			
+			<c:import url="../../user/login.jsp"/>
+			<c:import url="../../user/findidpwd.jsp"/>
+			<c:import url="../../user/register.jsp"/>
+		</div>
+    </div>
+    
+  
  
    <script type="text/javascript">
 
@@ -108,7 +111,7 @@
 			location.href = "qna.do";
 		}
 	</script>
-<body>
+	
 <br><br>
 <h1 align="center">Q & A</h1>
 <br><br>
@@ -193,5 +196,3 @@
 
     <c:import url="../../include/main/footer.jsp" />
     <c:import url="../../include/common/end.jsp" />
-</body>
-</html>

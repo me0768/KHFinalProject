@@ -1,6 +1,8 @@
 package com.kh.fitnessground.workout.health.model.vo;
 
 public class Health {
+	
+	
 	private int v_no;
 	private String title;
 	private String content;

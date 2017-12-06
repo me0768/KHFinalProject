@@ -65,40 +65,72 @@
       </div>
    </div>
    <!-- 동영상 리스트  -->
-	  
-	<c:if test="${!empty list}">
-	   <c:forEach items="${list}" var="y" varStatus="st">
-	   <div
-	      class="col-sm-9 col-md-9 col-lg-9 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
+	  <div
+	      class="col-sm-8 col-md-8 col-lg-8 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
 	      <div class="workout_videos">
 	         <div class="row justify-content-center">
-	            <div class="video">
-	               <iframe width="250" src="https://www.youtube.com/embed/${y.url}"
-	                  frameborder="0" gesture="media" allow="encrypted-media"
-	                  allowfullscreen></iframe>
-	               <p id="video_text">${y.title}</p>
-	               <p id="video_text"><c:url var="detail" value="#detail" /></p>
-	            </div>
-	            <div class="video">
-	               <iframe width="250" src="https://www.youtube.com/embed/x7L4rhfJt7U"
-	                  frameborder="0" gesture="media" allow="encrypted-media"
-	                  allowfullscreen></iframe>
-	                  <p id="video_text">title</p>
-	               <p id="video_text">description</p>
-	            </div>
-	            <div class="video">
-	               <iframe width="250" src="https://www.youtube.com/embed/x7L4rhfJt7U"
-	                  frameborder="0" gesture="media" allow="encrypted-media"
-	                  allowfullscreen></iframe>
-	                  <p id="video_text">title</p>
-	               <p id="video_text">description</p>
-	            </div>
+				<c:if test="${!empty list}">
+				   <c:forEach items="${list}" var="y" varStatus="st">
+	   
+		            <div class="video">
+		            	<div id="video-iframe">
+		               <iframe id="video-thumbnail" src="https://www.youtube.com/embed/${y.url}"
+		                  frameborder="0" gesture="media" allow="encrypted-media"
+		                  allowfullscreen></iframe>
+		                   <a href="#" data-toggle="modal" data-target=".${y.v_no }">
+	                  		<div id="video-cover"></div>
+		                  </a>
+		                  </div>
+		               <div id="video-info">
+			               <span id="video-text">${y.title}</span>
+			               <span id="video-text"><c:url var="detail" value="#detail" /></span>
+		               </div> 
+		            </div>
+		            	   <!-- video modal -->
+					<div class="modal fade ${y.v_no }" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+					  <div class="modal-dialog modal-lg">
+					   <div class="modal-content">
+					
+					        <div class="modal-header">
+					          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+					          <h4 class="modal-title" id="myLargeModalLabel">${y.title}<a class="anchorjs-link" href="#myLargeModalLabel"><span class="anchorjs-icon"></span></a></h4>
+					        </div>
+					        <div class="modal-body">
+					        	<div class="modal-play">
+						           <iframe id="video-play" src="https://www.youtube.com/embed/${y.url}"
+					                  frameborder="0" gesture="media" allow="encrypted-media"
+					                  allowfullscreen></iframe>
+				                  </div>
+				               <div class="modal-desc">
+				               	<div id="video-content">
+				               	<span>${y.content }</span>
+				               	</div>
+				               	<div id="video-reply">
+				               		<input type="text" id="reply-input" placeholder="댓글을 입력하세요">
+				               		<button type="submit" id="reply-btn">댓글달기</button>
+				       
+				               	</div>
+				               </div>
+					        </div>
+					      </div>
+					  </div>
+					</div>
+	              </c:forEach>
+				</c:if>
 	         </div>
 	
 	      </div>
 	   </div>
-    </c:forEach>
-   </c:if>
+
+
+<script type="text/javascript">
+$('#myModal').on('shown.bs.modal', function () {
+	  $('#myInput').focus()
+	})
+
+</script>
+	   
+  
    
 
 </div>

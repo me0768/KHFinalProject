@@ -1,6 +1,9 @@
 @charset "UTF-8";
 
 /* layout */
+body{
+	background: #ffffff !important;
+}
 #workout-head{
 	height: 10vh;
 }
@@ -10,13 +13,12 @@
 #workout-body{
 	margin-top: 5vh;
 	height: auto;
+	padding-bottom: 20vh;
 }
 .workout_videos{
 	display: inline-block;
 }
-#video_text{
-	margin: 0 0;
-}
+
 #footer{
 	position: fixed;
 }
@@ -38,7 +40,7 @@
 }
 
 .workout_sidebar>ul>li {
-	background-color: #3D9970;
+	background-color: #022D41;
 	position: relative;
 }
 
@@ -71,7 +73,7 @@
 .workout_sidebar>ul>li>ul>li{
 	padding: 0 48px;
             display: block;
-            color: #3D9970;
+            color: #022D41;
             height: 50px;
             line-height: 50px;
             font-size: 16px;
@@ -79,9 +81,86 @@
             cursor: pointer;
 }
 .workout_sidebar>ul>li>ul>li:hover{
-	 color: #3C7A5F;
+	 color: #11A6B7;
 }
 
 
 
-/* 동영상부분 flexbox써서 간격 조절하기 */
+/* 동영상 list 부분 */
+.video{
+	width: 250px;
+	height: 200px;
+	margin: 30px 20px;
+}
+#video-thumbnail{
+	width: 250px;
+}
+#video-info{
+	width: 250px;
+	margin: 150px 0;
+}
+#video-text{
+	margin: 0 auto;
+	font-size: 1rem;
+
+}
+#video-cover{
+	z-index: 999;
+	width: 250px;
+	height: 150px;
+	position: relative;
+	margin: -150px 0;
+	background: black;
+	opacity: 0.5;
+}
+#video-cover:hover{
+	opacity: 0.1;
+}
+/* 동영상 modal */
+.modal-dialog{
+	width: 86vw;
+	margin: 0 auto;
+}
+.modal-play{
+	display: inline-block;
+	float: left;
+}
+.modal-desc{
+	display: inline-block;
+    float: left;
+    width: 32vw;
+    height: 70vh;
+    margin: 0 10px;
+    padding-left: 1vw;
+    border-left: 2px solid #DAECF3;
+}
+.modal-content{
+	height: 85vh;
+}
+#video-play{
+	width: 45vw;
+	height: 50vh;
+	margin-left: 1vw;
+	margin-top: 8vh;
+}
+#video-content{
+	height: 40vh;
+}
+#video-reply{
+	border-top: 1px solid #DAECF3;
+}
+#reply-input{
+	width: 27vw;
+	height: 4vh;
+	font-size: 0.8rem;
+	border-radius: 3px 3px;
+}
+#reply-btn{
+	font-size: 0.7rem;
+    padding: 1px 5px;
+    height: 4vh;
+    margin-left: 1vw;
+}
+
+
+

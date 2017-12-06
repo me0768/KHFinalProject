@@ -16,7 +16,7 @@
 	<!-- 전체리스트select -->
 	<select id="selectAllList" resultType="list" resultMap="yogaResult">
 		<![CDATA[
-		select * from tb_video_board order by v_no desc
+		select * from tb_video_board where v_no <= 5 order by v_no desc
 		]]>
 	</select>
 	<!-- 카테고리별 list select-->

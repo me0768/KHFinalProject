@@ -66,21 +66,21 @@ textarea#editor1 {
 	$(document).ready(function() {
 		$("#list").on("click", function(e) { //목록으로
 			e.preventDefault();
-			MeetingList();
+			ReviewList();
 		});
 	});
-	function MeetingList() {
-		location.href = "meeting.do";
+	function ReviewList() {
+		location.href = "review.do";
 	}
 </script>
 
 <br>
-<h1 align="center">운동같이해요</h1>
+<h1 align="center">후기</h1>
 <br>
 <div id="all_div">
 	<div id="insert_all_div">
 		<br>
-		<form id="editor_form" name='meeting' method="post" action="meetingInsert.do">
+		<form id="editor_form" name='review' method="post" action="reviewInsert.do">
 			<input name="user_no" type="hidden" value="${sessionScope.user.user_no }" />
 			<div id="div_head">
 				<tr>
@@ -89,8 +89,7 @@ textarea#editor1 {
 				</tr>
 				<tr>파일첨부
 				</tr>
-				<tr>모임날짜<input name="meeting_date" type="date" />
-				</tr>
+				
 			</div>
 			<div>
 

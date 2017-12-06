@@ -7,6 +7,7 @@
 	<resultMap id="MeetingResult" type="Meeting">
 		<id property="mb_no" column="MB_NO" />
 		<result property="user_no" column="USER_NO" />
+		<result property="name" column="NAME" />
 		<result property="title" column="TITLE" />
 		<result property="content" column="CONTENT" />
 		<result property="meeting_date" column="MEETING_DATE" />
@@ -14,9 +15,49 @@
 		<result property="readcount" column="READCOUNT" />
 	</resultMap>
 	
-	<!-- 전체리스트select -->
-	<select id="selectListView" resultType="list" resultMap="MeetingResult">
-		<![CDATA[select * from tb_meeting_board order by mb_no desc]]>
+	<resultMap id="CommunityResult" type="Community">
+		<id property="cb_no" column="CB_NO" />
+		<result property="user_no" column="USER_NO" />
+		<result property="name" column="NAME" />
+		<result property="title" column="TITLE" />
+		<result property="content" column="CONTENT" />
+		<result property="upload_date" column="UPLOAD_DATE" />
+		<result property="readcount" column="READCOUNT" />
+	</resultMap>
+	
+	
+	<!-- 전체리스트 -->
+	
+		<!-- ======================================운동같이해요====================================================== -->
+	
+	<!-- 운동같이해요전체리스트select -->
+	<select id="meetingListView" resultType="list" resultMap="MeetingResult">
+		<![CDATA[select a.*, b.name from tb_meeting_board a join tb_user b on(a.user_no = b.user_no) order by mb_no desc]]>
 	</select>
+	
+	<!-- 운동같이해요디테일 -->
+	<select id="selectDetail" resultType="Meeting" resultMap="MeetingResult">
+		<![CDATA[select a.*, b.name from tb_meeting_board a join tb_user b on(a.user_no = b.user_no) where mb_no=#{mb_no}]]>
+	</select>
+		
+	<!-- 글쓰기 -->	
+	<insert id="insertMeeting" parameterType="Meeting" flushCache="true"
+		statementType="PREPARED" useGeneratedKeys="true" >
+		<![CDATA[insert into tb_meeting_board values(mb_seq.nextval,#{user_no},#{title},#{content},#{meeting_date},default,default)]]>
+	</insert>
+
+	<!-- ======================================qna게시판====================================================== -->
+		
+
+	<!-- ======================================리뷰 게시판====================================================== -->
+	<!-- 리뷰게시판 메인 -->
+	<select id="reviewListView" resultType="list" resultMap="CommunityResult">
+		<![CDATA[select a.*, b.name from tb_com_board a join tb_user b on(a.user_no = b.user_no) order by cb_no desc]]>
+	</select>
+	 <!-- 리뷰게시판 글쓰기 -->
+	<insert id="insertReview" parameterType="Community" flushCache="true"
+		statementType="PREPARED" useGeneratedKeys="true" >
+		<![CDATA[insert into tb_com_board values(cb_seq.nextval,#{user_no},#{title},#{content},#{board_property},default,default)]]>
+	</insert>	
 	
 	</mapper>

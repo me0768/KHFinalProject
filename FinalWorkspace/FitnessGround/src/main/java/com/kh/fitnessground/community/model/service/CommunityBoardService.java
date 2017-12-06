@@ -18,7 +18,7 @@ public interface CommunityBoardService {
 			//게시글 갯수
 			int getListCount();
 			//목록
-			ArrayList<MeetingBoard> meetingListView(int page, int limit);
+			ArrayList<MeetingBoard> meetingListView();
 			//등록
 			int meetingInsert(MeetingBoard meetingboard);
 			//삭제
@@ -26,7 +26,7 @@ public interface CommunityBoardService {
 			//수정
 			int meetingUpdate(MeetingBoard meetingboard);
 			//디테일
-			MeetingBoard meetingDetail(int mb_no);
+			MeetingBoard meetingDetail(int no);
 			//찾기
 			ArrayList<MeetingBoard>	meetingSearch(int page, int limit,String findType, String searchKey);
 			
@@ -41,7 +41,7 @@ public interface CommunityBoardService {
 			 void updateMeetingComment(int mb_no, int mbc_no, int user_no, String content);
 		//리뷰 게시판
 			//목록
-				ArrayList<CommunityBoard> reviewListView(int page, int limit);
+				ArrayList<CommunityBoard> reviewListView();
 				//등록
 				int reviewInsert(CommunityBoard communityboard);
 				//삭제
@@ -63,9 +63,9 @@ public interface CommunityBoardService {
 				//댓글 수정
 				 void updateReviewComment(int mb_no, int mbc_no, int user_no, String content);
 			
-		//후기 게시판
+		//qna 게시판
 				//목록
-					ArrayList<CommunityBoard> qnaListView(int page, int limit);
+					ArrayList<CommunityBoard> qnaListView();
 					//등록
 					int qnaInsert(CommunityBoard communityboard);
 					//삭제
@@ -77,7 +77,7 @@ public interface CommunityBoardService {
 					//찾기
 					ArrayList<CommunityBoard> qnaSearch(int page, int limit,String findType, String searchKey);
 			
-		//후기 게시판 댓글	
+		//qna 게시판 댓글	
 					//댓글 불러오기
 					 ArrayList<CommunityComment> qnaCommentList(int mbc_no);
 					//댓글 입력

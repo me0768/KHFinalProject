@@ -33,14 +33,14 @@
       
     
     <br>
-    <h1 align="center">${meeting.title}</h1>
+    <h1 align="center">${community.title}</h1>
    <div id="detail_ail_div"> 
     <div id="detail_div">
     	<div>
 
     	</div>
-     	<p align="center">${meeting.name}</p>
-     	<p>${meeting.content}</p>
+     	<p align="center">${community.name}</p>
+     	<p>${community.content}</p>
         </div>
     <div>
    </div> 

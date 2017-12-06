@@ -32,7 +32,7 @@ public class CommunityBoardServiceImpl implements CommunityBoardService {
 	}
 
 	
-	//운동같이해요 게시판
+	//운동같이해요 게시판----------------------------------------------------------------------------------------------------
 	
 	@Override
 	public int getListCount() {
@@ -65,9 +65,9 @@ public class CommunityBoardServiceImpl implements CommunityBoardService {
 	}
 
 	@Override
-	public MeetingBoard meetingDetail(int mb_no) {
+	public MeetingBoard meetingDetail(int no) {
 		// TODO Auto-generated method stub
-		return communityBoardDao.meetingDetail(mb_no);
+		return communityBoardDao.meetingDetail(no);
 	}
 
 	@Override
@@ -101,11 +101,10 @@ public class CommunityBoardServiceImpl implements CommunityBoardService {
 		communityBoardDao.updateMeetingComment(mb_no, mbc_no, user_no, content);
 	}
 
-	//리뷰 게시판
+	//리뷰 게시판---------------------------------------------------------------------------------------------------------------
 	@Override
-	public ArrayList<CommunityBoard> reviewListView(int page, int limit) {
-		// TODO Auto-generated method stub
-		return communityBoardDao.reviewListView(page, limit);
+	public ArrayList<CommunityBoard> reviewListView() {
+		return communityBoardDao.reviewListView();
 	}
 
 	@Override
@@ -163,11 +162,10 @@ public class CommunityBoardServiceImpl implements CommunityBoardService {
 		// TODO Auto-generated method stub
 		communityBoardDao.updateReviewComment(mb_no, mbc_no, user_no, content);
 	}
-	//qna 게시판
+	//qna 게시판---------------------------------------------------------------------------------------------------------
 	@Override
-	public ArrayList<CommunityBoard> qnaListView(int page, int limit) {
-		// TODO Auto-generated method stub
-		return communityBoardDao.qnaListView(page, limit);
+	public ArrayList<CommunityBoard> qnaListView() {
+		return communityBoardDao.qnaListView();
 	}
 
 	@Override

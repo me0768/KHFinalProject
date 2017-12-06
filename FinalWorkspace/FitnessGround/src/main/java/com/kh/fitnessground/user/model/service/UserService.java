@@ -54,5 +54,4 @@ public interface UserService {
 	int qnABoardSearchCount(int user_no, String keyword);
 
 	ArrayList<GymQnABoard> qnABoardSearch(GymQnABoardPage qPage, String keyword, int user_no);
-	
 }

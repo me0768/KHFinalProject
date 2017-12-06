@@ -244,6 +244,7 @@ public class UserController {
 	// 회원정보 수정 ajax
 	@RequestMapping(value="/uupdate.do")
 	public ModelAndView userUpdateMethod(User u, ModelAndView mv, HttpServletRequest request) {
+		System.out.println(u);
 		userService.userUpdate(u);
 		HttpSession session = request.getSession();
 		session.setAttribute("user", userService.loginCheck(u.getEmail()));
@@ -315,6 +316,7 @@ public class UserController {
     	mv.addObject("qMaxPage", qMaxPage);
     	mv.addObject("qStartPage", qStartPage);
     	mv.addObject("qEndPage", qEndPage);
+
 		return mv; 
 	}
 	// 문의하기 검색

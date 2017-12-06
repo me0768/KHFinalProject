@@ -25,11 +25,9 @@
         <!-- Banner -->
         <section id="banner">
             <header>
-                <h2>Hi. You're looking at <strong>Helios</strong>.</h2>
-                <p>
-                    A (free) responsive site template by <a href="http://html5up.net">HTML5 UP</a>. Built on <strong>skel</strong> and released under the <a href="http://html5up.net/license">CCA</a> license.
-                </p>
+                <h2>동영상을 보면서 운동 기초를 다져보세요 .</h2>
             </header>
+            <h3>헬스, 요가, 필라테스, 맨몸운동 - 종류별/부위별 다양한 동영상이 제공됩니다 </h3>
         </section>
 
         <!-- Carousel -->
@@ -123,18 +121,12 @@
         <div class="wrapper style2">
 
             <article id="main" class="container special">
-                <a href="#" class="image featured"><img src="/fitnessground/resources/images/pic06.jpg" alt="" /></a>
                 <header>
-                    <h2><a href="#">Sed massa imperdiet magnis</a></h2>
-                    <p>
-                        Sociis aenean eu aenean mollis mollis facilisis primis ornare penatibus aenean. Cursus ac enim pulvinar curabitur morbi convallis. Lectus malesuada sed fermentum dolore amet.
-                    </p>
+                    <h3 id="gym-title">내 주변 운동시설/헬스장을 찾아보세요</h3>
                 </header>
-                <p>
-                    Commodo id natoque malesuada sollicitudin elit suscipit. Curae suspendisse mauris posuere accumsan massa posuere lacus convallis tellus interdum. Amet nullam fringilla nibh nulla convallis ut venenatis purus sit arcu sociis. Nunc fermentum adipiscing tempor cursus nascetur adipiscing adipiscing. Primis aliquam mus lacinia lobortis phasellus suscipit. Fermentum lobortis non tristique ante proin sociis accumsan lobortis. Auctor etiam porttitor phasellus tempus cubilia ultrices tempor sagittis. Nisl fermentum consequat integer interdum integer purus sapien. Nibh eleifend nulla nascetur pharetra commodo mi augue interdum tellus. Ornare cursus augue feugiat sodales velit lorem. Semper elementum ullamcorper lacinia natoque aenean scelerisque.
-                </p>
                 <footer>
-                    <a href="#" class="button">Continue Reading</a>
+                	<input type="search" placeholder="지역을 입력하세요">
+                    <a href="#" class="btn"><i class="fa fa-search fa-2x" aria-hidden="true"></i></a>
                 </footer>
             </article>
 
@@ -145,7 +137,7 @@
 
             <section id="features" class="container special">
                 <header>
-                    <h2>Morbi ullamcorper et varius leo lacus</h2>
+                    <h2>커뮤니티</h2>
                     <p>Ipsum volutpat consectetur orci metus consequat imperdiet duis integer semper magna.</p>
                 </header>
                 <div class="row">

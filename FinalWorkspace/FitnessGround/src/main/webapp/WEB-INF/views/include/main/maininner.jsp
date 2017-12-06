@@ -4,12 +4,13 @@
 <div class="inner">
 	<header>
 		<h1>
-			<a href="index.html" id="logo">Helios</a>
+			FitnessGround
 		</h1>
 		<hr />
-		<p>Another fine freebie by HTML5 UP</p>
+		<p>Watch workout videos, find your gym and communicate with people! </p>
 	</header>
 	<footer>
 		<a href="#banner" class="button circled scrolly">Start</a>
+		<a class="return-top" href="#"><i class="fa fa-chevron-circle-up fa-4x" aria-hidden="true"></i></a>
 	</footer>
 </div>

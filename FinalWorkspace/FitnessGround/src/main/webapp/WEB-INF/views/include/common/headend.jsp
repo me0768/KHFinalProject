@@ -5,8 +5,8 @@
 <link rel="stylesheet" href="/fitnessground/resources/css/bootstrap.css">
 <link rel="stylesheet" href="/fitnessground/resources/css/common/compiled_main.css" />
 <link rel="stylesheet" href="/fitnessground/resources/css/common/main.css" />
-<link rel="stylesheet" href="/fitnessground/resources/css/common/font-awesome.min.css" />
 <link rel="stylesheet" href="/fitnessground/resources/css/common/login.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
 <body class="homepage">
 

@@ -1,5 +1,56 @@
-@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400,400italic,600");
 @import url("font-awesome.min.css");
+@font-face{
+	font-family: "notokr-bold";
+	src: url('/fitnessground/resources/fonts/notoSans/notokr-bold.eot');
+	src: 
+		url('/fitnessground/resources/fonts/notoSans/notokr-bold.eot?#iefix') format('embedded-opentype'),
+		url('/fitnessground/resources/fonts/notoSans/notokr-bold.woff') format('woff'),
+		url('/fitnessground/resources/fonts/notoSans/notokr-bold.woff2') format('woff2'),
+		url('/fitnessground/resources/fonts/notoSans/notokr-bold.otf') format('opentype');
+}
+@font-face{
+	font-family: "notokr-regular";
+	src: url('/fitnessground/resources/fonts/notoSans/notokr-regular.eot');
+	src: 
+		url('/fitnessground/resources/fonts/notoSans/notokr-regular.eot?#iefix') format('embedded-opentype'),
+		url('/fitnessground/resources/fonts/notoSans/notokr-regular.woff') format('woff'),
+		url('/fitnessground/resources/fonts/notoSans/notokr-regular.woff2') format('woff2'),
+		url('/fitnessground/resources/fonts/notoSans/notokr-regular.otf') format('opentype');
+		
+}
+
+.return-top{
+	right:15px; 
+	bottom:15px; 
+	position:fixed; 
+	z-index:9999; 
+	color: lightgray;
+}
+.btn{
+	position: relative;
+		display: inline-block;
+		background: #11A6B7;
+		color: #fff;
+		text-align: center;
+		border-radius: 0.5em;
+		text-decoration: none;
+		padding: 0.5em 0.5em;
+		border: 0;
+		cursor: pointer;
+}
+#gym-title{
+	margin-top: 5vh;
+	color: white;
+	font-size: 2rem;
+}
+
+input[type="search"] {
+	border-radius: 10px;
+	width: 40vw;
+	height: 5.7vh;
+	margin: 1vw 1vh;
+	padding: 0 1vw;
+}
 
 /*
 	Helios by HTML5 UP
@@ -1555,7 +1606,7 @@
 		color: #5b5b5b;
 		font-size: 15pt;
 		line-height: 1.85em;
-		font-family: 'Source Sans Pro', sans-serif;
+		font-family: 'notokr-regular', sans-serif;
 		font-weight: 300;
 	}
 
@@ -1573,7 +1624,7 @@
 	input, textarea, select {
 		font-size: 15pt;
 		line-height: 1.85em;
-		font-family: 'Source Sans Pro', sans-serif;
+		font-family: 'notokr-regular', sans-serif;
 		font-weight: 300;
 	}
 
@@ -1594,11 +1645,11 @@
 	}
 
 	h2 {
-		font-size: 2.85em;
+		font-size: 2.85rem;
 	}
 
 	h3 {
-		font-size: 1.25em;
+		font-size: 1.5rem;
 	}
 
 	h4 {
@@ -1626,7 +1677,7 @@
 	}
 
 		a:hover {
-			color: #ef8376;
+			color: #FE424D;
 			border-bottom-color: transparent;
 		}
 
@@ -1857,7 +1908,7 @@
 			}
 
 				ul.icons li a:hover {
-					color: #ef8376;
+					color: #FE424D;
 				}
 
 	ol.default {
@@ -1903,7 +1954,7 @@
 		form select:focus,
 		form textarea:focus {
 			background: #fff;
-			border-color: #df7366;
+			border-color: #11A6B7;
 		}
 
 	form input[type="text"],
@@ -1990,7 +2041,7 @@
 	.button {
 		position: relative;
 		display: inline-block;
-		background: #df7366;
+		background: #11A6B7;
 		color: #fff;
 		text-align: center;
 		border-radius: 0.5em;
@@ -2012,7 +2063,7 @@
 		button:hover,
 		.button:hover {
 			color: #fff;
-			background: #ef8376;
+			background: #FE424D;
 		}
 
 		input[type="button"].alt,
@@ -2020,7 +2071,7 @@
 		input[type="reset"].alt,
 		button.alt,
 		.button.alt {
-			background: #2B252C;
+			background: #022D41;
 		}
 
 			input[type="button"].alt:hover,
@@ -2066,7 +2117,7 @@
 		.icon.circled {
 			position: relative;
 			display: inline-block;
-			background: #2b252c;
+			background: #022D41;
 			color: #fff;
 			border-radius: 100%;
 			width: 3em;
@@ -2090,6 +2141,8 @@
 
 		.wrapper.style2 {
 			padding-top: 0;
+			background: #022D41;
+			
 		}
 
 /* Header */
@@ -2184,7 +2237,7 @@
 
 		body.homepage #header:after {
 			content: '';
-			background: #1C0920;
+			background: #022D41;
 			display: block;
 			position: absolute;
 			left: 0;
@@ -2301,7 +2354,7 @@
 			}
 
 			.dropotron li:hover {
-				color: #ef8376;
+				color: #FE424D;
 			}
 
 			.dropotron li a, .dropotron li span {
@@ -2385,13 +2438,13 @@
 		position: relative;
 		overflow: hidden;
 		padding: 6em 0 6em 0;
-		background: #2b252c;
+		background: #022D41;
 		color: #fff;
 	}
 
 		#footer .icon.circled {
 			background: #fff;
-			color: #2b252c;
+			color: #022D41;
 		}
 
 		#footer header {
@@ -2474,7 +2527,7 @@
 			}
 
 			.carousel .forward:hover:before, .carousel .backward:hover:before {
-				background-color: rgba(239, 131, 118, 0.75);
+				background-color: #11A6B7;
 			}
 
 		.carousel .forward {
@@ -2625,7 +2678,7 @@
 
 		/* Basic */
 
-			body, input, textarea, select {
+			body, textarea, select {
 				font-size: 13pt;
 				line-height: 1.65em;
 			}
@@ -2668,7 +2721,7 @@
 
 		/* Basic */
 
-			html, body {
+			 html, body {
 				overflow-x: hidden;
 			}
 

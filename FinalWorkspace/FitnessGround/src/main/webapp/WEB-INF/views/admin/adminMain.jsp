@@ -82,7 +82,7 @@
 						</div>
 						<div class="mr-5">동영상 관리</div>
 					</div>
-					<a class="card-footer text-white clearfix small z-1" href="adminylist.do">
+					<a class="card-footer text-white clearfix small z-1" href="#">
 						<span class="float-left">View Details</span> <span
 						class="float-right"> <i class="fa fa-angle-right"></i>
 					</span>

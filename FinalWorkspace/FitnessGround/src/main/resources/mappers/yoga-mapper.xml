@@ -16,7 +16,7 @@
 	<!-- 전체리스트select -->
 	<select id="selectAllList" resultType="list" resultMap="yogaResult">
 		<![CDATA[
-		select * from tb_video_board order by v_no desc
+		select * from tb_video_board where v_no <= 5 order by v_no desc
 		]]>
 	</select>
 	<!-- 카테고리별 list select-->
@@ -30,14 +30,10 @@
 	</update>
 
 	<!-- 플레이리스트 동영상 한번에 insert하기 Multi-row Insert -->
-	<insert id="insertYoga" parameterType="java.util.List" flushCache="true"
+	<insert id="insertYoga" parameterType="com.kh.fitnessground.workout.yoga.model.vo.Yoga" flushCache="true"
 		statementType="PREPARED" useGeneratedKeys="true">
-		insert all
-		<foreach item="video" collection="list">
-		 into tb_video_board values (vb_seq.nextval, #{title}, #{content}, 
+		insert into tb_video_board values(vb_seq.nextval, #{title}, #{content}, 
 		#{category1}, #{category2}, #{url}, default)
-		</foreach>
-		select * from dual
 	</insert>
 
 	<!-- delete one video -->

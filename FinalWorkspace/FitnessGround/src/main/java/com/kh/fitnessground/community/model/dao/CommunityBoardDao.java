@@ -1,24 +1,19 @@
 package com.kh.fitnessground.community.model.dao;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.fitnessground.community.model.vo.CommunityBoard;
 import com.kh.fitnessground.community.model.vo.CommunityComment;
 import com.kh.fitnessground.community.model.vo.MeetingBoard;
 import com.kh.fitnessground.community.model.vo.MeetingCommnet;
-import com.kh.fitnessground.workout.yoga.model.vo.Yoga;
 
 
 @Repository("CommunityBoardDao")
 public class CommunityBoardDao {
 
-	@Autowired
-	private SqlSessionTemplate sqlSession;
+	
 	
 	//메인 게시판
 	public ArrayList<MeetingBoard> meetingView() {
@@ -35,12 +30,11 @@ public class CommunityBoardDao {
 	public int listCount() {
 		// TODO Auto-generated method stub
 		return 0;
-		
 	}
+
 	public ArrayList<MeetingBoard> meetingListView() {
-		List<MeetingBoard> mlist = sqlSession.selectList("community.selectListView");
-		ArrayList<MeetingBoard> list = new ArrayList<MeetingBoard>(mlist);
-		return list;
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	public int meetingInsert(MeetingBoard meetingboard) {

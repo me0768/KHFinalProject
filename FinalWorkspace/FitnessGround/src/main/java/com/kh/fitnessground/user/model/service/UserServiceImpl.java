@@ -109,20 +109,16 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void userProfileImgUpdate(User u, HttpServletRequest request) throws Exception {
 		List<Map<String,Object>> list = fileUtils.parseInsertFileInfo(request);
-		String original_image="", rename_image="";
+		System.out.println(list);
+		String originalFileName="", renameFileName="";
 		for(int i=0, size=list.size(); i<size; i++){
-			original_image = (String) list.get(i).get("original_fileName");
-			rename_image = (String) list.get(i).get("rename_fileName");
+			originalFileName = (String) list.get(i).get("original_fileName");
+			renameFileName = (String) list.get(i).get("rename_fileName");
 		}
-		if(original_image!="" || !original_image.equals("")) {
-			u.setOriginal_image(original_image);
-			u.setRename_image(rename_image);
-			userDao.userProfileImgUpdate(u);
+		if(originalFileName!="" || !originalFileName.equals("")) {
+			u.setOriginal_image(originalFileName);
+			u.setRename_image(renameFileName);
 		}
-	}
-
-	@Override
-	public void userProfileImgRemove(User u) {
 		userDao.userProfileImgUpdate(u);
 	}
 

@@ -29,6 +29,17 @@ public class Yoga {
 		this.content = content;
 		this.url = url;
 	}
+	
+	
+
+	public Yoga(String title, String content, String category1, String category2, String url) {
+		super();
+		this.title = title;
+		this.content = content;
+		this.category1 = category1;
+		this.category2 = category2;
+		this.url = url;
+	}
 
 	public int getV_no() {
 		return v_no;

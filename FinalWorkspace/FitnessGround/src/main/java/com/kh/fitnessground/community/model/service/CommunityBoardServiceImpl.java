@@ -41,7 +41,7 @@ public class CommunityBoardServiceImpl implements CommunityBoardService {
 	}
 
 	@Override
-	public ArrayList<MeetingBoard> meetingListView() {
+	public ArrayList<MeetingBoard> meetingListView(int page, int limit) {
 		// TODO Auto-generated method stub
 		return communityBoardDao.meetingListView();
 	}

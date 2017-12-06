@@ -184,16 +184,7 @@
 		flushCache="true" statementType="PREPARED" >
 		<![CDATA[
 		update tb_user 
-		]]>
-		<choose>
-		    <when test="original_image != null">
-		    set original_image=#{original_image}, rename_image=#{rename_image} 
-		    </when>
-		    <otherwise>
-		    set original_image=null, rename_image=null 
-		    </otherwise>
-	  	</choose>	
-	  	<![CDATA[
+		set original_image=#{original_image}, rename_image=#{rename_image}  
 		where user_no = #{user_no}
 		]]>
 	</update>

@@ -27,8 +27,15 @@ public class AdminDao {
 
 
 	public ArrayList<User> businesslist(int level) {
-		// TODO Auto-generated method stub
-		return sqlSession.selectOne("user.businessList", level);
+		List<User> blist = sqlSession.selectList("user.businessList", level);
+		ArrayList<User> list = new ArrayList<User>(blist);
+		return list;
+	}
+
+	public ArrayList<User> businessRequestlist(int level) {
+		List<User> brlist = sqlSession.selectList("gym.businessRequestList", level);
+		ArrayList<User> list = new ArrayList<User>(brlist);
+		return list;
 	}
 	
 	

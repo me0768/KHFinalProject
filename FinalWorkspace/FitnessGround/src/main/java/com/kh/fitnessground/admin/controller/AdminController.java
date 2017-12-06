@@ -83,8 +83,8 @@ public class AdminController {
 	// 회원 리스트 출력
 	@RequestMapping(value = "adminuserlist.do")
 	public ModelAndView UserListMethod(User user, HttpServletResponse response) {
-		ModelAndView mv = new ModelAndView("admin/tables");
-		int level = 1;
+		ModelAndView mv = new ModelAndView("admin/userlist");
+		int level = 0;
 		ArrayList<User> list = adminService.userlist(level);
 		mv.addObject("list", list);
 		System.out.println(mv.toString());
@@ -94,13 +94,25 @@ public class AdminController {
 	// 사업자 리스트 출력(헬스장 등록요청 처리)
 	@RequestMapping(value = "adminbuisnesslist.do")
 	public ModelAndView BuisnessListMethod(User user, HttpServletResponse response) {
-		ModelAndView mv = new ModelAndView("admin/tables");
+		ModelAndView mv = new ModelAndView("admin/userlist");
 		int level = 1;
 		ArrayList<User> list = adminService.buisnesslist(level);
 		mv.addObject("list", list);
 		return mv;
 	}
+	
+	// 사업자 헬스장 등록요청 리스트 출력(헬스장 등록요청 처리)
+		@RequestMapping(value = "adminbuisnessRequestlist.do")
+		public ModelAndView BuisnessRequestListMethod(User user, HttpServletResponse response) {
+			ModelAndView mv = new ModelAndView("admin/userlist");
+			int level = 1;
+			ArrayList<User> list = adminService.buisnessRequestlist(level);
+			mv.addObject("list", list);
+			return mv;
+		}
 
+
+	
 	// 요가 동영상(미향) 리스트 출력
 	@RequestMapping(value = "adminylist.do")
 	public ModelAndView YogaListMethod(Yoga yoga, HttpServletRequest request) {

@@ -15,6 +15,9 @@ public interface AdminService {
 	ArrayList<User> userlist(int level);
 
 
+	ArrayList<User> buisnessRequestlist(int level);
+
+
 
 
 }

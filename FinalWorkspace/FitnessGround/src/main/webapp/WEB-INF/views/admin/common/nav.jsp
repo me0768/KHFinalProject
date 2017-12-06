@@ -16,7 +16,7 @@
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
 				<li class="nav-item" data-toggle="tooltip" data-placement="right"
-					title="Dashboard"><a class="nav-link" href="adminMain.do">
+					title="Dashboard"><a class="nav-link" href="adminuserlist.do">
 						<i class="fa fa-fw fa-dashboard"></i> <span class="nav-link-text">회원관리</span>
 				</a></li>
 				<li class="nav-item" data-toggle="tooltip" data-placement="right"
@@ -31,11 +31,11 @@
 					title="Components"><a
 					class="nav-link nav-link-collapse collapsed" data-toggle="collapse"
 					href="#collapseComponents" data-parent="#exampleAccordion"> <i
-						class="fa fa-fw fa-wrench"></i> <span class="nav-link-text">Components</span>
+						class="fa fa-fw fa-wrench"></i> <span class="nav-link-text">동영상 관리</span>
 				</a>
 					<ul class="sidenav-second-level collapse" id="collapseComponents">
-						<li><a href="navbar.html">Navbar</a></li>
-						<li><a href="cards.html">Cards</a></li>
+						<li><a href="navbar.html">준일</a></li>
+						<li><a href="adminylist.do">미향</a></li>
 					</ul></li>
 				<li class="nav-item" data-toggle="tooltip" data-placement="right"
 					title="Example Pages"><a

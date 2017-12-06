@@ -3,21 +3,9 @@
 <%@ taglib uri= "http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 	<c:import url="../../include/common/head.jsp" />
-	<c:import url="../../include/common/headend.jsp" />
-    
-	<div id="page-wrapper">
-		<!-- Header -->
-		<div id="mypage_header">
-            <!-- Nav -->
-			<c:import url="../../include/main/nav.jsp" />
-			
-			<c:import url="../../user/login.jsp"/>
-			<c:import url="../../user/findidpwd.jsp"/>
-			<c:import url="../../user/register.jsp"/>
-		</div>
-    </div>
-    
-   <style type="text/css">
+	
+	
+	<style type="text/css">
  	body {
 		font-family: "Open Sans", sans-serif;
 		line-height: 1.25;
@@ -30,10 +18,11 @@
 	}
 	
 	
-	div#meeting_category_div {
-		padding-left: 15%;
+
+	div#community_category_div {
+		padding-left: 23%;
 	}
-	div#meeting_search_div{
+	div#community_search_div{
 		
 		margin-left: 15%;
 	}
@@ -50,18 +39,21 @@
 		color: #F3F3F3;
 		font-size: 14px;
 	}
-	button#meeting_writer_btn{
-		left:72%;
+
+	button#community_writer_btn{
+		left:63%;
 		width:70pt;
 		height:25pt;
 		font-size:8pt;
 		
 		
 	}
-	div#meeting_table_div{
-		padding-left:15%;
+
+	div#community_table_div{
+		padding-left:23%;
+		padding-right:9%;
 	}
-	table {
+	table#community_table {
 		
 		border: 1px solid #ccc;
 		border-collapse: collapse;
@@ -69,33 +61,52 @@
 		width: 80%;
 	}
 	
-	table tr {
+	table#community_table tr {
 		border: 1px solid #ddd;
 		padding: .35em;
 	}
 	
-	table tr:nth-child(even) {
+
+	table#community_table tr:nth-child(even) {
 		background: #f8f8f8;
 	}
 	
-	table th, table td {
+	table#community_table th, table td {
 		padding: .625em;
 		text-align: center;
 	}
-	
-	table th {
+
+	table#community_table th {
 		background: #D8D8D8;
 		font-size: .85em;
 		letter-spacing: .1em;
 		text-transform: uppercase;
 	}
 	
-	table td {
+	table#community_table td {
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
 	}
 </style>
+	
+	
+	<c:import url="../../include/common/headend.jsp" />
+    
+   
+	<div id="page-wrapper">
+		<!-- Header -->
+		<div id="mypage_header">
+            <!-- Nav -->
+			<c:import url="../../include/main/nav.jsp" />
+			
+			<c:import url="../../user/login.jsp"/>
+			<c:import url="../../user/findidpwd.jsp"/>
+			<c:import url="../../user/register.jsp"/>
+		</div>
+    </div>
+    
+   
  
    <script type="text/javascript">
 
@@ -108,18 +119,27 @@
 		function qnaPage() {
 			location.href = "qna.do";
 		}
+		
+		$(document).ready(function(){
+			$("#write").on("click", function(e){
+				e.preventDefault();
+				write();
+			})
+		})
+		function write() {
+			location.href = "meetingInsert.do";
+			}
 	</script>
-<body>
 <br><br>
 <h1 align="center">운동같이해요</h1>
-<br><br>
-<div id="meeting_category_div">
-<button id="community_detail"onclick="meetingPage();">운동같이해요</button>
-<button id="community_detail"onclick="reviewPage();">후기</button>
+<br>
+<div id="community_category_div">
+<button id="community_detail"onclick="meetingPage();">운동같이해요</button> &nbsp;&nbsp;&nbsp;
+<button id="community_detail"onclick="reviewPage();">후기</button>	&nbsp;&nbsp;&nbsp;
 <button id="community_detail"onclick="qnaPage();">Q & A</button>
 </div>
 <br>
-<div id="meeting_search_div" align="left">
+<div id="community_search_div" align="left">
 			<div align="left">
 			<form class="form-group" role="form" action="#" method="get" >
 				<select class="btn" name="searchValue" id="findType">
@@ -131,13 +151,24 @@
 				<button type="submit" id="searchSubmit" value="검색" class="btn">검색</button><br>
 							
 			</form>
-			
-				<button id="meeting_writer_btn">글쓰기</button><br><br>
+				
+				<c:if test="${sessionScope.user.name != null }">
+				<a href="meetingInsert.do" class="btn" id="write">글쓰기</a>					
+				</c:if>
+				
 </div>
 </div>
-<div id="meeting_table_div">
-<table>
+<div id="community_table_div">
+<table id="community_table">
   <thead>
+  		<colgroup>
+			<col width="10%"/>
+			<col width="*%"/>
+			<col width="10%"/>
+			<col width="15%"/>
+			<col width="15%"/>
+			<col width="10%"/>
+		</colgroup>
     <tr>
       <th>번호</th>
       <th>카테고리</th>
@@ -148,43 +179,18 @@
       <th>조회수</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody>  	
+	<c:forEach items="${list }" var="cm"> 
     <tr>
-      <td>1</td>
-      <td>헬스</td>
-      <td><a href="#">운동하러가실분</a></td>
-      <td>kdy123</td>
-      <td>2017/12/21</td>
-      <td>2017/12/21</td>
-      <td>30</td>
+      <td>${cm.mb_no}</td>
+      <td><a href="meetingDetail.do?no=${cm.mb_no}" name="title" >${cm.title}</a>
+      </td>
+      <td>${cm.name}</td>
+      <td>${cm.meeting_date}</td>
+      <td>${cm.upload_date}</td>
+      <td>${cm.readcount}</td>
     </tr>
-  <tr>
-      <td>1</td>
-      <td>헬스</td>
-      <td>운동하러가실분</td>
-      <td>kdy123</td>
-      <td>2017/12/21</td>
-      <td>2017/12/21</td>
-      <td>30</td>
-    </tr>
-   <tr>
-      <td>1</td>
-      <td>헬스</td>
-      <td>운동하러가실분</td>
-      <td>kdy123</td>
-      <td>2017/12/21</td>
-      <td>2017/12/21</td>
-      <td>30</td>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>헬스</td>
-      <td>운동하러가실분</td>
-      <td>kdy123</td>
-      <td>2017/12/21</td>
-      <td>2017/12/21</td>
-      <td>30</td>
-    </tr>
+   </c:forEach>
   </tbody>
 </table>
 </div>
@@ -194,5 +200,3 @@
 
     <c:import url="../../include/main/footer.jsp" />
     <c:import url="../../include/common/end.jsp" />
-</body>
-</html>

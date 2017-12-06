@@ -115,7 +115,7 @@ public class AdminController {
 	// 요가 동영상(미향) 리스트 출력
 	@RequestMapping(value = "adminylist.do")
 	public ModelAndView YogaListMethod(Yoga yoga, HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView("#");
+		ModelAndView mv = new ModelAndView("admin/workoutVideo");
 		ArrayList<Yoga> list = yogaService.selectAllList();
 		mv.addObject("list", list);
 		return mv;

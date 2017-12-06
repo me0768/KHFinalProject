@@ -11,8 +11,9 @@
 <c:import url="common/nav.jsp" />
 
 <!-- Body부분  -->
-
+<div class="input" style="margin-left: 30vw">
 <input type="text" placeholder="playlistId입력">
+</div>
 
 
  <!-- YoutubeAPI, Ajax 관리자 INSERT  -->

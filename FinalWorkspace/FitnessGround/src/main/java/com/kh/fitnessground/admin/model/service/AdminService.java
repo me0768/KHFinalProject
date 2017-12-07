@@ -9,13 +9,13 @@ public interface AdminService {
 	
 
 
-    ArrayList<User> buisnesslist(int level);
+    ArrayList<User> businesslist(int level);
 
 
 	ArrayList<User> userlist(int level);
 
 
-	ArrayList<User> buisnessRequestlist(int level);
+	ArrayList<User> businessRequestlist(int level);
 
 
 

@@ -16,6 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.fitnessground.admin.model.service.AdminService;
 import com.kh.fitnessground.community.model.service.CommunityBoardService;
+import com.kh.fitnessground.community.model.vo.CommunityBoard;
+import com.kh.fitnessground.community.model.vo.MeetingBoard;
 import com.kh.fitnessground.user.model.service.UserService;
 import com.kh.fitnessground.user.model.vo.User;
 import com.kh.fitnessground.workout.health.model.service.HealthService;
@@ -83,7 +85,7 @@ public class AdminController {
 	// 회원 리스트 출력
 	@RequestMapping(value = "adminuserlist.do")
 	public ModelAndView UserListMethod(User user, HttpServletResponse response) {
-		ModelAndView mv = new ModelAndView("admin/userlist");
+		ModelAndView mv = new ModelAndView("admin/userlist/userlist");
 		int level = 0;
 		ArrayList<User> list = adminService.userlist(level);
 		mv.addObject("list", list);
@@ -91,21 +93,21 @@ public class AdminController {
 	}
 
 	// 사업자 리스트 출력(헬스장 등록요청 처리)
-	@RequestMapping(value = "adminbuisnesslist.do")
+	@RequestMapping(value = "adminbusinesslist.do")
 	public ModelAndView BuisnessListMethod(User user, HttpServletResponse response) {
-		ModelAndView mv = new ModelAndView("admin/userlist");
+		ModelAndView mv = new ModelAndView("admin/userlist/userbusinesslist");
 		int level = 1;
-		ArrayList<User> list = adminService.buisnesslist(level);
+		ArrayList<User> list = adminService.businesslist(level);
 		mv.addObject("list", list);
 		return mv;
 	}
 	
 	// 사업자 헬스장 등록요청 리스트 출력(헬스장 등록요청 처리)
-		@RequestMapping(value = "adminbuisnessRequestlist.do")
+		@RequestMapping(value = "adminbusinessRequestlist.do")
 		public ModelAndView BuisnessRequestListMethod(User user, HttpServletResponse response) {
-			ModelAndView mv = new ModelAndView("admin/userlist");
+			ModelAndView mv = new ModelAndView("admin/userlist/userbusinessRequestlist");
 			int level = 1;
-			ArrayList<User> list = adminService.buisnessRequestlist(level);
+			ArrayList<User> list = adminService.businessRequestlist(level);
 			mv.addObject("list", list);
 			return mv;
 		}
@@ -122,23 +124,29 @@ public class AdminController {
 	}
 
 	// mettingBoard 리스트 출력
-	@RequestMapping(value = "adminmeeting.do")
+	@RequestMapping(value = "adminMettingBoard.do")
 	public ModelAndView mettingBoardListMethod() {
-		ModelAndView mv = new ModelAndView("#");
+		ModelAndView mv = new ModelAndView("admin/tables");
+		ArrayList<MeetingBoard> list = communityBoardService.meetingListView();
+		mv.addObject("list", list);
 		return mv;
 	}
-
+	
 	// qnaBoard 리스트 출력
-	@RequestMapping(value = "adminqna.do")
+	@RequestMapping(value = "adminQNABoard.do")
 	public ModelAndView qnaBoardListMethod() {
-		ModelAndView mv = new ModelAndView("#");
+		ModelAndView mv = new ModelAndView("admin/tables");
+		ArrayList<CommunityBoard> list = communityBoardService.qnaListView();					
+		mv.addObject("list", list);
 		return mv;
 	}
 
 	// reviewBoard 리스트 출력
-	@RequestMapping(value = "adminreview.do")
+	@RequestMapping(value = "adminReviewBoard.do")
 	public ModelAndView reviewBoardListMethod() {
-		ModelAndView mv = new ModelAndView("#");
+		ModelAndView mv = new ModelAndView("admin/tables");
+		ArrayList<CommunityBoard> list = communityBoardService.reviewListView();
+		mv.addObject("list", list);
 		return mv;
 	}
 
@@ -147,6 +155,14 @@ public class AdminController {
 	public ModelAndView GymListMethod() {
 		ModelAndView mv = new ModelAndView("#");
 
+		return mv;
+	}
+	
+	// 관리자가 회원 즉시삭제 
+	@RequestMapping(value = "userDelete.do")
+	public ModelAndView userDeleteMethod(){
+		ModelAndView mv = new ModelAndView("admin/adminMain");
+		
 		return mv;
 	}
 	/*

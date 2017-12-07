@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
-<c:import url="common/head.jsp" />
+<c:import url="../common/head.jsp" />
 
 <style type="text/css">
 .buttons {
@@ -29,9 +29,7 @@
 	vertical-align: middle;
 }
 
-.btn-1,
-.btn-2,
-.btn-3 {
+.btn-1, .btn-2, .btn-3 {
 	color: black;
 	background: white;
 	border: 1px solid gray;
@@ -42,9 +40,7 @@
 	transition: all .15s linear;
 }
 
-.btn-1:hover,
-.btn-2:hover,
-.btn-3:hover {
+.btn-1:hover, .btn-2:hover, .btn-3:hover {
 	background: gray;
 	border: 1px solid rgba(0, 0, 0, 0.05);
 	box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
@@ -58,7 +54,7 @@
 	rel="stylesheet">
 
 
-<c:import url="common/headend.jsp" />
+<c:import url="../common/headend.jsp" />
 
 <script
 	src="/fitnessground/resources/admin/vendor/datatables/jquery.dataTables.js"></script>
@@ -67,8 +63,53 @@
 <script
 	src="/fitnessground/resources/admin/js/sb-admin-datatables.min.js"></script>
 
+<script type="text/javascript">
+	function userlistPage() {
+		location.href = "adminuserlist.do"
+	}
+	function businesslistPage() {
+		location.href = "adminbusinesslist.do"
+	}
+	function businessRequestlistPage() {
+		location.href = "adminbusinessRequestlist.do"
+	}
 
-<c:import url="common/nav.jsp" />
+	$(document).ready(function() {
+		$("#selectCheckBox").click(function() {
+			var isChecked = $(this).prop("checked");
+			$(".deleteCheckBox").prop("checked", isChecked);
+
+		});
+		
+		$("#selectDeleteBtn").click(function() {
+
+			var isChecked = false;
+
+			/* 각각의 클래스를 다 보면서 선택이 됬는지 안됬는지 체크한다. */
+			$(".deleteCheckBox").each(function(index, data) {
+				if (data.checked) {
+					isChecked = data.checked;
+				}
+			});
+
+			if (!isChecked) {
+				alert("삭제할 대상을 선택하세요.");
+				return;
+			}
+
+			/* 사용자에게 한번 더 컨펌 */
+			if (confirm("정말 삭제하시겠습니까?")) {
+				alert("삭제되었습니다");
+
+				var form = $("#selectDeleteBtn");
+				form.attr("method", "post");
+				form.attr("action", "<c:url value="userDelete.do" />");
+				form.submit();
+			}
+		});
+	});
+</script>
+<c:import url="../common/nav.jsp" />
 <div class="content-wrapper">
 	<div class="container-fluid">
 		<!-- Breadcrumbs-->
@@ -83,10 +124,9 @@
 
 				<div class="buttons">
 
-					<a href="adminMettingBoard.do" class="btn-1">운동모임 게시판</a>&nbsp; 
-					<a href="adminQNABoard.do"	class="btn-2">Q&A 게시판</a>&nbsp; 
-					<a href="adminReviewBoard.do" class="btn-3">리뷰 게시판</a>
-
+					<button class="btn-1" onclick="userlistPage();">일반회원</button>
+					<button class="btn-2" onclick="businesslistPage();">사업자회원</button>
+					<button class="btn-3" onclick="businessRequestlistPage();">등록요청</button>
 
 				</div>
 
@@ -97,12 +137,14 @@
 							cellspacing="0">
 							<thead>
 								<tr>
+									<th><input type="checkbox" id="selectCheckBox" /></th>
 									<th>Index</th>
 									<th>Email</th>
 									<th>Name</th>
 									<th>NickName</th>
 									<th>Phone</th>
-									<th>Delete_Date</th>
+									<th>Level</th>
+									<th>관리</th>
 								</tr>
 							</thead>
 							<!-- <tfoot>
@@ -116,18 +158,26 @@
                 </tr>
               </tfoot> -->
 							<tbody>
-								<%-- <c:forEach var="item" items="${list }" varStatus="status">
+							<form id="massiveDeleteForm">
+								<c:forEach var="item" items="${list }" varStatus="status">
 									<tr>
+										<td><input type="checkbox" class="deleteCheckBox"
+											name="deleteCheckBox" value="${item.user_no} " /></td>
 										<td>${status.count }</td>
 										<td>${item.email }</td>
 										<td>${item.name }</td>
 										<td>${item.nickname }</td>
 										<td>${item.phone }</td>
-										<td>${item.delete_date }</td>
+										<td>${item.user_level }</td>
+										<td><button class="delete_btn" onclick="">삭제</button></td>
+
 									</tr>
-								</c:forEach> --%>
+								</c:forEach>
+								</form>
 							</tbody>
 						</table>
+						<button id="selectDeleteBtn" class="btn-1">선택 삭제</button>
+						
 					</div>
 				</div>
 				<div class="card-footer small text-muted">Updated yesterday at
@@ -136,13 +186,7 @@
 		</div>
 		<!-- /.container-fluid-->
 		<!-- /.content-wrapper-->
-		<footer class="sticky-footer">
-			<div class="container">
-				<div class="text-center">
-					<small>Copyright © Your Website 2017</small>
-				</div>
-			</div>
-		</footer>
+		<c:import url="../common/footer.jsp" />
 		<!-- Scroll to Top Button-->
 		<a class="scroll-to-top rounded" href="#page-top"> <i
 			class="fa fa-angle-up"></i>
@@ -189,5 +233,4 @@
 		<script
 			src="/fitnessground/resources/admin/js/sb-admin-datatables.min.js"></script>
 	</div>
-	</body>
-	</html>
+	<c:import url="../common/end.jsp" />

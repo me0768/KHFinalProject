@@ -48,6 +48,7 @@ public class UserController {
 			if(BCrypt.checkpw(user.getPwd(), u.getPwd())) { // 이메일 같은게 있으면 암호화 데이터 비교
 				mv.addObject("user",u);
 				mv.setViewName("jsonView");
+				System.out.println(u);
 				session.setAttribute("user", u);  		// 아디비번이 같을 경우 세션값으로 넘김
 				return mv;
 			} else {						
@@ -177,6 +178,8 @@ public class UserController {
 	public ModelAndView myPageMethod(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("user/myPage");
 		int userNo = Integer.parseInt(request.getParameter("userno"));
+		User user = userService.selectUser(userNo);
+		System.out.println(user);
 		mv.addObject("yesterday", userService.yesterdaySchedule(userNo));
 		mv.addObject("today", userService.todaySchedule(userNo));
 		/*System.out.println(userService.yesterdaySchedule(userNo));
@@ -212,25 +215,24 @@ public class UserController {
 	// 회원 프로필 이미지 수정
 	@RequestMapping(value="/profileImgModify.do")
 	public ModelAndView userProfileImgModifyMethod(User u, HttpServletRequest request) throws Exception {
-		User user = userService.loginCheck(u.getEmail());		
 		// 기존 이미지가 있을 경우, 파일 삭제
-		String fileName = user.getRename_image();
+		String fileName = userService.loginCheck(u.getEmail()).getRename_image();
 		if(fileName != null) {
 			File file = new File(request.getSession().getServletContext().getRealPath("/resources/images/myimages/"+fileName));
 			if(file.exists()) file.delete();
-		}		
+		}
 		ModelAndView mv = new ModelAndView("redirect:/mypage.do?userno="+u.getUser_no());
 		userService.userProfileImgUpdate(u, request);
 		HttpSession session = request.getSession();
-		session.setAttribute("user", user);
+		System.out.println(userService.selectUser(u.getUser_no()));
+		session.setAttribute("user", userService.selectUser(u.getUser_no()));
 		return mv; 
 	}
 	// 회원 프로필 이미지 삭제
 	@RequestMapping(value="/profileImgRemove.do")
 	public ModelAndView userProfileImgRemoveMethod(User u, HttpServletRequest request) {
-		User user = userService.loginCheck(u.getEmail());		
 		// 기존 이미지 파일 삭제
-		String fileName = user.getRename_image();
+		String fileName = userService.loginCheck(u.getEmail()).getRename_image();
 		if(fileName != null) {
 			File file = new File(request.getSession().getServletContext().getRealPath("/resources/images/myimages/"+fileName));
 			if(file.exists()) file.delete();
@@ -238,7 +240,8 @@ public class UserController {
 		ModelAndView mv = new ModelAndView("redirect:/mypage.do?userno="+u.getUser_no());
 		userService.userProfileImgRemove(u);
 		HttpSession session = request.getSession();
-		session.setAttribute("user", user);
+		System.out.println(userService.selectUser(u.getUser_no()));
+		session.setAttribute("user", userService.selectUser(u.getUser_no()));
 		return mv; 
 	}
 	// 회원정보 수정 ajax
@@ -246,7 +249,7 @@ public class UserController {
 	public ModelAndView userUpdateMethod(User u, ModelAndView mv, HttpServletRequest request) {
 		userService.userUpdate(u);
 		HttpSession session = request.getSession();
-		session.setAttribute("user", userService.loginCheck(u.getEmail()));
+		session.setAttribute("user", userService.selectUser(u.getUser_no()));
 		mv.setViewName("jsonView");
 		return mv; 
 	}

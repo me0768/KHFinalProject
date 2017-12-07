@@ -39,10 +39,10 @@
 					<span aria-hidden="true">&times;</span>
 				</button>	
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" align="center">
-				<c:if test="${ sessionScope.user.rename_image = null }">
+				<c:if test="${null eq sessionScope.user.rename_image}">
 				<img id="profileEditImg" src="/fitnessground/resources/images/myimages/nullicon.png" class="img-circle" style="background:#DAECF3; width:150px; height:150px; margin-top:20px;">
 				</c:if>
-				<c:if test="${ sessionScope.user.rename_image != null }">
+				<c:if test="${null ne sessionScope.user.rename_image}">
 				<img id="profileEditImg" src="/fitnessground/resources/images/myimages/${ sessionScope.user.rename_image }" class="img-circle" style="background:#DAECF3; width:150px; height:150px; margin-top:20px;">
 				</c:if>
 				<form id="profileImgForm" method="post" enctype="multipart/form-data">

@@ -18,7 +18,9 @@ public class AdminDao {
 	public AdminDao(){}
 	
 	public ArrayList<User> userlist(int level){
-		return sqlSession.selectOne("user.userList", level);
+		List<User> ulist = sqlSession.selectList("user.userList", level);
+		ArrayList<User> list = new ArrayList<User>(ulist);
+		return list;
 	};
 	
 

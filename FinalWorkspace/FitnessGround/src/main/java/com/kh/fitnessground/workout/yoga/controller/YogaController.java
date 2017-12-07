@@ -28,8 +28,8 @@ public class YogaController {
 
 	private static final Logger logger = LoggerFactory.getLogger(YogaController.class);
 
-		@Autowired
-		private YogaService yogaService;
+	@Autowired
+	private YogaService yogaService;
 
 	public YogaController() {}
 

@@ -244,7 +244,6 @@ public class UserController {
 	// 회원정보 수정 ajax
 	@RequestMapping(value="/uupdate.do")
 	public ModelAndView userUpdateMethod(User u, ModelAndView mv, HttpServletRequest request) {
-		System.out.println(u);
 		userService.userUpdate(u);
 		HttpSession session = request.getSession();
 		session.setAttribute("user", userService.loginCheck(u.getEmail()));
@@ -316,7 +315,6 @@ public class UserController {
     	mv.addObject("qMaxPage", qMaxPage);
     	mv.addObject("qStartPage", qStartPage);
     	mv.addObject("qEndPage", qEndPage);
-
 		return mv; 
 	}
 	// 문의하기 검색
@@ -339,6 +337,9 @@ public class UserController {
 		if (qMaxPage < qEndPage)	qEndPage = qMaxPage;
 		
 		ArrayList<GymQnABoard> qlist = userService.qnABoardSearch(qPage, keyword, user_no);
+		if(request.getParameter("com")!=null)
+			mv.addObject("com","ok");
+		else mv.addObject("com","no");
 		mv.addObject("qlist", qlist);
 		mv.addObject("qCurrentPage", qCurrentPage);
     	mv.addObject("qMaxPage", qMaxPage);

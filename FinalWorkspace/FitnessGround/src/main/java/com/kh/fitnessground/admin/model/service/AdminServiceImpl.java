@@ -25,14 +25,14 @@ public class AdminServiceImpl  implements AdminService{
 
 
 	@Override
-	public ArrayList<User> buisnesslist(int level) {
+	public ArrayList<User> businesslist(int level) {
 		// TODO Auto-generated method stub
 		return adminDao.businesslist(level);
 	}
 
 
 	@Override
-	public ArrayList<User> buisnessRequestlist(int level) {
+	public ArrayList<User> businessRequestlist(int level) {
 		// TODO Auto-generated method stub
 		return adminDao.businessRequestlist(level);
 	}

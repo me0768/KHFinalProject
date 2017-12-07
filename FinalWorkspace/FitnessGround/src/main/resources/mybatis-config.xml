@@ -12,6 +12,7 @@
 		<typeAlias type="com.kh.fitnessground.gym.model.vo.GymQnABoard" alias="GymQnABoard"/>
 		<typeAlias type="com.kh.fitnessground.gym.model.vo.GymQnABoardPage" alias="GymQnABoardPage"/>
 		<typeAlias type="com.kh.fitnessground.community.model.vo.CommunityBoard" alias="Community"/>
+		<typeAlias type="com.kh.fitnessground.gym.model.vo.Gym" alias="Gym"/>
 	</typeAliases>
 	
 	<!-- 사용할 매퍼 파일 등록 : 필수 -->

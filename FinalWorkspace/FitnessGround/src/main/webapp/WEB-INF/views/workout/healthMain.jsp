@@ -14,6 +14,8 @@
 <div id="mypage_header">
 	<!-- Nav -->
 	<c:import url="../include/main/nav.jsp"/>
+	<c:import url="../user/login.jsp"/>
+	<c:import url="../user/findidpwd.jsp"/>
 </div>
 	
 <!-- health head -->
@@ -75,7 +77,7 @@
 				<area shape="poly" 
 					coords="94,62,72,56,65,68,66,79,74,85,88,85,92,81,100,86,117,83,124,72,115,57"
 					href="#" alt="Chest" state="Chest" full="chest" onclick="popUp('chest');"
-					data-key = "chest">
+					data-key = "chest" data-full="chest">
 				<!--  왼쪽 어깨 -->
 				<area shape="poly"
 					coords="60,51,48,53,48,53,48,53,45,62,56,68,67,65,70,56" href="#"
@@ -120,7 +122,7 @@
 				<!-- 위팔 뒤 왼쪽 이두 -->
 				<area shape="poly" coords="46,66,49,85,61,83,61,73,60,67,60,67"
 					href="#" alt="Biceps" state="BI" full="Biceps" onclick="popUp('biceps'); return false;"
-					data-key="biceps">
+					data-key="biceps" >
 				
 				<!-- 위팔 뒤 오른쪽 이두 -->
 				<area shape="poly"
@@ -217,8 +219,8 @@
 			</map>
 			</div>
 			
-			<div id="workoutTitle" class="col-md-5">
-				
+			<div class="col-md-5" id="explain" >
+				왼쪽 이미지에서 영상을 보고싶은 부위를 클릭 해 주세요!
 			</div>
 		</div>
 
@@ -248,40 +250,26 @@
 
 <script type="text/javascript">
 	
+	var areas = $.map($('area[data-full]'),function(el) {
+	    return { 
+	        key: $(el).attr('name'),
+	        toolTip: $(el).attr('data-full')
+	    };               
+	});
+	
+	
 	$('#myimage').
 		mapster({
 			fillColor:'ff0000',
 			fillOpacity:0.5,
 			staticState:false,
 			mapKey: 'data-key'
-		})
-		
-		/* .mapster('set',false,'chest,shoulders'); */
-/* 	var basic_opts = {
-	    mapKey: 'state'
-	};
-
-	var initial_opts = $.extend({},basic_opts, 
-	    { 
-	        staticState: true,
-	        fill: false,
-	        stroke: true,
-	        strokeWidth: 0,
-	        strokeColor:'FFFFFF',
-	     });
-
-	$('img').mapster(initial_opts)
-		.mapster('set',true,'click', {
-	        fill: true,
-	        fillColor: '00ff00'
-	    })
-	    .mapster('snapshot')
-	    .mapster('rebind',basic_opts);
-
+			
+			
+		});
 	
-	$('img').mapster({
-		staticState: false
-	}) */
+	
+
 	
 	function popUp(part){	//ajax 처리..
 		console.log("part : " + part);

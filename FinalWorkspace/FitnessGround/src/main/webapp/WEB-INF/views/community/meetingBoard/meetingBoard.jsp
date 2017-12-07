@@ -171,7 +171,6 @@
 		</colgroup>
     <tr>
       <th>번호</th>
-      <th>카테고리</th>
       <th>제목</th>
       <th>글쓴이</th>
       <th>모임날짜</th>

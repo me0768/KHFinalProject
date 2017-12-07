@@ -21,6 +21,7 @@
 		<result property="name" column="NAME" />
 		<result property="title" column="TITLE" />
 		<result property="content" column="CONTENT" />
+		<result property="board_property" column="BOARD_PROPERTY"/>
 		<result property="upload_date" column="UPLOAD_DATE" />
 		<result property="readcount" column="READCOUNT" />
 	</resultMap>
@@ -47,17 +48,35 @@
 	</insert>
 
 	<!-- ======================================qna게시판====================================================== -->
-		
-
+	<!--  qna 게시판 메인 -->
+	<select id="qnaListView" resultType="list" resultMap="CommunityResult">
+		<![CDATA[select a.*, b.name from tb_com_board a join tb_user b on(a.user_no = b.user_no) order by cb_no desc]]>
+	</select>	
+	<!--  qna 게시판 글쓰기 -->
+	<insert id="insertQnA" parameterType="Community" flushCache="true"
+		statementType="PREPARED" useGeneratedKeys="true" >
+		<![CDATA[insert into tb_com_board values(cb_seq.nextval,#{user_no},#{title},#{content},1,default,default)]]>
+	</insert>	
+	<!--  qna 게시판 디테일 -->
+	<select id="qnaDetail" resultType="Community" resultMap="CommunityResult">
+		<![CDATA[select a.*, b.name from tb_com_board a join tb_user b on(a.user_no = b.user_no) where cb_no=#{cb_no}]]>
+	</select>
+	
 	<!-- ======================================리뷰 게시판====================================================== -->
 	<!-- 리뷰게시판 메인 -->
 	<select id="reviewListView" resultType="list" resultMap="CommunityResult">
 		<![CDATA[select a.*, b.name from tb_com_board a join tb_user b on(a.user_no = b.user_no) order by cb_no desc]]>
 	</select>
+	
+	<!-- 리뷰게시판 디테일 -->
+	<select id="reviewDetail" resultType="Community" resultMap="CommunityResult">
+		<![CDATA[select a.*, b.name from tb_com_board a join tb_user b on(a.user_no = b.user_no) where cb_no=#{cb_no}]]>
+	</select>
+	
 	 <!-- 리뷰게시판 글쓰기 -->
 	<insert id="insertReview" parameterType="Community" flushCache="true"
 		statementType="PREPARED" useGeneratedKeys="true" >
-		<![CDATA[insert into tb_com_board values(cb_seq.nextval,#{user_no},#{title},#{content},#{board_property},default,default)]]>
+		<![CDATA[insert into tb_com_board values(cb_seq.nextval,#{user_no},#{title},#{content},0,default,default)]]>
 	</insert>	
 	
 	</mapper>

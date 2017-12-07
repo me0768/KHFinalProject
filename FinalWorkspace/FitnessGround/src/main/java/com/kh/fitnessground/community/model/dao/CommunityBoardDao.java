@@ -112,7 +112,7 @@ public class CommunityBoardDao {
 	}
 
 	public CommunityBoard reviewDetail(int no) {
-		CommunityBoard community = sqlSession.selectOne("community.selectDetail", no);
+		CommunityBoard community = sqlSession.selectOne("community.reviewDetail", no);
 		return community;
 	}
 
@@ -145,18 +145,17 @@ public class CommunityBoardDao {
 	
 	//qna 게시판--------------------------------------------------------------------------------------
 	
-	public int qnaInsert(CommunityBoard communityboard) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 	public ArrayList<CommunityBoard> qnaListView() {
-		List<CommunityBoard> clist = sqlSession.selectList("community.communityListView");
+		List<CommunityBoard> clist = sqlSession.selectList("community.qnaListView");
 		ArrayList<CommunityBoard> list = new ArrayList<CommunityBoard>(clist);
 		return list;
 	}
 	
-
+	public int qnaInsert(CommunityBoard communityboard) {
+		int result = sqlSession.insert("community.insertQnA", communityboard);
+		return result;
+	}
+	
 	public int qnaDelete(int mb_no) {
 		// TODO Auto-generated method stub
 		return 0;
@@ -167,9 +166,9 @@ public class CommunityBoardDao {
 		return 0;
 	}
 
-	public CommunityBoard qnadDetail(int mb_no) {
-		// TODO Auto-generated method stub
-		return null;
+	public CommunityBoard qnadDetail(int no) {
+		CommunityBoard community = sqlSession.selectOne("community.qnaDetail", no);
+		return community;
 	}
 
 	public ArrayList<CommunityBoard> qnaSearch(int page, int limit, String findType, String searchKey) {

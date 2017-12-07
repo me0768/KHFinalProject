@@ -49,7 +49,7 @@ public interface CommunityBoardService {
 				//수정
 				int reviewUpdate(CommunityBoard communityboard);
 				//디테일
-				CommunityBoard reviewDetail(int mb_no);
+				CommunityBoard reviewDetail(int no);
 				//찾기
 				ArrayList<CommunityBoard> reviewSearch(int page, int limit,String findType, String searchKey);
 			
@@ -73,7 +73,7 @@ public interface CommunityBoardService {
 					//수정
 					int qnaUpdate(CommunityBoard communityboard);
 					//디테일
-					CommunityBoard qnaDetail(int mb_no);
+					CommunityBoard qnaDetail(int no);
 					//찾기
 					ArrayList<CommunityBoard> qnaSearch(int page, int limit,String findType, String searchKey);
 			

@@ -126,9 +126,9 @@ public class CommunityBoardServiceImpl implements CommunityBoardService {
 	}
 
 	@Override
-	public CommunityBoard reviewDetail(int mb_no) {
+	public CommunityBoard reviewDetail(int no) {
 		// TODO Auto-generated method stub
-		return communityBoardDao.reviewDetail(mb_no);
+		return communityBoardDao.reviewDetail(no);
 	}
 
 	@Override
@@ -187,9 +187,9 @@ public class CommunityBoardServiceImpl implements CommunityBoardService {
 	}
 
 	@Override
-	public CommunityBoard qnaDetail(int mb_no) {
+	public CommunityBoard qnaDetail(int no) {
 		// TODO Auto-generated method stub
-		return communityBoardDao.qnadDetail(mb_no);
+		return communityBoardDao.qnadDetail(no);
 	}
 
 	@Override

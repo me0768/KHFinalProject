@@ -1279,7 +1279,7 @@ p {
 br.clear {
   clear: both; }
 
-hr {
+/* hr {
   position: relative;
   display: block;
   border: 0;
@@ -1299,7 +1299,7 @@ hr {
   hr:before {
     left: -1px; }
   hr:after {
-    right: -1px; }
+    right: -1px; } */
 
 .timestamp {
   color: rgba(128, 128, 128, 0.75);

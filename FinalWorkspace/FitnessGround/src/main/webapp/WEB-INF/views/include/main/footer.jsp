@@ -1,52 +1,57 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <div id="footer" style="clear:left;">
             <div class="container">
                 <div class="row">
 
-                    <!-- 사이트맵1 -->
+                    <!-- 1 -->
                     <section class="4u 12u(mobile)">
                         <header>
                             <h2><i class="fa fa-youtube-play" aria-hidden="true"></i></h2>
                         </header>
                         <ul class="divided">
                             <li>
-                                <h3>운동법 동영상</h3>
+                                <h3 id="footer-title">운동법 동영상</h3>
                             </li>
-                           	<li><p>헬스</p>
-                           	<p>요가</p>
-                           	<p>필라테스</p>
-                           	<p>맨몸운동</p></li>
+                           	<li>
+                           	<p id="footer-menu">헬스</p>
+                           	<p id="footer-menu">요가</p>
+                           	<p id="footer-menu">필라테스</p>
+                           	<p id="footer-menu">맨몸운동</p>
+								</li>
                         </ul>
                     </section>
 
-                     <!-- 사이트맵2 -->
+                     <!-- 2-->
                     <section class="4u 12u(mobile)">
                         <header>
-                            <h2><i class="fa fa-youtube-play" aria-hidden="true"></i></h2>
+                            <h2><i class="fa fa-search" aria-hidden="true"></i></h2>
                         </header>
                         <ul class="divided">
                             <li>
-                                <h3>Find your gym</h3>
+                                <h3 id="footer-title">운동시설/헬스장찾기</h3>
                             </li>
-                           	<li><p>헬스</p>
-                           	<p>요가</p>
-                           	<p>필라테스</p>
-                           	<p>맨몸운동</p></li>
+                           		<li>
+                           	<p id="footer-menu">운동시설찾기</p>
+                           	<p id="footer-menu">헬스장찾기</p>
+								</li>
                         </ul>
                     </section>
                     
-                     <!-- 사이트맵3 -->
+                     <!-- 3 -->
                     <section class="4u 12u(mobile)">
                         <header>
-                            <h2><i class="fa fa-youtube-play" aria-hidden="true"></i></h2>
+                            <h2><i class="fa fa-users" aria-hidden="true"></i></h2>
                         </header>
                         <ul class="divided">
                             <li>
-                                <h3>Community</h3>
+                                <h3 id="footer-title">Community</h3>
                             </li>
-                           	<li><p>헬스</p>
-                           	<p>요가</p>
-                           	<p>필라테스</p>
-                           	<p>맨몸운동</p></li>
+                           		<li>
+                           	<p id="footer-menu">운동같이해요</p>
+                           	<p id="footer-menu">리뷰</p>
+                           	<p id="footer-menu">Q&A</p>
+								</li>
                         </ul>
                     </section>
 
@@ -58,8 +63,8 @@
                         <!-- Copyright -->
                         <div class="copyright">
                             <ul class="menu">
-                                <li>&copy; Untitled. All rights reserved.</li>
-                                <li>Design:갑자기 왜 인코딩 안되지 ㅡㅡ </li>
+                                <li>&copy; FitnessGround. All rights reserved.</li>
+                                <li>team 뚝이</li>
                             </ul>
                         </div>
 

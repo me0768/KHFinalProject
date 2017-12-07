@@ -74,6 +74,31 @@ public class CommunityBoardController {
 					mv.addObject("list", list);
 					return mv;
 				}
+				
+				//글쓰기 페이지로 이동
+				@RequestMapping(value="qnaInsert.do", method= RequestMethod.GET)
+				public String  qnaInsert() {
+					return "community/qnaBoard/qnaInsert";
+				}
+				//글쓰기페이지 저장
+				@RequestMapping(value="qnaInsert.do", method = RequestMethod.POST)
+				public String qnaInsertPage(CommunityBoard community) {
+					int result = communityBoardService.qnaInsert(community);
+					if(result > 0)
+						return "redirect:/qna.do";
+					else {
+						return "System.out.println('에러발생')";
+						
+					}
+				}
+				@RequestMapping(value="qnaDetail.do", method = RequestMethod.GET)
+				public ModelAndView qnaDetail(@RequestParam(value="no") int no) {
+					ModelAndView mv = new ModelAndView("community/qnaBoard/qnaDetail");
+					CommunityBoard community = communityBoardService.qnaDetail(no);
+					mv.addObject("community", community);
+					return mv;
+				}
+				
 							
 				
 		

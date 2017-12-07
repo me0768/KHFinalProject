@@ -29,7 +29,7 @@
 				<ul>
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="padding-left: 0px; padding-right: 0px; margin-top:10px;">
 					<c:if test="${ sessionScope.user.rename_image == null }">
-						<img src="/fitnessground/resources/images/myimages/nullicon.png" class="img-circle" style="width: 85px; height: 85px; background:#87798f;">
+						<img src="/fitnessground/resources/images/myimages/nullicon.png" class="img-circle" style="width: 85px; height: 85px; background:#DAECF3;">
 					</c:if>
 					<c:if test="${ sessionScope.user.rename_image != null }">
 						<img src="/fitnessground/resources/images/myimages/${ sessionScope.user.rename_image }" class="img-circle" style="width: 85px; height: 85px;">

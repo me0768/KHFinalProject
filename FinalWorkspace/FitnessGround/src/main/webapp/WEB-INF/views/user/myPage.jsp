@@ -35,10 +35,10 @@
 		<div class="mypage_info_title" align="center">
 			<a href="javascript:profileEdit()">
 				<c:if test="${ sessionScope.user.rename_image == null }">
-				<img alt="user sample image" src="/fitnessground/resources/images/myimages/nullicon.png" class="img-circle" style="background:#87798f;">
+				<img src="/fitnessground/resources/images/myimages/nullicon.png" class="img-circle" style="background:#DAECF3;">
 				</c:if>
 				<c:if test="${ sessionScope.user.rename_image != null }">
-				<img alt="user sample image" src="/fitnessground/resources/images/myimages/${sessionScope.user.rename_image}" class="img-circle" style="background:#87798f;">
+				<img src="/fitnessground/resources/images/myimages/${sessionScope.user.rename_image}" class="img-circle" style="background:#DAECF3;">
 				</c:if>
 			</a>
 			<p align="center">${sessionScope.user.name} 님</p>

@@ -155,4 +155,9 @@ public class UserServiceImpl implements UserService {
 	    parameters.put("user_no", user_no);
 		return userDao.qnaBoardSearch(parameters);
 	}
+
+	@Override
+	public User selectUser(int userNo) {
+		return userDao.selectUser(userNo);
+	}
 }

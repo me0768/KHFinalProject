@@ -14,6 +14,8 @@
 		<result property="user_level" column="USER_LEVEL" />
 		<result property="delete_date" column="DELETE_DATE" />
 		<result property="tmppwd_tf" column="TMPPWD_TF" />
+		<result property="original_image" column="original_image" />
+		<result property="rename_image" column="rename_image" />
 	</resultMap>
 	
 	<resultMap id="resultList" type="User">
@@ -26,6 +28,8 @@
 		<result property="user_level" column="USER_LEVEL" />
 		<result property="delete_date" column="DELETE_DATE" />
 		<result property="tmppwd_tf" column="TMPPWD_TF" />
+		<result property="original_image" column="original_image" />
+		<result property="rename_image" column="rename_image" />
 	</resultMap>
 	
 	<resultMap id="resultUserSchedule" type="UserSchedule">

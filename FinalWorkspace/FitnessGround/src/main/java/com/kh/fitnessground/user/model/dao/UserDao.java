@@ -109,4 +109,8 @@ public class UserDao {
 		List<GymQnABoard> list = sqlSession.selectList("gym.myPageQnABoardSearchList", parameters);
 		return new ArrayList<GymQnABoard>(list);
 	}
+
+	public User selectUser(int userNo) {
+		return sqlSession.selectOne("user.selectInfo", userNo);
+	}
 }

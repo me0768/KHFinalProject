@@ -1,6 +1,7 @@
 package com.kh.fitnessground.user.model.service;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.fitnessground.common.util.FileUtils;
+import com.kh.fitnessground.community.model.vo.CommunityAndMeeting;
 import com.kh.fitnessground.gym.model.vo.GymQnABoard;
 import com.kh.fitnessground.gym.model.vo.GymQnABoardPage;
 import com.kh.fitnessground.user.model.dao.UserDao;
@@ -159,5 +161,31 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User selectUser(int userNo) {
 		return userDao.selectUser(userNo);
+	}
+
+	@Override
+	public ArrayList<CommunityAndMeeting> communityBoardList(int user_no) {
+		return userDao.selectCommunityList(user_no);
+	}
+
+	@Override
+	public ArrayList<CommunityAndMeeting> meetingBoardList(int user_no) {
+		return userDao.selectMeetingList(user_no);
+	}
+
+	@Override
+	public ArrayList<CommunityAndMeeting> communityBoardSearch(int user_no, String keyword) {
+		HashMap<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("user_no", user_no);
+		parameters.put("keyword", "%"+keyword+"%");
+		return userDao.communitySearch(parameters);
+	}
+
+	@Override
+	public Collection<? extends CommunityAndMeeting> meetingBoardSearch(int user_no, String keyword) {
+		HashMap<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("user_no", user_no);
+		parameters.put("keyword", "%"+keyword+"%");
+		return userDao.meetingSearch(parameters);
 	}
 }

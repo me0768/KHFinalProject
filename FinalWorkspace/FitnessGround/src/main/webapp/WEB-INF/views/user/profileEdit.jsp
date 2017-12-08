@@ -31,8 +31,8 @@
 	}
  </script>
 
-<div class="modal fade bs-example-modal-sm" id="profileEdit">
-	<div class="modal-dialog modal-sm">
+<div class="modal modal-center fade bs-example-modal-sm" id="profileEdit">
+	<div class="modal-dialog modal-center modal-sm">
 		<div class="modal-content">
 			<div class="modal-header" id="login_header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">

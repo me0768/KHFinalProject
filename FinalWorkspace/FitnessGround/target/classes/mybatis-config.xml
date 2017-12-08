@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE configuration PUBLIC
 "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
@@ -12,6 +12,7 @@
 		<typeAlias type="com.kh.fitnessground.gym.model.vo.GymQnABoard" alias="GymQnABoard"/>
 		<typeAlias type="com.kh.fitnessground.gym.model.vo.GymQnABoardPage" alias="GymQnABoardPage"/>
 		<typeAlias type="com.kh.fitnessground.community.model.vo.CommunityBoard" alias="Community"/>
+		<typeAlias type="com.kh.fitnessground.community.model.vo.CommunityAndMeeting" alias="ComAndMeet"/>
 		<typeAlias type="com.kh.fitnessground.gym.model.vo.Gym" alias="Gym"/>
 	</typeAliases>
 	

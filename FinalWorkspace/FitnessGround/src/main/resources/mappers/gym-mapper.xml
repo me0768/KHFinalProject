@@ -17,25 +17,20 @@
 		<result property="ref_no" column="ref_no" />
 	</resultMap>
 	
-	<resultMap id="resultGymRequestList" type="Gym">
+	<resultMap id="resultBusinessRequest" type="BusinessRequest">
 		<id property="gym_no" column="gym_no"/>
 		<id property="gym_name" column="gym_name"/>
-		<id property="original_image" column="original_image"/>
-		<id property="rename_image" column="rename_image"/>
-		<id property="op_time" column="op_time"/>
-		<id property="tel" column="tel"/>
-		<id property="phone" column="phone"/>
-		<id property="price" column="price"/>
-		<id property="description" column="description"/>
 		<id property="location" column="location"/>
 		<id property="user_no" column="user_no"/>
-		<id property="delete_date" column="delete_date"/>
 		<id property="approval_state" column="approval_state"/>
-	
+		<id property="email" column="email"/>
+		<id property="name" column="name"/>
+		<id property="user_level" column="user_level"/>
+		
 	</resultMap>
 	
 	
-	<select id="businessRequestList" parameterType="_int" resultMap="resultGymRequestList" resultType="list">
+	<select id="businessRequest" parameterType="_int" resultMap="resultBusinessRequest" resultType="list">
 		<![CDATA[ 
 		select user_no, email, name, gym_no, gym_name, location, approval_state 
 		 from tb_gym  join (select * from tb_user where user_level=#{level}) using(user_no)

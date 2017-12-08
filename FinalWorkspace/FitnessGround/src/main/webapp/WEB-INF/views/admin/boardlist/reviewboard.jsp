@@ -29,9 +29,7 @@
 	vertical-align: middle;
 }
 
-.btn-1,
-.btn-2,
-.btn-3 {
+.btn-1, .btn-2, .btn-3 {
 	color: black;
 	background: white;
 	border: 1px solid gray;
@@ -42,15 +40,17 @@
 	transition: all .15s linear;
 }
 
-.btn-1:hover,
-.btn-2:hover,
-.btn-3:hover {
+.btn-1:hover, .btn-2:hover, .btn-3:hover {
 	background: gray;
 	border: 1px solid rgba(0, 0, 0, 0.05);
 	box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 	color: gray;
 	text-shadow: -1px -1px 0 black;
 }
+
+
+
+
 </style>
 
 <link
@@ -67,17 +67,11 @@
 <script
 	src="/fitnessground/resources/admin/js/sb-admin-datatables.min.js"></script>
 
+
 <script type="text/javascript">
-	function userlistPage(){
-		location.href="adminuserlist.do"
-	}
-	function businesslistPage(){
-		location.href="adminbusinesslist.do"
-	}
-	function businessRequestlistPage(){
-		location.href="adminbusinessRequestlist.do"
-	}
+	
 </script>
+
 <c:import url="../common/nav.jsp" />
 <div class="content-wrapper">
 	<div class="container-fluid">
@@ -93,15 +87,10 @@
 
 				<div class="buttons">
 
-					<button class="btn-1" onclick="userlistPage();">일반회원</button>
-					<button class="btn-2" onclick="businesslistPage();">사업자회원</button>
-					<button class="btn-3" onclick="businessRequestlistPage();">등록요청</button>
+					<a href="adminMettingBoard.do" class="btn-1">Meeting</a>&nbsp; <a
+						href="adminQNABoard.do" class="btn-2">Q&A</a>&nbsp; <a
+						href="adminReviewBoard.do" class="btn-3">Review</a>
 
-					<!-- <a href="adminuserlist.do" class="btn-1">일반회원</a>&nbsp; 
-					<a href="adminbuisnesslist.do"	class="btn-2">사업자회원</a>&nbsp; 
-					<a href="adminbuisnessRequestlist.do" class="btn-3">등록 요청</a>
-
- -->
 
 				</div>
 
@@ -111,47 +100,59 @@
 						<table class="table table-bordered" id="dataTable" width="100%"
 							cellspacing="0">
 							<thead>
-								<tr>
-									<th>유저번호</th>
-									<th>이메일</th>
-									<th>이름</th>
-									<th>헬스장번호</th>
-									<th>헬스장이름</th>
-									<th>지역</th>
-									<th>승인여부</th>
+								<tr>							
+									<th>번호</th>
+									<th>작성자</th>
+									<th>제목</th>
+									<th>작성일</th>
+									<th>조회수</th>
+									<th>관리</th>
 								</tr>
 							</thead>
-							<!-- <tfoot>
-                <tr>
-                  <th>Name</th>
-                  <th>Position</th>
-                  <th>Office</th>
-                  <th>Age</th>
-                  <th>Start date</th>
-                  <th>Salary</th>
-                </tr>
-              </tfoot> -->
+
 							<tbody>
 								<c:forEach var="item" items="${list }" varStatus="status">
+									<c:if test="${item.board_property == 0}">
 									<tr>
+										<%-- <td><input type="checkbox" class="deleteCheckBox"
+											name="deleteCheckBox" value="${item.user_no} " /></td> --%>
+										<td>${status.count }</td>
 										<td>${item.user_no }</td>
-										<td><a href="#">${item.email }</a></td>
-										<td>${item.name }</td>
-										<td>${item.gym_no }</td>
-										<td><a href="#">${item.gym_name }</a></td>
-										<td>${item.location }</td>
-										<c:choose>
-											<c:when test="${item.approval_state==0}">
+										<td>
+										<a  href="reviewDetail.do" data-target=".${item.cb_no}"
+											data-toggle="modal">${item.title }</a></td>
+										<br />
+										<div class="modal fade ${item.cb_no} ${item.board_property}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+											<div class="modal-dialog">
+												<div class="modal-content">
 												
-												<td><input type="button" value="등록하기"></td>
-											</c:when>
-											<c:when test="${item.approval_state==1}">
-												
-												<td><input type="button" value="등록됨"></td>
-											</c:when>
-										
-										</c:choose>
+													<!-- header -->
+													<div class="modal-header" align="top">
+														<!-- 닫기(x) 버튼 -->
+														<button type="button" class="close" data-dismiss="modal">×</button>
+														<!-- header title -->
+														<h4 class="modal-title" align="center">${item.title}</h4>
+													<div>
+													
+													<!-- body -->
+													<div class="modal-body" align="center">${item.content}</div>
+													<p align="center">${item.name}</p>
+     											
+													<!-- Footer -->
+													<div class="modal-footer" >
+														Footer
+														<button type="button" class="btn btn-default"
+															data-dismiss="modal">닫기</button>
+													</div>
+												</div>
+											</div>
+										</div>
+										<td>${item.upload_date }</td>
+										<td>${item.readcount }</td>
+										<td><button class="delete_btn" onclick="">삭제</button></td>
+
 									</tr>
+									</c:if>
 								</c:forEach>
 							</tbody>
 						</table>

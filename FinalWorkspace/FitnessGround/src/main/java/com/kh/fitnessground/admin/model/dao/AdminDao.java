@@ -32,7 +32,7 @@ public class AdminDao {
 	}
 
 	public ArrayList<User> businessRequestlist(int level) {
-		List<User> brlist = sqlSession.selectList("gym.businessRequestList", level);
+		List<User> brlist = sqlSession.selectList("gym.businessRequest", level);
 		ArrayList<User> list = new ArrayList<User>(brlist);
 		return list;
 	}

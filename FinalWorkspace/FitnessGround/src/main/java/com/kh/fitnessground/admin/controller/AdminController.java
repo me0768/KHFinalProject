@@ -126,7 +126,7 @@ public class AdminController {
 	// mettingBoard 리스트 출력
 	@RequestMapping(value = "adminMettingBoard.do")
 	public ModelAndView mettingBoardListMethod() {
-		ModelAndView mv = new ModelAndView("admin/tables");
+		ModelAndView mv = new ModelAndView("admin/boardlist/meetingboard");
 		ArrayList<MeetingBoard> list = communityBoardService.meetingListView();
 		mv.addObject("list", list);
 		return mv;
@@ -135,7 +135,7 @@ public class AdminController {
 	// qnaBoard 리스트 출력
 	@RequestMapping(value = "adminQNABoard.do")
 	public ModelAndView qnaBoardListMethod() {
-		ModelAndView mv = new ModelAndView("admin/tables");
+		ModelAndView mv = new ModelAndView("admin/boardlist/qnaboard");
 		ArrayList<CommunityBoard> list = communityBoardService.qnaListView();					
 		mv.addObject("list", list);
 		return mv;
@@ -144,7 +144,7 @@ public class AdminController {
 	// reviewBoard 리스트 출력
 	@RequestMapping(value = "adminReviewBoard.do")
 	public ModelAndView reviewBoardListMethod() {
-		ModelAndView mv = new ModelAndView("admin/tables");
+		ModelAndView mv = new ModelAndView("admin/boardlist/reviewboard");
 		ArrayList<CommunityBoard> list = communityBoardService.reviewListView();
 		mv.addObject("list", list);
 		return mv;

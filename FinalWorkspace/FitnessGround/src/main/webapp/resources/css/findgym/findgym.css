@@ -17,18 +17,21 @@
  height: 700px;
 }
 
-#check{
-	margin-left: 50px;
-}
-
 #thumbnail{
 	display: inline-block;
-	width: 60px;
-	height: 60px;
+	width: 60vw;
+	height: 60vh;
 }
 
+#healthlist{
+	display: inline-block;
+}
 #pagination{
 	display: block;
 	margin-left: 50px;
 	align: center;
+}
+
+a {
+	display: block;
 }

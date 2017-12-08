@@ -1,6 +1,7 @@
 package com.kh.fitnessground.gym.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -48,8 +49,9 @@ public class GymDao {
 		return 0;
 	}
 
-	public ArrayList<Gym> healthList() {
-		List<Gym> list = sqlSession.selectList("gym.selectList");
+	public ArrayList<Gym> healthList(/*HashMap<String, Object> parameters*/) { 
+		//List<Gym> list = sqlSession.selectList("gym.selectGymList", parameters);
+		List<Gym> list = sqlSession.selectList("gym.selectGymList");
 		ArrayList<Gym> glist = (ArrayList<Gym>)list;		
 		
 		return glist;

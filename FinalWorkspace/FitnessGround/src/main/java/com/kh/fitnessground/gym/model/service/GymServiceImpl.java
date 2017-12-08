@@ -1,6 +1,7 @@
 package com.kh.fitnessground.gym.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,15 +43,34 @@ public class GymServiceImpl implements GymService{
 	@Override
 	public int deleteReview(int gcno) {
 		return gymDao.deleteReview(gcno);
-	}
+	} 
 
 	@Override
 	public int updateReview(int gcno, GymReview gymreview) {
 		return gymDao.updateReview(gcno,gymreview);
 	}
 
+/*	@Override
+	public ArrayList<Gym> healthList(int currentPage, int limit) {
+		HashMap<String, Object> parameters = new HashMap<String, Object>();
+		int startRow =(currentPage - 1) * limit + 1;
+		int endRow = startRow + limit - 1;
+		
+		parameters.put("startRow", startRow);
+		parameters.put("endRow", endRow);
+		
+		return gymDao.healthList(parameters);
+	}*/
+	
 	@Override
-	public ArrayList<Gym> healthList() {
-		return gymDao.healthList();
+	public ArrayList<Gym> healthList(/*int currentPage, int limit*/) {
+		/*HashMap<String, Object> parameters = new HashMap<String, Object>();
+		int startRow =(currentPage - 1) * limit + 1;
+		int endRow = startRow + limit - 1;
+		
+		parameters.put("startRow", startRow);
+		parameters.put("endRow", endRow);*/
+		
+		return gymDao.healthList(/*parameters*/);
 	}
 }

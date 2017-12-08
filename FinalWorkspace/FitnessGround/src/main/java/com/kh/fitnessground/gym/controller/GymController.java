@@ -95,14 +95,45 @@ public class GymController {
 	}
 	
 	@RequestMapping(value="findhealth.do")
-	public ModelAndView findHealth()
+	public ModelAndView findHealth(HttpServletRequest request, HttpServletResponse response)
 	{
 		ModelAndView mv = new ModelAndView("findgym/findgym");
+
+		/*int currentPage = 1;
+		int limit = 5;
+		
+		if(request.getParameter("cpage") != null)
+			currentPage = Integer.parseInt(request.getParameter("cpage"));
+		
+		int listCount = gymService.getListCount();*/
+		//ArrayList<Gym> list = gymService.healthList(currentPage, limit);
 		ArrayList<Gym> list = gymService.healthList();
+		/*
+		int maxPage = (int)((double)listCount / 10 + 0.9);
+		
+		int startPage = (((int)((double)currentPage / limit + 0.9))-1) * limit + 1;
+		
+		int endPage = startPage + limit - 1;
+		
+		if(maxPage < endPage)
+			endPage = maxPage;
 		
 		System.out.println(list);
+		
+		if(list != null)
+		{
+			
+			mv.addObject("currentPage", currentPage);
+			mv.addObject("maxPage", maxPage);
+			mv.addObject("startPage", startPage);
+			mv.addObject("endPage", endPage);
+			mv.addObject("listCount", listCount);
+			
+		}*/
+		mv.setViewName("jsonview");
 		mv.addObject("list", list);
 		return mv;
+		
 	}
 	
 	@RequestMapping(value="findpublicfacilities.do")

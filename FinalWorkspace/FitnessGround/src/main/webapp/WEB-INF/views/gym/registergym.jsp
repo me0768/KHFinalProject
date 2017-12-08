@@ -45,13 +45,12 @@
 #datesettings{
 	position: fixed;
 	display: none;
-	width: 100vw;
+	width: 70vw;
 	height: 30vh;
 	top: 100vh;
-	
 	right: 0px;
 	background-color: white;
-	left: 0;
+	left: 15vw;
 	z-index: 999;
 	border: 1px solid black;
 }

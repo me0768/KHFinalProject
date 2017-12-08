@@ -46,8 +46,12 @@ public class YogaController {
 		@RequestMapping(value = "/yclist.do")
 		public ModelAndView YogaCategoryListMethod(String category, HttpServletRequest request) {
 			ModelAndView mv = new ModelAndView("/workout/yogaCategory");
+			System.out.println(category); //null뜸 .. 
+			String c = request.getParameter(category);
+			System.out.println(c);
 			ArrayList<Yoga> list = yogaService.selectCList(category);
 			mv.addObject("list", list);
+			mv.setViewName("jsonView");
 			return mv;
 		}
 

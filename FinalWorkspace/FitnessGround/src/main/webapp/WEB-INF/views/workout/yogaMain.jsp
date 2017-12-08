@@ -88,53 +88,68 @@
 			</div>
 		</div>
 	</div>
-	<!-- thumbnail youtube API call -->
+	<!-- thumbnail & 재생시간 youtube API call -->
 					<script type="text/javascript">
 					var list = new Array(); 
 					var duration; 
 					var thumbnail;
-					<c:forEach items="${list}" var="item">
-					list.push("${item.url}");
-					</c:forEach>
+					var st;
+					<c:forEach items="${list}" var="it" varStatus="status">
+					list.push("${it.url}");
+					st = ${status.count}-1;
 					console.log(list);
-					$(document).ready(function(){
-						for(var i=0;i<5;i++){
+					console.log(st+"@@");
+					console.log(${status.count}+"^^");
+					/* $(document).ready(function(){ */
+						/* for(var i=0;i<5;i++){ */
 							$.get("https://www.googleapis.com/youtube/v3/videos", {
 								part : 'contentDetails',
 								maxResults : 50,
-								id : list[i],
+								id : list[st],
 								key : 'AIzaSyACiHNLQp0NoZLhAx6u2JbtMGjCp3STK3A'
 							}, function(data) {
 								
 								$.each(data.items, function(i, item) {
 									duration = item.contentDetails.duration;
+				                       min = duration.split("M")[0].slice(2);
+				                       if(min.length<2){
+				                    	   min = "0"+min;
+				                       }
+				                       sec = duration.split("M")[1].slice(0,-1);
+				                       if(sec.length<2){
+				                    	   sec = "0"+sec;
+				                       }
+				                    duration = min+":"+sec;
 									console.log("time:" + duration);
-									$('#video-info').append(duration);
+									console.log("length:"+duration.length);
+									$('#v-time${it.v_no}').append(duration);
 								});
+								
 				
 							});
-						}
-						for(var i=0;i<5;i++){
+						/* } */
+						/* for(var i=0;i<5;i++){ */
 							$.get("https://www.googleapis.com/youtube/v3/videos", {
 								part : 'snippet',
 								maxResults : 50,
-								id : list[i],
+								id : list[st],
 								key : 'AIzaSyACiHNLQp0NoZLhAx6u2JbtMGjCp3STK3A'
 							}, function(data) {
 								
 								$.each(data.items, function(i, item) {
 									 thumbnail = item.snippet.thumbnails.medium.url;
 
-									$('#video-info').append('<img src=\"'+thumbnail+'\">');
+									$('#video-iframe${it.v_no}').append('<img id=\"v-img\" src=\"'+thumbnail+'\">');
 								});
 				
 							});
-						}
-						});
+						/* } */
+						/* }); */
+					</c:forEach>
 					</script>
 
 	<!-- 동영상 리스트 (a태그덮어씌움~modal) -->
-	<div class="container workout_videos">
+	<div class="workout-videos">
 		<c:if test="${!empty list}">
 			<c:forEach items="${list}" var="y" varStatus="st">
 					
@@ -148,12 +163,15 @@
 						</a> --%>
 					</div>
 					<div id="video-info">
-						<span id="video-text">${y.title}</span> <span id="video-text"><c:url
-								var="detail" value="#detail" /></span>
+						<span class="video-time" id="v-time${y.v_no}"></span>
+						<span id="video-text"><a href="#" data-toggle="modal" data-target=".${y.v_no}">${y.title}</a></span> 
+						
+						<%-- <span id="video-text"><c:url var="detail" value="#detail" /></span> --%>
+						
 					</div>
 				</div>
 				<!-- video modal -->
-				<div class="modal fade ${y.v_no }" tabindex="-1" role="dialog"
+				<div class="modal fade ${y.v_no }" id="workout-modal" tabindex="-1" role="dialog"
 					aria-labelledby="myLargeModalLabel" aria-hidden="true">
 					<div class="modal-dialog modal-lg">
 						<div class="modal-content">
@@ -190,47 +208,8 @@
 				</div>
 			</c:forEach>
 		</c:if>
-
-
 	</div>
-
-	<!-- 사이드바  -->
-	<!-- <div class="col-sm-2 col-md-2 col-lg-2">
-		<div class="workout_sidebar">
-			<ul>
-				<li><a href="#">헬스</a>
-					<ul class="closed">
-						<li>다양한 헬스 운동</li>
-					</ul></li>
-				<li><a href="#">요가</a>
-					<ul class="active">
-						<li>빈야사</li>
-						<li>체형교정</li>
-						<li>다이어트</li>
-						<li>부위별 요가</li>
-						<li>초보자</li>
-					</ul></li>
-				<li><a href="#">필라테스</a>
-					<ul class="closed">
-						<li>스트레칭</li>
-						<li>전신운동</li>
-						<li>복근집중운동</li>
-						<li>하체운동</li>
-					</ul></li>
-				<li><a>맨몸운동</a>
-					<ul class="closed">
-						<li>팔굽혀 펴기</li>
-						<li>하체</li>
-						<li>복근</li>
-						<li>철봉</li>
-						<li>전신 프로그램</li>
-						<li>(초보자)3개월 운동</li>
-					</ul></li>
-			</ul>
-		</div>
-	</div>
- -->
-
+	<!-- modal 띄우기 -->
 	<script type="text/javascript">
 		$('#myModal').on('shown.bs.modal', function() {
 			$('#myInput').focus()

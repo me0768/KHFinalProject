@@ -47,13 +47,18 @@
 	display: none;
 	width: 100vw;
 	height: 30vh;
-	top: 70vh;
+	top: 100vh;
+	
+	right: 0px;
 	background-color: white;
 	left: 0;
 	z-index: 999;
 	border: 1px solid black;
 }
 
+#dateinsert {
+	padding-right: 30px;
+}
 </style>
 
 <c:import url="../include/common/headend.jsp" />
@@ -251,10 +256,18 @@
 						</div>
 						<div id="calendar"></div>
 					</div>
-					<script type="text/javascript" src="/fitnessground/resources/js/common/calendar.js"></script>
+					<script type="text/javascript" src="/fitnessground/resources/js/gym/calendar.js"></script>
 					<div id="datesettings">
-						ㅇㅇ
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="height: 20px; padding: 0px;">
+							<button type="button" class="btn btn-danger form-control" style="padding: 0px; height: 20px;" onclick="dateclose();">
+								<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+							</button>
 						</div>
+						<div id="dateinsert" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<!-- 일정 등록 div -->
+						</div>
+						
+					</div>
 					
 				</div>
 			</div>

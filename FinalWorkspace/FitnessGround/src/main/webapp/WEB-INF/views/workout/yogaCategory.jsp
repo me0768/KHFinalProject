@@ -22,11 +22,6 @@
 </div>
 
 
-<!-- yoga head 부분  -->
-
-<!-- <div id="workout-head">
-	<h2 id="workout-title">Yoga</h2>
-</div> -->
 
 <!-- yoga body -->
 <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12" id="workout-body">
@@ -90,23 +85,7 @@
 	</div>
 	
 	<script type="text/javascript">
-				//category별 ajax로 동영상 가져오기 
-					function category(category2){
-						queryString = {"category": category2};
-						$.ajax({
-							url: '/yclist.do',
-				           data: queryString,
-				           type: "post",
-				           success : function(result){
-				              console.log("전송성공:");
-				           },
-				           error : function(request, status, errorData){
-				              alert("error code : " + request.status + "\n"
-				                    + "message : " + request.responseText
-				                    + "\n" + "error : " + errorData);
-				           }
-						});
-					}
+				
 					
 				//thumbnail & 재생시간 youtube API call 
 					var list = new Array(); 
@@ -234,7 +213,26 @@
 			$('#myInput').focus()
 		})
 	</script>
-
+<script type="text/javascript">
+//category별 ajax로 동영상 가져오기 
+/* function category(category2){
+	var queryString = {"category2": "다이어트"};
+	$.ajax({
+		url: '/yclist.do',
+		dataType : "json",
+	    type: "post",
+       data: queryString,
+       success : function(result){
+          console.log("전송성공:");
+       },
+       error : function(request, status, errorData){
+          alert("error code : " + request.status + "\n"
+                + "message : " + request.responseText
+                + "\n" + "error : " + errorData);
+       }
+	});
+} */
+</script>
 
 
 

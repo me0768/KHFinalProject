@@ -53,15 +53,15 @@
 		<div class="wrap">
 			<div class="tab-wrap" id="press-cate">
 				<ul class="tab-list">
-					<li id="tab-li"><a href="#">빈야사요가</a></li>
+					<li id="tab-li"><a href="javascript: category('빈야사')">빈야사요가</a></li>
 					<li id="vertical-bar"><span>|</span></li>
-					<li id="tab-li"><a href="#">다이어트요가</a></li>
+					<li id="tab-li"><a href="javascript: category('다이어트')">다이어트요가</a></li>
 					<li id="vertical-bar"><span>|</span></li>
-					<li id="tab-li"><a href="#">체형교정요가</a></li>
+					<li id="tab-li"><a href="javascript: category('체형교정')">체형교정요가</a></li>
 					<li id="vertical-bar"><span>|</span></li>
-					<li id="tab-li"><a href="#">부위별요가</a></li>
+					<li id="tab-li"><a href="javascript: category('부위별')">부위별요가</a></li>
 					<li id="vertical-bar"><span>|</span></li>
-					<li id="tab-li"><a href="#">초보자를위한 요가</a></li>
+					<li id="tab-li"><a href="javascript: category('초보자')">초보자를위한 요가</a></li>
 				</ul>
 
 			</div>
@@ -213,9 +213,29 @@
 	<script type="text/javascript">
 		$('#myModal').on('shown.bs.modal', function() {
 			$('#myInput').focus()
-		})
-	</script>
+		});
 
+//category별 ajax로 동영상 가져오기 
+function category(category2){
+	var jsonObj = new Object();
+	jsonObj.category2 = category2;
+	console.log(jsonObj+"#");
+	$.ajax({
+		url: '/yclist.do',
+		data : JSON.stringify(jsonObj),
+		type : "post",
+		contentType : "application/json; charset=utf-8",
+       success : function(result){
+          console.log("전송성공:");
+       },
+       error : function(request, status, errorData){
+          alert("error code : " + request.status + "\n"
+                + "message : " + request.responseText
+                + "\n" + "error : " + errorData);
+       }
+	});
+} 
+</script>
 
 
 

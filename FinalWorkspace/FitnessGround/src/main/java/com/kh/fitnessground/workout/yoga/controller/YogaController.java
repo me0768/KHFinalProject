@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -43,13 +44,18 @@ public class YogaController {
 		}
 
 		// yoga 카테고리별 list
-		@RequestMapping(value = "/yclist.do")
-		public ModelAndView YogaCategoryListMethod(String category, HttpServletRequest request) {
-			ModelAndView mv = new ModelAndView("/workout/yogaCategory");
-			System.out.println(category); //null뜸 .. 
-			String c = request.getParameter(category);
-			System.out.println(c);
-			ArrayList<Yoga> list = yogaService.selectCList(category);
+		@RequestMapping(value = "/yclist.do", method = RequestMethod.POST)
+		public ModelAndView YogaCategoryListMethod(@RequestBody String param, HttpServletRequest request) throws Exception{
+			ModelAndView mv = new ModelAndView("/workout/yogaMain");
+			request.setCharacterEncoding("utf-8");
+			
+			//전송온 문자열을 json 객체로 변환 처리
+			JSONParser parser = new JSONParser();
+			JSONObject job = (JSONObject)parser.parse(param);	
+			
+			String c = (String)job.get("category2");
+			ArrayList<Yoga> list = yogaService.selectCList(c);
+			
 			mv.addObject("list", list);
 			mv.setViewName("jsonView");
 			return mv;
@@ -135,5 +141,7 @@ public class YogaController {
 			mv.addObject("yogalist", ylist);
 			return mv;
 		}
+		
+		
 
 }

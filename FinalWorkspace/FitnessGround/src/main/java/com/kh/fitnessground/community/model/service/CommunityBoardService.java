@@ -22,9 +22,9 @@ public interface CommunityBoardService {
 			//등록
 			int meetingInsert(MeetingBoard meetingboard);
 			//삭제
-			int meetingDelete(int mb_no);
+			int meetingDelete(int no);
 			//수정
-			int meetingUpdate(MeetingBoard meetingboard);
+			int meetingUpdate(int no);
 			//디테일
 			MeetingBoard meetingDetail(int no);
 			//찾기
@@ -45,7 +45,7 @@ public interface CommunityBoardService {
 				//등록
 				int reviewInsert(CommunityBoard communityboard);
 				//삭제
-				int reviewDelete(int mb_no);
+				int reviewDelete(int no);
 				//수정
 				int reviewUpdate(CommunityBoard communityboard);
 				//디테일
@@ -69,7 +69,7 @@ public interface CommunityBoardService {
 					//등록
 					int qnaInsert(CommunityBoard communityboard);
 					//삭제
-					int qnaDelete(int mb_no);
+					int qnaDelete(int no);
 					//수정
 					int qnaUpdate(CommunityBoard communityboard);
 					//디테일

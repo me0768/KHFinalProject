@@ -53,15 +53,15 @@ public class CommunityBoardServiceImpl implements CommunityBoardService {
 	}
 
 	@Override
-	public int meetingDelete(int mb_no) {
+	public int meetingDelete(int no) {
 		// TODO Auto-generated method stub
-		return communityBoardDao.meetingDelete(mb_no);
+		return communityBoardDao.meetingDelete(no);
 	}
 
 	@Override
-	public int meetingUpdate(MeetingBoard meetingboard) {
+	public int meetingUpdate(int no) {
 		// TODO Auto-generated method stub
-		return communityBoardDao.meetingUpdate(meetingboard);
+		return communityBoardDao.meetingUpdate(no);
 	}
 
 	@Override
@@ -114,9 +114,9 @@ public class CommunityBoardServiceImpl implements CommunityBoardService {
 	}
 
 	@Override
-	public int reviewDelete(int mb_no) {
+	public int reviewDelete(int no) {
 		// TODO Auto-generated method stub
-		return communityBoardDao.reviewDelete(mb_no);
+		return communityBoardDao.reviewDelete(no);
 	}
 
 	@Override
@@ -175,9 +175,9 @@ public class CommunityBoardServiceImpl implements CommunityBoardService {
 	}
 
 	@Override
-	public int qnaDelete(int mb_no) {
+	public int qnaDelete(int no) {
 		// TODO Auto-generated method stub
-		return communityBoardDao.qnaDelete(mb_no);
+		return communityBoardDao.qnaDelete(no);
 	}
 
 	@Override

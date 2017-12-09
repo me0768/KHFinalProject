@@ -24,7 +24,7 @@
 						class="fa fa-fw fa-area-chart"></i> <span class="nav-link-text">통계관리</span>
 				</a></li>
 				<li class="nav-item" data-toggle="tooltip" data-placement="right"
-					title="Tables"><a class="nav-link" href="tables.do"> <i
+					title="Tables"><a class="nav-link" href="adminMettingBoard.do"> <i
 						class="fa fa-fw fa-table"></i> <span class="nav-link-text">게시판관리</span>
 				</a></li>
 				<li class="nav-item" data-toggle="tooltip" data-placement="right"

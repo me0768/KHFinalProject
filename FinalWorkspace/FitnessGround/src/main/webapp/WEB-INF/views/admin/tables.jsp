@@ -83,9 +83,9 @@
 
 				<div class="buttons">
 
-					<a href="adminMettingBoard.do" class="btn-1">운동모임 게시판</a>&nbsp; 
-					<a href="adminQNABoard.do"	class="btn-2">Q&A 게시판</a>&nbsp; 
-					<a href="adminReviewBoard.do" class="btn-3">리뷰 게시판</a>
+					<a href="adminMettingBoard.do" class="btn-1">Meeting</a>&nbsp; 
+					<a href="adminQNABoard.do"	class="btn-2">Q&A</a>&nbsp; 
+					<a href="adminReviewBoard.do" class="btn-3">Review</a>
 
 
 				</div>
@@ -105,27 +105,9 @@
 									<th>Delete_Date</th>
 								</tr>
 							</thead>
-							<!-- <tfoot>
-                <tr>
-                  <th>Name</th>
-                  <th>Position</th>
-                  <th>Office</th>
-                  <th>Age</th>
-                  <th>Start date</th>
-                  <th>Salary</th>
-                </tr>
-              </tfoot> -->
+							
 							<tbody>
-								<%-- <c:forEach var="item" items="${list }" varStatus="status">
-									<tr>
-										<td>${status.count }</td>
-										<td>${item.email }</td>
-										<td>${item.name }</td>
-										<td>${item.nickname }</td>
-										<td>${item.phone }</td>
-										<td>${item.delete_date }</td>
-									</tr>
-								</c:forEach> --%>
+								
 							</tbody>
 						</table>
 					</div>

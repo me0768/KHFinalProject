@@ -15,7 +15,7 @@
 		<result property="readcount" column="READCOUNT" />
 	</resultMap>
 	
-	<resultMap id="CommunityResult" type="Community">
+	<!-- <resultMap id="CommunityResult" type="Community">
 		<id property="cb_no" column="CB_NO" />
 		<result property="user_no" column="USER_NO" />
 		<result property="name" column="NAME" />
@@ -24,7 +24,7 @@
 		<result property="board_property" column="BOARD_PROPERTY"/>
 		<result property="upload_date" column="UPLOAD_DATE" />
 		<result property="readcount" column="READCOUNT" />
-	</resultMap>
+	</resultMap> -->
 	
 	 <resultMap id="CommunityResult" type="Community">
       <id property="cb_no" column="CB_NO" />
@@ -37,7 +37,7 @@
       <result property="readcount" column="READCOUNT" />
    </resultMap>   
    
-   <resultMap id="MyPageCommunity" type="ComAndMeet">
+   <!-- <resultMap id="MyPageCommunity" type="ComAndMeet">
       <result property="board_no" column="CB_NO" />
       <result property="category_no" column="BOARD_PROPERTY" />
       <result property="user_no" column="USER_NO" />
@@ -49,7 +49,7 @@
       <result property="user_no" column="USER_NO" />
       <result property="title" column="TITLE" />
       <result property="upload_date" column="UPLOAD_DATE" />
-   </resultMap>
+   </resultMap> -->
 	
 	
 	<!-- 전체리스트 -->

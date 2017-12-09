@@ -24,8 +24,8 @@ public class YogaServiceImpl implements YogaService{
 	}
 	
 	@Override
-	public ArrayList<Yoga> selectCList(String category){
-		return yogaDao.selectCList(category);
+	public ArrayList<Yoga> selectCList(Yoga yoga){
+		return yogaDao.selectCList(yoga);
 	}
 	
 	@Override

@@ -20,8 +20,8 @@
 		]]>
 	</select>
 	<!-- 카테고리별 list select-->
-	<select id="selectCList" parameterType="String" resultType="list" resultMap="yogaResult">
-		select * from tb_video_board where category2 = #{_parameter} order by v_no desc
+	<select id="selectCList" parameterType="Yoga" resultType="list" resultMap="yogaResult">
+		select * from tb_video_board where category2 = #{category2} order by v_no desc
 	</select>
 	
 	<!-- 조회수 count -->

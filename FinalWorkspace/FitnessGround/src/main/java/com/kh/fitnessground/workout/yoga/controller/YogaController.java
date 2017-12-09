@@ -45,16 +45,12 @@ public class YogaController {
 
 		// yoga 카테고리별 list
 		@RequestMapping(value = "/yclist.do", method = RequestMethod.POST)
-		public ModelAndView YogaCategoryListMethod(@RequestBody String param, HttpServletRequest request) throws Exception{
+		public ModelAndView YogaCategoryListMethod(Yoga yoga, HttpServletRequest request){
 			ModelAndView mv = new ModelAndView("/workout/yogaMain");
-			request.setCharacterEncoding("utf-8");
-			
 			//전송온 문자열을 json 객체로 변환 처리
-			JSONParser parser = new JSONParser();
-			JSONObject job = (JSONObject)parser.parse(param);	
-			
-			String c = (String)job.get("category2");
-			ArrayList<Yoga> list = yogaService.selectCList(c);
+
+			ArrayList<Yoga> list = yogaService.selectCList(yoga);
+			System.out.println(list);
 			
 			mv.addObject("list", list);
 			mv.setViewName("jsonView");

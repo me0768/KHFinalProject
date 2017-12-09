@@ -9,7 +9,7 @@ import com.kh.fitnessground.workout.yoga.model.vo.Yoga;
 
 public interface YogaService {
 	ArrayList<Yoga> selectAllList();
-	ArrayList<Yoga> selectCList(String category);
+	ArrayList<Yoga> selectCList(Yoga yoga);
 	Yoga selectYoga(int no);
 	void insertYoga(List<Yoga> ylist, HttpServletRequest request);
 	void updateYoga(Yoga yoga, HttpServletRequest request);

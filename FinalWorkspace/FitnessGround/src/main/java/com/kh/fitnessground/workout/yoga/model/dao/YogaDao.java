@@ -22,10 +22,9 @@ public class YogaDao {
 		return list;
 	}
 
-	public ArrayList<Yoga> selectCList(String category) {
-		List<Yoga> ylist = sqlSession.selectList("yoga.selectCList", category);
-		ArrayList<Yoga> list = new ArrayList<Yoga>(ylist);
-		return list;
+	public ArrayList<Yoga> selectCList(Yoga yoga) {
+		List<Yoga> ylist = sqlSession.selectList("yoga.selectCList", yoga);
+		return new ArrayList<Yoga>(ylist);
 	}
 
 	public Yoga selectYoga(int no) {

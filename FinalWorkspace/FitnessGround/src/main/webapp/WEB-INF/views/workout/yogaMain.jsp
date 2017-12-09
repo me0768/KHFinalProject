@@ -217,14 +217,14 @@
 
 //category별 ajax로 동영상 가져오기 
 function category(category2){
-	var jsonObj = new Object();
-	jsonObj.category2 = category2;
-	console.log(jsonObj+"#");
+	var category = category2;
+	console.log(category);
+	var queryString = { "category2": category };
 	$.ajax({
-		url: '/yclist.do',
-		data : JSON.stringify(jsonObj),
+		url: 'yclist.do',
+		data : queryString,
 		type : "post",
-		contentType : "application/json; charset=utf-8",
+		dataType: "json",
        success : function(result){
           console.log("전송성공:");
        },
@@ -234,7 +234,7 @@ function category(category2){
                 + "\n" + "error : " + errorData);
        }
 	});
-} 
+}
 </script>
 
 

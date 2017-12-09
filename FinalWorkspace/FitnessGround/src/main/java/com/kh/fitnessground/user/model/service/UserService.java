@@ -1,9 +1,11 @@
 package com.kh.fitnessground.user.model.service;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.kh.fitnessground.community.model.vo.CommunityAndMeeting;
 import com.kh.fitnessground.gym.model.vo.GymQnABoard;
 import com.kh.fitnessground.gym.model.vo.GymQnABoardPage;
 import com.kh.fitnessground.user.model.vo.User;
@@ -56,4 +58,12 @@ public interface UserService {
 	ArrayList<GymQnABoard> qnABoardSearch(GymQnABoardPage qPage, String keyword, int user_no);
 
 	User selectUser(int userNo);
+
+	ArrayList<CommunityAndMeeting> communityBoardList(int user_no);
+
+	ArrayList<CommunityAndMeeting> meetingBoardList(int user_no);
+
+	ArrayList<CommunityAndMeeting> communityBoardSearch(int user_no, String keyword);
+
+	Collection<? extends CommunityAndMeeting> meetingBoardSearch(int user_no, String keyword);
 }

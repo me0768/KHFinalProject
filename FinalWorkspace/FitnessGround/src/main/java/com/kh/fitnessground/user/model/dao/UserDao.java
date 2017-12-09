@@ -1,6 +1,7 @@
 package com.kh.fitnessground.user.model.dao;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.fitnessground.community.model.vo.CommunityAndMeeting;
 import com.kh.fitnessground.gym.model.vo.GymQnABoard;
 import com.kh.fitnessground.gym.model.vo.GymQnABoardPage;
 import com.kh.fitnessground.user.model.vo.User;
@@ -93,7 +95,7 @@ public class UserDao {
 	}
 
 	public ArrayList<GymQnABoard> qnABoardList(HashMap<String, Object> parameters) {
-		List<GymQnABoard> list = sqlSession.selectList("gym.myPageQnABoardList", parameters); 
+		List<GymQnABoard> list = sqlSession.selectList("gym.myPageQnABoardList", parameters);
 		return new ArrayList<GymQnABoard>(list);
 	}
 
@@ -112,5 +114,25 @@ public class UserDao {
 
 	public User selectUser(int userNo) {
 		return sqlSession.selectOne("user.selectInfo", userNo);
+	}
+
+	public ArrayList<CommunityAndMeeting> selectCommunityList(int user_no) {
+		List<CommunityAndMeeting> list = sqlSession.selectList("community.myPageCommunityList", user_no); 
+		return new ArrayList<CommunityAndMeeting>(list);
+	}
+
+	public ArrayList<CommunityAndMeeting> selectMeetingList(int user_no) {
+		List<CommunityAndMeeting> list = sqlSession.selectList("community.myPageMeetingList", user_no); 
+		return new ArrayList<CommunityAndMeeting>(list);
+	}
+
+	public ArrayList<CommunityAndMeeting> communitySearch(HashMap<String, Object> parameters) {
+		List<CommunityAndMeeting> list = sqlSession.selectList("community.myPageCommunitySearchList", parameters);
+		return new ArrayList<CommunityAndMeeting>(list);
+	}
+
+	public Collection<? extends CommunityAndMeeting> meetingSearch(HashMap<String, Object> parameters) {
+		List<CommunityAndMeeting> list = sqlSession.selectList("community.myPageMeetingSearchList", parameters);
+		return new ArrayList<CommunityAndMeeting>(list);
 	}
 }

@@ -5,6 +5,7 @@
 }
 #myPageBar h1 a:hover, #myPageBar h1 a:visited, #myPageBar h1 a:link{
 	text-decoration: none;
+	color: #022D41;
 }
 #myPageBar #sm_title {
 	font-size: 25px;

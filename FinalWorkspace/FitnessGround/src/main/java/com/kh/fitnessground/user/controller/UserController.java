@@ -4,7 +4,9 @@ import java.io.File;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
 
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.fitnessground.community.model.vo.CommunityAndMeeting;
 import com.kh.fitnessground.gym.model.vo.GymQnABoard;
 import com.kh.fitnessground.gym.model.vo.GymQnABoardPage;
 import com.kh.fitnessground.user.model.service.UserService;
@@ -48,7 +51,6 @@ public class UserController {
 			if(BCrypt.checkpw(user.getPwd(), u.getPwd())) { // 이메일 같은게 있으면 암호화 데이터 비교
 				mv.addObject("user",u);
 				mv.setViewName("jsonView");
-				System.out.println(u);
 				session.setAttribute("user", u);  		// 아디비번이 같을 경우 세션값으로 넘김
 				return mv;
 			} else {						
@@ -179,7 +181,6 @@ public class UserController {
 		ModelAndView mv = new ModelAndView("user/myPage");
 		int userNo = Integer.parseInt(request.getParameter("userno"));
 		User user = userService.selectUser(userNo);
-		System.out.println(user);
 		mv.addObject("yesterday", userService.yesterdaySchedule(userNo));
 		mv.addObject("today", userService.todaySchedule(userNo));
 		/*System.out.println(userService.yesterdaySchedule(userNo));
@@ -224,7 +225,6 @@ public class UserController {
 		ModelAndView mv = new ModelAndView("redirect:/mypage.do?userno="+u.getUser_no());
 		userService.userProfileImgUpdate(u, request);
 		HttpSession session = request.getSession();
-		System.out.println(userService.selectUser(u.getUser_no()));
 		session.setAttribute("user", userService.selectUser(u.getUser_no()));
 		return mv; 
 	}
@@ -240,7 +240,6 @@ public class UserController {
 		ModelAndView mv = new ModelAndView("redirect:/mypage.do?userno="+u.getUser_no());
 		userService.userProfileImgRemove(u);
 		HttpSession session = request.getSession();
-		System.out.println(userService.selectUser(u.getUser_no()));
 		session.setAttribute("user", userService.selectUser(u.getUser_no()));
 		return mv; 
 	}
@@ -292,12 +291,12 @@ public class UserController {
 	@RequestMapping(value="/userboard.do")
 	public ModelAndView userBoardMethod(HttpServletRequest request) {
 		int user_no = Integer.parseInt(request.getParameter("userno"));
-		
+		int limit = 10;
+
 		// 문의하기 목록 조회
 		int qCurrentPage = 1;
-		int limit = 10;
-		if (request.getParameter("page") != null)
-			qCurrentPage = Integer.parseInt(request.getParameter("page"));
+		if (request.getParameter("qpage") != null)
+			qCurrentPage = Integer.parseInt(request.getParameter("qpage"));
 		int listCount = userService.qnABoardCount(user_no);
 		GymQnABoardPage qPage = new GymQnABoardPage(qCurrentPage, limit);
 		int qMaxPage = (int) ((double) listCount / limit + 0.9);
@@ -307,47 +306,119 @@ public class UserController {
 		ArrayList<GymQnABoard> qlist = userService.qnABoardList(qPage, user_no);
 		
 		// 커뮤니티 목록 조회
-		
+		int currentPage = 1;
+		if (request.getParameter("cpage") != null)
+			currentPage = Integer.parseInt(request.getParameter("cpage"));
+		ArrayList<CommunityAndMeeting> temp = userService.communityBoardList(user_no);
+		temp.addAll(userService.meetingBoardList(user_no));
+		int cListCount = temp.size();
+		GymQnABoardPage cPage = new GymQnABoardPage(currentPage, limit);
+		int cMaxPage = (int) ((double) cListCount/limit + 0.9);
+		int cStartPage = ((int) ((double) currentPage/limit+0.9)-1)*limit+1;
+		int cEndPage = cStartPage + limit - 1;
+		if(cMaxPage < cEndPage) cEndPage = cMaxPage;
+		// date로 정렬 후, cPage.startPage-1부터 cPage.endPage-1까지의 개수만 다시 list에 넣어줌
+		Collections.sort(temp);
+		ArrayList<CommunityAndMeeting> cmList = new ArrayList<CommunityAndMeeting>();
+		if(cPage.getEndRow()-1 > temp.size()) cPage.setEndRow(temp.size());
+		for(int i=cPage.getStartRow()-1; i<=cPage.getEndRow()-1; i++)
+			cmList.add(temp.get(i));
+//			System.out.println(temp.get(i));
 		
 		ModelAndView mv = new ModelAndView("user/userBoard");
 		if(request.getParameter("com")!=null)
 			mv.addObject("com","ok");
 		else mv.addObject("com","no");
+		
 		mv.addObject("qlist", qlist);
 		mv.addObject("qCurrentPage", qCurrentPage);
     	mv.addObject("qMaxPage", qMaxPage);
     	mv.addObject("qStartPage", qStartPage);
     	mv.addObject("qEndPage", qEndPage);
+    	
+    	mv.addObject("clist", cmList);
+    	mv.addObject("currentPage", currentPage);
+    	mv.addObject("cMaxPage", cMaxPage);
+    	mv.addObject("cStartPage", cStartPage);
+    	mv.addObject("cEndPage", cEndPage);
+    	
 		return mv; 
 	}
 	// 문의하기 검색
-	@RequestMapping(value="/qSearch.do")
+	@RequestMapping(value="/userBoardSearch.do")
 	public ModelAndView userBoardSearchMethod(HttpServletRequest request) {
 		
 		ModelAndView mv = new ModelAndView("user/userBoard");
 		
 		String keyword = request.getParameter("searchKeyword");
 		int user_no = Integer.parseInt(request.getParameter("userno"));
-		int qCurrentPage = 1;
-		int limit = 10;
-		if (request.getParameter("page") != null)
-			qCurrentPage = Integer.parseInt(request.getParameter("page"));
-		int listCount = userService.qnABoardSearchCount(user_no, keyword);
-		GymQnABoardPage qPage = new GymQnABoardPage(qCurrentPage, limit);
-		int qMaxPage = (int) ((double) listCount / limit + 0.9);
-		int qStartPage = ((int) ((double) qCurrentPage / limit + 0.9) - 1) * limit + 1;
-		int qEndPage = qStartPage + limit - 1;
-		if (qMaxPage < qEndPage)	qEndPage = qMaxPage;
 		
-		ArrayList<GymQnABoard> qlist = userService.qnABoardSearch(qPage, keyword, user_no);
+		int qMaxPage, qStartPage, qEndPage, listCount, limit=10, currentPage=1;
+		int cMaxPage, cStartPage, cEndPage, clistCount;
+		GymQnABoardPage page = new GymQnABoardPage(currentPage, limit);
+		ArrayList<GymQnABoard> qlist = null;
+		ArrayList<CommunityAndMeeting> cmList = new ArrayList<CommunityAndMeeting>();
+		if(request.getParameter("com") == null) {
+			// 문의하기 검색
+			listCount = userService.qnABoardSearchCount(user_no, keyword);
+			qMaxPage = (int) ((double) listCount / limit + 0.9);
+			qStartPage = ((int) ((double) currentPage / limit + 0.9) - 1) * limit + 1;
+			qEndPage = qStartPage + limit - 1;
+			if (qMaxPage < qEndPage)	qEndPage = qMaxPage;
+			qlist = userService.qnABoardSearch(page, keyword, user_no);
+			// 커뮤니티 전체 목록
+			ArrayList<CommunityAndMeeting> temp = userService.communityBoardList(user_no);
+			temp.addAll(userService.meetingBoardList(user_no));
+			clistCount = temp.size();
+			cMaxPage = (int) ((double) clistCount/limit + 0.9);
+			cStartPage = ((int) ((double) currentPage/limit+0.9)-1)*limit+1;
+			cEndPage = cStartPage + limit - 1;
+			if(cMaxPage < cEndPage) cEndPage = cMaxPage;
+			Collections.sort(temp);
+			if(page.getEndRow()-1 > temp.size()) page.setEndRow(temp.size());
+			for(int i=page.getStartRow()-1; i<=page.getEndRow()-1; i++)
+				cmList.add(temp.get(i));
+		} 
+		else {
+			// 커뮤니티 검색
+			ArrayList<CommunityAndMeeting> temp = userService.communityBoardSearch(user_no, keyword);
+			System.out.println(temp);
+			temp.addAll(userService.meetingBoardSearch(user_no, keyword));
+			clistCount = temp.size();
+			cMaxPage = (int) ((double) clistCount/limit + 0.9);
+			cStartPage = ((int) ((double) currentPage/limit+0.9)-1)*limit+1;
+			cEndPage = cStartPage + limit - 1;
+			if(cMaxPage < cEndPage) cEndPage = cMaxPage;
+			Collections.sort(temp);
+			if(page.getEndRow()-1 > temp.size()) page.setEndRow(temp.size());
+			for(int i=page.getStartRow()-1; i<=page.getEndRow()-1; i++)
+				cmList.add(temp.get(i));
+			System.out.println(cmList);
+			// 문의하기 전체 목록
+			listCount = userService.qnABoardCount(user_no);
+			qMaxPage = (int) ((double) listCount / limit + 0.9);
+			qStartPage = ((int) ((double) currentPage / limit + 0.9) - 1) * limit + 1;
+			qEndPage = qStartPage + limit - 1;
+			if (qMaxPage < qEndPage)	qEndPage = qMaxPage;
+			qlist = userService.qnABoardList(page, user_no);
+			System.out.println(qlist);
+		}
+		
 		if(request.getParameter("com")!=null)
 			mv.addObject("com","ok");
 		else mv.addObject("com","no");
+		
 		mv.addObject("qlist", qlist);
-		mv.addObject("qCurrentPage", qCurrentPage);
+		mv.addObject("qCurrentPage", currentPage);
     	mv.addObject("qMaxPage", qMaxPage);
     	mv.addObject("qStartPage", qStartPage);
     	mv.addObject("qEndPage", qEndPage);
+    	
+    	mv.addObject("clist", cmList);
+    	mv.addObject("currentPage", currentPage);
+    	mv.addObject("cMaxPage", cMaxPage);
+    	mv.addObject("cStartPage", cStartPage);
+    	mv.addObject("cEndPage", cEndPage);
 		
 		return mv; 
 	}

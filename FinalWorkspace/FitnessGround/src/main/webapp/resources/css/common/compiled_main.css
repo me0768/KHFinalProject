@@ -1,5 +1,5 @@
-@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400,400italic,600");
-@import url("font-awesome.min.css");
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css");
+
 /*
 	Helios by HTML5 UP
 	html5up.net | @ajlkn
@@ -1252,7 +1252,7 @@ a {
   -ms-transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
   transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out; }
   a:hover {
-    color: #ef8376;
+    /* color: #ef8376; */
     border-bottom-color: transparent; }
 
 sub {
@@ -1411,8 +1411,8 @@ ul.icons {
       border-radius: 100%;
       border: 0;
       color: inherit; }
-      ul.icons li a:hover {
-        color: #ef8376; }
+     /*  ul.icons li a:hover {
+        color: #ef8376; } */
 
 ol.default {
   list-style: decimal;
@@ -1520,7 +1520,7 @@ button,
   button:hover,
   .button:hover {
     color: #fff;
-    background: #ef8376; }
+    /* background: #ef8376; */ }
   input[type="button"].alt,
   input[type="submit"].alt,
   input[type="reset"].alt,
@@ -1733,7 +1733,7 @@ body.homepage.is-loading #header:after {
     .dropotron li:first-child {
       border-top: 0; }
     .dropotron li:hover {
-      color: #ef8376; }
+      /* color: #ef8376; */ }
     .dropotron li a, .dropotron li span {
       display: block;
       border: 0;

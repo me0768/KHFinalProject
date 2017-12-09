@@ -47,10 +47,7 @@
      	<p>${community.content}</p>
         </div>
     <div>
-   </div>
-   <a href="#" class="btn">수정</a>
-   <a href="reviewDelete.do?no=${community.cb_no}" class="btn">삭제</a>
-   <a href="review.do" class="btn">목록</a> 
+   </div> 
     댓글 쓰는곳..   zz 
     
     </div>

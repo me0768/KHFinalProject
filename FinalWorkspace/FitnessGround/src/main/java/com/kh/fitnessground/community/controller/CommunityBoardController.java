@@ -60,13 +60,6 @@ public class CommunityBoardController {
 					mv.addObject("meeting", meeting);
 					return mv;
 				}
-				//삭제하기
-				@RequestMapping(value="meetingDelete.do")
-				public String meetingDelete(@RequestParam int no) {
-					communityBoardService.meetingDelete(no);
-					return "redirect:meeting.do";
-				}
-			
 			
 		
 	//운동같이해요 댓글----------------------------------------------------------------------------------------
@@ -76,7 +69,7 @@ public class CommunityBoardController {
 				//리스트
 				@RequestMapping(value = "qna.do", method = RequestMethod.GET)
 				public ModelAndView qnaBoard(HttpServletRequest request) {
-					ModelAndView mv = new ModelAndView("community/qnaBoard/qnaBoard");
+					ModelAndView mv = new ModelAndView("community/meetingBoard/meetingBoard");
 					ArrayList<CommunityBoard> list = communityBoardService.qnaListView();					
 					mv.addObject("list", list);
 					return mv;
@@ -98,7 +91,6 @@ public class CommunityBoardController {
 						
 					}
 				}
-				//디테일
 				@RequestMapping(value="qnaDetail.do", method = RequestMethod.GET)
 				public ModelAndView qnaDetail(@RequestParam(value="no") int no) {
 					ModelAndView mv = new ModelAndView("community/qnaBoard/qnaDetail");
@@ -106,12 +98,7 @@ public class CommunityBoardController {
 					mv.addObject("community", community);
 					return mv;
 				}
-				//삭제
-				@RequestMapping(value="qnaDelete.do")
-				public String qnaDelete(@RequestParam int no) {
-					communityBoardService.qnaDelete(no);
-					return "redirect:/qna.do";
-				}
+				
 							
 				
 		
@@ -151,13 +138,6 @@ public class CommunityBoardController {
 					CommunityBoard community= communityBoardService.reviewDetail(no);
 					mv.addObject("community", community);
 					return mv;
-				}
-				
-				//삭제
-				@RequestMapping(value="reviewDelete.do")
-				public String reviewDelete(@RequestParam int no) {
-					communityBoardService.reviewDelete(no);
-					return "redirect:/review.do";
 				}
 		
 	//리뷰게시판 게시판 댓글-------------------------------------------------------------------------------------------------------

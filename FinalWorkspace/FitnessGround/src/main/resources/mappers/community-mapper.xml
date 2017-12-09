@@ -26,31 +26,6 @@
 		<result property="readcount" column="READCOUNT" />
 	</resultMap>
 	
-	 <resultMap id="CommunityResult" type="Community">
-      <id property="cb_no" column="CB_NO" />
-      <result property="user_no" column="USER_NO" />
-      <result property="name" column="NAME" />
-      <result property="title" column="TITLE" />
-      <result property="content" column="CONTENT" />
-      <result property="board_property" column="BOARD_PROPERTY"/>
-      <result property="upload_date" column="UPLOAD_DATE" />
-      <result property="readcount" column="READCOUNT" />
-   </resultMap>   
-   
-   <resultMap id="MyPageCommunity" type="ComAndMeet">
-      <result property="board_no" column="CB_NO" />
-      <result property="category_no" column="BOARD_PROPERTY" />
-      <result property="user_no" column="USER_NO" />
-      <result property="title" column="TITLE" />
-      <result property="upload_date" column="UPLOAD_DATE" />
-   </resultMap>
-   <resultMap id="MyPageMeeting" type="ComAndMeet">
-      <result property="board_no" column="MB_NO" />
-      <result property="user_no" column="USER_NO" />
-      <result property="title" column="TITLE" />
-      <result property="upload_date" column="UPLOAD_DATE" />
-   </resultMap>
-	
 	
 	<!-- 전체리스트 -->
 	
@@ -66,21 +41,11 @@
 		<![CDATA[select a.*, b.name from tb_meeting_board a join tb_user b on(a.user_no = b.user_no) where mb_no=#{mb_no}]]>
 	</select>
 		
-	<!-- 운동같이해요글쓰기 -->	
+	<!-- 글쓰기 -->	
 	<insert id="insertMeeting" parameterType="Meeting" flushCache="true"
 		statementType="PREPARED" useGeneratedKeys="true" >
 		<![CDATA[insert into tb_meeting_board values(mb_seq.nextval,#{user_no},#{title},#{content},#{meeting_date},default,default)]]>
 	</insert>
-	
-	<!-- 운동같이해요삭제 -->
-	<delete id="deleteMeeting" >
-		<![CDATA[delete from tb_meeting_board where mb_no=#{mb_no}]]>
-	</delete>
-	
-	<!-- 운동같이해요 수정 -->
-	<!-- <update id="updateMeeting" parameterType="MeetingResult">
-		<![CDATA[update tb_meeting_board set content = #{content} where mb_no=#{mb_no}]]>
-	</update> -->
 
 	<!-- ======================================qna게시판====================================================== -->
 	<!--  qna 게시판 메인 -->
@@ -96,10 +61,6 @@
 	<select id="qnaDetail" resultType="Community" resultMap="CommunityResult">
 		<![CDATA[select a.*, b.name from tb_com_board a join tb_user b on(a.user_no = b.user_no) where cb_no=#{cb_no}]]>
 	</select>
-	<!--  qna 게시판 삭제 -->
-	<delete id="deleteQnA">
-		<![CDATA[delete from tb_com_board where cb_no=#{cb_no}]]>
-	 </delete> 
 	
 	<!-- ======================================리뷰 게시판====================================================== -->
 	<!-- 리뷰게시판 메인 -->
@@ -116,37 +77,6 @@
 	<insert id="insertReview" parameterType="Community" flushCache="true"
 		statementType="PREPARED" useGeneratedKeys="true" >
 		<![CDATA[insert into tb_com_board values(cb_seq.nextval,#{user_no},#{title},#{content},0,default,default)]]>
-	</insert>
-	
-	<!--  리뷰게시판 삭제 -->	
-	<delete id="deleteReview">
-		<![CDATA[delete from tb_com_board where cb_no=#{cb_no}]]>
-	</delete>
-	
-	
-	
-	
-	<!-- ======================================마이페이지 - 작성 목록 불러오기 용====================================================== -->
-   <select id="myPageCommunityList" parameterType="_int" resultType="list" resultMap="MyPageCommunity">
-      <![CDATA[
-      select * from tb_com_board where user_no=#{user_no}
-      ]]>
-   </select>
-   <select id="myPageMeetingList" parameterType="_int" resultType="list" resultMap="MyPageMeeting">
-      <![CDATA[
-      select * from tb_meeting_board where user_no=#{user_no}
-      ]]>
-   </select>
-   <select id="myPageCommunitySearchList" parameterType="hashmap" resultType="list" resultMap="MyPageCommunity">
-      <![CDATA[
-      select * from tb_com_board where user_no=#{user_no} and title=#{keyword}
-      ]]>
-   </select>
-   <select id="myPageMeetingSearchList" parameterType="hashmap" resultType="list" resultMap="MyPageMeeting">
-      <![CDATA[
-      select * from tb_meeting_board where user_no=#{user_no} and title=#{keyword}
-      ]]>
-   </select>
-	
+	</insert>	
 	
 	</mapper>

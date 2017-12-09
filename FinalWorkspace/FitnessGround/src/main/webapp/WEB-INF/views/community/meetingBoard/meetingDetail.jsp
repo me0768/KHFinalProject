@@ -46,9 +46,6 @@
         </div>
     <div>
    </div> 
-   <a href="meetingUpdate.do" class="btn">수정</a>
-   <a href="meetingDelete.do?no=${meeting.mb_no}" class="btn">삭제</a>
-   <a href="meeting.do" class="btn">목록</a>
     댓글 쓰는곳..    
     
     </div>

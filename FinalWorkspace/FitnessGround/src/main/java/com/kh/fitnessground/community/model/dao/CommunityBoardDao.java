@@ -47,13 +47,14 @@ public class CommunityBoardDao {
 		return result;
 	}
 
-	public int meetingDelete(int no) {
-		return sqlSession.delete("community.deleteMeeting", no);
+	public int meetingDelete(int mb_no) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
-	public int meetingUpdate(int no) {
+	public int meetingUpdate(MeetingBoard meetingboard) {
 		// TODO Auto-generated method stub
-		return sqlSession.update("community.updateMeeting", no);
+		return 0;
 	}
 
 	public MeetingBoard meetingDetail(int no) {
@@ -100,8 +101,9 @@ public class CommunityBoardDao {
 		return result;
 	}
 
-	public int reviewDelete(int no) {
-		return sqlSession.delete("community.deleteReview", no);
+	public int reviewDelete(int mb_no) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	public int reviewUpdate(CommunityBoard communityboard) {
@@ -154,8 +156,9 @@ public class CommunityBoardDao {
 		return result;
 	}
 	
-	public int qnaDelete(int no) {
-		return sqlSession.delete("community.deleteQnA", no);
+	public int qnaDelete(int mb_no) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	public int qnaUpdate(CommunityBoard communityboard) {

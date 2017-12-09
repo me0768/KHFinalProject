@@ -48,9 +48,6 @@
         </div>
     <div>
    </div> 
-   <a href="#" class="btn">수정</a>
-   <a href="qnaDelete.do?no=${community.cb_no}" class="btn">삭제</a>
-   <a href="qna.do" class="btn">목록</a>
     댓글 쓰는곳..   zz 
     
     </div>

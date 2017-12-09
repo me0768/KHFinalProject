@@ -180,7 +180,7 @@
   </thead>
   <tbody>
  
-	<c:forEach items="${list }" var="cm"> 
+	<c:forEach items="${qlist }" var="cm"> 
 		<c:if test="${cm.board_property == 1}">
     <tr>
       <td>${cm.cb_no}</td>
@@ -196,12 +196,9 @@
   </tbody>
 </table>
 </div>
-<div> 
+<div>
 여기는 페이지 처리 해야해 도영...
 </div>
 
     <c:import url="../../include/main/footer.jsp" />
     <c:import url="../../include/common/end.jsp" />
-    
-  
-    

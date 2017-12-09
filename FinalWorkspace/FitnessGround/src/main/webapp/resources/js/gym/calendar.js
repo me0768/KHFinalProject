@@ -48,7 +48,7 @@ $(document).ready(function(){
 				sClass += i % 7 == 0 ? 'sun' : '';
 				sClass += i % 7 == 6 ? 'sat' : '';
 
-				arrTable.push('<td class="'+sClass+'" onclick="dayclick(' + m_oMonth.getFullYear() + ', ' + (m_oMonth.getMonth()+1) + ', ' + oStartDt.getDate() + ');">' + oStartDt.getDate() + '</td>');
+				arrTable.push('<td class="'+sClass+'" id="' + m_oMonth.getFullYear() + (m_oMonth.getMonth()+1)  + oStartDt.getDate() + '" onclick="dayclick(' + m_oMonth.getFullYear() + ', ' + (m_oMonth.getMonth()+1) + ', ' + oStartDt.getDate() + ');">' + oStartDt.getDate() + '</td>');
 				oStartDt.setDate(oStartDt.getDate() + 1);
 
 				if(i % 7 == 6) {
@@ -97,7 +97,13 @@ $(document).ready(function(){
 	function dayclick(year, month, day){
 		console.log(year + "//" + month + "//" + day);
 		var dateoutput = '';
-		dateoutput += year + "년 " + month + "월 " + day + "일 ";
-		$("#datesettings").html(dateoutput);
-		$("#datesettings").show();
+		dateoutput += year + "년 " + month + "월 " + day + "일  일정등록";
+		dateoutput += "<input type='text' class='form-control'>"
+		dateoutput += "<input type='text' class='form-control' id='title' style='margin-top: 10px;' placeholder='일정 제목'>"
+		$("#dateinsert").html(dateoutput);
+		$("#datesettings").show().animate({top: '70vh'});
+	}
+	
+	function dateclose(){
+		$("#datesettings").animate({top: '100vh'});
 	}

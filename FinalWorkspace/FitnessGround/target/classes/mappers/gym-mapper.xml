@@ -28,7 +28,22 @@
 		<id property="user_level" column="user_level"/>
 		
 	</resultMap>
-	
+
+	<resultMap id="resultGymRequest" type="Gym">
+		<id property="gym_name" column="gym_name"/>
+		<id property="original_image" column="original_image"/>
+		<id property="rename_image" column="rename_image"/>
+		<id property="op_time" column="op_time"/>
+		<id property="tel" column="tel"/>
+		<id property="phone" column="phone"/>
+		<id property="price" column="price"/>
+		<id property="description" column="description"/>
+		<id property="location" column="location"/>
+		<id property="user_no" column="user_no"/>
+		<id property="delete_date" column="delete_date"/>
+		<id property="approval_state" column="approval_state"/>
+		
+	</resultMap>
 	
 	<select id="businessRequest" parameterType="_int" resultMap="resultBusinessRequest" resultType="list">
 		<![CDATA[ 
@@ -66,6 +81,12 @@
 	<select id="myPageQnABoardSearchCount" parameterType="hashmap" resultType="_int">
 		<![CDATA[ 
 		select count(*) from tb_qna where (sender=#{user_no} or receiver=#{user_no}) and (title like #{keyword})
+		]]>
+	</select>
+	
+	<select id="selectGymList" resultType="list" resultMap="resultGymRequest">
+		<![CDATA[
+			select * from(select rownum rnum, T.* from tb_gym T) a where a.rnum >= #{startRow} and a.rnum <= #{endRow}
 		]]>
 	</select>
 	

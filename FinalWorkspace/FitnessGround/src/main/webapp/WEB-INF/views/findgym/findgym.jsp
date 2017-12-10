@@ -1,42 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<meta http-equiv="Content-Type"
-	content="text/html; charset=UTF-8; IE=edge">
-<meta name="viewport"
-	content="width=device=width, initial-scale=1.0, 
-	maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
 
 <c:import url="../include/common/head.jsp" />
 
 <link rel="stylesheet"
 	href="/fitnessground/resources/css/findgym/findgym.css" />
 
-<c:import url="../include/common/headend.jsp" />
-<div id="page-wrapper">
+<%-- <div id="page-wrapper">
 	<!-- Header -->
 	<div id="mypage_header">
-		<!-- Nav -->
-		<c:import url="../include/main/nav.jsp" />
-
 		<c:import url="../user/login.jsp" />
 		<c:import url="../user/findidpwd.jsp" />
 		<c:import url="../user/register.jsp" />
+		<c:import url="../include/main/nav.jsp" />
 	</div>
+</div> --%>
+
+<div id="mypage_header">
+	<!-- Nav -->
+	<c:import url="../include/main/nav.jsp"/>
+	<c:import url="../user/login.jsp"/>
+	<c:import url="../user/findidpwd.jsp"/>
 </div>
 
 <script type="text/javascript"
 	src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=vWkJuuK8gXcwBG8Rijlh&submodules=geocoder">
-	$('#myTab a').click(function(e) {
-		e.preventDefault();
-		$(this).tab('show');
+	
+	
+	
 
-	});
 </script>
 
-<!-- <script type="text/javascript" src="http://openAPI.seoul.go.kr:8088/784645794a6b616931377242486776/xml/ListPublicPhysicalPlant/1/5/">
-
-</script> -->
+<c:import url="../include/common/headend.jsp" />
 <div id="container" class="container">
 	<div class="row">
 		<br> <br>
@@ -46,7 +42,7 @@
 			<div class="row">
 				<div class="input-group">
 						<input type="text" class="form-control" id="address"
-							placeholder="Search for..." style='height:30px'"> <span
+							placeholder="Search for..." style='height:30px'> <span
 							class="input-group-btn">
 							<button class="btn btn-default" type="button" id="submit"  style='height:30px'>
 								<span class="glyphicon glyphicon-search" ></span>
@@ -57,6 +53,7 @@
 						</span>
 				</div>
 			</div>
+			
 			<div class="row">
 				<div role="tabpanel">
 					<!-- Nav tabs -->
@@ -68,20 +65,46 @@
 								찾기</a></li>
 					</ul>
 					
-					<!-- Tab panes -->
+					<!-- Tab panes -->					
 					<div class="tab-content">
 						<div role="tabpanel" class="tab-pane active" id="home">
 							<div class="row">
-								<c:forEach items="${list}" var="hlist">	
-										<a href=""><img src="#this" style="height:100px; weight:100px;"></a>	
+										<a href=""><img src="" style="height:100px; weight:100px;"></a>	
 										<div id="healthlist">
-											${hlist.gym_name }<br>
-											${hlist.location }
-										</div>									
-								</c:forEach>
-							
+											<script type="text/javascript">
+											$(document).ready(function(){
+												$.ajax({
+													url:"findhealth.do",
+													type: "post",
+													dataType: "json",
+													success : function(data){
+														console.log(data.gymlist);
+														var jsonStr = JSON.stringify(data.gymlist);
+														
+														var json = JSON.parse(jsonStr);
+														
+														var values = $("#healthlist").html();
+														
+														for(var i in json.list)
+														{
+															values += json.list[i].gym_name + "<br/>" +
+																		json.list[i].location + "<br/>";
+														}
+														
+														$("#healthlist").html(values);
+													},
+													error : function(request, status, errorData){
+														alert("error code : " + request.status + "\n"
+																+ "message : " + request.responseText + "\n"
+																+ "error : " + errorData);
+													}
+												});							
+												});
+											</script>
+										</div>
 							</div>
 						</div>
+						
 						<div role="tabpanel" class="tab-pane" id="profile">
 							<ul>
 								<li>
@@ -142,5 +165,5 @@
 	<!-- row -->
 </div>
 <!-- container -->
-<c:import url="../include/common/end.jsp" />
 <c:import url="../include/main/footer.jsp" />
+<c:import url="../include/common/end.jsp" />

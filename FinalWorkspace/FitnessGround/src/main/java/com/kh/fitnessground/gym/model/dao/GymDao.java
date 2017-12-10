@@ -10,12 +10,18 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.fitnessground.gym.model.vo.Gym;
 import com.kh.fitnessground.gym.model.vo.GymReview;
+import com.kh.fitnessground.gym.model.vo.PublicGym;
 
 @Repository("gymDao")
 public class GymDao {
 
 	@Autowired
 	private SqlSessionTemplate sqlSession;
+	
+	public int getPublicListCount()
+	{
+		return sqlSession.selectOne("gym.selectPublicCount");
+	}
 	
 	public boolean RegisterGym(Gym gym) {
 		return false;
@@ -26,7 +32,7 @@ public class GymDao {
 
 	public int getListCount() {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.selectOne("gym.selectGymCount");
 	}
 
 	public ArrayList<GymReview> selectList(int limit) {
@@ -49,12 +55,20 @@ public class GymDao {
 		return 0;
 	}
 
-	public ArrayList<Gym> healthList(/*HashMap<String, Object> parameters*/) { 
-		//List<Gym> list = sqlSession.selectList("gym.selectGymList", parameters);
-		List<Gym> list = sqlSession.selectList("gym.selectGymList");
+	public ArrayList<Gym> healthList(HashMap<String, Object> parameters) { 
+		List<Gym> list = sqlSession.selectList("gym.selectGymList", parameters);
+	//	List<Gym> list = sqlSession.selectList("gym.selectGymList");
 		ArrayList<Gym> glist = (ArrayList<Gym>)list;		
 		
 		return glist;
+	}
+
+	public ArrayList<PublicGym> publicList(HashMap<String, Object> parameters) {
+		List<PublicGym> list = sqlSession.selectList("gym.selectPublicList", parameters);
+		//	List<Gym> list = sqlSession.selectList("gym.selectGymList");
+			ArrayList<PublicGym> glist = (ArrayList<PublicGym>) list;		
+			
+			return glist;
 	}
 
 	

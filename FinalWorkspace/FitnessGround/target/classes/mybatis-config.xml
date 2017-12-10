@@ -15,6 +15,7 @@
 		<typeAlias type="com.kh.fitnessground.community.model.vo.CommunityAndMeeting" alias="ComAndMeet"/>
 		<typeAlias type="com.kh.fitnessground.gym.model.vo.Gym" alias="Gym"/>
 		<typeAlias type="com.kh.fitnessground.admin.model.vo.BusinessRequest" alias="BusinessRequest"/>
+		<typeAlias type="com.kh.fitnessground.gym.model.vo.PublicGym" alias="PublicGym"/>
 		
 	</typeAliases>
 	

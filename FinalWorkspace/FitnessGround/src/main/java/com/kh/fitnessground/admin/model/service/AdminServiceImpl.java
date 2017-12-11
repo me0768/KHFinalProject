@@ -36,6 +36,55 @@ public class AdminServiceImpl  implements AdminService{
 		// TODO Auto-generated method stub
 		return adminDao.businessRequestlist(level);
 	}
+
+
+	@Override
+	public void adminGymRequest(int gym_no) {
+		adminDao.adminGymRequest(gym_no);
+		
+	}
+
+
+	@Override
+	public void adminGymCancel(int gym_no) {
+		adminDao.adminGymCancel(gym_no);
+		
+	}
+
+
+	@Override
+	public void meetingBoardDelete(int mb_no) {
+		adminDao.meetingBoardDelete(mb_no);
+		
+	}
+
+
+	@Override
+	public void qnaBoardDelete(int cb_no) {
+		adminDao.qnaBoardDelete(cb_no);
+		
+	}
+
+
+	@Override
+	public void reviewBoardDelete(int cb_no) {
+		adminDao.reviewBoardDelete(cb_no);
+		
+	}
+
+
+	@Override
+	public void adminUserStateChange(int user_no) {
+		adminDao.userStateChange(user_no);
+		
+	}
+
+
+	@Override
+	public void adminUserStateBack(int user_no) {
+		adminDao.userStateBack(user_no);
+		
+	}
 	
 
 	

@@ -69,7 +69,27 @@
 
 
 <script type="text/javascript">
-	
+	function meetingBoardDelete(mb_no){
+		alert("버튼 클릭");
+		
+		$.ajax({
+			url : "meetingBoardDelete.do",
+			dataType : "json",
+			type : "post",
+			data : {"mb_no" : mb_no},
+			success : function(result){
+				alert("삭제 하였습니다.")
+				location.href = "adminMettingBoard.do";
+			},
+			error : function(request, status, error){
+				alert("error code : " +request.status + "\n"
+						+ "message : " +request.responseText + "\n"
+						+ "error : " + errorData);
+				
+			}
+			
+		})
+	}
 </script>
 
 <c:import url="../common/nav.jsp" />
@@ -148,7 +168,7 @@
 										</div>
 										<td>${item.upload_date }</td>
 										<td>${item.readcount }</td>
-										<td><button class="delete_btn" onclick="">삭제</button></td>
+										<td><button class="delete_btn" onclick="meetingBoardDelete(${item.mb_no});">삭제</button></td>
 
 									</tr>
 								</c:forEach>

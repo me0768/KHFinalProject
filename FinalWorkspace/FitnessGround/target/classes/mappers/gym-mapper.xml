@@ -38,6 +38,24 @@
 		]]>
 	</select>
 	
+	<update id="gymRequest" parameterType="_int"
+		flushCache="true" statementType="PREPARED" >
+		<![CDATA[
+		update tb_gym 
+		set approval_state = 1
+		where gym_no = #{gym_no}
+		]]>
+	</update>
+	
+	<update id="gymCancel" parameterType="_int"
+		flushCache="true" statementType="PREPARED" >
+		<![CDATA[
+		update tb_gym 
+		set approval_state = 0
+		where gym_no = #{gym_no}
+		]]>
+	</update>
+	
 	
 	<select id="myPageQnABoardList" parameterType="hashmap" resultMap="resultGymQnABoard" resultType="list">
 		<![CDATA[ 

@@ -14,11 +14,12 @@ public class User {
 	private int tmppwd_tf;
 	private String original_image;
 	private String rename_image;
+	private int user_state;
 	
 	public User() {}
 
 	public User(int user_no, String email, String pwd, String name, String nickname, String phone, int user_level,
-			Date delete_date, int tmppwd_tf, String original_image, String rename_image) {
+			Date delete_date, int tmppwd_tf, String original_image, String rename_image, int user_state) {
 		super();
 		this.user_no = user_no;
 		this.email = email;
@@ -31,6 +32,7 @@ public class User {
 		this.tmppwd_tf = tmppwd_tf;
 		this.original_image = original_image;
 		this.rename_image = rename_image;
+		this.user_state = user_state;
 	}
 
 	public int getUser_no() {
@@ -120,12 +122,24 @@ public class User {
 	public void setRename_image(String rename_image) {
 		this.rename_image = rename_image;
 	}
+	
+
+	public int getUser_state() {
+		return user_state;
+	}
+
+	public void setUser_state(int user_state) {
+		this.user_state = user_state;
+	}
 
 	@Override
 	public String toString() {
 		return "User [user_no=" + user_no + ", email=" + email + ", pwd=" + pwd + ", name=" + name + ", nickname="
 				+ nickname + ", phone=" + phone + ", user_level=" + user_level + ", delete_date=" + delete_date
 				+ ", tmppwd_tf=" + tmppwd_tf + ", original_image=" + original_image + ", rename_image=" + rename_image
-				+ "]";
+				+ ", user_state=" + user_state + "]";
 	}
+	
+
+
 }

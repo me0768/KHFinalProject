@@ -29,9 +29,7 @@
 	vertical-align: middle;
 }
 
-.btn-1,
-.btn-2,
-.btn-3 {
+.btn-1, .btn-2, .btn-3 {
 	color: black;
 	background: white;
 	border: 1px solid gray;
@@ -42,9 +40,7 @@
 	transition: all .15s linear;
 }
 
-.btn-1:hover,
-.btn-2:hover,
-.btn-3:hover {
+.btn-1:hover, .btn-2:hover, .btn-3:hover {
 	background: gray;
 	border: 1px solid rgba(0, 0, 0, 0.05);
 	box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
@@ -77,6 +73,56 @@
 	function businessRequestlistPage(){
 		location.href="adminbusinessRequestlist.do"
 	}
+	
+	function gymRequest(gym_no){
+		alert("버튼클릭 : " +gym_no);
+		
+		$.ajax({
+			url : "gymRequest.do",
+			dataType : "json",
+			type : "post",
+			data : {"gym_no" : gym_no},
+			success : function(result) {
+				alert("등록되었습니다.")
+				location.href="adminbusinessRequestlist.do";
+			},
+			error : function(request, status, error) {
+				alert("error code : " +request.status + "\n"
+						+ "message : " +request.responseText + "\n"
+						+ "error : " + errorData);
+			}
+			
+		})
+		
+		alert("등록완료");
+		
+		
+	}
+	
+	function gymCancel(gym_no){
+		alert("버튼클릭 : " +gym_no);
+		
+		$.ajax({
+			url : "gymCancel.do",
+			dataType : "json",
+			type : "post",
+			data : {"gym_no" : gym_no},
+			success : function(result) {
+				alert("등록이 취소 되었습니다.")
+				location.href="adminbusinessRequestlist.do";
+			},
+			error : function(request, status, error) {
+				alert("error code : " +request.status + "\n"
+						+ "message : " +request.responseText + "\n"
+						+ "error : " + errorData);
+			}
+			
+		})
+		
+		alert("등록취소완료");
+		
+	}
+	
 </script>
 <c:import url="../common/nav.jsp" />
 <div class="content-wrapper">
@@ -142,14 +188,16 @@
 										<td>${item.location }</td>
 										<c:choose>
 											<c:when test="${item.approval_state==0}">
-												
-												<td><input type="button" value="등록하기"></td>
+
+												<td><button type="submit" class="gym_btn"
+														onclick="gymRequest(${item.gym_no});">등록하기</button></td>
 											</c:when>
 											<c:when test="${item.approval_state==1}">
-												
-												<td><input type="button" value="등록됨"></td>
+
+												<td><button type="submit" class="gym_btn"
+														onclick="gymCancel(${item.gym_no});">등록취소</button></td>
 											</c:when>
-										
+
 										</c:choose>
 									</tr>
 								</c:forEach>

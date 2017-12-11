@@ -18,6 +18,27 @@ public interface AdminService {
 	ArrayList<User> businessRequestlist(int level);
 
 
+	void adminGymRequest(int gym_no);
+
+
+	void adminGymCancel(int gym_no);
+
+
+	void meetingBoardDelete(int mb_no);
+
+
+	void qnaBoardDelete(int cb_no);
+
+
+	void reviewBoardDelete(int cb_no);
+
+
+	void adminUserStateChange(int user_no);
+
+
+	void adminUserStateBack(int user_no);
+
+
 
 
 }

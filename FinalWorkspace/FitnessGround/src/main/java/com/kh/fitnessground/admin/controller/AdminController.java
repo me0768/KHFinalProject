@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.fitnessground.admin.model.service.AdminService;
@@ -19,17 +20,18 @@ import com.kh.fitnessground.community.model.service.CommunityBoardService;
 import com.kh.fitnessground.community.model.vo.CommunityBoard;
 import com.kh.fitnessground.community.model.vo.MeetingBoard;
 import com.kh.fitnessground.user.model.service.UserService;
+import com.kh.fitnessground.user.model.service.UserServiceImpl;
 import com.kh.fitnessground.user.model.vo.User;
 import com.kh.fitnessground.workout.health.model.service.HealthService;
 import com.kh.fitnessground.workout.health.model.vo.Health;
 import com.kh.fitnessground.workout.yoga.model.service.YogaService;
 import com.kh.fitnessground.workout.yoga.model.vo.Yoga;
-	
+
 @Controller
 public class AdminController {
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
 	private CommunityBoardService communityBoardService;
 
@@ -38,7 +40,7 @@ public class AdminController {
 
 	@Autowired
 	private YogaService yogaService;
-	
+
 	@Autowired
 	private AdminService adminService;
 
@@ -74,13 +76,13 @@ public class AdminController {
 	}
 
 	// 헬스 동영상(준일) 리스트 출력
-	/*@RequestMapping(value = "adminpart.do")
-	public ModelAndView HealthListMethod(Health health, HttpServletResponse response) {
-		ModelAndView mv = new ModelAndView("#");
-		ArrayList<Health> list = healthService.selectWorkoutCategoryList(health.getCategory2());
-		mv.addObject("list", list);
-		return mv;
-	}*/
+	/*
+	 * @RequestMapping(value = "adminpart.do") public ModelAndView
+	 * HealthListMethod(Health health, HttpServletResponse response) {
+	 * ModelAndView mv = new ModelAndView("#"); ArrayList<Health> list =
+	 * healthService.selectWorkoutCategoryList(health.getCategory2());
+	 * mv.addObject("list", list); return mv; }
+	 */
 
 	// 회원 리스트 출력
 	@RequestMapping(value = "adminuserlist.do")
@@ -101,19 +103,17 @@ public class AdminController {
 		mv.addObject("list", list);
 		return mv;
 	}
-	
+
 	// 사업자 헬스장 등록요청 리스트 출력(헬스장 등록요청 처리)
-		@RequestMapping(value = "adminbusinessRequestlist.do")
-		public ModelAndView BuisnessRequestListMethod(User user, HttpServletResponse response) {
-			ModelAndView mv = new ModelAndView("admin/userlist/userbusinessRequestlist");
-			int level = 1;
-			ArrayList<User> list = adminService.businessRequestlist(level);
-			mv.addObject("list", list);
-			return mv;
-		}
+	@RequestMapping(value = "adminbusinessRequestlist.do")
+	public ModelAndView BuisnessRequestListMethod(User user, HttpServletResponse response) {
+		ModelAndView mv = new ModelAndView("admin/userlist/userbusinessRequestlist");
+		int level = 1;
+		ArrayList<User> list = adminService.businessRequestlist(level);
+		mv.addObject("list", list);
+		return mv;
+	}
 
-
-	
 	// 요가 동영상(미향) 리스트 출력
 	@RequestMapping(value = "adminylist.do")
 	public ModelAndView YogaListMethod(Yoga yoga, HttpServletRequest request) {
@@ -131,12 +131,12 @@ public class AdminController {
 		mv.addObject("list", list);
 		return mv;
 	}
-	
+
 	// qnaBoard 리스트 출력
 	@RequestMapping(value = "adminQNABoard.do")
 	public ModelAndView qnaBoardListMethod() {
 		ModelAndView mv = new ModelAndView("admin/boardlist/qnaboard");
-		ArrayList<CommunityBoard> list = communityBoardService.qnaListView();					
+		ArrayList<CommunityBoard> list = communityBoardService.qnaListView();
 		mv.addObject("list", list);
 		return mv;
 	}
@@ -157,25 +157,100 @@ public class AdminController {
 
 		return mv;
 	}
-	
-	// 관리자가 회원 즉시삭제 
-	@RequestMapping(value = "userDelete.do")
-	public ModelAndView userDeleteMethod(){
-		ModelAndView mv = new ModelAndView("admin/adminMain");
+
+	// 관리자가 회원상태 비활성화
+	@RequestMapping(value = "adminUserState.do")
+	public ModelAndView adminUserStateChangeMethod(@RequestParam(value = "user_no") int user_no,
+			HttpServletRequest request) {
+		System.out.println("넘어옴?");
+		System.out.println(user_no);
+		ModelAndView mv = new ModelAndView("admin/userlist/userlist");
+		adminService.adminUserStateChange(user_no);
 		
+		mv.setViewName("jsonView");
 		return mv;
 	}
+	
+	// 관리자가 회원상태 활성화
+		@RequestMapping(value = "adminUserBack.do")
+		public ModelAndView adminUserStateBackMethod(@RequestParam(value = "user_no") int user_no,
+				HttpServletRequest request) {
+			System.out.println("넘어옴?");
+			System.out.println(user_no);
+			ModelAndView mv = new ModelAndView("admin/userlist/userlist");
+			adminService.adminUserStateBack(user_no);
+			
+			mv.setViewName("jsonView");
+			return mv;
+		}
+	
+
+	// 사용자가 등록요청한 헬스장 관리자에서 승인하기(approval_state 1로 변경)
+	@RequestMapping(value = "gymRequest.do")
+	public ModelAndView gymRequestMethod(@RequestParam(value = "gym_no") int gym_no, HttpServletRequest request) {
+		System.out.println("등록요청넘어옴");
+		System.out.println(gym_no);
+		ModelAndView mv = new ModelAndView("admin/userlist/userbusinessRequestlist");
+		adminService.adminGymRequest(gym_no);
+
+		mv.setViewName("jsonView");
+		return mv;
+	}
+
+	// 관리자에서 등록된 헬스장 등록취소하기(approval_state 0으로 변경)
+	@RequestMapping(value = "gymCancel.do")
+	public ModelAndView gymCancelMethod(@RequestParam(value = "gym_no") int gym_no, HttpServletRequest request) {
+		System.out.println("등록 취소 요청넘어옴");
+		System.out.println(gym_no);
+		ModelAndView mv = new ModelAndView("admin/userlist/userbusinessRequestlist");
+		adminService.adminGymCancel(gym_no);
+
+		mv.setViewName("jsonView");
+		return mv;
+	}
+
+	// MeetingBoard 게시글 삭제
+	@RequestMapping(value = "meetingBoardDelete.do")
+	public ModelAndView meetingBoardDeleteMethod(@RequestParam(value = "mb_no") int mb_no, HttpServletRequest request) {
+		System.out.println("등록 취소 요청넘어옴");
+		System.out.println(mb_no);
+		ModelAndView mv = new ModelAndView("admin/boardlist/meetingboard");
+		adminService.meetingBoardDelete(mb_no);
+
+		mv.setViewName("jsonView");
+		return mv;
+	}
+
+	// QNABoard 게시글 삭제
+	@RequestMapping(value = "qnaBoardDelete.do")
+	public ModelAndView qnaBoardDeleteMethod(@RequestParam(value = "cb_no") int cb_no, HttpServletRequest request) {
+		System.out.println("등록 취소 요청넘어옴");
+		System.out.println(cb_no);
+		ModelAndView mv = new ModelAndView("admin/boardlist/qnaboard");
+		adminService.qnaBoardDelete(cb_no);
+
+		mv.setViewName("jsonView");
+		return mv;
+	}
+
+	// ReviewBoard 게시글 삭제
+	@RequestMapping(value="reviewBoardDelete.do")
+				public ModelAndView reviewBoardDeleteMethod(@RequestParam(value="cb_no") int cb_no, HttpServletRequest request){
+					System.out.println("등록 취소 요청넘어옴");
+					System.out.println(cb_no);
+					ModelAndView mv = new ModelAndView("admin/boardlist/reviewboard");
+					adminService.reviewBoardDelete(cb_no);
+					
+					mv.setViewName("jsonView");
+					return mv;
+				}
+
 	/*
-	 * 1. 회원 / 사업자 구분 리스트 출력 >> 회원 리스트 user꺼 불러오기 
-	 * 2. 사업자 회원가입후 헬스장 등록 요청(승인전) 출력 >> 회원 리스트 + TB_GYM 조인 후 '헬스장 등록승인여부' 칼럼 이용 
-	 * 3. 운동법 리스트 출력 >> 준일,미향 꺼 사용 /리스트 불러오고, 추가, 수정, 삭제 자리만 뷰에 만들기 
-	 * 4. 게시판 리스트 출력 >> 도영형꺼 사용 / 리스트 불러오고, 추가, 수정, 삭제 자리만 뷰에 만들기 
-	 * 3-2, 4-2. 운동법, 게시판 리스트를 제목 / 작성자로 검색하기 
-	 * 5. 헬스장 리스트 출력 >>TB_GYM 테이블 정보 불러오기 
-	 * 6. 일별 방문자 통계 
-	 * 7. 지역별 헬스장 분포 통계 
-	 * 8. 동영상 조회수 통계 
-	 * 9.
+	 * 1. 회원 / 사업자 구분 리스트 출력 >> 회원 리스트 user꺼 불러오기 2. 사업자 회원가입후 헬스장 등록 요청(승인전) 출력
+	 * >> 회원 리스트 + TB_GYM 조인 후 '헬스장 등록승인여부' 칼럼 이용 3. 운동법 리스트 출력 >> 준일,미향 꺼 사용
+	 * /리스트 불러오고, 추가, 수정, 삭제 자리만 뷰에 만들기 4. 게시판 리스트 출력 >> 도영형꺼 사용 / 리스트 불러오고, 추가,
+	 * 수정, 삭제 자리만 뷰에 만들기 3-2, 4-2. 운동법, 게시판 리스트를 제목 / 작성자로 검색하기 5. 헬스장 리스트 출력
+	 * >>TB_GYM 테이블 정보 불러오기 6. 일별 방문자 통계 7. 지역별 헬스장 분포 통계 8. 동영상 조회수 통계 9.
 	 */
 
 }

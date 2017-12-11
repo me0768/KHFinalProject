@@ -12,6 +12,7 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -94,7 +95,7 @@ public class GymController {
 	}
 	
 	//findgym
-	@RequestMapping(value="findgym.do")
+	@RequestMapping(value="findgym.do", method=RequestMethod.GET)
 	public ModelAndView findGym(HttpServletRequest request, HttpServletResponse response)
 	{
 		ModelAndView mv = new ModelAndView("findgym/findgym");
@@ -102,7 +103,8 @@ public class GymController {
 		return mv;
 	}
 	
-	@RequestMapping(value="findhealth.do")
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value="findhealth.do", method=RequestMethod.POST)
 	@ResponseBody
 	public ModelAndView findHealth(ModelAndView mv, HttpServletRequest request, HttpServletResponse response)
 	{
@@ -112,8 +114,9 @@ public class GymController {
 		int limit = 5;
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-	/*	if(request.getParameter("cpage") != null)
-			currentPage = Integer.parseInt(request.getParameter("cpage"));*/
+		if(request.getParameter("cpage") != null)
+			currentPage = Integer.parseInt(request.getParameter("cpage"));
+		else currentPage = 1;
 		
 		int listCount = gymService.getListCount();
 		ArrayList<Gym> list = gymService.healthList(currentPage, limit);
@@ -150,9 +153,9 @@ public class GymController {
 			jar.add(jgym);
 		}
 		
-		sendjson.put("list", jar);
+		//sendjson.put("list", jar);
 		
-		map.put("gymlist", sendjson.toJSONString());
+		map.put("gymlist", jar);
 		
 		mv.addAllObjects(map);
 		
@@ -162,7 +165,7 @@ public class GymController {
 		
 	}
 	
-	@RequestMapping(value="findpublicgym.do")
+	/*@RequestMapping(value="findpublicgym.do")
 	@ResponseBody
 	public ModelAndView findPublicFacilities(ModelAndView mv, HttpServletRequest request, HttpServletResponse response)
 	{
@@ -171,8 +174,8 @@ public class GymController {
 		int limit = 5;
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-	/*	if(request.getParameter("cpage") != null)
-			currentPage = Integer.parseInt(request.getParameter("cpage"));*/
+		if(request.getParameter("cpage") != null)
+			currentPage = Integer.parseInt(request.getParameter("cpage"));
 		
 		int listCount = gymService.getPublicListCount();
 		ArrayList<PublicGym> list = gymService.publicList(currentPage, limit);
@@ -218,5 +221,5 @@ public class GymController {
 		mv.setViewName("jsonView");
 		
 		return mv;
-	}
+	}*/
 }

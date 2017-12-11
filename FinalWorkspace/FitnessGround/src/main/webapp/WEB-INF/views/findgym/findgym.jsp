@@ -25,14 +25,103 @@
 </div>
 
 <script type="text/javascript"
-	src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=vWkJuuK8gXcwBG8Rijlh&submodules=geocoder">
-	
-	
-	
+	src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=vWkJuuK8gXcwBG8Rijlh&submodules=geocoder">	
 
 </script>
 
 <c:import url="../include/common/headend.jsp" />
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$.ajax({
+			url:"findhealth.do",
+			type: "post",
+			dataType: "json",
+			success : function(data){
+				console.log(data.gymlist);
+				console.log(data.currentPage);
+				
+				
+				var jsonStr = JSON.stringify(data);
+														
+				var json = JSON.parse(jsonStr);
+												
+				//var values = $("#healthlist").html();
+				
+				// 리스트 처리
+				var values;
+				
+				for(var i in json.gymlist)
+				{
+					values += "<a href=''>" + 
+					
+						"<img src=" + json.gymlist[i].rename_image + 
+					
+						"<img src=''" +						
+										
+					 " style='height:100px; weight:100px;'>" + "</a>" + 
+							json.gymlist[i].gym_name + "<br/>" +
+							json.gymlist[i].location + "<br/>";
+				}
+				
+				console.log(values);
+				$("#healthlist").html(values);
+					
+				// 페이징 처리
+				var page;
+				var currentPage = data.currentPage;
+				var startPage = data.startPage;
+				var endPage = data.endPage;
+				var maxPage = data.maxPage;
+				
+				if(currentPage <= 1){
+					$(".pagination").html(
+							"<li class='disabled'>"+"<a href='#' aria-label='Previous'>" + 
+						        "<span aria-hidden='true'>" + "&laquo;" + "</span>"
+						      + "</a>"+"</li>");
+				} else {
+					$(".pagination").html(
+							"<li>"+"<a href='findhealth.do?cpage=${ currentPage - 1 }' aria-label='Previous'>" + 
+						        "<span aria-hidden='true'>" + "&laquo;" + "</span>"
+						      + "</a>"+"</li>" );
+				}
+				/* 현재 페이지 숫자 보여주기 */
+				for(var p = startPage; p <= endPage; p++)
+				{
+					if(p == currentPage){
+						$(".pagination").html(
+							"<li>" + "<a href='#'>" + p + "</a></li>"	
+						);	
+					} else {
+						$(".pagination").html(
+								"<li>" + "<a href='fitnesshealth.do?cpage= p '>"+ p + "</a></li>"
+							);
+					}
+				}
+				
+				if(currentPage >= maxPage){
+					$(".pagination").html(
+						"<li class='disabled'>" + "<a href='#' aria-label='Next'>" + 
+						        "<span aria-hidden='true'>" + "&raquo;" + "</span>" +
+						      "</a>" + "</li>"
+					);
+					} else {
+						$(".pagination").html(
+								"<li>" + "<a href='findhealth.do?cpage=${ currentPage + 1 }' aria-label='Next'>" + 
+								        "<span aria-hidden='true'>" + "&raquo;" + "</span>" +
+								      "</a>" + "</li>");
+					}
+				},			
+			error : function(request, status, errorData){
+					alert("error code : " + request.status + "\n"
+							+ "message : " + request.responseText + "\n"
+							+ "error : " + errorData);
+					}
+			});							
+		});
+	
+</script>
+
 <div id="container" class="container">
 	<div class="row">
 		<br> <br>
@@ -69,38 +158,9 @@
 					<div class="tab-content">
 						<div role="tabpanel" class="tab-pane active" id="home">
 							<div class="row">
-										<a href=""><img src="" style="height:100px; weight:100px;"></a>	
+											
 										<div id="healthlist">
-											<script type="text/javascript">
-											$(document).ready(function(){
-												$.ajax({
-													url:"findhealth.do",
-													type: "post",
-													dataType: "json",
-													success : function(data){
-														console.log(data.gymlist);
-														var jsonStr = JSON.stringify(data.gymlist);
-														
-														var json = JSON.parse(jsonStr);
-														
-														var values = $("#healthlist").html();
-														
-														for(var i in json.list)
-														{
-															values += json.list[i].gym_name + "<br/>" +
-																		json.list[i].location + "<br/>";
-														}
-														
-														$("#healthlist").html(values);
-													},
-													error : function(request, status, errorData){
-														alert("error code : " + request.status + "\n"
-																+ "message : " + request.responseText + "\n"
-																+ "error : " + errorData);
-													}
-												});							
-												});
-											</script>
+
 										</div>
 							</div>
 						</div>
@@ -139,17 +199,8 @@
 				<div id="paging">
 					<nav>
 						<ul class="pagination">
-							<li><a href="#" aria-label="Previous"> <span
-									aria-hidden="true">&laquo;</span>
-							</a></li>
-							<li><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
-							<li><a href="#" aria-label="Next"> <span
-									aria-hidden="true">&raquo;</span>
-							</a></li>
+						<!-- 페이지 번호 처리 -->
+						
 						</ul>
 					</nav>
 				</div>

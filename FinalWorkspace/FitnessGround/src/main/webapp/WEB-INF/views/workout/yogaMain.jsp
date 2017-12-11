@@ -1,26 +1,42 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page
 	import="com.kh.fitnessground.workout.yoga.model.vo.Yoga, java.util.List"%>
-
-
 <c:import url="../include/common/head.jsp" />
 
 <link rel="stylesheet"
 	href="/fitnessground/resources/css/workout/workout.css" />
 
-<c:import url="../include/common/headend.jsp" />
-
-<script type="text/javascript"
-	src="/fitnessground/resources/js/workout/workout.js"></script>
+<!-- headend 대신 넣는 코드(removed jquery.min.js)  -->
+	<!-- css 파일 로드-->
+	 <link rel="stylesheet" href="/fitnessground/resources/css/bootstrap.css">
+	<link rel="stylesheet" href="/fitnessground/resources/css/common/compiled_main.css" />
+	<link rel="stylesheet" href="/fitnessground/resources/css/common/main.css" />
+	<link rel="stylesheet" href="/fitnessground/resources/css/common/login.css" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	</head>
+	<body class="homepage">
+	
+	<!-- java script 파일 로드 -->
+	<script type="text/javascript" src="/fitnessground/resources/js/jquery-3.2.1.js"></script>
+	<script type="text/javascript" src="/fitnessground/resources/js/bootstrap.js"></script>
+	<script type="text/javascript" src="/fitnessground/resources/js/common/jquery.scrolly.min.js"></script>
+	<script type="text/javascript" src="/fitnessground/resources/js/common/jquery.dropotron.min.js"></script>
+	<script type="text/javascript" src="/fitnessground/resources/js/common/jquery.onvisible.min.js"></script>
+	<script type="text/javascript" src="/fitnessground/resources/js/common/skel.min.js"></script>
+	<script type="text/javascript" src="/fitnessground/resources/js/common/util.js"></script>
+	<script type="text/javascript" src="/fitnessground/resources/js/common/main.js"></script>
+	
+<script type="text/javascript" src="/fitnessground/resources/js/workout/workout.js"></script>
 
 <!-- Header -->
 <div id="mypage_header">
 	<!-- Nav -->
 	<c:import url="../include/main/nav.jsp" />
-</div>
+</div> 
 
+<!-- Modal -->
+	<c:import url="workoutModal.jsp" />
 
 <!-- yoga head 부분  -->
 
@@ -98,8 +114,8 @@
 					list.push("${it.url}");
 					st = ${status.count}-1;
 					console.log(list);
-					console.log(st+"@@");
-					console.log(${status.count}+"^^");
+					console.log(st);
+					console.log(${status.count}+"count");
 					/* $(document).ready(function(){ */
 						/* for(var i=0;i<5;i++){ */
 							$.get("https://www.googleapis.com/youtube/v3/videos", {
@@ -147,7 +163,6 @@
 						/* }); */
 					</c:forEach>
 					</script>
-
 	<!-- 동영상 리스트 (a태그덮어씌움~modal) -->
 	<div class="workout-videos">
 		<c:if test="${!empty list}">
@@ -155,65 +170,36 @@
 					
 				<div class="video">
 					<div id="video-iframe${y.v_no}">
-						<%-- <iframe id="video-thumbnail"
-							src="https://www.youtube.com/embed/${y.url}" frameborder="0"
-							gesture="media" allow="encrypted-media" allowfullscreen></iframe>
-						<a href="#" data-toggle="modal" data-target=".${y.v_no }">
-							<div id="video-cover"></div>
-						</a> --%>
 					</div>
 					<div id="video-info">
 						<span class="video-time" id="v-time${y.v_no}"></span>
-						<span id="video-text"><a href="#" data-toggle="modal" data-target=".${y.v_no}">${y.title}</a></span> 
-						
+						<span id="video-text">
+						<a href="#workout-modal" data-toggle="modal" data-title="${y.title }" data-url="${y.url }" data-content="${y.content }"
+						data-target="#workout-modal">${y.title}</a></span> 
 						<%-- <span id="video-text"><c:url var="detail" value="#detail" /></span> --%>
 						
 					</div>
 				</div>
-				<!-- video modal -->
-				<div class="modal fade ${y.v_no }" id="workout-modal" tabindex="-1" role="dialog"
-					aria-labelledby="myLargeModalLabel" aria-hidden="true">
-					<div class="modal-dialog modal-lg">
-						<div class="modal-content">
-
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal"
-									aria-label="Close">
-									<span aria-hidden="true">×</span>
-								</button>
-								<h4 class="modal-title" id="myLargeModalLabel">${y.title}<a
-										class="anchorjs-link" href="#myLargeModalLabel"><span
-										class="anchorjs-icon"></span></a>
-								</h4>
-							</div>
-							<div class="modal-body">
-								<div class="modal-play">
-									<iframe id="video-play"
-										src="https://www.youtube.com/embed/${y.url}" frameborder="0"
-										gesture="media" allow="encrypted-media" allowfullscreen></iframe>
-								</div>
-								<div class="modal-desc">
-									<div id="video-content">
-										<span>${y.content }</span>
-									</div>
-									<div id="video-reply">
-										<input type="text" id="reply-input" placeholder="댓글을 입력하세요">
-										<button type="submit" id="reply-btn">댓글달기</button>
-
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+			
 			</c:forEach>
 		</c:if>
 	</div>
-	<!-- modal 띄우기 -->
-	<script type="text/javascript">
-		$('#myModal').on('shown.bs.modal', function() {
-			$('#myInput').focus()
-		});
+</div>
+		
+<script type="text/javascript">
+
+$('#workout-modal').on('show.bs.modal', function (event) {
+	  var tag = $(event.relatedTarget); // sth that triggered the modal
+	  var title = tag.data('title'); // Extract info from data-* attributes
+	  var vid = tag.data('url');
+	  var content = tag.data('content');
+	  
+	  var modal = $(this);
+	  modal.find('.modal-title').text(title);
+	  modal.find('.modal-play').html("<iframe id='video-play' src='https://www.youtube.com/embed/"+vid+"' frameborder='0'"+
+				"gesture='media' allow='encrypted-media' allowfullscreen></iframe>");
+	  modal.find('#span-content').text(content);
+	})
 
 //category별 ajax로 동영상 가져오기 
 function category(category2){
@@ -227,6 +213,33 @@ function category(category2){
 		dataType: "json",
        success : function(result){
           console.log("전송성공:");
+  
+          for(var i=0;i<result.clist.length;i++){
+	          var no = result.clist[i].v_no;
+	          var title = result.clist[i].title;
+	          var url = result.clist[i].url;
+	          var content = result.clist[i].content;
+	          var value ="<div class='video'><div id='video-iframe"+no+"'></div><div id='video-info'><span class='video-time' id='v-time"+no+"'></span>"+
+					"<span id='video-text'><a href='#' data-toggle='modal' data-target='."+no+"'>"+title+"</a></span></div></div>"+
+					"<div class='modal fade "+no+"' id='workout-modal' tabindex='-1' role='dialog' aria-labelledby='myLargeModalLabel'"+
+					"aria-hidden='true'><div class='modal-dialog modal-lg'><div class='modal-content'><div class='modal-header'>"+
+					"<button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>×</span>"+
+					"</button><h4 class='modal-title' id='myLargeModalLabel'>"+title+"<a class='anchorjs-link' href='#myLargeModalLabel'><span"+
+					"class='anchorjs-icon'></span></a></h4></div><div class='modal-body'><div class='modal-play'>"+
+					"<iframe id='video-play' src="+"'https://www.youtube.com/embed/"+url+"' frameborder='0'"+
+					"gesture='media' allow='encrypted-media' allowfullscreen></iframe></div><div class='modal-desc'>"+
+					"<div id='video-content'><span>"+content+"</span></div><div id='video-reply'><input type='text'"
+					"id='reply-input' placeholder='댓글을 입력하세요'><button type='submit' id='reply-btn'>댓글달기</button></div>"+
+					"</div></div></div></div></div>";
+							
+			
+			if(i==0){
+				$('.workout-videos').html(value);
+			}else{
+			  $('.workout-videos').append(value);
+          	}
+          }
+          
        },
        error : function(request, status, errorData){
           alert("error code : " + request.status + "\n"
@@ -236,11 +249,6 @@ function category(category2){
 	});
 }
 </script>
-
-
-
-</div>
-
 
 
 <c:import url="../include/main/footer.jsp" />

@@ -11,7 +11,7 @@
 <body class="homepage">
 
 <!-- java script 파일 로드 -->
-<script type="text/javascript" src="/fitnessground/resources/js/jquery.min.js"></script>
+<script type="text/javascript" src="/fitnessground/resources/js/jquery.min.js"></script> 
 <script type="text/javascript" src="/fitnessground/resources/js/common/jquery.scrolly.min.js"></script>
 <script type="text/javascript" src="/fitnessground/resources/js/common/jquery.dropotron.min.js"></script>
 <script type="text/javascript" src="/fitnessground/resources/js/common/jquery.onvisible.min.js"></script>

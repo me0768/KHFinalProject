@@ -182,7 +182,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Collection<? extends CommunityAndMeeting> meetingBoardSearch(int user_no, String keyword) {
+	public ArrayList<CommunityAndMeeting> meetingBoardSearch(int user_no, String keyword) {
 		HashMap<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("user_no", user_no);
 		parameters.put("keyword", "%"+keyword+"%");

@@ -11,7 +11,7 @@
 			location.href="userBoardSearch.do?searchKeyword="+$('input[name="searchQKeyword"]').val()+"&userno="+${sessionScope.user.user_no};
 		}
 		function cSearch() {
-			location.href="userBoardSearch.do?searchKeyword="+$('input[name="searchCKeyword"]').val()+"&userno="+${sessionScope.user.user_no}+"&com=ok&category_no="+$("select[name=ComNo]").val();
+			location.href="userBoardSearch.do?searchKeyword="+$('input[name="searchCKeyword"]').val()+"&userno="+${sessionScope.user.user_no}+"&com=ok";
 		}
 	 </script>	
 
@@ -62,8 +62,13 @@
 		  	</c:if>
 				<table class="w3-table-all" style="background:white; border-style:1px;border-top:0px;" id="qnaT">
 					<tr>
-						<th colspan="3">  
-							<div class="input-group col-md-offset-8 col-md-4" id="qnaF">
+						<th colspan="2" align="left">
+							<c:if test="${null ne qSearchKeyword}">
+							<div id="searchInfo" style="text-align:left;">'${qSearchKeyword}'(으)로 검색한 결과</div>
+							</c:if>
+						</th>
+						<th>  
+							<div class="input-group" id="qnaF">
 							  <input type="text" class="form-control" placeholder="제목으로 검색..." name="searchQKeyword" onkeydown="javascript: if (event.keyCode == 13) {qSearch();}">
 							  <span class="input-group-addon" id="searchBt">
 							  	<a onclick="qSearch();" class="glyphicon glyphicon-search"></a>
@@ -144,8 +149,13 @@
 		  	</c:if>
 		  		<table class="w3-table-all" style="background:white; border-style:1px;border-top:0px;" id="communityT">
 					<tr>
-						<th colspan="3">
-							<div class="input-group col-md-offset-8 col-md-4" id="comF">
+						<th colspan="2" align="left">
+							<c:if test="${null ne cSearchKeyword}">
+							<div id="searchInfo" style="text-align:left;">'${cSearchKeyword}'(으)로 검색한 결과</div>
+							</c:if>
+						</th>
+						<th>
+							<div class="input-group " id="comF">
 							  <input type="text" class="form-control" placeholder="제목으로 검색..." name="searchCKeyword" onkeydown="javascript: if (event.keyCode == 13) {cSearch();}">
 							  <span class="input-group-addon" id="searchBt">
 							  	<a onclick="cSearch();" class="glyphicon glyphicon-search"></a>
@@ -154,14 +164,7 @@
 						</th>
 					</tr>
 					<tr style="font-weight:bold;">
-					  <th style="width:15%;">
-					  	<select name="ComNo" id="ComNo" class="selectBox">
-							<option value="1" selected="selected">전체</option>
-							<option value="2">운동같이</option>
-							<option value="3">후기</option>
-							<option value="4">QnA</option>
-						</select>
-					  </th>
+					  <th style="width:15%;">분류</th>
 					  <th style="width:60%; text-align:left; padding-left:100px;">제목</th>
 					  <th style="width:25%;">작성일</th>
 					</tr>
@@ -176,7 +179,7 @@
 								  <c:if test="${c.category_no eq 0}"><td>후기</td></c:if>
 								  <c:if test="${c.category_no eq 1}"><td>QnA</td></c:if>
 								  <c:if test="${c.category_no eq 2}"><td>운동같이</td></c:if>
-								  <td><a href="${detail}">${c.title}</a></td>
+								  <td style="text-align:left; padding-left:100px;"><a href="${detail}">${c.title}</a></td>
 								  <td>${c.upload_date}</td>
 								</tr>
 							</c:forEach>

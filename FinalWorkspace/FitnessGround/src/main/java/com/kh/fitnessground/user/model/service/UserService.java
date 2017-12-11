@@ -65,5 +65,5 @@ public interface UserService {
 
 	ArrayList<CommunityAndMeeting> communityBoardSearch(int user_no, String keyword);
 
-	Collection<? extends CommunityAndMeeting> meetingBoardSearch(int user_no, String keyword);
+	ArrayList<CommunityAndMeeting> meetingBoardSearch(int user_no, String keyword);
 }

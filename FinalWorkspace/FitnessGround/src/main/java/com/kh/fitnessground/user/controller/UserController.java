@@ -353,15 +353,15 @@ public class UserController {
 		String keyword = request.getParameter("searchKeyword");
 		int user_no = Integer.parseInt(request.getParameter("userno"));
 		
-		int qMaxPage, qStartPage, qEndPage, listCount, limit=10, currentPage=1;
-		int cMaxPage, cStartPage, cEndPage, clistCount;
+		int qMaxPage, qStartPage, qEndPage, limit=10, currentPage=1;
+		int cMaxPage, cStartPage, cEndPage;
 		GymQnABoardPage page = new GymQnABoardPage(currentPage, limit);
 		ArrayList<GymQnABoard> qlist = null;
 		ArrayList<CommunityAndMeeting> cmList = new ArrayList<CommunityAndMeeting>();
+		
 		if(request.getParameter("com") == null) {
 			// 문의하기 검색
-			listCount = userService.qnABoardSearchCount(user_no, keyword);
-			qMaxPage = (int) ((double) listCount / limit + 0.9);
+			qMaxPage = (int) ((double) userService.qnABoardSearchCount(user_no, keyword) / limit + 0.9);
 			qStartPage = ((int) ((double) currentPage / limit + 0.9) - 1) * limit + 1;
 			qEndPage = qStartPage + limit - 1;
 			if (qMaxPage < qEndPage)	qEndPage = qMaxPage;
@@ -369,8 +369,7 @@ public class UserController {
 			// 커뮤니티 전체 목록
 			ArrayList<CommunityAndMeeting> temp = userService.communityBoardList(user_no);
 			temp.addAll(userService.meetingBoardList(user_no));
-			clistCount = temp.size();
-			cMaxPage = (int) ((double) clistCount/limit + 0.9);
+			cMaxPage = (int) ((double) temp.size()/limit + 0.9);
 			cStartPage = ((int) ((double) currentPage/limit+0.9)-1)*limit+1;
 			cEndPage = cStartPage + limit - 1;
 			if(cMaxPage < cEndPage) cEndPage = cMaxPage;
@@ -382,10 +381,8 @@ public class UserController {
 		else {
 			// 커뮤니티 검색
 			ArrayList<CommunityAndMeeting> temp = userService.communityBoardSearch(user_no, keyword);
-			System.out.println(temp);
 			temp.addAll(userService.meetingBoardSearch(user_no, keyword));
-			clistCount = temp.size();
-			cMaxPage = (int) ((double) clistCount/limit + 0.9);
+			cMaxPage = (int) ((double) temp.size()/limit + 0.9);
 			cStartPage = ((int) ((double) currentPage/limit+0.9)-1)*limit+1;
 			cEndPage = cStartPage + limit - 1;
 			if(cMaxPage < cEndPage) cEndPage = cMaxPage;
@@ -393,20 +390,22 @@ public class UserController {
 			if(page.getEndRow()-1 > temp.size()) page.setEndRow(temp.size());
 			for(int i=page.getStartRow()-1; i<=page.getEndRow()-1; i++)
 				cmList.add(temp.get(i));
-			System.out.println(cmList);
 			// 문의하기 전체 목록
-			listCount = userService.qnABoardCount(user_no);
-			qMaxPage = (int) ((double) listCount / limit + 0.9);
+			qMaxPage = (int) ((double) userService.qnABoardCount(user_no) / limit + 0.9);
 			qStartPage = ((int) ((double) currentPage / limit + 0.9) - 1) * limit + 1;
 			qEndPage = qStartPage + limit - 1;
 			if (qMaxPage < qEndPage)	qEndPage = qMaxPage;
-			qlist = userService.qnABoardList(page, user_no);
-			System.out.println(qlist);
+			qlist = userService.qnABoardList(new GymQnABoardPage(currentPage, limit), user_no);
 		}
 		
-		if(request.getParameter("com")!=null)
+		if(request.getParameter("com")!=null) {
 			mv.addObject("com","ok");
-		else mv.addObject("com","no");
+			mv.addObject("cSearchKeyword", keyword);
+		}
+		else {
+			mv.addObject("com","no");
+			mv.addObject("qSearchKeyword", keyword);
+		}
 		
 		mv.addObject("qlist", qlist);
 		mv.addObject("qCurrentPage", currentPage);
@@ -429,6 +428,7 @@ public class UserController {
 		// mv에 글 번호 값 추가
 		return mv; 
 	}
+	// 내 운동 스케줄 관리
 	@RequestMapping(value="/uschedule.do")
 	public ModelAndView userScheduleMethod(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("user/userSchedule");

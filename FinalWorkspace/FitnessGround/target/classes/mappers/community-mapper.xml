@@ -128,12 +128,12 @@
    </select>
    <select id="myPageCommunitySearchList" parameterType="hashmap" resultType="list" resultMap="MyPageCommunity">
       <![CDATA[
-      select * from tb_com_board where user_no=#{user_no} and title=#{keyword}
+      select * from tb_com_board where user_no=#{user_no} and title like #{keyword}
       ]]>
    </select>
    <select id="myPageMeetingSearchList" parameterType="hashmap" resultType="list" resultMap="MyPageMeeting">
       <![CDATA[
-      select * from tb_meeting_board where user_no=#{user_no} and title=#{keyword}
+      select * from tb_meeting_board where user_no=#{user_no} and title like #{keyword}
       ]]>
    </select>
 	

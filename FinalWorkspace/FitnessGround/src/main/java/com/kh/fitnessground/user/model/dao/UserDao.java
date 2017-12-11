@@ -131,7 +131,7 @@ public class UserDao {
 		return new ArrayList<CommunityAndMeeting>(list);
 	}
 
-	public Collection<? extends CommunityAndMeeting> meetingSearch(HashMap<String, Object> parameters) {
+	public ArrayList<CommunityAndMeeting> meetingSearch(HashMap<String, Object> parameters) {
 		List<CommunityAndMeeting> list = sqlSession.selectList("community.myPageMeetingSearchList", parameters);
 		return new ArrayList<CommunityAndMeeting>(list);
 	}

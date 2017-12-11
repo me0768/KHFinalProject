@@ -85,7 +85,15 @@ public class AdminServiceImpl  implements AdminService{
 		adminDao.userStateBack(user_no);
 		
 	}
-	
+
+
+	@Override
+	public int RequestCount(int level) {
+		return adminDao.RequestCount(level);
+	}
+
+
+
 
 	
 }

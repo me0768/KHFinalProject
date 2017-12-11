@@ -46,8 +46,14 @@ public class AdminController {
 
 	// 관리자 메인뷰 이동
 	@RequestMapping(value = "adminMain.do")
-	public ModelAndView adminmain(HttpServletRequest request) {
+	public ModelAndView adminmain(User user, @RequestParam(value="level", required=false, defaultValue="0") int level) {
+		//리퀘스트 파람 -> 자동으로 값을 받아옴
+		//근데 받아올 데이터가 없으면 required=false -> 꼭필요하지 않다 라는 뜻
+		// defaultValue="0" -> 기본값설정 / 그러니깐 값이 없을때는 0으로 한다 라는뜻
 		ModelAndView mv = new ModelAndView("admin/adminMain");
+		int count = adminService.RequestCount(level);
+		System.out.println(count);
+		mv.addObject("count", count);
 		return mv;
 	}
 

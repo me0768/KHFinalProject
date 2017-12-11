@@ -78,40 +78,6 @@
 		location.href="adminbusinessRequestlist.do"
 	}
 	
-	$(document).ready(function() {
-		$("#selectCheckBox").click(function() {
-			var isChecked = $(this).prop("checked");
-			$(".deleteCheckBox").prop("checked", isChecked);
-
-		});
-		
-		$("#selectDeleteBtn").click(function() {
-
-			var isChecked = false;
-
-			/* 각각의 클래스를 다 보면서 선택이 됬는지 안됬는지 체크한다. */
-			$(".deleteCheckBox").each(function(index, data) {
-				if (data.checked) {
-					isChecked = data.checked;
-				}
-			});
-
-			if (!isChecked) {
-				alert("삭제할 대상을 선택하세요.");
-				return;
-			}
-
-			/* 사용자에게 한번 더 컨펌 */
-			if (confirm("정말 삭제하시겠습니까?")) {
-				alert("삭제되었습니다");
-
-				var form = $("#selectDeleteBtn");
-				form.attr("method", "post");
-				form.attr("action", "<c:url value="businessDelete.do" />");
-				form.submit();
-			}
-		});
-	});
 	
 	
 </script>
@@ -144,7 +110,6 @@
 							cellspacing="0">
 							<thead>
 								<tr>
-									<th><input type="checkbox" id="selectCheckBox" /></th>
 									<th>Index</th>
 									<th>Email</th>
 									<th>Name</th>
@@ -168,8 +133,6 @@
 							<form id="massiveDeleteForm">
 								<c:forEach var="item" items="${list }" varStatus="status">
 									<tr>
-										<td><input type="checkbox" class="deleteCheckBox"
-											name="deleteCheckBox" value="${item.user_no} " /></td>
 										<td>${status.count }</td>
 										<td>${item.email }</td>
 										<td>${item.name }</td>
@@ -182,9 +145,7 @@
 								</form>
 							</tbody>
 						</table>
-						<button id="selectDeleteBtn" class="btn-1">선택 삭제</button>
-						
-					</div>
+						</div>
 				</div>
 				<div class="card-footer small text-muted">Updated yesterday at
 					11:59 PM</div>

@@ -39,6 +39,9 @@ public interface AdminService {
 	void adminUserStateBack(int user_no);
 
 
+	int RequestCount(int level);
+
+
 
 
 }

@@ -64,6 +64,13 @@
 		]]>
 	</select>
 	
+	<select id="RequestCount" parameterType="_int" resultType="_int">
+		<![CDATA[ 
+		select count(*) from tb_gym where approval_state = #{level}
+		]]>
+	</select>
+	
+	
 	<update id="gymRequest" parameterType="_int"
 		flushCache="true" statementType="PREPARED" >
 		<![CDATA[

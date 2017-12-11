@@ -50,9 +50,9 @@
 						<div class="card-body-icon">
 							<i class="fa fa-fw fa-list"></i>
 						</div>
-						<div class="mr-5">10개의 헬스장 등록<br> 요청이 있습니다!</div>
+						<div class="mr-5">${count }개의 헬스장 등록<br> 요청이 있습니다!</div>
 					</div>
-					<a class="card-footer text-white clearfix small z-1" href="#">
+					<a class="card-footer text-white clearfix small z-1" href="adminbusinessRequestlist.do">
 						<span class="float-left">View Details</span> <span
 						class="float-right"> <i class="fa fa-angle-right"></i>
 					</span>

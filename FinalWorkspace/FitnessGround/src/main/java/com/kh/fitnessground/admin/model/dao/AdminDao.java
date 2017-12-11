@@ -69,6 +69,13 @@ public class AdminDao {
 		sqlSession.update("user.userBack", user_no);
 		
 	}
+
+	public int RequestCount(int level) {
+		int cnt = sqlSession.selectOne("gym.RequestCount", level);
+		return cnt;
+	}
+
+
 	
 	
 	

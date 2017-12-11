@@ -189,9 +189,7 @@
 								cellspacing="0">
 								<thead>
 									<tr>
-										<th><input type="checkbox" id="selectCheckBox" /></th>
 										<th>Index</th>
-										<th>유저번호</th>
 										<th>Email</th>
 										<th>Name</th>
 										<th>NickName</th>
@@ -200,25 +198,11 @@
 										<th>관리</th>
 									</tr>
 								</thead>
-								<!-- <tfoot>
-                <tr>
-                  <th>Name</th>
-                  <th>Position</th>
-                  <th>Office</th>
-                  <th>Age</th>
-                  <th>Start date</th>
-                  <th>Salary</th>
-                </tr>
-              </tfoot> -->
 								<tbody>
 
 									<c:forEach var="item" items="${list }" varStatus="status">
 										<tr>
-											<td><input type="checkbox" class="deleteCheckBox"
-												name="deleteCheckBox" value="${item.user_no} " /></td>
 											<td>${status.count }</td>
-											<td><input type="hidden" id="user"
-												value="${item.user_no }" name="user" />${item.user_no }</td>
 											<td><input type="hidden" id="email${item.user_no }"
 												value="${item.email }" name="eamil" />${item.email }</td>
 											<td>${item.name }</td>
@@ -245,9 +229,7 @@
 								</tbody>
 							</table>
 						</form>
-						<button id="selectDeleteBtn" class="btn-1">선택 삭제</button>
-
-					</div>
+						</div>
 				</div>
 				<div class="card-footer small text-muted">Updated yesterday at
 					11:59 PM</div>
@@ -257,8 +239,8 @@
 		<!-- /.content-wrapper-->
 		<c:import url="../common/footer.jsp" />
 		<!-- Scroll to Top Button-->
-		<a class="scroll-to-top rounded" href="#page-top"> <i
-			class="fa fa-angle-up"></i>
+		<a class="scroll-to-top rounded" href="#page-top"> 
+		<i class="fa fa-angle-up"></i>
 		</a>
 		<!-- Logout Modal-->
 		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"

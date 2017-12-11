@@ -39,6 +39,19 @@ public class YogaController {
 		public ModelAndView YogaListMethod(HttpServletRequest request) {
 			ModelAndView mv = new ModelAndView("/workout/yogaMain");
 			ArrayList<Yoga> list = yogaService.selectAllList();
+			for(Yoga y : list) {
+				y.setTitle(y.getTitle().replaceAll("\\\"", "＇"));
+				y.setContent(y.getContent().replaceAll("\\\"", "＇"));// 쌍따옴표jsp출력 문제로 미리 치환
+				}
+			System.out.println(list);
+			mv.addObject("list", list);
+			return mv;
+		}
+		//test
+		@RequestMapping(value = "/yplist.do")
+		public ModelAndView YogaPListMethod(HttpServletRequest request) {
+			ModelAndView mv = new ModelAndView("/workout/yogaCategory");
+			ArrayList<Yoga> list = yogaService.selectAllList();
 			System.out.println(list);
 			mv.addObject("list", list);
 			return mv;
@@ -51,7 +64,10 @@ public class YogaController {
 			//전송온 문자열을 json 객체로 변환 처리
 
 			ArrayList<Yoga> clist = yogaService.selectCList(yoga);
-			System.out.println(clist);
+			for(Yoga y : clist) {
+				y.setTitle(y.getTitle().replaceAll("\\\"", "＇"));
+				y.setContent(y.getContent().replaceAll("\\\"", "＇"));// 쌍따옴표jsp출력 문제로 미리 치환
+				}
 			
 			mv.addObject("clist", clist);
 			mv.setViewName("jsonView");

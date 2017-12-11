@@ -118,8 +118,13 @@ body{
 
 
 #workout-modal{
-	top:0;
-	left: 0;
+	/* position: relative;
+	top:10vh;
+	left: -20vw; */
+}
+.modal-dialog{
+	width: 84vw !important;
+	margin: 5vh 8vw !important;
 }
 #video-text{
 	margin: 0 auto;
@@ -163,9 +168,9 @@ body{
 .modal-desc{
 	display: inline-block;
     float: left;
-    width: 32vw;
+    width: 34vw;
     height: 70vh;
-    margin: 0 10px;
+    margin: 0 1px;
     padding-left: 1vw;
     border-left: 2px solid #DAECF3;
 }

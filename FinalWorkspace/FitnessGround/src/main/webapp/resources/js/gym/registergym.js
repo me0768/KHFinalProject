@@ -3,6 +3,7 @@ var checkinfo = 0;
 var checkschedule = 1;
 var checkloc = 0;
 var resultaddr = '';
+var formd = new FormData();
 
 		$("#panelOne").css({'boader-color':'#F60808', 'box-shadow':'0 0 1px 1px rgb(232, 13, 13)'});
 		$("#headingOne").css("color","red");
@@ -89,7 +90,7 @@ var resultaddr = '';
 		 
 			var files = e.target.files || e.dataTransfer.files;
 			var filesArr = Array.prototype.slice.call(files);
-			
+	
 			var index = 0;
 			filesArr.forEach(function(f){
 				if(!f.type.match("image.*")){
@@ -214,8 +215,11 @@ var resultaddr = '';
 			var prevnext = 	"<a data-slide='prev' href='#Carousel' class='left carousel-control' id='prev'>‹</a>" +
            					"<a data-slide='next' href='#Carousel' class='right carousel-control' id='next'>›</a>";
 			
-			var files = e.target.files;
+			var files = e.originalEvent.target.files;
 			var filesArr = Array.prototype.slice.call(files);
+			console.log(files[0].name);
+			formd.append('files', files);
+			console.log(formd);
 			
 			var index = 0;
 			filesArr.forEach(function(f){
@@ -311,6 +315,7 @@ var resultaddr = '';
 							return;
 						}
 					}
+
 					$("#smallimg0").css({"border":"3px solid #8deb7a", "border-radius":"8px"});
 					index++;
 				}
@@ -658,7 +663,9 @@ var resultaddr = '';
 		
 		function registergym(){
 			//이미지 다중파일 가져와야함
-			//추가해야함,,
+			var formData = new FormData($("#frm")[0]);
+			console.log(formData);
+			console.log(formd);
 			
 			//헬스장 정보
 			var gym_name = $("#gymname").val();
@@ -685,6 +692,14 @@ var resultaddr = '';
 			
 			//헬스장 주소
 			var location = resultaddr;
-			alert("헬스장 이름 : " + gym_name + "\n운영시간 : " + op_time + "\n전화번호 : " + tel + "\n핸드폰번호 : " + phone + "\n가격 : " + price + "\n카테고리 : " + category + "\n설명 : " + description + "\n 위치 : " + location);
+			//alert("헬스장 이름 : " + gym_name + "\n운영시간 : " + op_time + "\n전화번호 : " + tel + "\n핸드폰번호 : " + phone + "\n가격 : " + price + "\n카테고리 : " + category + "\n설명 : " + description + "\n 위치 : " + location);
 			var queryString = { "gym_name": gym_name, "op_time": op_time, "tel": tel, "phone": phone, "price": price, "category": category, "description": description, "location": location };
+			
+			 $.ajax({
+		            type : 'post',
+		            url : 'test.do',
+		            data : formd,
+		            processData : false,
+		            contentType : false
+		        });			
 		}

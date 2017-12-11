@@ -120,16 +120,18 @@
 					                    <li data-target="#Carousel" data-slide-to="1"></li> -->
 					                </ol>
 					                 
-					                <!-- Carousel items -->
-					                <div class="carousel-inner">
-					                    
-					              	<div class="item active">
-					                	<div id="li1">
-					                	 	<!-- 목록 생성 -->
-					                	</div><!-- .row -->
-					                </div><!-- .item -->
-	
-					                </div><!-- .carousel-inner -->
+					                 
+						                <!-- Carousel items -->
+						                <div class="carousel-inner">
+						                    
+						              	<div class="item active">
+						                	<div id="li1">
+						                	 	<!-- 목록 생성 -->
+						                	</div><!-- .row -->
+						                </div><!-- .item -->
+		
+						                </div><!-- .carousel-inner -->
+						                
 										<!-- 버튼 생성 -->
 					                </div><!-- .Carousel -->
 					                 
@@ -140,9 +142,11 @@
 
 						<div>
 							<div class="input_wrap">
+							<form id="frm" method="post" enctype="multipart/form-data">
 								<a href="javascript:" onclick="fileUploadAction();"
 									class="btn btn-danger my_button">이미지 업로드</a> <input type="file"
 									id="input_imgs" multiple />
+							</form>
 							</div>
 						</div>
 

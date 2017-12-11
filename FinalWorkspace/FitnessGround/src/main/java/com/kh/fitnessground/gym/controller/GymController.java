@@ -1,7 +1,9 @@
 package com.kh.fitnessground.gym.controller;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +16,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.fitnessground.community.model.vo.MeetingBoard;
@@ -37,6 +41,37 @@ public class GymController {
 		}
 		// 헬스장 스케줄도 등록
 		return mv;
+	}
+	
+	@RequestMapping(value="/test.do", method=RequestMethod.POST)
+	public void multiImageUpload(MultipartHttpServletRequest multi, HttpServletRequest request, HttpServletResponse response){
+		String root = multi.getSession().getServletContext().getRealPath("/");
+		String path = root + "resources/images/gymimages";
+		
+		String newFileName= ""; // 업로드되는 파일명
+		
+		File dir = new File(path);
+		if(!dir.isDirectory()) {
+			dir.mkdir();
+		}
+		
+		System.out.println(multi.getFileNames());
+		Iterator<String> files = multi.getFileNames();
+		System.out.println(files.hasNext());
+		while(files.hasNext()) {
+			String uploadFile = files.next();
+			
+			MultipartFile mFile = multi.getFile(uploadFile);
+			String fileName = mFile.getOriginalFilename();
+			System.out.println("실제 파일 이름 : " + fileName);
+			newFileName = System.currentTimeMillis() + "." + fileName.substring(fileName.lastIndexOf(".")+1);
+			
+			try {
+				mFile.transferTo(new File(path+newFileName));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	// 헬스장 수정

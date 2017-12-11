@@ -14,14 +14,10 @@ public class HealthDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
-	public ArrayList<Health> getList() {
-		// 전체 리스트
-		return (ArrayList)sqlSession.selectList("health.getList()");
-	}
-
-	public Health selectOneWorkout(int vno) {
+	
+	public Health selectOneWorkout(int v_no) {
 		// 영상에 대한 객체 한개
-		return sqlSession.selectOne("health.selectOneWorkout",vno);
+		return sqlSession.selectOne("health.selectOneWorkout",v_no);
 		
 	}
 

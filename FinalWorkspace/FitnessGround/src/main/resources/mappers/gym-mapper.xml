@@ -28,7 +28,33 @@
 		<id property="user_level" column="user_level"/>
 		
 	</resultMap>
+
+	<resultMap id="resultGymRequest" type="Gym">
+		<id property="gym_name" column="gym_name"/>
+		<id property="original_image" column="original_image"/>
+		<id property="rename_image" column="rename_image"/>
+		<id property="op_time" column="op_time"/>
+		<id property="tel" column="tel"/>
+		<id property="phone" column="phone"/>
+		<id property="price" column="price"/>
+		<id property="description" column="description"/>
+		<id property="location" column="location"/>
+		<id property="user_no" column="user_no"/>
+		<id property="delete_date" column="delete_date"/>
+		<id property="approval_state" column="approval_state"/>
+	</resultMap>
 	
+	<resultMap id="resultPublicRequest" type="PublicGym">
+		<id property="category" column="category"/>
+		<id property="category_public" column="category_public"/>
+		<id property="location" column="location"/>
+		<id property="lng" column="lng"/>
+		<id property="lat" column="lat"/>
+		<id property="tel" column="tel"/>
+		<id property="homepage" column="homepage"/>
+		<id property="op_time" column="op_time"/>
+		<id property="end_time" column="end_time"/>
+	</resultMap>
 	
 	<select id="businessRequest" parameterType="_int" resultMap="resultBusinessRequest" resultType="list">
 		<![CDATA[ 
@@ -86,5 +112,31 @@
 		select count(*) from tb_qna where (sender=#{user_no} or receiver=#{user_no}) and (title like #{keyword})
 		]]>
 	</select>
+	
+	<!-- 체육관 찾기 -->
+	<select id="selectGymList" resultType="list" resultMap="resultGymRequest">
+		<![CDATA[
+			select * from(select rownum rnum, T.* from tb_gym T) a where a.rnum >= #{startRow} and a.rnum <= #{endRow}
+		]]>
+	</select>
+	
+	<select id="selectPublicList" resultType="list" resultMap="resultPublicRequest">
+		<![CDATA[
+			select * from(select rownum rnum, T.* from tb_public_gym T) a where a.rnum >= #{startRow} and a.rnum <= #{endRow}
+		]]>
+	</select>
+	
+	<select id="selectGymCount" resultType="_int" parameterType="_int">
+		<![CDATA[
+			select count(*) from tb_gym
+		]]>
+	</select>
+	
+	<select id="selectPublicCount" resultType="_int" parameterType="_int">
+		<![CDATA[
+			select count(*) from tb_public_gym
+		]]>
+	</select>
+	
 	
 </mapper>

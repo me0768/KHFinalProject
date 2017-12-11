@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.kh.fitnessground.gym.model.vo.Gym;
 import com.kh.fitnessground.gym.model.vo.GymReview;
+import com.kh.fitnessground.gym.model.vo.PublicGym;
 
 public interface GymService {
 		//헬스장 등록
@@ -17,13 +18,17 @@ public interface GymService {
 		ArrayList<GymReview> selectList(int limit);
 		
 		// 헬스장 목록 가져오기
-		//ArrayList<Gym> healthList(int currentPage, int limit);
-		ArrayList<Gym> healthList();
+		ArrayList<Gym> healthList(int currentPage, int limit);
+	//	ArrayList<Gym> healthList();
 		//등록
 		int enrollReview(GymReview gymreview);
 		//삭제
 		int deleteReview(int gcno);
 			//수정
 		int updateReview(int gcno, GymReview gymreview);
+		
+		int getPublicListCount();
+		
+		ArrayList<PublicGym> publicList(int currentPage, int limit);
 
 }

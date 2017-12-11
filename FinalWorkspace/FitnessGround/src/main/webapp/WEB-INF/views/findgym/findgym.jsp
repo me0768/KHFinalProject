@@ -1,42 +1,127 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<meta http-equiv="Content-Type"
-	content="text/html; charset=UTF-8; IE=edge">
-<meta name="viewport"
-	content="width=device=width, initial-scale=1.0, 
-	maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
 
 <c:import url="../include/common/head.jsp" />
 
 <link rel="stylesheet"
 	href="/fitnessground/resources/css/findgym/findgym.css" />
 
-<c:import url="../include/common/headend.jsp" />
-<div id="page-wrapper">
+<%-- <div id="page-wrapper">
 	<!-- Header -->
 	<div id="mypage_header">
-		<!-- Nav -->
-		<c:import url="../include/main/nav.jsp" />
-
 		<c:import url="../user/login.jsp" />
 		<c:import url="../user/findidpwd.jsp" />
 		<c:import url="../user/register.jsp" />
+		<c:import url="../include/main/nav.jsp" />
 	</div>
+</div> --%>
+
+<div id="mypage_header">
+	<!-- Nav -->
+	<c:import url="../include/main/nav.jsp"/>
+	<c:import url="../user/login.jsp"/>
+	<c:import url="../user/findidpwd.jsp"/>
 </div>
 
 <script type="text/javascript"
-	src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=vWkJuuK8gXcwBG8Rijlh&submodules=geocoder">
-	$('#myTab a').click(function(e) {
-		e.preventDefault();
-		$(this).tab('show');
+	src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=vWkJuuK8gXcwBG8Rijlh&submodules=geocoder">	
 
-	});
 </script>
 
-<!-- <script type="text/javascript" src="http://openAPI.seoul.go.kr:8088/784645794a6b616931377242486776/xml/ListPublicPhysicalPlant/1/5/">
+<c:import url="../include/common/headend.jsp" />
 
-</script> -->
+<script type="text/javascript">
+	$(document).ready(function(){
+		$.ajax({
+			url:"findhealth.do",
+			type: "post",
+			dataType: "json",
+			success : function(data){
+				console.log(data.gymlist);
+				console.log(data.currentPage);
+				
+				
+				var jsonStr = JSON.stringify(data);
+														
+				var json = JSON.parse(jsonStr);
+												
+				//var values = $("#healthlist").html();
+				
+				// 리스트 처리
+				var values;
+				
+				for(var i in json.gymlist)
+				{
+					values += "<a href=''>" + 
+					
+						"<img src=" + json.gymlist[i].rename_image + 
+					
+						"<img src=''" +						
+										
+					 " style='height:100px; weight:100px;'>" + "</a>" + 
+							json.gymlist[i].gym_name + "<br/>" +
+							json.gymlist[i].location + "<br/>";
+				}
+				
+				console.log(values);
+				$("#healthlist").html(values);
+					
+				// 페이징 처리
+				var page;
+				var currentPage = data.currentPage;
+				var startPage = data.startPage;
+				var endPage = data.endPage;
+				var maxPage = data.maxPage;
+				
+				if(currentPage <= 1){
+					$(".pagination").html(
+							"<li class='disabled'>"+"<a href='#' aria-label='Previous'>" + 
+						        "<span aria-hidden='true'>" + "&laquo;" + "</span>"
+						      + "</a>"+"</li>");
+				} else {
+					$(".pagination").html(
+							"<li>"+"<a href='findhealth.do?cpage=${ currentPage - 1 }' aria-label='Previous'>" + 
+						        "<span aria-hidden='true'>" + "&laquo;" + "</span>"
+						      + "</a>"+"</li>" );
+				}
+				/* 현재 페이지 숫자 보여주기 */
+				for(var p = startPage; p <= endPage; p++)
+				{
+					if(p == currentPage){
+						$(".pagination").html(
+							"<li>" + "<a href='#'>" + p + "</a></li>"	
+						);	
+					} else {
+						$(".pagination").html(
+								"<li>" + "<a href='fitnesshealth.do?cpage= p '>"+ p + "</a></li>"
+							);
+					}
+				}
+				
+				if(currentPage >= maxPage){
+					$(".pagination").html(
+						"<li class='disabled'>" + "<a href='#' aria-label='Next'>" + 
+						        "<span aria-hidden='true'>" + "&raquo;" + "</span>" +
+						      "</a>" + "</li>"
+					);
+					} else {
+						$(".pagination").html(
+								"<li>" + "<a href='findhealth.do?cpage=${ currentPage + 1 }' aria-label='Next'>" + 
+								        "<span aria-hidden='true'>" + "&raquo;" + "</span>" +
+								      "</a>" + "</li>");
+					}
+				},			
+			error : function(request, status, errorData){
+					alert("error code : " + request.status + "\n"
+							+ "message : " + request.responseText + "\n"
+							+ "error : " + errorData);
+					}
+			});							
+		});
+	
+</script>
+
 <div id="container" class="container">
 	<div class="row">
 		<br> <br>
@@ -46,7 +131,7 @@
 			<div class="row">
 				<div class="input-group">
 						<input type="text" class="form-control" id="address"
-							placeholder="Search for..." style='height:30px'"> <span
+							placeholder="Search for..." style='height:30px'> <span
 							class="input-group-btn">
 							<button class="btn btn-default" type="button" id="submit"  style='height:30px'>
 								<span class="glyphicon glyphicon-search" ></span>
@@ -57,6 +142,7 @@
 						</span>
 				</div>
 			</div>
+			
 			<div class="row">
 				<div role="tabpanel">
 					<!-- Nav tabs -->
@@ -68,20 +154,17 @@
 								찾기</a></li>
 					</ul>
 					
-					<!-- Tab panes -->
+					<!-- Tab panes -->					
 					<div class="tab-content">
 						<div role="tabpanel" class="tab-pane active" id="home">
 							<div class="row">
-								<c:forEach items="${list}" var="hlist">	
-										<a href=""><img src="#this" style="height:100px; weight:100px;"></a>	
+											
 										<div id="healthlist">
-											${hlist.gym_name }<br>
-											${hlist.location }
-										</div>									
-								</c:forEach>
-							
+
+										</div>
 							</div>
 						</div>
+						
 						<div role="tabpanel" class="tab-pane" id="profile">
 							<ul>
 								<li>
@@ -116,17 +199,8 @@
 				<div id="paging">
 					<nav>
 						<ul class="pagination">
-							<li><a href="#" aria-label="Previous"> <span
-									aria-hidden="true">&laquo;</span>
-							</a></li>
-							<li><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
-							<li><a href="#" aria-label="Next"> <span
-									aria-hidden="true">&raquo;</span>
-							</a></li>
+						<!-- 페이지 번호 처리 -->
+						
 						</ul>
 					</nav>
 				</div>
@@ -142,5 +216,5 @@
 	<!-- row -->
 </div>
 <!-- container -->
-<c:import url="../include/common/end.jsp" />
 <c:import url="../include/main/footer.jsp" />
+<c:import url="../include/common/end.jsp" />

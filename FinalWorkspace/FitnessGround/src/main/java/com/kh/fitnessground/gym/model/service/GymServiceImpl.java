@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.kh.fitnessground.gym.model.dao.GymDao;
 import com.kh.fitnessground.gym.model.vo.Gym;
 import com.kh.fitnessground.gym.model.vo.GymReview;
+import com.kh.fitnessground.gym.model.vo.PublicGym;
 
 @Service("gymService")
 public class GymServiceImpl implements GymService{
@@ -50,7 +51,7 @@ public class GymServiceImpl implements GymService{
 		return gymDao.updateReview(gcno,gymreview);
 	}
 
-/*	@Override
+	@Override
 	public ArrayList<Gym> healthList(int currentPage, int limit) {
 		HashMap<String, Object> parameters = new HashMap<String, Object>();
 		int startRow =(currentPage - 1) * limit + 1;
@@ -60,17 +61,27 @@ public class GymServiceImpl implements GymService{
 		parameters.put("endRow", endRow);
 		
 		return gymDao.healthList(parameters);
-	}*/
+	}
 	
 	@Override
-	public ArrayList<Gym> healthList(/*int currentPage, int limit*/) {
-		/*HashMap<String, Object> parameters = new HashMap<String, Object>();
+	public ArrayList<PublicGym> publicList(int currentPage, int limit) {
+		HashMap<String, Object> parameters = new HashMap<String, Object>();
 		int startRow =(currentPage - 1) * limit + 1;
 		int endRow = startRow + limit - 1;
 		
 		parameters.put("startRow", startRow);
-		parameters.put("endRow", endRow);*/
+		parameters.put("endRow", endRow);
 		
-		return gymDao.healthList(/*parameters*/);
+		return gymDao.publicList(parameters);
 	}
+
+	@Override
+	public int getPublicListCount() {
+		// TODO Auto-generated method stub
+		return gymDao.getPublicListCount();
+	}
+
+	
+	
+	
 }

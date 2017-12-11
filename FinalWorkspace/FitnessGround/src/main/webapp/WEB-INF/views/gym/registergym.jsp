@@ -3,6 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Calendar"%>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8; IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
 
 <c:import url="../include/common/head.jsp" />
 
@@ -45,7 +47,7 @@
 	position: fixed;
 	display: none;
 	width: 70vw;
-	height: 30vh;
+	height: 25vh;
 	top: 100vh;
 	right: 0px;
 	background-color: white;
@@ -56,6 +58,10 @@
 
 #dateinsert {
 	padding-right: 30px;
+}
+
+#panelOne {
+	margin-top: 20px;
 }
 </style>
 
@@ -242,7 +248,7 @@
 					</a>
 				</h4>
 			</div>
-			<div id="collapseThree" class="panel-collapse collapse in"
+			<div id="collapseThree" class="panel-collapse collapse"
 				role="tabpanel" aria-labelledby="headingThree">
 				<div class="panel-body">
 					
@@ -281,22 +287,30 @@
 					</a>
 				</h4>
 			</div>
-			<div id="collapsefour" class="panel-collapse collapse"
+			<div id="collapsefour" class="panel-collapse collapse in"
 				role="tabpanel" aria-labelledby="headingfour">
-				<div class="panel-body">Anim pariatur cliche reprehenderit,
-					enim eiusmod high life accusamus terry richardson ad squid. 3 wolf
-					moon officia aute, non cupidatat skateboard dolor brunch. Food
-					truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-					sunt aliqua put a bird on it squid single-origin coffee nulla
-					assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer
-					labore wes anderson cred nesciunt sapiente ea proident. Ad vegan
-					excepteur butcher vice lomo. Leggings occaecat craft beer
-					farm-to-table, raw denim aesthetic synth nesciunt you probably
-					haven't heard of them accusamus labore sustainable VHS.</div>
+				<div class="panel-body">				
+				<div class="input-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			      <input type="text" class="form-control" id="address" placeholder="주소를 입력하세요.">
+			       <span class="input-group-btn" style="padding: 0px;">
+			        <button class="btn btn-danger" type="button" id="addressbtn">검색</button>
+			      </span>
+			    </div><!-- /input-group -->
+				
+				
+				<div id="map" style="width:100%;height:400px;"></div>
+					<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=G0XI103VNKmTZuGNcR9G&submodules=geocoder"></script>
+
+				</div>
 			</div>
+		</div>
+		
+		<div>
+			<button class="btn btn-danger" disabled id="gymregisterbtn" onclick="registergym();">헬스장 등록</button>
 		</div>
 	</div>
 </c:if>
+
 
 <script type="text/javascript" src="/fitnessground/resources/js/gym/registergym.js"></script>
 

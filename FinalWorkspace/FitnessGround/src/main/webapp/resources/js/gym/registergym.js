@@ -1,4 +1,10 @@
-$("#panelOne").css({'boader-color':'#F60808', 'box-shadow':'0 0 1px 1px rgb(232, 13, 13)'});
+var checkimage = 0;
+var checkinfo = 0;
+var checkschedule = 1;
+var checkloc = 0;
+var resultaddr = '';
+
+		$("#panelOne").css({'boader-color':'#F60808', 'box-shadow':'0 0 1px 1px rgb(232, 13, 13)'});
 		$("#headingOne").css("color","red");
 		$("#panelTwo").css({'boader-color':'#F60808', 'box-shadow':'0 0 1px 1px rgb(232, 13, 13)'});
 		$("#headingTwo").css("color","red");
@@ -40,6 +46,8 @@ $("#panelOne").css({'boader-color':'#F60808', 'box-shadow':'0 0 1px 1px rgb(232,
 			$("#panel1").html(check);
 			$("#panelOne").css({'boader-color':'#B0F6AC', 'box-shadow':'0 0 1px 1px rgb(117, 254, 109)'});
 			$("#headingOne").css("color","green");
+			checkimage = 1;
+			registergymcheck()
 		}
 		
 		// ***********************
@@ -212,10 +220,6 @@ $("#panelOne").css({'boader-color':'#F60808', 'box-shadow':'0 0 1px 1px rgb(232,
 			var index = 0;
 			filesArr.forEach(function(f){
 				if(!f.type.match("image.*")){
-					/*var bigimagerr = "<div class='bigimage' id='bigimage' style='width: 360px; height: 360px;'>" +
-									"<img src='/fitnessground/resources/images/gymimages/draganddrop.png' style='width: 300px; height: 108px; border-radius: 10px; margin-top: 126; margin-left: 30px;'>" +					
-									"</div>";
-					$("#mainimage").append(bigimagerr);*/
 					alert("확장자는 이미지 확장자만 가능합니다.");
 					return;
 				}
@@ -469,11 +473,15 @@ $("#panelOne").css({'boader-color':'#F60808', 'box-shadow':'0 0 1px 1px rgb(232,
 				$("#panel2").html(check);
 				$("#panelTwo").css({'boader-color':'#B0F6AC', 'box-shadow':'0 0 1px 1px rgb(117, 254, 109)'});
 				$("#headingTwo").css("color","green");
+				checkinfo = 1;
+				registergymcheck();
 			} else{
 				var check = "<span class='glyphicon glyphicon-remove' aria-hidden='true'></span>&nbsp;&nbsp;헬스장 정보";
 				$("#panel2").html(check);
 				$("#panelTwo").css({'boader-color':'#F60808', 'box-shadow':'0 0 1px 1px rgb(232, 13, 13)'});
 				$("#headingTwo").css("color","red");
+				checkinfo = 0;
+				registergymcheck();
 			}
 		}
 		
@@ -481,7 +489,202 @@ $("#panelOne").css({'boader-color':'#F60808', 'box-shadow':'0 0 1px 1px rgb(232,
 		
 		// *********************************************
 		// 달력
-		// *********************************************
+		// *********************************************	
+		var map = new naver.maps.Map("map", {
+			center : new naver.maps.LatLng(37.3595316, 127.1052133),
+			zoom : 10,
+			mapTypeControl : true
+		});
 		
-
+		var infoWindow = new naver.maps.InfoWindow({
+			anchorSkew : true
+		});
 		
+		map.setCursor('pointer');
+		
+		// search by tm128 coordinate
+		function searchCoordinateToAddress(latlng) {
+			var tm128 = naver.maps.TransCoord.fromLatLngToTM128(latlng);
+		
+			infoWindow.close();
+		
+			naver.maps.Service.reverseGeocode({
+				location : tm128,
+				coordType : naver.maps.Service.CoordType.TM128
+			}, function(status, response) {
+				if (status === naver.maps.Service.Status.ERROR) {
+					return alert('올바른 주소가 아닙니다.');
+				}
+		
+				var items = response.result.items, htmlAddresses = [];
+		
+				for (var i = 0, ii = items.length, item, addrType; i < ii; i++) {
+					item = items[i];
+					addrType = item.isRoadAddress ? '[도로명 주소]' : '[지번 주소]';
+		
+					htmlAddresses.push((i + 1) + '. ' + addrType + ' ' + item.address);
+					htmlAddresses.push('&nbsp&nbsp&nbsp -> ' + item.point.x + ','
+							+ item.point.y);
+				}
+		
+				infoWindow.setContent([
+						'<div style="padding:10px;min-width:200px;line-height:150%;">',
+						'<h4 style="margin-top:5px;">검색 좌표 : '
+								+ response.result.userquery + '</h4><br />',
+						htmlAddresses.join('<br />'), '</div>' ].join('\n'));
+		
+				infoWindow.open(map, latlng);
+			});
+		}
+		
+		// result by latlng coordinate
+		function searchAddressToCoordinate(address) {
+			naver.maps.Service
+					.geocode(
+							{
+								address : address
+							},
+							function(status, response) {
+								if (status === naver.maps.Service.Status.ERROR) {
+									return alert('올바른 주소가 아닙니다.');
+								}
+		
+								var marker;
+		
+								var item = response.result.items[0], addrType = item.isRoadAddress ? '[도로명 주소]'
+										: '[지번 주소]', point = new naver.maps.Point(
+										item.point.x, item.point.y);
+		
+								infoWindow
+										.setContent([
+												'<div style="padding:10px;min-width:200px;line-height:150%;">',
+												'<h4 style="margin-top:5px;">검색 주소 : '
+														+ response.result.userquery
+														+ '</h4><br />',
+												addrType + ' ' + item.address
+														+ '<br /></div>' ]
+												.join('\n'));
+								var check = "<span class='glyphicon glyphicon-ok' aria-hidden='true'></span>&nbsp;&nbsp;헬스장 위치";
+								$("#panel4").html(check);
+								$("#panelFour").css({'boader-color':'#B0F6AC', 'box-shadow':'0 0 1px 1px rgb(117, 254, 109)'});
+								$("#headingFour").css("color","green");
+								resultaddr = item.address;
+								checkloc = 1;
+								registergymcheck();
+								map.setCenter(point);
+								infoWindow.open(map, point);
+							});
+		}
+		
+		function initGeocoder() {
+			map.addListener('click', function(e) {
+				searchCoordinateToAddress(e.coord);
+			});
+		
+			$('#address').on('keydown', function(e) {
+				var keyCode = e.which;
+		
+				if (keyCode === 13) { // Enter Key
+					searchAddressToCoordinate($('#address').val());
+				}
+			});
+		
+			$('#addressbtn').on('click', function(e) {
+				e.preventDefault();
+		
+				searchAddressToCoordinate($('#address').val());						
+			});
+		}
+		
+		// geolocation 코드
+		function onSuccessGeolocation(position) {
+			var location = new naver.maps.LatLng(position.coords.latitude,
+					position.coords.longitude);
+		
+			map.setCenter(location); // 얻은 좌표를 지도의 중심으로 설정합니다.
+			map.setZoom(10); // 지도의 줌 레벨을 변경합니다.
+		
+			infoWindow.setContent('<div style="padding:20px;">' + '<h5 style="align: center;"검색 결과 </h5>' + '<br />' + 'latitude: '
+					+ location.lat() + '<br />' + 'longitude: ' + location.lng()
+					+ '</div>');
+		
+			infoWindow.open(map, location);
+		}
+		
+		function onErrorGeolocation() {
+			var center = map.getCenter();
+		
+			infoWindow
+					.setContent('<div style="padding:20px;">'
+							+ '<h5 style="margin-bottom:5px;color:#f00;">Geolocation failed!</h5>'
+							+ "latitude: " + center.lat() + "<br />longitude: "
+							+ center.lng() + '</div>');
+		
+			infoWindow.open(map, center);
+		}
+		
+		$('#geolocation')
+				.on(
+						"click",
+						function() {
+							if (navigator.geolocation) {
+								navigator.geolocation.getCurrentPosition(
+										onSuccessGeolocation, onErrorGeolocation);
+							} else {
+								var center = map.getCenter();
+		
+								infoWindow
+										.setContent('<div style="padding:20px;"><h5 style="margin-bottom:5px;color:#f00;">Geolocation not supported</h5>'
+												+ "latitude: "
+												+ center.lat()
+												+ "<br />longitude: "
+												+ center.lng()
+												+ '</div>');
+								infoWindow.open(map, center);
+							}
+						});
+		
+		naver.maps.onJSContentLoaded = initGeocoder;
+		
+		
+		function registergymcheck(){
+			var sum = checkimage + checkinfo + checkschedule + checkloc;
+			if(sum == 4){
+				$("#gymregisterbtn").prop("disabled", false);
+			} else {
+				$("#gymregisterbtn").prop("disabled", true);
+			}
+		}
+		
+		function registergym(){
+			//이미지 다중파일 가져와야함
+			//추가해야함,,
+			
+			//헬스장 정보
+			var gym_name = $("#gymname").val();
+			var op_time = $("#optime").val();
+			var tel = $("#tel").val();
+			var phone = $("#phone").val();
+			var price = $("#price").val();
+			var category = '';
+			if($("#ex_chk0").is(":checked")){
+				category += '헬스, ';
+			}
+			if($("#ex_chk1").is(":checked")){
+				category += '요가, ';
+			}
+			if($("#ex_chk2").is(":checked")){
+				category += '필라테스, ';
+			}
+			if($("#ex_chk3").is(":checked")){
+				category += '맨몸운동';
+			}
+			var description = $("#gymdesc").val();
+			//헬스장 달력정보
+			//추가해야함,,
+			
+			//헬스장 주소
+			var location = resultaddr;
+			alert("헬스장 이름 : " + gym_name + "\n운영시간 : " + op_time + "\n전화번호 : " + tel + "\n핸드폰번호 : " + phone + "\n가격 : " + price + "\n카테고리 : " + category + "\n설명 : " + description + "\n 위치 : " + location);
+			var queryString = { "gym_name": gym_name, "op_time": op_time, "tel": tel, "phone": phone, "price": price, "category": category, "description": description, "location": location };
+		}

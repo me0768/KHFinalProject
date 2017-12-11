@@ -39,6 +39,7 @@ public class YogaController {
 		public ModelAndView YogaListMethod(HttpServletRequest request) {
 			ModelAndView mv = new ModelAndView("/workout/yogaMain");
 			ArrayList<Yoga> list = yogaService.selectAllList();
+			System.out.println(list);
 			mv.addObject("list", list);
 			return mv;
 		}
@@ -49,10 +50,10 @@ public class YogaController {
 			ModelAndView mv = new ModelAndView("/workout/yogaMain");
 			//전송온 문자열을 json 객체로 변환 처리
 
-			ArrayList<Yoga> list = yogaService.selectCList(yoga);
-			System.out.println(list);
+			ArrayList<Yoga> clist = yogaService.selectCList(yoga);
+			System.out.println(clist);
 			
-			mv.addObject("list", list);
+			mv.addObject("clist", clist);
 			mv.setViewName("jsonView");
 			return mv;
 		}

@@ -20,7 +20,8 @@
 	<!-- Nav -->
 	<c:import url="../include/main/nav.jsp" />
 </div>
-
+<!-- Modal -->
+	<c:import url="workoutModal.jsp" />
 
 <!-- yoga head 부분  -->
 
@@ -98,8 +99,8 @@
 					list.push("${it.url}");
 					st = ${status.count}-1;
 					console.log(list);
-					console.log(st+"@@");
-					console.log(${status.count}+"^^");
+					console.log(st);
+					console.log(${status.count}+"count");
 					/* $(document).ready(function(){ */
 						/* for(var i=0;i<5;i++){ */
 							$.get("https://www.googleapis.com/youtube/v3/videos", {
@@ -147,7 +148,6 @@
 						/* }); */
 					</c:forEach>
 					</script>
-
 	<!-- 동영상 리스트 (a태그덮어씌움~modal) -->
 	<div class="workout-videos">
 		<c:if test="${!empty list}">
@@ -164,56 +164,59 @@
 					</div>
 					<div id="video-info">
 						<span class="video-time" id="v-time${y.v_no}"></span>
-						<span id="video-text"><a href="#" data-toggle="modal" data-target=".${y.v_no}">${y.title}</a></span> 
-						
+						<%-- <span id="video-text"><a href="#workout-modal" data-toggle="modal" data-video="@mdo" data-target=".modal">${y.title}</a></span> 
+						 --%>
 						<%-- <span id="video-text"><c:url var="detail" value="#detail" /></span> --%>
 						
 					</div>
 				</div>
-				<!-- video modal -->
-				<div class="modal fade ${y.v_no }" id="workout-modal" tabindex="-1" role="dialog"
-					aria-labelledby="myLargeModalLabel" aria-hidden="true">
-					<div class="modal-dialog modal-lg">
-						<div class="modal-content">
-
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal"
-									aria-label="Close">
-									<span aria-hidden="true">×</span>
-								</button>
-								<h4 class="modal-title" id="myLargeModalLabel">${y.title}<a
-										class="anchorjs-link" href="#myLargeModalLabel"><span
-										class="anchorjs-icon"></span></a>
-								</h4>
-							</div>
-							<div class="modal-body">
-								<div class="modal-play">
-									<iframe id="video-play"
-										src="https://www.youtube.com/embed/${y.url}" frameborder="0"
-										gesture="media" allow="encrypted-media" allowfullscreen></iframe>
-								</div>
-								<div class="modal-desc">
-									<div id="video-content">
-										<span>${y.content }</span>
-									</div>
-									<div id="video-reply">
-										<input type="text" id="reply-input" placeholder="댓글을 입력하세요">
-										<button type="submit" id="reply-btn">댓글달기</button>
-
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+			
 			</c:forEach>
 		</c:if>
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">Open modal for @fat</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Open modal for @getbootstrap</button>
+...more buttons...
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">New message</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="control-label">Recipient:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="control-label">Message:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
 	</div>
 	<!-- modal 띄우기 -->
 	<script type="text/javascript">
-		$('#myModal').on('shown.bs.modal', function() {
-			$('#myInput').focus()
-		});
+	$('#exampleModal').on('show.bs.modal', function (event) {
+		  var button = $(event.relatedTarget); // Button that triggered the modal
+		  var recipient = button.data('whatever'); // Extract info from data-* attributes
+		  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+		  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+		  console.log(recipient)
+		  var modal = $(this);
+		  modal.find('.modal-title').text('New message to ' + recipient);
+		  modal.find('.modal-body input').val(recipient);
+		})
 
 //category별 ajax로 동영상 가져오기 
 function category(category2){
@@ -227,6 +230,33 @@ function category(category2){
 		dataType: "json",
        success : function(result){
           console.log("전송성공:");
+  
+          for(var i=0;i<result.clist.length;i++){
+	          var no = result.clist[i].v_no;
+	          var title = result.clist[i].title;
+	          var url = result.clist[i].url;
+	          var content = result.clist[i].content;
+	          var value ="<div class='video'><div id='video-iframe"+no+"'></div><div id='video-info'><span class='video-time' id='v-time"+no+"'></span>"+
+					"<span id='video-text'><a href='#' data-toggle='modal' data-target='."+no+"'>"+title+"</a></span></div></div>"+
+					"<div class='modal fade "+no+"' id='workout-modal' tabindex='-1' role='dialog' aria-labelledby='myLargeModalLabel'"+
+					"aria-hidden='true'><div class='modal-dialog modal-lg'><div class='modal-content'><div class='modal-header'>"+
+					"<button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>×</span>"+
+					"</button><h4 class='modal-title' id='myLargeModalLabel'>"+title+"<a class='anchorjs-link' href='#myLargeModalLabel'><span"+
+					"class='anchorjs-icon'></span></a></h4></div><div class='modal-body'><div class='modal-play'>"+
+					"<iframe id='video-play' src="+"'https://www.youtube.com/embed/"+url+"' frameborder='0'"+
+					"gesture='media' allow='encrypted-media' allowfullscreen></iframe></div><div class='modal-desc'>"+
+					"<div id='video-content'><span>"+content+"</span></div><div id='video-reply'><input type='text'"
+					"id='reply-input' placeholder='댓글을 입력하세요'><button type='submit' id='reply-btn'>댓글달기</button></div>"+
+					"</div></div></div></div></div>";
+							
+			
+			if(i==0){
+				$('.workout-videos').html(value);
+			}else{
+			  $('.workout-videos').append(value);
+          	}
+          }
+          
        },
        error : function(request, status, errorData){
           alert("error code : " + request.status + "\n"

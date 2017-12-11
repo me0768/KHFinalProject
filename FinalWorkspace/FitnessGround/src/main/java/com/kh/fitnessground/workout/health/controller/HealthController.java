@@ -38,8 +38,7 @@ public class HealthController {
 				
 		ArrayList<Health> list = healthService.selectWorkoutCategoryList(health);
 				
-		System.out.println("Controller list  : " + list);
-		
+				
 		JSONObject sendJson = new JSONObject();
 		JSONArray jarr = new JSONArray();
 		
@@ -71,13 +70,14 @@ public class HealthController {
 		//v_no를 파라미터로 보내면 v_no에 따른 health 객체 v_no 만
 		int v_no = health.getV_no();
 		
-		ModelAndView mv = new ModelAndView("");	//모달 jsp 페이지로..?
+		ModelAndView mv = new ModelAndView("workout/detailView");	//모달 jsp 페이지로..?
 		
 		healthService.addReadCount(health.getV_no());	//조회수 증가
 		
-		Health detailHealth = healthService.selectWorkout(v_no);
+		Health detailHealth = healthService.selectOneWorkout(v_no);
 		
 		mv.addObject("health",detailHealth);
+		mv.setViewName("jsonView");
 		
 		return mv;
 	}	
@@ -103,7 +103,7 @@ public class HealthController {
 	@RequestMapping(value="/updateview.do") //수정하는 뷰로 이동하는 메서드
 	public ModelAndView healthUpdateViewMethod(HttpServletRequest request){
 		ModelAndView mv = new ModelAndView("/workout/videoUpdateView");
-		Health health = healthService.selectWorkout(Integer.parseInt(request.getParameter("v_no")));
+		Health health = healthService.selectOneWorkout(Integer.parseInt(request.getParameter("v_no")));
 		mv.addObject("health",health);
 		return mv;
 	}

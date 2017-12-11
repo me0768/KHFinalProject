@@ -4,6 +4,7 @@
 
 <c:import url="../include/common/head.jsp" />
 <link rel="stylesheet" href="/fitnessground/resources/css/workout/workout.css"/>	
+<link rel="stylesheet" href="/fitnessground/resources/css/workout/detailView.css"/>
 	
 
 <c:import url="../include/common/headend.jsp" />
@@ -16,6 +17,8 @@
 	<c:import url="../include/main/nav.jsp"/>
 	<c:import url="../user/login.jsp"/>
 	<c:import url="../user/findidpwd.jsp"/>
+	<c:import url="detailView.jsp"/>
+	
 </div>
 	
 <!-- health head -->
@@ -198,13 +201,13 @@
 				<area shape="poly" coords="238,167,230,180,244,206,253,206,252,185"
 					href="#" alt="BackCalf" state = "BackCalf" full="BackCalf"
 					onclick="popUp('calf'); return false;"
-					data-key="backcalf">
+					data-key="calf">
 				
 				<!-- 뒤 왼쪽 종아리-->
 				<area shape="poly" coords="257,187,271,170,275,181,267,210,256,207"
 					href="#" alt="Calf" state ="Calf" full="calf"
 					onclick="popUp('calf'); return false;"
-					data-key="backcalf">
+					data-key="calf">
 					
 				<!-- 뒤 왼쪽 허벅지 -->
 				<area shape="poly" coords="227,118,233,159,250,163,251,128,251,128"
@@ -230,10 +233,11 @@
 	</div><!-- 사람인체 이미지 끝 -->
 
 	<!-- video 뿌려주는 곳 -->
+	
 	<div class = "container">
 		<div class = "row">
 			<div class ="col-sm-offset-2">
-				<p><h4>운동 동영상</h4></p>
+				<p id="healthCategory"></p>
 					<div class="workout_videos">
 						<div class="row justify-content-center" id="healthVideo">
 							
@@ -264,8 +268,6 @@
 			fillOpacity:0.5,
 			staticState:false,
 			mapKey: 'data-key'
-			
-			
 		});
 	
 	
@@ -281,23 +283,23 @@
 		else if (part == 'shoulders')
 			category2 = "어깨";
 		else if(part == 'biceps')
-			category2 = "위팔 앞";
+			category2 = "위팔 앞(이두)";
 		else if(part == 'triceps')
-			category2 ="위팔 뒤";
+			category2 ="위팔 뒤(삼두)";
 		else if(part == 'lowerarm')
 			category2 = "아래팔 전완";
 		else if(part == 'back')
 			category2 =  "등";
 		else if(part == 'waist')
 			category2 = "허리";
-		else if(part == 'centerabs')
-			category2 = "복부";
+		else if(part == 'abs')
+			category2 = "복근";
 		else if(part == 'hips')
 			category2 = "엉덩이";
 		else if(part == 'thighs')
 			category2 = "허벅지";
 		else if(part == 'backthighs')
-			category2 = "뒤 허벅지";
+			category2 = "허벅지 뒤";
 		else if(part =='calf')
 			category2 = "종아리";
 				
@@ -311,26 +313,18 @@
 				
 				var values = "";
 				
+				
 				for(var i in json.list){
 					values +="<div class='video'>" +
 						"<iframe width='250' src="+ decodeURIComponent(json.list[i].url).replace(/\^/g,"&") +
 							"frameborder='0' gesture='media' allow='encrypted-media' allowfullscreen name='iframe'></iframe>"+
 
-						"<p id='video_text'>"+ decodeURIComponent(json.list[i].title.replace(/\+/g," "))+"</p>"+
-						"<p id='video_text'>"+ "description"  + "</p>"+
+						"<p id='video_text'><a href='javascript:detailView("+json.list[i].v_no +")'>" + decodeURIComponent(json.list[i].title.replace(/\+/g," "))+"</a></p>"+
 					"</div>"		
-					
-				/* 	
-					
-					values += json.list[i].v_no + "<br>" +
-					decodeURIComponent(json.list[i].title.replace(/\+/g," ")) + "<br>" +
-					decodeURIComponent(json.list[i].content.replace(/\+/g," ")) + "<br>" +
-					decodeURIComponent(json.list[i].category1) + "<br>" +
-					decodeURIComponent(json.list[i].category2.replace(/\+/g," ")) + "<br>" + 
-					decodeURIComponent(json.list[i].url).replace(/\^/g,"&") + "<br>" + 
-					json.list[i].readcount; */
+		
 				}
 				
+				$("#healthCategory").html(category2 + "운동 동영상");
 				$("#healthVideo").html(values);
 				
 				

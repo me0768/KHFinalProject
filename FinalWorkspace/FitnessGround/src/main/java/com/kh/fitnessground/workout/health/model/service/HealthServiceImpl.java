@@ -22,16 +22,15 @@ public class HealthServiceImpl implements HealthService{
 	}
 	
 	@Override
-	public Health selectWorkout(int vno) {
+	public Health selectOneWorkout(int v_no) {
 		// TODO Auto-generated method stub
-		return healthDao.selectOneWorkout(vno);
+		System.out.println("Service v_no :: " + v_no);
+		return healthDao.selectOneWorkout(v_no);
 	}
 
 	@Override
 	public ArrayList<Health> selectWorkoutCategoryList(Health health) {
 		// TODO Auto-generated method stub
-		System.out.println("Service category : " + health.getCategory1() + ", " + health.getCategory2());
-		System.out.println("Service list : " + healthDao.selectWorkoutCategoryList(health));
 		return healthDao.selectWorkoutCategoryList(health);
 	}
 

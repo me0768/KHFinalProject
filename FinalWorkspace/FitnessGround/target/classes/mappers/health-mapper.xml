@@ -23,9 +23,9 @@
 		<result property="readcount" column="readcount"/>	
 	</resultMap>
 	
-	<select id="selectOneWorkout" parameterType ="int" resultMap="resultWorkOut">
+	<select id="selectOneWorkout" parameterType ="_int" resultType="Health" resultMap="resultWorkOut">
 		<![CDATA[
-			select * from tb_video_board where v_no = #{v_no};
+			select * from tb_video_board where v_no = #{v_no}
 		]]>
 	</select>
 	<select id="selectCategoryList" parameterType = "health" resultType="list" resultMap="resultCategoryList">

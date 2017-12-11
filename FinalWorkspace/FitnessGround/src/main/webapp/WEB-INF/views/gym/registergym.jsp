@@ -6,7 +6,6 @@
 
 <c:import url="../include/common/head.jsp" />
 
-<link rel="stylesheet" href="/fitnessground/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="/fitnessground/resources/css/gym/registergym.css">
 <style type="text/css">
 	.wrap {

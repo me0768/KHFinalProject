@@ -95,11 +95,13 @@ $(document).ready(function(){
 	}
 	
 	function dayclick(year, month, day){
-		console.log(year + "//" + month + "//" + day);
 		var dateoutput = '';
 		dateoutput += year + "년 " + month + "월 " + day + "일  일정등록";
 		dateoutput += "<input type='text' class='form-control'>"
-		dateoutput += "<input type='text' class='form-control' id='title' style='margin-top: 10px;' placeholder='일정 제목'>"
+		dateoutput += "<input type='text' class='form-control' id='title' style='margin-top: 10px;' placeholder='일정 이름'>"
+		dateoutput += "<div class='col-lg-4 col-lg-offset-8 col-md-4 col-md-offset-8 col-sm-6 col-sm-offset-6 col-xs-12'>" +
+						"<button class='btn btn-danger'>일정 등록</button>" +
+						"</div>"
 		$("#dateinsert").html(dateoutput);
 		$("#datesettings").show().animate({top: '70vh'});
 	}

@@ -16,6 +16,7 @@
 		<result property="tmppwd_tf" column="TMPPWD_TF" />
 		<result property="original_image" column="original_image" />
 		<result property="rename_image" column="rename_image" />
+		<result property="user_state" column="user_state" />
 	</resultMap>
 	
 	<resultMap id="resultList" type="User">
@@ -68,6 +69,24 @@
 		]]>
 		
 	</select>
+	
+	<update id="userChange" parameterType="_int"
+		flushCache="true" statementType="PREPARED" >
+		<![CDATA[
+		update tb_user 
+		set user_state = 1
+		where user_no = #{user_no}
+		]]>
+	</update>
+	
+	<update id="userBack" parameterType="_int"
+		flushCache="true" statementType="PREPARED" >
+		<![CDATA[
+		update tb_user 
+		set user_state = 0
+		where user_no = #{user_no}
+		]]>
+	</update>
 
 	<select id="selectInfo" parameterType="_int" resultType="User"
 		resultMap="resultUser">
@@ -140,6 +159,13 @@
 		where email = #{email} and name = #{name}
 		]]>
 	</update>
+	
+	<select id="userAllSchedule" parameterType="_int" resultMap="resultUserSchedule" resultType="list">
+      <![CDATA[ 
+      select * from tb_mypage_schedule where user_no=#{userNo}
+      ]]>
+   </select>
+	
 	
 	<select id="yesterdaySchedule" parameterType="_int" resultMap="resultUserSchedule" resultType="list">
 		<![CDATA[ 

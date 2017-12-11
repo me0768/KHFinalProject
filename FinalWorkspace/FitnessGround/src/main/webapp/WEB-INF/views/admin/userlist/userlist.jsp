@@ -73,6 +73,55 @@
 	function businessRequestlistPage() {
 		location.href = "adminbusinessRequestlist.do"
 	}
+	
+	function userChange(user_no){
+		alert("버튼클릭, ");
+		
+		
+		$.ajax({
+			url : "adminUserState.do",
+			dataType : "json",
+			type : "post",
+			data : {"user_no" : user_no},
+			success: function(result){
+				alert(user_no + " 회원이 비활성화되었습니다.")
+				location.href="adminuserlist.do";
+			},
+			error : function(request, status, error){
+				alert("error code : " +request.status + "\n"
+						+ "message : " +request.responseText + "\n"
+						+ "error : " + errorData);
+				
+			}
+				
+			
+		})
+	}
+	
+	function userBack(user_no){
+		alert("버튼클릭, ");
+		
+		
+		$.ajax({
+			url : "adminUserBack.do",
+			dataType : "json",
+			type : "post",
+			data : {"user_no" : user_no},
+			success: function(result){
+				alert(user_no + " 회원이 활성화되었습니다.")
+				location.href="adminuserlist.do";
+			},
+			error : function(request, status, error){
+				alert("error code : " +request.status + "\n"
+						+ "message : " +request.responseText + "\n"
+						+ "error : " + errorData);
+				
+			}
+				
+			
+		})
+	}
+	
 
 	$(document).ready(function() {
 		$("#selectCheckBox").click(function() {
@@ -108,6 +157,8 @@
 			}
 		});
 	});
+	
+	
 </script>
 <c:import url="../common/nav.jsp" />
 <div class="content-wrapper">
@@ -133,21 +184,23 @@
 
 				<div class="card-body">
 					<div class="table-responsive">
-						<table class="table table-bordered" id="dataTable" width="100%"
-							cellspacing="0">
-							<thead>
-								<tr>
-									<th><input type="checkbox" id="selectCheckBox" /></th>
-									<th>Index</th>
-									<th>Email</th>
-									<th>Name</th>
-									<th>NickName</th>
-									<th>Phone</th>
-									<th>Level</th>
-									<th>관리</th>
-								</tr>
-							</thead>
-							<!-- <tfoot>
+						<form name="userForm">
+							<table class="table table-bordered" id="dataTable" width="100%"
+								cellspacing="0">
+								<thead>
+									<tr>
+										<th><input type="checkbox" id="selectCheckBox" /></th>
+										<th>Index</th>
+										<th>유저번호</th>
+										<th>Email</th>
+										<th>Name</th>
+										<th>NickName</th>
+										<th>Phone</th>
+										<th>Level</th>
+										<th>관리</th>
+									</tr>
+								</thead>
+								<!-- <tfoot>
                 <tr>
                   <th>Name</th>
                   <th>Position</th>
@@ -157,27 +210,43 @@
                   <th>Salary</th>
                 </tr>
               </tfoot> -->
-							<tbody>
-							<form id="massiveDeleteForm">
-								<c:forEach var="item" items="${list }" varStatus="status">
-									<tr>
-										<td><input type="checkbox" class="deleteCheckBox"
-											name="deleteCheckBox" value="${item.user_no} " /></td>
-										<td>${status.count }</td>
-										<td>${item.email }</td>
-										<td>${item.name }</td>
-										<td>${item.nickname }</td>
-										<td>${item.phone }</td>
-										<td>${item.user_level }</td>
-										<td><button class="delete_btn" onclick="">삭제</button></td>
+								<tbody>
 
-									</tr>
-								</c:forEach>
-								</form>
-							</tbody>
-						</table>
+									<c:forEach var="item" items="${list }" varStatus="status">
+										<tr>
+											<td><input type="checkbox" class="deleteCheckBox"
+												name="deleteCheckBox" value="${item.user_no} " /></td>
+											<td>${status.count }</td>
+											<td><input type="hidden" id="user"
+												value="${item.user_no }" name="user" />${item.user_no }</td>
+											<td><input type="hidden" id="email${item.user_no }"
+												value="${item.email }" name="eamil" />${item.email }</td>
+											<td>${item.name }</td>
+											<td>${item.nickname }</td>
+											<td>${item.phone }</td>
+											<td>${item.user_level }</td>
+											<c:choose>
+												<c:when test="${item.user_state==0}">
+
+													<td><button type="submit" class="user_btn"
+															onclick="userChange(${item.user_no});">비활성화</button></td>
+												</c:when>
+												<c:when test="${item.user_state==1}">
+
+													<td><button type="submit" class="user_btn"
+															onclick="userBack(${item.user_no});">활성화</button></td>
+												</c:when>
+
+											</c:choose>
+
+										</tr>
+									</c:forEach>
+
+								</tbody>
+							</table>
+						</form>
 						<button id="selectDeleteBtn" class="btn-1">선택 삭제</button>
-						
+
 					</div>
 				</div>
 				<div class="card-footer small text-muted">Updated yesterday at

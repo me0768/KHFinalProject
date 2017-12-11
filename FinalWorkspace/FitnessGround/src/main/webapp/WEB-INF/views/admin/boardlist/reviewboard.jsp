@@ -69,7 +69,28 @@
 
 
 <script type="text/javascript">
+
+function reviewDelete(cb_no){
+	alert("버튼 클릭");
 	
+	$.ajax({
+		url : "reviewBoardDelete.do",
+		dataType : "json",
+		type : "post",
+		data : {"cb_no" : cb_no},
+		success : function(result){
+			alert("삭제 하였습니다.")
+			location.href = "adminReviewBoard.do";
+		},
+		error : function(request, status, error){
+			alert("error code : " +request.status + "\n"
+					+ "message : " +request.responseText + "\n"
+					+ "error : " + errorData);
+			
+		}
+		
+	})
+}
 </script>
 
 <c:import url="../common/nav.jsp" />
@@ -149,7 +170,7 @@
 										</div>
 										<td>${item.upload_date }</td>
 										<td>${item.readcount }</td>
-										<td><button class="delete_btn" onclick="">삭제</button></td>
+										<td><button class="delete_btn" onclick="reviewDelete(${item.cb_no});">삭제</button></td>
 
 									</tr>
 									</c:if>

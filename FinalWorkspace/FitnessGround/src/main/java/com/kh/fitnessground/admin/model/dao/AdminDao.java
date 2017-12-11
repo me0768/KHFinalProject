@@ -36,6 +36,39 @@ public class AdminDao {
 		ArrayList<User> list = new ArrayList<User>(brlist);
 		return list;
 	}
+
+	public void adminGymRequest(int gym_no) {
+		sqlSession.update("gym.gymRequest", gym_no);
+	}
+
+	public void adminGymCancel(int gym_no) {
+		sqlSession.update("gym.gymCancel", gym_no);
+		
+	}
+
+	public void meetingBoardDelete(int mb_no) {
+		sqlSession.delete("community.deleteMeeting", mb_no);
+		
+	}
+
+	public void qnaBoardDelete(int cb_no) {
+		sqlSession.delete("community.deleteQnA", cb_no);
+		
+	}
+
+	public void reviewBoardDelete(int cb_no) {
+		sqlSession.delete("community.deleteReview", cb_no);
+	}
+
+	public void userStateChange(int user_no) {
+		sqlSession.update("user.userChange", user_no);
+		
+	}
+
+	public void userStateBack(int user_no) {
+		sqlSession.update("user.userBack", user_no);
+		
+	}
 	
 	
 	

@@ -71,7 +71,8 @@ CREATE TABLE TB_USER(
   DELETE_DATE DATE DEFAULT NULL,
   TMPPWD_TF NUMBER DEFAULT 0,
   ORIGINAL_IMAGE VARCHAR2(4000),
-  RENAME_IMAGE VARCHAR2(4000)
+  RENAME_IMAGE VARCHAR2(4000),
+  USER_STATE NUMBER DEFAULT 0
 );
 COMMENT ON COLUMN TB_USER.USER_NO IS '유저번호';
 COMMENT ON COLUMN TB_USER.EMAIL IS '이메일';
@@ -84,6 +85,7 @@ COMMENT ON COLUMN TB_USER.DELETE_DATE IS '삭제예정일';
 COMMENT ON COLUMN TB_USER.TMPPWD_TF IS '임시비밀번호 여부';
 COMMENT ON COLUMN TB_USER.ORIGINAL_IMAGE IS '원래 이미지명';
 COMMENT ON COLUMN TB_USER.RENAME_IMAGE IS '바뀐 이미지명';
+COMMENT ON COLUMN TB_USER.USER_STATE IS '유저상태 0=활성화 / 1=비활성화';
 
 
 -- 헬스장 테이블 생성
@@ -477,13 +479,77 @@ PROMPT SEQUENCE 생성 끝...
 -- 시퀀스 생성 종료 --
 
 -- 샘플데이터 삽입 --
-INSERT INTO TB_USER VALUES(USER_SEQ.NEXTVAL, 'ADMIN', '$2a$10$Fr8KsAskrldajwgHTaOvWeMfMhbamOVTQ9.1S2LN9M01g67zzd2im', '관리자', '관리자', '010-8366-3828', 2, NULL, 0, NULL, NULL);
-INSERT INTO TB_USER VALUES(USER_SEQ.NEXTVAL, 'user11@iei.or.kr', '$2a$10$UWJxBhRjk8rH4CTKattaEOfkcKX20nYKrsImhve/0OLfrRipPRrwG', '양동균', '양뚝', '010-8366-3828', 1, NULL, 0, NULL, NULL);
-INSERT INTO TB_USER VALUES(USER_SEQ.NEXTVAL, 'wltjs1796@naver.com', '$2a$10$sghg6nmqBwt1d54SlM0ZfubV5NjS1Iur.59X1.2FF09oWZlNqGnty', '윤지선', '지선짱', '010-6243-6597', 0, NULL, 0, NULL, NULL);
+INSERT INTO TB_USER VALUES(USER_SEQ.NEXTVAL, 'ADMIN', '$2a$10$Fr8KsAskrldajwgHTaOvWeMfMhbamOVTQ9.1S2LN9M01g67zzd2im', '관리자', '관리자', '010-8366-3828', 2, NULL, 0, NULL, NULL, 0);
+INSERT INTO TB_USER VALUES(USER_SEQ.NEXTVAL, 'user11@iei.or.kr', '$2a$10$UWJxBhRjk8rH4CTKattaEOfkcKX20nYKrsImhve/0OLfrRipPRrwG', '양동균', '양뚝', '010-8366-3828', 1, NULL, 0, NULL, NULL, 0);
+INSERT INTO TB_USER VALUES(USER_SEQ.NEXTVAL, 'wltjs1796@naver.com', '$2a$10$sghg6nmqBwt1d54SlM0ZfubV5NjS1Iur.59X1.2FF09oWZlNqGnty', '윤지선', '지선짱', '010-6243-6597', 0, NULL, 0, NULL, NULL, 0);
+INSERT INTO TB_USER VALUES(USER_SEQ.NEXTVAL, 'dlrbdus02@naver.com', '$2a$10$Xwj2UZ.bbu2RXt2YryO4NOIlnjbo21KVzIgzDCBRGMZIxcQw8Szwe', '일반이규연', '일반이규연', '010-6357-2634', 0, NULL, 0, NULL, NULL, 0);
+INSERT INTO TB_USER VALUES(USER_SEQ.NEXTVAL, 'vaseline584@naver.com', '$2a$10$wiMg9.PSdH4akf476MvVR.t6iVEY36conMRdJTJohqZtEU9OQyHnO', '또이규연', '또이규연', '010-2122-6374', 0, NULL, 0, NULL, NULL, 0);
+INSERT INTO TB_USER VALUES(USER_SEQ.NEXTVAL, 'vaseline02@naver.com', '$2a$10$s9FRq3HzDIySGlrlbixbXOntOssZNjPDCQuTtmyVxnISRahwohMhO', '사업자이규연', '사업자이규연', '010-6357-2634', 1, NULL, 0, NULL, NULL, 0);
+
 INSERT INTO TB_MYPAGE_SCHEDULE VALUES(MS_SEQ.NEXTVAL, NULL, 3, '운동 스케줄 1', SYSDATE-1);
 INSERT INTO TB_MYPAGE_SCHEDULE VALUES(MS_SEQ.NEXTVAL, NULL, 3, '운동 스케줄 2', SYSDATE-1);
 INSERT INTO TB_MYPAGE_SCHEDULE VALUES(MS_SEQ.NEXTVAL, NULL, 3, '운동 스케줄 3', SYSDATE-1);
 INSERT INTO TB_MYPAGE_SCHEDULE VALUES(MS_SEQ.NEXTVAL, NULL, 3, '운동 스케줄 4', SYSDATE);
+
+INSERT INTO TB_GYM VALUES(14, '테스트용', NULL, NULL,  '테스트용', '010-0000-0000', '010-4111-1111',  NULL, '테스트용',  '설명', '안산', 6, NULL, 1);
+commit;
+   select user_no, email, name, gym_no, gym_name, location, approval_state 
+       from tb_gym  join (select * from tb_user where user_level=1) using(user_no);
+     
+     
+INSERT INTO TB_MEETING_BOARD
+VALUES(1,2,'금강산 같이 타실분 구해요','이번 12월 11일날 눈이 많이 온다고들 하네요.. 그때 산 한번 타고 싶은데 같이 타실분 있나요?',
+        17/12/11,default,0);
+INSERT INTO TB_MEETING_BOARD
+VALUES(2,2,'새벽에 같이 운동 하실분','저녁에 운동하다 지금은 가게 직원이 없어서 운동도못한지 삼주쨰.. 새벽이라도 하고 싶네요.. 새벽에 시청 같이 도실분 있나요??',
+        '17/12/11',default,0);
+INSERT INTO TB_MEETING_BOARD
+VALUES(3,3,'구로 부천 같이 운동하실분(일요일만)','원래 월~토 운동했는데 앞으로 일~금 운동으로 바꾸려고 합니다. 일요일에 서울이나 부천에서 멀지 않을 곳으로 일권 끊고 운동 다닐까 하는데 같이 하실분 있었으면 해서요~~ 파트너 운동은 경험없고 혼자 조용히 운동하는편인데 커뮤티니에 운동모임 하시는분들 보면 여러면에서 좋아보이네요 주변에 운동하는 사람들이 없어서..ㅎㅎ',
+        default,default,0);
+INSERT INTO TB_MEETING_BOARD
+VALUES(4,2,'같이 운동하실분','달리기, 걷기, 줄넘기 등.. 같이 운동하실분 계실까요??',
+        default,default,0);
+INSERT INTO TB_MEETING_BOARD
+VALUES(5,3,'같이 탁구나 운동 하실분 찾아요','제 주위에는 운동을 너무 싫어하네요 ㅠㅠ 혼자 신천걷고 뛰는게 싫증이..ㅋㅋ 혹 탁구나 배드민턴 등 아님 신천도 좋지만 .. 무튼 같이 운동하실분 찾아봅니다.! 참고로 저는 수성구 살아요',
+        default,default,0);        
+
+INSERT INTO TB_COM_BOARD
+VALUES(1,2,'붕어운동 기구 솔직후기!!','평소 허리디스크가 있어서 운동도 많이하고 있는편인데 티비보다 홈쇼핑에서 붕어운동기구를 봤어요 보다보니
+뭔가 혹하는?ㅋㅋ 30만원이 넘어서 가격대가 좀 많이 쎄지만 3일 무료체험이 된다고 하니 일단 질렀어용.. 코어운동이 가능하며 몸의 밸런스를 맞춰준다고하니
+완전 저한테 엄청 필요한것 ㅋㅋㅋㅋ 사용해봤는데 붕어운동 운동기구 사용해보니 허리가 가벼워지는 느낌이 좋았어요',0,sysdate,0);
+
+INSERT INTO TB_COM_BOARD
+VALUES(2,2,'승마운동기구후기 뱃살뺐어요!!','뱃살을 빼는데 좋다는 윗몸일으키기부터 요가자세까지..안해본게 없습니다!! 물론 제가 꾸준히 했다면 효과를 봤겠지요..ㅎㅎ
+조금만 힘들면 스스로 만족을 하고 그만두게되는데요..시간을 재어보니 고작 3분??ㅎㅎㅎㅎ 그래서 그냥 포기를 하는게 일수였죠!! 어느날 거울을 보고 안되겠다 싶어 시작한 승마운동기구~~ 뱃살이 조금씩 빠지는걸 보니 계속하게 되더라고요.지금부터 제가 효과 본 승마운동기구후기를 공유할께요!!',0,sysdate,0);
+
+INSERT INTO TB_COM_BOARD
+VALUES(3,2,'여자케겔운동기구 사용후기/효과 공개!','사촌 언니가 지난 미즈케어 무료상담 이후 쭉 비공개 프로그램을 진행준입니다. 이는 베리얀3.0이라는
+여자 케겔 운동기루를 이용하는 방법으로서, 본 프로그램의 진행전에 들어가는 무료분석이 상당히 도움이 되는데다 성실하게 실천하기만 한다면 최소 2~3주 이후부터는 효과를 볼 수 있다고 하더군요!',0,sysdate,0);
+
+INSERT INTO TB_COM_BOARD
+VALUES(4,3,'다이어트운동으로 호날두다운 남자복근 만들기 ok!','쁜 일상 때문에 남자복근 만들기가 어렵다.만약 이런 분이 계신다면 아니라고 말씀드리고 싶어요.왜냐하면 전 다이어트운동으로 남자복근 만들기 쉽게 하고 있거든요.
+ 저도 사실 식스패드를 만나기 전까지만 해도 핑계 대면서 다이어트운동과 남자복근은 꿈도 못 꿨는데! 가만히만 있어도 운동이 되는 식스패드 덕에 아주 흡족해하고 있답니다.',0,sysdate,0);
+INSERT INTO TB_COM_BOARD
+VALUES(5,2,'집에서 간편하게 운동할 수 있다는 기구 질렀어요~ㅎㅎ','이름은 콜라쉐이퍼라고 하는데요! 따로 운동할 필요 없어 가만히 있어도 된다는 말에 홀랑 질러버린~^^
+홈쇼핑 보고 급 질러버렸어요...ㅎ 배송이 빨라서 담날 바로 받아봤네요 간단하게 사용 후기도 적어볼게요 옆에 전원버튼이 있어요
+충전후에 누르면 진동하면서 운동을 시켜준다고 하네요 ㅎㅎ
+그 왜 헬스장에 벨트?같은 걸로 복부 진동 마사지 해주는 기구 있잖아요 ㅎㅎ 딱 그느낌이에요~',0,sysdate,0);
+INSERT INTO TB_COM_BOARD
+VALUES(6,2,'렉스파 운동기구 질렀어요 ㅋㅋ ','티비 홈쇼핑에 나오길래 질러버렸네요~ 렉스파 운동기구 혹 사용하는 맘 계신가요? ㅎㅎ 후기가 궁금~
+신랑이 보너스 탄게 있어서 걍 눈감고 질러버렸거든여~ 날씨는 점점 따뜻해지는데 요놈의 뱃살 빠질생각 안하더라고요~~ㅠㅠ 아휴.집에 오면 큰맘먹고 뱃살이랑 이별준비해야겠네요 ㅎㅎ',0,sysdate,0);
+
+INSERT INTO TB_COM_BOARD
+VALUES(7,2,'운동전 식사가 더 좋은가요?','제가 헬스를 시작한지 얼마 안되서요 ㅠㅠ 운동전에 밥을 먹어야할지 운동후에 밥을 먹어야할지 모르겠네요..',1,sysdate,0);
+
+INSERT INTO TB_COM_BOARD
+VALUES(8,2,'헬스장 등록건에 대해 궁금해서 여쭈어봅니당..','제가 사업자로 헬스장 등록을 하고 싶은데 뭐 따로 신청해야 하는게 있나요?',1,sysdate,0);
+
+INSERT INTO TB_COM_BOARD
+VALUES(9,2,'다이어트 중 궁금한게 있어요..','제가 식단 조절은 안하고 다이어트를 하고 싶은데 최대한 저염식으로요.. 어떤식으로 해야 먹을거 먹으면서 살뺄수 있을까요..',1,sysdate,0);
+
+INSERT INTO TB_COM_BOARD
+VALUES(10,2,'제가 처음 운동을 시작하는데..','제가 처음 운동을 시작하는데 어떤 운동을 해야 할지 잘 모르겠어요 ㅠ 어떤 운동부터 시작해야 할까요 ㅠㅠ 저는 쫌 마른편입니다..',1,sysdate,0);
+
 --TB_VIDEO_BOARD (요가)샘플데이터 
 INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'이유주의 "VINYASA YOGA" 18회 요가를 통한 다이어트 live 방송 by헬스티비+헬스tv','이유주의 "VINYASA YOGA" 18회 요가를 통한 다이어트 live 방송 by헬스티비+헬스tv','요가','다이어트','-O8CI32TpgI',0);
 
@@ -749,7 +815,6 @@ insert into tb_video_board values(vb_seq.nextval,'카프레이즈 - 스탠팅','
 insert into tb_video_board values(vb_seq.nextval,'카프레이즈 - 시티드','가자미근이라고 하는 종아리의 심부근육을 발달시키기 위한 운동이다. 비복근의 참여를 줄이기 위해 앉아서 실시하며 여성들에게 추천된다.','헬스','종아리','http://serviceapi.rmcnmv.naver.com/flash/outKeyPlayer.nhn?vid=D1EA4778CB010D224508EAEEFB71A5BD30BF^outKey=V123da2e00a3135d4eaeb2bb390108ba95d9b5e98eb4ae44ae1862bb390108ba95d9b^controlBarMovable=true^jsCallable=true^isAutoPlay=false^skinName=tvcast_white',default);
 insert into tb_video_board values(vb_seq.nextval,'카프레이즈 - 싱글 레그','약한 쪽 종아리를 운동함으로써 양쪽 발의 균형을 맞추는 데 유용한 운동이다. 장소에 구애 받지 않고 어디서나 쉽게 할 수 있다는 장점이 있다.','헬스','종아리','http://serviceapi.rmcnmv.naver.com/flash/outKeyPlayer.nhn?vid=DD8C1DF3E7B7AD31333404CC676647DAE467^outKey=V1212bbbb649de919f5e7f82aaab48539591afb218bfa5ad44b7ff82aaab48539591a^controlBarMovable=true^jsCallable=true^isAutoPlay=false^skinName=tvcast_white',default);
 insert into tb_video_board values(vb_seq.nextval,'카프레이즈 - 머신','레그 프레스 머신에서 실시하는 종아리 운동이다. 스탠딩 자세에서 하는 운동과 달리 허리의 추가적인 스트레스를 피할 수 있다는 장점이 있다. 종아리 근육에 대한 집중을 더욱 느낄 수 있고, 자신의 몸무게만큼 고중량으로 실시할 수 있다.','헬스','종아리','http://serviceapi.rmcnmv.naver.com/flash/outKeyPlayer.nhn?vid=1255934BC7773B6B927EBA51898851D750DA^outKey=V127f754232dc7ea041a47e48f7778b839e76aa9da2ab5e7c22977e48f7778b839e76^controlBarMovable=true^jsCallable=true^isAutoPlay=false^skinName=tvcast_white',default);
-
 
 -- TB_GYM 샘플 데이터
 INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL, PHONE, PRICE, CATEGORY, DESCRIPTION, LOCATION, USER_NO, DELETE_DATE, APPROVAL_STATE) 

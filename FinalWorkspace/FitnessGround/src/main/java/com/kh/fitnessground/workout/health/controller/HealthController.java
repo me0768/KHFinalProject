@@ -70,7 +70,7 @@ public class HealthController {
 		//v_no를 파라미터로 보내면 v_no에 따른 health 객체 v_no 만
 		int v_no = health.getV_no();
 		
-		ModelAndView mv = new ModelAndView("workout/detailView");	//모달 jsp 페이지로..?
+		ModelAndView mv = new ModelAndView("workout/detailView");	//모달 jsp 페이지로
 		
 		healthService.addReadCount(health.getV_no());	//조회수 증가
 		
@@ -83,7 +83,10 @@ public class HealthController {
 	}	
 	//기본 메인페이지 네이버 동영상 끝
 
+		
 	//관리자 youtube 에서 플레이리스트 동영상
+	
+	
 	
 	//다양한 헬스운동 페이지 이동 
 	
@@ -105,6 +108,7 @@ public class HealthController {
 		ModelAndView mv = new ModelAndView("/workout/videoUpdateView");
 		Health health = healthService.selectOneWorkout(Integer.parseInt(request.getParameter("v_no")));
 		mv.addObject("health",health);
+		
 		return mv;
 	}
 	

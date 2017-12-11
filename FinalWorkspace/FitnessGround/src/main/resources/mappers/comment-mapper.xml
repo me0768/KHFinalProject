@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="comment">
+
+	<resultMap id="resultComment" type="Comment">
+		<id property="vb_no" column="vb_no"/>
+		<result property="v_no" column="v_no" />
+		<result property="user_no" column="user_no"/>
+		<result property="content" column="content"/>
+		<result property="reply_date" column="reply_date"/>	
+	</resultMap>
+	
+	<select id="selectCommentList" parameterType="_int" resultType="list" resultMap="resultComment">
+		<![CDATA[
+			select vb_no,v_no,user_no,content,to_char(to_date(reply_date),'yyyy/mm/dd')
+			from tb_vb_comment 
+			where v_no=#{v_no}		
+		]]>
+	</select>
+	
+	
+	<select id="selectCommentCount" parameterType="_int" resultType="_int" resultMap="resultComment">
+		<![CDATA[
+			select count(*) from tb_vb_comment where v_no=#{v_no}	
+		]]>
+	</select>
+	
+
+</mapper>

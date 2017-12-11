@@ -36,7 +36,7 @@
 </div> 
 
 <!-- Modal -->
-	<c:import url="workoutModal.jsp" />
+	<c:import url="detailView.jsp" />
 
 <!-- yoga head 부분  -->
 
@@ -114,8 +114,6 @@
 					list.push("${it.url}");
 					st = ${status.count}-1;
 					console.log(list);
-					console.log(st);
-					console.log(${status.count}+"count");
 					/* $(document).ready(function(){ */
 						/* for(var i=0;i<5;i++){ */
 							$.get("https://www.googleapis.com/youtube/v3/videos", {
@@ -127,17 +125,38 @@
 								
 								$.each(data.items, function(i, item) {
 									duration = item.contentDetails.duration;
-				                       min = duration.split("M")[0].slice(2);
-				                       if(min.length<2){
-				                    	   min = "0"+min;
-				                       }
-				                       sec = duration.split("M")[1].slice(0,-1);
-				                       if(sec.length<2){
-				                    	   sec = "0"+sec;
-				                       }
-				                    duration = min+":"+sec;
+									//API시간 -->HH:MM:SS형태로 변환
+									var hourRegex = new RegExp("[0-9]{1,2}H", "gi");
+			                        var minRegex = new RegExp("[0-9]{1,2}M", "gi");
+			                        var secRegex = new RegExp("[0-9]{1,2}S", "gi");
+			    
+			                        var hour = hourRegex.exec(duration);
+			                        var min = minRegex.exec(duration);
+			                        var sec = secRegex.exec(duration);
+			                        
+			                        if(hour!==null){
+			                            hour = hour.toString().split("H")[0] + ":";
+			                        }else{
+			                            hour = "";
+			                        }
+			                        if(min !==null){
+			                            min = min.toString().split("M")[0];
+			                            if(min.length<2){
+					                    	   min = "0"+min;
+					                    }
+			                        }else{
+			                            min = "00";
+			                        }
+			                        if(sec !==null){
+			                            sec = sec.toString().split("S")[0];
+			                            if(sec.length<2){
+					                    	   sec = "0"+sec;
+					                    }
+			                        }else{
+			                            sec = "00";
+			                        }
+			                        duration = hour+min+":"+sec;
 									console.log("time:" + duration);
-									console.log("length:"+duration.length);
 									$('#v-time${it.v_no}').append(duration);
 								});
 								
@@ -163,7 +182,7 @@
 						/* }); */
 					</c:forEach>
 					</script>
-	<!-- 동영상 리스트 (a태그덮어씌움~modal) -->
+	<!-- 동영상 리스트 (a태그덮어씌움~modal) view -->
 	<div class="workout-videos">
 		<c:if test="${!empty list}">
 			<c:forEach items="${list}" var="y" varStatus="st">
@@ -175,7 +194,7 @@
 						<span class="video-time" id="v-time${y.v_no}"></span>
 						<span id="video-text">
 						<a href="#workout-modal" data-toggle="modal" data-title="${y.title }" data-url="${y.url }" data-content="${y.content }"
-						data-target="#workout-modal">${y.title}</a></span> 
+						data-target="#detailView">${y.title}</a></span> 
 						<%-- <span id="video-text"><c:url var="detail" value="#detail" /></span> --%>
 						
 					</div>
@@ -187,8 +206,8 @@
 </div>
 		
 <script type="text/javascript">
-
-$('#workout-modal').on('show.bs.modal', function (event) {
+//modal 띄우기(title,url, content 값을 모달로)
+$('#detailView').on('show.bs.modal', function (event) {
 	  var tag = $(event.relatedTarget); // sth that triggered the modal
 	  var title = tag.data('title'); // Extract info from data-* attributes
 	  var vid = tag.data('url');
@@ -213,32 +232,95 @@ function category(category2){
 		dataType: "json",
        success : function(result){
           console.log("전송성공:");
+          var title;
+          var url;
+          var content;
   
           for(var i=0;i<result.clist.length;i++){
 	          var no = result.clist[i].v_no;
-	          var title = result.clist[i].title;
-	          var url = result.clist[i].url;
-	          var content = result.clist[i].content;
+	          title = result.clist[i].title;
+	          vid = result.clist[i].url;
+	          content = result.clist[i].content;
 	          var value ="<div class='video'><div id='video-iframe"+no+"'></div><div id='video-info'><span class='video-time' id='v-time"+no+"'></span>"+
-					"<span id='video-text'><a href='#' data-toggle='modal' data-target='."+no+"'>"+title+"</a></span></div></div>"+
-					"<div class='modal fade "+no+"' id='workout-modal' tabindex='-1' role='dialog' aria-labelledby='myLargeModalLabel'"+
-					"aria-hidden='true'><div class='modal-dialog modal-lg'><div class='modal-content'><div class='modal-header'>"+
-					"<button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>×</span>"+
-					"</button><h4 class='modal-title' id='myLargeModalLabel'>"+title+"<a class='anchorjs-link' href='#myLargeModalLabel'><span"+
-					"class='anchorjs-icon'></span></a></h4></div><div class='modal-body'><div class='modal-play'>"+
-					"<iframe id='video-play' src="+"'https://www.youtube.com/embed/"+url+"' frameborder='0'"+
-					"gesture='media' allow='encrypted-media' allowfullscreen></iframe></div><div class='modal-desc'>"+
-					"<div id='video-content'><span>"+content+"</span></div><div id='video-reply'><input type='text'"
-					"id='reply-input' placeholder='댓글을 입력하세요'><button type='submit' id='reply-btn'>댓글달기</button></div>"+
-					"</div></div></div></div></div>";
+					"<span id='video-text'><a href='#' data-toggle='modal' data-target='#detailView' "+
+					"data-title='"+title+"' data-url='"+vid+"' data-content='"+content+"'>"+title+"</a></span></div></div>";
+		
+				if(i==0){
+					$('.workout-videos').html(value);
+				}else{
+				  $('.workout-videos').append(value);
+	          	}
+	
+				var duration; 
+				var thumbnail;
+				var timeid = '#v-time'+no;
+				console.log("timeid outside"+timeid);
+				//이번에도 순서문제. $.get이하가 for문을 다 돌고나서 실행되어버림....api호출이늦어서인가,, 
+					$.get("https://www.googleapis.com/youtube/v3/videos", {
+						part : 'contentDetails',
+						maxResults : 50,
+						id : vid,
+						key : 'AIzaSyACiHNLQp0NoZLhAx6u2JbtMGjCp3STK3A'
+					}, function(data) {
+						
+						$.each(data.items, function(i, item) {
+							duration = item.contentDetails.duration;
+							//API시간 -->HH:MM:SS형태로 변환
+							var hourRegex = new RegExp("[0-9]{1,2}H", "gi");
+	                        var minRegex = new RegExp("[0-9]{1,2}M", "gi");
+	                        var secRegex = new RegExp("[0-9]{1,2}S", "gi");
+	    
+	                        var hour = hourRegex.exec(duration);
+	                        var min = minRegex.exec(duration);
+	                        var sec = secRegex.exec(duration);
+	                        
+	                        if(hour!==null){
+	                            hour = hour.toString().split("H")[0] + ":";
+	                        }else{
+	                            hour = "";
+	                        }
+	                        if(min !==null){
+	                            min = min.toString().split("M")[0];
+	                            if(min.length<2){
+			                    	   min = "0"+min;
+			                    }
+	                        }else{
+	                            min = "00";
+	                        }
+	                        if(sec !==null){
+	                            sec = sec.toString().split("S")[0];
+	                            if(sec.length<2){
+			                    	   sec = "0"+sec;
+			                    }
+	                        }else{
+	                            sec = "00";
+	                        }
+	                        duration = hour+min+":"+sec;
+							console.log("time:" + duration);
 							
-			
-			if(i==0){
-				$('.workout-videos').html(value);
-			}else{
-			  $('.workout-videos').append(value);
-          	}
-          }
+							console.log("t:"+timeid);
+							$(timeid).append(duration);
+						});
+						
+		
+					});
+				
+					$.get("https://www.googleapis.com/youtube/v3/videos", {
+						part : 'snippet',
+						maxResults : 50,
+						id : vid,
+						key : 'AIzaSyACiHNLQp0NoZLhAx6u2JbtMGjCp3STK3A'
+					}, function(data) {
+						
+						$.each(data.items, function(i, item) {
+							 thumbnail = item.snippet.thumbnails.medium.url;
+
+							$('#video-iframe'+no).append('<img id=\"v-img\" src=\"'+thumbnail+'\">');
+						});
+					}
+					);
+          };//for문종료 
+
           
        },
        error : function(request, status, errorData){

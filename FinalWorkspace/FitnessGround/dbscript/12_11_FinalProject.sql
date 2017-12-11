@@ -499,10 +499,10 @@ commit;
      
 INSERT INTO TB_MEETING_BOARD
 VALUES(1,2,'금강산 같이 타실분 구해요','이번 12월 11일날 눈이 많이 온다고들 하네요.. 그때 산 한번 타고 싶은데 같이 타실분 있나요?',
-        17/12/11,default,0);
+        default,default,0);
 INSERT INTO TB_MEETING_BOARD
 VALUES(2,2,'새벽에 같이 운동 하실분','저녁에 운동하다 지금은 가게 직원이 없어서 운동도못한지 삼주쨰.. 새벽이라도 하고 싶네요.. 새벽에 시청 같이 도실분 있나요??',
-        '17/12/11',default,0);
+        default,default,0);
 INSERT INTO TB_MEETING_BOARD
 VALUES(3,3,'구로 부천 같이 운동하실분(일요일만)','원래 월~토 운동했는데 앞으로 일~금 운동으로 바꾸려고 합니다. 일요일에 서울이나 부천에서 멀지 않을 곳으로 일권 끊고 운동 다닐까 하는데 같이 하실분 있었으면 해서요~~ 파트너 운동은 경험없고 혼자 조용히 운동하는편인데 커뮤티니에 운동모임 하시는분들 보면 여러면에서 좋아보이네요 주변에 운동하는 사람들이 없어서..ㅎㅎ',
         default,default,0);
@@ -550,138 +550,172 @@ VALUES(9,2,'다이어트 중 궁금한게 있어요..','제가 식단 조절은 
 INSERT INTO TB_COM_BOARD
 VALUES(10,2,'제가 처음 운동을 시작하는데..','제가 처음 운동을 시작하는데 어떤 운동을 해야 할지 잘 모르겠어요 ㅠ 어떤 운동부터 시작해야 할까요 ㅠㅠ 저는 쫌 마른편입니다..',1,sysdate,0);
 
+
 --TB_VIDEO_BOARD (요가)샘플데이터 
-INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'이유주의 "VINYASA YOGA" 18회 요가를 통한 다이어트 live 방송 by헬스티비+헬스tv','이유주의 "VINYASA YOGA" 18회 요가를 통한 다이어트 live 방송 by헬스티비+헬스tv','요가','다이어트','-O8CI32TpgI',0);
-
-INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'이유주의 "VINYASA YOGA" 17회 요가를 통한 다이어트 live 방송 by헬스티비+헬스tv','이유주의 "VINYASA YOGA" 17회 요가를 통한 다이어트 live 방송 by헬스티비+헬스tv','요가','다이어트','HuRgTZf7MlE',0);
-
-INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'이유주의 "VINYASA YOGA" 16회 요가를 통한 다이어트 live 방송 by헬스티비,+헬스tv','이유주의 "VINYASA YOGA" 16회 요가를 통한 다이어트 live 방송 by헬스티비,+헬스tv','요가','다이어트','ZOvINmqdL3k',0);
-
-INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'이유주의 "VINYASA YOGA" 15회 요가를 통한 다이어트 live 방송 by헬스티비,+헬스tv','이유주의 "VINYASA YOGA" 15회 요가를 통한 다이어트 live 방송 by헬스티비,+헬스tv','요가','다이어트','Tph3Q7eV-Mg',0);
-
-INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'이유주의 "VINYASA YOGA" 14회 요가를 통한 다이어트 live 방송 by헬스티비','이유주의 "VINYASA YOGA" 14회 요가를 통한 다이어트 live 방송 by헬스티비','요가','다이어트','tcAmTQ0Cw9o',0);
-
-INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'이유주의 "VINYASA YOGA" 13회 요가를 통한 다이어트 live 방송 by헬스티비','이유주의 "VINYASA YOGA" 13회 요가를 통한 다이어트 live 방송 by헬스티비','요가','다이어트','pZBYuBqR2sE',0);
-
-INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'이유주의 "VINYASA YOGA" 12회 요가를 통한 다이어트 live 방송 by헬스티비','이유주의 "VINYASA YOGA" 12회 요가를 통한 다이어트 live 방송 by헬스티비','요가','다이어트','2OJMTZeH1ag',0);
-
-INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'이유주의 "VINYASA YOGA" 10회 요가를 통한 다이어트 live 방송 by 헬스티','이유주의 "VINYASA YOGA" 10회 요가를 통한 다이어트 live 방송 by 헬스티','요가','다이어트','_E41vfKM2x8',0);
-
-INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'이유주의 "VINYASA YOGA" 9회 요가를 통한 다이어트 live 방송 by 헬스티비','이유주의 "VINYASA YOGA" 9회 요가를 통한 다이어트 live 방송 by 헬스티비','요가','다이어트','j7EC5Z2asIk',0);
-
-INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'이유주의 VINYASA YOGA 8회 요가를 통한 다이어트 live 방송','이유주의 VINYASA YOGA 8회 요가를 통한 다이어트 live 방송','요가','다이어트','Qftmd4y_hmQ',0);
-
-INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'yoga challenge + physical exercise 7th by healthtv','yoga challenge + physical exercise 7th by healthtv','요가','다이어트','AM6n3o3ApGc',0);
-
-INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'yoga workout + yoga challenge 6th','yoga workout + yoga challenge 6th','요가','다이어트','tzYwdV1YaoA',0);
-
-INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'vinyasa yoga + yoga challenge 5th','vinyasa yoga + yoga challenge 5th','요가','다이어트','mAaX8k6ySqs',0);
-
-INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'휘트니스모델 심으뜸 + 요가강사 이유주 의 콜라보 방송 "JU-DDEUM"','휘트니스모델 심으뜸 + 요가강사 이유주 의 콜라보 방송 "JU-DDEUM"','요가','다이어트','mnN3RYQd6Ss',0);
-
-INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'이유주의 "VINYASA YOGA" 4회 요가를 통한 다이어트 live 방송 by 헬스티비 HTV Healthtv','이유주의 "VINYASA YOGA" 4회 요가를 통한 다이어트 live 방송 by 헬스티비 HTV Healthtv','요가','다이어트','9rd00PcCzU4',0);
-
-INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'이유주의 "VINYASA YOGA" 3회 요가를 통한 다이어트 live 방송 by 헬스티비 HTV Healthtv','이유주의 "VINYASA YOGA" 3회 요가를 통한 다이어트 live 방송 by 헬스티비 HTV Healthtv','요가','다이어트','yCeOneYaH_8',0);
-
-INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'vinyasa + physical exercise 2회','vinyasa + physical exercise 2회','요가','다이어트','Ftf2oA-3CYM',0);
-
-INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'VINYASA YOGA + pilates 1st','VINYASA YOGA + pilates 1st','요가','다이어트','rqKg1UGqBBE',0);
-
-INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'이유주의 "VINYASA YOGA" 20회 요가를 통한 다이어트 live 방송 by헬스티비+헬스tv','이유주의 "VINYASA YOGA" 20회 요가를 통한 다이어트 live 방송 by헬스티비+헬스tv','요가','다이어트','R8E1YwxIC6g',0);
-
-INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'이유주의 "VINYASA YOGA" 21회 요가를 통한 다이어트 live 방송 by헬스티비+헬스tv','이유주의 "VINYASA YOGA" 21회 요가를 통한 다이어트 live 방송 by헬스티비+헬스tv','요가','다이어트','5XU6b3p4oM8',0);
-
-INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'이유주의 "VINYASA YOGA" 22회 요가를 통한 다이어트 live 방송 by헬스티비+헬스tv','이유주의 "VINYASA YOGA" 22회 요가를 통한 다이어트 live 방송 by헬스티비+헬스tv','요가','다이어트','uaQwJVPAz7c',0);
-
-INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]초보자를 위한 빈야사 요가 - 블럭','구독! 좋아요! 많이 부탁드립니다. 구독은 클릭▶https://goo.gl/1nWbJv 반갑습니다. 요가 강사 EVA입니다. 초보자분들에게 블럭은 정말 유용한 도구입니다. 하지만 정작 그 쓰임새를 잘 알지 못하시는데요 이번 영상은 블럭을 이용한 가장 기본적인 영상입니다. 이 영상을 바탕으로 블럭을 활용하는데 도움이 되었으면 합니다.','요가','빈야사','03ydrIQxeK4',0);
-
-INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]애플힙을 위한 강력한 두번째 빈야사 요가 - 난이도가 조금 있어요','구독! 좋아요! 많이 부탁드립니다. 구독은 클릭▶https://goo.gl/1nWbJv 반갑습니다. 요가 강사 EVA입니다. 여러분!!!!!! 여러분!!!!!! 하하하....T^T 여러분은 오늘 사시나무 떨듯이 떠는 저를 보게 되실 겁니다. 왜이러지;;; 오늘 이상하게 너무 힘들고 몸이 떨리네요. 촬영시간은 기상 후 3시간 정도 후인데 제가 아무것도 안먹었거든요. 그래서 그런지 오늘은 이상하게 덜덜거리네요. 참고하시면서 봐주시길 바라면서 오늘은 애플힙 영상 두번째로 더 강력한 시퀀스를 준비했습니다. 저번 영상에서 집중도가 조금 떨어진거 같은 느낌을 받아 이번에는 완전 집중을 했습니다. 불탈지도 몰라요. 조심하세요~_~ 그리고 동작 난이도가 조금 있습니다. 힘드신분들은 손을 짚은 상태로 하시면 되요. 영상 해보시면 뭔소린지 아실 겁니다. 그럼 지금 바로 시작합니다.','요가','빈야사','GXECrcR-tDc',0);
-
-INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]30분 애플힙을 위한 빈야사 요가','구독! 좋아요! 많이 부탁드립니다. 구독은 클릭▶https://goo.gl/1nWbJv 반갑습니다. 요가 강사 EVA입니다. 이번 영상은 애플힙을 위한 영상입니다. 제가 시퀀스를 짤때는 힙에 집중해서 만들었는데 찍다보니까 후반부에 생각만치 엉덩이가 불타지 않터라고요. 그러므로!!! 최대한 힙에 집중해서 동작을 하세요. 해보면 아시겠지만 힙에 집중을 하였으나 다른곳에 움직임 역시 넘쳐난다는것을 기억하시면서 지금 바로 시작합니다.','요가','빈야사','BUqB9xoIjLU',0);
-
-INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]트라이포드 해드스탠드에서 점프백-차투랑가-빈야사 전환','구독! 좋아요! 많이 부탁드립니다. 구독은 클릭▶https://goo.gl/1nWbJv 반갑습니다. 요가 강사 EVA입니다. 이번 영상은 트라이포드 해드스탠드에서 점프백-차투랑가-빈야사 전환하는 방법에 관한 영상입니다. 단단한 차투랑가와 해드스탠드가 가능하시다면 충분히 가능하십니다. 주저말고 도전하세요.','요가','빈야사','qcEOThGHY9Y',0);
-
-INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]23분 새로운 로우런지를 만나는 빈야사 요가','구독! 좋아요! 많이 부탁드립니다. 구독은 클릭▶https://goo.gl/1nWbJv 반갑습니다. 요가 강사 EVA입니다. 제가 뭐에 씌었는지 편집을 엉망으로 해서 다시 올립니다. 배가 너무 고팠나봐요~_~ 로우런지의 다양한 변형동작으로 시퀀스를 구성했습니다. 난이도가 조금있다는건 안비밀! 즐거운 수련되시길 바랍니다. 아참!!!!! 고등학교 후배분이 댓글을 남겨주셨는데 감사합니다. 하지만 이름은 쓰지 말아주세요 ㅠㅜ 왠지 민망해요 하하','요가','빈야사','9B7QnpaGZhc',0);
-
-INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]중급자를 위한 24분 빈야사 요가','구독! 좋아요! 많이 부탁드립니다. 구독은 클릭▶https://goo.gl/1nWbJv 반갑습니다. 요가 강사 EVA입니다. 이번 영상은 오랫만에 중급자 영상을 준비했습니다. 하지만 중급자 영상이라고 해서 전부 어려운 동작을 하는 것이 아니고 타겟동작이 레벨이 있는 것이고 하나씩 쌓아가든 기본 동작으로 타겟포즈까지 간다는것 기억하시면서 준비 되셨다면 지금 바로 시작합니다.','요가','빈야사','S1MZ2MbVsG8',0);
-
-INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]21분 초보자를 위한 빈야사 요가 - 트라이앵글','구독! 좋아요! 많이 부탁드립니다. 구독은 클릭▶https://goo.gl/반갑습니다. 요가 강사 EVA입니다. 이번 영상은 초보자 분들을 위한 영상입니다. 요가를 많이 접하신분들도 고관절의 밖으로 회전에 집중하시면서 트리코나아사나의 변형과 바른 정렬을 수련하기에 좋은 시퀀스라 생각합니다. 땀이 장난이 아닙니다 하하 준비되셨으면 바로 시작합니다.','요가','빈야사','m_cgE75m5Og',0);
-
-INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]옆구리살 제거 빈야사 요가','구독! 좋아요! 많이 부탁드립니다. 구독은 클릭▶https://goo.gl/1nWbJv 반갑습니다. 요가 강사 EVA입니다. 이번 영상은 많은 여성분들의 고민인 옆구리살을 줄이는데 도움이 되는 영상을 준비했습니다. 지금 바로 시작할께요','요가','빈야사','BO3V1MVtuqM',0);
-
-INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]겨날 제거 빈야사 요가','구독! 좋아요! 많이 부탁드립니다. 구독은 클릭▶https://goo.gl/1nWbJv 반갑습니다. 요가 강사 EVA입니다. 이번 영상은 슬림한 팔라인을 위한 빈야사 요가입니다. 지금 바로 시작하세요.','요가','빈야사','5qdJSM2NuD4',0);
-
-INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]64분 빈야사 요가','구독! 좋아요! 많이 부탁드립니다. 구독은 클릭▶https://goo.gl/1nWbJv 반갑습니다. 요가 강사 EVA입니다. 이번 영상 역시 개인교습 영상입니다. 64분 풀 시퀀스 빈야사 요가 지금 함께하세요','요가','빈야사','m9jwDWZh-j4',0);
-
-INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]30분 디톡스 빈야사 요가 30min detox vinyasa yoga','구독! 좋아요! 많이 부탁드립니다. 구독은 클릭▶https://goo.gl/1nWbJv 반갑습니다. 요가 강사 EVA입니다. 이번 영상은 디톡스를 주제로 시퀀스를 준비했습니다. 30분 영상중 선자세가 많은 부분을 차지하여 에너지 소모 역시 엄청나게 될것입니다. 지금 바로 시작합니다.','요가','빈야사','i7IbvLzCmjo',0);
-
-INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]중급자를 위한 버드 오브 파라다이스 빈야사 요가 Bird of Paradise vinyasa yoga','구독! 좋아요! 많이 부탁드립니다. 구독은 클릭▶https://goo.gl/1nWbJv 반갑습니다. 요가 강사 EVA입니다. 이번 영상은 고관절의 유연성이 많이 필요한 버드 오브 파라다이스를 주제로 한 빈야사 요가입니다. 지금 버드 오브 파라다이스에 도전해 보세요.','요가','빈야사','8ZjrAEqoYX8',0);
-
-INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]15분 당신의 심장을 뛰게 할 초보자를 위한 빈야사 요가 15min cardio vinyasa yoga for beginners','구독! 좋아요! 많이 부탁드립니다. 구독은 클릭▶https://goo.gl/1nWbJv 반갑습니다. 요가 강사 EVA입니다. 이번 영상은 초보자를 위한 영상입니다. 빈야사만 변경하신다면 중급이상 분들도 즐겁게 수련하실 수 있는 시퀀스 입니다. 테이블탑의 새로운 변형과 반복적인 움직임으로 여러분의 심장을 뛰게 할 것입니다. 준비되셨나요? 바로 시작합니다.','요가','빈야사','8LM6W3G5Bns',0);
-
-INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]15분 중급자를 위한 댄스포즈 빈야사 요가 15min natarajasana vinyasa yoga','구독! 좋아요! 많이 부탁드립니다. 구독은 클릭▶https://goo.gl/1nWbJv 반갑습니다. 요가 강사 EVA입니다. 이번 영상은 가슴열기와 약간의 트위스트가 포함된 빈야사 플로우입니다. 타겟포즈는 나타라자사나, 댄스포즈 입니다. 준비되셨나요? 바로 시작합니다.','요가','빈야사','JEYWv1p8G5Y',0);
-
+--빈야사
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]초보자를 위한 빈야사 요가 - 블럭','반갑습니다. 요가 강사 EVA입니다. 초보자분들에게 블럭은 정말 유용한 도구입니다. 하지만 정작 그 쓰임새를 잘 알지 못하시는데요 이번 영상은 블럭을 이용한 가장 기본적인 영상입니다. 이 영상을 바탕으로 블럭을 활용하는데 도움이 되었으면 합니다.','요가','빈야사','03ydrIQxeK4',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]애플힙을 위한 강력한 두번째 빈야사 요가 - 난이도가 조금 있어요','반갑습니다. 요가 강사 EVA입니다. 여러분!!!!!! 여러분!!!!!! 하하하....T^T 여러분은 오늘 사시나무 떨듯이 떠는 저를 보게 되실 겁니다. 왜이러지;;; 오늘 이상하게 너무 힘들고 몸이 떨리네요. 촬영시간은 기상 후 3시간 정도 후인데 제가 아무것도 안먹었거든요. 그래서 그런지 오늘은 이상하게 덜덜거리네요. 참고하시면서 봐주시길 바라면서 오늘은 애플힙 영상 두번째로 더 강력한 시퀀스를 준비했습니다. 저번 영상에서 집중도가 조금 떨어진거 같은 느낌을 받아 이번에는 완전 집중을 했습니다. 불탈지도 몰라요. 조심하세요~_~ 그리고 동작 난이도가 조금 있습니다. 힘드신분들은 손을 짚은 상태로 하시면 되요. 영상 해보시면 뭔소린지 아실 겁니다. 그럼 지금 바로 시작합니다.','요가','빈야사','GXECrcR-tDc',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]30분 애플힙을 위한 빈야사 요가','반갑습니다. 요가 강사 EVA입니다. 이번 영상은 애플힙을 위한 영상입니다. 제가 시퀀스를 짤때는 힙에 집중해서 만들었는데 찍다보니까 후반부에 생각만치 엉덩이가 불타지 않터라고요. 그러므로!!! 최대한 힙에 집중해서 동작을 하세요. 해보면 아시겠지만 힙에 집중을 하였으나 다른곳에 움직임 역시 넘쳐난다는것을 기억하시면서 지금 바로 시작합니다.','요가','빈야사','BUqB9xoIjLU',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]트라이포드 해드스탠드에서 점프백-차투랑가-빈야사 전환','반갑습니다. 요가 강사 EVA입니다. 이번 영상은 트라이포드 해드스탠드에서 점프백-차투랑가-빈야사 전환하는 방법에 관한 영상입니다. 단단한 차투랑가와 해드스탠드가 가능하시다면 충분히 가능하십니다. 주저말고 도전하세요.','요가','빈야사','qcEOThGHY9Y',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]23분 새로운 로우런지를 만나는 빈야사 요가','반갑습니다. 요가 강사 EVA입니다. 제가 뭐에 씌었는지 편집을 엉망으로 해서 다시 올립니다. 배가 너무 고팠나봐요~_~ 로우런지의 다양한 변형동작으로 시퀀스를 구성했습니다. 난이도가 조금있다는건 안비밀! 즐거운 수련되시길 바랍니다. 아참!!!!! 고등학교 후배분이 댓글을 남겨주셨는데 감사합니다. 하지만 이름은 쓰지 말아주세요 ㅠㅜ 왠지 민망해요 하하','요가','빈야사','9B7QnpaGZhc',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]중급자를 위한 24분 빈야사 요가','반갑습니다. 요가 강사 EVA입니다. 이번 영상은 오랫만에 중급자 영상을 준비했습니다. 하지만 중급자 영상이라고 해서 전부 어려운 동작을 하는 것이 아니고 타겟동작이 레벨이 있는 것이고 하나씩 쌓아가든 기본 동작으로 타겟포즈까지 간다는것 기억하시면서 준비 되셨다면 지금 바로 시작합니다.','요가','빈야사','S1MZ2MbVsG8',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]21분 초보자를 위한 빈야사 요가 - 트라이앵글','반갑습니다. 요가 강사 EVA입니다. 이번 영상은 초보자 분들을 위한 영상입니다. 요가를 많이 접하신분들도 고관절의 밖으로 회전에 집중하시면서 트리코나아사나의 변형과 바른 정렬을 수련하기에 좋은 시퀀스라 생각합니다. 땀이 장난이 아닙니다 하하 준비되셨으면 바로 시작합니다.','요가','빈야사','m_cgE75m5Og',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]옆구리살 제거 빈야사 요가','반갑습니다. 요가 강사 EVA입니다. 이번 영상은 많은 여성분들의 고민인 옆구리살을 줄이는데 도움이 되는 영상을 준비했습니다. 지금 바로 시작할께요','요가','빈야사','BO3V1MVtuqM',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]겨날 제거 빈야사 요가',' 반갑습니다. 요가 강사 EVA입니다. 이번 영상은 슬림한 팔라인을 위한 빈야사 요가입니다. 지금 바로 시작하세요.','요가','빈야사','5qdJSM2NuD4',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]64분 빈야사 요가',' 반갑습니다. 요가 강사 EVA입니다. 이번 영상 역시 개인교습 영상입니다. 64분 풀 시퀀스 빈야사 요가 지금 함께하세요','요가','빈야사','m9jwDWZh-j4',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]30분 디톡스 빈야사 요가 30min detox vinyasa yoga','반갑습니다. 요가 강사 EVA입니다. 이번 영상은 디톡스를 주제로 시퀀스를 준비했습니다. 30분 영상중 선자세가 많은 부분을 차지하여 에너지 소모 역시 엄청나게 될것입니다. 지금 바로 시작합니다.','요가','빈야사','i7IbvLzCmjo',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]중급자를 위한 버드 오브 파라다이스 빈야사 요가 Bird of Paradise vinyasa yoga','반갑습니다. 요가 강사 EVA입니다. 이번 영상은 고관절의 유연성이 많이 필요한 버드 오브 파라다이스를 주제로 한 빈야사 요가입니다. 지금 버드 오브 파라다이스에 도전해 보세요.','요가','빈야사','8ZjrAEqoYX8',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]15분 당신의 심장을 뛰게 할 초보자를 위한 빈야사 요가 15min cardio vinyasa yoga for beginners',' 반갑습니다. 요가 강사 EVA입니다. 이번 영상은 초보자를 위한 영상입니다. 빈야사만 변경하신다면 중급이상 분들도 즐겁게 수련하실 수 있는 시퀀스 입니다. 테이블탑의 새로운 변형과 반복적인 움직임으로 여러분의 심장을 뛰게 할 것입니다. 준비되셨나요? 바로 시작합니다.','요가','빈야사','8LM6W3G5Bns',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]15분 중급자를 위한 댄스포즈 빈야사 요가 15min natarajasana vinyasa yoga','반갑습니다. 요가 강사 EVA입니다. 이번 영상은 가슴열기와 약간의 트위스트가 포함된 빈야사 플로우입니다. 타겟포즈는 나타라자사나, 댄스포즈 입니다. 준비되셨나요? 바로 시작합니다.','요가','빈야사','JEYWv1p8G5Y',0);
 INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]하체의 힘이 코어의 힘! 초보자를 위한 코어 빈야사 요가 core vinyasa yoga for beginner','반갑습니다. 요가 강사 EVA입니다. 이번 영상은 블럭을 이용하여 빈야사를 수련합니다. 하체의 힘이 코어의 힘 임을 다시 한번 기억하시면서 즐거운 수련되시기 바랍니다.','요가','빈야사','-v8ezWv7zu8',0);
-
 INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]시르샤사나를 위한 10분 빈야사요가 10min vinyasa yoga for sirsiasana','반갑습니다. 요가 강사 EVA입니다. 이번 영상은 시르샤아사나 해드스텐드를 준비하는 빈야사 입니다. 어깨를 모아주고 전굴로 자세를 유지합니다. 그것에만 그치지 않고 앞으로만 굽혔던 상체를 펴는 동작까지 포함했습니다. 준비되셨나요? 바로 시작할께요','요가','빈야사','lv5QEThEO6I',0);
-
 INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]중급자를 위한 내 몸에 활력을 주는 19분 빈야사 요가 19 min energizing vinyasa yoga','반갑습니다. 요가 강사 EVA입니다. 이번 영상은 중급자를 위한 19분 빈야사 요가입니다. 이번 시퀀스에는 박카사나 점프백이 포함되어 있는데 점프백에 아주 간단히 팁을 알려드렸습니다. 너무 별거아니지만 딱 맞는 팁입니다. 하하;;; 또한 박카사나 점프백 빈야사를 제외하고는 전부 플랭크 차투랑가 푸쉬업 다운독의 변형된 빈야사로 플로우를 진행했습니다. 많은 팔힘이 요구됩니다. 준비되셨나요? 바로 시작합니다.','요가','빈야사','eSWZbJJkzvQ',0);
-
 INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]더 유연한 몸을 위한 16분 빈야사 요가 16min vinyasa yoga for flexibility','반갑습니다. 요가 강사 EVA입니다. 오늘은 하체의 유연성에 도움이 되는 시퀀스를 준비했습니다. 긴말 필요없겠죠? 바로 시작합니다.','요가','빈야사','U7socaRfnf8',0);
-
 INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]중급자를 위한 트위스트와 암발란스 빈야사 요가 twist + arm balance vinyasa yoga','반갑습니다. 요가 강사 EVA입니다. 이번 영상은 트위스트와 아주 간단한 암발란스가 포함된 빈야사 요가입니다. 초보자 분들은 암발란스 동작에서 발을 바닥에서 띄우지 않고 자세를 유지하셔도 좋습니다. 매트 준비되셨나요 바로 시작합시다^^','요가','빈야사','TcPzxobF2KQ',0);
-
 INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]17분 데일리 빈야사 요가 Daily vinyasa yoga','반갑습니다. 요가 강사 EVA입니다. 이번 영상은 매일 꾸준히 수련하시면 근력과 유연성을 모두잡을수 있는 시퀀스로 준비했습니다. 전체적으로 부담없는 아사나들로 구성했습니다. 준비되셨나요? 바로 시작합니다.','요가','빈야사','xHlTj9b9hBY',0);
-
 INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]초보자를 위한 26분 숩타쿠루마사나 빈야사 요가','반갑습니다. 요가 강사 EVA입니다. 특별히 시퀀스 제목을 숩타쿠루마사나라고 쓰긴했지만 이 영상은 앞전의 중급자의 시퀀스를 초보자의 시퀀스로 바꾸어 천천히 진행하며 기본적인 자세의 설명을 추가로 하여 처음 요가를 접하셔도 충분히 수련하실수 있도록 만들어보았습니다. 덧붙여 동영상별 레벨에 대해 말씀드리자면 뭔가 확실한 구분선을 가지고 이건 초보자용 이건 중급자용 이건 고급자용으로 나누면 좋겠지만 직접 수련을 하고 가르치다 보니 여러가지 고려해야할 사항들이 있어 명확한 구분이 쉽지 않습니다. 외국과는 조금 다른 요가에 대한 생각정도 라고 간단히 쓰겠습니다. 또한 제가 도전적인 자세를 좋아라해서 난이도 있는 자세를 주제로 수업을 해봤는데요 많은 시간 티칭 해본 결과 어려운거 해봐야 좋아하시는 분들이 몇몇 없으시더라고요....흠흠;;; 하지만 정확한 것은 초보자용은 진짜 초보자들이 하실수 있게 찍었습니다. 또한 요가 경험이 어느정도 있더라도 나의 자세를 좀더 정렬에 집중해서 수련하고 싶을때 초보자용으로 수련하시면 도움이 되실 겁니다. 특별히 쿠루마사나 같은 경우는 매우 도전적인 자세라 앞에 중급자 이상이란 말을 붙였습니다. 그러니까 초보자라고 쓴건 진짜 초보자용이고 나머지는 요가를 어느정도 수련하신분들이 하시면 좋은 영상입니다. 그렇다고 초보자가 다른 영상을 수련할수 없는 것은 아닙니다. 아;;;; 제가 옆에서 알려드리고 싶은맘이 ... 하하 블럭과 스트랩을 기본으로 요가 도구를 사용하시면 초보자분들도 모든 영상을 하실수 있습니다. 이건 시간이 지나면 다 아실테니 앞으로 꾸준히 같이 수련해보시길 바랍니다. 말이 길었네요. 준비되셨다면 지금 바로 시작합니다.','요가','빈야사','AQDAqlMLER8',0);
-
 INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA] 17분 파워 빈야사 요가','반갑습니다. 요가 강사 EVA입니다. 오늘은 힘이 넘치는 시퀀스를 준비했습니다. 많은 활동적인 아사나가 포함되어 있습니다. 준비되셨나요? 바로 시작합니다.','요가','빈야사','pei_YV6atvg',0);
-
 INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]중급자 이상을 위한 숩타쿠루마사나 + 쿠루마사나 빈야사 요가','반갑습니다. 요가 강사 EVA입니다. 오늘은 중급자 이상을 위한 빈야사를 준비했습니다. 숩타쿠루마사나와 쿠루마사나는 허리에 아주 깊은 전굴이 일어납니다. 허리 부상에 주의하시면서 천천히 같이 수련해 보시길 바랍니다.','요가','빈야사','bwWHjlehJGo',0);
-
 INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]건강한 허리를 위한 빈야사 요가 2.','반갑습니다. 요가 강사 EVA입니다. 이번 영상 역시 건강한 허리를 위한 빈야사입니다. 첫번째 영상과 연결해서 수련하셔도 좋습니다 그럼 바로 시작하세요^^','요가','빈야사','lrx9i2fZFm0',0);
-
 INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]건강한 허리를 위한 빈야사 요가 1.','반갑습니다. 요가 강사 EVA입니다. 이번 동영상은 건강한 허리를 위한 빈야사 요가를 준비했습니다. 많은 사람들이 허리통증을 겪을때 허리를 비틀거나 꺽는 동작을 합니다. 이것은 상태를 악화시킬뿐 전혀 도움이 되지 않습니다. 통증이 심할때는 휴식을 취하시고 통증이 어느 정도 완화되었을때 허리근력강화 동작을 꾸준히 해주신다면 허리통증없는 건강한 생활을 하실수 있습니다. 준비되셨나요? 바로 시작합니다.','요가','빈야사','EWm26T7x-zg',0);
-
 INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]강한! 슬림한! 균형잡힌! 하체를 위한 빈야사 요가','반갑습니다. 요가 강사 EVA입니다. 이번 영상은 하체강화를 위한 빈야사입니다. 다른 말이 필요할까요? 바로 시작하시면 됩니다.^^','요가','빈야사','FX3FqWw2KC0',0);
-
 INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]강한! 슬림한! 균형잡힌! 상체를 위한 빈야사 요가','반갑습니다. 요가 강사 EVA입니다. 이번영상은 상체를 단단! 슬림하게 만들어주는 빈야사로 준비했습니다. 바로 시작하세요! 이곳은 3월 4월 5월이 가장 덥습니다. 제가 있는 곳은 소음이 심한 곳이라 창문을 닫고 촬영하며 좋은 장비를 갖추어 촬영하는 것이 아니라 에어컨와 선풍기도 사용하지 않고 촬영을 합니다.(소음이 심할까봐요^^;) 땀도 많이 흘리고 숨소리도 많이 거친부분 이해해주시길 바랍니다.','요가','빈야사','9EWGqVs--kQ',0);
-
 INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA] 요가 빈야사에 대하여(for 초보자)','반갑습니다. 요가 강사 EVA입니다. 이번에는 빈야사에 대하여 다루어봤습니다. 이미 다른 동영상에서 여러번 소개를 했지만 아직 잘모르시는 분들을 위해 따로 동영상을 준비했습니다. 초보자분들이 차투랑가 단다사나, 업워드페이싱독을 하기엔 무리가 있지요. 그런분들을 위해 쉬운버전의 모디퐈이 차투랑가, 로우코브라 등을 소개합니다.','요가','빈야사','gDI2nKKWFY8',0);
-
 INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]하누만아사나를 위한 20분 빈야사 요가','반갑습니다. 요가 강사 EVA입니다. 오늘은 하누만아사나를 위한 빈야사를 준비했습니다. 흔히 다리찢기라고 하죠? 차근차근 준비해서 하누만아사나를 완성하는 시퀀스. 블럭만 있으시면 초보자분들도 충분히 도전하실수 있습니다. 자 지금 바로 시작합니다.','요가','빈야사','yGe3bx2qKrA',0);
-
 INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]튼튼한 척추를 위한 18분 빈야사 요가 ver.2','반갑습니다. 요가 강사 EVA입니다. 저번 시간에 이어 오늘도 튼튼한 척추를 위한 시퀀스를 마련했습니다. 원래는 두개의 시퀀스가 연결된 것인데 인터넷 사정상 길면 업로딩이 잘안되서 하나의 시퀀스를 두개로 만들었습니다. 여러분은 두개를 같이 수련하시면 좋으실겁니다.^^ 준비되셨으면 지금바로 시작하세요.','요가','빈야사','G1l51wugMXw',0);
+--다이어트
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'VINYASA YOGA + pilates 1st','VINYASA YOGA + pilates 1st','요가','다이어트','rqKg1UGqBBE',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'vinyasa + physical exercise 2회','vinyasa + physical exercise 2회','요가','다이어트','Ftf2oA-3CYM',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'이유주의 "VINYASA YOGA" 3회 요가를 통한 다이어트 live 방송 by 헬스티비 HTV Healthtv','이유주의 "VINYASA YOGA" 3회 요가를 통한 다이어트 live 방송 by 헬스티비 HTV Healthtv','요가','다이어트','yCeOneYaH_8',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'이유주의 "VINYASA YOGA" 4회 요가를 통한 다이어트 live 방송 by 헬스티비 HTV Healthtv','이유주의 "VINYASA YOGA" 4회 요가를 통한 다이어트 live 방송 by 헬스티비 HTV Healthtv','요가','다이어트','9rd00PcCzU4',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'휘트니스모델 심으뜸 + 요가강사 이유주 의 콜라보 방송 "JU-DDEUM"','휘트니스모델 심으뜸 + 요가강사 이유주 의 콜라보 방송 "JU-DDEUM"','요가','다이어트','mnN3RYQd6Ss',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'vinyasa yoga + yoga challenge 5th','vinyasa yoga + yoga challenge 5th','요가','다이어트','mAaX8k6ySqs',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'yoga workout + yoga challenge 6th','yoga workout + yoga challenge 6th','요가','다이어트','tzYwdV1YaoA',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'yoga challenge + physical exercise 7th by healthtv','yoga challenge + physical exercise 7th by healthtv','요가','다이어트','AM6n3o3ApGc',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'이유주의 VINYASA YOGA 8회 요가를 통한 다이어트 live 방송','이유주의 VINYASA YOGA 8회 요가를 통한 다이어트 live 방송','요가','다이어트','Qftmd4y_hmQ',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'이유주의 "VINYASA YOGA" 9회 요가를 통한 다이어트 live 방송 by 헬스티비','이유주의 "VINYASA YOGA" 9회 요가를 통한 다이어트 live 방송 by 헬스티비','요가','다이어트','j7EC5Z2asIk',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'이유주의 "VINYASA YOGA" 10회 요가를 통한 다이어트 live 방송 by 헬스티비','이유주의 "VINYASA YOGA" 10회 요가를 통한 다이어트 live 방송 by 헬스티','요가','다이어트','_E41vfKM2x8',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'이유주의 "VINYASA YOGA" 12회 요가를 통한 다이어트 live 방송 by헬스티비','이유주의 "VINYASA YOGA" 12회 요가를 통한 다이어트 live 방송 by헬스티비','요가','다이어트','2OJMTZeH1ag',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'이유주의 "VINYASA YOGA" 13회 요가를 통한 다이어트 live 방송 by헬스티비','이유주의 "VINYASA YOGA" 13회 요가를 통한 다이어트 live 방송 by헬스티비','요가','다이어트','pZBYuBqR2sE',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'이유주의 "VINYASA YOGA" 14회 요가를 통한 다이어트 live 방송 by헬스티비','이유주의 "VINYASA YOGA" 14회 요가를 통한 다이어트 live 방송 by헬스티비','요가','다이어트','tcAmTQ0Cw9o',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'이유주의 "VINYASA YOGA" 15회 요가를 통한 다이어트 live 방송 by헬스티비','이유주의 "VINYASA YOGA" 15회 요가를 통한 다이어트 live 방송 by헬스티비,+헬스tv','요가','다이어트','Tph3Q7eV-Mg',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'이유주의 "VINYASA YOGA" 16회 요가를 통한 다이어트 live 방송 by헬스티비','이유주의 "VINYASA YOGA" 16회 요가를 통한 다이어트 live 방송 by헬스티비,+헬스tv','요가','다이어트','ZOvINmqdL3k',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'이유주의 "VINYASA YOGA" 17회 요가를 통한 다이어트 live 방송 by헬스티비v','이유주의 "VINYASA YOGA" 17회 요가를 통한 다이어트 live 방송 by헬스티비+헬스tv','요가','다이어트','HuRgTZf7MlE',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'이유주의 "VINYASA YOGA" 18회 요가를 통한 다이어트 live 방송 by헬스티비','이유주의 "VINYASA YOGA" 18회 요가를 통한 다이어트 live 방송 by헬스티비+헬스tv','요가','다이어트','-O8CI32TpgI',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'이유주의 "VINYASA YOGA" 22회 요가를 통한 다이어트 live 방송 by헬스티비+','이유주의 "VINYASA YOGA" 22회 요가를 통한 다이어트 live 방송 by헬스티비+헬스tv','요가','다이어트','uaQwJVPAz7c',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'이유주의 "VINYASA YOGA" 21회 요가를 통한 다이어트 live 방송 by헬스티비+','이유주의 "VINYASA YOGA" 21회 요가를 통한 다이어트 live 방송 by헬스티비+헬스tv','요가','다이어트','5XU6b3p4oM8',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'이유주의 "VINYASA YOGA" 20회 요가를 통한 다이어트 live 방송 by헬스티비+','이유주의 "VINYASA YOGA" 20회 요가를 통한 다이어트 live 방송 by헬스티비+헬스tv','요가','다이어트','R8E1YwxIC6g',0);
+--체형교정
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'오른어깨와 오른등이 안쪽으로 굽은 분들을 위한 기본동작[김선미 자연치유요가]','김선미원장이 진행하는 치유요가 프로그램, 오른어깨와 오른등이 안쪽으로 굽은 체형을 위한 요가 기본동작 입니다.','요가','체형교정','ywGUVQUogyU',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'오른쪽옆구리를 열어주는 기울기자세[김선미 자연치유요가]','자연치유학박사 김선미원장이 진행하는 치유요가, 오른쪽 옆구리를 열어주는 심화동작입니다.','요가','체형교정','9zx4MsMJNRQ',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'오른쪽 옆구리와 등이 협착된 분들을 위한 치유요가[자연치유요가]','자연치유학박사 김선미원장이 연구 개발한 오른쪽 옆구리와 등이 협착된 분들을 위한 치유요가 동작입니다. 따라하실때는 무리하지마시고 호흡에 유의하면서 꾸준하게 수련하시기 바랍니다.','요가','체형교정','8A9eVbCVVEM',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'골반 불균형 완화를 위한 심화동작[김선미 자연치유요가]','김선미원장(yogakim)이 진행하는 생활요가 프로그램, 골반 불균형 완화를 목적으로 한 심화동작 입니다. 김선미요가 카페 바로가기 : http://cafe.daum.net/kimsunmiyoga','요가','체형교정','VKJ5IhgjDmc',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'서서 일하시는 분들을 위한 균형체크 자세[김선미 자연치유요가]','김선미원장(yogakim)이 아이디 운명님의 질문에 답변 하면서 소머리자세를 활용한 균형 체크방법을 소개 해 드립니다. 카페 바로가기 : http://cafe.daum.net/kimsunmiyoga','요가','체형교정','cVfth1aGNHI',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'허리와 엉덩이근육을 단단하게해주는 보트자세[김선미 자연치유요가]','김선미원장이 진행하는 생활요가 프로그램, 허리와 엉덩이 근육을 단단하게 해주는 보트자세 입니다.','요가','체형교정','z6jcyPKSDOY',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'오른어깨 오른등이 굽은분들을 위한 치유요가동작[김선미 자연치유요가]','김선미원장(yogakim)이 진행하는 힐링요가 프로그램, 오른어깨와 오른등이 안쪽으로 굽은 체형을 위한 요가 심화동작 입니다.','요가','체형교정','1d_xss4C0Qg',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'허리근력을 강화시켜주는 삼각자세 [김선미 자연치유요가]','김선미원장이 진행하는 자연치유요가 프로그램, 척추유연성과 허리근력을 강화시켜주는 삼각자세입니다.','요가','체형교정','-og6pkj_7LU',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'척추유연성 강화를 위한 고양이자세 [김선미 자연치유요가]','자연치유학박사 김선미원장이 진행하는 자연치유요가, 척추유연성 강화를 위한 고양이자세입니다.','요가','체형교정','_kpIiuHIQ2M',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'긴장완화 치유요가[김선미 자연치유요가]','김선미원장이 소개하는 긴장을 완화하여 심신을 안정시켜주는 요가동작, 기울기자세와 전굴자세 입니다. 무리하지마시고 따라하시기바랍니다. 다음카페 김선미요가에 오시면 보다 많은 정보를 공유하실 수 있습니다.http://cafe.daum.net/kimsunmiyoga','요가','체형교정','RG7hBx1QVq4',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'척추유연성 키워주는 고양이자세[김선미 자연치유요가]','김선미원장 동영상레슨 고양이자세 편입니다.다음카페 김선미요가에 오시면 보다 유익한정보를 공유하실수있습니다.','요가','체형교정','uBP9iiVyl9o',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'태양자세[김선미 자연치유요가]','김선미원장 동영상레슨 태양자세 편입니다.다음카페 김선미요가에 오시면 보다 유익한정보를 공유하실수있습니다.','요가','체형교정','4_2zKNfAnJw',0);
+--부위별
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'스위트바디 -팔뚝 군살을 없애주는 요가, 수건과 함께 ‘뒤로 나란히!’-','스위트바디 -팔뚝 군살을 없애주는 요가, 수건과 함께 ‘뒤로 나란히!’-','요가','부위별','8PrBmhSBIEk',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'스위트바디 -엉덩이의 좌우 균형을 맞추어주는 요가, 독수리 자세-','스위트바디 -엉덩이의 좌우 균형을 맞추어주는 요가, 독수리 자세-','요가','부위별','vwUJMjdqAqQ',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'스위트바디 -틀어진 엉덩이를 교정해주는 요가, 소머리 자세-','스위트바디 -틀어진 엉덩이를 교정해주는 요가, 소머리 자세-','요가','부위별','v8a7gCQdjcQ',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'스위트바디 -엉덩이에 쌓인 피로를 풀어주는 요가 1, 힙오프닝 자세-','스위트바디 -엉덩이에 쌓인 피로를 풀어주는 요가 1, 힙오프닝 자세-','요가','부위별','fLQy0DE-gPg',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'스위트바디 -코어 근육을 강화해주는 요가3, 사이드 플랭크-','스위트바디 -코어 근육을 강화해주는 요가3, 사이드 플랭크-','요가','부위별','vzGjdMomV_k',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'스위트바디 -코어 근육을 강화하는 요가 2, 짐볼 코어 운동 B-','스위트바디 -코어 근육을 강화하는 요가 2, 짐볼 코어 운동 B-','요가','부위별','-aHcp51aAvM',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'스위트바디 -짐볼을 이용한 코어를 강화하는 요가 1, 짐볼 복부 운동A-','스위트바디 -짐볼을 이용한 코어를 강화하는 요가 1, 짐볼 복부 운동A-','요가','부위별','K_Tb2VSGQFI',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'스위트바디 -종아리를 마사지해주는 요가 3, 라크로스볼 종아리 스트레칭-','스위트바디 -종아리를 마사지해주는 요가 3, 라크로스볼 종아리 스트레칭-','요가','부위별','YYRtnLxN0LE',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'스위트바디 -종아리 근육을 길고 매끈하게 하는 요가 2, 견상 자세 스텝 밟기-','스위트바디 -종아리 근육을 길고 매끈하게 하는 요가 2, 견상 자세 스텝 밟기-','요가','부위별','SBUlTgC87Ho',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'스위트바디 -종아리의 부종, 피로감을 풀어주는 요가 1, 테이블 백 스플릿-','스위트바디 -종아리의 부종, 피로감을 풀어주는 요가 1, 테이블 백 스플릿-','요가','부위별','agGAP2ig65I',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'스위트바디 -혈액순환을 도와 복부의 힘을 기르는 운동3, 쟁기 자세-','스위트바디 -혈액순환을 도와 복부의 힘을 기르는 운동3, 쟁기 자세-','요가','부위별','sT4Sr202U7M',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'스위트바디 -허리에 안정감을 주는 요가 2, 누워서 하는 트위스트 복부 운동-','스위트바디 -허리에 안정감을 주는 요가 2, 누워서 하는 트위스트 복부 운동-','요가','부위별','WFTFGPoq_Qg',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'스위트바디 -뱃살 제거에 탁월한 요가 1, 트위스트 복부운동-','스위트바디 -뱃살 제거에 탁월한 요가 1, 트위스트 복부운동-','요가','부위별','SXJdz-rY1Eg',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'스위트바디 - 팔 라인을 예쁘게 만들어주는 요가 2, 우스트라아사나 변형-','스위트바디 - 팔 라인을 예쁘게 만들어주는 요가 2, 우스트라아사나 변형-','요가','부위별','QAFMLQwSchQ',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'스위트바디 -어깨 긴장을 풀어주는 요가 1, 의자를 이용한 어깨 스트레칭-','스위트바디 -어깨 긴장을 풀어주는 요가 1, 의자를 이용한 어깨 스트레칭-','요가','부위별','lFKahvSfhJE',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'스위트바디 -가슴과 허벅지를 열어주는 요가 3, 우르드바 다누라아사나Urdhva Dhanurasana-','스위트바디 -가슴과 허벅지를 열어주는 요가 3, 우르드바 다누라아사나Urdhva Dhanurasana-','요가','부위별','pSlVJ7Zl1CI',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'스위트바디 -몸 앞의 스트레칭을 도와주는 가슴 요가 2, 다누라아사나Dhanurasana-','스위트바디 -몸 앞의 스트레칭을 도와주는 가슴 요가 2, 다누라아사나Dhanurasana-','요가','부위별','xGBsWdgBZyw',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'스위트바디 - 아름다운 가슴을 만드는 요가 1, 부장가아사나Bhujangasana-','스위트바디 - 아름다운 가슴을 만드는 요가 1, 부장가아사나Bhujangasana-','요가','부위별','9ceqWowskZo',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'스위트바디 -매끄러운 허벅지를 만드는 요가 3, 런지 플로우Lunge flow-','스위트바디 -매끄러운 허벅지를 만드는 요가 3, 런지 플로우Lunge flow-','요가','부위별','p1OXBt86wcg',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'스위트바디 - 꿀벅지를 만드는 하체 요가, 우따나아사나 플로우Uttanasana flow-','스위트바디 - 꿀벅지를 만드는 하체 요가, 우따나아사나 플로우Uttanasana flow-','요가','부위별','D4hd3XetvVQ',0);
+--초보자
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'#1 초보자를 위한 홈 요가 │ 집에서 하기 좋은 요가 │ 쉬운 요가 │ 앉아서 하는 요가','#1 초보자를 위한 홈 요가 │ 집에서 하기 좋은 요가 │ 쉬운 요가 │ 앉아서 하는 요가','요가','초보자','AlnZDHeqvOU',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'#2 앉아서 하는 요가 │비둘기 자세 │쉬운데 땀나는 요가','#2 앉아서 하는 요가 │비둘기 자세 │쉬운데 땀나는 요가','요가','초보자','aaV2u2kXJTU',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'#3 누워서 하는 코어 강화동작 │ 상하 복부 집중 강화 │초보와 고수가 함께하는 요가','#3 누워서 하는 코어 강화동작 │ 상하 복부 집중 강화 │초보와 고수가 함께하는 요가','요가','초보자','WkR7K3-hdug',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'#4 앉아서 하는 요가 │낙타자세 │종아리 부터 복부까지 모두 쓰는 운동 │ 짧지만 땀나는 요가','#4 앉아서 하는 요가 │낙타자세 │종아리 부터 복부까지 모두 쓰는 운동 │ 짧지만 땀나는 요가','요가','초보자','H1kpt_kmxT4',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'#5 하체스트레칭 쉬운 요가│ 하체 부종완화에 좋은 요가│ 박쥐 자세│ 쉬운데 땀나는 요가','#5 하체스트레칭 쉬운 요가│ 하체 부종완화에 좋은 요가│ 박쥐 자세│ 쉬운데 땀나는 요가','요가','초보자','mBCPtKrx_To',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'#6 등 강화 요가│ 쉬우면서 땀나는 요가│ 쉬운 요가│ Yoga for beginners','#6 등 강화 요가│ 쉬우면서 땀나는 요가│ 쉬운 요가│ Yoga for beginners','요가','초보자','ox8-tvOh1JM',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'#7 혈액순환에 좋은 요가 │순환+스트레칭 요가 │쟁기 자세│ 물고기 자세│ 쉬운 요가','#7 혈액순환에 좋은 요가 │순환+스트레칭 요가 │쟁기 자세│ 물고기 자세│ 쉬운 요가','요가','초보자','3OUcDAmJtz4',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'#8 전신을 활용하는 요가│ 강화와 스트레칭│ 등, 복부, 고관절 요가','#8 전신을 활용하는 요가│ 강화와 스트레칭│ 등, 복부, 고관절 요가','요가','초보자','ebsLPyrlMwY',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'#9 굽은 등과 어깨를 열어주는 요가 동작│ 매끈한 어깨라인을 만들어주는 요가│ 초보자 요가│ 쉬운 요가','#9 굽은 등과 어깨를 열어주는 요가 동작│ 매끈한 어깨라인을 만들어주는 요가│ 초보자 요가│ 쉬운 요가','요가','초보자','iwHiwcvlDTA',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'#10 손목 강화를 위한 요가│ 손목 스트레칭│ 초보자 요가│ 쉬운 요가','#10 손목 강화를 위한 요가│ 손목 스트레칭│ 초보자 요가│ 쉬운 요가','요가','초보자','RHH1HW3DY04',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'#11 골반을 부드럽게 하는 동작│골반교정│쉬운 하체스트레칭│집에서 요가하기│초보 요가','#11 골반을 부드럽게 하는 동작│골반교정│쉬운 하체스트레칭│집에서 요가하기│초보 요가','요가','초보자','MZjM6vcz6K0',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'#12 드디어 일어서서! 허리강화요가│허리 스트레칭│추석연휴에 실컷 먹었으니 빼야지','#12 드디어 일어서서! 허리강화요가│허리 스트레칭│추석연휴에 실컷 먹었으니 빼야지','요가','초보자','tWG7XJPLqCI',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'#13 수리야나마스카라 A, B | 땀 폭발 빈야사요가 | 전신요가 | 초보자요가','#13 수리야나마스카라 A, B | 땀 폭발 빈야사요가 | 전신요가 | 초보자요가','요가','초보자','6swkIa5igiw',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'수리야나마스카라A, B 설명없이 연속 동작편 │ 땀나는 전신 요가 │ 빈야사 │ 초보자요가','수리야나마스카라A, B 설명없이 연속 동작편 │ 땀나는 전신 요가 │ 빈야사 │ 초보자요가','요가','초보자','v6qpFdLLGbY',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'#14 거북목 방지 요가 │ 수건 준비해요 │ 초보자 맞춤 홈 요가 │ 구독자 요청','#14 거북목 방지 요가 │ 수건 준비해요 │ 초보자 맞춤 홈 요가 │ 구독자 요청','요가','초보자','aXW559C-7Zo',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'#15 │ 소화가 잘되는 요가 │ 답답한 속을 풀어주는 요가 │ 땀이 많이 나는 동작이에요! │ 스트레칭','#15 │ 소화가 잘되는 요가 │ 답답한 속을 풀어주는 요가 │ 땀이 많이 나는 동작이에요! │ 스트레칭','요가','초보자','OOMFKjrox1g',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'#16 | 탄력있는 몸을 만들어주는 밸런스 요가 | 나무자세 | 초보자 맞춤 밸런스 요가 | 15분 요가','#16 | 탄력있는 몸을 만들어주는 밸런스 요가 | 나무자세 | 초보자 맞춤 밸런스 요가 | 15분 요가','요가','초보자','2jBICeGAK6c',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'#17 │ 숄더라인이 아름다워지는 요가 │ 의자를 이용한 요가 │ 구독자 요청! │','#17 │ 숄더라인이 아름다워지는 요가 │ 의자를 이용한 요가 │ 구독자 요청! │','요가','초보자','9iCqqj0Yd4E',0);
 
-INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]튼튼한 척추를 위한 17분 빈야사 요가','안녕하세요. 요가 강사 EVA입니다. 척추를 감싸고 있는 많은 근육들을 강화하여 척추를 더 단단하게 잡아주게 하고 늘림으로 척추의 유연성을 도모하여 척추 건강에 도움이 되는 시퀀스를 만들어봤습니다. 허리에서 일어나는 백밴딩이 아닌 흉추과 요추가 만나는 부분에서의 백밴딩을 집중하여 노려보세요^^ 허리는 나의 척추가 그리고 근육들이 튼튼해진 다음에 하는 도전적인 수련이라는 것을 항상 기억하시기 바랍니다. 지금 바로 시작합니다.','요가','빈야사','jiUXOhDCiFI',0);
-
-INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]내몸의 체온을 빨리 올리는 퀵히트 quick heat 13분 빈야사 요가','안녕하세요 요가 강사 EVA입니다. 오늘은 짧은 시간에 몸의 체온이 확 올라갈 만한 시퀀스를 준비했습니다. 매일 하는 아사나도 방법을 조금 바꾸면 전혀 다른 근육이 쓰이는데요 전 이런게 재미있습니다 하하. 저만 그런가요+_+ 여튼 자 이제 시작합니다','요가','빈야사','aBxUmn1iL5U',0);
-
-INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]내 몸의 정렬을 찾는 19분 빈야사 요가','반갑습니다. 요가 강사 EVA입니다. 오늘은 블럭을 이용하여 몸의 정확한 정렬을 찾는 19분 빈야사요가 시퀀스입니다. 요즘 요가블럭 저렴하죠? 유연성이 부족하신분 초보준들은 블럭이 아주 유용합니다. 하지만 블럭이 없으시더라도 충분히 즐길수 있으니 걱정은 마시고요 지금 바로 시작합니다^^','요가','빈야사','OAYCQr6uzxc',0);
-
-INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]이글포즈를 위한 10분 빈야사 요가','반갑습니다 요가 강사 EVA입니다. 오늘은 이글포즈 가루다아사나를 주제로 빈야사요가를 해보겠습니다 균형을 잘잡기 위해서는 아사나의 많은 반복과 다리근력이 필요합니다 전...연습을 게을리한탓인지 자꾸 흔들리네요 하하하하....더 열심히 수련하겠습니다! 매트 준비되셨죠?? 지금 바로 시작하세요','요가','빈야사','XpjBIXK_b1Q',0);
-
-INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]20분 초보자를 위한 빈야사 요가','구독! 좋아요! 많이 부탁드립니다. 구독은 클릭▶https://goo.gl/1nWbJv 요가 초보자들을 위한 빈야사 요가 입니다. 매트만 있다면 간편하게 시작하실수 있습니다.','요가','빈야사','9gzi2VVswwo',0);
-
-INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]중급자이상을 위한 빈야사 요가, vinyasayoga','구독! 좋아요! 많이 부탁드립니다. 구독은 클릭▶https://goo.gl/1nWbJv 차투랑가단다사나-업독-다운독이 포함된 빈야사 입니다. 우리나라 여성분들은 근력이 약해서 요가 를 오래 수련하신분들을 제외하고 이 빈야사를 정확히 하시는 분들이 많지 않습니다. 또한 힘든걸 싫어하십니다. ㅠ.ㅜ 어쩌죠?ㅋㅋ 아니 왜죠??? 누구한테 묻는지;;;; 만일 정확한 빈야사 구사가 힘드시다면 쉬운버전으로 같이 해보셔도 좋을거 같습니다. 매트준비되셨으면 지금 바로 시작하세요.','요가','빈야사','X7gywDrrsPk',0);
-
-INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]16분 슬림벅지를 위한 빈야사 요가','구독! 좋아요! 많이 부탁드립니다. 구독은 클릭▶https://goo.gl/1nWbJv 슬림한 허벅지를 위한 빈야사 요가입니다. 허벅지 앞,뒤,안 전체 근육을 움직이고 이완시켜 날씬한 허벅지 라인에 도전해보세요^^','요가','빈야사','qtFQRdeI5HY',0);
-
-INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]두번째 초보자를 위한 빈야사 요가','초보자를 위한 빈야사 요가 두번째 입니다. 역시 매트만 준비하세요.','요가','빈야사','TU_Bygb2570',0);
-
-INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVAYOGA]슬림옆구리 빈야사,하이런지트위스트빈야사, 사이드밴드+트위스트 ver.2','하이런지 트위스트 빈야사 시퀀스의 또 다른 버전입니다. 즐거운 수련되세요~_~','요가','빈야사','JGlX-7nJoXQ',0);
-
-INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]가슴+어깨 열기 빈야사 요가','가슴열기 그리고 어깨열기를 위한 빈야사 요가 입니다. 차투랑가 업독 다운독이 포함된 빈야사입니다. 초보이신 분들은 쉬운 빈야사로 플로우를 이어가세요. 만일 힘드시다면 빈야사할때 차투랑가 대신 곧바로 다운독 그후 플로우를 이어가셔도 좋습니다. 즐거운 수련되세요^^','요가','빈야사','SBCN4iE-TN0',0);
-
-INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]초보자를 위한 골반열기 빈야사 요가','초보자 분들도 쉽게 따라 하실수 있는 빈야사 요가입니다. 이번 시퀀스의 주제는 바로 고관절 열기^^ 다리를 양옆으로 심하게 넓히는 것이 아닌 초보들도 쉽게 하실수 있는 선자세에서의 골반열기 입니다. 지금 시작합니다.','요가','빈야사','DmZzizTvbbs',0);
-
-INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]15분 디톡스 빈야사 요가','트위스트 동작이 포함된 빈야사 요가, 내 몸의 독소를 제거한다! 15분 빈야사요가 함께하세요^^','요가','빈야사','oxPTnv2QJ2Y',0);
-
-INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]박카사나를 위한 빈야사 요가','도전적인 자세인 박카사나를 위한 빈야사 요가입니다. 조금 난이도가 있는 동작이지만 재미있게 수련해보아요^^','요가','빈야사','_RtBNOuvQh0',0);
-
-INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]슬림옆구리 빈야사 요가,하이런지트위스트 빈야사, 사이드밴드+트위스트 ver.1','하이런지 트위스트를 이용한 빈야사 요가 시퀀스 입니다. 힘차게 시작합니다.','요가','빈야사','sjbQRstRNC8',0);
-
-INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVAYOGA]바시스타아사나 사이드플랭크를 위한 빈야사 요가','바시스타아사나, 사이드플랭크로 도달하는 빈야사 요가 입니다. 이 아사나는 복부강화에 아주 효과적입니다. 특히 옆구리에 아주 많은 힘이 필요합니다. 지금 부터 시작합니다.','요가','빈야사','gTG1MbgxVB0',0);
+--TB_VIDEO_BOARD (필라테스)샘플데이터 
+--스트레칭
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[스트레칭#1]밴드를 이용한 허벅지스트레칭','[스트레칭#1]밴드를 이용한 허벅지스트레칭','필라테스','스트레칭','Vzyty4J9Jw4',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[스트레칭#2]옆구리 군살빼는 홈스트레칭 운동','[스트레칭#2]옆구리 군살빼는 홈스트레칭 운동','필라테스','스트레칭','nGhOjejLBz8',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[스트레칭#3]자기전에하는 척추마사지 홈스트레칭','[스트레칭#3]자기전에하는 척추마사지 홈스트레칭','필라테스','스트레칭','rOG87x5dWOc',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[스트레칭#4]다리붓기 빠지는 홈스트레칭/필라테스 홈트','[스트레칭#4]다리붓기 빠지는 홈스트레칭/필라테스 홈트','필라테스','스트레칭','B4KJnGcSKE4',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'유나쌤의 필라테스 스트레칭#1/허벅지 셀룰라이트 제거/Slim leg workout /On Pilates','유나쌤의 필라테스 스트레칭#1/허벅지 셀룰라이트 제거/Slim leg workout /On Pilates','필라테스','스트레칭','1KRCG758WBg',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'유나쌤의 필라테스 스트레칭#2/가슴 스트레칭으로 거북목탈출하자/Chest stretches/On pilates','유나쌤의 필라테스 스트레칭#2/가슴 스트레칭으로 거북목탈출하자/Chest stretches/On pilates','필라테스','스트레칭','Q-i_NlPsiH8',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'휜다리 오다리 교정운동으로 11자다리 만들기 2탄♡on pilates','휜다리 오다리 교정운동으로 11자다리 만들기 2탄♡on pilates','필라테스','스트레칭','oI_bn4lRpkY',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'오다리교정 2가지운동으로 11자다리 만들기','오다리교정 2가지운동으로 11자다리 만들기','필라테스','스트레칭','bqYJ-7cvvbQ',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'허리디스크 극심한 통증완화/예방 스트레칭♡재활 운동 on pilates','허리디스크 극심한 통증완화/예방 스트레칭♡재활 운동 on pilates','필라테스','스트레칭','DRXagaacz9I',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'필라테스 초급/5분 기초스트레칭 동영상 ♥Enjoy field exercise','필라테스 초급/5분 기초스트레칭 동영상 ♥Enjoy field exercise','필라테스','스트레칭','5iAYCDxEAcE',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'필라테스 스트레칭 야외운동 영상♥ON PILATES YUNA','필라테스 스트레칭 야외운동 영상♥ON PILATES YUNA','필라테스','스트레칭','CKjG-ONRb0Y',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'필라테스 초급/10분 필수스트레칭 ♥on pilates','필라테스 초급/10분 필수스트레칭 ♥on pilates','필라테스','스트레칭','o3t2LqbwUhM',0);
+--복근집중운동
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'콩필라테스 / 홈트레이닝 / 20MIN / 팔뚝살, 뱃살, 등살 빼기 / 타바타 운동','콩필라테스 / 홈트레이닝 / 20MIN / 팔뚝살, 뱃살, 등살 빼기 / 타바타 운동','필라테스','복근집중운동','BEUqI6w5wsc',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'콩필라테스 / 홈트레이닝 / 15 MIN 복근운동 / 뱃살빼기 / 필라테스 / ABS / CORE / PILATES','콩필라테스 / 홈트레이닝 / 15 MIN 복근운동 / 뱃살빼기 / 필라테스 / ABS / CORE / PILATES','필라테스','복근집중운동','aXuRO4KiL-Y',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'콩필라테스 / 홈트레이닝 / 15MIN 복근 운동 / 뱃살빼기 / 초,중급자 복근 운동 / PILATES / ABS','콩필라테스 / 홈트레이닝 / 15MIN 복근 운동 / 뱃살빼기 / 초,중급자 복근 운동 / PILATES / ABS','필라테스','복근집중운동','FZ-01BtD59Q',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'집에서 복근 운동하기 ! 4min abs core-콩필라테스','집에서 복근 운동하기 ! 4min abs core-콩필라테스','필라테스','복근집중운동','A7Uci6FG-9U',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'Private video','Private video','필라테스','복근집중운동','YxefrWKHbrc',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'허벅지 안쪽 살빼기 / 복근운동-콩필라테스','허벅지 안쪽 살빼기 / 복근운동-콩필라테스','필라테스','복근집중운동','_pXPo_IYULA',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'잘록한 개미허리 , 골반 옆라인 만들기-콩필라테스','잘록한 개미허리 , 골반 옆라인 만들기-콩필라테스','필라테스','복근집중운동','-ECgEvHa6-I',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'체지방태우는 2분 전신운동 !-콩필라테스','체지방태우는 2분 전신운동 !-콩필라테스','필라테스','복근집중운동','34FgMnzC1uw',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'전신운동되는 옆구리 살 공략 운동-콩필라테스','전신운동되는 옆구리 살 공략 운동-콩필라테스','필라테스','복근집중운동','_w_TnscztBc',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'3min 복근 쥐어짜기 / pilates abs-콩필라테스','3min 복근 쥐어짜기 / pilates abs-콩필라테스','필라테스','복근집중운동','RHcQz-vAD9U',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'집에서 유산소/ 코어 전신운동-콩필라테스','집에서 유산소/ 코어 전신운동-콩필라테스','필라테스','복근집중운동','YeAJnqKVVMQ',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'자세교정에 좋은 복근운동-콩필라테스','자세교정에 좋은 복근운동-콩필라테스','필라테스','복근집중운동','sdlqB2ACWsc',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'옆구리 살빠지는 운동-콩필라테스','옆구리 살빠지는 운동-콩필라테스','필라테스','복근집중운동','A2qPsmFiTU8',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'옆선이 이뻐야 더 날씬해 보인다!-콩필라테스','옆선이 이뻐야 더 날씬해 보인다!-콩필라테스','필라테스','복근집중운동','762zTJguPtY',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'집에서 누워서 티비볼때 하는 운동#복근편-콩필라테스','집에서 누워서 티비볼때 하는 운동#복근편-콩필라테스','필라테스','복근집중운동','MCrWblh2sMk',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'콩필라테스-하루에 3분만 투자하면 나도 꿀 복근 Get!!','콩필라테스-하루에 3분만 투자하면 나도 꿀 복근 Get!!','필라테스','복근집중운동','ta6FEJWx_fM',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'콩필라테스 X 영바디키 옆구리운동, 뒷구리살 빼기','콩필라테스 X 영바디키 옆구리운동, 뒷구리살 빼기','필라테스','복근집중운동','w5on_amdMxo',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'콩필라테스 X 영바디키 / 11자복근 만들기 ,뱃살빼기 , 홈트레이닝','콩필라테스 X 영바디키 / 11자복근 만들기 ,뱃살빼기 , 홈트레이닝','필라테스','복근집중운동','nW5G4NN_7BA',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'콩필라테스 X 영바디키 / 복근만들기 / 잘록한 허리라인 만들기 / 전신운동','콩필라테스 X 영바디키 / 복근만들기 / 잘록한 허리라인 만들기 / 전신운동','필라테스','복근집중운동','pPm9wKQ5IJE',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'콩필라테스 / 집에서 11자 복근 만들기!','콩필라테스 / 집에서 11자 복근 만들기!','필라테스','복근집중운동','ftp5i_pMC3g',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'콩필라테스 - 옆구리 살빼기 운동','콩필라테스 - 옆구리 살빼기 운동','필라테스','복근집중운동','5Ol7LRsZRjU',0);
+--전신운동
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[한글자막] 17분 마법의 전신 필라테스','[한글자막] 17분 마법의 전신 필라테스','필라테스','전신운동','dIrF5yyTzvI',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'콩필라테스 / 40분 힙업 전신 운동 / 홈트레이닝 / 40MIN WORKOUT / PILATES','콩필라테스 / 40분 힙업 전신 운동 / 홈트레이닝 / 40MIN WORKOUT / PILATES','필라테스','전신운동','l890zFtv0aw',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'콩필라테스 / 홈트레이닝 / 20분 전신운동 / 뱃살 빨리 빼기 / PILATES / FULL BODY WORKOUT','콩필라테스 / 홈트레이닝 / 20분 전신운동 / 뱃살 빨리 빼기 / PILATES / FULL BODY WORKOUT','필라테스','전신운동','-CWCCqjK-KI',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'콩필라테스 / 다이어트 / 홈트레이닝 / 40분 전신운동 / 애플힙 만들기 / 다리라인 만드는 운동 / 셀룰 라이트 없애기','콩필라테스 / 다이어트 / 홈트레이닝 / 40분 전신운동 / 애플힙 만들기 / 다리라인 만드는 운동 / 셀룰 라이트 없애기','필라테스','전신운동','spRhaiLJ0Tg',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[Playing Pilates]매직써클 필라테스 전신운동 15min★Magic Circle Pilates FullBody Workout','[Playing Pilates]매직써클 필라테스 전신운동 15min★Magic Circle Pilates FullBody Workout','필라테스','전신운동','XB4XpY1YK0o',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'콩필라테스 / 홈트레이닝 / 20분 전신운동 / 길쭉길쭉 라인 만들기','콩필라테스 / 홈트레이닝 / 20분 전신운동 / 길쭉길쭉 라인 만들기','필라테스','전신운동','AUA_EwUI_M4',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'콩필라테스 / 전신 운동 / 힙업 운동 / 집에서 유산소 운동 하기 / 뱃살 빼기 / PILATES','콩필라테스 / 전신 운동 / 힙업 운동 / 집에서 유산소 운동 하기 / 뱃살 빼기 / PILATES','필라테스','전신운동','dCEZaRpt70U',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'콩필라테스 / 전신운동 / 셀룰라이트 없애기 / 뱃살빼기 / 다이어트 성공하기 / 홈트레이닝 / PILATES','콩필라테스 / 전신운동 / 셀룰라이트 없애기 / 뱃살빼기 / 다이어트 성공하기 / 홈트레이닝 / PILATES','필라테스','전신운동','jDv8DmJ45jY',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[필라테스] 이 동작하나면 전신운동 끝!!','[필라테스] 이 동작하나면 전신운동 끝!!','필라테스','전신운동','m3qnE5ZmJiY',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'콩필라테스 / 홈트레이닝 / 40MIN 전신운동 / pilates / workout / full body','콩필라테스 / 홈트레이닝 / 40MIN 전신운동 / pilates / workout / full body','필라테스','전신운동','PjqsBsu0ksI',0);
+--하체운동
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'예쁜다리 만들기 운동-콩필라테스','예쁜다리 만들기 운동-콩필라테스','필라테스','하체운동','QBUkIlyGfJo',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'허벅지 안쪽 살빼기 / 허벅지 뒤쪽 탄력주기 / 애플힙-콩필라테스','허벅지 안쪽 살빼기 / 허벅지 뒤쪽 탄력주기 / 애플힙-콩필라테스','필라테스','하체운동','24sxQ8A8J5Y',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'허벅지 안쪽 살빼기 / 복근운동-콩필라테스','허벅지 안쪽 살빼기 / 복근운동-콩필라테스','필라테스','하체운동','_pXPo_IYULA',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'다리라인 예뻐지는 운동-콩필라테스','다리라인 예뻐지는 운동-콩필라테스','필라테스','하체운동','Mmi06vkwRRQ',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'하체 라인 책임 져주는 워킹 런지-콩필라테스','하체 라인 책임 져주는 워킹 런지-콩필라테스','필라테스','하체운동','Z5gqAXQEG9c',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'허벅지안쪽살, 옆구리 살빼기-콩필라테스','허벅지안쪽살, 옆구리 살빼기-콩필라테스','필라테스','하체운동','q5JQSaZgjGo',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'안쪽 허벅지 살빼기-콩필라테스','안쪽 허벅지 살빼기-콩필라테스','필라테스','하체운동','ct5YX5lBzB4',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'하체지방이여 지구를 떠나거라#1편-콩필라테스','하체지방이여 지구를 떠나거라#1편-콩필라테스','필라테스','하체운동','b_dOS_hheLY',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'콩필라테스 / 홈트레이닝 / 전신 운동 / 탄탄 바디 만들기 / 뱃살 빼기 / 힙업 운동 / PILATES used chair','콩필라테스 / 홈트레이닝 / 전신 운동 / 탄탄 바디 만들기 / 뱃살 빼기 / 힙업 운동 / PILATES used chair','필라테스','하체운동','E2BD5ExpCP8',0);
 
 --헬스 네이버 동영상 샘플 데이터 삽입
 -- 가슴 운동

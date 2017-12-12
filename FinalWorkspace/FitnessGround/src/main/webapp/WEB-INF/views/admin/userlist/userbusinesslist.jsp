@@ -6,51 +6,7 @@
 <c:import url="../common/head.jsp" />
 
 <style type="text/css">
-.buttons {
-	display: table-cell;
-	padding: 1em;
-	text-align: center;
-	vertical-align: left;
-	width: 5%;
-	height: 5%;
-}
 
-[class*="btn-"] {
-	position: relative;
-	display: inline-block;
-	width: 10%;
-	color: #fff;
-	font-size: 16px;
-	line-height: 45px;
-	margin-right: 3em;
-	max-width: 100px;
-	text-decoration: none;
-	text-transform: uppercase;
-	vertical-align: middle;
-}
-
-.btn-1,
-.btn-2,
-.btn-3 {
-	color: black;
-	background: white;
-	border: 1px solid gray;
-	box-shadow: 0 2px 0 black, 2px 4px 6px gray;
-	font-weight: bold;
-	letter-spacing: 1px;
-	-webkit-transition: all .15s linear;
-	transition: all .15s linear;
-}
-
-.btn-1:hover,
-.btn-2:hover,
-.btn-3:hover {
-	background: gray;
-	border: 1px solid rgba(0, 0, 0, 0.05);
-	box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-	color: gray;
-	text-shadow: -1px -1px 0 black;
-}
 </style>
 
 <link
@@ -78,6 +34,54 @@
 		location.href="adminbusinessRequestlist.do"
 	}
 	
+	function businessChange(user_no){
+		alert("비활성화 버튼 클릭");
+		
+		$.ajax({
+			
+			url : "adminBusinessState.do",
+			dataType : "json",
+			type : "post",
+			data : {"user_no" : user_no},
+			success : function(result){
+				alert(user_no + "회원이 비활성화 되었습니다.")
+				alert(user_no + "회원이 등록한 헬스장도 비활성화 되었습니다.")
+				location.href="adminbusinesslist.do";
+			},
+			error : function(request, status, error){
+				alert("error code : " +request.status + "\n"
+						+ "message : " +request.responseText + "\n"
+						+ "error : " + errorData);
+				
+			}
+		})
+		
+	}
+	
+	function businessBack(user_no){
+		alert("활성화 버튼 클릭");
+		
+		$.ajax({
+			
+			url : "adminBusinessBack.do",
+			dataType : "json",
+			type : "post",
+			data : {"user_no" : user_no},
+			success : function(result){
+				alert(user_no + "회원이 활성화 되었습니다.")
+				alert("헬스장을 다시 등록해주세요")
+				location.href="adminbusinesslist.do";
+			},
+			error : function(request, status, error){
+				alert("error code : " +request.status + "\n"
+						+ "message : " +request.responseText + "\n"
+						+ "error : " + errorData);
+				
+			}
+		})
+		
+	}
+	
 	
 	
 </script>
@@ -86,9 +90,8 @@
 	<div class="container-fluid">
 		<!-- Breadcrumbs-->
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="adminMain.do">FitnessGround
-					관리자</a></li>
-			<li class="breadcrumb-item active">메인으로이동</li>
+			<li class="breadcrumb-item"><a href="adminMain.do">Fitness Ground</a></li>
+			<li class="breadcrumb-item active">메인으로 이동</li>
 		</ol>
 		<!-- Example DataTables Card-->
 		<div class="card mb-3">
@@ -96,14 +99,14 @@
 
 				<div class="buttons">
 
-					<button class="btn-1" onclick="userlistPage();">일반회원</button>
-					<button class="btn-2" onclick="businesslistPage();">사업자회원</button>
-					<button class="btn-3" onclick="businessRequestlistPage();">등록요청</button>
+					<button class="btn btn-primary" onclick="userlistPage();">일반회원</button>
+					<button class="btn btn-primary" onclick="businesslistPage();">사업자회원</button>
+					<button class="btn btn-primary" onclick="businessRequestlistPage();">등록요청</button>
 
 				
 				</div>
 
-
+			</div>
 				<div class="card-body">
 					<div class="table-responsive">
 						<table class="table table-bordered" id="dataTable" width="100%"
@@ -116,7 +119,7 @@
 									<th>NickName</th>
 									<th>Phone</th>
 									<th>Level</th>
-									<th>관리</th>
+									<th>상태</th>
 								</tr>
 							</thead>
 							<!-- <tfoot>
@@ -139,7 +142,19 @@
 										<td>${item.nickname }</td>
 										<td>${item.phone }</td>
 										<td>${item.user_level }</td>
-										<td><button class="delete_btn" onclick="">삭제</button></td>
+										<c:choose>
+												<c:when test="${item.user_state==0}">
+
+													<td><button type="submit" class="btn btn-primary"
+															onclick="businessChange(${item.user_no});">비활성화</button></td>
+												</c:when>
+												<c:when test="${item.user_state==1}">
+
+													<td><button type="submit" class="btn btn-primary"
+															onclick="businessBack(${item.user_no});">활성화</button></td>
+												</c:when>
+
+											</c:choose>
 									</tr>
 								</c:forEach>
 								</form>
@@ -149,7 +164,7 @@
 				</div>
 				<div class="card-footer small text-muted">Updated yesterday at
 					11:59 PM</div>
-			</div>
+			
 		</div>
 		<!-- /.container-fluid-->
 		<!-- /.content-wrapper-->

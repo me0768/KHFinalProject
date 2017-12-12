@@ -75,6 +75,17 @@ public class AdminDao {
 		return cnt;
 	}
 
+	public void businessStateChange(int user_no) {
+		sqlSession.update("gym.businessChange", user_no);
+		sqlSession.update("user.userChange", user_no);
+		
+	}
+
+	public void businessStateBack(int user_no) {
+		sqlSession.update("user.userBack", user_no);
+		
+	}
+
 
 	
 	

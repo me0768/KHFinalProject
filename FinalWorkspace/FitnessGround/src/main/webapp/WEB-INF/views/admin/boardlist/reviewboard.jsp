@@ -6,50 +6,6 @@
 <c:import url="../common/head.jsp" />
 
 <style type="text/css">
-.buttons {
-	display: table-cell;
-	padding: 1em;
-	text-align: center;
-	vertical-align: left;
-	width: 5%;
-	height: 5%;
-}
-
-[class*="btn-"] {
-	position: relative;
-	display: inline-block;
-	width: 10%;
-	color: #fff;
-	font-size: 16px;
-	line-height: 45px;
-	margin-right: 3em;
-	max-width: 100px;
-	text-decoration: none;
-	text-transform: uppercase;
-	vertical-align: middle;
-}
-
-.btn-1, .btn-2, .btn-3 {
-	color: black;
-	background: white;
-	border: 1px solid gray;
-	box-shadow: 0 2px 0 black, 2px 4px 6px gray;
-	font-weight: bold;
-	letter-spacing: 1px;
-	-webkit-transition: all .15s linear;
-	transition: all .15s linear;
-}
-
-.btn-1:hover, .btn-2:hover, .btn-3:hover {
-	background: gray;
-	border: 1px solid rgba(0, 0, 0, 0.05);
-	box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-	color: gray;
-	text-shadow: -1px -1px 0 black;
-}
-
-
-
 
 </style>
 
@@ -69,6 +25,16 @@
 
 
 <script type="text/javascript">
+
+function adminMettingBoard(){
+	location.href="adminMettingBoard.do"
+}
+function adminQNABoard(){
+	location.href="adminQNABoard.do"
+}
+function adminReviewBoard(){
+	location.href="adminReviewBoard.do"
+}
 
 function reviewDelete(cb_no){
 	alert("버튼 클릭");
@@ -98,9 +64,8 @@ function reviewDelete(cb_no){
 	<div class="container-fluid">
 		<!-- Breadcrumbs-->
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="adminMain.do">FitnessGround
-					관리자</a></li>
-			<li class="breadcrumb-item active">메인으로이동</li>
+			<li class="breadcrumb-item"><a href="adminMain.do">Fitness Ground</a></li>
+			<li class="breadcrumb-item active">메인으로 이동</li>
 		</ol>
 		<!-- Example DataTables Card-->
 		<div class="card mb-3">
@@ -108,13 +73,13 @@ function reviewDelete(cb_no){
 
 				<div class="buttons">
 
-					<a href="adminMettingBoard.do" class="btn-1">Meeting</a>&nbsp; <a
-						href="adminQNABoard.do" class="btn-2">Q&A</a>&nbsp; <a
-						href="adminReviewBoard.do" class="btn-3">Review</a>
+					<button class="btn btn-primary" onclick="adminMettingBoard();">Meeting</button>
+					<button class="btn btn-primary" onclick="adminQNABoard();">Q&A</button>
+					<button class="btn btn-primary" onclick="adminReviewBoard();">Review</button>
 
 
 				</div>
-
+			</div>
 
 				<div class="card-body">
 					<div class="table-responsive">
@@ -138,7 +103,7 @@ function reviewDelete(cb_no){
 										<%-- <td><input type="checkbox" class="deleteCheckBox"
 											name="deleteCheckBox" value="${item.user_no} " /></td> --%>
 										<td>${status.count }</td>
-										<td>${item.user_no }</td>
+										<td>${item.name }</td>
 										<td>
 										<a  href="reviewDetail.do" data-target=".${item.cb_no}"
 											data-toggle="modal">${item.title }</a></td>
@@ -170,7 +135,7 @@ function reviewDelete(cb_no){
 										</div>
 										<td>${item.upload_date }</td>
 										<td>${item.readcount }</td>
-										<td><button class="delete_btn" onclick="reviewDelete(${item.cb_no});">삭제</button></td>
+										<td><button class="btn btn-primary" onclick="reviewDelete(${item.cb_no});">삭제</button></td>
 
 									</tr>
 									</c:if>
@@ -181,7 +146,7 @@ function reviewDelete(cb_no){
 				</div>
 				<div class="card-footer small text-muted">Updated yesterday at
 					11:59 PM</div>
-			</div>
+			
 		</div>
 		<!-- /.container-fluid-->
 		<!-- /.content-wrapper-->

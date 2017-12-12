@@ -12,6 +12,7 @@ public class BusinessRequest {
 	private String email;
 	private String name;
 	private int user_level;
+	private int user_state;
 	
 	public  BusinessRequest(){
 		super();
@@ -20,7 +21,7 @@ public class BusinessRequest {
 	
 	
 	public BusinessRequest(int gym_no, String gym_name, String location, int user_no, int approval_state, String email,
-			String name, int user_level) {
+			String name, int user_level, int user_state) {
 		super();
 		this.gym_no = gym_no;
 		this.gym_name = gym_name;
@@ -30,6 +31,7 @@ public class BusinessRequest {
 		this.email = email;
 		this.name = name;
 		this.user_level = user_level;
+		this.user_state = user_state;
 	}
 
 
@@ -99,13 +101,26 @@ public class BusinessRequest {
 	}
 
 
+	public int getUser_state() {
+		return user_state;
+	}
+
+
+
+	public void setUser_state(int user_state) {
+		this.user_state = user_state;
+	}
+
+
 
 	@Override
 	public String toString() {
 		return "BusinessRequest [gym_no=" + gym_no + ", gym_name=" + gym_name + ", location=" + location + ", user_no="
 				+ user_no + ", approval_state=" + approval_state + ", email=" + email + ", name=" + name
-				+ ", user_level=" + user_level + "]";
+				+ ", user_level=" + user_level + ", user_state=" + user_state + "]";
 	}
+
+
 	
 	
 	

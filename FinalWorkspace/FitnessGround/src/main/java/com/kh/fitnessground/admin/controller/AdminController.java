@@ -46,9 +46,10 @@ public class AdminController {
 
 	// 관리자 메인뷰 이동
 	@RequestMapping(value = "adminMain.do")
-	public ModelAndView adminmain(User user, @RequestParam(value="level", required=false, defaultValue="0") int level) {
-		//리퀘스트 파람 -> 자동으로 값을 받아옴
-		//근데 받아올 데이터가 없으면 required=false -> 꼭필요하지 않다 라는 뜻
+	public ModelAndView adminmain(User user,
+			@RequestParam(value = "level", required = false, defaultValue = "0") int level) {
+		// 리퀘스트 파람 -> 자동으로 값을 받아옴
+		// 근데 받아올 데이터가 없으면 required=false -> 꼭필요하지 않다 라는 뜻
 		// defaultValue="0" -> 기본값설정 / 그러니깐 값이 없을때는 0으로 한다 라는뜻
 		ModelAndView mv = new ModelAndView("admin/adminMain");
 		int count = adminService.RequestCount(level);
@@ -70,6 +71,14 @@ public class AdminController {
 		return "admin/tables";
 	}
 
+	// 관리자 문의함뷰 이동
+	@RequestMapping(value="adminBoard.do")
+	public ModelAndView adminBoard(){
+		ModelAndView mv = new ModelAndView("admin/adminBoard");
+		return mv;
+	}
+	
+	
 	// 관리자 로그아웃
 	@RequestMapping(value = "/adminlogout.do")
 	public String logoutMethod(HttpServletRequest request, HttpServletResponse response) {
@@ -172,24 +181,49 @@ public class AdminController {
 		System.out.println(user_no);
 		ModelAndView mv = new ModelAndView("admin/userlist/userlist");
 		adminService.adminUserStateChange(user_no);
-		
+
 		mv.setViewName("jsonView");
 		return mv;
 	}
-	
+
 	// 관리자가 회원상태 활성화
-		@RequestMapping(value = "adminUserBack.do")
-		public ModelAndView adminUserStateBackMethod(@RequestParam(value = "user_no") int user_no,
-				HttpServletRequest request) {
-			System.out.println("넘어옴?");
-			System.out.println(user_no);
-			ModelAndView mv = new ModelAndView("admin/userlist/userlist");
-			adminService.adminUserStateBack(user_no);
-			
-			mv.setViewName("jsonView");
-			return mv;
-		}
-	
+	@RequestMapping(value = "adminUserBack.do")
+	public ModelAndView adminUserStateBackMethod(@RequestParam(value = "user_no") int user_no,
+			HttpServletRequest request) {
+		System.out.println("넘어옴?");
+		System.out.println(user_no);
+		ModelAndView mv = new ModelAndView("admin/userlist/userlist");
+		adminService.adminUserStateBack(user_no);
+
+		mv.setViewName("jsonView");
+		return mv;
+	}
+
+	// 관리자가 사업자회원상태 비활성화(계정 비활성화 + 등록된 헬스장도 비활성화)
+	@RequestMapping(value = "adminBusinessState.do")
+	public ModelAndView adminBusinessStateChangeMethod(@RequestParam(value = "user_no") int user_no,
+			HttpServletRequest request) {
+		System.out.println("넘어옴?");
+		System.out.println(user_no);
+		ModelAndView mv = new ModelAndView("admin/userlist/userbusinesslist");
+		adminService.adminBusinessStateChange(user_no);
+
+		mv.setViewName("jsonView");
+		return mv;
+	}
+
+	// 관리자가 사업자회원상태 비활성화(계정 비활성화 + 등록된 헬스장도 비활성화)
+	@RequestMapping(value = "adminBusinessBack.do")
+						public ModelAndView adminBusinessStateBackMethod(@RequestParam(value = "user_no") int user_no,
+								HttpServletRequest request) {
+							System.out.println("넘어옴?");
+							System.out.println(user_no);
+							ModelAndView mv = new ModelAndView("admin/userlist/userbusinesslist");
+							adminService.adminBusinessStateBack(user_no);
+							
+							mv.setViewName("jsonView");
+							return mv;
+						}
 
 	// 사용자가 등록요청한 헬스장 관리자에서 승인하기(approval_state 1로 변경)
 	@RequestMapping(value = "gymRequest.do")
@@ -240,17 +274,30 @@ public class AdminController {
 	}
 
 	// ReviewBoard 게시글 삭제
-	@RequestMapping(value="reviewBoardDelete.do")
-				public ModelAndView reviewBoardDeleteMethod(@RequestParam(value="cb_no") int cb_no, HttpServletRequest request){
-					System.out.println("등록 취소 요청넘어옴");
-					System.out.println(cb_no);
-					ModelAndView mv = new ModelAndView("admin/boardlist/reviewboard");
-					adminService.reviewBoardDelete(cb_no);
-					
-					mv.setViewName("jsonView");
-					return mv;
-				}
+	@RequestMapping(value = "reviewBoardDelete.do")
+	public ModelAndView reviewBoardDeleteMethod(@RequestParam(value = "cb_no") int cb_no, HttpServletRequest request) {
+		System.out.println("등록 취소 요청넘어옴");
+		System.out.println(cb_no);
+		ModelAndView mv = new ModelAndView("admin/boardlist/reviewboard");
+		adminService.reviewBoardDelete(cb_no);
 
+		mv.setViewName("jsonView");
+		return mv;
+	}
+
+	/*// 게시글보기 에서 작성자이름 클릭시 작성자 정보 모달띄우기
+		@RequestMapping(value = "userDetail.do")
+		public ModelAndView userDetailMethod(@RequestParam(value = "user_no") int user_no, HttpServletRequest request) {
+			System.out.println("모달실행");
+			System.out.println(user_no);
+			ModelAndView mv = new ModelAndView("#");
+			
+
+			return mv;
+		}*/
+	
+	
+	
 	/*
 	 * 1. 회원 / 사업자 구분 리스트 출력 >> 회원 리스트 user꺼 불러오기 2. 사업자 회원가입후 헬스장 등록 요청(승인전) 출력
 	 * >> 회원 리스트 + TB_GYM 조인 후 '헬스장 등록승인여부' 칼럼 이용 3. 운동법 리스트 출력 >> 준일,미향 꺼 사용

@@ -42,6 +42,12 @@ public interface AdminService {
 	int RequestCount(int level);
 
 
+	void adminBusinessStateChange(int user_no);
+
+
+	void adminBusinessStateBack(int user_no);
+
+
 
 
 }

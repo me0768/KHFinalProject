@@ -26,6 +26,7 @@
 		<id property="email" column="email"/>
 		<id property="name" column="name"/>
 		<id property="user_level" column="user_level"/>
+		<id property="user_state" column="user_state"/>
 		
 	</resultMap>
 
@@ -58,7 +59,7 @@
 	
 	<select id="businessRequest" parameterType="_int" resultMap="resultBusinessRequest" resultType="list">
 		<![CDATA[ 
-		select user_no, email, name, gym_no, gym_name, location, approval_state 
+		select user_no, user_state, email, name, gym_no, gym_name, location, approval_state 
 		 from tb_gym  join (select * from tb_user where user_level=#{level}) using(user_no)
 
 		]]>
@@ -70,7 +71,16 @@
 		]]>
 	</select>
 	
+	<update id="businessChange" parameterType="_int"
+		flushCache="true" statementType="PREPARED" >
+		<![CDATA[
+		update tb_gym 
+		set approval_state = 0
+		where user_no = #{user_no}
+		]]>
+	</update>
 	
+		
 	<update id="gymRequest" parameterType="_int"
 		flushCache="true" statementType="PREPARED" >
 		<![CDATA[

@@ -33,12 +33,13 @@ public class YogaController {
 	private YogaService yogaService;
 
 	public YogaController() {}
+		
 
-		// yoga 메인 list
-		@RequestMapping(value = "/ylist.do")
+		// yoga 메인 list(조회수 top 5)
+		@RequestMapping(value = "/yogaMain.do")
 		public ModelAndView YogaListMethod(HttpServletRequest request) {
 			ModelAndView mv = new ModelAndView("/workout/yogaMain");
-			ArrayList<Yoga> list = yogaService.selectAllList();
+			ArrayList<Yoga> list = yogaService.selectAllYList();
 			for(Yoga y : list) {
 				y.setTitle(y.getTitle().replaceAll("\\\"", "＇"));
 				y.setContent(y.getContent().replaceAll("\\\"", "＇"));// 쌍따옴표jsp출력 문제로 미리 치환
@@ -47,11 +48,11 @@ public class YogaController {
 			mv.addObject("list", list);
 			return mv;
 		}
-		//test
-		@RequestMapping(value = "/yplist.do")
+		//pilates main list(조회수 top 5)
+		@RequestMapping(value = "/pilatesMain.do")
 		public ModelAndView YogaPListMethod(HttpServletRequest request) {
-			ModelAndView mv = new ModelAndView("/workout/yogaCategory");
-			ArrayList<Yoga> list = yogaService.selectAllList();
+			ModelAndView mv = new ModelAndView("/workout/pilatesMain");
+			ArrayList<Yoga> list = yogaService.selectAllPList();
 			System.out.println(list);
 			mv.addObject("list", list);
 			return mv;
@@ -79,7 +80,7 @@ public class YogaController {
 		public ModelAndView YogaAddReadCountMethod(int v_no, HttpServletRequest request) {
 			ModelAndView mv = new ModelAndView("/workout/yogaCategory");
 			yogaService.addReadCount(v_no, request);
-			ArrayList<Yoga> list = yogaService.selectAllList();
+			ArrayList<Yoga> list = yogaService.selectAllYList();
 			mv.addObject("list", list);
 			return mv;
 		}
@@ -130,7 +131,7 @@ public class YogaController {
 		public ModelAndView YogaUpdateMethod(Yoga yoga, HttpServletRequest request) {
 			ModelAndView mv = new ModelAndView("/workout/yogaCategory");
 			yogaService.updateYoga(yoga, request);
-			ArrayList<Yoga> list = yogaService.selectAllList();
+			ArrayList<Yoga> list = yogaService.selectAllYList();
 			mv.addObject("list", list);
 			return mv;
 		}
@@ -140,7 +141,7 @@ public class YogaController {
 		public ModelAndView YogadeleteMethod(Yoga yoga, HttpServletRequest request) {
 			ModelAndView mv = new ModelAndView("/workout/yogaCategory");
 			yogaService.deleteYoga(yoga, request);
-			ArrayList<Yoga> ylist = yogaService.selectAllList();
+			ArrayList<Yoga> ylist = yogaService.selectAllYList();
 			mv.addObject("yogalist", ylist);
 			return mv;
 		}
@@ -150,7 +151,7 @@ public class YogaController {
 		public ModelAndView YogaListDeleteMethod(List<Yoga> dellist, HttpServletRequest request) {
 			ModelAndView mv = new ModelAndView("/workout/yogaCategory");
 			yogaService.deleteYogaList(dellist, request);
-			ArrayList<Yoga> ylist = yogaService.selectAllList();
+			ArrayList<Yoga> ylist = yogaService.selectAllYList();
 			mv.addObject("yogalist", ylist);
 			return mv;
 		}

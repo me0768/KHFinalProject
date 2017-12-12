@@ -16,8 +16,14 @@ public class YogaDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	public ArrayList<Yoga> selectAllList() {
-		List<Yoga> ylist = sqlSession.selectList("yoga.selectAllList");
+	public ArrayList<Yoga> selectAllYList() {
+		List<Yoga> ylist = sqlSession.selectList("yoga.selectAllYList");
+		ArrayList<Yoga> list = new ArrayList<Yoga>(ylist);
+		return list;
+	}
+	
+	public ArrayList<Yoga> selectAllPList() {
+		List<Yoga> ylist = sqlSession.selectList("yoga.selectAllPList");
 		ArrayList<Yoga> list = new ArrayList<Yoga>(ylist);
 		return list;
 	}
@@ -50,6 +56,12 @@ public class YogaDao {
 
 	public void addReadCount(int v_no) {
 		sqlSession.update("yoga.addReadCount", v_no);
+	}
+
+	public ArrayList<Yoga> selectAllList() {
+		List<Yoga> ylist = sqlSession.selectList("yoga.selectAllList");
+		ArrayList<Yoga> list = new ArrayList<Yoga>(ylist);
+		return list;
 	}
 
 }

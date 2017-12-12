@@ -2577,12 +2577,12 @@ output {
   border: 0;
   background-color: transparent;
 }
-.form-control[disabled],
+/* .form-control[disabled],
 .form-control[readonly],
 fieldset[disabled] .form-control {
   background-color: #eeeeee;
   opacity: 1;
-}
+} */
 .form-control[disabled],
 fieldset[disabled] .form-control {
   cursor: not-allowed;

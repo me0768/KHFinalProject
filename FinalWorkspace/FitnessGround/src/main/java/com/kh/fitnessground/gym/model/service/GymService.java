@@ -7,8 +7,8 @@ import com.kh.fitnessground.gym.model.vo.GymReview;
 import com.kh.fitnessground.gym.model.vo.PublicGym;
 
 public interface GymService {
-		//헬스장 등록
-		boolean RegisterGym(Gym gym);
+		//헬스장 이미지 등록
+		void RegisterGymImage(Gym gym);
 		// 헬스장 스케줄 등록
 		void GymScheduleInsert(int gym_no);
 		
@@ -30,5 +30,7 @@ public interface GymService {
 		int getPublicListCount();
 		
 		ArrayList<PublicGym> publicList(int currentPage, int limit);
+		
+		void RegisterGymContent(Gym gym);
 
 }

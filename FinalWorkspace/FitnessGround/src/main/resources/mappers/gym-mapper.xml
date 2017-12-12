@@ -56,6 +56,22 @@
 		<id property="end_time" column="end_time"/>
 	</resultMap>
 	
+	<resultMap id="resultGym" type="Gym">
+		<id property="gym_no" column="gym_no"/>
+		<id property="gym_name" column="gym_name"/>
+		<id property="original_image" column="original_image"/>
+		<id property="rename_image" column="rename_image"/>
+		<id property="op_time" column="op_time"/>
+		<id property="tel" column="tel"/>
+		<id property="phone" column="phone"/>
+		<id property="price" column="price"/>
+		<id property="description" column="description"/>
+		<id property="location" column="location"/>
+		<id property="user_no" column="user_no"/>
+		<id property="delete_date" column="delete_date"/>
+		<id property="approval_state" column="approval_state"/>
+	</resultMap>
+	
 	<select id="businessRequest" parameterType="_int" resultMap="resultBusinessRequest" resultType="list">
 		<![CDATA[ 
 		select user_no, email, name, gym_no, gym_name, location, approval_state 
@@ -145,5 +161,27 @@
 		]]>
 	</select>
 	
+	<insert id="InsertImage" parameterType="Gym" flushCache="true"
+		statementType="PREPARED" useGeneratedKeys="true" >
+		<![CDATA[
+			insert into tb_gym
+			values (gym_seq.nextval, 'name' , #{original_image}, #{rename_image}, 'optime', 'tel', 'phone', 'price', 'category', 'description', 'location', '1', default, default )
+		]]>
+	</insert>
 	
+	<update id="InsertGym" parameterType="Gym" flushCache="true" statementType="PREPARED" >
+		<![CDATA[
+		update tb_gym
+		set gym_name = #{gym_name},
+			op_time = #{op_time},
+			tel = #{tel},
+			phone = #{phone},
+			price = #{price},
+			category = #{category},
+			description = #{description},
+			location = #{location},
+			user_no = #{user_no}
+		where gym_no = (select max(gym_no) from tb_gym)
+		]]>
+	</update>
 </mapper>

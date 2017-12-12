@@ -13,7 +13,7 @@
     font-weight:bold;
     color:purple;
     }
-    h4{
+    h4#community_h4{
     font-size:20pt;
     font-weight:bold;
     }
@@ -24,9 +24,11 @@
 	float:left;
 	padding-left:100pt;
 	font-weight:bold;
+	font-size:9pt;
 	}
 	button#community_detail{
-	font-size:10pt;
+	font-size:1pt;
+	
 	} 
   </style>
 	
@@ -64,19 +66,38 @@ function qnaPage(){
 <h1 id=community_title>커뮤니티</h1>
 <br><br><br>
 <div id="community_div">
-<h4>운동같이해요<button id="community_detail"onclick="meetingPage();">더보기</button></h4>
+<h4 id="community_h4">운동같이해요 &nbsp;&nbsp;<button id="community_detail"onclick="meetingPage();">더보기</button></h4>
+<c:forEach items="${mlist}" var="mb">
+<table>
+
+<tr><td>${mb.name}</td> <td><a href="meetingDetail.do?no=${mb.mb_no}">${mb.title}</a></td><td>${mb.upload_date}</td></tr><hr>
+</table>
+ </c:forEach>
 
 <hr>
 </div>
 <div id="community_div">
-<h4>리뷰<button id="community_detail" onclick="reviewPage();">더보기</button></h4>
+<h4 id="community_h4">리뷰&nbsp;&nbsp;<button id="community_detail" onclick="reviewPage();">더보기</button></h4>
+<c:forEach items="${rlist }" var="rb">
+	
+<table>
+<tr><td>${rb.name}</td> <td><a href="reviewDetail.do?no=${rb.cb_no}">${rb.title}</a></td><td>${rb.upload_date}</td></tr><hr>
+</table>
+  
+ </c:forEach>
 
 <hr>
 </div>
 
 <div id="community_div">
-<h4>Q & A<button id="community_detail" onclick="qnaPage();">더보기</button></h4>
+<h4 id="community_h4">Q & A&nbsp;&nbsp;<button id="community_detail" onclick="qnaPage();">더보기</button></h4>
+<c:forEach items="${qlist }" var="qb">
 
+<table>
+<tr><td>${qb.name}</td> <td><a href="qnaDetail.do?no=${qb.cb_no}">${qb.title}</a></td><td>${qb.upload_date}</td></tr><hr>
+
+</table>
+ </c:forEach>
 <hr>
 </div>
 </div>

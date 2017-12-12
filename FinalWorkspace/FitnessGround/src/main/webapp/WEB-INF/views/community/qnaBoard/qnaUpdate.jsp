@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
 
 <c:import url="../../include/common/head.jsp" />
 
@@ -64,7 +64,6 @@ textarea#editor1 {
 	</div>
 </div>
 
-
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#list").on("click", function(e) { //목록으로
@@ -83,22 +82,21 @@ textarea#editor1 {
 <div id="all_div">
 	<div id="insert_all_div">
 		<br>
-		<form id="editor_form" name='qna' method="post" action="qnaInsert.do">
-			
-				
+		<form id="editor_form" name='qna' method="post" action="qnaUpdate.do">
 			<input name="user_no" type="hidden" value="${sessionScope.user.user_no }" />
+			<input name="cb_no" type="hidden" value="${community.cb_no}"/>
 			<div id="div_head">
 				<p>
 					제목
-					<input name="title" type="text" placeholder="제목을 입력해주세요." />
+					<input name="title" type="text" placeholder="${community.title}" />
 				</p>
 				<p>파일첨부
 				</p>
-				
 			</div>
-			<div>
 
-				<textarea name="content" id="editor1" placeholder="내용을 입력해주세요.."></textarea>
+				<textarea name="content" id="editor1">
+				${community.content}
+				</textarea>
 				<script>
 					CKEDITOR.replace('editor1');
 				</script>

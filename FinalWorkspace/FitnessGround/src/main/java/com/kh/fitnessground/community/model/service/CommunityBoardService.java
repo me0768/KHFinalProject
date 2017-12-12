@@ -1,44 +1,54 @@
 package com.kh.fitnessground.community.model.service;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import com.kh.fitnessground.community.model.vo.CommunityBoard;
 import com.kh.fitnessground.community.model.vo.CommunityComment;
 import com.kh.fitnessground.community.model.vo.MeetingBoard;
-import com.kh.fitnessground.community.model.vo.MeetingCommnet;
+import com.kh.fitnessground.community.model.vo.MeetingComment;
 
 public interface CommunityBoardService {
 
 	//메인화면 보드
 		//운동같이해요 게시판 게시글 5개씩 보여주는 리스트
 			ArrayList<MeetingBoard> meetingView();
-			//리뷰, QnA 게시판 게시글 5개씩 보여주는 리스트
-			ArrayList<CommunityBoard> communityView(String keyword);
+			//리뷰 게시판 게시글 5개씩 보여주는 리스트
+			ArrayList<CommunityBoard> reviewView();
+			//qna게시판 게시글 5개씩 보여주는 리스트
+			ArrayList<CommunityBoard> qnaView();
+			
 		//운동같이해요 게시판
-			//게시글 갯수
-			int getListCount();
+			//게시글 조회수
+			void meetingCount(int no, HttpServletRequest request);
 			//목록
 			ArrayList<MeetingBoard> meetingListView();
 			//등록
 			int meetingInsert(MeetingBoard meetingboard);
 			//삭제
 			int meetingDelete(int no);
-			//수정
-			int meetingUpdate(int no);
+			//수정페이지로 이동
+			MeetingBoard meetingUpdate(int no);
+			//수정하기완료
+			int meetingUpdatePage(MeetingBoard meeting);
 			//디테일
 			MeetingBoard meetingDetail(int no);
 			//찾기
-			ArrayList<MeetingBoard>	meetingSearch(int page, int limit,String findType, String searchKey);
-			
+			List<MeetingBoard>	meetingSearch(String searchOption, String searchKey);
+			//게시글 갯수
+			int countOption(String searchOption, String searchKey);
 		//운동같이해요 게시판 댓글
 			//댓글 불러오기
-			 ArrayList<MeetingCommnet> meetingCommentList(int mbc_no);
+			 List<MeetingComment> meetingCommentList(int mno);
 			//댓글 입력
-			 void insertMeetingComment(int mb_no, int user_no, String content);
+			 void insertMeetingComment(MeetingComment meetingComment);
 			//댓글 삭제
-			 void deleteMeetingComment(int mbc_no, int mb_no, int user_no);
+			 void deleteMeetingComment(int mno);
 			//댓글 수정
-			 void updateMeetingComment(int mb_no, int mbc_no, int user_no, String content);
+			 void updateMeetingComment(MeetingComment meetingComment);
 		//리뷰 게시판
 			//목록
 				ArrayList<CommunityBoard> reviewListView();
@@ -47,7 +57,9 @@ public interface CommunityBoardService {
 				//삭제
 				int reviewDelete(int no);
 				//수정
-				int reviewUpdate(CommunityBoard communityboard);
+				CommunityBoard reviewUpdate(int no);
+				//수정 완료
+				int reviewUpdatePage(CommunityBoard community);
 				//디테일
 				CommunityBoard reviewDetail(int no);
 				//찾기
@@ -64,6 +76,8 @@ public interface CommunityBoardService {
 				 void updateReviewComment(int mb_no, int mbc_no, int user_no, String content);
 			
 		//qna 게시판
+				//게시글 조회수
+					void communityCount(int no, HttpServletRequest request);
 				//목록
 					ArrayList<CommunityBoard> qnaListView();
 					//등록
@@ -71,7 +85,9 @@ public interface CommunityBoardService {
 					//삭제
 					int qnaDelete(int no);
 					//수정
-					int qnaUpdate(CommunityBoard communityboard);
+					CommunityBoard qnaUpdate(int no);
+					//수정 완료
+					int qnaUpdatePage(CommunityBoard community);
 					//디테일
 					CommunityBoard qnaDetail(int no);
 					//찾기
@@ -86,4 +102,6 @@ public interface CommunityBoardService {
 					 void deleteQnAComment(int mbc_no, int mb_no, int user_no);
 					//댓글 수정
 					 void updateQnAComment(int mb_no, int mbc_no, int user_no, String content);
+				
+				
 }

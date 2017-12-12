@@ -141,21 +141,22 @@
 <br>
 <div id="community_search_div" align="left">
 			<div align="left">
-			<form class="form-group" role="form" action="#" method="get" >
-				<select class="btn" name="searchValue" id="findType">
-					<option value="findTitle">제목</option>
-					<option value="findWriter">글쓴이</option>
-					<option value="findCategory">카테고리</option>
+			<form class="form-group" name="form1" role="form" action="meetingSearch.do" method="post" >
+				<select class="btn" name="searchOption" id="findType">
+					<option value="title"<c:out value="${map.searchOption == 'title'?'selected':''}"/> >제목</option>
+<!-- 이름으로 해야함..--><option value="mb_no"<c:out value="${map.searchOption == 'mb_no'?'selected':''}"/> >이름</option>
+					<option value="content"<c:out value="${map.searchOption == 'content'?'selected':''}"/> >내용</option>
 				</select> 
-				<input name ="searchValue" type="search" id="searchKey" placeholder="검색어를 입력해주세요 " class="btn2">
-				<button type="submit" id="searchSubmit" value="검색" class="btn">검색</button><br>
-							
+				<input name ="searchKey"   id="searchKey" value="${map.searchKey}" placeholder="제목으로 검색" class="form-control">
+				<button type="submit" value="검색" class="btn">검색</button><br>
+			
 			</form>
 				
 				<c:if test="${sessionScope.user.name != null }">
 				<a href="meetingInsert.do" class="btn" id="write">글쓰기</a>					
 				</c:if>
-				
+
+	<h1>게시물 갯수:${map.count}개</h1>				
 </div>
 </div>
 <div id="community_table_div">
@@ -177,12 +178,13 @@
       <th>작성일</th>
       <th>조회수</th>
     </tr>
-  </thead>
+  
   <tbody>  	
 	<c:forEach items="${list }" var="cm"> 
     <tr>
       <td>${cm.mb_no}</td>
-      <td><a href="meetingDetail.do?no=${cm.mb_no}" name="title" >${cm.title}</a>
+      <td><a href="meetingDetail.do?no=${cm.mb_no}">${cm.title}</a>
+      
       </td>
       <td>${cm.name}</td>
       <td>${cm.meeting_date}</td>

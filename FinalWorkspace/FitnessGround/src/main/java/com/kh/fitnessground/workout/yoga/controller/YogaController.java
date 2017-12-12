@@ -106,7 +106,8 @@ public class YogaController {
 				String title = (String) job.get("title");
 				String content = (String) job.get("title");// 임시로 이렇게..;
 				String url = (String) job.get("url");
-				Yoga yoga = new Yoga(title, content, "요가", "빈야사", url);
+				String category2 = (String) job.get("category2");
+				Yoga yoga = new Yoga(title, content, "요가", category2, url);
 				System.out.println("yoga" + yoga);
 
 				ylist.add(yoga);

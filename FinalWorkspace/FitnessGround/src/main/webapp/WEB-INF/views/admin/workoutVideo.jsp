@@ -33,9 +33,9 @@
 					<option value="부위별">부위별</option>
 					<option value="초보자">초보자</option>
 				</select>
-				<input type="text" placeholder="playlistId입력" id="playlistid">
+				<input type="text" placeholder="playlist Id입력" id="playlist_id">
 				
-				<button class="btn btn-success" onclick="javascript : insert()">추가</button>
+				<button class="btn btn-success" onclick="insert()">추가</button>
 				</div>
 				
 				
@@ -81,21 +81,20 @@
 		
 		<!-- YoutubeAPI, Ajax 관리자 INSERT  -->
 		<script type="text/javascript">
-		function insert(playlist){
-			var category2 = $("#select-ct").val();
-			var playlist; //관리자가 입력한playlistId//테스트성공하면 admin input태그 넣어 화면만들기
+		function insert(){
+			console.log("insert() works!");
+			var category2 = $("#select-ct").val(); //선택된 카테고리
+			var playlist = $("#playlist_id").val(); //입력된 playlistId
 			var vTitle;
 			var vDesc;
 			var vId;
 			var job = new Object();
 			var jarr = [];
-			/* job.title = "먕"; 
-			job.url = "eraefjdklf";
-			jarr.push(job); */
-			/* var job = new Object();
-			 */
-			var j;
-			function youtubeCall() {
+			
+			APICall().done(ajaxFunction()); ///순서대로 실행되게 만들기 ㅠㅠㅠ 
+			
+			var APICall = function () {
+				var r = $.Deferred();
 				$.get("https://www.googleapis.com/youtube/v3/playlistItems", {
 					part : 'snippet',
 					maxResults : 50,
@@ -119,20 +118,21 @@
 					});
 					console.log(JSON.stringify(jarr));
 				});
+				return r;
 		
 			};
 		
-			function ajaxFunction() {
+			var ajaxFunction = function() {
 				/*Controller로 넘기기 */
 				console.log("ajaxFunction실행");
-				$
-						.ajax({
+				$.ajax({
 							url : "yinsert.do",
 							data : JSON.stringify(jarr),
 							type : "post",
 							contentType : "application/json; charset=utf-8",
 							success : function(result) {
 								console.log("전송성공:");
+								alert("playlist가 추가되었습니다");
 							},
 							error : function(request, status, errorData) {
 								alert("error code : " + request.status + "\n"
@@ -141,6 +141,7 @@
 							}
 						});
 			}
+			
 		}
 		</script>
 		

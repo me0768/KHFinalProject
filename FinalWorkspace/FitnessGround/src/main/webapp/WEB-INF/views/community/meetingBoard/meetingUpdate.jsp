@@ -82,21 +82,23 @@ textarea#editor1 {
 <div id="all_div">
 	<div id="insert_all_div">
 		<br>
-		<form id="editor_form" name='meeting' method="post" action="meetingInsert.do">
+		<form id="editor_form" name='meeting' method="post" action="meetingUpdate.do">
 			<input name="user_no" type="hidden" value="${sessionScope.user.user_no }" />
+			<input name="mb_no" type="hidden" value="${meeting.mb_no}"/>
 			<div id="div_head">
-				<tr>
+				<p>
 					제목
-					<input name="title" type="text" placeholder="제목을 입력해주세요." />
-				</tr>
-				<tr>파일첨부
-				</tr>
-				<tr>모임날짜<input name="meeting_date" type="date" />
-				</tr>
+					<input name="title" type="text" placeholder="${meeting.title}" />
+				</p>
+				<p>파일첨부
+				</p>
+				<p>모임날짜<input name="meeting_date" type="date" value="${meeting.meeting_date}"/>
+				 </p>
 			</div>
-			<div>
 
-				<textarea name="content" id="editor1" placeholder="내용을 입력해주세요.."></textarea>
+				<textarea name="content" id="editor1">
+				${meeting.content}
+				</textarea>
 				<script>
 					CKEDITOR.replace('editor1');
 				</script>

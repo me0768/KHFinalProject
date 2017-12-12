@@ -26,6 +26,14 @@
       <result property="readcount" column="READCOUNT" />
    </resultMap>   
    
+   <resultMap id="MeetingCommentResult" type="MeetingComment">
+      <id property="mbc_no" column="MBC_NO" />
+      <result property="mb_no" column="MB_NO" />
+      <result property="content" column="CONTENT" />
+      <result property="user_no" column="USER_NO" />
+      <result property="reply_date" column="REPLY_DATE" />
+   </resultMap>
+   
    <resultMap id="MyPageCommunity" type="ComAndMeet">
       <result property="board_no" column="CB_NO" />
       <result property="category_no" column="BOARD_PROPERTY" />
@@ -42,8 +50,24 @@
 	
 	
 	<!-- 전체리스트 -->
+	<select id="meetingView" resultType="list" resultMap="MeetingResult">
+		<![CDATA[select * from (select mb_no,name, title, upload_date from tb_meeting_board a join tb_user b on (a.user_no = b.user_no)where 5 >= rownum order by mb_no desc)]]>
+	</select>
+	
+	<select id="reviewView" resultType="list" resultMap="CommunityResult">
+		<![CDATA[select * from (select cb_no, name, title, upload_date from tb_com_board a join tb_user b on (a.user_no = b.user_no)where 5 >= rownum and board_property =0 order by cb_no desc)]]>
+	</select>
+	
+	<select id="qnaView" resultType="list" resultMap="CommunityResult">
+		<![CDATA[select * from (select cb_no,name, title, upload_date from tb_com_board a join tb_user b on (a.user_no = b.user_no)where 5 >= rownum and board_property =1 order by cb_no desc)]]>
+	</select>
+	
 	
 		<!-- ======================================운동같이해요====================================================== -->
+	<!-- 조회수 증가 -->
+	<update id="meetingCount" parameterType="Meeting">
+	<![CDATA[update tb_meeting_board set readcount = readcount +1 where mb_no =#{mb_no}]]>
+	</update>
 	
 	<!-- 운동같이해요전체리스트select -->
 	<select id="meetingListView" resultType="list" resultMap="MeetingResult">
@@ -66,11 +90,29 @@
 		<![CDATA[delete from tb_meeting_board where mb_no=#{mb_no}]]>
 	</delete>
 	
+	<!-- 운동같이해요 수정하기 페이지로 -->
+	<select id="updateMeeting" parameterType="Meeting" resultMap="MeetingResult">
+		<![CDATA[select * from tb_meeting_board where mb_no=#{mb_no}]]>
+	</select> 
 	<!-- 운동같이해요 수정 -->
-	<!-- <update id="updateMeeting" parameterType="MeetingResult">
-		<![CDATA[update tb_meeting_board set content = #{content} where mb_no=#{mb_no}]]>
-	</update> -->
+	<update id="updateMeetingPage" parameterType="Meeting" >
+	<![CDATA[update tb_meeting_board set content = #{content} where mb_no=#{mb_no}]]>
+	</update> 
+	
+	<!--  운동같이해요 검색기능 -->
+	 <select id="searchList" parameterType="Meeting" resultMap="MeetingResult">
+		<![CDATA[select * from (select mb_no, name, title, meeting_date, upload_date, readcount from tb_meeting_board a
+				join tb_user b on(a.user_no = b.user_no) where ${searchOption} like '%'||#{searchKey}||'%' order by mb_no desc)]]>
+	</select>
 
+
+	<!--  게시글 갯수 -->
+	<select id="countOption" resultType="_int">
+		<![CDATA[select count(*) from tb_meeting_board where ${searchOption} like '%'||#{searchKey}||'%']]>
+	</select>
+	
+	
+	
 	<!-- ======================================qna게시판====================================================== -->
 	<!--  qna 게시판 메인 -->
 	<select id="qnaListView" resultType="list" resultMap="CommunityResult">
@@ -89,6 +131,19 @@
 	<delete id="deleteQnA">
 		<![CDATA[delete from tb_com_board where cb_no=#{cb_no}]]>
 	 </delete> 
+	 <!-- qna 게시판 수정하기 페이지로 -->
+	<select id="updateQnA" parameterType="Community" resultMap="CommunityResult">
+		<![CDATA[select * from tb_com_board where cb_no=#{cb_no}]]>
+	</select>  
+	<!-- qna 수정 -->
+	<update id="updateQnAPage" parameterType="Community" >
+	<![CDATA[update tb_com_board set content = #{content} where cb_no=#{cb_no}]]>
+	</update> 
+	
+	<!-- 조회수 증가 -->
+	<update id="communityCount" parameterType="Community">
+	<![CDATA[update tb_com_board set readcount = readcount +1 where cb_no =#{cb_no}]]>
+	</update>
 	
 	<!-- ======================================리뷰 게시판====================================================== -->
 	<!-- 리뷰게시판 메인 -->
@@ -111,7 +166,28 @@
 	<delete id="deleteReview">
 		<![CDATA[delete from tb_com_board where cb_no=#{cb_no}]]>
 	</delete>
-	
+	<!-- 리뷰 게시판 수정하기 페이지로 -->
+	<select id="updateReview" parameterType="Community" resultMap="CommunityResult">
+		<![CDATA[select * from tb_com_board where cb_no=#{cb_no}]]>
+	</select>  
+	<!-- 리뷰 게시판 수정 -->
+	<update id="updateReviewPage" parameterType="Community" >
+	<![CDATA[update tb_com_board set content = #{content} where cb_no=#{cb_no}]]>
+	</update> 
+	 
+	 <!-- ========================================운동같이해요 댓글 ============================================= -->
+	 <!-- 댓글 입력 -->
+	 <insert id="insertMeetingComment">
+	 	<![CDATA[insert into tb_mb_comment (mbc_no, mb_no, content, user_no, reply_date)
+        VALUES (mbc_seq.NEXTVAL, #{mb_no}, #{content}, #{user_no}, default)]]>
+	 </insert> 
+	    
+    <!-- 댓글 목록 -->
+    <select id="meetingCommentList" resultType="MeetingComment">
+        <![CDATA[SELECT a.*, b.name from tb_mb_comment a join tb_user b on(a.user_no = b.user_no)
+		where a.user_no = b.user_no and mb_no = 1 order by mbc_no]]>
+    </select>
+	 
 	
 	
 	

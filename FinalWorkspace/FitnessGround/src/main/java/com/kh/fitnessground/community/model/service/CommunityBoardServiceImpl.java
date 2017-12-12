@@ -1,6 +1,9 @@
 package com.kh.fitnessground.community.model.service;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,7 +12,7 @@ import com.kh.fitnessground.community.model.dao.CommunityBoardDao;
 import com.kh.fitnessground.community.model.vo.CommunityBoard;
 import com.kh.fitnessground.community.model.vo.CommunityComment;
 import com.kh.fitnessground.community.model.vo.MeetingBoard;
-import com.kh.fitnessground.community.model.vo.MeetingCommnet;
+import com.kh.fitnessground.community.model.vo.MeetingComment;
 
 
 @Service("CommunityBoardService")
@@ -26,19 +29,25 @@ public class CommunityBoardServiceImpl implements CommunityBoardService {
 	}
 
 	@Override
-	public ArrayList<CommunityBoard> communityView(String keyword) {
+	public ArrayList<CommunityBoard> reviewView() {
 		// TODO Auto-generated method stub
-		return communityBoardDao.communityView(keyword);
+		return communityBoardDao.reviewView();
 	}
-
+	@Override
+	public ArrayList<CommunityBoard> qnaView() {
+		// TODO Auto-generated method stub
+		return communityBoardDao.qnaView();
+	}
+	
 	
 	//운동같이해요 게시판----------------------------------------------------------------------------------------------------
-	
+		
 	@Override
-	public int getListCount() {
-		// TODO Auto-generated method stub
-		return communityBoardDao.listCount();
-	}
+	    public void meetingCount(int no, HttpServletRequest request) {
+	       	communityBoardDao.meetingCount(no);
+	 }      
+	         
+	
 
 	@Override
 	public ArrayList<MeetingBoard> meetingListView() {
@@ -59,10 +68,14 @@ public class CommunityBoardServiceImpl implements CommunityBoardService {
 	}
 
 	@Override
-	public int meetingUpdate(int no) {
-		// TODO Auto-generated method stub
+	public MeetingBoard meetingUpdate(int no) {
 		return communityBoardDao.meetingUpdate(no);
 	}
+	@Override
+	public int meetingUpdatePage(MeetingBoard meeting){
+		return communityBoardDao.meetingUpdatePage(meeting);
+	}
+
 
 	@Override
 	public MeetingBoard meetingDetail(int no) {
@@ -71,35 +84,41 @@ public class CommunityBoardServiceImpl implements CommunityBoardService {
 	}
 
 	@Override
-	public ArrayList<MeetingBoard> meetingSearch(int page, int limit, String findType, String searchKey) {
-		// TODO Auto-generated method stub
-		return communityBoardDao.meetingSearch(page,limit,findType,searchKey);
+	public List<MeetingBoard>	meetingSearch(String searchOption, String searchKey) {
+		return communityBoardDao.meetingSearch(searchOption, searchKey);
 	}
-	//운동같이해요 게시판 댓글
-
+	
 	@Override
-	public ArrayList<MeetingCommnet> meetingCommentList(int mbc_no) {
-		// TODO Auto-generated method stub
-		return communityBoardDao.meetingCommentList(mbc_no);
+	public int countOption(String searchOption, String searchKey){
+		return communityBoardDao.countOption(searchOption, searchKey);
 	}
+	
+	//운동같이해요 게시판 댓글 ------------------------------------------------------------------------
 
-	@Override
-	public void insertMeetingComment(int mb_no, int user_no, String content) {
-		// TODO Auto-generated method stub
-		communityBoardDao.insertMeetingComment(mb_no, user_no, content);
-	}
+	 // 댓글 목록
+    @Override
+    public List<MeetingComment> meetingCommentList(int mno) {
+        return communityBoardDao.meetingCommentList(mno);
+    }
+    // 댓글 작성
+    @Override
+    public void insertMeetingComment(MeetingComment meetingComment) {
+        communityBoardDao.insertMeetingComment(meetingComment);
+    }
+    // 댓글 수정
+    @Override
+    public void updateMeetingComment(MeetingComment meetingComment) {
+        // TODO Auto-generated method stub
+ 
+    }
+    // 댓글 삭제
+    @Override
+    public void deleteMeetingComment(int mno) {
+        // TODO Auto-generated method stub
+ 
+    }
+ 
 
-	@Override
-	public void deleteMeetingComment(int mbc_no, int mb_no, int user_no) {
-		// TODO Auto-generated method stub
-		communityBoardDao.deleteMeetingComment(mbc_no, mb_no, user_no);
-	}
-
-	@Override
-	public void updateMeetingComment(int mb_no, int mbc_no, int user_no, String content) {
-		// TODO Auto-generated method stub
-		communityBoardDao.updateMeetingComment(mb_no, mbc_no, user_no, content);
-	}
 
 	//리뷰 게시판---------------------------------------------------------------------------------------------------------------
 	@Override
@@ -120,11 +139,14 @@ public class CommunityBoardServiceImpl implements CommunityBoardService {
 	}
 
 	@Override
-	public int reviewUpdate(CommunityBoard communityboard) {
-		// TODO Auto-generated method stub
-		return communityBoardDao.reviewUpdate(communityboard);
+	public CommunityBoard reviewUpdate(int no) {
+		return communityBoardDao.reviewUpdate(no);
 	}
-
+	@Override
+	public int reviewUpdatePage(CommunityBoard community){
+		return communityBoardDao.reviewUpdatePage(community);
+	}
+	
 	@Override
 	public CommunityBoard reviewDetail(int no) {
 		// TODO Auto-generated method stub
@@ -164,6 +186,10 @@ public class CommunityBoardServiceImpl implements CommunityBoardService {
 	}
 	//qna 게시판---------------------------------------------------------------------------------------------------------
 	@Override
+	public void communityCount(int no, HttpServletRequest request){
+		 communityBoardDao.communityCount(no);
+	}
+	@Override
 	public ArrayList<CommunityBoard> qnaListView() {
 		return communityBoardDao.qnaListView();
 	}
@@ -181,11 +207,14 @@ public class CommunityBoardServiceImpl implements CommunityBoardService {
 	}
 
 	@Override
-	public int qnaUpdate(CommunityBoard communityboard) {
+	public CommunityBoard qnaUpdate(int no) {
 		// TODO Auto-generated method stub
-		return communityBoardDao.qnaUpdate(communityboard);
+		return communityBoardDao.qnaUpdate(no);
 	}
-
+	@Override
+	public int qnaUpdatePage(CommunityBoard community){
+		return communityBoardDao.qnaUpdatePage(community);
+	}
 	@Override
 	public CommunityBoard qnaDetail(int no) {
 		// TODO Auto-generated method stub

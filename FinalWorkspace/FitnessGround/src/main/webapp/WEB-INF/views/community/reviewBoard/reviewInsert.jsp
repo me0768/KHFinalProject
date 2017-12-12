@@ -86,12 +86,11 @@ textarea#editor1 {
 		<form id="editor_form" name='review' method="post" action="reviewInsert.do">
 			<input name="user_no" type="hidden" value="${sessionScope.user.user_no }" />
 			<div id="div_head">
-				<tr>
+				<p>
 					제목
 					<input name="title" type="text" placeholder="제목을 입력해주세요." />
-				</tr>
-				<tr>파일첨부
-				</tr>
+				</p>
+				<p>파일첨부</p>
 				
 			</div>
 			<div>

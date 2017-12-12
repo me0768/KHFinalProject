@@ -162,7 +162,7 @@
 </div>
 <div id="community_table_div">
 <table id="community_table">
-  <thead>
+
   		<colgroup>
 			<col width="10%"/>
 			<col width="*%"/>
@@ -177,14 +177,14 @@
       <th scope="col">작성일</th>
       <th scope="col">조회수</th>
     </tr>
-  </thead>
+ 
   <tbody>
  
 	<c:forEach items="${list }" var="cm"> 
 		<c:if test="${cm.board_property == 1}">
     <tr>
       <td>${cm.cb_no}</td>
-      <td><a href="qnaDetail.do?no=${cm.cb_no}" name="title" >${cm.title}</a>
+      <td><a href="qnaDetail.do?no=${cm.cb_no}">${cm.title}</a>
       </td>
       <td>${cm.name}</td>
       <td>${cm.upload_date}</td>

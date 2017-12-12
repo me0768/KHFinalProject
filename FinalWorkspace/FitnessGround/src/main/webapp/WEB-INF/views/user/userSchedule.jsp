@@ -36,10 +36,46 @@
 	<div id="myPageBar">
 		<c:import url="../include/user/myPageBar.jsp"/>
 	</div>
-	
+
+	<c:choose>
+		<c:when test="${!empty list}">
+			<c:forEach items="${list}" var="us" varStatus="st">
+					<input type="hidden" name="usNo" value="${us.v_no}">
+					<c:if test="${null ne us.content}">
+						<input type="hidden" name="usTitle" value="${us.content}">
+					</c:if>
+					<c:if test="${null eq us.content}">
+						<input type="hidden" name="usTitle" value="${us.title}">
+					</c:if>
+					<input type="hidden" name="usDate" value="${us.upload_date}">
+			</c:forEach>
+		</c:when>
+		<c:otherwise>
+		</c:otherwise>
+	</c:choose>
+
 	<div id="calendar" class="col-md-offset-2 col-md-8"></div>
 	
 	
+    <script type="text/javascript">
+    	$(function (){
+    		setCalendar();
+    		
+    		var list = new Array();
+    		var event = new Object();
+    		var date = $("input[name=usDate]");
+    		var title = $("input[name=usTitle]");
+    		
+    		for(var idx=0; idx<date.length; idx++) {
+                event.title = title[idx].value;
+                event.start = date[idx].value;
+                event.end = date[idx].value;
+                list.push(event);
+                $('#calendar').fullCalendar('addEventSource',list);
+                list.pop();
+    		}
+    	});	
+    </script>
 	</c:if>	
 	
     <c:import url="../include/main/footer.jsp" />

@@ -4,7 +4,6 @@ import java.io.File;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 
@@ -180,7 +179,6 @@ public class UserController {
 	public ModelAndView myPageMethod(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("user/myPage");
 		int userNo = Integer.parseInt(request.getParameter("userno"));
-		User user = userService.selectUser(userNo);
 		mv.addObject("yesterday", userService.yesterdaySchedule(userNo));
 		mv.addObject("today", userService.todaySchedule(userNo));
 		/*System.out.println(userService.yesterdaySchedule(userNo));
@@ -432,8 +430,8 @@ public class UserController {
 	@RequestMapping(value="/uschedule.do")
 	public ModelAndView userScheduleMethod(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("user/userSchedule");
-		int userNo = Integer.parseInt(request.getParameter("userno"));
-		//mv.addObject("userSchedule", userService.userAllSchedule(userNo));
+		/*System.out.println(userService.userAllSchedule(Integer.parseInt(request.getParameter("userno"))));*/
+		mv.addObject("list", userService.userAllSchedule(Integer.parseInt(request.getParameter("userno"))));
 		return mv; 
 	}
 }

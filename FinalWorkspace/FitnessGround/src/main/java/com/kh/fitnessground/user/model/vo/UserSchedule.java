@@ -9,21 +9,47 @@ public class UserSchedule implements Serializable {
 	private int s_no;
 	private int v_no;
 	private int user_no;
+	private String title;
+	private String url;
 	private String content;
+	private String title_content;
 	private Date upload_date;
 	
 	public UserSchedule() {
 		super();
-	}
-	public UserSchedule(int s_no, int v_no, int user_no, String content, Date upload_date) {
+	}	
+	public UserSchedule(int s_no, int v_no, int user_no, String title, String url, String content, String title_content,
+			Date upload_date) {
 		super();
 		this.s_no = s_no;
 		this.v_no = v_no;
 		this.user_no = user_no;
+		this.title = title;
+		this.url = url;
 		this.content = content;
+		this.title_content = title_content;
 		this.upload_date = upload_date;
 	}
+
 	
+	public String getTitle_content() {
+		return title_content;
+	}
+	public void setTitle_content(String title_content) {
+		this.title_content = title_content;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
 	public int getS_no() {
 		return s_no;
 	}
@@ -57,6 +83,6 @@ public class UserSchedule implements Serializable {
 	
 	@Override
 	public String toString() {
-		return this.s_no+", "+this.v_no+", "+this.user_no+", "+this.content+", "+this.upload_date;
+		return "s_no="+this.s_no+", v_no="+this.v_no+", user_no"+this.user_no+", content="+this.content+", date="+this.upload_date+", title="+this.title+", title_content="+this.title_content+", url="+this.url;
 	}
 }

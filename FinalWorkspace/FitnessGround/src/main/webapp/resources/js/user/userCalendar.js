@@ -1,7 +1,5 @@
-$(document).ready(function() {
-	var list = new Array();
-	
-	var $calendar = $("#calendar").fullCalendar({
+function setCalendar() {
+	var $calendar = $('#calendar').fullCalendar({
 		locale: "ko",
 		height: "auto",
 		selectable: true,
@@ -18,4 +16,4 @@ $(document).ready(function() {
 			$calendar.fullCalendar("unselect");
 		}
 	});
-});
+}

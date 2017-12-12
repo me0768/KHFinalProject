@@ -3,7 +3,26 @@
 
 	<c:import url="../include/common/head.jsp" />	
 	<link rel="stylesheet" href="/fitnessground/resources/css/user/mypage.css" />	
-    <c:import url="../include/common/headend.jsp" />
+    <%-- <c:import url="../include/common/headend.jsp" /> --%>
+    <!-- headend 대신 넣는 코드(removed jquery.min.js)  -->
+   <!-- css 파일 로드-->
+    <link rel="stylesheet" href="/fitnessground/resources/css/bootstrap.css">
+   <link rel="stylesheet" href="/fitnessground/resources/css/common/compiled_main.css" />
+   <link rel="stylesheet" href="/fitnessground/resources/css/common/main.css" />
+   <link rel="stylesheet" href="/fitnessground/resources/css/common/login.css" />
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+   </head>
+   <body class="homepage">   
+   <!-- java script 파일 로드 -->
+   <script type="text/javascript" src="/fitnessground/resources/js/jquery-3.2.1.js"></script>
+   <script type="text/javascript" src="/fitnessground/resources/js/bootstrap.js"></script>
+   <script type="text/javascript" src="/fitnessground/resources/js/common/jquery.scrolly.min.js"></script>
+   <script type="text/javascript" src="/fitnessground/resources/js/common/jquery.dropotron.min.js"></script>
+   <script type="text/javascript" src="/fitnessground/resources/js/common/jquery.onvisible.min.js"></script>
+   <script type="text/javascript" src="/fitnessground/resources/js/common/skel.min.js"></script>
+   <script type="text/javascript" src="/fitnessground/resources/js/common/util.js"></script>
+   <script type="text/javascript" src="/fitnessground/resources/js/common/main.js"></script>
+   <script type="text/javascript" src="/fitnessground/resources/js/workout/workout.js"></script>
     
     <c:if test="${ sessionScope.user == null }">
 		<script type="text/javascript">
@@ -67,6 +86,7 @@
 		</div>
 	</div>
 	
+	<c:import url="../workout/detailView.jsp" />
 	<div class="mypage_schedule col-md-4 col-sm-12 col-md-offset-1">
 		<div id="yesterdaySchedule">
 			<table>
@@ -78,11 +98,14 @@
 				<c:choose>
 					<c:when test="${!empty yesterday}">
 						<c:forEach items="${yesterday}" var="s" varStatus="st">
-							<c:url var="detail" value="">
-								<c:param name="sno" value="${s.s_no}"/>
-							</c:url>
 							<tr>
-								<td colspan="2"><a href="${detail}">${s.content}</a></td>
+								<td colspan="2">
+									<c:if test="${null eq s.content}">
+									<a href="#workout-modal" data-toggle="modal" data-title="${s.title}" data-url="${s.url}" 
+									   data-content="${s.content}" data-target="#detailView">${s.title}</a>
+									</c:if>
+									<c:if test="${null ne s.content}">${s.content}</c:if>
+								</td>
 							</tr>
 						</c:forEach>
 					</c:when>
@@ -93,6 +116,21 @@
 				</tbody>
 			</table>
 		</div>
+		<script type="text/javascript">
+		//modal 띄우기(title,url, content 값을 모달로)
+		$('#detailView').on('show.bs.modal', function (event) {
+		     var tag = $(event.relatedTarget); // sth that triggered the modal
+		     var title = tag.data('title'); // Extract info from data-* attributes
+		     var vid = tag.data('url');
+		     var content = tag.data('content');
+		     
+		     var modal = $(this);
+		     modal.find('.modal-title').text(title);
+		     modal.find('.modal-play').html("<iframe id='video-play' src='https://www.youtube.com/embed/"+vid+"' frameborder='0'"+
+		            "gesture='media' allow='encrypted-media' allowfullscreen></iframe>");
+		     modal.find('#span-content').text(content);
+		   })
+		</script>
 		<div id="todaySchedule">
 			<table>
 				<thead><tr align="center">
@@ -107,7 +145,13 @@
 								<c:param name="sno" value="${s.s_no}"/>
 							</c:url>
 							<tr>
-								<td colspan="2"><a href="${detail}">${s.content}</a></td>
+								<td colspan="2">
+									<c:if test="${null eq s.content}">
+									<a href="#workout-modal" data-toggle="modal" data-title="${s.title}" data-url="${s.url}" 
+									   data-content="${s.content}" data-target="#detailView">${s.title}</a>
+									</c:if>
+									<c:if test="${null ne s.content}">${s.content}</c:if>
+								</td>
 							</tr>
 						</c:forEach>
 					</c:when>

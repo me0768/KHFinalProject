@@ -38,7 +38,10 @@
 		<result property="v_no" column="v_no" />
 		<result property="user_no" column="user_no" />
 		<result property="content" column="content" />
+		<result property="title_content" column="content_1" />
 		<result property="upload_date" column="upload_date" />
+		<result property="url" column="url" />
+		<result property="title" column="title" />
 	</resultMap>
 
 	<select id="selectUser" parameterType="String" resultType="User"
@@ -162,19 +165,19 @@
 	
 	<select id="userAllSchedule" parameterType="_int" resultMap="resultUserSchedule" resultType="list">
       <![CDATA[ 
-      select * from tb_mypage_schedule where user_no=#{userNo}
+      select * from tb_mypage_schedule left join tb_video_board using (v_no) where user_no=#{userNo}
       ]]>
    </select>
 	
 	
 	<select id="yesterdaySchedule" parameterType="_int" resultMap="resultUserSchedule" resultType="list">
 		<![CDATA[ 
-		select * from tb_mypage_schedule where user_no=#{userNo} and to_char(UPLOAD_DATE,'rr/MM/dd')=to_char(sysdate-1, 'rr/MM/dd')
+		select * from tb_mypage_schedule left join tb_video_board using (v_no) where user_no=#{userNo} and to_char(UPLOAD_DATE,'rr/MM/dd')=to_char(sysdate-1, 'rr/MM/dd')
 		]]>
 	</select>
 	<select id="todaySchedule" parameterType="_int" resultMap="resultUserSchedule" resultType="list">
 		<![CDATA[ 
-		select * from tb_mypage_schedule where user_no=#{userNo} and to_char(UPLOAD_DATE,'rr/MM/dd')=to_char(sysdate, 'rr/MM/dd')
+		select * from tb_mypage_schedule left join tb_video_board using (v_no) where user_no=#{userNo} and to_char(UPLOAD_DATE,'rr/MM/dd')=to_char(sysdate, 'rr/MM/dd')
 		]]>
 	</select>
 	

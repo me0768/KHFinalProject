@@ -171,15 +171,28 @@
 					<c:choose>
 						<c:when test="${!empty clist}">
 							<c:forEach items="${clist}" var="c" varStatus="st">
-								<c:url var="detail" value="">
-									<c:param name="board_no" value="${c.board_no}"/>
-									<c:param name="category_no" value="${c.category_no}"/>
+								<c:url var="meetDetail" value="meetingDetail.do">
+									<c:param name="no" value="${c.board_no}"/>
+								</c:url>
+								<c:url var="qnaDetail" value="qnaDetail.do">
+									<c:param name="no" value="${c.board_no}"/>
+								</c:url>
+								<c:url var="reviewDetail" value="reviewDetail.do">
+									<c:param name="no" value="${c.board_no}"/>
 								</c:url>
 								<tr>
-								  <c:if test="${c.category_no eq 0}"><td>후기</td></c:if>
-								  <c:if test="${c.category_no eq 1}"><td>QnA</td></c:if>
-								  <c:if test="${c.category_no eq 2}"><td>운동같이</td></c:if>
-								  <td style="text-align:left; padding-left:100px;"><a href="${detail}">${c.title}</a></td>
+								  <c:if test="${c.category_no eq 0}">
+								  	<td>후기</td>
+								  	<td style="text-align:left; padding-left:100px;"><a href="${reviewDetail}">${c.title}</a></td>
+								  </c:if>
+								  <c:if test="${c.category_no eq 1}">
+								  	<td>QnA</td>
+								  	<td style="text-align:left; padding-left:100px;"><a href="${qnaDetail}">${c.title}</a></td>
+								  </c:if>
+								  <c:if test="${c.category_no eq 2}">
+								  	<td>운동같이</td>
+								  	<td style="text-align:left; padding-left:100px;"><a href="${meetDetail}">${c.title}</a></td>
+								  </c:if>
 								  <td>${c.upload_date}</td>
 								</tr>
 							</c:forEach>

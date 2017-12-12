@@ -30,8 +30,12 @@
 		<mapper resource="mappers/gym-mapper.xml"/> 
 		<mapper resource="mappers/comment-mapper.xml"/>
 	</mappers>
-</configuration>
+	
+	
+</configuration><!--comment-->
 
+
+	
 
 
 

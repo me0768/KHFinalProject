@@ -14,18 +14,19 @@
 	
 	<select id="selectCommentList" parameterType="_int" resultType="list" resultMap="resultComment">
 		<![CDATA[
-			select vb_no,v_no,user_no,content,to_char(to_date(reply_date),'yyyy/mm/dd')
-			from tb_vb_comment 
-			where v_no=#{v_no}		
+			select vb_no,v_no,user_no,content,to_char(reply_date,'yyyy/MM/dd hh24:mi:ss'),nickname,name
+			from tb_user join tb_vb_comment using(user_no)
+			where v_no=#{v_no} order by vb_no desc
 		]]>
 	</select>
 	
-	
-	<select id="selectCommentCount" parameterType="_int" resultType="_int" resultMap="resultComment">
+		
+	<insert id="insertComment" parameterType="Comment" flushCache="true" statementType="PREPARED" useGeneratedKeys="true">
 		<![CDATA[
-			select count(*) from tb_vb_comment where v_no=#{v_no}	
+			insert into tb_vb_comment values (VBC_SEQ.nextval,#{v_no},#{user_no},#{content},default)
+			
 		]]>
-	</select>
+	</insert>
 	
 
 </mapper>

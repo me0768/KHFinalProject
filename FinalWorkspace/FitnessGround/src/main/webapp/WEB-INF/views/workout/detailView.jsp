@@ -4,8 +4,8 @@
 
 <!-- Modal -->
   <div class="modal fade" id="detailView" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
+    <div class="modal-dialog modal-lg" id="workout-dialog">
+      <div class="modal-content" id="workout-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           </button>
@@ -23,22 +23,21 @@
 					
 				
 					<c:if test="${sessionScope.user==null }">
-						<div id="video-reply" style="color:black;">
+						<div id="nvideo-reply" style="color:black;">
 							<input type="text" id="reply-input" placeholder="댓글을 입력하세요">
 							<button type="submit" id="reply-btn" onclick="loginMessage();">댓글달기</button>
 						</div>
 					</c:if>
 					
 					<c:if test="${sessionScope.user !=null }">
-						<div id="video-reply" style="color:black;">
-							<input type="text" id="reply-input" placeholder="댓글을 입력하세요">
-							<button type="submit" id="reply-btn" onclick="insertComment();">댓글달기</button>
+						
+						<div id="video-reply" style="color:black; font-size:13px;"> <!-- 댓글 입력하는 곳 -->
+							
 						</div>
 					</c:if>
-					
-					<div id="reply_content" style="color:black;"></div>
-					
-					
+					<!-- 댓글 보여주는 곳 -->
+					<div id="reply_content" style="color:black; font-size:13px;"></div>
+						
 				</div>
 			</div>
       </div>
@@ -53,12 +52,26 @@
 	function detailView(v_no){	//모달창 띄우는 메서드
 		$("#detailView").show();
 		$("#detailView").modal();
+		var comment = '<input type="text" id="reply-input" placeholder="댓글을 입력하세요">' +
+					 '<input type="hidden" id="user_no" value="' +${sessionScope.user.user_no}  + '" >' +
+					'<button type="submit" id="reply-btn" onclick="return insertComment(' + v_no + ');">댓글달기</button>';
+		$("#video-reply").html(comment);
 		
-		viewVideo(v_no);			
-		selectComment(v_no);
+				
+		viewVideo(v_no); //모달창에서 영상 띄워주는 메서드			
+		
+		selectComment(v_no); 
+		
+
+		$("#reply-input").keydown(function(key){
+			if(key.keyCode==13){
+				insertComment(v_no);
+			}
+		})
+		
 	}
 	
-	function viewVideo(v_no){ //클릭한 객체 가져오는 메서드
+	function viewVideo(v_no){ //모달창에서 영상 띄워주는 메서드
 		$.ajax({
 			url:"detail.do",
 			dataType:"json",
@@ -94,21 +107,19 @@
 		$.ajax({
 			url:"selectComment.do",
 			dataType:"json",
-			type:"get",
+			type:"post",
 			data : {"v_no" : v_no},
 			success:function(data){
 				var values="";
-				console.log("dataList!!!!!" + data.commentList);
-				console.log("size!!!!!!!!" + data.commentList.length);
-				console.log("data.commentList.comment" + data.commentList.comment);
+				
+				//스크롤 바로 수정 해야함
 				for(var i =0; i<data.commentList.length;i++){
-					values += "<hr>" + data.commentList.comment +"<hr>"
+					values += "<hr>" +"작성자 : " + data.commentList[i].name + "내용: " + data.commentList[i].content+ " 날짜 : " + data.commentList[i].reply_date +"<hr>"
+					
 				}
 				
-				$("#reply_content").html(values);/* 
-				$(data.commentList).each(function(){
-					console.log(this.content);
-				}) */
+				$("#reply_content").html(values); 
+			
 				
 			},
 			error: function(request, status, errorData){
@@ -121,23 +132,30 @@
 	}
   	
 	function insertComment(v_no){	//댓글 insert
+		
 		var content = $("#reply-input").val();
-		var queryString ={"v_no" : v_no,"content" : content};
+		
+		if(content==""){
+			alert("댓글 내용을 입력 해 주세요!");
+			focus("#reply-input");
+			return false;
+		}
+	
+		var user_no = $("#user_no").val();
+		var queryString ={"v_no" : v_no,"content" : content,"user_no":user_no};
+		
 		$.ajax({
-			url:"reply.do",
+			url:"insertReply.do",
 			dataType:"json",
-			type:"get",
+			type:"post",
 			data : queryString,
-			success:function(data){
-			
+			async:false
+		});
+		
+		$("#reply-input").val(' ');
+		selectComment(v_no);
 				
-			},
-			error: function(request,status,errorData){
-				alert("error code : " + request.status + "\n" +
-						"message : " + request.responseText + "\n" +
-						"error : " + errorData);
-			}
-		})
+		return true;
 	}
 	
 	function updateComment(v_no){	//댓글 update

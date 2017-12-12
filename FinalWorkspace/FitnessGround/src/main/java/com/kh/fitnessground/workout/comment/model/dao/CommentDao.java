@@ -21,6 +21,11 @@ public class CommentDao {
 		return (ArrayList)sqlSession.selectList("comment.selectCommentList",v_no);
 	}
 
+	public void insertComment(Comment comment) {
+		sqlSession.insert("comment.insertComment",comment);
+		
+	}
+
 	
 
 }

@@ -67,7 +67,7 @@ public class YogaController {
 			for(Yoga y : clist) {
 				y.setTitle(y.getTitle().replaceAll("\\\"", "＇"));
 				y.setContent(y.getContent().replaceAll("\\\"", "＇"));// 쌍따옴표jsp출력 문제로 미리 치환
-				}
+			}
 			
 			mv.addObject("clist", clist);
 			mv.setViewName("jsonView");

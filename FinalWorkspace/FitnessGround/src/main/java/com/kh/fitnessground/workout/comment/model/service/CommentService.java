@@ -8,6 +8,8 @@ public interface CommentService {
 
 	ArrayList<Comment> selectCommentList(int v_no);
 
+	void insertComment(Comment comment);
+
 	
 
 }

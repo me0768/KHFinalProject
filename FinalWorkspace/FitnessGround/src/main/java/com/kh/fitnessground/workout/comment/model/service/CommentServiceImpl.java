@@ -19,6 +19,12 @@ public class CommentServiceImpl implements CommentService{
 		return commentDao.selectCommentlist(v_no);
 	}
 
+	@Override
+	public void insertComment(Comment comment) {
+		commentDao.insertComment(comment);
+		
+	}
+
 	
 
 }

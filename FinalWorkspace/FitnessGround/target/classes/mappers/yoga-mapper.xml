@@ -13,12 +13,22 @@
 		<result property="readcount" column="readcount" />
 	</resultMap>
 
-	<!-- 전체리스트select -->
-	<select id="selectAllList" resultType="list" resultMap="yogaResult">
+	<!-- yoga 전체리스트 top5 select -->
+	<select id="selectAllYList" resultType="list" resultMap="yogaResult">
 		<![CDATA[
-		select * from tb_video_board where v_no <= 5 order by v_no desc
+		select v_no, title, content, category1, category2, url, readcount from (select rownum, v_no, title, content, category1, category2, url, readcount 
+		from (select * from tb_video_board where category1 = '요가' order by readcount desc) where rownum <6)
 		]]>
 	</select>
+	
+	<!-- pilates 전체리스트 top5 select -->
+	<select id="selectAllPList" resultType="list" resultMap="yogaResult">
+		<![CDATA[
+		select v_no, title, content, category1, category2, url, readcount from (select rownum, v_no, title, content, category1, category2, url, readcount 
+		from (select * from tb_video_board where category1 = '필라테스' order by readcount desc) where rownum <6)
+		]]>
+	</select>
+	
 	<!-- 카테고리별 list select-->
 	<select id="selectCList" parameterType="Yoga" resultType="list" resultMap="yogaResult">
 		select * from tb_video_board where category2 = #{category2} order by v_no desc
@@ -28,6 +38,13 @@
 	<update id="addReadCount" parameterType="_int" flushCache="true" statementType="PREPARED">
 		update tb_video_board set readcount = readcount + 1 where v_no = #{v_no}
 	</update>
+	
+	<!-- yoga 전체리스트 select -->
+	<select id="selectAllList" resultType="list" resultMap="yogaResult">
+		<![CDATA[
+		select * from tb_video_board where category1 = '요가' order by v_no
+		]]>
+	</select>
 
 	<!-- 플레이리스트 동영상 한번에 insert하기 Multi-row Insert -->
 	<insert id="insertYoga" parameterType="com.kh.fitnessground.workout.yoga.model.vo.Yoga" flushCache="true"

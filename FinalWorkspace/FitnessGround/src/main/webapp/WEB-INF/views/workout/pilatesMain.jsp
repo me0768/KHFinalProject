@@ -37,6 +37,7 @@
 	<c:import url="../user/findidpwd.jsp"/>
 	<c:import url="../user/register.jsp"/>
 </div> 
+
 <!-- Modal -->
 	<c:import url="detailView.jsp" />
 
@@ -57,8 +58,8 @@
 			<div class="tab-wrap">
 				<ul class="tab-list tab-b is-col-3">
 					<li><a href="healthMain.do"><span>헬스</span></a></li>
-					<li class="in"><a href="#"><span>요가</span></a></li>
-					<li><a href="pilatesMain.do"><span>필라테스</span></a></li>
+					<li><a href="yogaMain.do"><span>요가</span></a></li>
+					<li class="in"><a href="#"><span>필라테스</span></a></li>
 					<li><a href="#"><span>맨몸운동</span></a></li>
 				</ul>
 			</div>
@@ -71,15 +72,13 @@
 		<div class="wrap">
 			<div class="tab-wrap" id="press-cate">
 				<ul class="tab-list">
-					<li id="tab-li"><a href="javascript: category('빈야사')">빈야사요가</a></li>
+					<li id="tab-li"><a href="javascript: category('스트레칭')">스트레칭</a></li>
 					<li id="vertical-bar"><span>|</span></li>
-					<li id="tab-li"><a href="javascript: category('다이어트')">다이어트요가</a></li>
+					<li id="tab-li"><a href="javascript: category('복근집중운동')">복근집중운동</a></li>
 					<li id="vertical-bar"><span>|</span></li>
-					<li id="tab-li"><a href="javascript: category('체형교정')">체형교정요가</a></li>
+					<li id="tab-li"><a href="javascript: category('전신운동')">전신운동</a></li>
 					<li id="vertical-bar"><span>|</span></li>
-					<li id="tab-li"><a href="javascript: category('부위별')">부위별요가</a></li>
-					<li id="vertical-bar"><span>|</span></li>
-					<li id="tab-li"><a href="javascript: category('초보자')">초보자를위한 요가</a></li>
+					<li id="tab-li"><a href="javascript: category('하체운동')">하체운동</a></li>
 				</ul>
 
 			</div>

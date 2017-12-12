@@ -19,8 +19,13 @@ public class YogaServiceImpl implements YogaService{
 	YogaDao yogaDao;
 	
 	@Override
-	public ArrayList<Yoga> selectAllList(){
-		return yogaDao.selectAllList();
+	public ArrayList<Yoga> selectAllYList(){
+		return yogaDao.selectAllYList();
+	}
+	
+	@Override
+	public ArrayList<Yoga> selectAllPList(){
+		return yogaDao.selectAllPList();
 	}
 	
 	@Override
@@ -38,6 +43,12 @@ public class YogaServiceImpl implements YogaService{
 		yogaDao.addReadCount(v_no);
 	}
 
+	@Override
+	public ArrayList<Yoga> selectAllList(){
+		return yogaDao.selectAllList();
+	}
+	
+	
 	@Override
 	public void insertYoga(List<Yoga> ylist, HttpServletRequest request) {
 		yogaDao.insertYoga(ylist);

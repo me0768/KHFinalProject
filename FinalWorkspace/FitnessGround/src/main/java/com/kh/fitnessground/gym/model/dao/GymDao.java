@@ -23,8 +23,8 @@ public class GymDao {
 		return sqlSession.selectOne("gym.selectPublicCount");
 	}
 	
-	public boolean RegisterGym(Gym gym) {
-		return false;
+	public void RegisterGymImage(Gym gym) {
+		sqlSession.insert("gym.InsertImage", gym);
 	}
 
 	public void GymScheduleInsert(int gym_no) {
@@ -69,6 +69,10 @@ public class GymDao {
 			ArrayList<PublicGym> glist = (ArrayList<PublicGym>) list;		
 			
 			return glist;
+	}
+
+	public void RegisterGymContent(Gym gym) {
+		sqlSession.update("gym.InsertGym", gym);
 	}
 
 	

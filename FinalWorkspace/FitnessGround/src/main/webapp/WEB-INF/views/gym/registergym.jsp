@@ -142,11 +142,9 @@
 
 						<div>
 							<div class="input_wrap">
-							<form id="frm" method="post" enctype="multipart/form-data">
 								<a href="javascript:" onclick="fileUploadAction();"
 									class="btn btn-danger my_button">이미지 업로드</a> <input type="file"
 									id="input_imgs" multiple />
-							</form>
 							</div>
 						</div>
 
@@ -303,14 +301,13 @@
 				
 				
 				<div id="map" style="width:100%;height:400px;"></div>
-					<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=G0XI103VNKmTZuGNcR9G&submodules=geocoder"></script>
-
+					<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=vWkJuuK8gXcwBG8Rijlh&submodules=geocoder"></script>
 				</div>
 			</div>
 		</div>
 		
 		<div>
-			<button class="btn btn-danger" disabled id="gymregisterbtn" onclick="registergym();">헬스장 등록</button>
+			<button class="btn btn-danger form-control" disabled id="gymregisterbtn" onclick="registergym(${sessionScope.user.user_no});">헬스장 등록</button>
 		</div>
 	</div>
 </c:if>

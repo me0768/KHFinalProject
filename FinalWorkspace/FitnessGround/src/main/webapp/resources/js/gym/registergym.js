@@ -3,7 +3,7 @@ var checkinfo = 0;
 var checkschedule = 1;
 var checkloc = 0;
 var resultaddr = '';
-var formd = new FormData();
+var arr = new Array();
 
 		$("#panelOne").css({'boader-color':'#F60808', 'box-shadow':'0 0 1px 1px rgb(232, 13, 13)'});
 		$("#headingOne").css("color","red");
@@ -71,6 +71,14 @@ var formd = new FormData();
 				$("#mainimage").css({"border":"2px dashed #3333338a"});
 			}
 		}
+		
+		function handleFileUpload(files){
+			filelength = files.length;
+			for (var i = 0; i < files.length; i++){
+				arr[i] = files[i];
+			}
+		}
+		
 		function fdUpload(e){
 			e.stopPropagation();
 			e.preventDefault();
@@ -90,6 +98,8 @@ var formd = new FormData();
 		 
 			var files = e.target.files || e.dataTransfer.files;
 			var filesArr = Array.prototype.slice.call(files);
+			
+			handleFileUpload(files);
 	
 			var index = 0;
 			filesArr.forEach(function(f){
@@ -217,9 +227,8 @@ var formd = new FormData();
 			
 			var files = e.originalEvent.target.files;
 			var filesArr = Array.prototype.slice.call(files);
-			console.log(files[0].name);
-			formd.append('files', files);
-			console.log(formd);
+			
+			handleFileUpload(files);
 			
 			var index = 0;
 			filesArr.forEach(function(f){
@@ -661,12 +670,35 @@ var formd = new FormData();
 			}
 		}
 		
-		function registergym(){
+		function registergym(user_no){
 			//이미지 다중파일 가져와야함
-			var formData = new FormData($("#frm")[0]);
-			console.log(formData);
-			console.log(formd);
-			
+			var formd = new FormData();
+			for(var i=0; i < arr.length; i++){
+				if(i == (arr.length - 1)){
+					formd.append(i, arr[i]);
+				} else {
+					formd.append(i, arr[i]);
+				}
+			}
+			 $.ajax({
+		            type : 'post',
+		            url : 'imagereg.do',
+		            data : formd,
+		            processData : false,
+		            contentType : false,
+		            cachae: false,
+		            async: false,
+		            success: function(data){
+		            	contentInsert(user_no);
+		            },
+		            error: function(data){
+		            	alert("실패");
+		            }
+			 });			
+		}
+		
+		function contentInsert(user_no){
+			var user_no = user_no
 			//헬스장 정보
 			var gym_name = $("#gymname").val();
 			var op_time = $("#optime").val();
@@ -691,15 +723,24 @@ var formd = new FormData();
 			//추가해야함,,
 			
 			//헬스장 주소
-			var location = resultaddr;
-			//alert("헬스장 이름 : " + gym_name + "\n운영시간 : " + op_time + "\n전화번호 : " + tel + "\n핸드폰번호 : " + phone + "\n가격 : " + price + "\n카테고리 : " + category + "\n설명 : " + description + "\n 위치 : " + location);
-			var queryString = { "gym_name": gym_name, "op_time": op_time, "tel": tel, "phone": phone, "price": price, "category": category, "description": description, "location": location };
 			
-			 $.ajax({
-		            type : 'post',
-		            url : 'test.do',
-		            data : formd,
-		            processData : false,
-		            contentType : false
-		        });			
+			console.log(category);
+			console.log(location);
+			var queryString = { "gym_name": gym_name,
+								"op_time": op_time, 
+								"tel": tel, 
+								"phone": phone, 
+								"price": price, 
+								"category": category, 
+								"description": description, 
+								"location": resultaddr, 
+								"user_no": user_no };
+			
+			$.ajax({
+				url: 'contentreg.do',
+				type: 'post',
+				async: false,
+				data: queryString
+			});
+			
 		}

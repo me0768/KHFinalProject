@@ -17,8 +17,8 @@ public class GymServiceImpl implements GymService{
 	GymDao gymDao;
 	
 	@Override
-	public boolean RegisterGym(Gym gym) {
-		return gymDao.RegisterGym(gym);
+	public void RegisterGymImage(Gym gym) {
+		gymDao.RegisterGymImage(gym);
 	}
 
 	@Override
@@ -79,6 +79,11 @@ public class GymServiceImpl implements GymService{
 	public int getPublicListCount() {
 		// TODO Auto-generated method stub
 		return gymDao.getPublicListCount();
+	}
+
+	@Override
+	public void RegisterGymContent(Gym gym) {
+		gymDao.RegisterGymContent(gym);
 	}
 
 	

@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.fitnessground.common.util.GymFileUtils;
 import com.kh.fitnessground.community.model.vo.MeetingBoard;
 import com.kh.fitnessground.gym.model.service.GymService;
 import com.kh.fitnessground.gym.model.vo.Gym;
@@ -31,47 +34,31 @@ import com.kh.fitnessground.gym.model.vo.PublicGym;
 public class GymController {
 	@Autowired
 	private GymService gymService;
+	@Autowired
+	private GymFileUtils gymfileutils;
 	
-	// 헬스장 등록
-	@RequestMapping(value="registergym.do")
-	public ModelAndView registerGym(Gym gym, HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mv =new ModelAndView();
-		if( gymService.RegisterGym(gym) ) {
-			gymService.GymScheduleInsert(gym.getGym_no());
+	// 헬스장 이미지 등록
+	@RequestMapping(value="/imagereg.do", method=RequestMethod.POST)
+	public void multiImageUpload(Gym gym, Map<String, Object> map, HttpServletRequest request, HttpServletResponse response) throws Exception{		
+		List<Map<String, Object>> list = gymfileutils.parseInsertFileInfo(request);
+		String originalFileName = "";
+		String renameFileName = "";
+		
+		for(int i = 0; i < list.size(); i++) {
+			originalFileName += list.get(i).get("original_fileName")+",";
+			renameFileName += list.get(i).get("rename_fileName")+",";
 		}
-		// 헬스장 스케줄도 등록
-		return mv;
+		if(originalFileName != "" || !originalFileName.equals("")) {
+			gym.setOriginal_image(originalFileName);
+			gym.setRename_image(renameFileName);
+		}
+		gymService.RegisterGymImage(gym);
 	}
 	
-	@RequestMapping(value="/test.do", method=RequestMethod.POST)
-	public void multiImageUpload(MultipartHttpServletRequest multi, HttpServletRequest request, HttpServletResponse response){
-		String root = multi.getSession().getServletContext().getRealPath("/");
-		String path = root + "resources/images/gymimages";
-		
-		String newFileName= ""; // 업로드되는 파일명
-		
-		File dir = new File(path);
-		if(!dir.isDirectory()) {
-			dir.mkdir();
-		}
-		
-		System.out.println(multi.getFileNames());
-		Iterator<String> files = multi.getFileNames();
-		System.out.println(files.hasNext());
-		while(files.hasNext()) {
-			String uploadFile = files.next();
-			
-			MultipartFile mFile = multi.getFile(uploadFile);
-			String fileName = mFile.getOriginalFilename();
-			System.out.println("실제 파일 이름 : " + fileName);
-			newFileName = System.currentTimeMillis() + "." + fileName.substring(fileName.lastIndexOf(".")+1);
-			
-			try {
-				mFile.transferTo(new File(path+newFileName));
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+	//헬스장 내용 등록
+	@RequestMapping(value="/contentreg.do", method=RequestMethod.POST)
+	public void registerGym(Gym gym, HttpServletRequest request, HttpServletResponse response) {
+		gymService.RegisterGymContent(gym);
 	}
 	
 	// 헬스장 수정

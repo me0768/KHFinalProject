@@ -11,6 +11,7 @@ public class Gym {
 	private String tel;
 	private String phone;
 	private String price;
+	private String category;
 	private String description;
 	private String location;
 	private int user_no;
@@ -22,8 +23,8 @@ public class Gym {
 	}
 
 	public Gym(int gym_no, String gym_name, String original_image, String rename_image, String op_time, String tel,
-			String phone, String price, String description, String location, int user_no, Date delete_date,
-			int approval_state) {
+			String phone, String price, String category, String description, String location, int user_no,
+			Date delete_date, int approval_state) {
 		super();
 		this.gym_no = gym_no;
 		this.gym_name = gym_name;
@@ -33,20 +34,12 @@ public class Gym {
 		this.tel = tel;
 		this.phone = phone;
 		this.price = price;
+		this.category = category;
 		this.description = description;
 		this.location = location;
 		this.user_no = user_no;
 		this.delete_date = delete_date;
 		this.approval_state = approval_state;
-	}
-	
-	public Gym(int gym_no, String gym_name, String location, String tel)
-	{
-		super();
-		this.gym_no = gym_no;
-		this.gym_name = gym_name;
-		this.location = location;
-		this.tel = tel;
 	}
 
 	public int getGym_no() {
@@ -113,6 +106,14 @@ public class Gym {
 		this.price = price;
 	}
 
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
 	public String getDescription() {
 		return description;
 	}
@@ -157,7 +158,8 @@ public class Gym {
 	public String toString() {
 		return "Gym [gym_no=" + gym_no + ", gym_name=" + gym_name + ", original_image=" + original_image
 				+ ", rename_image=" + rename_image + ", op_time=" + op_time + ", tel=" + tel + ", phone=" + phone
-				+ ", price=" + price + ", description=" + description + ", location=" + location + ", user_no="
-				+ user_no + ", delete_date=" + delete_date + ", approval_state=" + approval_state + "]";
+				+ ", price=" + price + ", category=" + category + ", description=" + description + ", location="
+				+ location + ", user_no=" + user_no + ", delete_date=" + delete_date + ", approval_state="
+				+ approval_state + "]";
 	}
 }

@@ -21,8 +21,15 @@ public class CommentServiceImpl implements CommentService{
 
 	@Override
 	public void insertComment(Comment comment) {
+		System.out.println("Service Date Type: " + comment.getReply_date());
+		System.out.println("Service String Type : " + comment.getStringReplyDate());
 		commentDao.insertComment(comment);
 		
+	}
+
+	@Override
+	public void deleteComment(Comment comment) {
+		commentDao.deleteComment(comment);		
 	}
 
 	

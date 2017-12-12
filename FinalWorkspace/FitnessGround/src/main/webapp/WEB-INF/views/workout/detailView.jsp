@@ -36,7 +36,9 @@
 						</div>
 					</c:if>
 					<!-- 댓글 보여주는 곳 -->
-					<div id="reply_content" style="color:black; font-size:13px;"></div>
+					<div id="reply_content" style="color:black; font-size:13px;">
+						
+					</div>
 						
 				</div>
 			</div>
@@ -53,7 +55,7 @@
 		$("#detailView").show();
 		$("#detailView").modal();
 		var comment = '<input type="text" id="reply-input" placeholder="댓글을 입력하세요">' +
-					 '<input type="hidden" id="user_no" value="' +${sessionScope.user.user_no}  + '" >' +
+					 '<input type="hidden" id="user_no" value="' + ${sessionScope.user.user_no}  + '" >' +
 					'<button type="submit" id="reply-btn" onclick="return insertComment(' + v_no + ');">댓글달기</button>';
 		$("#video-reply").html(comment);
 		
@@ -104,6 +106,8 @@
 	}
 	
 	function selectComment(v_no){	//댓글 select
+		var user_no = $("#user_no").val();
+		
 		$.ajax({
 			url:"selectComment.do",
 			dataType:"json",
@@ -114,8 +118,13 @@
 				
 				//스크롤 바로 수정 해야함
 				for(var i =0; i<data.commentList.length;i++){
-					values += "<hr>" +"작성자 : " + data.commentList[i].name + "내용: " + data.commentList[i].content+ " 날짜 : " + data.commentList[i].reply_date +"<hr>"
+					values += "<hr>" +"작성자 : " + data.commentList[i].name + "내용: " + data.commentList[i].content+ " 날짜 : " + data.commentList[i].reply_date
 					
+					if(user_no==data.commentList[i].user_no){
+						
+						values+="<button class='btn btn-primary' type='submit' onclick ='deleteComment("+ v_no +")'>삭제</button><hr>"+
+								"<input type='hidden' id='vb_no' value="+data.commentList[i].vb_no+">"
+					}
 				}
 				
 				$("#reply_content").html(values); 
@@ -142,6 +151,7 @@
 		}
 	
 		var user_no = $("#user_no").val();
+	
 		var queryString ={"v_no" : v_no,"content" : content,"user_no":user_no};
 		
 		$.ajax({
@@ -158,11 +168,23 @@
 		return true;
 	}
 	
+	function deleteComment(v_no){ //댓글 delete
+		var vb_no = $("#vb_no").val();
+		$.ajax({
+			url:"deleteReply.do",
+			dataType:"json",
+			type:"post",
+			data:{"v_no":v_no,"vb_no":vb_no},
+			async:false
+		});
+	
+		selectComment(v_no);
+		
+	}
+	
 	function updateComment(v_no){	//댓글 update
 		
 	}
 	
-	function deleteComment(v_no){ //댓글 delete
-		
-	}
+	
 </script>

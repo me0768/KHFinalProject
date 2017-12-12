@@ -9,12 +9,22 @@
 		<result property="v_no" column="v_no" />
 		<result property="user_no" column="user_no"/>
 		<result property="content" column="content"/>
-		<result property="reply_date" column="reply_date"/>	
+		<result property="reply_date" column="reply_date" jdbcType="DATE" javaType="java.sql.Date"/>	
 	</resultMap>
 	
-	<select id="selectCommentList" parameterType="_int" resultType="list" resultMap="resultComment">
+	<resultMap id="resultJoinComment" type="Comment">
+		<id property="vb_no" column="vb_no"/>
+		<result property="v_no" column="v_no" />
+		<result property="user_no" column="user_no"/>
+		<result property="content" column="content"/>
+		<result property="reply_date" column="reply_date" jdbcType="DATE" javaType="java.sql.Date"/>	
+		<result property="nickname" column="nickname"/>
+		<result property="name" column="name"/>
+	</resultMap>
+	
+	<select id="selectCommentList" parameterType="_int" resultType="list" resultMap="resultJoinComment">
 		<![CDATA[
-			select vb_no,v_no,user_no,content,to_char(reply_date,'yyyy/MM/dd hh24:mi:ss'),nickname,name
+			select vb_no,v_no,user_no,content,to_char(reply_date,'yyyy/MM/dd'),nickname,name
 			from tb_user join tb_vb_comment using(user_no)
 			where v_no=#{v_no} order by vb_no desc
 		]]>
@@ -23,10 +33,17 @@
 		
 	<insert id="insertComment" parameterType="Comment" flushCache="true" statementType="PREPARED" useGeneratedKeys="true">
 		<![CDATA[
-			insert into tb_vb_comment values (VBC_SEQ.nextval,#{v_no},#{user_no},#{content},default)
+			insert into tb_vb_comment values (VBC_SEQ.nextval,#{v_no},#{user_no},#{content},sysdate)
 			
 		]]>
 	</insert>
+	
+	<delete id="deleteComment" parameterType="Comment">
+		<![CDATA[
+			delete from tb_vb_comment where v_no=#{v_no} and vb_no=#{vb_no}
+			
+		]]>
+	</delete>
 	
 
 </mapper>

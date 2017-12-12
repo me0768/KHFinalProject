@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.kh.fitnessground.gym.model.dao.GymDao;
 import com.kh.fitnessground.gym.model.vo.Gym;
 import com.kh.fitnessground.gym.model.vo.GymReview;
+import com.kh.fitnessground.gym.model.vo.GymSchedule;
 import com.kh.fitnessground.gym.model.vo.PublicGym;
 
 @Service("gymService")
@@ -84,6 +85,16 @@ public class GymServiceImpl implements GymService{
 	@Override
 	public void RegisterGymContent(Gym gym) {
 		gymDao.RegisterGymContent(gym);
+	}
+
+	@Override
+	public Gym selectfromImg(Gym gym) {
+		return gymDao.selectfromImg(gym);
+	}
+
+	@Override
+	public void OneSchedule(GymSchedule gs) {
+		gymDao.OneSchedule(gs);
 	}
 
 	

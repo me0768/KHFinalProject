@@ -1,6 +1,9 @@
 package com.kh.fitnessground.gym.controller;
 
 import java.io.File;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -26,7 +29,10 @@ import com.kh.fitnessground.common.util.GymFileUtils;
 import com.kh.fitnessground.community.model.vo.MeetingBoard;
 import com.kh.fitnessground.gym.model.service.GymService;
 import com.kh.fitnessground.gym.model.vo.Gym;
+import com.kh.fitnessground.gym.model.vo.GymSchedule;
 import com.kh.fitnessground.gym.model.vo.PublicGym;
+
+import oracle.sql.DATE;
 
 
 
@@ -39,7 +45,7 @@ public class GymController {
 	
 	// 헬스장 이미지 등록
 	@RequestMapping(value="/imagereg.do", method=RequestMethod.POST)
-	public void multiImageUpload(Gym gym, Map<String, Object> map, HttpServletRequest request, HttpServletResponse response) throws Exception{		
+	public ModelAndView multiImageUpload(Gym gym, Map<String, Object> map, HttpServletRequest request, HttpServletResponse response) throws Exception{		
 		List<Map<String, Object>> list = gymfileutils.parseInsertFileInfo(request);
 		String originalFileName = "";
 		String renameFileName = "";
@@ -53,12 +59,37 @@ public class GymController {
 			gym.setRename_image(renameFileName);
 		}
 		gymService.RegisterGymImage(gym);
+		
+		ModelAndView mv = new ModelAndView();
+		Gym g = gymService.selectfromImg(gym);
+		System.out.println(g);
+		mv.addObject("gym", g);
+		mv.setViewName("jsonView");
+		return mv;
 	}
 	
 	//헬스장 내용 등록
 	@RequestMapping(value="/contentreg.do", method=RequestMethod.POST)
 	public void registerGym(Gym gym, HttpServletRequest request, HttpServletResponse response) {
 		gymService.RegisterGymContent(gym);
+	}
+	
+	//헬스장 일정 등록
+	@RequestMapping(value="/OneSchedule.do", method=RequestMethod.POST)
+	public void OneSchedule(HttpServletRequest request, HttpServletResponse response) throws ParseException {
+		GymSchedule gs = new GymSchedule();
+		java.util.Date utilDate = new java.util.Date();
+		
+		gs.setGym_no(Integer.parseInt(request.getParameter("gym_no")));
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		utilDate = sdf.parse(request.getParameter("day"));
+		java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+		gs.setDay(sqlDate);
+		
+		gs.setSchedule_time(request.getParameter("schedule_time"));
+		gs.setTitle(request.getParameter("title"));
+		gymService.OneSchedule(gs);
 	}
 	
 	// 헬스장 수정

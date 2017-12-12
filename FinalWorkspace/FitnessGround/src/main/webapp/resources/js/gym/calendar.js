@@ -115,10 +115,12 @@ $(document).ready(function(){
 	}
 	
 	function scheduleInsert(year, month, day){
-		
 		var scheduletime = $("#scheduletime").val();
 		var scheduletitle = $("#scheduletitle").val();
 		var schedulein = '';
-		schedulein += "<button class='btn btn-danger' style='padding: 0px; font-size: 8pt;'>" + scheduletime + " " + scheduletitle + "</button>"
+		schedulein += "<button class='btn btn-danger' style='padding: 0px; font-size: 8pt;'>" + scheduletime + " " + scheduletitle + "</button>";
+		schedulein += "<input type='hidden' id='" + year + month + day + "day' value='" + year + "-" +  month + "-" + day + "'>";
+		schedulein += "<input type='hidden' id='" + year + month + day + "time' value='" + scheduletime + "'>";
+		schedulein += "<input type='hidden' id='" + year + month + day + "title' value='" + scheduletitle + "'>";
 		$("#" + year + month + day + "").append(schedulein);
 	}

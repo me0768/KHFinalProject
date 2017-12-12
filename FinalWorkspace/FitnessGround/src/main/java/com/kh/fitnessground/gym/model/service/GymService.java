@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.kh.fitnessground.gym.model.vo.Gym;
 import com.kh.fitnessground.gym.model.vo.GymReview;
+import com.kh.fitnessground.gym.model.vo.GymSchedule;
 import com.kh.fitnessground.gym.model.vo.PublicGym;
 
 public interface GymService {
@@ -32,5 +33,9 @@ public interface GymService {
 		ArrayList<PublicGym> publicList(int currentPage, int limit);
 		
 		void RegisterGymContent(Gym gym);
+		
+		Gym selectfromImg(Gym gym);
+		
+		void OneSchedule(GymSchedule gs);
 
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.fitnessground.gym.model.vo.Gym;
 import com.kh.fitnessground.gym.model.vo.GymReview;
+import com.kh.fitnessground.gym.model.vo.GymSchedule;
 import com.kh.fitnessground.gym.model.vo.PublicGym;
 
 @Repository("gymDao")
@@ -73,6 +74,14 @@ public class GymDao {
 
 	public void RegisterGymContent(Gym gym) {
 		sqlSession.update("gym.InsertGym", gym);
+	}
+
+	public Gym selectfromImg(Gym gym) {
+		return sqlSession.selectOne("gym.selectfromImg", gym);
+	}
+
+	public void OneSchedule(GymSchedule gs) {
+		sqlSession.insert("gymschedule.OneSchedule", gs);
 	}
 
 	

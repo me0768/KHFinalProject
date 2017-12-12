@@ -67,7 +67,7 @@
 
 <c:import url="../include/common/headend.jsp" />
 
-
+<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=G0XI103VNKmTZuGNcR9G&submodules=geocoder"></script>
 
 <c:if test="${ sessionScope.user == null }">
 	<script type="text/javascript">
@@ -292,16 +292,17 @@
 			<div id="collapsefour" class="panel-collapse collapse in"
 				role="tabpanel" aria-labelledby="headingfour">
 				<div class="panel-body">				
-				<div class="input-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			      <input type="text" class="form-control" id="address" placeholder="주소를 입력하세요.">
-			       <span class="input-group-btn" style="padding: 0px;">
-			        <button class="btn btn-danger" type="button" id="addressbtn">검색</button>
-			      </span>
-			    </div><!-- /input-group -->
-				
-				
-				<div id="map" style="width:100%;height:400px;"></div>
-					<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=vWkJuuK8gXcwBG8Rijlh&submodules=geocoder"></script>
+					<div class="input-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				      <input type="text" class="form-control" id="address" placeholder="주소를 입력하세요.">
+				       <span class="input-group-btn" style="padding: 0px;">
+				        <button class="btn btn-danger" type="button" id="addressbtn">검색</button>
+				      </span>
+				    </div><!-- /input-group -->
+					
+					
+					<div id="map" style="width:100%;height:400px;">
+						<!-- 지도 api 위치 -->
+					</div>
 				</div>
 			</div>
 		</div>

@@ -421,6 +421,9 @@ var arr = new Array();
 		var checkdesc = 0;		
 		
 		function gymemptycheck(){
+			telcheck();
+			phonecheck();
+			
 			if( $("#gymname").val() != "" ){
 				checkgymname = 1;
 			} else {
@@ -496,6 +499,48 @@ var arr = new Array();
 				$("#headingTwo").css("color","red");
 				checkinfo = 0;
 				registergymcheck();
+			}
+		}
+		
+		function telcheck(){
+			var tel = $("#tel").val();
+			if(tel.length == 2){
+				tel += "-";
+				$("#tel").val(tel);
+			}else if(tel.length == 6){
+				tel += "-";
+				$("#tel").val(tel);
+			} else if (tel.length == 11 ){
+				tel = tel.replace(/\-/g, '');
+				tel = tel.substr(0,2) + "-" + tel.substr(2,3) + "-" + tel.substr(5, 4);
+				$("#tel").val(tel);
+			} else if (tel.length == 12){
+				tel = tel.replace(/\-/g, '');
+				tel = tel.substr(0,3) + "-" + tel.substr(3,3) + "-" + tel.substr(6, 4);
+				$("#tel").val(tel);
+			} else if (tel.length == 13){
+				tel = tel.replace(/\-/g, '');
+				tel = tel.substr(0,3) + "-" + tel.substr(3,4) + "-" + tel.substr(7, 4);
+				$("#tel").val(tel);
+			}
+		}
+		
+		function phonecheck(){
+			var phone = $("#phone").val();
+			if(phone.length == 3){
+				phone += "-";
+				$("#phone").val(phone);
+			}else if(phone.length == 8){
+				phone += "-";
+				$("#phone").val(phone);
+			} else if (phone.length == 12){
+				phone = phone.replace(/\-/g, '');
+				phone = phone.substr(0,3) + "-" + phone.substr(3,3) + "-" + phone.substr(6, 4);
+				$("#phone").val(phone);
+			} else if (phone.length == 13){
+				phone = phone.replace(/\-/g, '');
+				phone = phone.substr(0,3) + "-" + phone.substr(3,4) + "-" + phone.substr(7, 4);
+				$("#phone").val(phone);
 			}
 		}
 		
@@ -669,7 +714,8 @@ var arr = new Array();
 				$("#gymregisterbtn").prop("disabled", true);
 			}
 		}
-		
+
+		// 이미지 파일로 헬스장 생성
 		function registergym(user_no){
 			//이미지 다중파일 가져와야함
 			var formd = new FormData();
@@ -689,7 +735,7 @@ var arr = new Array();
 		            cachae: false,
 		            async: false,
 		            success: function(data){
-		            	contentInsert(user_no);
+		            	contentInsert(user_no, data.gym.gym_no);
 		            },
 		            error: function(data){
 		            	alert("실패");
@@ -697,13 +743,17 @@ var arr = new Array();
 			 });			
 		}
 		
-		function contentInsert(user_no){
-			var user_no = user_no
+		// 헬스장 데이터 삽입
+		function contentInsert(user_no, gym_no){
+			var user_no = user_no;
+			var gym_no = gym_no;
 			//헬스장 정보
 			var gym_name = $("#gymname").val();
 			var op_time = $("#optime").val();
 			var tel = $("#tel").val();
+			tel = tel.replace(/\-/g, '');
 			var phone = $("#phone").val();
+			phone = phone.replace(/\-/g, '');
 			var price = $("#price").val();
 			var category = '';
 			if($("#ex_chk0").is(":checked")){
@@ -723,9 +773,6 @@ var arr = new Array();
 			//추가해야함,,
 			
 			//헬스장 주소
-			
-			console.log(category);
-			console.log(location);
 			var queryString = { "gym_name": gym_name,
 								"op_time": op_time, 
 								"tel": tel, 
@@ -734,13 +781,39 @@ var arr = new Array();
 								"category": category, 
 								"description": description, 
 								"location": resultaddr, 
-								"user_no": user_no };
+								"user_no": user_no,
+								"gym_no": gym_no };
 			
 			$.ajax({
 				url: 'contentreg.do',
 				type: 'post',
 				async: false,
-				data: queryString
+				data: queryString,
+				success: function(data){
+					schedulereg(gym_no);
+				}
 			});
 			
+		}
+		
+		// 스케줄 등록
+		function schedulereg(gym_no){
+			var m_oMonth = new Date();
+			m_oMonth.setDate(1);
+			
+			for(var i=1; i < 31; i++ ){
+				if(document.getElementById("" + m_oMonth.getFullYear() + (m_oMonth.getMonth()+1)  + i + "day")){
+					var day = $("#" + m_oMonth.getFullYear() + (m_oMonth.getMonth()+1)  + i + "day").val();
+					var time = $("#" + m_oMonth.getFullYear() + (m_oMonth.getMonth()+1)  + i + "time").val();
+					var title = $("#" + m_oMonth.getFullYear() + (m_oMonth.getMonth()+1)  + i + "title").val();
+					var queryString = { "gym_no": gym_no, "day": day, "schedule_time": time, "title": title };
+					$.ajax({
+						url: 'OneSchedule.do',
+						data: queryString,
+						async: false,
+						type: 'post'
+					});
+				}
+			}
+			alert("헬스장 등록 성공,,");
 		}

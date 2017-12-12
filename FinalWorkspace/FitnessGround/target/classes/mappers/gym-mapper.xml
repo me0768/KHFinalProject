@@ -87,6 +87,13 @@
 		]]>
 	</select>
 	
+	<select id="QnaMessage" parameterType="_int" resultType="_int">
+		<![CDATA[ 
+		select count(*) from tb_qna where receiver = #{receiver}
+		]]>
+	</select>
+	
+	
 	<update id="businessChange" parameterType="_int"
 		flushCache="true" statementType="PREPARED" >
 		<![CDATA[

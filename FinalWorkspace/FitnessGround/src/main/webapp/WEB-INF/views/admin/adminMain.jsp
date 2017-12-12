@@ -35,7 +35,7 @@
 						<div class="card-body-icon">
 							<i class="fa fa-fw fa-comments"></i>
 						</div>
-						<div class="mr-5">3개의 새로운 문의가<br> 있습니다!</div>
+						<div class="mr-5">${message }개의 새로운 문의가<br> 있습니다!</div>
 					</div>
 					<a class="card-footer text-white clearfix small z-1" href="adminBoard.do">
 						<span class="float-left">View Details</span> <span
@@ -50,7 +50,7 @@
 						<div class="card-body-icon">
 							<i class="fa fa-fw fa-list"></i>
 						</div>
-						<div class="mr-5">${count }개의 헬스장 등록<br> 요청이 있습니다!</div>
+						<div class="mr-5">${request }개의 헬스장 등록<br> 요청이 있습니다!</div>
 					</div>
 					<a class="card-footer text-white clearfix small z-1" href="adminbusinessRequestlist.do">
 						<span class="float-left">View Details</span> <span

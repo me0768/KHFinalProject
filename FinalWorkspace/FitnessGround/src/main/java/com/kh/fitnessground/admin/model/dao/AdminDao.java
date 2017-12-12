@@ -86,6 +86,11 @@ public class AdminDao {
 		
 	}
 
+	public int Message(int receiver) {
+		int cnt = sqlSession.selectOne("gym.QnaMessage", receiver);
+		return cnt;
+	}
+
 
 	
 	

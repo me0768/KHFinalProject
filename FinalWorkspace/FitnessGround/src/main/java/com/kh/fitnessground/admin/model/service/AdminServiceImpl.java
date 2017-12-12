@@ -107,6 +107,12 @@ public class AdminServiceImpl  implements AdminService{
 	}
 
 
+	@Override
+	public int Message(int receiver) {
+		return adminDao.Message(receiver);
+	}
+
+
 
 
 	

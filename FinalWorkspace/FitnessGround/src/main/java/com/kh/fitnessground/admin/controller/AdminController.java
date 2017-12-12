@@ -19,6 +19,7 @@ import com.kh.fitnessground.admin.model.service.AdminService;
 import com.kh.fitnessground.community.model.service.CommunityBoardService;
 import com.kh.fitnessground.community.model.vo.CommunityBoard;
 import com.kh.fitnessground.community.model.vo.MeetingBoard;
+import com.kh.fitnessground.gym.model.vo.GymQnABoard;
 import com.kh.fitnessground.user.model.service.UserService;
 import com.kh.fitnessground.user.model.service.UserServiceImpl;
 import com.kh.fitnessground.user.model.vo.User;
@@ -46,17 +47,30 @@ public class AdminController {
 
 	// 관리자 메인뷰 이동
 	@RequestMapping(value = "adminMain.do")
-	public ModelAndView adminmain(User user,
-			@RequestParam(value = "level", required = false, defaultValue = "0") int level) {
+	public ModelAndView adminmain(User user, @RequestParam(value = "level", required = false, defaultValue = "0") int level,
+				GymQnABoard board, @RequestParam(value="receiver", required = false, defaultValue = "1") int receiver) {
 		// 리퀘스트 파람 -> 자동으로 값을 받아옴
 		// 근데 받아올 데이터가 없으면 required=false -> 꼭필요하지 않다 라는 뜻
 		// defaultValue="0" -> 기본값설정 / 그러니깐 값이 없을때는 0으로 한다 라는뜻
 		ModelAndView mv = new ModelAndView("admin/adminMain");
-		int count = adminService.RequestCount(level);
-		System.out.println(count);
-		mv.addObject("count", count);
+		int request = adminService.RequestCount(level);
+		int message = adminService.Message(receiver);
+		System.out.println("등록요청 수 :" +request);
+		System.out.println("문의 수 :" +message);
+		mv.addObject("request", request);
+		mv.addObject("message", message);
 		return mv;
 	}
+	
+	// 문의 최신순 3개 보여주기
+		@RequestMapping(value="message.do")
+		public ModelAndView messageMethod(GymQnABoard board,
+				@RequestParam(value="receiver", required = false, defaultValue = "1") int receiver){
+			ModelAndView mv = new ModelAndView("admin/common/nav");
+			int user_no = adminService.Message(receiver);
+			mv.addObject("user_no", user_no);
+			return mv;
+		}
 
 	// 관리자 차트뷰 이동
 	@RequestMapping(value = "charts.do")
@@ -284,6 +298,8 @@ public class AdminController {
 		mv.setViewName("jsonView");
 		return mv;
 	}
+	
+	
 
 	/*// 게시글보기 에서 작성자이름 클릭시 작성자 정보 모달띄우기
 		@RequestMapping(value = "userDetail.do")

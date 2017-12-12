@@ -48,6 +48,9 @@ public interface AdminService {
 	void adminBusinessStateBack(int user_no);
 
 
+	int Message(int receiver);
+
+
 
 
 }

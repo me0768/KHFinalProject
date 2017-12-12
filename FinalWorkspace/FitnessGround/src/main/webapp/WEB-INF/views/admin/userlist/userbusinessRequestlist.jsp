@@ -6,47 +6,7 @@
 <c:import url="../common/head.jsp" />
 
 <style type="text/css">
-.buttons {
-	display: table-cell;
-	padding: 1em;
-	text-align: center;
-	vertical-align: left;
-	width: 5%;
-	height: 5%;
-}
 
-[class*="btn-"] {
-	position: relative;
-	display: inline-block;
-	width: 10%;
-	color: #fff;
-	font-size: 16px;
-	line-height: 45px;
-	margin-right: 3em;
-	max-width: 100px;
-	text-decoration: none;
-	text-transform: uppercase;
-	vertical-align: middle;
-}
-
-.btn-1, .btn-2, .btn-3 {
-	color: black;
-	background: white;
-	border: 1px solid gray;
-	box-shadow: 0 2px 0 black, 2px 4px 6px gray;
-	font-weight: bold;
-	letter-spacing: 1px;
-	-webkit-transition: all .15s linear;
-	transition: all .15s linear;
-}
-
-.btn-1:hover, .btn-2:hover, .btn-3:hover {
-	background: gray;
-	border: 1px solid rgba(0, 0, 0, 0.05);
-	box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-	color: gray;
-	text-shadow: -1px -1px 0 black;
-}
 </style>
 
 <link
@@ -74,9 +34,12 @@
 		location.href="adminbusinessRequestlist.do"
 	}
 	
-	function gymRequest(gym_no){
-		alert("버튼클릭 : " +gym_no);
+	function gymRequest(gym_no, user_state){
+		alert("버튼클릭 : " +gym_no +" ,  유저 상태 : "+ user_state);
 		
+		if(user_state == 1){
+			alert("해당 계정은 비활성 상태입니다. 헬스장을 등록할 수 없습니다.");
+		}else{
 		$.ajax({
 			url : "gymRequest.do",
 			dataType : "json",
@@ -93,8 +56,8 @@
 			}
 			
 		})
+		}
 		
-		alert("등록완료");
 		
 		
 	}
@@ -119,7 +82,6 @@
 			
 		})
 		
-		alert("등록취소완료");
 		
 	}
 	
@@ -129,9 +91,8 @@
 	<div class="container-fluid">
 		<!-- Breadcrumbs-->
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="adminMain.do">FitnessGround
-					관리자</a></li>
-			<li class="breadcrumb-item active">메인으로이동</li>
+			<li class="breadcrumb-item"><a href="adminMain.do">Fitness Ground</a></li>
+			<li class="breadcrumb-item active">메인으로 이동</li>
 		</ol>
 		<!-- Example DataTables Card-->
 		<div class="card mb-3">
@@ -139,26 +100,21 @@
 
 				<div class="buttons">
 
-					<button class="btn-1" onclick="userlistPage();">일반회원</button>
-					<button class="btn-2" onclick="businesslistPage();">사업자회원</button>
-					<button class="btn-3" onclick="businessRequestlistPage();">등록요청</button>
+					<button class="btn btn-primary" onclick="userlistPage();">일반회원</button>
+					<button class="btn btn-primary" onclick="businesslistPage();">사업자회원</button>
+					<button class="btn btn-primary" onclick="businessRequestlistPage();">등록요청</button>
 
-					<!-- <a href="adminuserlist.do" class="btn-1">일반회원</a>&nbsp; 
-					<a href="adminbuisnesslist.do"	class="btn-2">사업자회원</a>&nbsp; 
-					<a href="adminbuisnessRequestlist.do" class="btn-3">등록 요청</a>
-
- -->
 
 				</div>
-
-
+			</div>
+	
 				<div class="card-body">
 					<div class="table-responsive">
-						<table class="table table-bordered" id="dataTable" width="100%"
-							cellspacing="0">
+						<table class="table table-bordered" id="dataTable" width="100%"	cellspacing="0">
 							<thead>
 								<tr>
 									<th>유저번호</th>
+									<th>유저상태</th>
 									<th>이메일</th>
 									<th>이름</th>
 									<th>헬스장번호</th>
@@ -181,6 +137,7 @@
 								<c:forEach var="item" items="${list }" varStatus="status">
 									<tr>
 										<td>${item.user_no }</td>
+										<td>${item.user_state }</td>
 										<td><a href="#">${item.email }</a></td>
 										<td>${item.name }</td>
 										<td>${item.gym_no }</td>
@@ -189,12 +146,12 @@
 										<c:choose>
 											<c:when test="${item.approval_state==0}">
 
-												<td><button type="submit" class="gym_btn"
-														onclick="gymRequest(${item.gym_no});">등록하기</button></td>
+												<td><button type="submit" class="btn btn-primary"
+														onclick="gymRequest(${item.gym_no}, ${item.user_state});">등록하기</button></td>
 											</c:when>
 											<c:when test="${item.approval_state==1}">
 
-												<td><button type="submit" class="gym_btn"
+												<td><button type="submit" class="btn btn-primary"
 														onclick="gymCancel(${item.gym_no});">등록취소</button></td>
 											</c:when>
 
@@ -207,7 +164,7 @@
 				</div>
 				<div class="card-footer small text-muted">Updated yesterday at
 					11:59 PM</div>
-			</div>
+			
 		</div>
 		<!-- /.container-fluid-->
 		<!-- /.content-wrapper-->

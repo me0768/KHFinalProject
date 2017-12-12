@@ -24,8 +24,8 @@
 	<div class="container-fluid">
 		<!-- Breadcrumbs-->
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-			<li class="breadcrumb-item active">My Dashboard</li>
+			<li class="breadcrumb-item"><a href="adminMain.do">Fitness Ground</a></li>
+			<li class="breadcrumb-item active">메인으로 이동</li>
 		</ol>
 		<!-- Icon Cards-->
 		<div class="row">
@@ -37,7 +37,7 @@
 						</div>
 						<div class="mr-5">3개의 새로운 문의가<br> 있습니다!</div>
 					</div>
-					<a class="card-footer text-white clearfix small z-1" href="#">
+					<a class="card-footer text-white clearfix small z-1" href="adminBoard.do">
 						<span class="float-left">View Details</span> <span
 						class="float-right"> <i class="fa fa-angle-right"></i>
 					</span>
@@ -90,6 +90,8 @@
 				</div>
 			</div>
 		</div>
+		
+		
 		<!-- Area Chart Example-->
 		<div class="card mb-3">
 			<div class="card-header">

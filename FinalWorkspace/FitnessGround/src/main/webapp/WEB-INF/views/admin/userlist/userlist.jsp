@@ -6,47 +6,7 @@
 <c:import url="../common/head.jsp" />
 
 <style type="text/css">
-.buttons {
-	display: table-cell;
-	padding: 1em;
-	text-align: center;
-	vertical-align: left;
-	width: 5%;
-	height: 5%;
-}
 
-[class*="btn-"] {
-	position: relative;
-	display: inline-block;
-	width: 10%;
-	color: #fff;
-	font-size: 16px;
-	line-height: 45px;
-	margin-right: 3em;
-	max-width: 100px;
-	text-decoration: none;
-	text-transform: uppercase;
-	vertical-align: middle;
-}
-
-.btn-1, .btn-2, .btn-3 {
-	color: black;
-	background: white;
-	border: 1px solid gray;
-	box-shadow: 0 2px 0 black, 2px 4px 6px gray;
-	font-weight: bold;
-	letter-spacing: 1px;
-	-webkit-transition: all .15s linear;
-	transition: all .15s linear;
-}
-
-.btn-1:hover, .btn-2:hover, .btn-3:hover {
-	background: gray;
-	border: 1px solid rgba(0, 0, 0, 0.05);
-	box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-	color: gray;
-	text-shadow: -1px -1px 0 black;
-}
 </style>
 
 <link
@@ -123,41 +83,6 @@
 	}
 	
 
-	$(document).ready(function() {
-		$("#selectCheckBox").click(function() {
-			var isChecked = $(this).prop("checked");
-			$(".deleteCheckBox").prop("checked", isChecked);
-
-		});
-		
-		$("#selectDeleteBtn").click(function() {
-
-			var isChecked = false;
-
-			/* 각각의 클래스를 다 보면서 선택이 됬는지 안됬는지 체크한다. */
-			$(".deleteCheckBox").each(function(index, data) {
-				if (data.checked) {
-					isChecked = data.checked;
-				}
-			});
-
-			if (!isChecked) {
-				alert("삭제할 대상을 선택하세요.");
-				return;
-			}
-
-			/* 사용자에게 한번 더 컨펌 */
-			if (confirm("정말 삭제하시겠습니까?")) {
-				alert("삭제되었습니다");
-
-				var form = $("#selectDeleteBtn");
-				form.attr("method", "post");
-				form.attr("action", "<c:url value="userDelete.do" />");
-				form.submit();
-			}
-		});
-	});
-	
 	
 </script>
 <c:import url="../common/nav.jsp" />
@@ -165,9 +90,8 @@
 	<div class="container-fluid">
 		<!-- Breadcrumbs-->
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="adminMain.do">FitnessGround
-					관리자</a></li>
-			<li class="breadcrumb-item active">메인으로이동</li>
+			<li class="breadcrumb-item"><a href="adminMain.do">Fitness Ground</a></li>
+			<li class="breadcrumb-item active">메인으로 이동</li>
 		</ol>
 		<!-- Example DataTables Card-->
 		<div class="card mb-3">
@@ -175,18 +99,17 @@
 
 				<div class="buttons">
 
-					<button class="btn-1" onclick="userlistPage();">일반회원</button>
-					<button class="btn-2" onclick="businesslistPage();">사업자회원</button>
-					<button class="btn-3" onclick="businessRequestlistPage();">등록요청</button>
+					<button class="btn btn-primary" onclick="userlistPage();">일반회원</button>
+					<button class="btn btn-primary" onclick="businesslistPage();">사업자회원</button>
+					<button class="btn btn-primary" onclick="businessRequestlistPage();">등록요청</button>
 
 				</div>
 
-
+			</div>
 				<div class="card-body">
 					<div class="table-responsive">
 						<form name="userForm">
-							<table class="table table-bordered" id="dataTable" width="100%"
-								cellspacing="0">
+							<table class="table table-bordered" id="dataTable" width="100%"	cellspacing="0">
 								<thead>
 									<tr>
 										<th>Index</th>
@@ -195,7 +118,7 @@
 										<th>NickName</th>
 										<th>Phone</th>
 										<th>Level</th>
-										<th>관리</th>
+										<th>상태</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -203,8 +126,7 @@
 									<c:forEach var="item" items="${list }" varStatus="status">
 										<tr>
 											<td>${status.count }</td>
-											<td><input type="hidden" id="email${item.user_no }"
-												value="${item.email }" name="eamil" />${item.email }</td>
+											<td>${item.email }</td>
 											<td>${item.name }</td>
 											<td>${item.nickname }</td>
 											<td>${item.phone }</td>
@@ -212,12 +134,12 @@
 											<c:choose>
 												<c:when test="${item.user_state==0}">
 
-													<td><button type="submit" class="user_btn"
+													<td><button type="submit" class="btn btn-primary"
 															onclick="userChange(${item.user_no});">비활성화</button></td>
 												</c:when>
 												<c:when test="${item.user_state==1}">
 
-													<td><button type="submit" class="user_btn"
+													<td><button type="submit" class="btn btn-primary"
 															onclick="userBack(${item.user_no});">활성화</button></td>
 												</c:when>
 
@@ -233,7 +155,7 @@
 				</div>
 				<div class="card-footer small text-muted">Updated yesterday at
 					11:59 PM</div>
-			</div>
+			
 		</div>
 		<!-- /.container-fluid-->
 		<!-- /.content-wrapper-->

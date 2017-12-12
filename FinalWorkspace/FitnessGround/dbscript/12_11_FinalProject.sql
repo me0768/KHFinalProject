@@ -326,6 +326,7 @@ CREATE TABLE TB_QNA(
   WRITE_DATE DATE DEFAULT SYSDATE,
   Q_LEVEL NUMBER DEFAULT 0,
   REF_NO NUMBER NOT NULL
+
 );
 COMMENT ON COLUMN TB_QNA.Q_NO IS '문의하기 번호';
 COMMENT ON COLUMN TB_QNA.SENDER IS '보낸이';
@@ -491,11 +492,12 @@ INSERT INTO TB_MYPAGE_SCHEDULE VALUES(MS_SEQ.NEXTVAL, NULL, 3, '운동 스케줄
 INSERT INTO TB_MYPAGE_SCHEDULE VALUES(MS_SEQ.NEXTVAL, NULL, 3, '운동 스케줄 3', SYSDATE-1);
 INSERT INTO TB_MYPAGE_SCHEDULE VALUES(MS_SEQ.NEXTVAL, NULL, 3, '운동 스케줄 4', SYSDATE);
 
-INSERT INTO TB_GYM VALUES(14, '테스트용', NULL, NULL,  '테스트용', '010-0000-0000', '010-4111-1111',  NULL, '테스트용',  '설명', '안산', 6, NULL, 1);
-commit;
-   select user_no, email, name, gym_no, gym_name, location, approval_state 
-       from tb_gym  join (select * from tb_user where user_level=1) using(user_no);
-     
+insert into tb_qna values(USER_SEQ.NEXTVAL, 2, 1, '테스트문의', '이것은 테스트', NULL, NULL, SYSDATE-4, DEFAULT, USER_SEQ.NEXTVAL);
+insert into tb_qna values(USER_SEQ.NEXTVAL, 2, 1, '사업자가 보낸 문의 제대로 가나요?', '문의합니다', NULL, NULL, SYSDATE-3, DEFAULT, USER_SEQ.NEXTVAL);
+insert into tb_qna values(USER_SEQ.NEXTVAL, 3, 1, '회원이 보낸 문의', '왔나염?', NULL, NULL, SYSDATE-3, DEFAULT, USER_SEQ.NEXTVAL);
+insert into tb_qna values(USER_SEQ.NEXTVAL, 3, 1, '회원이 보낸 문의', '왔나염?', NULL, NULL, SYSDATE-1, DEFAULT, USER_SEQ.NEXTVAL);
+insert into tb_qna values(USER_SEQ.NEXTVAL, 4, 1, '회원이 보낸 문의', '왔나염?', NULL, NULL, SYSDATE-2, DEFAULT, USER_SEQ.NEXTVAL);
+insert into tb_qna values(USER_SEQ.NEXTVAL, 5, 1, '회원이 보낸 문의', '왔나염?', NULL, NULL, SYSDATE-7, DEFAULT, USER_SEQ.NEXTVAL);
      
 INSERT INTO TB_MEETING_BOARD
 VALUES(1,2,'금강산 같이 타실분 구해요','이번 12월 11일날 눈이 많이 온다고들 하네요.. 그때 산 한번 타고 싶은데 같이 타실분 있나요?',
@@ -851,143 +853,145 @@ insert into tb_video_board values(vb_seq.nextval,'카프레이즈 - 싱글 레�
 insert into tb_video_board values(vb_seq.nextval,'카프레이즈 - 머신','레그 프레스 머신에서 실시하는 종아리 운동이다. 스탠딩 자세에서 하는 운동과 달리 허리의 추가적인 스트레스를 피할 수 있다는 장점이 있다. 종아리 근육에 대한 집중을 더욱 느낄 수 있고, 자신의 몸무게만큼 고중량으로 실시할 수 있다.','헬스','종아리','http://serviceapi.rmcnmv.naver.com/flash/outKeyPlayer.nhn?vid=1255934BC7773B6B927EBA51898851D750DA^outKey=V127f754232dc7ea041a47e48f7778b839e76aa9da2ab5e7c22977e48f7778b839e76^controlBarMovable=true^jsCallable=true^isAutoPlay=false^skinName=tvcast_white',default);
 
 -- TB_GYM 샘플 데이터
+INSERT INTO TB_GYM VALUES(14, '테스트용', NULL, NULL,  '테스트용', '010-0000-0000', '010-4111-1111',  NULL, '테스트용',  '설명', '안산', 6, NULL, 1);
+
 INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL, PHONE, PRICE, CATEGORY, DESCRIPTION, LOCATION, USER_NO, DELETE_DATE, APPROVAL_STATE) 
 VALUES (gym_seq.nextval, '우노 휘트니스클럽', NULL, NULL, 'AM 06:00', '02-790-6776', '010-1234-5678', NULL, '피트니스', NULL, '서울특별시 용산구 보광동 260-8번지 지상3층', 2, NULL, DEFAULT);
 
 INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL, PHONE, PRICE, CATEGORY, DESCRIPTION, LOCATION, USER_NO, DELETE_DATE, APPROVAL_STATE) 
-VALUES (gym_seq.nextval, 'AK운동맞춤센터', NULL, NULL, 'AM 06:00', '02-777-3579', '010-1234-5678', NULL, '헬스', NULL, '서울특별시 용산구 용산동2가 23번지', 3, NULL, DEFAULT);
+VALUES (gym_seq.nextval, 'AK운동맞춤센터', NULL, NULL, 'AM 06:00', '02-777-3579', '010-1234-5678', NULL, '헬스', NULL, '서울특별시 용산구 용산동2가 23번지', 6, NULL, DEFAULT);
 
 INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL, PHONE, PRICE, CATEGORY, DESCRIPTION, LOCATION, USER_NO, DELETE_DATE, APPROVAL_STATE) 
 VALUES (gym_seq.nextval, '웰니스짐', NULL, NULL, 'AM 06:00', '02-795-9966', '010-1234-5678', NULL, '헬스', NULL, '서울특별시 용산구 이태원동 226-3번지 지하1층', 2, NULL, DEFAULT);
 
 INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL, PHONE, PRICE, CATEGORY, DESCRIPTION, LOCATION, USER_NO, DELETE_DATE, APPROVAL_STATE) 
-VALUES (gym_seq.nextval, '그랜드 남여헬스클럽', NULL, NULL, 'AM 06:00', '02-795-5511', '010-1234-5678', NULL, '헬스', NULL, '서울특별시 용산구 보광동 216-96번지', 3, NULL, DEFAULT);
+VALUES (gym_seq.nextval, '그랜드 남여헬스클럽', NULL, NULL, 'AM 06:00', '02-795-5511', '010-1234-5678', NULL, '헬스', NULL, '서울특별시 용산구 보광동 216-96번지', 6, NULL, DEFAULT);
 
 INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL, PHONE, PRICE, CATEGORY, DESCRIPTION, LOCATION, USER_NO, DELETE_DATE, APPROVAL_STATE) 
 VALUES (gym_seq.nextval, '동국 스포츠', NULL, NULL, 'AM 06:00', '02-715-5588', '010-1234-5678', NULL, '헬스', NULL, '서울특별시 용산구 원효로4가 142-1번지 2.3층', 2, NULL, DEFAULT);
 
 INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL, PHONE, PRICE, CATEGORY, DESCRIPTION, LOCATION, USER_NO, DELETE_DATE, APPROVAL_STATE) 
-VALUES (gym_seq.nextval, '한강헬스', NULL, NULL, 'AM 06:00', '02-795-9333', '010-1234-5678', NULL, '헬스', NULL, '서울특별시 용산구 이촌동 300-15번지', 3, NULL, DEFAULT);
+VALUES (gym_seq.nextval, '한강헬스', NULL, NULL, 'AM 06:00', '02-795-9333', '010-1234-5678', NULL, '헬스', NULL, '서울특별시 용산구 이촌동 300-15번지', 6, NULL, DEFAULT);
 
 INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL, PHONE, PRICE, CATEGORY, DESCRIPTION, LOCATION, USER_NO, DELETE_DATE, APPROVAL_STATE)
 VALUES (gym_seq.nextval, '그램 휘트니스', NULL, NULL, 'AM 06:00', '02-794-6010', '010-1234-5678', NULL, '피트니스', NULL, '서울특별시 용산구 한남동 657-201번지', 2, NULL, DEFAULT);
 
 INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL, PHONE, PRICE, CATEGORY, DESCRIPTION, LOCATION, USER_NO, DELETE_DATE, APPROVAL_STATE)
-VALUES (gym_seq.nextval, 'J헬스클럽', NULL, NULL, 'AM 06:00', '02-796-5176', '010-1234-5678', NULL, '헬스', NULL, '서울특별시 용산구 한남동 631-5번지 4층', 3, NULL, DEFAULT);
+VALUES (gym_seq.nextval, 'J헬스클럽', NULL, NULL, 'AM 06:00', '02-796-5176', '010-1234-5678', NULL, '헬스', NULL, '서울특별시 용산구 한남동 631-5번지 4층', 6, NULL, DEFAULT);
 
 INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL, PHONE, PRICE, CATEGORY, DESCRIPTION, LOCATION, USER_NO, DELETE_DATE, APPROVAL_STATE)
 VALUES (gym_seq.nextval, 'B AND B 휘트니스', NULL, NULL, 'AM 06:00', '02-794-5600', '010-1234-5678', NULL, '피트니스', NULL, '서울특별시 용산구 이태원동 21-1번지 태광빌딩 207호', 2, NULL, DEFAULT);
 
 INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL, PHONE, PRICE, CATEGORY, DESCRIPTION, LOCATION, USER_NO, DELETE_DATE, APPROVAL_STATE)
-VALUES (gym_seq.nextval, '스카이 휘트니스클럽', NULL, NULL, 'AM 06:00', '02-797-3993', '010-1234-5678', NULL, '피트니스', NULL, '서울특별시 용산구 남영동 127-1번지 3층', 3, NULL, DEFAULT);
+VALUES (gym_seq.nextval, '스카이 휘트니스클럽', NULL, NULL, 'AM 06:00', '02-797-3993', '010-1234-5678', NULL, '피트니스', NULL, '서울특별시 용산구 남영동 127-1번지 3층', 6, NULL, DEFAULT);
 
 INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL, PHONE, PRICE, CATEGORY, DESCRIPTION, LOCATION, USER_NO, DELETE_DATE, APPROVAL_STATE)
 VALUES (gym_seq.nextval, '상떼휘트니스', NULL, NULL, 'AM 06:00', '02-778-7496', '010-1234-5678', NULL, '피트니스', NULL, '서울특별시 용산구 동자동 22-3번지 지하1층', 2, NULL, DEFAULT);
 
 INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL, PHONE, PRICE, CATEGORY, DESCRIPTION, LOCATION, USER_NO, DELETE_DATE, APPROVAL_STATE)
-VALUES (gym_seq.nextval, '해밀톤 휘트니스센터', NULL, NULL, 'AM 06:00', '02-6393-1375', '010-1234-5678', NULL, '피트니스', NULL, '서울특별시 용산구 이태원동 116-1번지 지하2층', 3, NULL, DEFAULT);
+VALUES (gym_seq.nextval, '해밀톤 휘트니스센터', NULL, NULL, 'AM 06:00', '02-6393-1375', '010-1234-5678', NULL, '피트니스', NULL, '서울특별시 용산구 이태원동 116-1번지 지하2층', 6, NULL, DEFAULT);
 
 INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL, PHONE, PRICE, CATEGORY, DESCRIPTION, LOCATION, USER_NO, DELETE_DATE, APPROVAL_STATE)
 VALUES (gym_seq.nextval, '드래곤힐스파휘트니스클럽', NULL, NULL, 'AM 06:00', '02-792-0002', '010-1234-5678', NULL, '피트니스', NULL, '서울특별시 용산구 한강로3가 40-713번지 4층', 2, NULL, DEFAULT);
 
 INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL, PHONE, PRICE, CATEGORY, DESCRIPTION, LOCATION, USER_NO, DELETE_DATE, APPROVAL_STATE)
-VALUES (gym_seq.nextval, '엠파이어휘트니스', NULL, NULL, 'AM 06:00', '02)705-0039', '010-1234-5678', NULL, '피트니스', NULL, '서울특별시 용산구 한강로3가 16-85번지 GS한강 에클라트(지하1층)', 3, NULL, DEFAULT);
+VALUES (gym_seq.nextval, '엠파이어휘트니스', NULL, NULL, 'AM 06:00', '02)705-0039', '010-1234-5678', NULL, '피트니스', NULL, '서울특별시 용산구 한강로3가 16-85번지 GS한강 에클라트(지하1층)', 6, NULL, DEFAULT);
 
 INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL, PHONE, PRICE, CATEGORY, DESCRIPTION, LOCATION, USER_NO, DELETE_DATE, APPROVAL_STATE)
 VALUES (gym_seq.nextval, '한남레포츠종합타운', NULL, NULL, 'AM 06:00', '02)793-6394', '010-1234-5678', NULL, '헬스', NULL, '서울특별시 용산구 한남동 96-3번지 신성미소시티 지하1층', 2, NULL, DEFAULT);
 
 INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL, PHONE, PRICE, CATEGORY, DESCRIPTION, LOCATION, USER_NO, DELETE_DATE, APPROVAL_STATE)
-VALUES (gym_seq.nextval, '태영헬스', NULL, NULL, 'AM 06:00', '02-703-6377', '010-1234-5678', NULL, '헬스', NULL, '서울특별시 용산구 청파동3가 111-9번지 캠퍼스프라자 4층', 3, NULL, DEFAULT);
+VALUES (gym_seq.nextval, '태영헬스', NULL, NULL, 'AM 06:00', '02-703-6377', '010-1234-5678', NULL, '헬스', NULL, '서울특별시 용산구 청파동3가 111-9번지 캠퍼스프라자 4층', 6, NULL, DEFAULT);
 
 INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL, PHONE, PRICE, CATEGORY, DESCRIPTION, LOCATION, USER_NO, DELETE_DATE, APPROVAL_STATE)
 VALUES (gym_seq.nextval, '몽키짐휘트니스', NULL, NULL, 'AM 06:00', '02-3215-8200', '010-1234-5678', NULL, '피트니스', NULL, '서울특별시 용산구 한강로2가 2-8번지', 2, NULL, DEFAULT);
 
 INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL, PHONE, PRICE, CATEGORY, DESCRIPTION, LOCATION, USER_NO, DELETE_DATE, APPROVAL_STATE)
-VALUES (gym_seq.nextval, '와이짐', NULL, NULL, 'AM 06:00', '02-797-7304', '010-1234-5678', NULL, '헬스장', NULL, '서울특별시 용산구 이촌동 300-18번지 유일빌딩 지하1층', 3, NULL, DEFAULT);
+VALUES (gym_seq.nextval, '와이짐', NULL, NULL, 'AM 06:00', '02-797-7304', '010-1234-5678', NULL, '헬스장', NULL, '서울특별시 용산구 이촌동 300-18번지 유일빌딩 지하1층', 6, NULL, DEFAULT);
 
 INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL, PHONE, PRICE, CATEGORY, DESCRIPTION, LOCATION, USER_NO, DELETE_DATE, APPROVAL_STATE)
 VALUES (gym_seq.nextval, '킴스짐헬스크럽', NULL, NULL, 'AM 06:00', '02-749-9995', '010-1234-5678', NULL, '헬스장', NULL, '서울특별시 용산구 이태원동 124-3번지 지하1층', 2, NULL, DEFAULT);
 
 INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL, PHONE, PRICE, CATEGORY, DESCRIPTION, LOCATION, USER_NO, DELETE_DATE, APPROVAL_STATE)
-VALUES (gym_seq.nextval, 'Studio-X-Fitness', NULL, NULL, 'AM 06:00', '02-123-4567', '010-1234-5678', NULL, '피트니스', NULL, '서울특별시 용산구 이태원동 651번지', 3, NULL, DEFAULT);
+VALUES (gym_seq.nextval, 'Studio-X-Fitness', NULL, NULL, 'AM 06:00', '02-123-4567', '010-1234-5678', NULL, '피트니스', NULL, '서울특별시 용산구 이태원동 651번지', 6, NULL, DEFAULT);
 
 INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL, PHONE, PRICE, CATEGORY, DESCRIPTION, LOCATION, USER_NO, DELETE_DATE, APPROVAL_STATE)
 VALUES (gym_seq.nextval, 'With Gym', NULL, NULL, 'AM 06:00', '02-749-9690', '010-1234-5678', NULL, '헬스', NULL, '서울특별시 용산구 한남동 653-95번지 2층', 2, NULL, DEFAULT);
 
 INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL, PHONE, PRICE, CATEGORY, DESCRIPTION, LOCATION, USER_NO, DELETE_DATE, APPROVAL_STATE)
-VALUES (gym_seq.nextval, '센티넬 크로스핏 한남', NULL, NULL, 'AM 06:00', '02-6431-0802', '010-1234-5678', NULL, '크로스핏', NULL, '서울특별시 용산구 한남동 635-1번지 지하1층', 3, NULL, DEFAULT);
+VALUES (gym_seq.nextval, '센티넬 크로스핏 한남', NULL, NULL, 'AM 06:00', '02-6431-0802', '010-1234-5678', NULL, '크로스핏', NULL, '서울특별시 용산구 한남동 635-1번지 지하1층', 6, NULL, DEFAULT);
 
 INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL, PHONE, PRICE, CATEGORY, DESCRIPTION, LOCATION, USER_NO, DELETE_DATE, APPROVAL_STATE)
 VALUES (gym_seq.nextval, '동서 골프and휘트니스', NULL, NULL, 'AM 06:00', '02-714-2011', '010-1234-5678', NULL, '피트니스', NULL, '서울특별시 용산구 청파동1가 180-24번지', 2, NULL, DEFAULT);
 
 INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL, PHONE, PRICE, CATEGORY, DESCRIPTION, LOCATION, USER_NO, DELETE_DATE, APPROVAL_STATE)
-VALUES (gym_seq.nextval, '위너핏PT스튜디오', NULL, NULL, 'AM 06:00', '02-792-1031', '010-1234-5678', NULL, '피트니스', NULL, '서울특별시 용산구 남영동 61-4번지', 3, NULL, DEFAULT);
+VALUES (gym_seq.nextval, '위너핏PT스튜디오', NULL, NULL, 'AM 06:00', '02-792-1031', '010-1234-5678', NULL, '피트니스', NULL, '서울특별시 용산구 남영동 61-4번지', 6, NULL, DEFAULT);
 
 INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL, PHONE, PRICE, CATEGORY, DESCRIPTION, LOCATION, USER_NO, DELETE_DATE, APPROVAL_STATE)
 VALUES (gym_seq.nextval, '스포짐', NULL, NULL, 'AM 06:00', '02-701-0011', '010-1234-5678', NULL, '헬스', NULL, '서울특별시 용산구 문배동 40-31번지 ', 2, NULL, DEFAULT);
 
 INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL, PHONE, PRICE, CATEGORY, DESCRIPTION, LOCATION, USER_NO, DELETE_DATE, APPROVAL_STATE)
-VALUES (gym_seq.nextval, '프라이빗 웰니스', NULL, NULL, 'AM 06:00', '02-123-4567', '010-1234-5678', NULL, '헬스', NULL, '서울특별시 용산구 한남동 740-1번지 ', 3, NULL, DEFAULT);
+VALUES (gym_seq.nextval, '프라이빗 웰니스', NULL, NULL, 'AM 06:00', '02-123-4567', '010-1234-5678', NULL, '헬스', NULL, '서울특별시 용산구 한남동 740-1번지 ', 6, NULL, DEFAULT);
 
 INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL, PHONE, PRICE, CATEGORY, DESCRIPTION, LOCATION, USER_NO, DELETE_DATE, APPROVAL_STATE)
 VALUES (gym_seq.nextval, 'H 퍼스널트레이닝', NULL, NULL, 'AM 06:00', '02-123-4567', '010-1234-5678', NULL, '헬스', NULL, '서울특별시 용산구 한남동 79-3번지 ', 2, NULL, DEFAULT);
 
 INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL, PHONE, PRICE, CATEGORY, DESCRIPTION, LOCATION, USER_NO, DELETE_DATE, APPROVAL_STATE)
-VALUES (gym_seq.nextval, '반트짐', NULL, NULL, 'AM 06:00', '02-123-4567', '010-1234-5678', NULL, '헬스', NULL, '서울특별시 용산구 이촌동 302-52번지 ', 3, NULL, DEFAULT);
+VALUES (gym_seq.nextval, '반트짐', NULL, NULL, 'AM 06:00', '02-123-4567', '010-1234-5678', NULL, '헬스', NULL, '서울특별시 용산구 이촌동 302-52번지 ', 6, NULL, DEFAULT);
 
 INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL, PHONE, PRICE, CATEGORY, DESCRIPTION, LOCATION, USER_NO, DELETE_DATE, APPROVAL_STATE)
 VALUES (gym_seq.nextval, 'Fit In Cool', NULL, NULL, 'AM 06:00', '02-123-4567', '010-2662-0828', NULL, '피트니스', NULL, '서울특별시 용산구 한남동 657-45번지', 2, NULL, DEFAULT);
 
 INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL, PHONE, PRICE, CATEGORY, DESCRIPTION, LOCATION, USER_NO, DELETE_DATE, APPROVAL_STATE)
-VALUES (gym_seq.nextval, '팀레드', NULL, NULL, 'AM 06:00', '02-703-8378', '010-1234-5678', NULL, '헬스', NULL, '서울특별시 용산구 원효로1가 39-6번지', 3, NULL, DEFAULT);
+VALUES (gym_seq.nextval, '팀레드', NULL, NULL, 'AM 06:00', '02-703-8378', '010-1234-5678', NULL, '헬스', NULL, '서울특별시 용산구 원효로1가 39-6번지', 6, NULL, DEFAULT);
 
 INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL, PHONE, PRICE, CATEGORY, DESCRIPTION, LOCATION, USER_NO, DELETE_DATE, APPROVAL_STATE)
 VALUES (gym_seq.nextval, 'wunderbar GYM', NULL, NULL, 'AM 06:00', '02-790-7175', '010-1234-5678', NULL, '헬스', NULL, '서울특별시 용산구 이촌동 300-27번지 307호', 2, NULL, DEFAULT);
 
 INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL, PHONE, PRICE, CATEGORY, DESCRIPTION, LOCATION, USER_NO, DELETE_DATE, APPROVAL_STATE)
-VALUES (gym_seq.nextval, '리복 크로스핏 센티널 원', NULL, NULL, 'AM 06:00', '02-790-0801', '010-1234-5678', NULL, '크로스핏', NULL, '서울특별시 용산구 한남동 76-42번지', 3, NULL, DEFAULT);
+VALUES (gym_seq.nextval, '리복 크로스핏 센티널 원', NULL, NULL, 'AM 06:00', '02-790-0801', '010-1234-5678', NULL, '크로스핏', NULL, '서울특별시 용산구 한남동 76-42번지', 6, NULL, DEFAULT);
 
 INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL, PHONE, PRICE, CATEGORY, DESCRIPTION, LOCATION, USER_NO, DELETE_DATE, APPROVAL_STATE)
 VALUES (gym_seq.nextval, 'Fit Club', null, null, 'AM 06:00', '02-123-4567', '010-1234-5678', NULL, '피트니스', NULL, '서울특별시 용산구 이태원동 646-204번지', 2, NULL, DEFAULT);
 
 INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL, PHONE, PRICE, CATEGORY, DESCRIPTION, LOCATION, USER_NO, DELETE_DATE, APPROVAL_STATE)
-VALUES (gym_seq.nextval, '유(U)PT', NULL, NULL, 'AM 06:00', '02-796-7978', '010-1234-5678', NULL, '피트니스', NULL, '서울특별시 용산구 한남동 261-6번지', 3, NULL, DEFAULT);
+VALUES (gym_seq.nextval, '유(U)PT', NULL, NULL, 'AM 06:00', '02-796-7978', '010-1234-5678', NULL, '피트니스', NULL, '서울특별시 용산구 한남동 261-6번지', 6, NULL, DEFAULT);
 
 INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL, PHONE, PRICE, CATEGORY, DESCRIPTION, LOCATION, USER_NO, DELETE_DATE, APPROVAL_STATE)
 VALUES (gym_seq.nextval, 'Beautiful Evolution', NULL, NULL, 'AM 06:00', '02-123-4567', '010-1234-5678', NULL, '헬스', NULL, '서울특별시 용산구 보광동 216-88번지', 2, NULL, DEFAULT);
 
 INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL, PHONE, PRICE, CATEGORY, DESCRIPTION, LOCATION, USER_NO, DELETE_DATE, APPROVAL_STATE)
-VALUES (gym_seq.nextval, '에스퍼스널트레이닝', NULL, NULL, 'AM 06:00', '02-797-0324', '010-1234-5678', NULL, '헬스', NULL, '서울특별시 용산구 용산동5가 24-1번지', 3, NULL, DEFAULT);
+VALUES (gym_seq.nextval, '에스퍼스널트레이닝', NULL, NULL, 'AM 06:00', '02-797-0324', '010-1234-5678', NULL, '헬스', NULL, '서울특별시 용산구 용산동5가 24-1번지', 6, NULL, DEFAULT);
 
 INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL, PHONE, PRICE, CATEGORY, DESCRIPTION, LOCATION, USER_NO, DELETE_DATE, APPROVAL_STATE)
 VALUES (gym_seq.nextval, 'PENTACLE', NULL, NULL, 'AM 06:00', '02-727-5000', '010-1234-5678', NULL, '헬스', NULL, '서울특별시 용산구 동자동 12번지', 2, NULL, DEFAULT);
 
 INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL, PHONE, PRICE, CATEGORY, DESCRIPTION, LOCATION, USER_NO, DELETE_DATE, APPROVAL_STATE)
-VALUES (gym_seq.nextval, '레브트레이닝', NULL, NULL, 'AM 06:00', '02-796-9600', '010-1234-5678', NULL, '헬스', NULL, '서울특별시 용산구 한남동 1-307번지', 3, NULL, DEFAULT);
+VALUES (gym_seq.nextval, '레브트레이닝', NULL, NULL, 'AM 06:00', '02-796-9600', '010-1234-5678', NULL, '헬스', NULL, '서울특별시 용산구 한남동 1-307번지', 6, NULL, DEFAULT);
 
 INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL, PHONE, PRICE, CATEGORY, DESCRIPTION, LOCATION, USER_NO, DELETE_DATE, APPROVAL_STATE)
 VALUES (gym_seq.nextval, '스포벡', NULL, NULL, 'AM 06:00', '02-123-4567', '010-1234-5678', NULL, '헬스', NULL, '서울특별시 용산구 갈월동 101-45번지', 2, NULL, DEFAULT);
 
 INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL, PHONE, PRICE, CATEGORY, DESCRIPTION, LOCATION, USER_NO, DELETE_DATE, APPROVAL_STATE)
-VALUES (gym_seq.nextval, '와가짐', NULL, NULL, 'AM 06:00', '070-4794-6591', '010-1234-5678', NULL, '헬스', NULL, '서울특별시 용산구 이촌동 300-301번지', 3, NULL, DEFAULT);
+VALUES (gym_seq.nextval, '와가짐', NULL, NULL, 'AM 06:00', '070-4794-6591', '010-1234-5678', NULL, '헬스', NULL, '서울특별시 용산구 이촌동 300-301번지', 6, NULL, DEFAULT);
 
 INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL, PHONE, PRICE, CATEGORY, DESCRIPTION, LOCATION, USER_NO, DELETE_DATE, APPROVAL_STATE)
 VALUES (gym_seq.nextval, '시크모어 웰니스 스튜디오', NULL, NULL, 'AM 06:00', '02-792-1710', '010-1234-5678', NULL, '헬스', NULL, '서울특별시 용산구 한남동 722-3번지 은성빌딩 2층', 2, NULL, DEFAULT);
 
 INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL, PHONE, PRICE, CATEGORY, DESCRIPTION, LOCATION, USER_NO, DELETE_DATE, APPROVAL_STATE)
-VALUES (gym_seq.nextval, '패스트앤슬로우 컨설팅그룹', NULL, NULL, 'AM 06:00', '02-123-4567', '010-8664-1340', NULL, '헬스', NULL, '서울특별시 용산구 갈월동 69-109번지', 3, NULL, DEFAULT);
+VALUES (gym_seq.nextval, '패스트앤슬로우 컨설팅그룹', NULL, NULL, 'AM 06:00', '02-123-4567', '010-8664-1340', NULL, '헬스', NULL, '서울특별시 용산구 갈월동 69-109번지', 6, NULL, DEFAULT);
 
 INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL, PHONE, PRICE, CATEGORY, DESCRIPTION, LOCATION, USER_NO, DELETE_DATE, APPROVAL_STATE)
 VALUES (gym_seq.nextval, '서울체대입시', NULL, NULL, 'AM 06:00', '02-797-6530', '010-1234-5678', NULL, '체대입시', NULL, '서울특별시 용산구 남영동 17-1번지', 2, NULL, DEFAULT);
 
 INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL, PHONE, PRICE, CATEGORY, DESCRIPTION, LOCATION, USER_NO, DELETE_DATE, APPROVAL_STATE)
-VALUES (gym_seq.nextval, '칼라퍼스널트레이닝', NULL, NULL, 'AM 06:00', '02-711-4013', '010-1234-5678', NULL, '헬스', NULL, '서울특별시 용산구 원효로1가 39-10번지', 3, NULL, DEFAULT);
+VALUES (gym_seq.nextval, '칼라퍼스널트레이닝', NULL, NULL, 'AM 06:00', '02-711-4013', '010-1234-5678', NULL, '헬스', NULL, '서울특별시 용산구 원효로1가 39-10번지', 6, NULL, DEFAULT);
 
 INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL, PHONE, PRICE, CATEGORY, DESCRIPTION, LOCATION, USER_NO, DELETE_DATE, APPROVAL_STATE)
 VALUES (gym_seq.nextval, '랜스앤제이 퍼스널 트레이닝 스튜디오', NULL, NULL, 'AM 06:00', '02-749-7498', '010-1234-5678', NULL, '헬스', NULL, '서울특별시 용산구 한남동 258번지 ', 2, NULL, DEFAULT);
 
 INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL, PHONE, PRICE, CATEGORY, DESCRIPTION, LOCATION, USER_NO, DELETE_DATE, APPROVAL_STATE)
-VALUES (gym_seq.nextval, '유즈웰(USEWELL)', NULL, NULL, 'AM 06:00', '02-749-2260', '010-1234-5678', NULL, '헬스', NULL, '서울특별시 용산구 한남동 72-1번지 ', 3, NULL, DEFAULT);
+VALUES (gym_seq.nextval, '유즈웰(USEWELL)', NULL, NULL, 'AM 06:00', '02-749-2260', '010-1234-5678', NULL, '헬스', NULL, '서울특별시 용산구 한남동 72-1번지 ', 6, NULL, DEFAULT);
 
 INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL, PHONE, PRICE, CATEGORY, DESCRIPTION, LOCATION, USER_NO, DELETE_DATE, APPROVAL_STATE)
 VALUES (gym_seq.nextval, '제이 스튜디오', NULL, NULL, 'AM 06:00', '02-792-8281', '010-1234-5678', NULL, '헬스', NULL, '서울특별시 용산구 보광동 217-21번지 ', 2, NULL, DEFAULT);

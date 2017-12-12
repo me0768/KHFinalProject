@@ -93,6 +93,20 @@ public class AdminServiceImpl  implements AdminService{
 	}
 
 
+	@Override
+	public void adminBusinessStateChange(int user_no) {
+		adminDao.businessStateChange(user_no);
+		
+	}
+
+
+	@Override
+	public void adminBusinessStateBack(int user_no) {
+		adminDao.businessStateBack(user_no);
+		
+	}
+
+
 
 
 	

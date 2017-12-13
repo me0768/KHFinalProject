@@ -147,13 +147,13 @@
 	</select>
 	
 	<!-- 체육관 찾기 -->
-	<select id="selectGymList" resultType="list" resultMap="resultGymRequest">
+	<select id="selectGymList" resultType="list" resultMap="resultGymRequest" parameterType="hashmap">
 		<![CDATA[
 			select * from(select rownum rnum, T.* from tb_gym T) a where a.rnum >= #{startRow} and a.rnum <= #{endRow}
 		]]>
 	</select>
 	
-	<select id="selectPublicList" resultType="list" resultMap="resultPublicRequest">
+	<select id="selectPublicList" resultType="list" resultMap="resultPublicRequest" parameterType="hashmap">
 		<![CDATA[
 			select * from(select rownum rnum, T.* from tb_public_gym T) a where a.rnum >= #{startRow} and a.rnum <= #{endRow}
 		]]>

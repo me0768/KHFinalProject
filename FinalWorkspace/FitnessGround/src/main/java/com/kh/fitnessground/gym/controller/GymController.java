@@ -119,10 +119,10 @@ public class GymController {
 	}
 	
 	// 헬스장 수정
-	@RequestMapping(value="updategym.do")
+	@RequestMapping(value="/updategym.do")
 	public ModelAndView updateGym(Gym gym, HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView();
-		// 헬스장 스케줄도 수정
+		System.out.println("헬스장 업데이트" + gym);
 		return mv;
 	}
 	
@@ -138,10 +138,10 @@ public class GymController {
 	}
 	
 	// 헬스장 디테일 뷰
-	@RequestMapping(value="detailgym.do")
+	@RequestMapping(value="/detailgym.do")
 	public ModelAndView detailGym(Gym gym, HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView();
-		// 헬스장 스케줄도 셀렉
+		System.out.println("헬스장 디테일" + gym);
 		return mv;
 	}
 	

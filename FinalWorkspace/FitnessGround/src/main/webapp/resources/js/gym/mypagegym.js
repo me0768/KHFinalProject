@@ -18,13 +18,17 @@ $(document).ready(function(){
 				$("#regcount").html(values);
 				var gymlist = '';
 				for(var i=0; i < data.gymcount; i++ ){
+					var image = data.list[i].rename_image.split(',');
+					if( image[0] == "" ){
+						image[0] = '로고.png';
+					}
 					gymlist += 
 					'<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px; margin-bottom: 5px;">' +
 						'<div class="col-lg-3 col-md-3 col-sm-3 col-sm-offset-0  col-xs-6 col-xs-offset-3" style="padding: 5px;">' +
-							'<img src="resources/images/gymimages/4921da6b3e614fd0aefb634613dbaccb.jpg" id="gymimg">' +
+							'<img src="resources/images/gymimages/' + image[0] + '" id="gymimg">' +
 						'</div>' +
 						'<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="padding-left: 5px; paading-right: 5px;">' +
-							'<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px; font-size: 8pt; font-weight: bold;">' + data.list[i].gym_name + '</div>' +
+							'<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px; font-size: 8pt; font-weight: bold;"><a href="javascript:detailgym(' + data.list[i].gym_no + ')">' + data.list[i].gym_name + '</a></div>' +
 							'<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px; font-size: 8pt;">분류 : ' + data.list[i].category + '</div>' +
 							'<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px; font-size: 8pt;">전화번호 : ' + data.list[i].tel + '</div>' +
 							'<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px; font-size: 8pt;">H.P : ' + data.list[i].phone + '</div>' +
@@ -32,7 +36,7 @@ $(document).ready(function(){
 						'</div>' +
 						'<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12" style="padding: 0px;">' +
 							'<div class="btn-group col-xs-12" role="group" aria-label="..." style="padding: 0px;">' +
-							  '<button type="button" class="btn btn-default col-xs-4" style="padding: 2px; font-size: 8pt;" onclick="detailgym.do?gym_no=' + data.list[i].gym_no + '">보기</button>' +
+							  '<button type="button" class="btn btn-default col-xs-4" style="padding: 2px; font-size: 8pt;" onclick="detailgym(' + data.list[i].gym_no + ')">보기</button>' +
 							  '<button type="button" class="btn btn-default col-xs-4" style="padding: 2px; font-size: 8pt;" onclick="updategym(' + data.list[i].gym_no + ')">수정</button>' +
 							  '<button type="button" class="btn btn-default col-xs-4" style="padding: 2px; font-size: 8pt;" onclick="deletegym(' + data.list[i].gym_no + ',' + user_no + ',\'' + data.list[i].gym_name + '\')">삭제</button>' +
 							'</div>' +
@@ -61,14 +65,18 @@ $(document).ready(function(){
 					values += '검색된 헬스장 (' + data.gymcount + ')';
 					$("#regcount").html(values);
 					var gymlist = '';
-					for(var i=0; i < data.gymcount; i++){
+					for(var i=0; i < data.gymcount; i++ ){
+						var image = data.list[i].rename_image.split(',');
+						if( image[0] == "" ){
+							image[0] = '로고.png';
+						}
 						gymlist += 
 						'<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px; margin-bottom: 5px;">' +
 							'<div class="col-lg-3 col-md-3 col-sm-3 col-sm-offset-0  col-xs-6 col-xs-offset-3" style="padding: 5px;">' +
-								'<img src="resources/images/gymimages/4921da6b3e614fd0aefb634613dbaccb.jpg" id="gymimg">' +
+								'<img src="resources/images/gymimages/' + image[0] + '" id="gymimg">' +
 							'</div>' +
 							'<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="padding-left: 5px; paading-right: 5px;">' +
-								'<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px; font-size: 8pt; font-weight: bold;">' + data.list[i].gym_name + '</div>' +
+								'<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px; font-size: 8pt; font-weight: bold;"><a href="javascript:detailgym(' + data.list[i].gym_no + ')">' + data.list[i].gym_name + '</a></div>' +
 								'<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px; font-size: 8pt;">분류 : ' + data.list[i].category + '</div>' +
 								'<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px; font-size: 8pt;">전화번호 : ' + data.list[i].tel + '</div>' +
 								'<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px; font-size: 8pt;">H.P : ' + data.list[i].phone + '</div>' +
@@ -76,7 +84,7 @@ $(document).ready(function(){
 							'</div>' +
 							'<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12" style="padding: 0px;">' +
 								'<div class="btn-group col-xs-12" role="group" aria-label="..." style="padding: 0px;">' +
-								  '<button type="button" class="btn btn-default col-xs-4" style="padding: 2px; font-size: 8pt;" onclick="detailgym.do?gym_no=' + data.list[i].gym_no + '">보기</button>' +
+								  '<button type="button" class="btn btn-default col-xs-4" style="padding: 2px; font-size: 8pt;" onclick="detailgym(' + data.list[i].gym_no + ')">보기</button>' +
 								  '<button type="button" class="btn btn-default col-xs-4" style="padding: 2px; font-size: 8pt;" onclick="updategym(' + data.list[i].gym_no + ')">수정</button>' +
 								  '<button type="button" class="btn btn-default col-xs-4" style="padding: 2px; font-size: 8pt;" onclick="deletegym(' + data.list[i].gym_no + ',' + user_no + ',\'' + data.list[i].gym_name + '\')">삭제</button>' +
 								'</div>' +
@@ -125,4 +133,12 @@ $(document).ready(function(){
 			alert("헬스장 삭제를 취소하였습니다.");
 			return false;
 		}
+	}
+	
+	function detailgym(gym_no){
+		alert("디테일뷰로 이동" + gym_no);
+	}
+	
+	function updategym(gym_no){
+		alert("업데이트뷰로 이동" + gym_no);
 	}

@@ -183,7 +183,7 @@
 						/* }); */
 					</c:forEach>
 					</script>
-	<!-- 동영상 리스트 (a태그덮어씌움~modal) view -->
+	<!-- 동영상 리스트 view -->
 	<div class="workout-videos">
 		<c:if test="${!empty list}">
 			<c:forEach items="${list}" var="y" varStatus="st">

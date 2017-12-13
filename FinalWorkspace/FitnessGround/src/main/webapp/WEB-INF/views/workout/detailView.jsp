@@ -20,13 +20,13 @@
 						<span id="span-content"></span>
 					</div>
 					<hr>
-					<div id="read_count" style="color:black; font-size:13px"></div>
+					
 					<div id="like_up">
 						<!-- <button type="submit" id="like-btn" onclick="likeUp()">
 							좋아요 </button>
 						<span id="like" style="color:black; font-size:13px">//좋아요 갯수 :</span>  -->
 					</div>					
-					
+					<div id="read_count" style="color:black; font-size:13px"></div>
 				
 					<c:if test="${sessionScope.user==null }">
 						<div id="nvideo-reply" style="color:black;">
@@ -104,14 +104,15 @@
 			+"frameborder='0' gesture='media' allow='encrypted-media' allowfullscreen name='iframe'></iframe>"
 			
 			if($("#user").val()==null){
-				like='<button type="submit" id="like-btn" onclick="loginMessage()">좋아요 </button>' +
-				'<span style="color:black; font-size:13px">//좋아요 갯수 :</span>'+
+				like='<button type="submit" class="btn btn-default" id="like-btn"'+
+				' onclick="loginMessage()"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></button>' +
+				'<span style="color:black; font-size:13px">좋아요:</span>'+
 				'<span id="like_count" style="color:black; font-size:13px">' + likeCount + '</span>'
 				
 			}else{
-				like='<button type="submit" id="like-btn" onclick="likeUp(' 
-					+ '\'' + responseData.category1 +'\'' + ',' + '\'' + responseData.category2  + '\'' +')">좋아요 </button>' +
-				'<span style="color:black; font-size:13px">//좋아요 갯수 :</span>'+
+				like='<button type="submit" class="btn btn-default" id="like-btn" onclick="likeUp(' 
+					+ '\'' + responseData.category1 +'\'' + ',' + '\'' + responseData.category2  + '\'' +')"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> </button>' +
+				'<span style="color:black; font-size:13px">//좋아요 :</span>'+
 				'<span id="like_count" style="color:black; font-size:13px">' + likeCount + '</span>'
 				
 			}

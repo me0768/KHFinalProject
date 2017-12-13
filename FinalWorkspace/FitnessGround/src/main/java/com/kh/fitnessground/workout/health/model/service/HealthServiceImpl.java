@@ -77,9 +77,10 @@ public class HealthServiceImpl implements HealthService{
 		healthDao.deleteComment(comment);		
 	}
 
+	//좋아요
 	@Override
-	public void updateLike(Like like) {
-		healthDao.updateLike(like);
+	public int selectLikeCount(int v_no) {
+		return healthDao.selectLikeCount(v_no);
 		
 	}
 
@@ -89,11 +90,6 @@ public class HealthServiceImpl implements HealthService{
 		return list;
 	}
 
-	@Override	
-	public void insertLike(Like like) {
-		healthDao.insertLike(like);
-		
-	}
 
 	@Override //좋아요 테이블에 있는지 확인
 	public int checkLikeTable(Like like) {
@@ -112,6 +108,24 @@ public class HealthServiceImpl implements HealthService{
 		return result;
 	}
 
+	@Override
+	public Like selectLike(Like like) {
+		// 좋아요 객체 불러옴
+		return healthDao.selectLike(like);
+	}
+	
+	@Override	
+	public void insertLike(Like like) {
+		//좋아요 테이블에 넣기(좋아요 증가)
+		healthDao.insertLike(like);
+	}
+
+	@Override	
+	public void deleteLike(Like like) {
+		// 좋아요 테이블에서 삭제 (좋아요 취소)
+		healthDao.deleteLike(like);
+	}	
+	
 	
 
 	

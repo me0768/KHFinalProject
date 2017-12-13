@@ -39,11 +39,16 @@
 		update tb_video_board set readcount = readcount + 1 where v_no = #{v_no}
 	</update>
 	
-	<!-- yoga 전체리스트 select -->
+	<!-- 운동 전체리스트 select -->
 	<select id="selectAllList" resultType="list" resultMap="yogaResult">
 		<![CDATA[
-		select * from tb_video_board where category1 = '요가' order by v_no
+		select * from tb_video_board order by v_no
 		]]>
+	</select>
+	
+	<!-- 운동종류별 list select-->
+	<select id="selectWList" parameterType="Yoga" resultType="list" resultMap="yogaResult">
+		select * from tb_video_board where category1 = #{category1} order by v_no desc
 	</select>
 
 	<!-- 플레이리스트 동영상 한번에 insert하기 Multi-row Insert -->
@@ -55,7 +60,7 @@
 
 	<!-- delete one video -->
 	<delete id="deleteYoga" parameterType="_int" flushCache="true" statementType="PREPARED">
-	delete from tb_video_board where #{v_no}
+	delete from tb_video_board where v_no = #{v_no}
 	</delete>
 
 	<!-- Multi-row Delete -->

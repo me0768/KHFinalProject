@@ -64,4 +64,9 @@ public class YogaDao {
 		return list;
 	}
 
+	public ArrayList<Yoga> selectWList(Yoga yoga) {
+		List<Yoga> ylist = sqlSession.selectList("yoga.selectWList", yoga);
+		return new ArrayList<Yoga>(ylist);
+	}
+
 }

@@ -75,7 +75,7 @@ public class YogaController {
 			return mv;
 		}
 
-		// 동영상 조회수 readCount++
+		// 동영상 조회수 readCount++ (undone);; 
 		@RequestMapping(value = "/ycount.do")
 		public ModelAndView YogaAddReadCountMethod(int v_no, HttpServletRequest request) {
 			ModelAndView mv = new ModelAndView("/workout/yogaCategory");
@@ -85,8 +85,33 @@ public class YogaController {
 			return mv;
 		}
 
-		/*-----Authority=관리자-------*/
+		/*------- 관리자화면------*/
+		
+		// listing All (처음 동영상관리 페이지) 
+		@RequestMapping(value = "adminylist.do")
+		public ModelAndView AdminListAllMethod(Yoga yoga, HttpServletRequest request) {
+			ModelAndView mv = new ModelAndView("admin/workoutVideo");
+			ArrayList<Yoga> list = yogaService.selectAllList();
+			mv.addObject("list", list);
+			return mv;
+		}
+		
+		//선택된 운동종류만 listing
+		@RequestMapping(value = "/adminwlist.do", method = RequestMethod.POST)
+		public ModelAndView AdminWorkoutListMethod(Yoga yoga, HttpServletRequest request){
+			ModelAndView mv = new ModelAndView("admin/workoutVideo");
+			//전송온 문자열을 json 객체로 변환 처리
 
+			ArrayList<Yoga> clist = yogaService.selectWList(yoga);
+			for(Yoga y : clist) {
+				y.setTitle(y.getTitle().replaceAll("\\\"", "＇"));
+				y.setContent(y.getContent().replaceAll("\\\"", "＇"));// 쌍따옴표jsp출력 문제로 미리 치환
+			}
+			mv.addObject("clist", clist);
+			mv.setViewName("jsonView");
+			return mv;
+		}
+		
 		// 동영상 insert (playlist단위로:: 관리자가 playlist입력->자바스크립트에서 api로 video리스트를 json객체로 담아
 		// 컨트롤러에보냄)
 		@RequestMapping(value = "/yinsert.do", method = RequestMethod.POST)
@@ -106,12 +131,12 @@ public class YogaController {
 				String title = (String) job.get("title");
 				String content = (String) job.get("title");// 임시로 이렇게..;
 				String url = (String) job.get("url");
+				String category1 = (String) job.get("category1");
 				String category2 = (String) job.get("category2");
-				Yoga yoga = new Yoga(title, content, "요가", category2, url);
+				Yoga yoga = new Yoga(title, content, category1, category2, url);
 				System.out.println("yoga" + yoga);
 
 				ylist.add(yoga);
-
 			}
 			yogaService.insertYoga(ylist, request);
 
@@ -127,7 +152,7 @@ public class YogaController {
 			return mv;
 		}
 
-		// 동영상 수정 처리 메소드(하나씩)
+		// 동영상 수정 처리 메소드(하나씩) --수정버튼을 누르면 해당row바로밑에 collapse로 title, content, category, v-id form뜨고, 수정하면 닫히면서update되게//
 		@RequestMapping(value = "/yupdate.do")
 		public ModelAndView YogaUpdateMethod(Yoga yoga, HttpServletRequest request) {
 			ModelAndView mv = new ModelAndView("/workout/yogaCategory");
@@ -138,12 +163,15 @@ public class YogaController {
 		}
 
 		// 동영상 delete(하나씩)
-		@RequestMapping(value = "/ydelete.do")
+		@RequestMapping(value = "/deleteone.do", method = RequestMethod.POST)
 		public ModelAndView YogadeleteMethod(Yoga yoga, HttpServletRequest request) {
-			ModelAndView mv = new ModelAndView("/workout/yogaCategory");
+			ModelAndView mv = new ModelAndView("admin/workoutVideo");
+			System.out.println(yoga+":v_no got ");
 			yogaService.deleteYoga(yoga, request);
-			ArrayList<Yoga> ylist = yogaService.selectAllYList();
-			mv.addObject("yogalist", ylist);
+			ArrayList<Yoga> list = yogaService.selectAllList();
+			System.out.println(list+":list received");
+			mv.addObject("list", list);
+			mv.setViewName("jsonView");
 			return mv;
 		}
 

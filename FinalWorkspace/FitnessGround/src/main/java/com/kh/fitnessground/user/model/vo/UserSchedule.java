@@ -14,12 +14,13 @@ public class UserSchedule implements Serializable {
 	private String content;
 	private String title_content;
 	private Date upload_date;
+	private String category1;
 	
 	public UserSchedule() {
 		super();
 	}	
 	public UserSchedule(int s_no, int v_no, int user_no, String title, String url, String content, String title_content,
-			Date upload_date) {
+			Date upload_date, String category1) {
 		super();
 		this.s_no = s_no;
 		this.v_no = v_no;
@@ -29,9 +30,22 @@ public class UserSchedule implements Serializable {
 		this.content = content;
 		this.title_content = title_content;
 		this.upload_date = upload_date;
+		this.category1 = category1;
+	}	
+	public UserSchedule(int user_no, String content, Date upload_date) {
+		super();
+		this.user_no = user_no;
+		this.content = content;
+		this.upload_date = upload_date;
 	}
-
 	
+	
+	public String getCategory1() {
+		return category1;
+	}
+	public void setCategory1(String category1) {
+		this.category1 = category1;
+	}
 	public String getTitle_content() {
 		return title_content;
 	}

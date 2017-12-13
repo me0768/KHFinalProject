@@ -101,8 +101,13 @@
 							<tr>
 								<td colspan="2">
 									<c:if test="${null eq s.content}">
-									<a href="#workout-modal" data-toggle="modal" data-title="${s.title}" data-url="${s.url}" 
-									   data-content="${s.content}" data-target="#detailView">${s.title}</a>
+										<c:if test="${s.category1 eq '헬스'}">
+											<a href='javascript:detailView(${s.v_no})'>${s.title}</a>
+										</c:if>
+										<c:if test="${s.category1 ne '헬스'}">
+											<a href="#workout-modal" data-toggle="modal" data-title="${s.title}" data-url="${s.url}" 
+										  		data-content="${s.content}" data-target="#detailView">${s.title}</a>									
+										</c:if>
 									</c:if>
 									<c:if test="${null ne s.content}">${s.content}</c:if>
 								</td>
@@ -147,8 +152,13 @@
 							<tr>
 								<td colspan="2">
 									<c:if test="${null eq s.content}">
-									<a href="#workout-modal" data-toggle="modal" data-title="${s.title}" data-url="${s.url}" 
-									   data-content="${s.content}" data-target="#detailView">${s.title}</a>
+										<c:if test="${s.category1 eq '헬스'}">
+											<a href='javascript:detailView(${s.v_no})'>${s.title}</a>
+										</c:if>
+										<c:if test="${s.category1 ne '헬스'}">
+											<a href="#workout-modal" data-toggle="modal" data-title="${s.title}" data-url="${s.url}" 
+										  		data-content="${s.content}" data-target="#detailView">${s.title}</a>									
+										</c:if>
 									</c:if>
 									<c:if test="${null ne s.content}">${s.content}</c:if>
 								</td>

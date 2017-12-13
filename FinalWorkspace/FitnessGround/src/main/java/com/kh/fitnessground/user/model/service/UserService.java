@@ -66,4 +66,8 @@ public interface UserService {
 	ArrayList<CommunityAndMeeting> communityBoardSearch(int user_no, String keyword);
 
 	ArrayList<CommunityAndMeeting> meetingBoardSearch(int user_no, String keyword);
+
+	void insertUserSchedule(UserSchedule us);
+
+	void deleteUserSchedule(int s_no);
 }

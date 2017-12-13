@@ -188,4 +188,14 @@ public class UserServiceImpl implements UserService {
 		parameters.put("keyword", "%"+keyword+"%");
 		return userDao.meetingSearch(parameters);
 	}
+
+	@Override
+	public void insertUserSchedule(UserSchedule us) {
+		userDao.insertUserSchedule(us);
+	}
+
+	@Override
+	public void deleteUserSchedule(int s_no) {
+		userDao.deleteUserSchedule(s_no);
+	}
 }

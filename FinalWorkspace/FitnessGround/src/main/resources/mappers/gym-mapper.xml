@@ -211,7 +211,15 @@
 			description = #{description},
 			location = #{location},
 			user_no = #{user_no}
-		where gym_no = (select max(gym_no) from tb_gym)
+		where gym_no = #{gym_no}
 		]]>
 	</update>
+	
+	<select id="selectfromImg" resultType="Gym" parameterType="Gym">
+		<![CDATA[
+			select *
+			from tb_gym
+			where rename_image = #{rename_image}
+		]]>
+	</select>
 </mapper>

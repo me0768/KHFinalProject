@@ -5,18 +5,20 @@ import java.sql.Date;
 public class GymSchedule {
 	private int gs_no;
 	private int gym_no;
-	private Date day_time;
+	private Date day;
+	private String schedule_time;
 	private String title;
 	
 	public GymSchedule() {
 		super();
 	}
 
-	public GymSchedule(int gs_no, int gym_no, Date day_time, String title) {
+	public GymSchedule(int gs_no, int gym_no, Date day, String schedule_time, String title) {
 		super();
 		this.gs_no = gs_no;
 		this.gym_no = gym_no;
-		this.day_time = day_time;
+		this.day = day;
+		this.schedule_time = schedule_time;
 		this.title = title;
 	}
 
@@ -36,12 +38,20 @@ public class GymSchedule {
 		this.gym_no = gym_no;
 	}
 
-	public Date getDay_time() {
-		return day_time;
+	public Date getDay() {
+		return day;
 	}
 
-	public void setDay_time(Date day_time) {
-		this.day_time = day_time;
+	public void setDay(Date day) {
+		this.day = day;
+	}
+
+	public String getSchedule_time() {
+		return schedule_time;
+	}
+
+	public void setSchedule_time(String schedule_time) {
+		this.schedule_time = schedule_time;
 	}
 
 	public String getTitle() {
@@ -54,7 +64,9 @@ public class GymSchedule {
 
 	@Override
 	public String toString() {
-		return "GymSchedule [gs_no=" + gs_no + ", gym_no=" + gym_no + ", day_time=" + day_time + ", title=" + title
-				+ "]";
+		return "GymSchedule [gs_no=" + gs_no + ", gym_no=" + gym_no + ", day=" + day + ", schedule_time="
+				+ schedule_time + ", title=" + title + "]";
 	}
+	
+	
 }

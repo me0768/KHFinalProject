@@ -18,17 +18,30 @@
 		]]>
 	</select>
 	
+	<select id="selectLike" resultType="Like" resultMap="resultLike" parameterType="_int">
+		<![CDATA[
+			select * from tb_like where v_no = #{v_no} and user_no=#{user_no}
+		]]>
+	</select><!-- 좋아요 테이블 객체 select -->
+	
+	
 	<insert id="insertLike" parameterType="Like" flushCache="true" statementType="PREPARED" useGeneratedKeys="true">
 		<![CDATA[
-			insert into tb_like values (#{v_no},#{user_no},'헬스','가슴 운동',default)
+			insert into tb_like values (#{v_no},#{user_no},#{category1},#{category2},default)
 		]]>	
-	</insert>
+	</insert> <!-- 좋아요 증가 -->
 	
-	<update id="updateLike" parameterType="Like" flushCache="true" statementType="PREPARED">
+	<delete id="deleteLike" parameterType="Like" flushCache="true" statementType="PREPARED">
 		<![CDATA[
-		
+			delete from tb_like where v_no=#{v_no} and user_no=#{user_no}
+		]]>
+	</delete>
+	
+	<select id="selectLikeCount" parameterType="_int" resultType="int">
+		<![CDATA[
+			select count(*) from tb_like
 		]]>	
-	</update>
+	</select>
 	
 
 </mapper>

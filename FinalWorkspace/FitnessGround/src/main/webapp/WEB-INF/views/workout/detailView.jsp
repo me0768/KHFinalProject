@@ -21,10 +21,11 @@
 					</div>
 					<hr>
 					<div id="read_count" style="color:black; font-size:13px"></div>
-					<button type="submit" id="like-btn" onclick="likeUp()">
-						좋아요 </button>
-					<span id="like" style="color:black; font-size:13px">//좋아요 갯수 :</span> 
-										
+					<div id="like_up">
+						<!-- <button type="submit" id="like-btn" onclick="likeUp()">
+							좋아요 </button>
+						<span id="like" style="color:black; font-size:13px">//좋아요 갯수 :</span>  -->
+					</div>					
 					
 				
 					<c:if test="${sessionScope.user==null }">
@@ -57,14 +58,17 @@
 		
 	}	
 
-	function detailView(v_no){	//모달창 띄우는 메서드
+	function detailView(v_no,category1,category2){	//모달창 띄우는 메서드
 		$("#detailView").show();
 		$("#detailView").modal();
 		console.log(v_no);
+		console.log(category1);
+		console.log(category2);
 		
 	
 		var comment = '<input type="text" id="reply-input" placeholder="댓글을 입력하세요">' +
 					 '<input type="hidden" id="user_no" value="' + ${sessionScope.user.user_no}  + '" >' +
+					 '<input type="hidden" id="user" value="' + ${sessionScope.user}  + '" >' +
 					 '<input type="hidden" id="v_no" value="' + v_no  + '" >' +
 					'<button type="submit" id="reply-btn" onclick="return insertComment(' + v_no + ');">댓글달기</button>';
 		$("#video-reply").html(comment);
@@ -74,16 +78,15 @@
 		
 		selectComment(v_no); 
 		
-
+		
 		$("#reply-input").keydown(function(key){
 			if(key.keyCode==13){
 				insertComment(v_no);
 			}
 		})
-		
 	}
 	
-	function viewVideo(v_no){ //모달창에서 영상 띄워주는 메서드
+	function viewVideo(v_no){ //모달창에서 영상 띄워주는 메서드 (조회수, 제목, 설명 ,좋아요 누르는부분)
 		$.ajax({
 			url:"detail.do",
 			dataType:"json",
@@ -93,18 +96,33 @@
 			
 			var responseData = data.health;
 			var src= "";
+			var like="";
+			var likeCount = selectLikeCount(v_no);
 			
-			
+			/* 모달창 왼쪽에 영상 띄워주는 부분 */			
 			src="<iframe width='600' height='400' src="+ responseData.url.replace(/\^/g,"&")
 			+"frameborder='0' gesture='media' allow='encrypted-media' allowfullscreen name='iframe'></iframe>"
 			
+			if($("#user").val()==null){
+				like='<button type="submit" id="like-btn" onclick="loginMessage()">좋아요 </button>' +
+				'<span style="color:black; font-size:13px">//좋아요 갯수 :</span>'+
+				'<span id="like_count" style="color:black; font-size:13px">' + likeCount + '</span>'
+				
+			}else{
+				like='<button type="submit" id="like-btn" onclick="likeUp(' 
+					+ '\'' + responseData.category1 +'\'' + ',' + '\'' + responseData.category2  + '\'' +')">좋아요 </button>' +
+				'<span style="color:black; font-size:13px">//좋아요 갯수 :</span>'+
+				'<span id="like_count" style="color:black; font-size:13px">' + likeCount + '</span>'
+				
+			}
 			
 			
+				
 			$("#read_count").html("조회수  : " + responseData.readcount);
 			$("#video_title").html(responseData.title.replace(/\+/g," "));
 			$("#video_explain").html(responseData.content);
 			$("#video_detail").html(src);
-				
+			$("#like_up").html(like);
 				
 			},
 			error: function(request, status, errorData){
@@ -193,21 +211,46 @@
 		
 	}
 	
-	function likeUp(){
+	//좋아요 증가처리
+	function likeUp(category1,category2){	
 		var v_no = $("#v_no").val();
 		var user_no = $("#user_no").val();
-			
+		
 		console.log(v_no);
 		console.log(user_no);
+		console.log("좋아요" + category1);
+		console.log("좋아요 " + category2);
 		
-
 		$.ajax({
 			url:"likeUp.do",
 			dataType:"json",
 			type:"post",
-			data:{"v_no":v_no,"user_no":user_no}			
+			data:{"v_no":v_no,"user_no":user_no,"category1":category1,"category2":category2},
+			async:false
+		});
+		
+		selectLikeCount(v_no);
+	}
+	
+	function selectLikeCount(v_no){
+		$.ajax({
+			url:"likeCount.do",
+			dataType:"json",
+			type:"post",
+			data:{"v_no":v_no},
+			success:function(data){
+				var likeCount = data.likeCount;
+				$("#like_count").html(likeCount + "개");
+			},
+			error: function(request, status, errorData){
+				alert("error code : " + request.status + "\n"
+						+ "message : " + request.responseText + "\n"
+						+ "error : " + errorData);
+			}
 		});
 	}
+	
+	
 
 	
 	

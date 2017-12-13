@@ -17,12 +17,19 @@ public interface HealthService {
 	ArrayList<Health> selectAllList(String category1);
 	void deleteHealth(int v_no);
 	void deleteHealthList(ArrayList<Health> dellist);
+	
 	ArrayList<Comment> selectCommentList(int v_no); //댓글 불러오기
 	void insertComment(Comment comment); //댓글 삽입
 	void deleteComment(Comment comment); //댓글 삭제
-	void updateLike(Like like);	//좋아요
+	
+	
 	ArrayList<Like> selectLikeList();
-	void insertLike(Like like); //테이블에 넣기
+	
+	int selectLikeCount(int v_no);	//좋아요
 	int checkLikeTable(Like like);	//좋아요 테이블에 있는지 확인
+	Like selectLike(Like like); //좋아요 객체 반환
+	void insertLike(Like like); //좋아요 테이블에 넣기
+	void deleteLike(Like like);//좋아요 테이블에서 삭제
+	
 	
 }

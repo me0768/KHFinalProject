@@ -15,6 +15,7 @@
 		<result property="write_date" column="write_date" />
 		<result property="q_level" column="q_level" />
 		<result property="ref_no" column="ref_no" />
+		<result property="response_state" column="response_state" />
 	</resultMap>
 	
 	<resultMap id="resultBusinessRequest" type="BusinessRequest">
@@ -27,6 +28,8 @@
 		<id property="name" column="name"/>
 		<id property="user_level" column="user_level"/>
 		<id property="user_state" column="user_state"/>
+		<id property="register_date" column="register_date"/>
+		
 		
 	</resultMap>
 
@@ -43,6 +46,7 @@
 		<id property="user_no" column="user_no"/>
 		<id property="delete_date" column="delete_date"/>
 		<id property="approval_state" column="approval_state"/>
+		<id property="register_date" column="register_date"/>
 	</resultMap>
 	
 	<resultMap id="resultPublicRequest" type="PublicGym">
@@ -75,11 +79,20 @@
 	
 	<select id="businessRequest" parameterType="_int" resultMap="resultBusinessRequest" resultType="list">
 		<![CDATA[ 
-		select user_no, user_state, email, name, gym_no, gym_name, location, approval_state 
+		select user_no, user_state, email, name, gym_no, gym_name, location, approval_state, register_date
 		 from tb_gym  join (select * from tb_user where user_level=#{level}) using(user_no)
 
 		]]>
 	</select>
+	
+	<select id="topGymRequest" parameterType="_int" resultMap="resultGymRequest" resultType="list">
+		<![CDATA[ 
+		select  * from  TB_GYM 
+		where rownum < 4 and approval_state =#{level}  order by register_date asc
+
+		]]>
+	</select>
+	
 	
 	<select id="RequestCount" parameterType="_int" resultType="_int">
 		<![CDATA[ 

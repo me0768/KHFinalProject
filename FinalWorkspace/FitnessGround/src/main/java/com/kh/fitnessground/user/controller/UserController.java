@@ -42,7 +42,7 @@ public class UserController {
 		HttpSession session = request.getSession();
 		ModelAndView mv = new ModelAndView("main");
 		User u = userService.loginCheck(user.getEmail()); // 이메일이 같은게 있는지 확인
-		if( u == null ) {				
+		if( u == null || u.getUser_state() == 0 ) {				
 			mv.addObject("user", null); // 없을 경우 null 리턴
 			mv.setViewName("jsonView");
 			return mv;

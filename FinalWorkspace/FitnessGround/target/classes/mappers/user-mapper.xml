@@ -129,7 +129,7 @@
 		statementType="PREPARED" useGeneratedKeys="true" >
 		<![CDATA[
 			insert into tb_user
-			values (user_seq.nextval, #{email}, #{pwd}, #{name}, #{nickname}, #{phone}, #{user_level}, null, 0, null, null)
+			values (user_seq.nextval, #{email}, #{pwd}, #{name}, #{nickname}, #{phone}, #{user_level}, null, 0, null, null, 0)
 		]]>
 	</insert>
 	

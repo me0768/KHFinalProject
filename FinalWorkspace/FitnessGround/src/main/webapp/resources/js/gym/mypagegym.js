@@ -18,7 +18,6 @@ $(document).ready(function(){
 				$("#regcount").html(values);
 				var gymlist = '';
 				for(var i=0; i < data.gymcount; i++ ){
-					var phonedd = data.list[i].phone;
 					gymlist += 
 					'<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px; margin-bottom: 5px;">' +
 						'<div class="col-lg-3 col-md-3 col-sm-3 col-sm-offset-0  col-xs-6 col-xs-offset-3" style="padding: 5px;">' +
@@ -61,8 +60,8 @@ $(document).ready(function(){
 					var values = '';
 					values += '검색된 헬스장 (' + data.gymcount + ')';
 					$("#regcount").html(values);
+					var gymlist = '';
 					for(var i=0; i < data.gymcount; i++){
-						var phonedd = data.list[i].phone;
 						gymlist += 
 						'<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px; margin-bottom: 5px;">' +
 							'<div class="col-lg-3 col-md-3 col-sm-3 col-sm-offset-0  col-xs-6 col-xs-offset-3" style="padding: 5px;">' +

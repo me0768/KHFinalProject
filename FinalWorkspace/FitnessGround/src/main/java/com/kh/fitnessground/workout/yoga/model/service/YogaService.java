@@ -19,6 +19,7 @@ public interface YogaService {
 	void deleteYogaList(List<Yoga> dellist, HttpServletRequest request);
 	void addReadCount(int v_no, HttpServletRequest request);
 	ArrayList<Yoga> selectAllList();
+	ArrayList<Yoga> selectWList(Yoga yoga);
 	
 	
 }

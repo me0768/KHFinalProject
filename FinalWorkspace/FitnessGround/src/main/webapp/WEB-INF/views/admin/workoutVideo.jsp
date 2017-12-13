@@ -15,9 +15,13 @@
 <!-- Body부분  -->
 <div class="content-wrapper">
 	<div class="container-fluid">
+	<h3>&nbsp;동영상관리</h3>
 	<!-- Breadcrumbs-->
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item">동영상관리_요가 </li>
+			<li class="breadcrumb-item"><a href="javascript: listing('헬스')">헬스</a> </li>
+			<li class="breadcrumb-item active"><a href="javascript: listing('요가')">요가 </a></li>
+			<li class="breadcrumb-item"><a href="javascript: listing('필라테스')">필라테스</a></li>
+			<li class="breadcrumb-item"><a href="javascript: listing('맨몸운동')">맨몸운동 </a></li>
 		</ol>
 		<!-- Example DataTables Card-->
 		<div class="card mb-3">
@@ -25,21 +29,38 @@
 				<h4>동영상추가하기</h4>
 				<label>youtube playlist id를 입력하세요 .</label>
 				<div class="input-area">
-				<span>카테고리:</span>
-				<select id="select-ct">
-					<option value="빈야사">빈야사</option>
-					<option value="다이어트">다이어트</option>
-					<option value="체형교정">체형교정</option>
-					<option value="부위별">부위별</option>
-					<option value="초보자">초보자</option>
+				<span>운동: </span>
+				<select name="select-workout" id="select-workout">
+					<option value="2">요가</option>
+					<option value="3">필라테스</option>
+					<option value="4">맨몸운동</option>
+					
 				</select>
-				<input type="text" placeholder="playlistId입력" id="playlistid">
+				<span>카테고리: </span>
+				<select name="select-ct" id="select-ct">
+					<option value="2">빈야사</option>
+					<option value="2">다이어트</option>
+					<option value="2">체형교정</option>
+					<option value="2">부위별</option>
+					<option value="2">초보자</option>
+					<option value="3">스트레칭</option>
+					<option value="3">복근집중운동</option>
+					<option value="3">전신운동</option>
+					<option value="3">하체운동</option>
+					<option value="4">맨몸운동1</option>
+					<option value="4">맨몸운동2</option>
+					<option value="4">맨몸운동3</option>
+					<option value="4">맨몸운동4</option>
+					
+				</select>
+				<input type="text" placeholder="playlist Id입력" id="playlist_id">
 				
-				<button class="btn btn-success" onclick="javascript : insert()">추가</button>
+				<button class="btn btn-default" onclick="insert()">추가</button>
 				</div>
 				
 				
 			</div>
+			<div id="card-result"></div>
 			<div class="card-body">
 					<div class="table-responsive">
 						<form name="userForm">
@@ -49,14 +70,14 @@
 									<tr>
 										<th>Index</th>
 										<th>Title</th>
-										<th>category1</th>
-										<th>category2</th>
-										<th>url</th>
+										<th>운동</th>
+										<th>category</th>
+										
 										<th>조회수</th>
 										<th>관리</th>
 									</tr>
 								</thead>
-								<tbody>
+								<tbody id="rows">
 
 									<c:forEach var="item" items="${list }" varStatus="status">
 										<tr>
@@ -64,10 +85,13 @@
 											<td>${item.title }</td>
 											<td>${item.category1 }</td>
 											<td>${item.category2 }</td>
-											<td>${item.url }</td>
+											
 											<td>${item.readcount }</td>
-											<td><button type="submit" class="btn btn-primary"
-															onclick="edit(${item.v_no})">수정</button></td>
+											<td><button type="submit" class="btn btn-primary btn-sm"
+															onclick="edit(${item.v_no})">수정</button>
+												<button type="submit" class="btn btn-danger btn-sm"
+															onclick="deleteOne(${item.v_no})">삭제</button>
+											</td>
 
 										</tr>
 									</c:forEach>
@@ -79,31 +103,108 @@
 				</div>
 		</div>
 		
-		<!-- YoutubeAPI, Ajax 관리자 INSERT  -->
+		
 		<script type="text/javascript">
-		function insert(playlist){
-			var category2 = $("#select-ct").val();
-			var playlist; //관리자가 입력한playlistId//테스트성공하면 admin input태그 넣어 화면만들기
+		/*운동 선택 시 category 바뀌도록 */
+		$(document).ready(function(){
+			
+			if($("#select-workout").data('options') === undefined){
+				$("#select-workout").data('options', $('#select-ct option').clone());
+			}
+			var id = $("#select-workout").val();
+			var options = $("#select-workout").data('options').filter('[value=' + id+ ']');
+			$('#select-ct').html(options);
+			
+			$("#select-workout").change(function(){
+				if($(this).data('options') === undefined){
+					$(this).data('options', $('#select-ct option').clone());
+				}
+				var id = $(this).val();
+				var options = $(this).data('options').filter('[value=' + id+ ']');
+				$('#select-ct').html(options);
+			});
+		});
+		
+		/*운동종류별 목록*/
+		function listing(category1){
+			var category = category1;
+			console.log(category);
+			var queryString = { "category1": category };
+			$.ajax({
+				url: 'adminwlist.do',
+				data : queryString,
+				type : "post",
+				dataType: "json",
+				async: false,
+		       success : function(result){
+		          console.log("전송성공:"+result.clist[0].v_no+result.clist[0].title);
+		          var v_no;
+		          var title;
+		          var category1;
+		          var category2;
+		          var url;
+		          var readcount;
+		          var content; //나중에 update할때 필요하면쓰기 
+		  
+         	for(var i=0;i<result.clist.length;i++){
+        	  (function(v_no, title, category1, category2, vid, readcount, content){
+		          v_no = result.clist[i].v_no;
+		          title = result.clist[i].title;
+		          category1 = result.clist[i].category1;
+		          category2 = result.clist[i].category2;
+		          vid = result.clist[i].url;
+		          readcount = result.clist[i].readcount;
+		          content = result.clist[i].content;
+		          var value ="<tr><td>"+v_no+"</td>"+
+						"<td>"+title+"</td>"+
+						"<td>"+category1+"</td>"+
+						"<td>"+category2+"</td>"+
+					
+						"<td>"+readcount+"</td>"+
+						"<td><button type='submit' class='btn btn-primary btn-sm' onclick='edit("+v_no+")'>수정</button>"+
+						"<button type='submit' class='btn btn-danger btn-sm' onclick='deleteOne("+v_no+")'>삭제</button></td></tr>";
+		
+					if(i==0){
+						$('#rows').html(value);
+					}else{
+					  $('#rows').append(value);
+		          	}
+				
+				}(i));//IIFE codes exit
+          		};//for문종료  
+
+          
+	       },
+	       error : function(request, status, errorData){
+	          alert("error code : " + request.status + "\n"
+	                + "message : " + request.responseText
+	                + "\n" + "error : " + errorData);
+	       }
+		});//ajax code exit 
+		} //listing() ends... 
+		
+		/*YoutubeAPI호출, Ajax 관리자 INSERT*/
+		function insert(){
+			console.log("insert() works!");
+			var category1 = $("#select-workout").val(); //선택된 운동종류 
+			var category2 = $("#select-ct").val(); //선택된 카테고리
+			var playlist = $("#playlist_id").val(); //입력된 playlistId
 			var vTitle;
 			var vDesc;
 			var vId;
 			var job = new Object();
 			var jarr = [];
-			/* job.title = "먕"; 
-			job.url = "eraefjdklf";
-			jarr.push(job); */
-			/* var job = new Object();
-			 */
-			var j;
-			function youtubeCall() {
-				$.get("https://www.googleapis.com/youtube/v3/playlistItems", {
+			
+			APICall();
+			
+			function APICall() { 
+				 $.get("https://www.googleapis.com/youtube/v3/playlistItems", {
 					part : 'snippet',
 					maxResults : 50,
 					playlistId : playlist,
-					async: false,
 					key : 'AIzaSyACiHNLQp0NoZLhAx6u2JbtMGjCp3STK3A'
 				}, function(data) {
-		
+					console.log("API is called");
 					$.each(data.items, function(i, item) {
 						vTitle = item.snippet.title.replace(/&/gi, "+");
 						vDesc = item.snippet.description.replace(/&/gi, "+");
@@ -113,35 +214,63 @@
 						job.title = vTitle;
 						/* job.content = vDesc; */
 						job.url = vId;
+						job.category1 = category1;
 						job.category2 = category2;
 						jarr.push(job);
 		
 					});
 					console.log(JSON.stringify(jarr));
+					ajaxFunction();
 				});
+				
 		
-			};
+			}; 
 		
-			function ajaxFunction() {
-				/*Controller로 넘기기 */
-				console.log("ajaxFunction실행");
-				$
-						.ajax({
-							url : "yinsert.do",
-							data : JSON.stringify(jarr),
-							type : "post",
-							contentType : "application/json; charset=utf-8",
-							success : function(result) {
-								console.log("전송성공:");
-							},
-							error : function(request, status, errorData) {
-								alert("error code : " + request.status + "\n"
-										+ "message : " + request.responseText + "\n"
-										+ "error : " + errorData);
-							}
-						});
-			}
-		}
+				//Controller로 넘기기 
+				function ajaxFunction() {
+					console.log("ajaxFunction실행");
+					$.ajax({
+						url : "yinsert.do",
+						data : JSON.stringify(jarr),
+						type : "post",
+						async: false,
+						contentType : "application/json; charset=utf-8",
+						success : function(result) {
+							console.log("전송성공:");
+							$('#card-result').append('<div class="alert alert-success" role="alert">playlist가 추가되었습니다!</div>');
+						},
+						error : function(request, status, errorData) {
+							alert("error code : " + request.status + "\n"
+									+ "message : " + request.responseText + "\n"
+									+ "error : " + errorData);
+						}
+					})
+						
+				}
+		}//Insert() ends... 
+		
+		/* Delete (하나씩) */
+		function deleteOne(v_no){
+			console.log("deleteOne() works! with"+ v_no);
+			var v_no = v_no;
+			var queryString = {"v_no": v_no };
+			$.ajax({
+				url : "deleteone.do",
+				data : queryString,
+				type : "post",
+				success : function(result) {
+					console.log("전송성공:");
+					$('#card-result').append('<div class="alert alert-success" role="alert">삭제되었습니다!</div>');
+				},
+				error : function(request, status, errorData) {
+					alert("error code : " + request.status + "\n"
+							+ "message : " + request.responseText + "\n"
+							+ "error : " + errorData);
+				}
+			})
+						
+		}//deleteOne() ends...
+		
 		</script>
 		
 		

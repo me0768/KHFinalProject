@@ -48,6 +48,10 @@ public class YogaServiceImpl implements YogaService{
 		return yogaDao.selectAllList();
 	}
 	
+	@Override
+	public ArrayList<Yoga> selectWList(Yoga yoga){
+		return yogaDao.selectWList(yoga);
+	}
 	
 	@Override
 	public void insertYoga(List<Yoga> ylist, HttpServletRequest request) {

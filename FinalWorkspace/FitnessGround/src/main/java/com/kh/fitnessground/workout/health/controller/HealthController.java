@@ -197,25 +197,35 @@ public class HealthController {
 		healthService.deleteComment(comment);
 	}
 	
-	//좋아요
+	//좋아요 테이블에 삽입, 삭제하는 메서드
 	@RequestMapping(value="/likeUp.do",method=RequestMethod.POST)
-	public void updateLike(Like like){
-		System.out.println("like : " + like);
-		//좋아요 테이블 리스트를 불러오기
-		ArrayList<Like> list = healthService.selectLikeList();
+	public void likeUp(Like like){
 		
 		int result = healthService.checkLikeTable(like); //좋아요 테이블에 있는지 확인하는 변수
 		// 있으면 1 없으면 0
 		System.out.println(result);
 		
-		if(result==1){	//있으면
-			//좋아요 취소
+		if(result==1){	//있으면 한 영상 좋아요를 누른 사람이 또 좋아요를 누르면
+			//좋아요 테이블에서 삭제
+			healthService.deleteLike(like);
 			
-		}else{ //없으면
-			//좋아요 누르기
-		}
+		}else{ //없으면 한 영상에 좋아요를 안누른 사람이면
+			//좋아요 테이블에 넣음
+			healthService.insertLike(like);	
+			
+		}		
 		
+	}
+	
+	@RequestMapping(value="/likeCount.do",method=RequestMethod.POST)
+	public ModelAndView likeCount(Like like){
+		ModelAndView mv = new ModelAndView();
 		
+		int likeCount = healthService.selectLikeCount(like.getV_no());
+		mv.addObject("likeCount",likeCount);
+		mv.setViewName("jsonView");
+		
+		return mv;
 	}
 		
 	

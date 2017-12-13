@@ -60,10 +60,12 @@ public class HealthDao {
 		sqlSession.delete("comment.deleteComment",comment);
 		
 	}
-
-	public void updateLike(Like like) {
-		sqlSession.update("like.updateLike",like);
+	
+	//좋아요
+	
+	public int selectLikeCount(int v_no) {
 		
+		return sqlSession.selectOne("like.selectLikeCount",v_no);
 	}
 
 	public ArrayList<Like> selectLikeList() {
@@ -73,6 +75,16 @@ public class HealthDao {
 
 	public void insertLike(Like like) {
 		sqlSession.insert("like.insertLike", like);
+		
+	}
+
+	public Like selectLike(Like like) {
+		
+		return sqlSession.selectOne("like.selectLike",like);
+	}
+
+	public void deleteLike(Like like) {
+		sqlSession.delete("like.deleteLike",like);
 		
 	}
 	

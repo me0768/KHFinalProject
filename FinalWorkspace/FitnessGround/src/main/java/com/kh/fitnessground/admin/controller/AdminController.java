@@ -1,6 +1,7 @@
 package com.kh.fitnessground.admin.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,6 +28,7 @@ import com.kh.fitnessground.workout.health.model.service.HealthService;
 import com.kh.fitnessground.workout.health.model.vo.Health;
 import com.kh.fitnessground.workout.yoga.model.service.YogaService;
 import com.kh.fitnessground.workout.yoga.model.vo.Yoga;
+import com.sun.xml.internal.ws.api.message.Message;
 
 @Controller
 public class AdminController {
@@ -49,26 +51,54 @@ public class AdminController {
 	@RequestMapping(value = "adminMain.do")
 	public ModelAndView adminmain(User user, @RequestParam(value = "level", required = false, defaultValue = "0") int level,
 				GymQnABoard board, @RequestParam(value="receiver", required = false, defaultValue = "1") int receiver) {
+		
+		System.out.println("adminMain.do실행됨...");
 		// 리퀘스트 파람 -> 자동으로 값을 받아옴
 		// 근데 받아올 데이터가 없으면 required=false -> 꼭필요하지 않다 라는 뜻
 		// defaultValue="0" -> 기본값설정 / 그러니깐 값이 없을때는 0으로 한다 라는뜻
 		ModelAndView mv = new ModelAndView("admin/adminMain");
 		int request = adminService.RequestCount(level);
 		int message = adminService.Message(receiver);
-		System.out.println("등록요청 수 :" +request);
-		System.out.println("문의 수 :" +message);
+		
+		ArrayList<User> list = adminService.GymRequest(level);
+		
 		mv.addObject("request", request);
 		mv.addObject("message", message);
+		mv.addObject("list", list);
+		
+		System.out.println("등록요청 수 :" +request);
+		System.out.println("등록요청list : " +list);
+		System.out.println("문의 수 :" +message);
+		System.out.println("문의요청list : ");
 		return mv;
 	}
 	
-	// 문의 최신순 3개 보여주기
+/*	// 문의 최신순 3개 보여주기, 등록요청 갯수 보여주기 + 간략한 내용정보 같이 띄우기 
 		@RequestMapping(value="message.do")
-		public ModelAndView messageMethod(GymQnABoard board,
-				@RequestParam(value="receiver", required = false, defaultValue = "1") int receiver){
+		public ModelAndView messageMethod(User user, @RequestParam(value = "level", required = false, defaultValue = "0") int level,
+				GymQnABoard board, @RequestParam(value="receiver", required = false, defaultValue = "1") int receiver){
 			ModelAndView mv = new ModelAndView("admin/common/nav");
-			int user_no = adminService.Message(receiver);
-			mv.addObject("user_no", user_no);
+			System.out.println("message.do 실행됨 ...");
+			int user_level = 1;
+			ArrayList<User> list = adminService.GymRequest(user_level);
+			int request = adminService.RequestCount(level);
+			int message = adminService.Message(receiver);
+			mv.addObject("request", request);
+			mv.addObject("message", message);
+			mv.addObject("list", list);
+			System.out.println("request : " +request);
+			System.out.println("message : " +message);
+			System.out.println("list : " +list);
+			return mv;
+		}*/
+		
+	// nav로 등록요청한 헬스장정보 출력
+		@RequestMapping(value = "navGymRequest.do")
+		public ModelAndView navGymRequestMethod(User user, HttpServletResponse response) {
+			ModelAndView mv = new ModelAndView("admin/common/nav");
+			int level = 1;
+			ArrayList<User> list = adminService.businessRequestlist(level);
+			mv.addObject("list", list);
 			return mv;
 		}
 
@@ -143,14 +173,14 @@ public class AdminController {
 		return mv;
 	}
 
-	// 요가 동영상(미향) 리스트 출력
+	/*// 요가 동영상(미향) 리스트 출력
 	@RequestMapping(value = "adminylist.do")
 	public ModelAndView YogaListMethod(Yoga yoga, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("admin/workoutVideo");
 		ArrayList<Yoga> list = yogaService.selectAllList();
 		mv.addObject("list", list);
 		return mv;
-	}
+	}*/
 
 	// mettingBoard 리스트 출력
 	@RequestMapping(value = "adminMettingBoard.do")

@@ -91,6 +91,12 @@ public class AdminDao {
 		return cnt;
 	}
 
+	public ArrayList<User> GymRequest(int level) {
+		List<User> brlist = sqlSession.selectList("gym.topGymRequest", level);
+		ArrayList<User> list = new ArrayList<User>(brlist);
+		return list;
+	}
+
 
 	
 	

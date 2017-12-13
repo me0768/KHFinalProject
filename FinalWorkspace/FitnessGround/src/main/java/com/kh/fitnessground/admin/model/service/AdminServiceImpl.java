@@ -113,6 +113,12 @@ public class AdminServiceImpl  implements AdminService{
 	}
 
 
+	@Override
+	public ArrayList<User> GymRequest(int level) {
+		return adminDao.GymRequest(level);
+	}
+
+
 
 
 	

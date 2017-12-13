@@ -120,6 +120,7 @@
 									<th>헬스장번호</th>
 									<th>헬스장이름</th>
 									<th>지역</th>
+									<th>요청날짜</th>
 									<th>승인여부</th>
 								</tr>
 							</thead>
@@ -143,6 +144,7 @@
 										<td>${item.gym_no }</td>
 										<td><a href="#">${item.gym_name }</a></td>
 										<td>${item.location }</td>
+										<td>${item.register_date }</td>
 										<c:choose>
 											<c:when test="${item.approval_state==0}">
 

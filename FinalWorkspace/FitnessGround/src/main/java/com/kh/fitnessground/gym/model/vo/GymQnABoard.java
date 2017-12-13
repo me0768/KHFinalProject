@@ -13,12 +13,13 @@ public class GymQnABoard {
 	private Date write_date;
 	private int q_level;
 	private int ref_no;
+	private int response_state;
 	
 	public GymQnABoard() {
 		super();
 	}
 	public GymQnABoard(int q_no, String sender, String receiver, String title, String content, String original_filename,
-			String rename_filename, Date write_date, int q_level, int ref_no) {
+			String rename_filename, Date write_date, int q_level, int ref_no, int response_state) {
 		super();
 		this.q_no = q_no;
 		this.sender = sender;
@@ -30,6 +31,7 @@ public class GymQnABoard {
 		this.write_date = write_date;
 		this.q_level = q_level;
 		this.ref_no = ref_no;
+		this.response_state = response_state;
 	}
 	
 	public int getQ_no() {
@@ -93,9 +95,20 @@ public class GymQnABoard {
 		this.ref_no = ref_no;
 	}
 	
+	public int getResponse_state() {
+		return response_state;
+	}
+	public void setResponse_state(int response_state) {
+		this.response_state = response_state;
+	}
 	@Override
 	public String toString() {
-		return this.q_no + ", " + this.sender + ", " + this.receiver + ", " + this.title + ", " +  this.content + ", " + this.original_filename
-				 + ", " + this.rename_filename + ", " + this.write_date + ", " + this.q_level + ", " + this.ref_no;
+		return "GymQnABoard [q_no=" + q_no + ", sender=" + sender + ", receiver=" + receiver + ", title=" + title
+				+ ", content=" + content + ", original_filename=" + original_filename + ", rename_filename="
+				+ rename_filename + ", write_date=" + write_date + ", q_level=" + q_level + ", ref_no=" + ref_no
+				+ ", response_state=" + response_state + "]";
 	}
+	
+	
+	
 }

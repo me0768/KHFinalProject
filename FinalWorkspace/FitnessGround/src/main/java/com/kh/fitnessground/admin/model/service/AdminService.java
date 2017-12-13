@@ -51,6 +51,9 @@ public interface AdminService {
 	int Message(int receiver);
 
 
+	ArrayList<User> GymRequest(int level);
+
+
 
 
 }

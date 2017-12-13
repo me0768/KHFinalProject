@@ -17,6 +17,7 @@ public class Gym {
 	private int user_no;
 	private Date delete_date;
 	private int approval_state;
+	private Date register_date;
 	
 	public Gym() {
 		super();
@@ -24,7 +25,7 @@ public class Gym {
 
 	public Gym(int gym_no, String gym_name, String original_image, String rename_image, String op_time, String tel,
 			String phone, String price, String category, String description, String location, int user_no,
-			Date delete_date, int approval_state) {
+			Date delete_date, int approval_state, Date register_date) {
 		super();
 		this.gym_no = gym_no;
 		this.gym_name = gym_name;
@@ -40,6 +41,7 @@ public class Gym {
 		this.user_no = user_no;
 		this.delete_date = delete_date;
 		this.approval_state = approval_state;
+		this.register_date = register_date;
 	}
 
 	public int getGym_no() {
@@ -154,12 +156,23 @@ public class Gym {
 		this.approval_state = approval_state;
 	}
 
+		
+	public Date getRegister_date() {
+		return register_date;
+	}
+
+	public void setRegister_date(Date register_date) {
+		this.register_date = register_date;
+	}
+
 	@Override
 	public String toString() {
 		return "Gym [gym_no=" + gym_no + ", gym_name=" + gym_name + ", original_image=" + original_image
 				+ ", rename_image=" + rename_image + ", op_time=" + op_time + ", tel=" + tel + ", phone=" + phone
 				+ ", price=" + price + ", category=" + category + ", description=" + description + ", location="
 				+ location + ", user_no=" + user_no + ", delete_date=" + delete_date + ", approval_state="
-				+ approval_state + "]";
+				+ approval_state + ", register_date=" + register_date + "]";
 	}
+
+	
 }

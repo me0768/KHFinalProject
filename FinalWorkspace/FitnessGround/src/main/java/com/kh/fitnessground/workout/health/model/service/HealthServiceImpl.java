@@ -2,11 +2,11 @@ package com.kh.fitnessground.workout.health.model.service;
 
 import java.util.ArrayList;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.fitnessground.workout.commentlike.vo.Comment;
+import com.kh.fitnessground.workout.commentlike.vo.Like;
 import com.kh.fitnessground.workout.health.model.dao.HealthDao;
 import com.kh.fitnessground.workout.health.model.vo.Health;
 
@@ -57,6 +57,63 @@ public class HealthServiceImpl implements HealthService{
 		healthDao.deleteHealthList(dellist);
 		
 	}
+	
+	//댓글 불러오기
+	@Override
+	public ArrayList<Comment> selectCommentList(int v_no) {
+		return healthDao.selectCommentList(v_no);
+	}
+	//댓글 insert
+	@Override
+	public void insertComment(Comment comment) {
+		System.out.println("Service Date Type: " + comment.getReply_date());
+		System.out.println("Service String Type : " + comment.getStringReplyDate());
+		healthDao.insertComment(comment);
+		
+	}
+	//댓글 delete
+	@Override
+	public void deleteComment(Comment comment) {
+		healthDao.deleteComment(comment);		
+	}
 
+	@Override
+	public void updateLike(Like like) {
+		healthDao.updateLike(like);
+		
+	}
+
+	@Override
+	public ArrayList<Like> selectLikeList() {
+		ArrayList<Like> list = healthDao.selectLikeList();
+		return list;
+	}
+
+	@Override	
+	public void insertLike(Like like) {
+		healthDao.insertLike(like);
+		
+	}
+
+	@Override //좋아요 테이블에 있는지 확인
+	public int checkLikeTable(Like like) {
+		ArrayList<Like> list = healthDao.selectLikeList();	//좋아요 테이블에 들어가 있는 리스트들 불러옴..
+		int result=0;
+		
+		for(int i=0; i<list.size();i++){
+			if(like.getV_no()==list.get(i).getV_no() && like.getUser_no()==list.get(i).getUser_no()){
+				result=1;
+				break;
+			}else{
+				result=0;
+			}
+		}
+		
+		return result;
+	}
+
+	
+
+	
 	
 }

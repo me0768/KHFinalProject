@@ -1,4 +1,4 @@
-package com.kh.fitnessground.workout.comment.model.vo;
+package com.kh.fitnessground.workout.commentlike.vo;
 
 import java.sql.Date;
 

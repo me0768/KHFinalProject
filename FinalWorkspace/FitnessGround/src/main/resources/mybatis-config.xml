@@ -16,7 +16,9 @@
 		<typeAlias type="com.kh.fitnessground.gym.model.vo.Gym" alias="Gym"/>
 		<typeAlias type="com.kh.fitnessground.admin.model.vo.BusinessRequest" alias="BusinessRequest"/>
 		<typeAlias type="com.kh.fitnessground.gym.model.vo.PublicGym" alias="PublicGym"/>
-		<typeAlias type="com.kh.fitnessground.workout.comment.model.vo.Comment" alias="Comment"/>
+		<typeAlias type="com.kh.fitnessground.workout.commentlike.vo.Comment" alias="Comment"/>
+		<typeAlias type="com.kh.fitnessground.workout.commentlike.vo.Like" alias="Like"/>
+		
 		<typeAlias type="com.kh.fitnessground.community.model.vo.MeetingComment" alias="MeetingComment"/>
 	</typeAliases>
 	
@@ -29,6 +31,7 @@
 		<mapper resource="mappers/community-mapper.xml"/>
 		<mapper resource="mappers/gym-mapper.xml"/> 
 		<mapper resource="mappers/comment-mapper.xml"/>
+		<mapper resource="mappers/like-mapper.xml"/>
 	</mappers>
 	
 	

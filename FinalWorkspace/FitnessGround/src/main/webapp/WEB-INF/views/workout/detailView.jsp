@@ -6,8 +6,9 @@
   <div class="modal fade" id="detailView" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" id="workout-dialog">
       <div class="modal-content" id="workout-content">
+      
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">x
           </button>
           <h4 class="modal-title" id="video_title"> </h4>
          
@@ -20,6 +21,10 @@
 					</div>
 					<hr>
 					<div id="read_count" style="color:black; font-size:13px"></div>
+					<button type="submit" id="like-btn" onclick="likeUp()">
+						좋아요 </button>
+					<span id="like" style="color:black; font-size:13px">//좋아요 갯수 :</span> 
+										
 					
 				
 					<c:if test="${sessionScope.user==null }">
@@ -42,6 +47,7 @@
 						
 				</div>
 			</div>
+			
       </div>
     </div>
   </div>
@@ -54,8 +60,12 @@
 	function detailView(v_no){	//모달창 띄우는 메서드
 		$("#detailView").show();
 		$("#detailView").modal();
+		console.log(v_no);
+		
+	
 		var comment = '<input type="text" id="reply-input" placeholder="댓글을 입력하세요">' +
 					 '<input type="hidden" id="user_no" value="' + ${sessionScope.user.user_no}  + '" >' +
+					 '<input type="hidden" id="v_no" value="' + v_no  + '" >' +
 					'<button type="submit" id="reply-btn" onclick="return insertComment(' + v_no + ');">댓글달기</button>';
 		$("#video-reply").html(comment);
 		
@@ -87,6 +97,7 @@
 			
 			src="<iframe width='600' height='400' src="+ responseData.url.replace(/\^/g,"&")
 			+"frameborder='0' gesture='media' allow='encrypted-media' allowfullscreen name='iframe'></iframe>"
+			
 			
 			
 			$("#read_count").html("조회수  : " + responseData.readcount);
@@ -144,7 +155,7 @@
 		
 		var content = $("#reply-input").val();
 		
-		if(content==""){
+		if(content=="" || content==null){
 			alert("댓글 내용을 입력 해 주세요!");
 			focus("#reply-input");
 			return false;
@@ -182,9 +193,22 @@
 		
 	}
 	
-	function updateComment(v_no){	//댓글 update
+	function likeUp(){
+		var v_no = $("#v_no").val();
+		var user_no = $("#user_no").val();
+			
+		console.log(v_no);
+		console.log(user_no);
 		
+
+		$.ajax({
+			url:"likeUp.do",
+			dataType:"json",
+			type:"post",
+			data:{"v_no":v_no,"user_no":user_no}			
+		});
 	}
+
 	
 	
 </script>

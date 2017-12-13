@@ -1,12 +1,13 @@
 package com.kh.fitnessground.workout.health.model.dao;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.fitnessground.workout.commentlike.vo.Comment;
+import com.kh.fitnessground.workout.commentlike.vo.Like;
 import com.kh.fitnessground.workout.health.model.vo.Health;
 
 @Repository("healthDao")
@@ -42,4 +43,38 @@ public class HealthDao {
 	public void deleteHealthList(ArrayList<Health> list){
 		sqlSession.delete("health.deleteHealthList",list);
 	}
+	
+	//댓글 
+	public ArrayList<Comment> selectCommentList(int v_no) {
+		return (ArrayList)sqlSession.selectList("comment.selectCommentList",v_no);
+	}
+
+	public void insertComment(Comment comment) {
+		System.out.println("Dao Date Type: " + comment.getReply_date());
+		System.out.println("Dao String Type : " + comment.getStringReplyDate());
+		sqlSession.insert("comment.insertComment",comment);
+		
+	}
+
+	public void deleteComment(Comment comment) {
+		sqlSession.delete("comment.deleteComment",comment);
+		
+	}
+
+	public void updateLike(Like like) {
+		sqlSession.update("like.updateLike",like);
+		
+	}
+
+	public ArrayList<Like> selectLikeList() {
+		ArrayList<Like> list = (ArrayList)sqlSession.selectList("like.selectLikeList");
+		return list;
+	}
+
+	public void insertLike(Like like) {
+		sqlSession.insert("like.insertLike", like);
+		
+	}
+	
+	//좋아요
 }

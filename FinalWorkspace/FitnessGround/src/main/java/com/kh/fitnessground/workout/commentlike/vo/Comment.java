@@ -1,4 +1,4 @@
-package com.kh.fitnessground.workout.comment.model.vo;
+package com.kh.fitnessground.workout.commentlike.vo;
 
 import java.sql.Date;
 
@@ -11,6 +11,7 @@ public class Comment {
 	private String nickname;
 	private String name;
 	private Date reply_date;
+	private String stringReplyDate;
 	
 	public Comment() {
 		super();
@@ -81,6 +82,15 @@ public class Comment {
 
 	public void setReply_date(Date reply_date) {
 		this.reply_date = reply_date;
+	}
+	
+	
+	public String getStringReplyDate() {
+		return stringReplyDate;
+	}
+
+	public void setStringReplyDate(String stringReplyDate) {
+		this.stringReplyDate = stringReplyDate;
 	}
 
 	@Override

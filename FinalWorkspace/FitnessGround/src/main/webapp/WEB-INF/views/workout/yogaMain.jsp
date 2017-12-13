@@ -196,7 +196,7 @@
 						<span class="video-time" id="v-time${y.v_no}"></span>
 						</div>
 						<span id="video-text">
-						<a href="#workout-modal" data-toggle="modal" data-title="${y.title }" data-url="${y.url }" data-content="${y.content }"
+						<a href="#workout-modal" data-toggle="modal" data-no = "${y.v_no }" data-title="${y.title }" data-url="${y.url }" data-content="${y.content }"
 						data-target="#detailView">${y.title}</a>
 						</span> 
 						<%-- <span id="video-text"><c:url var="detail" value="#detail" /></span> --%>
@@ -212,16 +212,40 @@
 <script type="text/javascript">
 //modal 띄우기(title,url, content 값을 모달로)
 $('#detailView').on('show.bs.modal', function (event) {
+	
+	
+		
 	  var tag = $(event.relatedTarget); // sth that triggered the modal
 	  var title = tag.data('title'); // Extract info from data-* attributes
 	  var vid = tag.data('url');
+	  var vno = tag.data('no');
 	  var content = tag.data('content');
 	  
+ 	  var comment = '<input type="text" id="reply-input" placeholder="댓글을 입력하세요">' +
+		 '<input type="hidden" id="user_no" value="' + ${sessionScope.user.user_no}  + '" >' +
+		'<button type="submit" id="reply-btn" onclick="return insertComment(' + vno + ');">댓글달기</button>';
+		
+		
+
+	  
 	  var modal = $(this);
-	  modal.find('.modal-title').text(title);
+	  modal.find('.modal-title').text(title); 
 	  modal.find('.modal-play').html("<iframe id='video-play' src='https://www.youtube.com/embed/"+vid+"' frameborder='0'"+
 				"gesture='media' allow='encrypted-media' allowfullscreen></iframe>");
 	  modal.find('#span-content').text(content);
+	  
+ 	  modal.find("#video-reply").html(comment);
+	 
+ 	  selectComment(vno);	//요가에서 댓글
+ 	  
+ 		$("#reply-input").keydown(function(key){
+			if(key.keyCode==13){
+				insertComment(vno);
+			}
+		})
+ 	  
+ 	 
+  
 	})
 
 //category별 ajax로 동영상 가져오기 
@@ -249,7 +273,7 @@ function category(category2){
 	          content = result.clist[i].content;
 	          var value ="<div class='video'><div id='video-iframe"+no+"'></div><div id='video-info'><div class='time'><span class='video-time' id='v-time"+no+"'></span>"+
 					"</div><span id='video-text'><a href='#' data-toggle='modal' data-target='#detailView' "+
-					"data-title='"+title+"' data-url='"+vid+"' data-content='"+content+"'>"+title+"</a></span></div></div>";
+					"data-title='"+title+"' data-url='"+vid+"' data-no='"+no+"' data-content='"+content+"'>"+title+"</a></span></div></div>";
 		
 				if(i==0){
 					$('.workout-videos').html(value);

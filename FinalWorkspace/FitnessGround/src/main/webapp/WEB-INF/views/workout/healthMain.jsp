@@ -18,60 +18,45 @@
 	<c:import url="../include/main/nav.jsp"/>
 	<c:import url="../user/login.jsp"/>
 	<c:import url="../user/findidpwd.jsp"/>
-	<c:import url="../user/register.jsp"/>
-	<c:import url="detailView.jsp"/>
-	
+	<c:import url="../user/register.jsp"/>	
 </div>
-	
+
+<!-- Modal -->
+<c:import url="detailView.jsp"/>
+
 <!-- health head -->
-<div id="workout-head">
+<!-- <div id="workout-head">
 	<h2 id="workout-title">Health</h2>
-</div>
+</div> -->
 	
 	<!-- Health Body -->
 <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12" id="workout-body">	
-	<!-- 사이드바  -->
-	<div class="col-sm-2 col-md-2 col-lg-2">
-		<div class="workout_sidebar">
-			<ul>
-				<li><a href="#">헬스</a>
-					<ul class="active">
-						<li>다양한 헬스 운동</li>
-					</ul></li>
-				<li><a href="#">요가</a>
-					<ul class="closed">
-						<li>빈야사 </li>
-						<li>체형교정</li>
-						<li>다이어트</li>
-						<li>부위별 요가</li>
-						<li>초보자</li>
-					</ul></li>
-				<li><a href="#">필라테스</a>
-					<ul class="closed">
-						<li>스트레칭</li>
-						<li>전신운동</li>
-						<li>복근집중운동</li>
-						<li>하체운동</li>
-					</ul></li>
-				<li><a>맨몸운동</a>
-					<ul class="closed">
-						<li>팔굽혀 펴기</li>
-						<li>하체</li>
-						<li>복근</li>
-						<li>철봉</li>
-						<li>전신 프로그램</li>
-						<li>(초보자)3개월 운동</li>
-					</ul></li>
-			</ul>
-		</div>
-	</div>	<!-- 사이드바 끝 -->
 	
-<!-- 근육 이미지 -->
+	<!-- tab testing -->
+	<div class="container is-bg-a">
+		<!-- tab-list -->
+		<div class="wrap">
+			<div class="tab-wrap">
+				<ul class="tab-list tab-b is-col-3">
+					<li class="in"><a href="#"><span>헬스</span></a></li>
+					<li><a href="yogaMain.do"><span>요가</span></a></li>
+					<li><a href="pilatesMain.do"><span>필라테스</span></a></li>
+					<li><a href="#"><span>맨몸운동</span></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- // tab-list -->
+		
+</div>
 
-	<div class ="col-sm-offset-3">
-		<div id="menu"> 
+
+<!-- 근육 이미지 -->
+<div class = "container">
+	<div class ="row">
+		<div id="menu" class="col-md-6" style="margin-top:0%;"> 
 		<div id="diagram" style="background-position: 0px 0px;">
-			<div class="col-md-5">
+			<div class="col-md-4">
 			<img src="/fitnessground/resources/images/health/muscle.jpg" width="350"
 				height="250" border="0" alt="Click on a muscle group"
 				usemap="#bodyMap" id="myimage">
@@ -224,11 +209,15 @@
 			</map>
 			</div>
 			
-			<div class="col-md-5" id="explain" >
-				왼쪽 이미지에서 영상을 보고싶은 부위를 클릭 해 주세요!
-			</div>
+			
 		</div>
 
+	</div>
+	
+	<div class="col-md-4" id="explain" >
+				FitnessGround 홈페이지에 오신 것을 환영합니다!.<br>
+				왼쪽 이미지에서 운동부위를 클릭해 주세요
+	</div>
 	</div>
 	
 	<!-- /menu -->
@@ -249,8 +238,6 @@
 			</div>
 		</div>
 	</div>
-	
-</div>
 
 
 

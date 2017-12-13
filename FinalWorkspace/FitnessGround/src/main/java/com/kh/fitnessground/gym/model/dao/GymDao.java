@@ -84,5 +84,14 @@ public class GymDao {
 		sqlSession.insert("gymschedule.OneSchedule", gs);
 	}
 
+	public int regCount(Gym gym) {
+		return sqlSession.selectOne("regCount", gym);
+	}
+
+	public ArrayList<Gym> mygymlist(Gym gym) {
+		List<Gym> list = sqlSession.selectList("gym.mygymlist", gym);
+		return (ArrayList<Gym>)list;
+	}
+
 	
 }

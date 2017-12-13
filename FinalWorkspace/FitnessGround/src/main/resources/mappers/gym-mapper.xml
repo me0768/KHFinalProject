@@ -222,4 +222,20 @@
 			where rename_image = #{rename_image}
 		]]>
 	</select>
+	
+	<select id="regCount" resultType="_int" parameterType="Gym">
+		<![CDATA[
+			select count(*)
+			from tb_gym
+			where user_no = #{user_no}
+		]]>
+	</select>
+	
+	<select id="mygymlist" resultType="list" resultMap="resultGym" parameterType="Gym">
+		<![CDATA[
+			select *
+			from tb_gym
+			where user_no = #{user_no}
+		]]>
+	</select>
 </mapper>

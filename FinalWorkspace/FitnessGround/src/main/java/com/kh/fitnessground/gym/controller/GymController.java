@@ -94,6 +94,19 @@ public class GymController {
 		gymService.OneSchedule(gs);
 	}
 	
+	//등록한 헬스장 갯수
+	@RequestMapping(value="/mygymlist.do")
+	public ModelAndView mygymlist(Gym gym, HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mv = new ModelAndView();
+		int gymcount = gymService.regCount(gym);
+		ArrayList<Gym> list = gymService.mygymlist(gym);
+		
+		mv.addObject("gymcount", gymcount);
+		mv.addObject("list", list);
+		mv.setViewName("jsonView");
+		return mv;
+	}
+	
 	// 헬스장 수정
 	@RequestMapping(value="updategym.do")
 	public ModelAndView updateGym(Gym gym, HttpServletRequest request, HttpServletResponse response) {

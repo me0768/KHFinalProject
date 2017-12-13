@@ -37,5 +37,9 @@ public interface GymService {
 		Gym selectfromImg(Gym gym);
 		
 		void OneSchedule(GymSchedule gs);
+		
+		int regCount(Gym gym);
+		
+		ArrayList<Gym> mygymlist(Gym gym);
 
 }

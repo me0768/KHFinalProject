@@ -75,7 +75,7 @@
 	width:90%;
 }
 
-.mypage_schedule {
+.mypage_schedule, .mypage_gymmanage {
 	box-shadow: 2px 2px 2px rgba(204, 197, 185, 0.5);
 	background-color: #FFFFFF;
 	color: #252422;

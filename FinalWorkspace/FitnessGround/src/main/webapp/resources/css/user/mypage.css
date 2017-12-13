@@ -336,3 +336,16 @@
 	margin-left:45px;
 	color:#FE424D;
 }
+
+#gymlist {
+	max-height: 370px;
+	overflow: hidden;
+	overflow-y: auto;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+#gymimg {
+	height: 110px;
+	width: 100%;
+}

@@ -1,7 +1,7 @@
 PROMPT FITNESSGROUND 자료입력시작
 
-SET FEEDBACK ON;
-SET DEFINE ON;
+SET FEEDBACK OFF;
+SET DEFINE OFF;
 
 -- 유저 테이블
 DROP TABLE TB_USER CASCADE CONSTRAINTS;
@@ -485,14 +485,17 @@ PROMPT SEQUENCE 생성 끝...
 -- 시퀀스 생성 종료 --
 
 -- 샘플데이터 삽입 --
+PROMPT TB_USER 샘플데이터 입력중..
 INSERT INTO TB_USER VALUES(USER_SEQ.NEXTVAL, 'ADMIN', '$2a$10$Fr8KsAskrldajwgHTaOvWeMfMhbamOVTQ9.1S2LN9M01g67zzd2im', '관리자', '관리자', '010-8366-3828', 2, NULL, 0, NULL, NULL, 0);
 INSERT INTO TB_USER VALUES(USER_SEQ.NEXTVAL, 'user11@iei.or.kr', '$2a$10$UWJxBhRjk8rH4CTKattaEOfkcKX20nYKrsImhve/0OLfrRipPRrwG', '양동균', '양뚝', '010-8366-3828', 1, NULL, 0, NULL, NULL, 0);
 INSERT INTO TB_USER VALUES(USER_SEQ.NEXTVAL, 'wltjs1796@naver.com', '$2a$10$sghg6nmqBwt1d54SlM0ZfubV5NjS1Iur.59X1.2FF09oWZlNqGnty', '윤지선', '지선짱', '010-6243-6597', 0, NULL, 0, NULL, NULL, 0);
 INSERT INTO TB_USER VALUES(USER_SEQ.NEXTVAL, 'dlrbdus02@naver.com', '$2a$10$Xwj2UZ.bbu2RXt2YryO4NOIlnjbo21KVzIgzDCBRGMZIxcQw8Szwe', '일반이규연', '일반이규연', '010-6357-2634', 0, NULL, 0, NULL, NULL, 0);
 INSERT INTO TB_USER VALUES(USER_SEQ.NEXTVAL, 'vaseline584@naver.com', '$2a$10$wiMg9.PSdH4akf476MvVR.t6iVEY36conMRdJTJohqZtEU9OQyHnO', '또이규연', '또이규연', '010-2122-6374', 0, NULL, 0, NULL, NULL, 0);
 INSERT INTO TB_USER VALUES(USER_SEQ.NEXTVAL, 'vaseline02@naver.com', '$2a$10$s9FRq3HzDIySGlrlbixbXOntOssZNjPDCQuTtmyVxnISRahwohMhO', '사업자이규연', '사업자이규연', '010-6357-2634', 1, NULL, 0, NULL, NULL, 0);
+PROMPT TB_USER 샘플데이터 입력끝!
 
 -- 커뮤니티 샘플 데이터
+PROMPT 커뮤니티 샘플데이터 입력중..
 INSERT INTO TB_MEETING_BOARD
 VALUES(1,2,'금강산 같이 타실분 구해요','이번 12월 11일날 눈이 많이 온다고들 하네요.. 그때 산 한번 타고 싶은데 같이 타실분 있나요?',
         default,default,0);
@@ -545,10 +548,11 @@ VALUES(9,2,'다이어트 중 궁금한게 있어요..','제가 식단 조절은 
 
 INSERT INTO TB_COM_BOARD
 VALUES(10,2,'제가 처음 운동을 시작하는데..','제가 처음 운동을 시작하는데 어떤 운동을 해야 할지 잘 모르겠어요 ㅠ 어떤 운동부터 시작해야 할까요 ㅠㅠ 저는 쫌 마른편입니다..',1,sysdate,0);
-
+PROMPT 커뮤니티 샘플데이터 입력끝
 
 --TB_VIDEO_BOARD (요가)샘플데이터 
 --빈야사
+PROMPT TB_VIDEO_BOARD 샘플데이터 입력중..
 INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]초보자를 위한 빈야사 요가 - 블럭','반갑습니다. 요가 강사 EVA입니다. 초보자분들에게 블럭은 정말 유용한 도구입니다. 하지만 정작 그 쓰임새를 잘 알지 못하시는데요 이번 영상은 블럭을 이용한 가장 기본적인 영상입니다. 이 영상을 바탕으로 블럭을 활용하는데 도움이 되었으면 합니다.','요가','빈야사','03ydrIQxeK4',0);
 INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]애플힙을 위한 강력한 두번째 빈야사 요가 - 난이도가 조금 있어요','반갑습니다. 요가 강사 EVA입니다. 여러분!!!!!! 여러분!!!!!! 하하하....T^T 여러분은 오늘 사시나무 떨듯이 떠는 저를 보게 되실 겁니다. 왜이러지;;; 오늘 이상하게 너무 힘들고 몸이 떨리네요. 촬영시간은 기상 후 3시간 정도 후인데 제가 아무것도 안먹었거든요. 그래서 그런지 오늘은 이상하게 덜덜거리네요. 참고하시면서 봐주시길 바라면서 오늘은 애플힙 영상 두번째로 더 강력한 시퀀스를 준비했습니다. 저번 영상에서 집중도가 조금 떨어진거 같은 느낌을 받아 이번에는 완전 집중을 했습니다. 불탈지도 몰라요. 조심하세요~_~ 그리고 동작 난이도가 조금 있습니다. 힘드신분들은 손을 짚은 상태로 하시면 되요. 영상 해보시면 뭔소린지 아실 겁니다. 그럼 지금 바로 시작합니다.','요가','빈야사','GXECrcR-tDc',0);
 INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[EVA YOGA]30분 애플힙을 위한 빈야사 요가','반갑습니다. 요가 강사 EVA입니다. 이번 영상은 애플힙을 위한 영상입니다. 제가 시퀀스를 짤때는 힙에 집중해서 만들었는데 찍다보니까 후반부에 생각만치 엉덩이가 불타지 않터라고요. 그러므로!!! 최대한 힙에 집중해서 동작을 하세요. 해보면 아시겠지만 힙에 집중을 하였으나 다른곳에 움직임 역시 넘쳐난다는것을 기억하시면서 지금 바로 시작합니다.','요가','빈야사','BUqB9xoIjLU',0);
@@ -845,10 +849,10 @@ insert into tb_video_board values(vb_seq.nextval,'카프레이즈 - 스탠팅','
 insert into tb_video_board values(vb_seq.nextval,'카프레이즈 - 시티드','가자미근이라고 하는 종아리의 심부근육을 발달시키기 위한 운동이다. 비복근의 참여를 줄이기 위해 앉아서 실시하며 여성들에게 추천된다.','헬스','종아리','http://serviceapi.rmcnmv.naver.com/flash/outKeyPlayer.nhn?vid=D1EA4778CB010D224508EAEEFB71A5BD30BF^outKey=V123da2e00a3135d4eaeb2bb390108ba95d9b5e98eb4ae44ae1862bb390108ba95d9b^controlBarMovable=true^jsCallable=true^isAutoPlay=false^skinName=tvcast_white',default);
 insert into tb_video_board values(vb_seq.nextval,'카프레이즈 - 싱글 레그','약한 쪽 종아리를 운동함으로써 양쪽 발의 균형을 맞추는 데 유용한 운동이다. 장소에 구애 받지 않고 어디서나 쉽게 할 수 있다는 장점이 있다.','헬스','종아리','http://serviceapi.rmcnmv.naver.com/flash/outKeyPlayer.nhn?vid=DD8C1DF3E7B7AD31333404CC676647DAE467^outKey=V1212bbbb649de919f5e7f82aaab48539591afb218bfa5ad44b7ff82aaab48539591a^controlBarMovable=true^jsCallable=true^isAutoPlay=false^skinName=tvcast_white',default);
 insert into tb_video_board values(vb_seq.nextval,'카프레이즈 - 머신','레그 프레스 머신에서 실시하는 종아리 운동이다. 스탠딩 자세에서 하는 운동과 달리 허리의 추가적인 스트레스를 피할 수 있다는 장점이 있다. 종아리 근육에 대한 집중을 더욱 느낄 수 있고, 자신의 몸무게만큼 고중량으로 실시할 수 있다.','헬스','종아리','http://serviceapi.rmcnmv.naver.com/flash/outKeyPlayer.nhn?vid=1255934BC7773B6B927EBA51898851D750DA^outKey=V127f754232dc7ea041a47e48f7778b839e76aa9da2ab5e7c22977e48f7778b839e76^controlBarMovable=true^jsCallable=true^isAutoPlay=false^skinName=tvcast_white',default);
+PROMPT TB_VIDEO_BOARD 샘플데이터 입력끝!
 
 -- TB_GYM 샘플 데이터
-INSERT INTO TB_GYM VALUES(14, '테스트용', NULL, NULL,  '테스트용', '010-0000-0000', '010-4111-1111',  NULL, '테스트용',  '설명', '안산', 6, NULL, 1);
-
+PROMPT TB_GYM 샘플데이터 입력중..
 INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL, PHONE, PRICE, CATEGORY, DESCRIPTION, LOCATION, USER_NO, DELETE_DATE, APPROVAL_STATE) 
 VALUES (gym_seq.nextval, '우노 휘트니스클럽', NULL, NULL, 'AM 06:00', '02-790-6776', '010-1234-5678', NULL, '피트니스', NULL, '서울특별시 용산구 보광동 260-8번지 지상3층', 2, NULL, DEFAULT);
 
@@ -991,7 +995,7 @@ INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL
 VALUES (gym_seq.nextval, '제이 스튜디오', NULL, NULL, 'AM 06:00', '02-792-8281', '010-1234-5678', NULL, '헬스', NULL, '서울특별시 용산구 보광동 217-21번지 ', 2, NULL, DEFAULT);
 
 INSERT INTO TB_GYM (GYM_NO, GYM_NAME, ORIGINAL_IMAGE, RENAME_IMAGE, OP_TIME, TEL, PHONE, PRICE, CATEGORY, DESCRIPTION, LOCATION, USER_NO, DELETE_DATE, APPROVAL_STATE)
-VALUES (gym_seq.nextval,	'뚝이',	'admin클래스.jpg,community클래스.jpg,gym클래스.jpg',	'e9987a63e4d74be5aaa3c6d9519ff494.jpg,4921da6b3e614fd0aefb634613dbaccb.jpg,4ad3933234714be789087197bda4d259.jpg',	'10:00~24:00',	'024345555',	'01083663828',	'1만원',	'헬스, 요가, 필라테스, 맨몸운동',	'뚝이헬스장',	'서울특별시 성동구 동일로	', 2, NULL, DEFAULT);
+VALUES (gym_seq.nextval,	'뚝이',	'admin클래스.jpg,community클래스.jpg,gym클래스.jpg',	'e9987a63e4d74be5aaa3c6d9519ff494.jpg,4921da6b3e614fd0aefb634613dbaccb.jpg,4ad3933234714be789087197bda4d259.jpg',	'10:00~24:00',	'02-434-5555',	'010-8366-3828',	'1만원',	'헬스, 요가, 필라테스, 맨몸운동',	'뚝이헬스장',	'서울특별시 성동구 동일로	', 2, NULL, DEFAULT);
 
 INSERT INTO TB_GYM VALUES(gym_seq.nextval, '테스트용1', NULL, NULL,  '테스트용1', '010-0000-0000', '010-4111-1111',  NULL, '테스트용',  '설명', '안산', 6, NULL, 1, DEFAULT);
 
@@ -1002,27 +1006,33 @@ INSERT INTO TB_GYM VALUES(gym_seq.nextval, '테스트용3', NULL, NULL,  '테스
 INSERT INTO TB_GYM VALUES(gym_seq.nextval, '테스트용4', NULL, NULL,  '테스트용4', '010-0000-0000', '010-4111-1111',  NULL, '테스트용',  '설명', '안산', 6, NULL, 1, SYSDATE-3);
 
 INSERT INTO TB_GYM VALUES(gym_seq.nextval, '테스트용5', NULL, NULL,  '테스트용5', '010-0000-0000', '010-4111-1111',  NULL, '테스트용',  '설명', '안산', 6, NULL, 1, SYSDATE-4);
+PROMPT TB_GYM 샘플데이터 입력끝!
 
+PROMPT TB_GYM_SCHEDULE 샘플데이터 입력중..
 INSERT INTO TB_GYM_SCHEDULE VALUES (gs_seq.nextval, 48,	'17/12/08',	'18:00~20:00',	'요가');
 
 INSERT INTO TB_GYM_SCHEDULE VALUES (gs_seq.nextval, 48,	'17/12/22',	'14:00~16:00',	'수영');
+PROMPT TB_GYM_SCHEDULE 샘플데이터 입력끝
 
 -- 마이스케줄 샘플 데이터
+PROMPT TB_MYPAGE_SCHEDULE 샘플데이터 입력중..
 INSERT INTO TB_MYPAGE_SCHEDULE VALUES(MS_SEQ.NEXTVAL, 1, 3, null, SYSDATE-1);
 INSERT INTO TB_MYPAGE_SCHEDULE VALUES(MS_SEQ.NEXTVAL, 2, 3, null, SYSDATE-1);
 INSERT INTO TB_MYPAGE_SCHEDULE VALUES(MS_SEQ.NEXTVAL, 3, 3, null, SYSDATE-1);
 INSERT INTO TB_MYPAGE_SCHEDULE VALUES(MS_SEQ.NEXTVAL, 4, 3, null, SYSDATE);
 INSERT INTO TB_MYPAGE_SCHEDULE VALUES(MS_SEQ.NEXTVAL, null, 3, '요가 복습', SYSDATE);
 INSERT INTO TB_MYPAGE_SCHEDULE VALUES(MS_SEQ.NEXTVAL, 154, 3, null, SYSDATE);
+PROMPT TB_MYPAGE_SCHEDULE 샘플데이터 입력끝!
 
 -- 문의하기 샘플 데이터
+PROMPT TB_QNA 샘플데이터 입력중..
 insert into tb_qna values(USER_SEQ.NEXTVAL, 2, 1, '테스트문의', '이것은 테스트', NULL, NULL, SYSDATE-4, DEFAULT, USER_SEQ.NEXTVAL, DEFAULT);
 insert into tb_qna values(USER_SEQ.NEXTVAL, 2, 1, '사업자가 보낸 문의 제대로 가나요?', '문의합니다', NULL, NULL, SYSDATE-3, DEFAULT, USER_SEQ.NEXTVAL, DEFAULT);
 insert into tb_qna values(USER_SEQ.NEXTVAL, 3, 1, '회원이 보낸 문의', '왔나염?', NULL, NULL, SYSDATE-3, DEFAULT, USER_SEQ.NEXTVAL, DEFAULT);
 insert into tb_qna values(USER_SEQ.NEXTVAL, 3, 1, '회원이 보낸 문의', '왔나염?', NULL, NULL, SYSDATE-1, DEFAULT, USER_SEQ.NEXTVAL, DEFAULT);
 insert into tb_qna values(USER_SEQ.NEXTVAL, 4, 1, '회원이 보낸 문의', '왔나염?', NULL, NULL, SYSDATE-2, DEFAULT, USER_SEQ.NEXTVAL, DEFAULT);
 insert into tb_qna values(USER_SEQ.NEXTVAL, 5, 1, '회원이 보낸 문의', '왔나염?', NULL, NULL, SYSDATE-7, DEFAULT, USER_SEQ.NEXTVAL, DEFAULT);
-     
+PROMPT TB_QNA 샘플데이터 입력끝!
 
 COMMIT;
 

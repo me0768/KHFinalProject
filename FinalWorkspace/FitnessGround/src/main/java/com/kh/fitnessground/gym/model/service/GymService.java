@@ -41,5 +41,11 @@ public interface GymService {
 		int regCount(Gym gym);
 		
 		ArrayList<Gym> mygymlist(Gym gym);
+		
+		int regCountName(Gym gym);
+		
+		ArrayList<Gym> mygymlistName(Gym gym);
+		
+		void deleteGym(Gym gym);
 
 }

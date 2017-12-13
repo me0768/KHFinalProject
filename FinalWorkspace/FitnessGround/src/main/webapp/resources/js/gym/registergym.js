@@ -751,9 +751,7 @@ var arr = new Array();
 			var gym_name = $("#gymname").val();
 			var op_time = $("#optime").val();
 			var tel = $("#tel").val();
-			tel = tel.replace(/\-/g, '');
 			var phone = $("#phone").val();
-			phone = phone.replace(/\-/g, '');
 			var price = $("#price").val();
 			var category = '';
 			if($("#ex_chk0").is(":checked")){

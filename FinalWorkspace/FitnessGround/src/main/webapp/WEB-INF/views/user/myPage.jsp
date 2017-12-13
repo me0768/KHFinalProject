@@ -182,12 +182,18 @@
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="regcount">
 					<input type="hidden" id="userno" value="${ sessionScope.user.user_no }">
 				</div>
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="gymsearchdiv">
+					<div class="input-group">
+						<input type="text" oninput="gymsearch(${ sessionScope.user.user_no });" id="gymsearch" class="form-control" placeholder="헬스장 이름으로 검색">
+						<span class="input-group-addon"><a href="javascript:gymsearch(${ sessionScope.user.user_no })"><span class="glyphicon glyphicon-search"></span></a></span>
+					</div>
+				</div>
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="gymlist">
+					<!-- 헬스장 리스트 -->
 				</div>
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<a href="moveregistergym.do">
-						<Button class="btn btn-default">헬스장 등록하러가기</Button>
+						<Button class="btn btn-default col-lg-5 col-lg-offset-7 col-md-5 col-md-offset-7 col-sm-5 col-sm-offset-7 col-xs-5 col-xs-offset-7" style="padding: 0px;">헬스장 등록하러가기</Button>
 					</a>
 				</div>
 			</div>

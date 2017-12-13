@@ -85,12 +85,25 @@ public class GymDao {
 	}
 
 	public int regCount(Gym gym) {
-		return sqlSession.selectOne("regCount", gym);
+		return sqlSession.selectOne("gym.regCount", gym);
 	}
 
 	public ArrayList<Gym> mygymlist(Gym gym) {
 		List<Gym> list = sqlSession.selectList("gym.mygymlist", gym);
 		return (ArrayList<Gym>)list;
+	}
+
+	public int regCountName(Gym gym) {
+		return sqlSession.selectOne("gym.regCountName", gym);
+	}
+
+	public ArrayList<Gym> mygymListName(Gym gym) {
+		List<Gym> list = sqlSession.selectList("gym.mygymlistName", gym);
+		return (ArrayList<Gym>)list;
+	}
+
+	public void deleteGym(Gym gym) {
+		sqlSession.update("gym.deleteGym", gym);
 	}
 
 	

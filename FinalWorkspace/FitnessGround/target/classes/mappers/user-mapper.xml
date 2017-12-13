@@ -42,6 +42,7 @@
 		<result property="upload_date" column="upload_date" />
 		<result property="url" column="url" />
 		<result property="title" column="title" />
+		<result property="category1" column="category1" />
 	</resultMap>
 
 	<select id="selectUser" parameterType="String" resultType="User"
@@ -230,6 +231,21 @@
 		where user_no = #{user_no}
 		]]>
 	</update>
+	
+	
+	<insert id="insertUSchedule" parameterType="UserSchedule" flushCache="true"
+		statementType="PREPARED" useGeneratedKeys="true" >
+		<![CDATA[
+			insert into tb_mypage_schedule
+			values (ms_seq.nextval, null, #{user_no}, #{content}, #{upload_date})
+		]]>
+	</insert>	
+	<delete id="deleteUSchedule" parameterType="_int"
+		flushCache="true" statementType="PREPARED" >
+		<![CDATA[
+		delete from tb_mypage_schedule where s_no = #{s_no}
+		]]>
+	</delete>
 	
 	
 	<!-- <select id="selectAll" resultType="list" resultMap="resultList">

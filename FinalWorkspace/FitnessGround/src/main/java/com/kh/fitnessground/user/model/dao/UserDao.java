@@ -135,4 +135,12 @@ public class UserDao {
 		List<CommunityAndMeeting> list = sqlSession.selectList("community.myPageMeetingSearchList", parameters);
 		return new ArrayList<CommunityAndMeeting>(list);
 	}
+
+	public void insertUserSchedule(UserSchedule us) {
+		sqlSession.insert("user.insertUSchedule", us);
+	}
+
+	public void deleteUserSchedule(int s_no) {
+		sqlSession.delete("user.deleteUSchedule", s_no);
+	}
 }

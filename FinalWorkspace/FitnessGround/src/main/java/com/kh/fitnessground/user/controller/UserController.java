@@ -1,11 +1,15 @@
 package com.kh.fitnessground.user.controller;
 
 import java.io.File;
+import java.io.PrintWriter;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.GregorianCalendar;
 
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
@@ -13,12 +17,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -27,6 +37,7 @@ import com.kh.fitnessground.gym.model.vo.GymQnABoard;
 import com.kh.fitnessground.gym.model.vo.GymQnABoardPage;
 import com.kh.fitnessground.user.model.service.UserService;
 import com.kh.fitnessground.user.model.vo.User;
+import com.kh.fitnessground.user.model.vo.UserSchedule;
 
 @Controller
 public class UserController {
@@ -434,4 +445,29 @@ public class UserController {
 		mv.addObject("list", userService.userAllSchedule(Integer.parseInt(request.getParameter("userno"))));
 		return mv; 
 	}
+	// 운동스케줄 insert
+	@RequestMapping(value="/uscheduleInsert.do")
+	public ResponseEntity<String> userScheduleInsertMethod(HttpServletRequest request, @RequestBody String param) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		JSONObject job = (JSONObject)new JSONParser().parse(param);
+		String dateT = (String)job.get("upload_date"); //upload_date
+		String[] datesT = dateT.split("-");
+		int[] dates = new int[datesT.length];
+		for(int i=0; i<dates.length; i++) dates[i] = Integer.parseInt(datesT[i]);
+		UserSchedule us = new UserSchedule(((User)request.getSession().getAttribute("user")).getUser_no(),
+				(String)job.get("content"), new Date(new GregorianCalendar(dates[0],dates[1]-1,dates[2]).getTimeInMillis()));
+		userService.insertUserSchedule(us);
+		return new ResponseEntity<String>("success", HttpStatus.OK);
+	}
+	// 운동스케줄 delete
+	@RequestMapping(value="/uscheduleDel.do")
+	public ResponseEntity<String> userScheduleDeleteMethod(HttpServletRequest request, @RequestBody String param) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		JSONObject job = (JSONObject)new JSONParser().parse(param);
+		int s_no = Integer.parseInt(((String)job.get("s_no")));
+		System.out.println(s_no);
+		userService.deleteUserSchedule(s_no);
+		return new ResponseEntity<String>("success", HttpStatus.OK);
+	}
+	
 }

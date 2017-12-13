@@ -12,6 +12,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.plaf.synth.SynthSeparatorUI;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -20,6 +21,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -147,132 +149,164 @@ public class GymController {
 		
 	}
 	
-	//findgym
-	@RequestMapping(value="findgym.do", method=RequestMethod.GET)
-	public ModelAndView findGym(HttpServletRequest request, HttpServletResponse response)
-	{
-		ModelAndView mv = new ModelAndView("findgym/findgym");
-		
-		return mv;
-	}
-	
-	@SuppressWarnings("unchecked")
-	@RequestMapping(value="findhealth.do", method=RequestMethod.POST)
-	@ResponseBody
-	public ModelAndView findHealth(ModelAndView mv, HttpServletRequest request, HttpServletResponse response)
-	{
-		//ModelAndView mv = new ModelAndView("findgym/findgym");
-
-		int currentPage = 1;
-		int limit = 5;
-		Map<String, Object> map = new HashMap<String, Object>();
-		
-		if(request.getParameter("cpage") != null)
-			currentPage = Integer.parseInt(request.getParameter("cpage"));
-		else currentPage = 1;
-		
-		int listCount = gymService.getListCount();
-		ArrayList<Gym> list = gymService.healthList(currentPage, limit);
-	//	ArrayList<Gym> list = gymService.healthList();
-		
-		int maxPage = (int)((double)listCount / 10 + 0.9);
-		
-		int startPage = (((int)((double)currentPage / limit + 0.9))-1) * limit + 1;
-		
-		int endPage = startPage + limit - 1;
-		
-		if(maxPage < endPage)
-			endPage = maxPage;
-		System.out.println("listCount = " + listCount);
-		System.out.println(list);
-		
-		map.put("currentPage", currentPage);
-		map.put("listCount", listCount);
-		map.put("maxPage", maxPage);
-		map.put("startPage", startPage);
-		map.put("endPage", endPage);
-		map.put("limit", limit);
-		
-		JSONObject sendjson = new JSONObject(); // 전송용 최종 객체
-		JSONArray jar = new JSONArray();
-		
-		for(Gym gym : list)
-		{
-			JSONObject jgym = new JSONObject();
-			jgym.put("gym_name", gym.getGym_name());
-			jgym.put("location", gym.getLocation());
-			jgym.put("rename_image", gym.getRename_image());
+	// findgym
+		@RequestMapping(value = "findgym.do")
+		public ModelAndView findGym(HttpServletRequest request, HttpServletResponse response) {
+			ModelAndView mv = new ModelAndView("findgym/findgym");
+			int currentPage = 1;
+			int pcurrentPage = 1;
 			
-			jar.add(jgym);
+			int limit = 5;
+			Map<String, Object> map = new HashMap<String, Object>();
+			int listCount = gymService.getListCount(); // 헬스장
+			int plistCount = gymService.getPublicListCount(); // 공공시설
+					
+			ArrayList<Gym> list = gymService.healthList(currentPage, limit);
+			ArrayList<PublicGym> plist = gymService.publicList(currentPage, limit);
+			
+			int maxPage = (int) ((double) listCount / limit + 0.9);
+			int pmaxPage = (int) ((double) plistCount/ limit + 0.9);
+			
+			int startPage = (((int) ((double) currentPage / limit + 0.9)) - 1) * limit + 1;
+			int pstartPage = (((int) ((double) pcurrentPage / limit + 0.9)) - 1) * limit + 1;
+			
+			int endPage = startPage + limit - 1;
+			int pendPage = pstartPage + limit - 1;
+
+			if (maxPage < endPage)
+				endPage = maxPage;
+			
+			if(pmaxPage < pendPage)
+				pendPage = pmaxPage;
+			
+			System.out.println("listCount = " + listCount);
+			System.out.println(list);
+			map.put("currentPage", currentPage);
+			map.put("pcurrentPage", pcurrentPage);
+			map.put("listCount", listCount);
+			map.put("plistCount", plistCount);
+			map.put("maxPage", maxPage);
+			map.put("pmaxPage", pmaxPage);
+			map.put("startPage", startPage);
+			map.put("pstartPage", pstartPage);
+			map.put("endPage", endPage);
+			map.put("pendPage", pendPage);
+			map.put("limit", limit);
+			map.put("list", list);
+			map.put("plist", plist);
+			
+			mv.addObject("gympage",map);
+			
+			return mv;
+		}
+
+		@SuppressWarnings("unchecked")
+		@RequestMapping(value = "findhealth.do")
+		@ResponseBody
+		public ModelAndView findHealth(ModelAndView mv, @RequestParam("page") int page) {
+
+			int currentPage = page;
+			int limit = 5;
+			Map<String, Object> map = new HashMap<String, Object>();
+
+			int listCount = gymService.getListCount();
+			ArrayList<Gym> list = gymService.healthList(currentPage, limit);
+
+			int maxPage = (int)((double) listCount / limit + 0.9);
+
+			int startPage = (((int)((double) currentPage / limit + 0.9)) - 1) * limit + 1;
+
+			int endPage = startPage + limit - 1;
+
+			if (maxPage < endPage)
+				endPage = maxPage;
+			
+			System.out.println("listCount = " + listCount);
+			System.out.println("maxPage =" + maxPage);
+			System.out.println("startPage = " + startPage);
+			System.out.println("endPage = " + endPage);
+			System.out.println(list);
+
+			map.put("currentPage", currentPage);
+			map.put("listCount", listCount);
+			map.put("maxPage", maxPage);
+			map.put("startPage", startPage);
+			map.put("endPage", endPage);
+			map.put("limit", limit);
+
+			JSONObject sendjson = new JSONObject(); // 전송용 최종 객체
+			JSONArray jar = new JSONArray();
+
+			for (Gym gym : list) {
+				JSONObject jgym = new JSONObject();
+				jgym.put("gym_name", gym.getGym_name());
+				jgym.put("location", gym.getLocation());
+				jgym.put("rename_image", gym.getRename_image());
+
+				jar.add(jgym);
+			}
+
+			map.put("gymlist", jar);
+
+			mv.addAllObjects(map);
+
+			mv.setViewName("jsonView");
+
+			return mv;
+
 		}
 		
-		//sendjson.put("list", jar);
-		
-		map.put("gymlist", jar);
-		
-		mv.addAllObjects(map);
-		
-		mv.setViewName("jsonView");
-		
-		return mv;
-		
-	}
-	
-	/*@RequestMapping(value="findpublicgym.do")
-	@ResponseBody
-	public ModelAndView findPublicFacilities(ModelAndView mv, HttpServletRequest request, HttpServletResponse response)
-	{
-
-		int currentPage = 1;
-		int limit = 5;
-		Map<String, Object> map = new HashMap<String, Object>();
-		
-		if(request.getParameter("cpage") != null)
-			currentPage = Integer.parseInt(request.getParameter("cpage"));
-		
-		int listCount = gymService.getPublicListCount();
-		ArrayList<PublicGym> list = gymService.publicList(currentPage, limit);
-	//	ArrayList<Gym> list = gymService.healthList();
-		
-		int maxPage = (int)((double)listCount / 10 + 0.9);
-		
-		int startPage = (((int)((double)currentPage / limit + 0.9))-1) * limit + 1;
-		
-		int endPage = startPage + limit - 1;
-		
-		if(maxPage < endPage)
-			endPage = maxPage;
-		System.out.println("listCount = " + listCount);
-		System.out.println(list);
-		
-		map.put("currentPage", currentPage);
-		map.put("listCount", listCount);
-		map.put("maxPage", maxPage);
-		map.put("startPage", startPage);
-		map.put("endPage", endPage);
-		map.put("limit", limit);
-		
-		JSONObject sendjson = new JSONObject(); // 전송용 최종 객체
-		JSONArray jar = new JSONArray();
-		
-		for(PublicGym pgym : list)
+		@RequestMapping(value="findpublic.do")
+		@ResponseBody
+		public ModelAndView findPublic(ModelAndView mv, @RequestParam("page") int page)
 		{
-			JSONObject jgym = new JSONObject();
-			jgym.put("gym_name", pgym.getPublic_name());
-			jgym.put("location", pgym.getLocation());
+			int currentPage = page;
 			
+			int limit = 5;
+			Map<String, Object> map = new HashMap<String, Object>();
+
+			int listCount = gymService.getPublicListCount();
+			ArrayList<PublicGym> list = gymService.publicList(currentPage, limit);
+
+			int maxPage = (int)((double) listCount / limit + 0.9);
+
+			int startPage = (((int)((double) currentPage / limit + 0.9)) - 1) * limit + 1;
+
+			int endPage = startPage + limit - 1;
+
+			if (maxPage < endPage)
+				endPage = maxPage;
 			
-			jar.add(pgym);
+			System.out.println("listCount = " + listCount);
+			System.out.println("maxPage =" + maxPage);
+			System.out.println("startPage = " + startPage);
+			System.out.println("endPage = " + endPage);
+			System.out.println(list);
+
+			map.put("currentPage", currentPage);
+			map.put("listCount", listCount);
+			map.put("maxPage", maxPage);
+			map.put("startPage", startPage);
+			map.put("endPage", endPage);
+			map.put("limit", limit);
+
+			JSONObject sendjson = new JSONObject(); // 전송용 최종 객체
+			JSONArray jar = new JSONArray();
+
+			for (PublicGym publicgym : list) {
+				JSONObject jpgym = new JSONObject();
+				jpgym.put("public_name", publicgym.getPublic_name());
+				jpgym.put("location", publicgym.getLocation());
+				jpgym.put("homepage", publicgym.getHomepage());
+
+				jar.add(jpgym);
+			}
+
+			map.put("publiclist", jar);
+
+			mv.addAllObjects(map);
+
+			mv.setViewName("jsonView");
+			return mv;
 		}
-		
-		sendjson.put("list", jar);
-		
-		map.put("gymlist", sendjson.toJSONString());
-		
-		mv.addAllObjects(map);
-		
-		mv.setViewName("jsonView");
-		
-		return mv;
-	}*/
 }

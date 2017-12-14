@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.fitnessground.admin.model.service.AdminService;
+import com.kh.fitnessground.admin.model.vo.BusinessRequest;
 import com.kh.fitnessground.community.model.service.CommunityBoardService;
 import com.kh.fitnessground.community.model.vo.CommunityBoard;
 import com.kh.fitnessground.community.model.vo.MeetingBoard;
@@ -49,7 +50,7 @@ public class AdminController {
 
 	// 관리자 메인뷰 이동
 	@RequestMapping(value = "adminMain.do")
-	public ModelAndView adminmain(User user, @RequestParam(value = "level", required = false, defaultValue = "0") int level,
+	public ModelAndView adminmain(BusinessRequest businessRequest, @RequestParam(value = "level", required = false, defaultValue = "0") int level,
 				GymQnABoard board, @RequestParam(value="receiver", required = false, defaultValue = "1") int receiver) {
 		
 		System.out.println("adminMain.do실행됨...");
@@ -72,6 +73,33 @@ public class AdminController {
 		System.out.println("문의요청list : ");
 		return mv;
 	}
+	
+	// 관리자 메인뷰 이동
+		@RequestMapping(value = "adminNav.do")
+		public ModelAndView adminNav(User user, @RequestParam(value = "level", required = false, defaultValue = "0") int level,
+					GymQnABoard board, @RequestParam(value="receiver", required = false, defaultValue = "1") int receiver) {
+			
+			System.out.println("adminNav.do실행됨...");
+			// 리퀘스트 파람 -> 자동으로 값을 받아옴
+			// 근데 받아올 데이터가 없으면 required=false -> 꼭필요하지 않다 라는 뜻
+			// defaultValue="0" -> 기본값설정 / 그러니깐 값이 없을때는 0으로 한다 라는뜻
+			ModelAndView mv = new ModelAndView("admin/common/nav");
+			int request = adminService.RequestCount(level);
+			int message = adminService.Message(receiver);
+			
+			ArrayList<User> list = adminService.GymRequest(level);
+			
+			mv.addObject("request", request);
+			mv.addObject("message", message);
+			mv.addObject("list", list);
+			
+			System.out.println("등록요청 수 :" +request);
+			System.out.println("등록요청list : " +list);
+			System.out.println("문의 수 :" +message);
+			System.out.println("문의요청list : ");
+			return mv;
+		}
+	
 	
 /*	// 문의 최신순 3개 보여주기, 등록요청 갯수 보여주기 + 간략한 내용정보 같이 띄우기 
 		@RequestMapping(value="message.do")
@@ -134,14 +162,6 @@ public class AdminController {
 		return "main";
 	}
 
-	// 헬스 동영상(준일) 리스트 출력
-	/*
-	 * @RequestMapping(value = "adminpart.do") public ModelAndView
-	 * HealthListMethod(Health health, HttpServletResponse response) {
-	 * ModelAndView mv = new ModelAndView("#"); ArrayList<Health> list =
-	 * healthService.selectWorkoutCategoryList(health.getCategory2());
-	 * mv.addObject("list", list); return mv; }
-	 */
 
 	// 회원 리스트 출력
 	@RequestMapping(value = "adminuserlist.do")
@@ -173,14 +193,6 @@ public class AdminController {
 		return mv;
 	}
 
-	/*// 요가 동영상(미향) 리스트 출력
-	@RequestMapping(value = "adminylist.do")
-	public ModelAndView YogaListMethod(Yoga yoga, HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView("admin/workoutVideo");
-		ArrayList<Yoga> list = yogaService.selectAllList();
-		mv.addObject("list", list);
-		return mv;
-	}*/
 
 	// mettingBoard 리스트 출력
 	@RequestMapping(value = "adminMettingBoard.do")
@@ -330,11 +342,20 @@ public class AdminController {
 	}
 	
 	
-
+	@RequestMapping(value="adminQnABoard.do")
+	public ModelAndView adminBoardMethod(){
+		ModelAndView mv = new ModelAndView("admin/adminBoard");
+		ArrayList<GymQnABoard> list = adminService.adminBoard();
+		mv.addObject("list", list);
+		
+		return mv;
+	}
+	
+	
 	/*// 게시글보기 에서 작성자이름 클릭시 작성자 정보 모달띄우기
 		@RequestMapping(value = "userDetail.do")
 		public ModelAndView userDetailMethod(@RequestParam(value = "user_no") int user_no, HttpServletRequest request) {
-			System.out.println("모달실행");
+			
 			System.out.println(user_no);
 			ModelAndView mv = new ModelAndView("#");
 			

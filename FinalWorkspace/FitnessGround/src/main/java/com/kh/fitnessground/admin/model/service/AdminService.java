@@ -2,6 +2,7 @@ package com.kh.fitnessground.admin.model.service;
 
 import java.util.ArrayList;
 
+import com.kh.fitnessground.gym.model.vo.GymQnABoard;
 import com.kh.fitnessground.user.model.vo.User;
 
 public interface AdminService {
@@ -52,6 +53,9 @@ public interface AdminService {
 
 
 	ArrayList<User> GymRequest(int level);
+
+
+	ArrayList<GymQnABoard> adminBoard();
 
 
 

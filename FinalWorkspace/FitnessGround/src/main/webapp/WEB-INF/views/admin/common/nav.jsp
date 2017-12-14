@@ -81,7 +81,7 @@
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown" 
-					href="message.do" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+					href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
 					<i class="fa fa-fw fa-envelope"></i> 
 					<span class="d-lg-none">Messages 
 					<span class="badge badge-pill badge-primary">${message } New</span></span> 
@@ -145,9 +145,9 @@
 							<strong> 
 							<i class="fa fa-long-arrow-up fa-fw"></i>등록 요청
 							</strong>
-						</span> <span class="small float-right text-muted">날 등록요청했습니다 &nbsp;
-						<br> 헬스장 제목 : &nbsp;
-						<br> 위치 : </span>
+						</span> <span class="small float-right text-muted">등록요청했습니다 &nbsp;
+						<br> 헬스장 제목 :  &nbsp;
+						<br> 위치 :  </span>
 							<div class="dropdown-message small"></div>
 						</a>
 						</c:forEach>

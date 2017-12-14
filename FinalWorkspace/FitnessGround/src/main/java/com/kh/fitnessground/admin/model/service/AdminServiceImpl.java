@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.fitnessground.admin.model.dao.AdminDao;
+import com.kh.fitnessground.gym.model.vo.GymQnABoard;
 import com.kh.fitnessground.user.model.dao.UserDao;
 import com.kh.fitnessground.user.model.vo.User;
 
@@ -116,6 +117,12 @@ public class AdminServiceImpl  implements AdminService{
 	@Override
 	public ArrayList<User> GymRequest(int level) {
 		return adminDao.GymRequest(level);
+	}
+
+
+	@Override
+	public ArrayList<GymQnABoard> adminBoard() {
+		return adminDao.adminBoard();
 	}
 
 

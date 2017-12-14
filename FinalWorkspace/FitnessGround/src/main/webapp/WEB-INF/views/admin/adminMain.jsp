@@ -37,7 +37,7 @@
 						</div>
 						<div class="mr-5">${message }개의 새로운 문의가<br> 있습니다!</div>
 					</div>
-					<a class="card-footer text-white clearfix small z-1" href="adminBoard.do">
+					<a class="card-footer text-white clearfix small z-1" href="adminQnABoard.do">
 						<span class="float-left">View Details</span> <span
 						class="float-right"> <i class="fa fa-angle-right"></i>
 					</span>

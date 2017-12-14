@@ -9,19 +9,15 @@
 
 </style>
 
-<link
-	href="/fitnessground/resources/admin/vendor/datatables/dataTables.bootstrap4.css"
-	rel="stylesheet">
+<link href="/fitnessground/resources/admin/vendor/datatables/dataTables.bootstrap4.css"	rel="stylesheet">
 
 
 <c:import url="../common/headend.jsp" />
 
-<script
-	src="/fitnessground/resources/admin/vendor/datatables/jquery.dataTables.js"></script>
-<script
-	src="/fitnessground/resources/admin/vendor/datatables/dataTables.bootstrap4.js"></script>
-<script
-	src="/fitnessground/resources/admin/js/sb-admin-datatables.min.js"></script>
+<script	src="/fitnessground/resources/admin/vendor/datatables/jquery.dataTables.js"></script>
+<script	src="/fitnessground/resources/admin/vendor/datatables/dataTables.bootstrap4.js"></script>
+<script	src="/fitnessground/resources/admin/js/sb-admin-datatables.min.js"></script>
+
 
 <script type="text/javascript">
 	function userlistPage(){
@@ -142,7 +138,33 @@
 										<td><a href="#">${item.email }</a></td>
 										<td>${item.name }</td>
 										<td>${item.gym_no }</td>
-										<td><a href="#">${item.gym_name }</a></td>
+										<td><a href="/detailgym.do" data-target=".${item.gym_no}" data-toggle="modal">${item.gym_name }</a></td>
+										<div class="modal fade ${item.gym_no }" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<!-- header -->
+													<div class="modal-header" align="top">
+														<button type="button" class="close" data-dismiss="modal" align="right">x</button>
+														<h4 class="modal-title" align="center">헬스장이름 : ${item.gym_name}</h4>
+													</div>
+													
+													<!-- body -->
+													<div class="modal-body" align="center">사업자 이메일 : ${item.email}</div>
+													<p align="center">사업자 이름 : ${item.name}</p>
+													<p align="center">등록일자 : ${item.register_date}</p>
+													<p align="center">지역 : ${item.location}</p>
+     											<!-- Footer -->
+													<div class="modal-footer" >
+														
+														<button type="button" class="btn btn-default"
+															data-dismiss="modal">닫기</button>
+													</div>
+													
+												</div>
+												
+											</div>
+										
+										</div>
 										<td>${item.location }</td>
 										<td>${item.register_date }</td>
 										<c:choose>
@@ -198,23 +220,6 @@
 				</div>
 			</div>
 		</div>
-		<!-- Bootstrap core JavaScript-->
-		<script
-			src="/fitnessground/resources/admin/vendor/jquery/jquery.min.js"></script>
-		<script
-			src="/fitnessground/resources/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-		<!-- Core plugin JavaScript-->
-		<script
-			src="/fitnessground/resources/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
-		<!-- Page level plugin JavaScript-->
-		<script
-			src="/fitnessground/resources/admin/vendor/datatables/jquery.dataTables.js"></script>
-		<script
-			src="/fitnessground/resources/admin/vendor/datatables/dataTables.bootstrap4.js"></script>
-		<!-- Custom scripts for all pages-->
-		<script src="/fitnessground/resources/admin/js/sb-admin.min.js"></script>
-		<!-- Custom scripts for this page-->
-		<script
-			src="/fitnessground/resources/admin/js/sb-admin-datatables.min.js"></script>
+		
 	</div>
 	<c:import url="../common/end.jsp" />

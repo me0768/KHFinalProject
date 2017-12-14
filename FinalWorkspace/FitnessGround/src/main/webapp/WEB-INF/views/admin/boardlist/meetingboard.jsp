@@ -35,6 +35,12 @@ function adminReviewBoard(){
 	location.href="adminReviewBoard.do"
 }
 
+function registerView(){
+	alert("공지사항등록 하기");
+	
+	$("#registerView").show();
+	$("#registerView").modal();
+}
 
 	function meetingBoardDelete(mb_no){
 		alert("버튼 클릭");
@@ -76,13 +82,16 @@ function adminReviewBoard(){
 					<button class="btn btn-primary" onclick="adminMettingBoard();">Meeting</button>
 					<button class="btn btn-primary" onclick="adminQNABoard();">Q&A</button>
 					<button class="btn btn-primary" onclick="adminReviewBoard();">Review</button>
+					<button class="btn btn-primary" onclick="registerView();" align="right" >공지사항 등록</button>
 
 				</div>
 </div>
 
+
+
 				<div class="card-body">
 					<div class="table-responsive">
-					<form name="boardForm">
+					<form name="userForm">
 						<table class="table table-bordered" id="dataTable" width="100%"
 							cellspacing="0">
 							<thead>
@@ -102,7 +111,7 @@ function adminReviewBoard(){
 										<%-- <td><input type="checkbox" class="deleteCheckBox"
 											name="deleteCheckBox" value="${item.user_no} " /></td> --%>
 										<td>${status.count }</td>
-										<td><a href="#" data-target=".${item.user_no}" data-toggle="modal">${item.name }</td><br/>
+										<td>${item.name }</td><br/>
 										<div class="modal fade ${item.user_no}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 											<div class="modal-dialog">
 												<div class="modal-content">
@@ -171,6 +180,60 @@ function adminReviewBoard(){
 						</form>
 					</div>
 				</div>
+				
+				<!-- Modal -->
+  <div class="modal fade" id="registerView" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" id="workout-dialog">
+      <div class="modal-content" id="workout-content">
+      
+        <div class="modal-header">  <h4 class="modal-title" id="video_title">커뮤니티 게시판 공지사항 등록하기 </h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">x
+          </button>
+        
+        </div>
+        	<div class="modal-body">
+				<div class="modal-play" id="video_detail"></div>
+				<div class="modal-desc">
+					<div id="video_explain" style="color: black; font-size:13px">
+						<span id="span-content"></span>
+					</div>
+					<hr>		
+					</div>					
+					
+						<div id="nvideo-reply" style="color:black;">
+							<input type="text" id="reply-input" placeholder="제목을 입력하세요">
+							
+						</div>
+						
+						<div id="nvideo-reply" style="color:black;">
+							<input type="text" id="reply-input" placeholder="내용을 입력하세요">
+							
+						</div>
+				
+					
+					
+							<button type="submit" id="reply-btn" onclick="loginMessage();">댓글달기<button>
+						
+		
+					
+				
+						<div id="video-reply" style="color:black; font-size:13px;"> 
+							
+						</div>
+					
+					<!-- 댓글 보여주는 곳 -->
+					<div id="reply_content" style="color:black; font-size:13px;">
+						
+					</div>
+						
+				</div>
+			</div>
+			
+      </div>
+    </div>
+  </div>
+				
+				
 				<div class="card-footer small text-muted">Updated yesterday at
 					11:59 PM</div>
 			

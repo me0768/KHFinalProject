@@ -18,7 +18,7 @@ public class BusinessRequest {
 	public  BusinessRequest(){
 		super();
 	}
-
+	
 	
 	
 	public BusinessRequest(int gym_no, String gym_name, String location, int user_no, int approval_state, String email,

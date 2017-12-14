@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.fitnessground.gym.model.vo.GymQnABoard;
 import com.kh.fitnessground.user.model.vo.User;
 import com.kh.fitnessground.workout.yoga.model.vo.Yoga;
 
@@ -94,6 +95,12 @@ public class AdminDao {
 	public ArrayList<User> GymRequest(int level) {
 		List<User> brlist = sqlSession.selectList("gym.topGymRequest", level);
 		ArrayList<User> list = new ArrayList<User>(brlist);
+		return list;
+	}
+
+	public ArrayList<GymQnABoard> adminBoard() {
+		List<GymQnABoard> glist = sqlSession.selectList("gym.adminBoard");
+		ArrayList<GymQnABoard> list = new ArrayList<GymQnABoard>(glist);
 		return list;
 	}
 

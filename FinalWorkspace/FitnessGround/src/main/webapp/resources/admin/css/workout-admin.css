@@ -8,3 +8,37 @@
 #playlist_id{
 	width: 20vw;
 }
+
+/*수정하기view 부분 */
+#edit-td{
+	padding: 3vh 10vw;
+}
+label, input, textarea{
+	display: block;
+	float: left;
+}
+label{
+	text-align: right;
+	width: 130px;
+	padding-right: 20px;
+}
+br{
+	clear: left;
+}
+#v-title, #v-url{
+	width: 40vw;
+	margin-bottom: 10px;
+}
+#select-w, #select-c{
+	width: 10vw;
+	display: block;
+	float: left;
+	margin-bottom: 10px;
+}
+#v-content{
+	width: 40vw;
+	margin: 4px 4px;
+}
+#edit-btn{
+	margin-left: 44vw;
+}

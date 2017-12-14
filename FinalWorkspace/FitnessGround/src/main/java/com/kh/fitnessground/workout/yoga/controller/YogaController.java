@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -18,9 +17,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.fitnessground.admin.model.service.AdminService;
+import com.kh.fitnessground.admin.model.vo.BusinessRequest;
+import com.kh.fitnessground.gym.model.vo.GymQnABoard;
+import com.kh.fitnessground.user.model.vo.User;
 import com.kh.fitnessground.workout.yoga.model.service.YogaService;
 import com.kh.fitnessground.workout.yoga.model.vo.Yoga;
 
@@ -31,6 +35,9 @@ public class YogaController {
 
 	@Autowired
 	private YogaService yogaService;
+	
+	@Autowired
+	private AdminService adminService;
 
 	public YogaController() {}
 		
@@ -88,13 +95,27 @@ public class YogaController {
 		/*------- 관리자화면------*/
 		
 		// listing All (처음 동영상관리 페이지) 
-		@RequestMapping(value = "adminylist.do")
-		public ModelAndView AdminListAllMethod(Yoga yoga, HttpServletRequest request) {
-			ModelAndView mv = new ModelAndView("admin/workoutVideo");
-			ArrayList<Yoga> list = yogaService.selectAllList();
-			mv.addObject("list", list);
-			return mv;
-		}
+	      @RequestMapping(value = "adminylist.do")
+	      public ModelAndView AdminListAllMethod(Yoga yoga, HttpServletRequest request, User user, BusinessRequest businessRequest, @RequestParam(value = "level", required = false, defaultValue = "0") int level,
+	            GymQnABoard gymqnaboard, @RequestParam(value="receiver", required = false, defaultValue = "1") int receiver) {
+	         
+	         ModelAndView mv = new ModelAndView("admin/workoutVideo");
+	         
+	         int requestc = adminService.RequestCount(level);
+	         int message = adminService.Message(receiver);
+	         
+	         ArrayList<User> gymRlist = adminService.GymRequest(level);
+	         ArrayList<GymQnABoard> qnalist = adminService.GymQnABoard(receiver);
+	         ArrayList<Yoga> list = yogaService.selectAllList();
+	         
+	         mv.addObject("request", requestc);
+	         mv.addObject("message", message);
+	         mv.addObject("gymRlist", gymRlist);
+	         mv.addObject("qnalist", qnalist);
+	         mv.addObject("list", list);
+	         
+	         return mv;
+	      }
 		
 		//선택된 운동종류만 listing
 		@RequestMapping(value = "/adminwlist.do", method = RequestMethod.POST)

@@ -6,9 +6,6 @@
 
 <c:import url="common/head.jsp" />
 
-<style type="text/css">
-</style>
-
 <link href="/fitnessground/resources/admin/css/workout-admin.css" rel="stylesheet">
 
 <c:import url="common/headend.jsp" />
@@ -261,16 +258,14 @@
 		/* Edit 수정하기 화면 collapse */
 		function editView(v_no){
 			var id = "#tr-"+v_no;
-			var value = "<tr id='collapse"+v_no+"' class='collapse in' data-toggle='collapse'><td colspan='5'>"+
-			"<form><div class='form-group'><label for='title'>Title</label>"+
-			"<input type='text' class='form-control' id='v-title' placeholder='제목을 입력하세요'></div></form>"+
-			"<div class='form-group'><label for='url/video-id'>url/video-id</label>"+
-			"<input type='text' class='form-control' id='v-url'></div>"+
-			"<div class='form-group'><label for='content'>내용</label>"+
-			"<input type='text' class='form-control' id='v-content'></div>"+
-			"<span>운동: </span><select name='select-w' id='select-w' class='form-control'>"+
+			var value = "<tr id='collapse"+v_no+"' class='collapse in' data-toggle='collapse'><td colspan='5' id='edit-td'>"+
+			"<label for='title'>Title</label>"+
+			"<input type='text' class='form-control' id='v-title' placeholder='제목을 입력하세요'><br>"+
+			"<label for='url/video-id'>url/video-id</label>"+
+			"<input type='text' class='form-control' id='v-url'><br>"+
+			"<label for='운동'>운동</label><select name='select-w' id='select-w' class='form-control'>"+
 			"<option value='2'>요가</option><option value='3'>필라테스</option><option value='4'>맨몸운동</option></select>"+
-			"<span>카테고리: </span><select name='select-c' id='select-c' class='form-control'><option value='2'>빈야사</option>"+
+			"<label for='카테고리'>카테고리</label><select name='select-c' id='select-c' class='form-control'><option value='2'>빈야사</option>"+
 			"<option value='2'>다이어트</option>"+
 				"<option value='2'>체형교정</option>"+
 				"<option value='2'>부위별</option>"+
@@ -282,8 +277,10 @@
 				"<option value='4'>맨몸운동1</option>"+
 				"<option value='4'>맨몸운동2</option>"+
 				"<option value='4'>맨몸운동3</option>"+
-				"<option value='4'>맨몸운동4</option></select>"
-				"<button>수정하기</button>"+"</td></tr>";
+				"<option value='4'>맨몸운동4</option></select><br>"+
+				"<label for='content'>내용</label>"+
+				"<textarea class='form-control' id='v-content' rows='5'></textarea><br>"+
+				"<a class='btn btn-primary' id='edit-btn' href='javascript: update('"+v_no+"')' role='button'>수정</a>"+"</td></tr>";
 			
 			$('.collapse').toggle(inserttr(), removetr());	
 			function inserttr(){
@@ -338,6 +335,15 @@
 			})//ajax ends..
 				
 		}// edit(v_no) ends...
+		
+		/* Update 수정처리 */
+		function update(v_no){
+			
+			
+			
+			
+		}//update(v_no) ends...
+		
 		
 		/* Delete (하나씩) */
 		function deleteOne(v_no){

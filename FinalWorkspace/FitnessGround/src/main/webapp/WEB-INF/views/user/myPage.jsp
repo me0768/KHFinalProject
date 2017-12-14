@@ -3,27 +3,8 @@
 
 	<c:import url="../include/common/head.jsp" />	
 	<link rel="stylesheet" href="/fitnessground/resources/css/user/mypage.css" />	
-    <%-- <c:import url="../include/common/headend.jsp" /> --%>
-    <!-- headend 대신 넣는 코드(removed jquery.min.js)  -->
-   <!-- css 파일 로드-->
-    <link rel="stylesheet" href="/fitnessground/resources/css/bootstrap.css">
-   <link rel="stylesheet" href="/fitnessground/resources/css/common/compiled_main.css" />
-   <link rel="stylesheet" href="/fitnessground/resources/css/common/main.css" />
-   <link rel="stylesheet" href="/fitnessground/resources/css/common/login.css" />
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-   </head>
-   <body class="homepage">   
-   <!-- java script 파일 로드 -->
-   <script type="text/javascript" src="/fitnessground/resources/js/jquery-3.2.1.js"></script>
-   <script type="text/javascript" src="/fitnessground/resources/js/bootstrap.js"></script>
-   <script type="text/javascript" src="/fitnessground/resources/js/common/jquery.scrolly.min.js"></script>
-   <script type="text/javascript" src="/fitnessground/resources/js/common/jquery.dropotron.min.js"></script>
-   <script type="text/javascript" src="/fitnessground/resources/js/common/jquery.onvisible.min.js"></script>
-   <script type="text/javascript" src="/fitnessground/resources/js/common/skel.min.js"></script>
-   <script type="text/javascript" src="/fitnessground/resources/js/common/util.js"></script>
-   <script type="text/javascript" src="/fitnessground/resources/js/common/main.js"></script>
-   <script type="text/javascript" src="/fitnessground/resources/js/workout/workout.js"></script>
-   <script type="text/javascript" src="/fitnessground/resources/js/gym/mypagegym.js"></script>
+     <c:import url="../include/common/headend.jsp" />
+     <script type="text/javascript" src="/fitnessground/resources/js/gym/mypagegym.js"></script>   
     
     <c:if test="${ sessionScope.user == null }">
 		<script type="text/javascript">

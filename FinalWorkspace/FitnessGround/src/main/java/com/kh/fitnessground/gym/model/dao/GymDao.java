@@ -106,5 +106,9 @@ public class GymDao {
 		sqlSession.update("gym.deleteGym", gym);
 	}
 
+	public Gym selectOne(Gym gym) {
+		return sqlSession.selectOne("gym.detailselect", gym);
+	}
+
 	
 }

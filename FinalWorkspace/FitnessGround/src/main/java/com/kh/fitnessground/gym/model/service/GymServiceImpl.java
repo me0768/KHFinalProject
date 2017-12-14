@@ -121,4 +121,9 @@ public class GymServiceImpl implements GymService{
 	public void deleteGym(Gym gym) {
 		gymDao.deleteGym(gym);
 	}
+
+	@Override
+	public Gym selectOne(Gym gym) {
+		return gymDao.selectOne(gym);
+	}
 }

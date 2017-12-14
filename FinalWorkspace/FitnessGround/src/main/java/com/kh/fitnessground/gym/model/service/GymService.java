@@ -47,5 +47,7 @@ public interface GymService {
 		ArrayList<Gym> mygymlistName(Gym gym);
 		
 		void deleteGym(Gym gym);
+		
+		Gym selectOne(Gym gym);
 
 }

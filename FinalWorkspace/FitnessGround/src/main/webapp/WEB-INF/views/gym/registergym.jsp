@@ -9,61 +9,6 @@
 <c:import url="../include/common/head.jsp" />
 
 <link rel="stylesheet" href="/fitnessground/resources/css/gym/registergym.css">
-<style type="text/css">
-	.wrap {
-	width: 500px;
-	margin: 0 auto;
-}
-.btn-holder {
-	text-align: center;
-	margin: 10px 0 10px 0;
-}
-#calendar table {
-	border-collapse: collapse;
-	text-align: center;
-}
-#calendar table thead td {
-	height: 30px;
-	font-weight: bold;
-}	
-#calendar table td {
-	border: solid 1px #000;
-}
-#calendar table td.date-cell {
-	height: 50px;
-}
-#calendar table td.sun {
-	color: red;
-}
-#calendar table td.sat {
-	color: blue;
-}
-#calendar table td.not-this-month {
-	background: #ddd;
-	color: #999;
-}
-
-#datesettings{
-	position: fixed;
-	display: none;
-	width: 70vw;
-	height: 25vh;
-	top: 100vh;
-	right: 0px;
-	background-color: white;
-	left: 15vw;
-	z-index: 999;
-	border: 1px solid black;
-}
-
-#dateinsert {
-	padding-right: 30px;
-}
-
-#panelOne {
-	margin-top: 20px;
-}
-</style>
 
 <c:import url="../include/common/headend.jsp" />
 

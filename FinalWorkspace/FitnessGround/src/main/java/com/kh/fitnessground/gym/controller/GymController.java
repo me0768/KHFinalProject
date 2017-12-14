@@ -64,7 +64,6 @@ public class GymController {
 		
 		ModelAndView mv = new ModelAndView();
 		Gym g = gymService.selectfromImg(gym);
-		System.out.println(g);
 		mv.addObject("gym", g);
 		mv.setViewName("jsonView");
 		return mv;
@@ -140,8 +139,9 @@ public class GymController {
 	// 헬스장 디테일 뷰
 	@RequestMapping(value="/detailgym.do")
 	public ModelAndView detailGym(Gym gym, HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mv = new ModelAndView();
-		System.out.println("헬스장 디테일" + gym);
+		ModelAndView mv = new ModelAndView("gym/detailgym");
+		Gym g = gymService.selectOne(gym);
+		mv.addObject("gym", g);
 		return mv;
 	}
 	

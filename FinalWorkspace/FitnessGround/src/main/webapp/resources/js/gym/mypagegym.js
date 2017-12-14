@@ -28,7 +28,7 @@ $(document).ready(function(){
 							'<img src="resources/images/gymimages/' + image[0] + '" id="gymimg">' +
 						'</div>' +
 						'<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="padding-left: 5px; paading-right: 5px;">' +
-							'<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px; font-size: 8pt; font-weight: bold;"><a href="javascript:detailgym(' + data.list[i].gym_no + ')">' + data.list[i].gym_name + '</a></div>' +
+							'<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px; font-size: 8pt; font-weight: bold;"><a href="detailgym.do?gym_no=' + data.list[i].gym_no + '">' + data.list[i].gym_name + '</a></div>' +
 							'<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px; font-size: 8pt;">분류 : ' + data.list[i].category + '</div>' +
 							'<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px; font-size: 8pt;">전화번호 : ' + data.list[i].tel + '</div>' +
 							'<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px; font-size: 8pt;">H.P : ' + data.list[i].phone + '</div>' +
@@ -36,7 +36,7 @@ $(document).ready(function(){
 						'</div>' +
 						'<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12" style="padding: 0px;">' +
 							'<div class="btn-group col-xs-12" role="group" aria-label="..." style="padding: 0px;">' +
-							  '<button type="button" class="btn btn-default col-xs-4" style="padding: 2px; font-size: 8pt;" onclick="detailgym(' + data.list[i].gym_no + ')">보기</button>' +
+							  '<button type="button" class="btn btn-default col-xs-4" style="padding: 2px; font-size: 8pt;" onclick="location.href=\'detailgym.do?gym_no=' + data.list[i].gym_no + '\'">보기</button>' +
 							  '<button type="button" class="btn btn-default col-xs-4" style="padding: 2px; font-size: 8pt;" onclick="updategym(' + data.list[i].gym_no + ')">수정</button>' +
 							  '<button type="button" class="btn btn-default col-xs-4" style="padding: 2px; font-size: 8pt;" onclick="deletegym(' + data.list[i].gym_no + ',' + user_no + ',\'' + data.list[i].gym_name + '\')">삭제</button>' +
 							'</div>' +

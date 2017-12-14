@@ -93,6 +93,12 @@
 		]]>
 	</select>
 	
+	<select id="adminBoard" resultMap="resultGymQnABoard">
+		<![CDATA[
+		select * from tb_qna where receiver = 1
+		]]>
+	</select>
+	
 	
 	<select id="RequestCount" parameterType="_int" resultType="_int">
 		<![CDATA[ 

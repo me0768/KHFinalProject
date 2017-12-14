@@ -3,8 +3,8 @@
 
 	<c:import url="../include/common/head.jsp" />	
 	<link rel="stylesheet" href="/fitnessground/resources/css/user/mypage.css" />	
-     <c:import url="../include/common/headend.jsp" />
-     <script type="text/javascript" src="/fitnessground/resources/js/gym/mypagegym.js"></script>   
+    <c:import url="../include/common/headend.jsp" />
+    <script type="text/javascript" src="/fitnessground/resources/js/gym/mypagegym.js"></script>
     
     <c:if test="${ sessionScope.user == null }">
 		<script type="text/javascript">
@@ -21,7 +21,7 @@
 		<div id="mypage_header">
             <!-- Nav -->
 			<c:import url="../include/main/nav.jsp" />	
-			<c:import url="profileEdit.jsp"/>		
+			<c:import url="profileEdit.jsp"/>
 			<c:import url="login.jsp"/>
 			<c:import url="findidpwd.jsp"/>
 			<c:import url="register.jsp"/>
@@ -69,7 +69,9 @@
 	</div>
 	
 		<c:if test="${ sessionScope.user.user_level == 0 }">
+		<c:import url="./userScheduleEdit.jsp"/>
 		<c:import url="../workout/detailView.jsp" />
+		<input type="hidden" name="user_no" value="${sessionScope.user.user_no}">
 		<div class="mypage_schedule col-md-4 col-sm-12 col-md-offset-1">
 			<div id="yesterdaySchedule">
 				<table>
@@ -84,15 +86,11 @@
 								<tr>
 									<td colspan="2">
 										<c:if test="${null eq s.content}">
-											<c:if test="${s.category1 eq '헬스'}">
-												<a href='javascript:detailView(${s.v_no})'>${s.title}</a>
-											</c:if>
-											<c:if test="${s.category1 ne '헬스'}">
-												<a href="#workout-modal" data-toggle="modal" data-title="${s.title}" data-url="${s.url}" 
-											  		data-content="${s.content}" data-target="#detailView">${s.title}</a>									
-											</c:if>
+											<a href="javascript:detailView('${s.v_no}', '${s.category1}', '${s.category2}');">${s.title}</a>
 										</c:if>
-										<c:if test="${null ne s.content}">${s.content}</c:if>
+										<c:if test="${null ne s.content}">
+											<a href="javascript:userScheduleDetail('${s.s_no}', '${s.content}', '1');">${s.content}</a>
+										</c:if>
 									</td>
 								</tr>
 							</c:forEach>
@@ -104,21 +102,6 @@
 					</tbody>
 				</table>
 			</div>
-			<script type="text/javascript">
-			//modal 띄우기(title,url, content 값을 모달로)
-			$('#detailView').on('show.bs.modal', function (event) {
-			     var tag = $(event.relatedTarget); // sth that triggered the modal
-			     var title = tag.data('title'); // Extract info from data-* attributes
-			     var vid = tag.data('url');
-			     var content = tag.data('content');
-			     
-			     var modal = $(this);
-			     modal.find('.modal-title').text(title);
-			     modal.find('.modal-play').html("<iframe id='video-play' src='https://www.youtube.com/embed/"+vid+"' frameborder='0'"+
-			            "gesture='media' allow='encrypted-media' allowfullscreen></iframe>");
-			     modal.find('#span-content').text(content);
-			   })
-			</script>
 			<div id="todaySchedule">
 				<table>
 					<thead><tr align="center">
@@ -135,15 +118,11 @@
 								<tr>
 									<td colspan="2">
 										<c:if test="${null eq s.content}">
-											<c:if test="${s.category1 eq '헬스'}">
-												<a href='javascript:detailView(${s.v_no})'>${s.title}</a>
-											</c:if>
-											<c:if test="${s.category1 ne '헬스'}">
-												<a href="#workout-modal" data-toggle="modal" data-title="${s.title}" data-url="${s.url}" 
-											  		data-content="${s.content}" data-target="#detailView">${s.title}</a>									
-											</c:if>
+											<a href="javascript:detailView('${s.v_no}', '${s.category1}', '${s.category2}');">${s.title}</a>
 										</c:if>
-										<c:if test="${null ne s.content}">${s.content}</c:if>
+										<c:if test="${null ne s.content}">
+											<a href="javascript:userScheduleDetail('${s.s_no}', '${s.content}');">${s.content}</a>
+										</c:if>
 									</td>
 								</tr>
 							</c:forEach>

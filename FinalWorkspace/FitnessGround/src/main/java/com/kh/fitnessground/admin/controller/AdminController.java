@@ -50,44 +50,46 @@ public class AdminController {
 
 	// 관리자 메인뷰 이동
 	@RequestMapping(value = "adminMain.do")
-	public ModelAndView adminmain(BusinessRequest businessRequest, @RequestParam(value = "level", required = false, defaultValue = "0") int level,
-				GymQnABoard board, @RequestParam(value="receiver", required = false, defaultValue = "1") int receiver) {
+	public ModelAndView adminmain(User user, BusinessRequest businessRequest, @RequestParam(value = "level", required = false, defaultValue = "0") int level,
+				GymQnABoard gymqnaboard, @RequestParam(value="receiver", required = false, defaultValue = "1") int receiver) {
 		
 		System.out.println("adminMain.do실행됨...");
 		// 리퀘스트 파람 -> 자동으로 값을 받아옴
 		// 근데 받아올 데이터가 없으면 required=false -> 꼭필요하지 않다 라는 뜻
 		// defaultValue="0" -> 기본값설정 / 그러니깐 값이 없을때는 0으로 한다 라는뜻
 		ModelAndView mv = new ModelAndView("admin/adminMain");
-		int request = adminService.RequestCount(level);
-		int message = adminService.Message(receiver);
+		int request = adminService.RequestCount(level);//헬스장등록요청 갯수 승인상태가 0 인것만 (미승인=0/승인=1)
+		int message = adminService.Message(receiver);//관리자에게 온 문의 갯수 리시버가 1(관리자user_no) 이고, 응답 상태가 0 인것만(미응답=0/응답=1)
 		
-		ArrayList<User> list = adminService.GymRequest(level);
+		
+		ArrayList<User> gymRlist = adminService.GymRequest(level);// 헬스장 요청 정보 최신순 3개만리스트로 불러오기 승인상태 0인것만
+		ArrayList<GymQnABoard> qnalist = adminService.GymQnABoard(receiver);// + 메세지 요청 최신 3개 미응답이고 리시버가 1인 것만 리스트로 불러오기
 		
 		mv.addObject("request", request);
 		mv.addObject("message", message);
-		mv.addObject("list", list);
-		
+		mv.addObject("gymRlist", gymRlist);
+		mv.addObject("qnalist", qnalist);
 		System.out.println("등록요청 수 :" +request);
-		System.out.println("등록요청list : " +list);
+		System.out.println("등록요청gymRlist : " +gymRlist);
 		System.out.println("문의 수 :" +message);
-		System.out.println("문의요청list : ");
+		System.out.println("문의요청list : " + qnalist);
 		return mv;
 	}
 	
-	// 관리자 메인뷰 이동
+	/*// 관리자 메인뷰 이동
 		@RequestMapping(value = "adminNav.do")
 		public ModelAndView adminNav(User user, @RequestParam(value = "level", required = false, defaultValue = "0") int level,
-					GymQnABoard board, @RequestParam(value="receiver", required = false, defaultValue = "1") int receiver) {
+					 @RequestParam(value="receiver", required = false, defaultValue = "1") int receiver) {
 			
 			System.out.println("adminNav.do실행됨...");
 			// 리퀘스트 파람 -> 자동으로 값을 받아옴
 			// 근데 받아올 데이터가 없으면 required=false -> 꼭필요하지 않다 라는 뜻
 			// defaultValue="0" -> 기본값설정 / 그러니깐 값이 없을때는 0으로 한다 라는뜻
 			ModelAndView mv = new ModelAndView("admin/common/nav");
-			int request = adminService.RequestCount(level);
-			int message = adminService.Message(receiver);
+			int request = adminService.RequestCount(level); //헬스장등록요청 갯수 승인상태가 0 인것만 (미승인=0/승인=1)
+			int message = adminService.Message(receiver); //관리자에게 온 문의 갯수 리시버가 1(관리자user_no) 이고, 응답 상태가 0 인것만(미응답=0/응답=1)
 			
-			ArrayList<User> list = adminService.GymRequest(level);
+			ArrayList<User> list = adminService.GymRequest(level); // 헬스장 요청 정보 최신순 3개만리스트로 불러오기 승인상태 0인것만
 			
 			mv.addObject("request", request);
 			mv.addObject("message", message);
@@ -98,37 +100,9 @@ public class AdminController {
 			System.out.println("문의 수 :" +message);
 			System.out.println("문의요청list : ");
 			return mv;
-		}
-	
-	
-/*	// 문의 최신순 3개 보여주기, 등록요청 갯수 보여주기 + 간략한 내용정보 같이 띄우기 
-		@RequestMapping(value="message.do")
-		public ModelAndView messageMethod(User user, @RequestParam(value = "level", required = false, defaultValue = "0") int level,
-				GymQnABoard board, @RequestParam(value="receiver", required = false, defaultValue = "1") int receiver){
-			ModelAndView mv = new ModelAndView("admin/common/nav");
-			System.out.println("message.do 실행됨 ...");
-			int user_level = 1;
-			ArrayList<User> list = adminService.GymRequest(user_level);
-			int request = adminService.RequestCount(level);
-			int message = adminService.Message(receiver);
-			mv.addObject("request", request);
-			mv.addObject("message", message);
-			mv.addObject("list", list);
-			System.out.println("request : " +request);
-			System.out.println("message : " +message);
-			System.out.println("list : " +list);
-			return mv;
 		}*/
-		
-	// nav로 등록요청한 헬스장정보 출력
-		@RequestMapping(value = "navGymRequest.do")
-		public ModelAndView navGymRequestMethod(User user, HttpServletResponse response) {
-			ModelAndView mv = new ModelAndView("admin/common/nav");
-			int level = 1;
-			ArrayList<User> list = adminService.businessRequestlist(level);
-			mv.addObject("list", list);
-			return mv;
-		}
+	
+	
 
 	// 관리자 차트뷰 이동
 	@RequestMapping(value = "charts.do")

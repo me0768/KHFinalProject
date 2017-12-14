@@ -7,16 +7,9 @@
 <style type="text/css">
 </style>
 
-<link href="/fitnessground/resources/admin/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 	
 <c:import url="common/headend.jsp" />
 
-<script
-	src="/fitnessground/resources/admin/vendor/datatables/jquery.dataTables.js"></script>
-<script
-	src="/fitnessground/resources/admin/vendor/datatables/dataTables.bootstrap4.js"></script>
-<script
-	src="/fitnessground/resources/admin/js/sb-admin-datatables.min.js"></script>
 
 <c:import url="common/nav.jsp" />
 
@@ -65,7 +58,7 @@
 						<div class="card-body-icon">
 							<i class="fa fa-fw fa-shopping-cart"></i>
 						</div>
-						<div class="mr-5">일반회원 관리</div>
+						<div class="mr-5">여기는 일일 방문자수</div>
 					</div>
 					<a class="card-footer text-white clearfix small z-1" href="adminuserlist.do">
 						<span class="float-left">View Details</span> <span
@@ -80,7 +73,7 @@
 						<div class="card-body-icon">
 							<i class="fa fa-fw fa-support"></i>
 						</div>
-						<div class="mr-5">사업자회원 관리</div>
+						<div class="mr-5">여기는 일일 가입자수</div>
 					</div>
 					<a class="card-footer text-white clearfix small z-1" href="adminbusinesslist.do">
 						<span class="float-left">View Details</span> <span

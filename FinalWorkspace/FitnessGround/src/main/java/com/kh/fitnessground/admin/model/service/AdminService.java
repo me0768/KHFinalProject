@@ -57,6 +57,8 @@ public interface AdminService {
 
 	ArrayList<GymQnABoard> adminBoard();
 
+	ArrayList<GymQnABoard> GymQnABoard(int receiver);
+
 
 
 

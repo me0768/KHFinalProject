@@ -8,19 +8,11 @@
 
 <style type="text/css">
 </style>
-<link
-	href="/fitnessground/resources/admin/vendor/datatables/dataTables.bootstrap4.css"
-	rel="stylesheet">
+
 <link href="/fitnessground/resources/admin/css/workout-admin.css" rel="stylesheet">
 
 <c:import url="common/headend.jsp" />
 
-<script
-	src="/fitnessground/resources/admin/vendor/datatables/jquery.dataTables.js"></script>
-<script
-	src="/fitnessground/resources/admin/vendor/datatables/dataTables.bootstrap4.js"></script>
-<script
-	src="/fitnessground/resources/admin/js/sb-admin-datatables.min.js"></script>
 
 <c:import url="common/nav.jsp" />
 
@@ -409,24 +401,6 @@
 				</div>
 			</div>
 		</div>
-		<!-- Bootstrap core JavaScript-->
-		<script
-			src="/fitnessground/resources/admin/vendor/jquery/jquery.min.js"></script>
-		<script
-			src="/fitnessground/resources/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-		<!-- Core plugin JavaScript-->
-		<script
-			src="/fitnessground/resources/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
-		<!-- Page level plugin JavaScript-->
-		<script
-			src="/fitnessground/resources/admin/vendor/datatables/jquery.dataTables.js"></script>
-		<script
-			src="/fitnessground/resources/admin/vendor/datatables/dataTables.bootstrap4.js"></script>
-		<!-- Custom scripts for all pages-->
-		<script src="/fitnessground/resources/admin/js/sb-admin.min.js"></script>
-		<!-- Custom scripts for this page-->
-		<script
-			src="/fitnessground/resources/admin/js/sb-admin-datatables.min.js"></script>
 	</div>
 	</div>
 <c:import url="common/end.jsp" />

@@ -9,14 +9,10 @@
 
 </style>
 
-<link href="/fitnessground/resources/admin/vendor/datatables/dataTables.bootstrap4.css"	rel="stylesheet">
-
 
 <c:import url="../common/headend.jsp" />
 
-<script	src="/fitnessground/resources/admin/vendor/datatables/jquery.dataTables.js"></script>
-<script	src="/fitnessground/resources/admin/vendor/datatables/dataTables.bootstrap4.js"></script>
-<script	src="/fitnessground/resources/admin/js/sb-admin-datatables.min.js"></script>
+
 
 
 <script type="text/javascript">

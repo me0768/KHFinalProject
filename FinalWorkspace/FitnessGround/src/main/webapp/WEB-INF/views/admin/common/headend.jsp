@@ -6,6 +6,7 @@
 <link href="/fitnessground/resources/admin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="/fitnessground/resources/admin/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <link href="/fitnessground/resources/admin/css/sb-admin.css" rel="stylesheet">
+<link href="/fitnessground/resources/admin/vendor/datatables/dataTables.bootstrap4.css"	rel="stylesheet">
 
 
 </head>
@@ -18,7 +19,9 @@
 	<script	src="/fitnessground/resources/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
 	<script	src="/fitnessground/resources/admin/vendor/chart.js/Chart.min.js"></script>
 	<script src="/fitnessground/resources/admin/js/sb-admin.min.js"></script>
-	
+	<script	src="/fitnessground/resources/admin/vendor/datatables/jquery.dataTables.js"></script>
+	<script	src="/fitnessground/resources/admin/vendor/datatables/dataTables.bootstrap4.js"></script>
+	<script	src="/fitnessground/resources/admin/js/sb-admin-datatables.min.js"></script>
 	
 	
 		

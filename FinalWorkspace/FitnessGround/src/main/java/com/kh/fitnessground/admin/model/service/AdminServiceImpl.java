@@ -126,6 +126,15 @@ public class AdminServiceImpl  implements AdminService{
 	}
 
 
+	@Override
+	public ArrayList<GymQnABoard> GymQnABoard(int receiver) {
+		return adminDao.GymQnABoard(receiver);
+	}
+
+
+
+
+
 
 
 	

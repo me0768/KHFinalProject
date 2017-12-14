@@ -88,16 +88,6 @@
         </div>
       </div>
     </div>
-    <!-- Bootstrap core JavaScript-->
-    <script src="/fitnessground/resources/admin/vendor/jquery/jquery.min.js"></script>
-    <script src="/fitnessground/resources/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- Core plugin JavaScript-->
-    <script src="/fitnessground/resources/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
-    <!-- Page level plugin JavaScript-->
-    <script src="/fitnessground/resources/admin/vendor/chart.js/Chart.min.js"></script>
-    <!-- Custom scripts for all pages-->
-    <script src="/fitnessground/resources/admin/js/sb-admin.min.js"></script>
-    <!-- Custom scripts for this page-->
     <script src="/fitnessground/resources/admin/js/sb-admin-charts.min.js"></script>
   </div>
 </body>

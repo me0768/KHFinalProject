@@ -88,10 +88,19 @@
 	<select id="topGymRequest" parameterType="_int" resultMap="resultGymRequest" resultType="list">
 		<![CDATA[ 
 		select  * from  TB_GYM 
-		where rownum < 4 and approval_state =#{level}  order by register_date asc
+		where   rownum < 4 and approval_state = #{level}  order by register_date, gym_no asc
 
 		]]>
 	</select>
+	
+	<select id="GymQnABoard" parameterType="_int" resultMap="resultGymQnABoard" resultType="list">
+		<![CDATA[ 
+		select * from tb_qna 
+		where rownum < 4 and receiver = #{receiver} and response_state=0 order by write_date, q_no asc
+
+		]]>
+	</select>
+	
 	
 	<select id="adminBoard" resultMap="resultGymQnABoard">
 		<![CDATA[
@@ -108,7 +117,7 @@
 	
 	<select id="QnaMessage" parameterType="_int" resultType="_int">
 		<![CDATA[ 
-		select count(*) from tb_qna where receiver = #{receiver}
+		select count(*) from tb_qna where receiver = #{receiver} and response_state=0
 		]]>
 	</select>
 	

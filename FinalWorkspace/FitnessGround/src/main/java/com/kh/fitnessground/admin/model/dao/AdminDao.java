@@ -104,6 +104,12 @@ public class AdminDao {
 		return list;
 	}
 
+	public ArrayList<GymQnABoard> GymQnABoard(int receiver) {
+		List<GymQnABoard> glist = sqlSession.selectList("gym.GymQnABoard", receiver);
+		ArrayList<GymQnABoard> list = new ArrayList<GymQnABoard>(glist);
+		return list;
+	}
+
 
 	
 	

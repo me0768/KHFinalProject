@@ -92,9 +92,9 @@
 
 				<div class="buttons">
 
-					<button class="btn btn-primary" onclick="userlistPage();">일반회원</button>
-					<button class="btn btn-primary" onclick="businesslistPage();">사업자회원</button>
-					<button class="btn btn-primary" onclick="businessRequestlistPage();">등록요청</button>
+					<button class="btn btn-warning" onclick="userlistPage();">일반회원</button>
+					<button class="btn btn-warning" onclick="businesslistPage();">사업자회원</button>
+					<button class="btn btn-warning" onclick="businessRequestlistPage();">등록요청</button>
 
 
 				</div>

@@ -86,9 +86,9 @@
 
 				<div class="buttons">
 
-					<button class="btn btn-primary" onclick="userlistPage();">일반회원</button>
-					<button class="btn btn-primary" onclick="businesslistPage();">사업자회원</button>
-					<button class="btn btn-primary" onclick="businessRequestlistPage();">등록요청</button>
+					<button class="btn btn-warning" onclick="userlistPage();">일반회원</button>
+					<button class="btn btn-warning" onclick="businesslistPage();">사업자회원</button>
+					<button class="btn btn-warning" onclick="businessRequestlistPage();">등록요청</button>
 
 				</div>
 
@@ -111,7 +111,14 @@
 								<tbody>
 
 									<c:forEach var="item" items="${list }" varStatus="status">
-										<tr>
+										<c:choose>
+											<c:when test="${item.user_state==0}">
+												<tr>
+											</c:when>
+											<c:when test="${item.user_state==1}">
+												<tr id="inactive">
+											</c:when>
+										</c:choose>
 											<td>${status.count }</td>
 											<td>${item.email }</td>
 											<td>${item.name }</td>

@@ -69,10 +69,10 @@ function reviewDelete(cb_no){
 
 				<div class="buttons">
 
-					<button class="btn btn-primary" onclick="adminMettingBoard();">Meeting</button>
-					<button class="btn btn-primary" onclick="adminQNABoard();">Q&A</button>
-					<button class="btn btn-primary" onclick="adminReviewBoard();">Review</button>
-					<button class="btn btn-primary" onclick="registerView();" align="right" >공지사항 등록</button>
+					<button class="btn btn-warning" onclick="adminMettingBoard();">Meeting</button>
+					<button class="btn btn-warning" onclick="adminQNABoard();">Q&A</button>
+					<button class="btn btn-warning" onclick="adminReviewBoard();">Review</button>
+					<button class="btn btn-warning" onclick="registerView();" align="right" >공지사항 등록</button>
 
 
 				</div>

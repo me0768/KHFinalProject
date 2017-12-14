@@ -4,8 +4,8 @@
 
 
 <!-- Navigation-->
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-		<a class="navbar-brand" href="adminMain.do">FitnessGround</a>
+	<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+		<a class="navbar-brand" id= "nav-brand" href="adminMain.do">FitnessGround ADMIN</a>
 		<button class="navbar-toggler navbar-toggler-right" type="button"
 			data-toggle="collapse" data-target="#navbarResponsive"
 			aria-controls="navbarResponsive" aria-expanded="false"
@@ -17,10 +17,16 @@
 			<ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
 			
 				<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-					<a class="nav-link" href="adminuserlist.do">
+					<a class="nav-link nav-link-collapse" data-toggle="collapse"
+					href="#collapseComponents" data-parent="#exampleAccordion">
 						<i class="fa fa-fw fa-dashboard"></i> 
 						<span class="nav-link-text">회원관리</span>
 					</a>
+				
+					<ul class="sidenav-second-level collapse show" id="collapseComponents">
+							<li><a href="adminuserlist.do">일반회원</a></li>
+							<li><a href="adminbusinesslist.do">사업자회원</a></li>
+					</ul>
 				</li>
 				
 				<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
@@ -30,16 +36,29 @@
 					</a>
 				</li>
 				<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
-					<a class="nav-link" href="adminMettingBoard.do"> 
+					<a class="nav-link nav-link-collapse collapsed" data-toggle="collapse"
+					href="#collapse2" data-parent="#Accordion">
 						<i class="fa fa-fw fa-table"></i> 
 							<span class="nav-link-text">게시판관리</span>
 					</a>
+					<ul class="sidenav-second-level collapse" id="collapse2">
+							<li><a href="adminMettingBoard.do">Meeting</a></li>
+							<li><a href="adminQNABoard.do">QnA</a></li>
+							<li><a href="adminReviewBoard.do">Review</a></li>
+							
+					</ul>
 				</li>
 				
 				<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
 					<a class="nav-link" href="adminylist.do"> 
-						<i class="fa fa-fw fa-table"></i> 
-							<span class="nav-link-text">영상관리</span>
+						<i class="fa fa-youtube-play"></i> 
+							<span class="nav-link-text">운동 동영상관리</span>
+					</a>
+				</li>
+				<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+					<a class="nav-link" href="adminQnABoard.do"> 
+						<i class="fa fa-question-circle-o"></i> 
+							<span class="nav-link-text">문의 관리</span>
 					</a>
 				</li>
 				
@@ -120,7 +139,7 @@
 								</button>
 							</span>
 						</div>
-					</form> -
+					</form> 
 				<!-- </li><li><a href="adminlogout.do">로그아웃</a></li> -->
 				<li class="nav-item"><a class="nav-link" data-toggle="modal"
 					data-target="#exampleModal" href="logout.do"> <i class="fa fa-fw fa-sign-out"></i>Logout

@@ -120,7 +120,7 @@
 								</button>
 							</span>
 						</div>
-					</form>
+					</form> -
 				<!-- </li><li><a href="adminlogout.do">로그아웃</a></li> -->
 				<li class="nav-item"><a class="nav-link" data-toggle="modal"
 					data-target="#exampleModal" href="logout.do"> <i class="fa fa-fw fa-sign-out"></i>Logout

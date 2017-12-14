@@ -83,40 +83,38 @@ function adminBoard(){
 											name="deleteCheckBox" value="${item.user_no} " /></td> --%>
 										<td>${status.count }</td>
 										<td>${item.sender }</td>
-										<td><a href="#"
-											data-target=".${item.q_no}" data-toggle="modal">${item.title }</a></td>
-										<br />
-									<div class="modal fade ${item.q_no}" tabindex="-1" role="dialog"
-											aria-labelledby="myLargeModalLabel" aria-hidden="true">
+										<td><a href="#"	data-target=".${item.q_no}" data-toggle="modal">${item.title }</a></td>
+										
+									<div class="modal fade ${item.q_no }" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 											<div class="modal-dialog">
 												<div class="modal-content">
-
 													<!-- header -->
 													<div class="modal-header" align="top">
-														<!-- 닫기(x) 버튼 -->
-														<button type="button" class="close" data-dismiss="modal">×</button>
-														<!-- header title -->
-														<h4 class="modal-title" align="center">${item.title}</h4>
-														<div>
-
-															<!-- body -->
-															<div class="modal-body" align="center">${item.content}</div>
-															<p align="center">${item.sender}</p>
-
-															<!-- Footer -->
-															<div class="modal-footer">
-																Footer
-																<button type="button" class="btn btn-default"
-																	data-dismiss="modal">닫기</button>
-															</div>
-														</div>
+														<h4 class="modal-title" align="left">Sender : ${item.sender}<br> title : ${item.title }</h4>
+														<button type="button" class="close" data-dismiss="modal" align="right">x</button>
 													</div>
+													
+													<!-- body -->
+													<div class="modal-body" align="left">
+													<p>내용 : ${item.content}</p>
+													<p>작성일자 : ${item.write_date}</p>
+													
+													</div>
+     											<!-- Footer -->
+													<div class="modal-footer" >
+														
+														
+													</div>
+													
 												</div>
+												
+											</div>
+										
+										</div>
 												<td>${item.write_date }</td>
-												<td><button class="btn btn-primary"
-														onclick="reviewDelete(${item.q_no});">삭제</button></td>
+												<td><button class="btn btn-primary" onclick="reviewDelete(${item.q_no});">삭제</button></td>
+										
 									</tr>
-								
 							</c:forEach>
 						</tbody>
 					</table>
@@ -133,28 +131,7 @@ function adminBoard(){
 		<a class="scroll-to-top rounded" href="#page-top"> <i
 			class="fa fa-angle-up"></i>
 		</a>
-		<!-- Logout Modal-->
-		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-			aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Ready to
-							Leave?</h5>
-						<button class="close" type="button" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">×</span>
-						</button>
-					</div>
-					<div class="modal-body">Select "Logout" below if you are
-						ready to end your current session.</div>
-					<div class="modal-footer">
-						<button class="btn btn-secondary" type="button"
-							data-dismiss="modal">Cancel</button>
-						<a class="btn btn-primary" href="adminlogout.do">Logout</a>
-					</div>
-				</div>
-			</div>
+		
 		</div>
 	</div>
 	<c:import url="common/end.jsp" />

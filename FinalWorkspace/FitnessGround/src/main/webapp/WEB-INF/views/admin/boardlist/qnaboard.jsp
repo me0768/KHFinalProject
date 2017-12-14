@@ -13,6 +13,8 @@
 
 <c:import url="../common/headend.jsp" />
 
+<script src="//cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>
+
 <script type="text/javascript">
 
 function adminMettingBoard(){
@@ -25,8 +27,14 @@ function adminReviewBoard(){
 	location.href="adminReviewBoard.do"
 }
 
+function registerView(){
+	
+	
+	$("#registerView").show();
+	$("#registerView").modal();
+}
+
 function qnaDelete(cb_no){
-	alert("버튼 클릭");
 	
 	$.ajax({
 		url : "qnaBoardDelete.do",
@@ -34,7 +42,7 @@ function qnaDelete(cb_no){
 		type : "post",
 		data : {"cb_no" : cb_no},
 		success : function(result){
-			alert("삭제 하였습니다.")
+			alert(cb_no + "번 게시물이 삭제 되었습니다.")
 			location.href = "adminQNABoard.do";
 		},
 		error : function(request, status, error){
@@ -65,6 +73,7 @@ function qnaDelete(cb_no){
 					<button class="btn btn-primary" onclick="adminMettingBoard();">Meeting</button>
 					<button class="btn btn-primary" onclick="adminQNABoard();">Q&A</button>
 					<button class="btn btn-primary" onclick="adminReviewBoard();">Review</button>
+					<button class="btn btn-primary" onclick="registerView();" align="right" >공지사항 등록</button>
 
 
 				</div>
@@ -96,7 +105,6 @@ function qnaDelete(cb_no){
 										<td>
 										<a  href="qnaDetail.do" data-target=".${item.cb_no}"
 											data-toggle="modal">${item.title }</a></td>
-										<br />
 										<div class="modal fade ${item.cb_no}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 											<div class="modal-dialog">
 												<div class="modal-content">
@@ -122,6 +130,8 @@ function qnaDelete(cb_no){
 												</div>
 											</div>
 										</div>
+										</div>
+										</div>
 										<td>${item.upload_date }</td>
 										<td>${item.readcount }</td>
 										<td><button class="btn btn-primary" onclick="qnaDelete(${item.cb_no});">삭제</button></td>
@@ -133,6 +143,50 @@ function qnaDelete(cb_no){
 						</table>
 					</div>
 				</div>
+				
+							<!-- Modal -->
+  <div class="modal fade" id="registerView" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" id="workout-dialog">
+    
+      <div class="modal-content" >
+      
+        <div class="modal-header">  
+          <h2 class="modal-title" id="qnaBoard" color="red"style="color: black">Q&A 게시판 공지사항 등록하기 </h2>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">x</button>
+        
+        </div>
+        	<div class="modal-body">
+				<div id="insert_all_div" style="border: 1px solid;">
+				<br>
+					<form id="register_form" name='meeting' method="post" action="qnaInsert.do">
+						<input name="user_no" type="hidden" value="${sessionScope.user.user_no }" />
+							<div id="div_head">
+								<p>
+									제목
+							<input name="title" type="text" placeholder="제목을 입력해주세요." />
+								</p>				
+							</div>
+				<textarea name="content" id="editor1" placeholder="내용을 입력해주세요.."></textarea>
+				<script>
+					CKEDITOR.replace('editor1');
+				</script>
+				
+					
+				</div>
+											
+		  </div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-primary" >Register</button>
+					</form>
+      				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      			</div>
+	  </div>
+			
+     </div>
+      	
+  </div>
+				
+				
 				<div class="card-footer small text-muted">Updated yesterday at
 					11:59 PM</div>
 		
@@ -144,28 +198,7 @@ function qnaDelete(cb_no){
 		<a class="scroll-to-top rounded" href="#page-top"> <i
 			class="fa fa-angle-up"></i>
 		</a>
-		<!-- Logout Modal-->
-		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-			aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Ready to
-							Leave?</h5>
-						<button class="close" type="button" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">×</span>
-						</button>
-					</div>
-					<div class="modal-body">Select "Logout" below if you are
-						ready to end your current session.</div>
-					<div class="modal-footer">
-						<button class="btn btn-secondary" type="button"
-							data-dismiss="modal">Cancel</button>
-						<a class="btn btn-primary" href="adminlogout.do">Logout</a>
-					</div>
-				</div>
-			</div>
+		
 		</div>
 	</div>
 	<c:import url="../common/end.jsp" />

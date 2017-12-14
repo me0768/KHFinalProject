@@ -131,7 +131,7 @@
 									<tr>
 										<td>${item.user_no }</td>
 										<td>${item.user_state }</td>
-										<td><a href="#">${item.email }</a></td>
+										<td>${item.email }</td>
 										<td>${item.name }</td>
 										<td>${item.gym_no }</td>
 										<td><a href="/detailgym.do" data-target=".${item.gym_no}" data-toggle="modal">${item.gym_name }</a></td>
@@ -140,20 +140,22 @@
 												<div class="modal-content">
 													<!-- header -->
 													<div class="modal-header" align="top">
-														<button type="button" class="close" data-dismiss="modal" align="right">x</button>
 														<h4 class="modal-title" align="center">헬스장이름 : ${item.gym_name}</h4>
+														<button type="button" class="close" data-dismiss="modal" align="right">x</button>
 													</div>
 													
 													<!-- body -->
-													<div class="modal-body" align="center">사업자 이메일 : ${item.email}</div>
-													<p align="center">사업자 이름 : ${item.name}</p>
-													<p align="center">등록일자 : ${item.register_date}</p>
-													<p align="center">지역 : ${item.location}</p>
+													<div class="modal-body" align="left">
+													<p>이메일 : ${item.email}</p>
+													<p>이름 : ${item.name}</p>
+													<p>지역 : ${item.location}</p>
+													<p>등록일자 : ${item.register_date}</p>
+													
+													</div>
      											<!-- Footer -->
 													<div class="modal-footer" >
 														
-														<button type="button" class="btn btn-default"
-															data-dismiss="modal">닫기</button>
+														
 													</div>
 													
 												</div>
@@ -193,28 +195,6 @@
 		<a class="scroll-to-top rounded" href="#page-top"> <i
 			class="fa fa-angle-up"></i>
 		</a>
-		<!-- Logout Modal-->
-		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-			aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Ready to
-							Leave?</h5>
-						<button class="close" type="button" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">×</span>
-						</button>
-					</div>
-					<div class="modal-body">Select "Logout" below if you are
-						ready to end your current session.</div>
-					<div class="modal-footer">
-						<button class="btn btn-secondary" type="button"
-							data-dismiss="modal">Cancel</button>
-						<a class="btn btn-primary" href="adminlogout.do">Logout</a>
-					</div>
-				</div>
-			</div>
 		</div>
 		
 	</div>

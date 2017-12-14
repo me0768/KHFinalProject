@@ -69,4 +69,9 @@ public class YogaDao {
 		return new ArrayList<Yoga>(ylist);
 	}
 
+	public Yoga updateViewYoga(Yoga yoga) {
+		Yoga y = sqlSession.selectOne("yoga.selectOne", yoga);
+		return y;
+	}
+
 }

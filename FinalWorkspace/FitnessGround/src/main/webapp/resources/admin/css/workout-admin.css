@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+/*테이블 윗부분(카테고리, 동영상추가)*/
+#select-workout, #select-ct{
+	width: 10vw;
+    display: inline-block;
+}
+#playlist_id{
+	width: 20vw;
+}

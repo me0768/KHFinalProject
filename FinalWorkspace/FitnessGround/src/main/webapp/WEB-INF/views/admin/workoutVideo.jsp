@@ -11,6 +11,7 @@
 <link
 	href="/fitnessground/resources/admin/vendor/datatables/dataTables.bootstrap4.css"
 	rel="stylesheet">
+<link href="/fitnessground/resources/admin/css/workout-admin.css" rel="stylesheet">
 
 <c:import url="common/headend.jsp" />
 
@@ -98,8 +99,8 @@
 											<td>${item.category1 }</td>
 											<td>${item.category2 }</td>
 											<td>${item.readcount }</td>
-											<td><a id="collapse-${item.v_no }" data-toggle="collapse" href="#collapse${item.v_no }">
-                                 <button type="submit" class="btn btn-success btn-sm" onclick="edit(${item.v_no})">수정</button></a>
+											<td><a class="cps" aria-expanded="false" data-toggle="collapse" href="#collapse${item.v_no }">
+                                 <button type="submit" class="btn btn-success btn-sm" onclick="editView(${item.v_no})">수정</button></a>
 												<button type="submit" class="btn btn-danger btn-sm"
 															onclick="deleteOne(${item.v_no})">삭제</button>
 											</td>
@@ -175,7 +176,7 @@
 						"<td>"+category2+"</td>"+
 					
 						"<td>"+readcount+"</td>"+
-						"<td><button type='submit' class='btn btn-primary btn-sm' onclick='edit("+v_no+")'>수정</button>"+
+						"<td><button type='submit' class='btn btn-primary btn-sm' onclick='editView("+v_no+")'>수정</button>"+
 						"<button type='submit' class='btn btn-danger btn-sm' onclick='deleteOne("+v_no+")'>삭제</button></td></tr>";
 		
 					if(i==0){
@@ -263,15 +264,18 @@
 				}
 		}//Insert() ends... 
 		
+	
 		
-		/* Edit */
-		function edit(v_no){
+		/* Edit 수정하기 화면 collapse */
+		function editView(v_no){
 			var id = "#tr-"+v_no;
-			var value = "<tr id='collapse"+v_no+"' class='collapse in' data-parent='collapse-"+v_no+"'><td colspan='6'>"+
+			var value = "<tr id='collapse"+v_no+"' class='collapse in' data-toggle='collapse'><td colspan='5'>"+
 			"<form><div class='form-group'><label for='title'>Title</label>"+
-			"<input type='text' class='form-control' id='title' placeholder='제목을 입력하세요'></div></form>"+
+			"<input type='text' class='form-control' id='v-title' placeholder='제목을 입력하세요'></div></form>"+
 			"<div class='form-group'><label for='url/video-id'>url/video-id</label>"+
-			"<input type='text' class='form-control' id='url'></div>"+
+			"<input type='text' class='form-control' id='v-url'></div>"+
+			"<div class='form-group'><label for='content'>내용</label>"+
+			"<input type='text' class='form-control' id='v-content'></div>"+
 			"<span>운동: </span><select name='select-w' id='select-w' class='form-control'>"+
 			"<option value='2'>요가</option><option value='3'>필라테스</option><option value='4'>맨몸운동</option></select>"+
 			"<span>카테고리: </span><select name='select-c' id='select-c' class='form-control'><option value='2'>빈야사</option>"+
@@ -286,42 +290,67 @@
 				"<option value='4'>맨몸운동1</option>"+
 				"<option value='4'>맨몸운동2</option>"+
 				"<option value='4'>맨몸운동3</option>"+
-				"<option value='4'>맨몸운동4</option></select>"+"</td></tr>";
+				"<option value='4'>맨몸운동4</option></select>"
+				"<button>수정하기</button>"+"</td></tr>";
 			
-			$(value).insertAfter(id);
-			if($("#select-w").data('options') === undefined){
-				$("#select-w").data('options', $('#select-c option').clone());
+			$('.collapse').toggle(inserttr(), removetr());	
+			function inserttr(){
+				$(value).insertAfter(id);
 			}
-			var id = $("#select-w").val();
-			var options = $("#select-w").data('options').filter('[value=' + id+ ']');
-			$('#select-c').html(options);
+			function removetr(){
+				$('.show').remove();
+			}
 			
-			$("#select-w").change(function(){
-				if($(this).data('options') === undefined){
-					$(this).data('options', $('#select-c option').clone());
+			//category1 선택하면 자동으로 category2 바뀜
+				if($("#select-w").data('options') === undefined){
+					$("#select-w").data('options', $('#select-c option').clone());
 				}
-				var id = $(this).val();
-				var options = $(this).data('options').filter('[value=' + id+ ']');
+				var id = $("#select-w").val();
+				var options = $("#select-w").data('options').filter('[value=' + id+ ']');
 				$('#select-c').html(options);
-			});
-			
-			//on open collapse//수정 한번 더 누르면 밑에 더 계속 append되는 ㅠㅠㅠㅠ
-			$('.collapse').on('shown.bs.collapse', function () {
-			  var target = '#'+$(this).attr('data-parent');
-			  console.log("open");
-			  $(target).addClass('collapse-open');
-			})
-
-			//close collapse(제대로 작동안하는듯?;;)
-			$('.collapse').off('shown.bs.collapse');
-
+				
+				$("#select-w").change(function(){
+					if($(this).data('options') === undefined){
+						$(this).data('options', $('#select-c option').clone());
+					}
+					var id = $(this).val();
+					var options = $(this).data('options').filter('[value=' + id+ ']');
+					$('#select-c').html(options);
+				});
+				
+			//ajax로 원래 값 표시 
+			var queryString = {"v_no": v_no};
+			$.ajax({
+				url : "editview.do",
+				data: queryString,
+				dataType: "json",
+				type: "post",
+				success: function(result){
+					console.log("edit no 전송 성공");
+					var title = result.yoga.title;
+					var url = result.yoga.url;
+					var category1 = result.yoga.category1;
+					var category2 = result.yoga.category2;
+					var content = result.yoga.content;
+					$('#v-title').val(title);
+					$('#v-url').val(url);
+					$('#v-content').val(content);
+					$('#select-w').val(category1);
+					$('#select-c').val(category2);
+				},
+				error: function(request, status, errorData) {
+					alert("error code : " + request.status + "\n"
+							+ "message : " + request.responseText + "\n"
+							+ "error : " + errorData);
+				}
+			})//ajax ends..
 				
 		}// edit(v_no) ends...
 		
 		/* Delete (하나씩) */
 		function deleteOne(v_no){
 			console.log("deleteOne() works! with"+ v_no);
-			var v_no = v_no;
+			
 			var queryString = {"v_no": v_no };
 			$.ajax({
 				url : "deleteone.do",

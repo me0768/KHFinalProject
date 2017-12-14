@@ -57,6 +57,12 @@ public class YogaServiceImpl implements YogaService{
 	public void insertYoga(List<Yoga> ylist, HttpServletRequest request) {
 		yogaDao.insertYoga(ylist);
 	}
+	
+	@Override
+	public Yoga updateViewYoga(Yoga yoga, HttpServletRequest request) {
+		return yogaDao.updateViewYoga(yoga);
+	}
+	
 	@Override
 	public void updateYoga(Yoga yoga, HttpServletRequest request) {
 		yogaDao.updateYoga(yoga);

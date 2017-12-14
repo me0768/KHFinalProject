@@ -72,6 +72,11 @@
  	</foreach>
  	</delete>
  	
+ 	<!-- 수정 View 용 select-->
+	<select id="selectOne" parameterType="Yoga" resultType="Yoga" resultMap="yogaResult">
+		select * from tb_video_board where v_no = #{v_no}
+	</select>
+ 	
  	<!-- video title, description 수정하기 -->
  	<update id="updateYoga" parameterType="Yoga" flushCache="true" statementType="PREPARED">
  		<![CDATA[

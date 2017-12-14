@@ -13,6 +13,7 @@ public interface YogaService {
 	ArrayList<Yoga> selectAllPList();
 	ArrayList<Yoga> selectCList(Yoga yoga);
 	Yoga selectYoga(int no);
+	Yoga updateViewYoga(Yoga yoga, HttpServletRequest request);
 	void insertYoga(List<Yoga> ylist, HttpServletRequest request);
 	void updateYoga(Yoga yoga, HttpServletRequest request);
 	void deleteYoga(Yoga yoga, HttpServletRequest request);

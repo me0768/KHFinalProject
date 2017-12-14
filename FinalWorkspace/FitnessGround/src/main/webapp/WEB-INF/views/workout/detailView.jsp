@@ -68,6 +68,8 @@
 	
 		var comment = '<input type="text" id="reply-input" placeholder="댓글을 입력하세요">' +
 					 '<input type="hidden" id="user_no" value="' + ${sessionScope.user.user_no}  + '" >' +
+					 /* '<input type="hidden" id="user" value="' + ${sessionScope.user}  + '" >' +  */
+					 '<input type="hidden" id="v_no" value="' + v_no  + '" >' +
 					'<button type="submit" id="reply-btn" onclick="return insertComment(' + v_no + ');">댓글달기</button>';
 		
 		$("#video-reply").html(comment);

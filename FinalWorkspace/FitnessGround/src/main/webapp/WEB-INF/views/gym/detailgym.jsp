@@ -15,10 +15,11 @@
 
 	.scrollspy-example {
 		position: relative;
-		height: 90vh;
-		max-height: 90vh;
+		height: auto;
+		max-height: 70vh;
 		overflow: hidden;
 		overflow-y: auto;
+		margin-right: -20px;
 	}
 	
 	#detailimg {
@@ -48,6 +49,39 @@
 		padding: 0px;
 		text-align: center;
 	}
+	#navbar-example{
+		margin: 0px;
+		border-bottom-left-radius: 0px;
+		border-bottom-right-radius: 0px;
+	}
+	
+	#background{
+		position: relative;
+		padding: 0px;
+		height: 50px;
+		z-index: 3;
+		top: -90vh;
+		background-color: #ffffff;
+		border-top-left-radius: 10px;
+		border-top-right-radius: 10px;
+	}
+	
+	#contents {
+		position: absolute;
+		width: 100%;
+		overflow: hidden;
+		background-color: #ffffff;
+		margin-left: auto;
+		border-bottom-left-radius: 10px;
+		border-bottom-right-radius: 10px;
+		padding-left: 10px;
+		padding-top: 10px;
+	}
+	
+	#anchor {
+		padding: 0px;
+		margin-bottom: 0px;
+	}
 </style>
 
 <c:import url="../include/common/headend.jsp" />
@@ -56,6 +90,8 @@
 
 <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=G0XI103VNKmTZuGNcR9G&submodules=geocoder"></script>
 
+<div style="height: 90vh;">	
+	<img src="resources/images/header.jpg" style="position:relative; width:100vw; height:90vh; z-index: 1">
 	<div id="page-wrapper">
 		<!-- Header -->
 		<div id="mypage_header">
@@ -67,101 +103,124 @@
 			<c:import url="../user/register.jsp" />
 		</div>
 	</div>
-	<div class="container"style="position: relative; padding: 0px;">
-	<nav id="navbar-example" class="navbar navbar-default navbar-static" role="navigation">
-		<div class="navbar form-control" style="padding:0px; margin-bottom:0px;">
-		    <ul class="nav nav-tabs" role="tablist">
-		      <li class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><a href="#info">헬스장 정보</a></li>
-		      <li class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><a href="#schedule">헬스장 일정</a></li>
-		      <li class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><a href="#location">헬스장 위치</a></li>
-		    </ul>
-		 </div>
-	</nav>
-		<div data-spy="scroll" data-target="#navbar-example" data-offset="-100px" class="scrollspy-example">
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;" id="info">
-				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="padding: 0px;">
-					<input type="hidden" id="imagevalue" value="${ gym.rename_image }"> 
-					<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-					  <!-- Indicators -->
-					  <ol class="carousel-indicators" id="indicator">
-					    	<!--  -->
-					  </ol>
-					
-					  <!-- Wrapper for slides -->
-					  <div class="carousel-inner" id="inner" role="listbox">
-						<!-- 이미지 아이템 -->
-					  </div>
-					
-					  <!-- Controls -->
-					  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-					    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-					    <span class="sr-only">Previous</span>
-					  </a>
-					  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-					    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-					    <span class="sr-only">Next</span>
-					  </a>
-					</div>
-				</div>
-				
-				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="gyminfo">
-					<!-- 헬스장 정보 -->
-					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-						<h3 style="font-weight: bold;">${ gym.gym_name }</h3>
-					</div>
-					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-						<h6 style="font-weight: bold;"><span class="glyphicon glyphicon-time"></span>   운영시간</h6>
-					</div>
-					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top: 5px;">
-						<h6>${ gym.op_time }</h6>
-					</div>
-					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-						<h6 style="font-weight: bold;"><span class="glyphicon glyphicon-earphone"></span>   전화번호</h6>
-					</div>
-					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top: 5px;">
-						<h6>${ gym.tel }</h6>
-					</div>
-					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-						<h6 style="font-weight: bold;"><span class="glyphicon glyphicon-phone"></span>   핸드폰번호</h6>
-					</div>
-					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top: 5px;">
-						<h6>${ gym.phone }</h6>
-					</div>
-					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-						<h6 style="font-weight: bold;"><i class="fa fa-krw" aria-hidden="true"></i>   가격</h6>
-					</div>
-					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top: 5px;">
-						<h6>${ gym.price }</h6>
+	<div class="container" id="background">
+		<nav id="navbar-example" class="navbar navbar-default navbar-static" role="navigation">
+			<div class="navbar form-control" id="anchor">
+			    <ul class="nav nav-tabs" role="tablist">
+			      <li class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><a href="#" onclick="return scrollmove(1);">헬스장 정보</a></li>
+			      <li class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><a href="#" onclick="return scrollmove(2);">헬스장 일정</a></li>
+			      <li class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><a href="#" onclick="return scrollmove(3);">헬스장 위치</a></li>
+			    </ul>
+			 </div>
+			 <script type="text/javascript">
+			      	 function scrollmove(data){
+						 if(data == 1){
+							 $("#scrollView").scrollTop(0);
+							 return false;
+						 } else if (data == 2){
+							 $("#scrollView").scrollTop(600);
+							 return false;
+						 } else {
+							 $("#scrollView").scrollTop(1200);
+							 return false;
+						 } 
+					 }
+			 </script>
+		</nav>
+		<div id="contents">
+			<div data-spy="scroll" data-target="#navbar-example" id="scrollView" class="scrollspy-example">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;" id="info">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="padding: 0px;">
+						<input type="hidden" id="imagevalue" value="${ gym.rename_image }"> 
+						<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+						  <!-- Indicators -->
+						  <ol class="carousel-indicators" id="indicator">
+						    	<!--  -->
+						  </ol>
 						
+						  <!-- Wrapper for slides -->
+						  <div class="carousel-inner" id="inner" role="listbox">
+							<!-- 이미지 아이템 -->
+						  </div>
+						
+						  <!-- Controls -->
+						  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev" style="max-width:70px;">
+						    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+						    <span class="sr-only">Previous</span>
+						  </a>
+						  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next" style="max-width:70px;">
+						    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+						    <span class="sr-only">Next</span>
+						  </a>
+						</div>
 					</div>
-					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-						<h6 style="font-weight: bold;"><i class="fa fa-clone" aria-hidden="true"></i>   분류</h6>
-					</div>
-					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top: 5px;">
-						<h6>${ gym.category }</h6>
-					</div>
-					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-						<h6 style="font-weight: bold;"><i class="fa fa-list-alt" aria-hidden="true"></i>    헬스장 소개</h6>
-					</div>
-					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top: 5px;" id="gymdesc">
-						<h6>${ gym.description }</h6>
-					</div>
-					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" align="right">
-						<button class="btn btn-danger" <%-- ${ gym.gym_no } --%> >문의하기</button>
+					
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="gyminfo">
+						<!-- 헬스장 정보 -->
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<h3 style="font-weight: bold;">${ gym.gym_name }</h3>
+						</div>
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<h6 style="font-weight: bold;"><span class="glyphicon glyphicon-time"></span>&nbsp;&nbsp;운영시간</h6>
+						</div>
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top: 5px;">
+							<h6>${ gym.op_time }</h6>
+						</div>
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<h6 style="font-weight: bold;"><span class="glyphicon glyphicon-earphone"></span>&nbsp;&nbsp;전화번호</h6>
+						</div>
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top: 5px;">
+							<h6>${ gym.tel }</h6>
+						</div>
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<h6 style="font-weight: bold;"><span class="glyphicon glyphicon-phone"></span>&nbsp;&nbsp;핸드폰번호</h6>
+						</div>
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top: 5px;">
+							<h6>${ gym.phone }</h6>
+						</div>
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<h6 style="font-weight: bold;"><i class="fa fa-krw" aria-hidden="true"></i>&nbsp;&nbsp;가격</h6>
+						</div>
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top: 5px;">
+							<h6>${ gym.price }</h6>
+							
+						</div>
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<h6 style="font-weight: bold;"><i class="fa fa-clone" aria-hidden="true"></i>&nbsp;&nbsp;분류</h6>
+						</div>
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top: 5px;">
+							<h6>${ gym.category }</h6>
+						</div>
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<h6 style="font-weight: bold;"><a href="#location"><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;&nbsp;위치</a></h6>
+						</div>
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top: 5px;">
+							<h6><a href="#location">${ gym.location }</a></h6>
+						</div>
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<h6 style="font-weight: bold;"><i class="fa fa-list-alt" aria-hidden="true"></i>&nbsp;&nbsp;헬스장 소개</h6>
+						</div>
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top: 5px;" id="gymdesc">
+							<h6>${ gym.description }</h6>
+						</div>
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" align="right">
+							<button class="btn btn-danger" <%-- ${ gym.gym_no } --%> >문의하기</button>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;" id="schedule">
-				헬스장 달력<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-				<!-- 달력 -->
-			</div>
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;" id="location">
-				<!-- 지도 -->
-				헬스장 지도
-				<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;" id="schedule">
+					헬스장 달력<br><br><br><br><br><br><br><br><br><br><br><br>
+					<!-- 달력 -->
+				</div>
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;" id="location">
+					<!-- 지도 -->
+					헬스장 지도
+					<br><br><br><br><br><br><br><br><br><br><br><br><br><br>dd
+				</div>
 			</div>
 		</div>
 	</div>
+</div>
 	
 <c:import url="../include/main/footer.jsp" />
 

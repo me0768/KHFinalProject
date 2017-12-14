@@ -338,7 +338,7 @@
 }
 
 #gymlist {
-	max-height: 370px;
+	max-height: 360px;
 	overflow: hidden;
 	overflow-y: auto;
 	margin-top: 15px;
@@ -348,4 +348,9 @@
 #gymimg {
 	height: 110px;
 	width: 100%;
+}
+
+#regcount {
+	margin-top: 5px;
+	margin-bottom: 5px;
 }

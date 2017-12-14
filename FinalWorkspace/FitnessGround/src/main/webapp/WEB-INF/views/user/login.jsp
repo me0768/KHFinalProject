@@ -103,7 +103,11 @@
 				if( responseData.user.user_level == 2){
 					location.href = "adminMain.do";
 				} else {
-					location.href = "main.do";
+					location.reload();
+				}
+				if( responseData.user.tmppwd_tf == 1 ) {
+					alert("임시비밀번호로 로그인하였습니다.\n비밀번호를 변경해주세요!");
+					location.href = "userpwd.do";
 				}
 				/* 수정 - 비밀번호 변경 나오면 여기에 tmppwd_tf여부 확인하고 변경 페이지로 */
 			},

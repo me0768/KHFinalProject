@@ -144,15 +144,18 @@ public class YogaController {
 		}
 
 		// 동영상 수정하기 뷰 메소드
-		@RequestMapping(value = "/yupdateview.do")
-		public ModelAndView yogaUpdateViewMethod(HttpServletRequest request) {
-			ModelAndView mv = new ModelAndView("/workout/videoUpdateView");
-			Yoga y = yogaService.selectYoga(Integer.parseInt(request.getParameter("v_no")));
+		@RequestMapping(value = "/editview.do", method= RequestMethod.POST)
+		public ModelAndView yogaUpdateViewMethod(Yoga yoga, HttpServletRequest request) {
+			ModelAndView mv = new ModelAndView("admin/workoutVideo");
+			System.out.println(yoga+"v_no came here");
+			Yoga y = yogaService.updateViewYoga(yoga, request);
+			System.out.println("from db:"+y);
 			mv.addObject("yoga", y);
+			mv.setViewName("jsonView");
 			return mv;
 		}
 
-		// 동영상 수정 처리 메소드(하나씩) --수정버튼을 누르면 해당row바로밑에 collapse로 title, content, category, v-id form뜨고, 수정하면 닫히면서update되게//
+		// 동영상 수정 처리 메소드
 		@RequestMapping(value = "/yupdate.do")
 		public ModelAndView YogaUpdateMethod(Yoga yoga, HttpServletRequest request) {
 			ModelAndView mv = new ModelAndView("/workout/yogaCategory");

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-		<div class="col-md-8 col-md-offset-2 hidden-xs hidden-sm hidden-md visible-lg"><nav>
+		<div class="col-md-9 col-md-offset-2 hidden-xs hidden-sm hidden-md visible-lg"><nav>
 			<ul>
 				<li><h1><a href="mypage.do?userno=${sessionScope.user.user_no}">My Page</a></h1></li>
 				<li id="myPageBarText"><a href="udetail.do">회원정보</a></li>

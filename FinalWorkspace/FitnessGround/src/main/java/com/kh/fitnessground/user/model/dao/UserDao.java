@@ -143,4 +143,8 @@ public class UserDao {
 	public void deleteUserSchedule(int s_no) {
 		sqlSession.delete("user.deleteUSchedule", s_no);
 	}
+
+	public void updateuserSchedule(HashMap<String, Object> parameters) {
+		sqlSession.update("user.updateUSchedule", parameters);
+	}
 }

@@ -70,4 +70,6 @@ public interface UserService {
 	void insertUserSchedule(UserSchedule us);
 
 	void deleteUserSchedule(int s_no);
+
+	void updateUserSchedule(int s_no, String content);
 }

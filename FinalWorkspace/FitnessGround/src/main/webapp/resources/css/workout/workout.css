@@ -129,7 +129,6 @@ body{
 #video-text{
 	margin: 0 auto;
 	font-size: 1rem;
-
 }
 .time{
 	position: relative;
@@ -150,19 +149,20 @@ body{
 	
 }
 #video-cover{
-	z-index: 999;
+	z-index: 2;
 	width: 250px;
 	height: 150px;
 	position: relative;
 	margin: -150px 0;
 	background: black;
-	opacity: 0.5;
+	opacity: 0.2;
 }
 #video-cover:hover{
 	opacity: 0.1;
 }
 /* 동영상 modal */
 .modal-dialog{
+	z-index: 999;
 	width: 86vw;
 	margin: 0 auto;
 }
@@ -211,6 +211,9 @@ body{
     top: 18vh;
     left: 15vw;
     width: 6vw;
+}
+#read_count, #like_up{
+	display: inline-block;
 }
 /* 검색바 */
 .srch_wrpr{

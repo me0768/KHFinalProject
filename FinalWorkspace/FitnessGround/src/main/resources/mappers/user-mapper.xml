@@ -43,6 +43,7 @@
 		<result property="url" column="url" />
 		<result property="title" column="title" />
 		<result property="category1" column="category1" />
+		<result property="category2" column="category2" />
 	</resultMap>
 
 	<select id="selectUser" parameterType="String" resultType="User"
@@ -246,6 +247,13 @@
 		delete from tb_mypage_schedule where s_no = #{s_no}
 		]]>
 	</delete>
+	<update id="updateUSchedule" parameterType="hashmap" flushCache="true" statementType="PREPARED" >
+		<![CDATA[
+		update tb_mypage_schedule  
+	    set content = #{content} 
+		where s_no = #{s_no}
+		]]>
+	</update>
 	
 	
 	<!-- <select id="selectAll" resultType="list" resultMap="resultList">

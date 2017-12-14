@@ -15,12 +15,13 @@ public class UserSchedule implements Serializable {
 	private String title_content;
 	private Date upload_date;
 	private String category1;
+	private String category2;
 	
 	public UserSchedule() {
 		super();
 	}	
 	public UserSchedule(int s_no, int v_no, int user_no, String title, String url, String content, String title_content,
-			Date upload_date, String category1) {
+			Date upload_date, String category1, String category2) {
 		super();
 		this.s_no = s_no;
 		this.v_no = v_no;
@@ -31,6 +32,7 @@ public class UserSchedule implements Serializable {
 		this.title_content = title_content;
 		this.upload_date = upload_date;
 		this.category1 = category1;
+		this.category2 = category2;
 	}	
 	public UserSchedule(int user_no, String content, Date upload_date) {
 		super();
@@ -39,7 +41,12 @@ public class UserSchedule implements Serializable {
 		this.upload_date = upload_date;
 	}
 	
-	
+	public String getCategory2() {
+		return category2;
+	}
+	public void setCategory2(String category2) {
+		this.category2 = category2;
+	}
 	public String getCategory1() {
 		return category1;
 	}

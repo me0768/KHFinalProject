@@ -16,20 +16,22 @@
 <!-- Body부분  -->
 <div class="content-wrapper">
 	<div class="container-fluid">
-	<h3>&nbsp;동영상관리</h3>
 	<!-- Breadcrumbs-->
+		
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item active"><a href="adminylist.do">ALL </a></li>
-			<li class="breadcrumb-item"><a href="javascript: listing('헬스')">헬스</a> </li>
-			<li class="breadcrumb-item"><a href="javascript: listing('요가')">요가 </a></li>
-			<li class="breadcrumb-item"><a href="javascript: listing('필라테스')">필라테스</a></li>
-			<li class="breadcrumb-item"><a href="javascript: listing('맨몸운동')">맨몸운동 </a></li>
+		<h3 id="page-title">&nbsp;동영상관리</h3>
+			<li class="breadcrumb-item active ct"><a href="adminylist.do" id="active">ALL </a></li>
+			<li class="breadcrumb-item ct"><a href="javascript: listing('헬스')" >헬스</a> </li>
+			<li class="breadcrumb-item ct"><a href="javascript: listing('요가')">요가 </a></li>
+			<li class="breadcrumb-item ct"><a href="javascript: listing('필라테스')">필라테스</a></li>
+			<li class="breadcrumb-item ct"><a href="javascript: listing('맨몸운동')">맨몸운동 </a></li>
 		</ol>
+
 		<!-- Example DataTables Card-->
 		<div class="card mb-3">
 			<div class="card-header">
 				<h4>동영상추가하기</h4>
-				<label>youtube playlist id를 입력하세요 .</label>
+				<p>youtube playlist id를 입력하세요 .</p>
 				<div class="input-area">
 				<span>운동: </span>
 				<select name="select-workout" id="select-workout" class="form-control">
@@ -55,9 +57,9 @@
 					<option value="4">맨몸운동4</option>
 					
 				</select>
-				<input type="text" placeholder="playlist Id입력" id="playlist_id">
+				<input type="text" class="form-control" placeholder="playlist Id입력" id="playlist_id">
 				
-				<button class="btn btn-default" onclick="insert()">추가</button>
+				<button class="btn btn-info" onclick="insert()">추가</button>
 				</div>
 				
 				
@@ -88,9 +90,9 @@
 											<td>${item.category1 }</td>
 											<td>${item.category2 }</td>
 											<td>${item.readcount }</td>
-											<td><a class="cps" aria-expanded="false" data-toggle="collapse" href="#collapse${item.v_no }">
+											<td><a class="cps" aria-expanded="false" data-target = "#collapse${item.v_no }" data-toggle="collapse" href="#collapse${item.v_no }">
                                  <button type="submit" class="btn btn-success btn-sm" onclick="editView(${item.v_no})">수정</button></a>
-												<button type="submit" class="btn btn-danger btn-sm"
+												<button type="submit" class="btn btn-warning btn-sm"
 															onclick="deleteOne(${item.v_no})">삭제</button>
 											</td>
 
@@ -280,7 +282,7 @@
 				"<option value='4'>맨몸운동4</option></select><br>"+
 				"<label for='content'>내용</label>"+
 				"<textarea class='form-control' id='v-content' rows='5'></textarea><br>"+
-				"<a class='btn btn-primary' id='edit-btn' href='javascript: update('"+v_no+"')' role='button'>수정</a>"+"</td></tr>";
+				"<a class='btn btn-primary' id='edit-btn' href='javascript: update("+v_no+")' role='button'>수정</a>"+"</td></tr>";
 			
 			$('.collapse').toggle(inserttr(), removetr());	
 			function inserttr(){
@@ -315,7 +317,7 @@
 				dataType: "json",
 				type: "post",
 				success: function(result){
-					console.log("edit no 전송 성공");
+					console.log("edit view 전송 성공");
 					var title = result.yoga.title;
 					var url = result.yoga.url;
 					var category1 = result.yoga.category1;
@@ -324,8 +326,8 @@
 					$('#v-title').val(title);
 					$('#v-url').val(url);
 					$('#v-content').val(content);
-					$('#select-w').val(category1);
-					$('#select-c').val(category2);
+					$("#select-w > option[value"+category1+"]").prop("selected", true);
+					$("#select-c > option[value"+category2+"]").prop("selected", true);
 				},
 				error: function(request, status, errorData) {
 					alert("error code : " + request.status + "\n"
@@ -338,16 +340,41 @@
 		
 		/* Update 수정처리 */
 		function update(v_no){
+			console.log("update() is running..");
+			var title = $('#v-title').val();
+			var url = $('#v-url').val();
+			var content = $('#v-content').val();
+			var category1 = $('#select-w option:selected').text();
+			var category2 = $('#select-c option:selected').text();
 			
-			
-			
-			
+			var data = { 
+						"v_no" : v_no,
+						"title" : title, 
+						"url" : url, 
+						"content" : content, 
+						"category1" : category1, 
+						"category2": category2
+					};
+			$.ajax({
+				url : "yupdate.do",
+				data : data,
+				dataType: "json",
+				type: "post",
+				success: function(result){
+					alert("수정되었습니다.");
+				},
+				error: function(request, status, errorData) {
+					alert("error code : " + request.status + "\n"
+							+ "message : " + request.responseText + "\n"
+							+ "error : " + errorData);
+						}
+			})//ajax ends..
 		}//update(v_no) ends...
 		
 		
 		/* Delete (하나씩) */
 		function deleteOne(v_no){
-			console.log("deleteOne() works! with"+ v_no);
+			console.log("deleteOne() works with v_no:"+ v_no);
 			
 			var queryString = {"v_no": v_no };
 			$.ajax({
@@ -384,29 +411,6 @@
 		<a class="scroll-to-top rounded" href="#page-top"> 
 		<i class="fa fa-angle-up"></i>
 		</a>
-		<!-- Logout Modal-->
-		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-			aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Ready to
-							Leave?</h5>
-						<button class="close" type="button" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">×</span>
-						</button>
-					</div>
-					<div class="modal-body">Select "Logout" below if you are
-						ready to end your current session.</div>
-					<div class="modal-footer">
-						<button class="btn btn-secondary" type="button"
-							data-dismiss="modal">Cancel</button>
-						<a class="btn btn-primary" href="adminlogout.do">Logout</a>
-					</div>
-				</div>
-			</div>
-		</div>
 	</div>
 	</div>
 <c:import url="common/end.jsp" />

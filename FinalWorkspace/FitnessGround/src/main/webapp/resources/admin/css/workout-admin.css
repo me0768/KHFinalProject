@@ -2,11 +2,23 @@
 
 /*테이블 윗부분(카테고리, 동영상추가)*/
 #select-workout, #select-ct{
-	width: 10vw;
+	width: 8vw;
     display: inline-block;
 }
 #playlist_id{
 	width: 20vw;
+	float: initial;
+	display: inline-block;
+}
+#page-title{
+	margin-top: 10px;
+}
+.ct{
+	margin-top: 16px;
+}
+#active{
+	color: #FF5C7F;
+	margin-left: 15px;
 }
 
 /*수정하기view 부분 */

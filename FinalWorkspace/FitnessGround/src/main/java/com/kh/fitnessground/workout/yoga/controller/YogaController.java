@@ -99,7 +99,7 @@ public class YogaController {
 	      public ModelAndView AdminListAllMethod(Yoga yoga, HttpServletRequest request, User user, BusinessRequest businessRequest, @RequestParam(value = "level", required = false, defaultValue = "0") int level,
 	            GymQnABoard gymqnaboard, @RequestParam(value="receiver", required = false, defaultValue = "1") int receiver) {
 	         
-	         ModelAndView mv = new ModelAndView("admin/workoutVideo");
+	         ModelAndView mv = new ModelAndView("admin/videolist");
 	         
 	         int requestc = adminService.RequestCount(level);
 	         int message = adminService.Message(receiver);
@@ -120,7 +120,7 @@ public class YogaController {
 		//선택된 운동종류만 listing
 		@RequestMapping(value = "/adminwlist.do", method = RequestMethod.POST)
 		public ModelAndView AdminWorkoutListMethod(Yoga yoga, HttpServletRequest request){
-			ModelAndView mv = new ModelAndView("admin/workoutVideo");
+			ModelAndView mv = new ModelAndView("admin/videolist");
 			//전송온 문자열을 json 객체로 변환 처리
 
 			ArrayList<Yoga> clist = yogaService.selectWList(yoga);
@@ -146,7 +146,7 @@ public class YogaController {
 
 			System.out.println("jarr : " + jarr.size());
 
-			List<Yoga> ylist = new ArrayList<Yoga>();
+			List<Yoga> ylist = new ArrayList<Yoga>(); //여러개의 동영상 객체들 담기
 			for (int i = 0; i < jarr.size(); i++) {
 				JSONObject job = (JSONObject) jarr.get(i);
 				String title = (String) job.get("title");
@@ -167,7 +167,7 @@ public class YogaController {
 		// 동영상 수정하기 뷰 메소드
 		@RequestMapping(value = "/editview.do", method= RequestMethod.POST)
 		public ModelAndView yogaUpdateViewMethod(Yoga yoga, HttpServletRequest request) {
-			ModelAndView mv = new ModelAndView("admin/workoutVideo");
+			ModelAndView mv = new ModelAndView("admin/videolist");
 			System.out.println(yoga+"v_no came here");
 			Yoga y = yogaService.updateViewYoga(yoga, request);
 			System.out.println("from db:"+y);
@@ -177,11 +177,12 @@ public class YogaController {
 		}
 
 		// 동영상 수정 처리 메소드
-		@RequestMapping(value = "/yupdate.do")
-		public ModelAndView YogaUpdateMethod(Yoga yoga, HttpServletRequest request) {
-			ModelAndView mv = new ModelAndView("/workout/yogaCategory");
+		@RequestMapping(value = "/yupdate.do", method=RequestMethod.POST)
+		public ModelAndView YogaUpdateMethod(Yoga yoga, HttpServletRequest request) throws Exception{
+			ModelAndView mv = new ModelAndView("admin/videolist");
+			/*request.setCharacterEncoding("utf-8");*/
 			yogaService.updateYoga(yoga, request);
-			ArrayList<Yoga> list = yogaService.selectAllYList();
+			ArrayList<Yoga> list = yogaService.selectAllList();
 			mv.addObject("list", list);
 			return mv;
 		}
@@ -189,7 +190,7 @@ public class YogaController {
 		// 동영상 delete(하나씩)
 		@RequestMapping(value = "/deleteone.do", method = RequestMethod.POST)
 		public ModelAndView YogadeleteMethod(Yoga yoga, HttpServletRequest request) {
-			ModelAndView mv = new ModelAndView("admin/workoutVideo");
+			ModelAndView mv = new ModelAndView("admin/videolist");
 			System.out.println(yoga+":v_no got ");
 			yogaService.deleteYoga(yoga, request);
 			ArrayList<Yoga> list = yogaService.selectAllList();

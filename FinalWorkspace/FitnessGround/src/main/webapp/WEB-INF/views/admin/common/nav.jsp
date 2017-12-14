@@ -37,11 +37,11 @@
 				</li>
 				<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
 					<a class="nav-link nav-link-collapse collapsed" data-toggle="collapse"
-					href="#collapse2" data-parent="#Accordion">
+					href="#collapse-second" data-parent="#Accordion">
 						<i class="fa fa-fw fa-table"></i> 
 							<span class="nav-link-text">게시판관리</span>
 					</a>
-					<ul class="sidenav-second-level collapse" id="collapse2">
+					<ul class="sidenav-second-level collapse" id="collapse-second">
 							<li><a href="adminMettingBoard.do">Meeting</a></li>
 							<li><a href="adminQNABoard.do">QnA</a></li>
 							<li><a href="adminReviewBoard.do">Review</a></li>
@@ -82,7 +82,7 @@
 					<i class="fa fa-fw fa-circle"></i>
 					</span>
 				</a>
-					<div class="dropdown-menu" aria-labelledby="messagesDropdown">
+					<div class="dropdown-menu" id="new-dropdown" aria-labelledby="messagesDropdown">
 					
 						<h6 class="dropdown-header">New Messages:</h6>
 						<c:forEach var="qnaitem" items="${qnalist }" varStatus="status">
@@ -109,7 +109,7 @@
 							class="fa fa-fw fa-circle"></i>
 					</span>
 				</a>
-				<div class="dropdown-menu" aria-labelledby="messagesDropdown">
+				<div class="dropdown-menu" id="new-dropdown" aria-labelledby="messagesDropdown">
 					
 						<h6 class="dropdown-header">New Request:</h6>
 						<c:forEach var="ritem" items="${gymRlist }" varStatus="status">

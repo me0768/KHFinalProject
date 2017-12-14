@@ -11,8 +11,7 @@
 
 
 <c:import url="../common/headend.jsp" />
-
-
+<script src="//cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>
 <script type="text/javascript">
 function adminMettingBoard(){
 	location.href="adminMettingBoard.do"
@@ -25,14 +24,14 @@ function adminReviewBoard(){
 }
 
 function registerView(){
-	alert("공지사항등록 하기");
+	
 	
 	$("#registerView").show();
 	$("#registerView").modal();
 }
 
 	function meetingBoardDelete(mb_no){
-		alert("버튼 클릭");
+		
 		
 		$.ajax({
 			url : "meetingBoardDelete.do",
@@ -40,7 +39,7 @@ function registerView(){
 			type : "post",
 			data : {"mb_no" : mb_no},
 			success : function(result){
-				alert("삭제 하였습니다.")
+				alert(mb_no + "번 게시물이 삭제 되었습니다.")
 				location.href = "adminMettingBoard.do";
 			},
 			error : function(request, status, error){
@@ -100,7 +99,7 @@ function registerView(){
 										<%-- <td><input type="checkbox" class="deleteCheckBox"
 											name="deleteCheckBox" value="${item.user_no} " /></td> --%>
 										<td>${status.count }</td>
-										<td>${item.name }</td><br/>
+										<td>${item.name }</td>
 										<div class="modal fade ${item.user_no}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 											<div class="modal-dialog">
 												<div class="modal-content">
@@ -127,12 +126,12 @@ function registerView(){
 											</div>
 										</div>
 										
-										
+										</div>
+										</div>
 										
 										<td>
 										<a  href="meetingDetail.do" data-target=".${item.mb_no}"
 											data-toggle="modal">${item.title }</a></td>
-										<br />
 										<div class="modal fade ${item.mb_no}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 											<div class="modal-dialog">
 												<div class="modal-content">
@@ -158,6 +157,8 @@ function registerView(){
 												</div>
 											</div>
 										</div>
+										</div>
+										</div>
 										<td>${item.upload_date }</td>
 										<td>${item.readcount }</td>
 										<td><button class="btn btn-primary" onclick="meetingBoardDelete(${item.mb_no});">삭제</button></td>
@@ -173,53 +174,44 @@ function registerView(){
 				<!-- Modal -->
   <div class="modal fade" id="registerView" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" id="workout-dialog">
+    
       <div class="modal-content" id="workout-content">
       
-        <div class="modal-header">  <h4 class="modal-title" id="video_title">커뮤니티 게시판 공지사항 등록하기 </h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">x
-          </button>
+        <div class="modal-header">  
+          <h2 class="modal-title" id="meetingBoard" color="red"style="color: black">커뮤니티 게시판 공지사항 등록하기 </h2>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">x</button>
         
         </div>
         	<div class="modal-body">
-				<div class="modal-play" id="video_detail"></div>
-				<div class="modal-desc">
-					<div id="video_explain" style="color: black; font-size:13px">
-						<span id="span-content"></span>
-					</div>
-					<hr>		
-					</div>					
-					
-						<div id="nvideo-reply" style="color:black;">
-							<input type="text" id="reply-input" placeholder="제목을 입력하세요">
-							
-						</div>
-						
-						<div id="nvideo-reply" style="color:black;">
-							<input type="text" id="reply-input" placeholder="내용을 입력하세요">
-							
-						</div>
+				<div id="insert_all_div" style="border: 1px solid;">
+				<br>
+					<form id="register_form" name='meeting' method="post" action="meetingInsert.do">
+						<input name="user_no" type="hidden" value="${sessionScope.user.user_no }" />
+							<div id="div_head">
+								<p>
+									제목
+							<input name="title" type="text" placeholder="제목을 입력해주세요." />
+								</p>				
+							</div>
+				<textarea name="content" id="editor1" placeholder="내용을 입력해주세요.."></textarea>
+				<script>
+					CKEDITOR.replace('editor1');
+				</script>
 				
 					
-					
-							<button type="submit" id="reply-btn" onclick="loginMessage();">댓글달기<button>
-						
-		
-					
-				
-						<div id="video-reply" style="color:black; font-size:13px;"> 
-							
-						</div>
-					
-					<!-- 댓글 보여주는 곳 -->
-					<div id="reply_content" style="color:black; font-size:13px;">
-						
-					</div>
-						
 				</div>
-			</div>
+											
+		  </div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-primary" >Register</button>
+					</form>
+      				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      			</div>
+	  </div>
 			
-      </div>
-    </div>
+     </div>
+      	
+  </div>    
   </div>
 				
 				
@@ -234,28 +226,6 @@ function registerView(){
 		<a class="scroll-to-top rounded" href="#page-top"> <i
 			class="fa fa-angle-up"></i>
 		</a>
-		<!-- Logout Modal-->
-		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-			aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Ready to
-							Leave?</h5>
-						<button class="close" type="button" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">×</span>
-						</button>
-					</div>
-					<div class="modal-body">Select "Logout" below if you are
-						ready to end your current session.</div>
-					<div class="modal-footer">
-						<button class="btn btn-secondary" type="button"
-							data-dismiss="modal">Cancel</button>
-						<a class="btn btn-primary" href="adminlogout.do">Logout</a>
-					</div>
-				</div>
-			</div>
-		</div>
+		
 	</div>
 	<c:import url="../common/end.jsp" />

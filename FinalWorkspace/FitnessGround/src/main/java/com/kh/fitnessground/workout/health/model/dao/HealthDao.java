@@ -87,6 +87,22 @@ public class HealthDao {
 		sqlSession.delete("like.deleteLike",like);
 		
 	}
+
+	public void deleteMySchedule(Like like) {
+		// TODO Auto-generated method stub
+		sqlSession.delete("like.deleteMySchedule",like);
+	}
+
+	public void insertMySchedule(Like like) {
+		// TODO Auto-generated method stub
+		sqlSession.insert("like.insertMySchedule",like);
+		
+	}
+
+	public Comment selectComment(int vb_no) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("comment.selectComment",vb_no);
+	}
 	
 	//좋아요
 }

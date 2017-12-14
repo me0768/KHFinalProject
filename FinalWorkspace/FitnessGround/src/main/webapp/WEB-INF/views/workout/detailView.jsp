@@ -68,9 +68,8 @@
 	
 		var comment = '<input type="text" id="reply-input" placeholder="댓글을 입력하세요">' +
 					 '<input type="hidden" id="user_no" value="' + ${sessionScope.user.user_no}  + '" >' +
-					 '<input type="hidden" id="user" value="' + ${sessionScope.user}  + '" >' +
-					 '<input type="hidden" id="v_no" value="' + v_no  + '" >' +
 					'<button type="submit" id="reply-btn" onclick="return insertComment(' + v_no + ');">댓글달기</button>';
+		
 		$("#video-reply").html(comment);
 		
 				
@@ -87,6 +86,8 @@
 	}
 	
 	function viewVideo(v_no){ //모달창에서 영상 띄워주는 메서드 (조회수, 제목, 설명 ,좋아요 누르는부분)
+		var user_no = $("#user_no").val();
+		console.log(user_no);
 		$.ajax({
 			url:"detail.do",
 			dataType:"json",
@@ -98,26 +99,24 @@
 			var src= "";
 			var like="";
 			var likeCount = selectLikeCount(v_no);
+			var category1 = responseData.category1;
 			
-			/* 모달창 왼쪽에 영상 띄워주는 부분 */			
-			src="<iframe width='600' height='400' src="+ responseData.url.replace(/\^/g,"&")
-			+"frameborder='0' gesture='media' allow='encrypted-media' allowfullscreen name='iframe'></iframe>"
+			console.log("category1" + category1);
 			
-			if($("#user").val()==null){
-				like='<button type="submit" class="btn btn-default" id="like-btn"'+
-				' onclick="loginMessage()"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></button>' +
-				'<span style="color:black; font-size:13px">좋아요:</span>'+
-				'<span id="like_count" style="color:black; font-size:13px">' + likeCount + '</span>'
-				
+			/* 모달창 왼쪽에 영상 띄워주는 부분 */	
+			if(category1=="헬스"){
+				src="<iframe width='600' height='400' src="+ responseData.url.replace(/\^/g,"&")
+				+"frameborder='0' gesture='media' allow='encrypted-media' allowfullscreen name='iframe'></iframe>"
 			}else{
-				like='<button type="submit" class="btn btn-default" id="like-btn" onclick="likeUp(' 
-					+ '\'' + responseData.category1 +'\'' + ',' + '\'' + responseData.category2  + '\'' +')"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> </button>' +
-				'<span style="color:black; font-size:13px">//좋아요 :</span>'+
-				'<span id="like_count" style="color:black; font-size:13px">' + likeCount + '</span>'
-				
+				src= "<iframe id='video-play' src='https://www.youtube.com/embed/"+responseData.url+"' frameborder='0'"+
+				"gesture='media' allow='encrypted-media' allowfullscreen></iframe>"
 			}
 			
-			
+
+			like='<button type="submit" class="btn btn-default" id="like-btn" onclick="likeUp(' + v_no 	+ ',' + 
+					'\'' + responseData.category1 +'\'' + ',' + '\'' + responseData.category2  + '\'' +')"><span class="glyphicon glyphicon-thumbs-up" aria-="true"></span> </button>' +
+			'<span style="color:black; font-size:13px">//좋아요 :</span>'+
+			'<span id="like_count" style="color:black; font-size:13px">' + likeCount + '</span>'
 				
 			$("#read_count").html("조회수  : " + responseData.readcount);
 			$("#video_title").html(responseData.title.replace(/\+/g," "));
@@ -173,7 +172,7 @@
 	function insertComment(v_no){	//댓글 insert
 		
 		var content = $("#reply-input").val();
-		
+		var vb_no = $("#vb_no").val();
 		if(content=="" || content==null){
 			alert("댓글 내용을 입력 해 주세요!");
 			focus("#reply-input");
@@ -181,12 +180,12 @@
 		}
 	
 		var user_no = $("#user_no").val();
+		console.log("insertComment vb_no : " + vb_no);
 	
-		var queryString ={"v_no" : v_no,"content" : content,"user_no":user_no};
+		var queryString ={"v_no" : v_no,"content" : content,"user_no":user_no,"vb_no":vb_no};
 		
 		$.ajax({
 			url:"insertReply.do",
-			dataType:"json",
 			type:"post",
 			data : queryString,
 			async:false
@@ -213,8 +212,9 @@
 	}
 	
 	//좋아요 증가처리
-	function likeUp(category1,category2){	
-		var v_no = $("#v_no").val();
+	function likeUp(v_no,category1,category2){	
+		var userLoginCheck = 0;
+		var checkLikeTable = 0;
 		var user_no = $("#user_no").val();
 		
 		console.log(v_no);
@@ -227,7 +227,24 @@
 			dataType:"json",
 			type:"post",
 			data:{"v_no":v_no,"user_no":user_no,"category1":category1,"category2":category2},
-			async:false
+			async:false,
+			success:function(data){
+				userLoginCheck= data.userLoginCheck;
+				checkLikeTable = data.checkLikeTable;
+				
+				console.log("checkLikeTable"+checkLikeTable);
+				if(userLoginCheck==0){
+					alert("로그인이 필요한 서비스 입니다.");
+				}else if(userLoginCheck!=0 && checkLikeTable==0 ){
+					alert("게시물을 추천하셨습니다.\n MyPage - 운동 스케줄에서 게시물을 확인 하실 수 있습니다.");
+				}else if(userLoginCheck!=0 && checkLikeTable==1){
+					alert("추천을 취소 하셨습니다.\n MyPage - 운동 스케줄에서 해당 게시물이 삭제됩니다.");
+				}
+			},
+			error: function(xhr,status,error){
+				alert("에러 발생");
+			}
+			
 		});
 		
 		selectLikeCount(v_no);

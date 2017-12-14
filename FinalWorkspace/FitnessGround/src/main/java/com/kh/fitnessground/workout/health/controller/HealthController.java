@@ -185,9 +185,21 @@ public class HealthController {
 		//resultMap 새로 만들어보기..
 
 			
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd, hh:mm:ss a");
-					
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd, HH시mm분ss초");
+	
 		healthService.insertComment(comment);
+				
+		ArrayList<Comment> selectCommentList = healthService.selectCommentList(comment.getV_no());
+		System.out.println("selectCommentList" + selectCommentList);
+		
+		
+		
+		
+		
+		
+		for(int i=0; i<selectCommentList.size();i++){
+			System.out.println("날짜 : " + selectCommentList.get(i).getReply_date());
+		}
 	}
 		
 	
@@ -197,26 +209,39 @@ public class HealthController {
 		healthService.deleteComment(comment);
 	}
 	
+	
 	//좋아요 테이블에 삽입, 삭제하는 메서드
 	@RequestMapping(value="/likeUp.do",method=RequestMethod.POST)
-	public void likeUp(Like like){
+	public ModelAndView likeUp(Like like){
 		
-		int result = healthService.checkLikeTable(like); //좋아요 테이블에 있는지 확인하는 변수
+		ModelAndView mv = new ModelAndView();
+		
+		int checkLikeTable = healthService.checkLikeTable(like); //좋아요 테이블에 있는지 확인하는 변수
 		// 있으면 1 없으면 0
-		System.out.println(result);
+		System.out.println("좋아요 테이블 체크 : " + checkLikeTable);
+		System.out.println(like);
 		
-		if(result==1){	//있으면 한 영상 좋아요를 누른 사람이 또 좋아요를 누르면
+		int userLoginCheck = like.getUser_no();
+		
+		if(checkLikeTable==1 && like.getUser_no()!=0){	//있으면 한 영상 좋아요를 누른 사람이 또 좋아요를 누르면
 			//좋아요 테이블에서 삭제
 			healthService.deleteLike(like);
+			healthService.deleteMySchedule(like);
 			
-		}else{ //없으면 한 영상에 좋아요를 안누른 사람이면
+		}else if(checkLikeTable==0 && like.getUser_no()!=0){ //없으면 한 영상에 좋아요를 안누른 사람이면
 			//좋아요 테이블에 넣음
 			healthService.insertLike(like);	
+			healthService.insertMySchedule(like);
 			
 		}		
 		
+		mv.addObject("userLoginCheck",userLoginCheck);
+		mv.addObject("checkLikeTable",checkLikeTable);
+		mv.setViewName("jsonView");
+		
+		return mv;
 	}
-	
+	//좋아요 갯수
 	@RequestMapping(value="/likeCount.do",method=RequestMethod.POST)
 	public ModelAndView likeCount(Like like){
 		ModelAndView mv = new ModelAndView();

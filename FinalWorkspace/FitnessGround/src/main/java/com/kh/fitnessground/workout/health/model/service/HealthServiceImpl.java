@@ -71,6 +71,13 @@ public class HealthServiceImpl implements HealthService{
 		healthDao.insertComment(comment);
 		
 	}
+	
+	@Override
+	public Comment selectComment(int vb_no) {
+		// 댓글객체 불러오기..
+		return healthDao.selectComment(vb_no);
+	}
+	
 	//댓글 delete
 	@Override
 	public void deleteComment(Comment comment) {
@@ -124,7 +131,22 @@ public class HealthServiceImpl implements HealthService{
 	public void deleteLike(Like like) {
 		// 좋아요 테이블에서 삭제 (좋아요 취소)
 		healthDao.deleteLike(like);
-	}	
+	}
+
+	@Override
+	public void deleteMySchedule(Like like) {
+		// 마이스케줄 테이블 삭제
+		healthDao.deleteMySchedule(like);
+	}
+
+	@Override
+	public void insertMySchedule(Like like) {
+		// 마이스케줄 테이블 삽입
+		healthDao.insertMySchedule(like);
+		
+	}
+	
+		
 	
 	
 

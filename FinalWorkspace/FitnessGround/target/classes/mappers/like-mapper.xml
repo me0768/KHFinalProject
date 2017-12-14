@@ -43,5 +43,17 @@
 		]]>	
 	</select>
 	
+	<delete id="deleteMySchedule" parameterType="Like" flushCache="true" statementType="PREPARED">
+		<![CDATA[
+			delete from TB_MYPAGE_SCHEDULE where v_no=#{v_no} and user_no=#{user_no}
+		]]>
+	</delete>
+	
+	<insert id="insertMySchedule" parameterType="Like" flushCache="true" statementType="PREPARED" useGeneratedKeys="true">
+		<![CDATA[
+			insert into TB_MYPAGE_SCHEDULE values (ms_seq.nextval,#{v_no},#{user_no},null,default)
+		]]>	
+	</insert> <!-- 좋아요 증가 -->
+	
 
 </mapper>

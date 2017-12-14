@@ -259,7 +259,6 @@
 </div>
 
 <script type="text/javascript">
-	
 	var areas = $.map($('area[data-full]'),function(el) {
 	    return { 
 	        key: $(el).attr('name'),

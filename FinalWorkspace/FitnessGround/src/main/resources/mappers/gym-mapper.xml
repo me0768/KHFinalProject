@@ -222,4 +222,46 @@
 			where rename_image = #{rename_image}
 		]]>
 	</select>
+	
+	<select id="regCount" resultType="_int" parameterType="Gym">
+		<![CDATA[
+			select count(*)
+			from tb_gym
+			where user_no = #{user_no} and approval_state in (0,1)
+		]]>
+	</select>
+	
+	<select id="regCountName" resultType="_int" parameterType="Gym">
+		<![CDATA[
+			select count(*)
+			from tb_gym
+			where user_no = #{user_no} and gym_name like '%'||#{gym_name}||'%' and approval_state in (0,1)
+		]]>
+	</select>
+	
+	<select id="mygymlist" resultType="list" resultMap="resultGym" parameterType="Gym">
+		<![CDATA[
+			select gym_no, gym_name, rename_image, op_time,
+				   tel, phone, price, category, description, location, user_no
+			from tb_gym
+			where user_no = #{user_no} and approval_state in (0,1)
+		]]>
+	</select>
+	
+	<select id="mygymlistName" resultType="list" resultMap="resultGym" parameterType="Gym">
+		<![CDATA[
+			select gym_no, gym_name, rename_image, op_time,
+				   tel, phone, price, category, description, location, user_no
+			from tb_gym
+			where user_no = #{user_no} and gym_name like '%'||#{gym_name}||'%' and approval_state in (0,1)
+		]]>
+	</select>
+	
+	<update id="deleteGym" parameterType="Gym" flushCache="true" statementType="PREPARED" >
+		<![CDATA[
+		update tb_gym
+		set approval_state = 2
+		where gym_no = #{gym_no}
+		]]>
+	</update>
 </mapper>

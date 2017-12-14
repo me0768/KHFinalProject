@@ -94,27 +94,54 @@ public class GymController {
 		gymService.OneSchedule(gs);
 	}
 	
+	//등록한 헬스장 갯수 및 리스트
+	@RequestMapping(value="/mygymlist.do", method=RequestMethod.POST)
+	public ModelAndView mygymlist(Gym gym, HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mv = new ModelAndView();
+		int gymcount = gymService.regCount(gym);
+		ArrayList<Gym> list = gymService.mygymlist(gym);
+		mv.addObject("gymcount", gymcount);
+		mv.addObject("list", list);
+		mv.setViewName("jsonView");
+		return mv;
+	}
+	
+	// 검색한 헬스장 갯수 및 리스트
+	@RequestMapping(value="/gymsearch.do", method=RequestMethod.POST)
+	public ModelAndView gymSearch(Gym gym, HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mv = new ModelAndView();
+		int gymcount = gymService.regCountName(gym);
+		ArrayList<Gym> list = gymService.mygymlistName(gym);
+		mv.addObject("gymcount", gymcount);
+		mv.addObject("list", list);
+		mv.setViewName("jsonView");
+		return mv;
+	}
+	
 	// 헬스장 수정
-	@RequestMapping(value="updategym.do")
+	@RequestMapping(value="/updategym.do")
 	public ModelAndView updateGym(Gym gym, HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView();
-		// 헬스장 스케줄도 수정
+		System.out.println("헬스장 업데이트" + gym);
 		return mv;
 	}
 	
 	// 헬스장 삭제
-	@RequestMapping(value="deletegym.do")
+	@RequestMapping(value="/deletegym.do", method=RequestMethod.POST)
 	public ModelAndView deleteGym(Gym gym, HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView();
-		// 헬스장 스케줄도 삭제
+		System.out.println(gym);
+		gymService.deleteGym(gym);
+		mv.addObject("gym", 1);
+		mv.setViewName("jsonView");
 		return mv;
 	}
 	
 	// 헬스장 디테일 뷰
-	@RequestMapping(value="detailgym.do")
+	@RequestMapping(value="/detailgym.do")
 	public ModelAndView detailGym(Gym gym, HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView();
-		// 헬스장 스케줄도 셀렉
+		System.out.println("헬스장 디테일" + gym);
 		return mv;
 	}
 	

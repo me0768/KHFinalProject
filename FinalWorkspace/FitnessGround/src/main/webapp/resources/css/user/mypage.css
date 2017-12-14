@@ -75,7 +75,7 @@
 	width:90%;
 }
 
-.mypage_schedule {
+.mypage_schedule, .mypage_gymmanage {
 	box-shadow: 2px 2px 2px rgba(204, 197, 185, 0.5);
 	background-color: #FFFFFF;
 	color: #252422;
@@ -335,4 +335,17 @@
 #searchInfo {
 	margin-left:45px;
 	color:#FE424D;
+}
+
+#gymlist {
+	max-height: 370px;
+	overflow: hidden;
+	overflow-y: auto;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+#gymimg {
+	height: 110px;
+	width: 100%;
 }

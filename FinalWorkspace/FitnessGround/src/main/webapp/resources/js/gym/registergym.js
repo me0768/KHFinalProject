@@ -751,9 +751,7 @@ var arr = new Array();
 			var gym_name = $("#gymname").val();
 			var op_time = $("#optime").val();
 			var tel = $("#tel").val();
-			tel = tel.replace(/\-/g, '');
 			var phone = $("#phone").val();
-			phone = phone.replace(/\-/g, '');
 			var price = $("#price").val();
 			var category = '';
 			if($("#ex_chk0").is(":checked")){
@@ -815,5 +813,5 @@ var arr = new Array();
 					});
 				}
 			}
-			alert("헬스장 등록 성공,,");
+			alert("헬스장이 등록되었습니다. \n관리자의 승인 후에 '운동시설찾기'에 \n보여지게 됩니다.");
 		}

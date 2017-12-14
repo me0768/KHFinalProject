@@ -97,7 +97,28 @@ public class GymServiceImpl implements GymService{
 		gymDao.OneSchedule(gs);
 	}
 
-	
-	
-	
+	@Override
+	public int regCount(Gym gym) {
+		return gymDao.regCount(gym);
+	}
+
+	@Override
+	public ArrayList<Gym> mygymlist(Gym gym) {
+		return gymDao.mygymlist(gym);
+	}
+
+	@Override
+	public int regCountName(Gym gym) {
+		return gymDao.regCountName(gym);
+	}
+
+	@Override
+	public ArrayList<Gym> mygymlistName(Gym gym) {
+		return gymDao.mygymListName(gym);
+	}
+
+	@Override
+	public void deleteGym(Gym gym) {
+		gymDao.deleteGym(gym);
+	}
 }

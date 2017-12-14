@@ -30,6 +30,9 @@ public interface HealthService {
 	Like selectLike(Like like); //좋아요 객체 반환
 	void insertLike(Like like); //좋아요 테이블에 넣기
 	void deleteLike(Like like);//좋아요 테이블에서 삭제
+	void deleteMySchedule(Like like);	//마이스케줄에 삭제
+	void insertMySchedule(Like like);	//마이스케줄에 넣기
+	Comment selectComment(int vb_no);
 	
 	
 }

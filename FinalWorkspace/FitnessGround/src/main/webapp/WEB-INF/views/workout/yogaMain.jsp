@@ -196,7 +196,7 @@
 						<span class="video-time" id="v-time${y.v_no}"></span>
 						</div>
 						<span id="video-text">
-						<a href='javascript:detailView(${y.v_no})'>${y.title }</a></span> 
+						<a href='javascript:detailView(${y.v_no} , "${y.category1}" , "${y.category2}")'>${y.title }</a></span> 
 						<%-- <span id="video-text"><c:url var="detail" value="#detail" /></span> --%>
 						
 					</div>
@@ -215,6 +215,7 @@ $('#detailView').on('show.bs.modal', function (event) {
 	  var vid = tag.data('url');
 	  var content = tag.data('content');
 	  
+		  
 	  var modal = $(this);
 	  modal.find('.modal-title').text(title);
 	  modal.find('.modal-play').html("<iframe id='video-play' src='https://www.youtube.com/embed/"+vid+"' frameborder='0'"+

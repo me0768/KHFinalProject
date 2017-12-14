@@ -95,6 +95,9 @@
 				if(data == null){
 					alert("아이디와 비밀번호를 확인해주세요.");
 					return false;
+				} else if ( data.user_state == 1){
+					alert("비활성화된 계정입니다. \n로그인이 불가능 합니다.");
+					return false;
 				}
 				$("#login").modal("hide");
 				if( responseData.user.user_level == 2){

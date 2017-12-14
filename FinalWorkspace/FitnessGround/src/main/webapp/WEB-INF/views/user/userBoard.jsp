@@ -108,9 +108,16 @@
 					      	</a>
 					     </c:if>
 						<c:if test="${qCurrentPage > 1}">
-							<a href="userboard.do?qpage=${qCurrentPage-1}&userno=${sessionScope.user.user_no}" aria-label="Previous">
-								<span aria-hidden="true">&laquo;</span>
-							</a>
+							<c:if test="${null eq search}">
+								<a href="userboard.do?qpage=${qCurrentPage-1}&userno=${sessionScope.user.user_no}" aria-label="Previous">
+									<span aria-hidden="true">&laquo;</span>
+								</a>
+							</c:if>
+							<c:if test="${null ne search}">
+								<a href="userBoardSearch.do?page=${qCurrentPage-1}&searchKeyword=${qSearchKeyword}&userno=${sessionScope.user.user_no}" aria-label="Previous">
+									<span aria-hidden="true">&laquo;</span>
+								</a>
+							</c:if>
 						</c:if>				      
 				    </li>
 				    <c:forEach var="p" begin="${qStartPage}" end="${qEndPage}">
@@ -119,7 +126,14 @@
 								 <li><a href="#">${p}</a></li>
 							</c:when>
 							<c:otherwise>
-								 <li><a href="userboard.do?userno=${sessionScope.user.user_no}&qpage=${p}">${p}</a></li>
+								 <li>
+								 	<c:if test="${null eq search}">
+										<a href="userboard.do?userno=${sessionScope.user.user_no}&qpage=${p}">${p}</a>
+									</c:if>
+									<c:if test="${null ne search}">
+										<a href="userBoardSearch.do?page=${p}&searchKeyword=${qSearchKeyword}&userno=${sessionScope.user.user_no}">${p}</a>
+									</c:if>	
+								 </li>
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
@@ -131,9 +145,16 @@
 						    </a>
 				    	</c:when>
 				    	<c:otherwise>
-					      	<a href="userboard.do?qpage=${qCurrentPage+1}&userno=${sessionScope.user.user_no}" aria-label="Next">
-					        	<span aria-hidden="true">&raquo;</span>
-					      	</a>
+				    		<c:if test="${null eq search}">
+								<a href="userboard.do?qpage=${qCurrentPage+1}&userno=${sessionScope.user.user_no}" aria-label="Next">
+					        		<span aria-hidden="true">&raquo;</span>
+					      		</a>
+							</c:if>
+							<c:if test="${null ne search}">
+								<a href="userBoardSearch.do?page=${qCurrentPage+1}&searchKeyword=${qSearchKeyword}&userno=${sessionScope.user.user_no}" aria-label="Next">
+						        	<span aria-hidden="true">&raquo;</span>
+						      	</a>
+							</c:if>	
 				      	</c:otherwise>
 				      	</c:choose>
 				    </li>
@@ -211,9 +232,16 @@
 					      	</a>
 					     </c:if>
 						<c:if test="${currentPage > 1}">
-							<a href="userboard.do?cpage=${currentPage-1}&userno=${sessionScope.user.user_no}&com=ok" aria-label="Previous">
-								<span aria-hidden="true">&laquo;</span>
-							</a>
+							<c:if test="${null eq search}">
+								<a href="userboard.do?cpage=${currentPage-1}&userno=${sessionScope.user.user_no}&com=ok" aria-label="Previous">
+									<span aria-hidden="true">&laquo;</span>
+								</a>
+							</c:if>
+							<c:if test="${null ne search}">
+								<a href="userBoardSearch.do?page=${currentPage-1}&searchKeyword=${cSearchKeyword}&userno=${sessionScope.user.user_no}&com=ok" aria-label="Previous">
+									<span aria-hidden="true">&laquo;</span>
+								</a>
+							</c:if>
 						</c:if>				      
 				    </li>
 				    <c:forEach var="p" begin="${cStartPage}" end="${cEndPage}">
@@ -222,7 +250,15 @@
 								 <li><a href="#">${p}</a></li>
 							</c:when>
 							<c:otherwise>
-								 <li><a href="userboard.do?userno=${sessionScope.user.user_no}&cpage=${p}&com=ok">${p}</a></li>
+								 <li>
+								 	<c:if test="${null eq search}">
+										<a href="userboard.do?userno=${sessionScope.user.user_no}&cpage=${p}&com=ok">${p}</a>
+									</c:if>
+									<c:if test="${null ne search}">
+										<a href="userBoardSearch.do?page=${p}&searchKeyword=${cSearchKeyword}&userno=${sessionScope.user.user_no}&com=ok">${p}</a>
+									</c:if>	
+								 	
+								 </li>
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
@@ -234,9 +270,16 @@
 						    </a>
 				    	</c:when>
 				    	<c:otherwise>
-					      	<a href="userboard.do?cpage=${currentPage+1}&userno=${sessionScope.user.user_no}&com=ok" aria-label="Next">
-					        	<span aria-hidden="true">&raquo;</span>
-					      	</a>
+				    		<c:if test="${null eq search}">
+						      	<a href="userboard.do?cpage=${currentPage+1}&userno=${sessionScope.user.user_no}&com=ok" aria-label="Next">
+						        	<span aria-hidden="true">&raquo;</span>
+						      	</a>
+							</c:if>
+							<c:if test="${null ne search}">
+								<a href="userBoardSearch.do?page=${currentPage+1}&searchKeyword=${cSearchKeyword}&userno=${sessionScope.user.user_no}&com=ok" aria-label="Next">
+						        	<span aria-hidden="true">&raquo;</span>
+						      	</a>
+							</c:if>	
 				      	</c:otherwise>
 				      	</c:choose>
 				    </li>

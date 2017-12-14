@@ -353,7 +353,7 @@ public class UserController {
     	
 		return mv; 
 	}
-	// 문의하기 검색
+	// 내 게시글 검색
 	@RequestMapping(value="/userBoardSearch.do")
 	public ModelAndView userBoardSearchMethod(HttpServletRequest request) {
 		
@@ -364,7 +364,10 @@ public class UserController {
 		
 		int qMaxPage, qStartPage, qEndPage, limit=10, currentPage=1;
 		int cMaxPage, cStartPage, cEndPage;
+		if(request.getParameter("page") != null)
+			currentPage = Integer.parseInt(request.getParameter("page"));
 		GymQnABoardPage page = new GymQnABoardPage(currentPage, limit);
+		GymQnABoardPage noSPage = new GymQnABoardPage(1, limit);
 		ArrayList<GymQnABoard> qlist = null;
 		ArrayList<CommunityAndMeeting> cmList = new ArrayList<CommunityAndMeeting>();
 		
@@ -379,12 +382,12 @@ public class UserController {
 			ArrayList<CommunityAndMeeting> temp = userService.communityBoardList(user_no);
 			temp.addAll(userService.meetingBoardList(user_no));
 			cMaxPage = (int) ((double) temp.size()/limit + 0.9);
-			cStartPage = ((int) ((double) currentPage/limit+0.9)-1)*limit+1;
+			cStartPage = ((int) ((double) 1/limit+0.9)-1)*limit+1;
 			cEndPage = cStartPage + limit - 1;
 			if(cMaxPage < cEndPage) cEndPage = cMaxPage;
 			Collections.sort(temp);
-			if(page.getEndRow()-1 > temp.size()) page.setEndRow(temp.size());
-			for(int i=page.getStartRow()-1; i<=page.getEndRow()-1; i++)
+			if(noSPage.getEndRow()-1 > temp.size()) noSPage.setEndRow(temp.size());
+			for(int i=noSPage.getStartRow()-1; i<=noSPage.getEndRow()-1; i++)
 				cmList.add(temp.get(i));
 		} 
 		else {
@@ -401,10 +404,10 @@ public class UserController {
 				cmList.add(temp.get(i));
 			// 문의하기 전체 목록
 			qMaxPage = (int) ((double) userService.qnABoardCount(user_no) / limit + 0.9);
-			qStartPage = ((int) ((double) currentPage / limit + 0.9) - 1) * limit + 1;
+			qStartPage = ((int) ((double) 1 / limit + 0.9) - 1) * limit + 1;
 			qEndPage = qStartPage + limit - 1;
 			if (qMaxPage < qEndPage)	qEndPage = qMaxPage;
-			qlist = userService.qnABoardList(new GymQnABoardPage(currentPage, limit), user_no);
+			qlist = userService.qnABoardList(new GymQnABoardPage(1, limit), user_no);
 		}
 		
 		if(request.getParameter("com")!=null) {
@@ -415,6 +418,8 @@ public class UserController {
 			mv.addObject("com","no");
 			mv.addObject("qSearchKeyword", keyword);
 		}
+		
+		mv.addObject("search", "ok");
 		
 		mv.addObject("qlist", qlist);
 		mv.addObject("qCurrentPage", currentPage);
@@ -465,8 +470,17 @@ public class UserController {
 		request.setCharacterEncoding("utf-8");
 		JSONObject job = (JSONObject)new JSONParser().parse(param);
 		int s_no = Integer.parseInt(((String)job.get("s_no")));
-		System.out.println(s_no);
 		userService.deleteUserSchedule(s_no);
+		return new ResponseEntity<String>("success", HttpStatus.OK);
+	}
+	// 운동스케줄 수정
+	@RequestMapping(value="/uscheduleModify.do")
+	public ResponseEntity<String> userScheduleModifyMethod(HttpServletRequest request, @RequestBody String param) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		JSONObject job = (JSONObject)new JSONParser().parse(param);
+		int s_no = Integer.parseInt(((String)job.get("s_no")));
+		String content = (String)job.get("content");
+		userService.updateUserSchedule(s_no, content);
 		return new ResponseEntity<String>("success", HttpStatus.OK);
 	}
 	

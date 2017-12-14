@@ -198,4 +198,12 @@ public class UserServiceImpl implements UserService {
 	public void deleteUserSchedule(int s_no) {
 		userDao.deleteUserSchedule(s_no);
 	}
+
+	@Override
+	public void updateUserSchedule(int s_no, String content) {
+		HashMap<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("s_no", s_no);
+		parameters.put("content", content);
+		userDao.updateuserSchedule(parameters);
+	}
 }

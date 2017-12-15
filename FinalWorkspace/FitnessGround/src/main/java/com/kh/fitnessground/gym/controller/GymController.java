@@ -285,7 +285,7 @@ public class GymController {
 		
 		@RequestMapping(value="findpublic.do")
 		@ResponseBody
-		public ModelAndView findPublic(ModelAndView mv, @RequestParam("page") int page)
+		public ModelAndView findPublic(ModelAndView mv, @RequestParam("ppage") int page)
 		{
 			int currentPage = page;
 			
@@ -310,12 +310,12 @@ public class GymController {
 			System.out.println("endPage = " + endPage);
 			System.out.println(list);
 
-			map.put("currentPage", currentPage);
-			map.put("listCount", listCount);
-			map.put("maxPage", maxPage);
-			map.put("startPage", startPage);
-			map.put("endPage", endPage);
-			map.put("limit", limit);
+			map.put("pcurrentPage", currentPage);
+			map.put("plistCount", listCount);
+			map.put("pmaxPage", maxPage);
+			map.put("pstartPage", startPage);
+			map.put("pendPage", endPage);
+			map.put("plimit", limit);
 
 			JSONObject sendjson = new JSONObject(); // 전송용 최종 객체
 			JSONArray jar = new JSONArray();

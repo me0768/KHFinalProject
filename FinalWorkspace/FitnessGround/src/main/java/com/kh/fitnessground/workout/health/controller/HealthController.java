@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,8 +36,8 @@ public class HealthController {
 		return mv;
 	}
 	
-	//헬스
-	@RequestMapping(value="/part.do")	//부위별 카테고리 ajax 통신 들어오는 카테고리에 따라서 리스트 뿌리기
+	//헬스 (부위별 영상)
+	@RequestMapping(value="/part.do")	
 	public void selectCategorytListMethod(Health health,HttpServletResponse response) throws IOException{
 		
 				
@@ -89,15 +90,13 @@ public class HealthController {
 	
 		
 		
-	//관리자 youtube 에서 플레이리스트 동영상
+	//맨몸운동
+		
+	//맨몸운동 페이지 이동 
 	
-	
-	
-	//다양한 헬스운동 페이지 이동 
-	
-	@RequestMapping(value="/youtubePlaylistView.do")
+	@RequestMapping(value="/homeTraning.do")
 	public String playListView(){
-		return "/workout/playlistview";
+		return "/workout/homeTraning";
 	}
 	
 	@RequestMapping(value="/playListinsert.do")	//input 태그에 playlist 값 입력 하면 db에 데이터를 넣어야됨..	//미향 부분 view 페이지 보고 참조...
@@ -177,29 +176,29 @@ public class HealthController {
 	//댓글 insert 날짜 데이터..
 	@RequestMapping(value="/insertReply.do",method=RequestMethod.POST)
 	public void insertComment(Comment comment){
-		//db엔 날짜 들어감 insert 할때 Date 타입 sysdate로 insert
-		//select 할때 to_char()로 문자열로 가져옴
-		System.out.println("가져온 날짜 : " + comment.getReply_date()); //null
-			
-		//datebase 엔 insert 가 되는데 mapper 을 사용해서 자동 매칭이 안됨
-		//resultMap 새로 만들어보기..
-
-			
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd, HH시mm분ss초");
 	
-		healthService.insertComment(comment);
+			
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String strDate = sdf.format(Calendar.getInstance().getTime());	//현재 날짜..
+			
+		java.sql.Date sqlDate = java.sql.Date.valueOf(strDate);
+		
+		System.out.println(sqlDate);
+		
+		comment.setReply_date(sqlDate);
+		comment.setStringReplyDate(strDate);
+		
+		
+		System.out.println("comment : "+comment);
+				
+		healthService.insertComment(comment);	//sqlDate 형식으로 insert 했음
+		//select 해 욜떄 null 로 나옴
 				
 		ArrayList<Comment> selectCommentList = healthService.selectCommentList(comment.getV_no());
 		System.out.println("selectCommentList" + selectCommentList);
 		
+				
 		
-		
-		
-		
-		
-		for(int i=0; i<selectCommentList.size();i++){
-			System.out.println("날짜 : " + selectCommentList.get(i).getReply_date());
-		}
 	}
 		
 	

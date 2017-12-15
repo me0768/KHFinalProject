@@ -23,17 +23,21 @@
 		<result property="readcount" column="readcount"/>	
 	</resultMap>
 	
+	<!-- 네이버 헬스 동영상 하나 select -->
 	<select id="selectOneWorkout" parameterType ="_int" resultType="Health" resultMap="resultWorkOut">
 		<![CDATA[
 			select * from tb_video_board where v_no = #{v_no}
 		]]>
 	</select>
+	
+	<!-- 부위별 영상 select -->
 	<select id="selectCategoryList" parameterType = "health" resultType="list" resultMap="resultCategoryList">
 		<![CDATA[
 			select * from tb_video_board where category1 = #{category1} and category2 like '%' ||#{category2}|| '%'
 		]]>
 	</select>
 	
+	<!-- 조회수 증가 처리 -->
 	<update id="addReadCount" parameterType="int">
 		<![CDATA[
 			update tb_video_board set readcount = readcount+1 where v_no =#{v_no}

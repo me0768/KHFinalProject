@@ -50,8 +50,6 @@ public class HealthDao {
 	}
 
 	public void insertComment(Comment comment) {
-		System.out.println("Dao Date Type: " + comment.getReply_date());
-		System.out.println("Dao String Type : " + comment.getStringReplyDate());
 		sqlSession.insert("comment.insertComment",comment);
 		
 	}

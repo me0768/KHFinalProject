@@ -146,12 +146,12 @@
 			data : {"v_no" : v_no},
 			success:function(data){
 				var values="";
-				
+				console.log(data.commentList);
 				//스크롤 바로 수정 해야함
 				for(var i =0; i<data.commentList.length;i++){
-					values += "<hr>" +"작성자 : " + data.commentList[i].name + "내용: " + data.commentList[i].content+ " 날짜 : " + data.commentList[i].reply_date
+					values += "<hr>" +"작성자 : " + data.commentList[i].name + "내용: " + data.commentList[i].content+ " 날짜 : " + data.commentList[i].stringReplyDate
 					
-					if(user_no==data.commentList[i].user_no){
+					if(user_no==data.commentList[i].user_no){ //내가 쓴 댓글 삭제
 						
 						values+="<button class='btn btn-primary' type='submit' onclick ='deleteComment("+ v_no +")'>삭제</button><hr>"+
 								"<input type='hidden' id='vb_no' value="+data.commentList[i].vb_no+">"

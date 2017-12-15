@@ -66,8 +66,6 @@ public class HealthServiceImpl implements HealthService{
 	//댓글 insert
 	@Override
 	public void insertComment(Comment comment) {
-		System.out.println("Service Date Type: " + comment.getReply_date());
-		System.out.println("Service String Type : " + comment.getStringReplyDate());
 		healthDao.insertComment(comment);
 		
 	}

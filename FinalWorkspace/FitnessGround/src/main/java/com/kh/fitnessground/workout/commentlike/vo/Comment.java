@@ -96,8 +96,10 @@ public class Comment {
 	@Override
 	public String toString() {
 		return "Comment [vb_no=" + vb_no + ", v_no=" + v_no + ", user_no=" + user_no + ", content=" + content
-				+ ", nickname=" + nickname + ", name=" + name + ", reply_date=" + reply_date + "]";
+				+ ", nickname=" + nickname + ", name=" + name + ", reply_date=" + reply_date + ", stringReplyDate="
+				+ stringReplyDate + "]";
 	}
+
 	
 		
 		

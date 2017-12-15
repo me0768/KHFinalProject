@@ -82,11 +82,63 @@
 		padding: 0px;
 		margin-bottom: 0px;
 	}
+	
+	.list-group > #list-item2{
+		padding: 0px;
+		margin-right: 20px;
+	}
+	
+	.list-group > #list-item1{
+		margin-right: 20px;
+	}
+	
+	#list-item1 {
+		font-weight: bold;
+	}
+	
+	#comment {
+		height: 500px;
+		margin-bottom: 20px;
+	}
+	
+	.btn-holder {
+	text-align: center;
+	margin: 10px 0 10px 0;
+	}
+	
+	#calendar table {
+		border-collapse: collapse;
+		text-align: center;
+	}
+	
+	#calendar table thead td {
+		height: 30px;
+		font-weight: bold;
+	}	
+	
+	#calendar table td {
+		border: solid 1px #000;
+	}
+	
+	#calendar table td.date-cell {
+		height: 55px;
+	}
+	
+	#calendar table td.sun {
+		color: red;
+	}
+	
+	#calendar table td.sat {
+		color: blue;
+	}
+	
+	#calendar table td.not-this-month {
+		background: #ddd;
+		color: #999;
+	}
 </style>
 
 <c:import url="../include/common/headend.jsp" />
-
- <script type="text/javascript" src="/fitnessground/resources/js/gym/detailgym.js"></script>  
 
 <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=G0XI103VNKmTZuGNcR9G&submodules=geocoder"></script>
 
@@ -107,14 +159,12 @@
 		<nav id="navbar-example" class="navbar navbar-default navbar-static" role="navigation">
 			<div class="navbar form-control" id="anchor">
 			    <ul class="nav nav-tabs" role="tablist">
-			      <li class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><a href="#" onclick="return scrollmove(1);">헬스장 정보</a></li>
-			      <li class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><a href="#" onclick="return scrollmove(2);">헬스장 일정</a></li>
-			      <li class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><a href="#" onclick="return scrollmove(3);">헬스장 위치</a></li>
+			      <li class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><a href="#" onclick="return scrollmove(1);"><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;정보</a></li>
+			      <li class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><a href="#" onclick="return scrollmove(2);"><i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;일정</a></li>
+			      <li class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><a href="#" onclick="return scrollmove(3);"><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;위치</a></li>
+			      <li class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><a href="#" onclick="return scrollmove(4);"><i class="fa fa-comments-o" aria-hidden="true"></i>&nbsp;후기</a></li>
 			    </ul>
 			 </div>
-			 <script type="text/javascript">
-			      	 
-			 </script>
 		</nav>
 		<div id="contents">
 			<div data-spy="scroll" data-target="#navbar-example" id="scrollView" class="scrollspy-example">
@@ -181,10 +231,10 @@
 							<h6>${ gym.category }</h6>
 						</div>
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<h6 style="font-weight: bold;"><a href="#location"><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;&nbsp;위치</a></h6>
+							<h6 style="font-weight: bold;"><a href="#" onclick="return scrollmove(3);"><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;&nbsp;위치</a></h6>
 						</div>
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top: 5px;">
-							<h6><a href="#location">${ gym.location }</a></h6>
+							<h6><a href="#" onclick="return scrollmove(3);">${ gym.location }</a></h6>
 						</div>
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<h6 style="font-weight: bold;"><i class="fa fa-list-alt" aria-hidden="true"></i>&nbsp;&nbsp;헬스장 소개</h6>
@@ -192,24 +242,56 @@
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top: 5px;" id="gymdesc">
 							<h6>${ gym.description }</h6>
 						</div>
-						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" align="right">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-right: 22px" align="right">
 							<button class="btn btn-danger" <%-- ${ gym.gym_no } --%> >문의하기</button>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;" id="schedule">
-					헬스장 달력<br><br><br><br><br><br><br><br><br><br><br><br>
+					<ul class="list-group">
+					 	 <li class="list-group-item" id="list-item1"><h4><i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;&nbsp;일정</h4></li>
+					 	 <li class="list-group-item" id="list-item2" style="padding-left: 20px; padding-right: 20px; height: 480px;">
+					 	 	<div>
+								<div class='btn-holder'>
+									<button id='btnPrev' class="btn btn-danger">&lt;</button>
+								 	<span id='currentDate'></span> 
+									<button id='btnNext' class="btn btn-danger">&gt;</button>
+								</div>
+								<div id="calendar"></div>
+							</div>
+						</li>
+					</ul>
 					<!-- 달력 -->
 				</div>
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;" id="location">
 					<!-- 지도 -->
-					헬스장 지도
-					<br><br><br><br><br><br><br><br><br><br><br><br><br><br>dd
+					<input type="hidden" id="jsgym_name" value="${ gym.gym_name }">
+					<input type="hidden" id="jscategory" value="${ gym.category }">
+					<input type="hidden" id="jstel" value="${ gym.tel }">
+					<input type="hidden" id="jsphone" value="${ gym.phone }">
+					<input type="hidden" id="jsdesc" value="${ gym.description }">
+					<input type="hidden" id="address" value="${ gym.location }">
+					
+					<ul class="list-group">
+					  <li class="list-group-item" id="list-item1"><h4><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;&nbsp;위치</h4></li>
+					  <li class="list-group-item" id="list-item2">
+					  	<div id="map" style="width:100%;height:480px;">
+						<!-- 지도 api 위치 -->
+						</div>
+					  </li>
+					</ul>
+				</div>
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;" id="comment">
+					<!-- 헬스장 댓글부분 -->
+					헬스장 댓글부분
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript" src="/fitnessground/resources/js/gym/detailgym.js"></script>  
+<script type="text/javascript" src="/fitnessground/resources/js/gym/gymdetailcalendar.js"></script>
 	
 <c:import url="../include/main/footer.jsp" />
 

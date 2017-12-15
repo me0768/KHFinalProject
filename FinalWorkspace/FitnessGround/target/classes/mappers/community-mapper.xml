@@ -10,8 +10,8 @@
 		<result property="name" column="NAME" />
 		<result property="title" column="TITLE" />
 		<result property="content" column="CONTENT" />
-		<result property="meeting_date" column="MEETING_DATE" />
-		<result property="upload_date" column="UPLOAD_DATE" />
+		<result property="meeting_date" column="MEETING_DATE" jdbcType="DATE" javaType="java.sql.Date"/>
+		<result property="upload_date" column="UPLOAD_DATE" jdbcType="DATE" javaType="java.sql.Date"/>
 		<result property="readcount" column="READCOUNT" />
 	</resultMap>
 	
@@ -22,7 +22,7 @@
       <result property="title" column="TITLE" />
       <result property="content" column="CONTENT" />
       <result property="board_property" column="BOARD_PROPERTY"/>
-      <result property="upload_date" column="UPLOAD_DATE" />
+      <result property="upload_date" column="UPLOAD_DATE" jdbcType="DATE" javaType="java.sql.Date"/>
       <result property="readcount" column="READCOUNT" />
    </resultMap>   
    
@@ -31,7 +31,7 @@
       <result property="mb_no" column="MB_NO" />
       <result property="content" column="CONTENT" />
       <result property="user_no" column="USER_NO" />
-      <result property="reply_date" column="REPLY_DATE" />
+      <result property="reply_date" column="REPLY_DATE" jdbcType="DATE" javaType="java.sql.Date"/>
    </resultMap>
    
    <resultMap id="MyPageCommunity" type="ComAndMeet">
@@ -70,10 +70,19 @@
 	</update>
 	
 	<!-- 운동같이해요전체리스트select -->
-	<select id="meetingListView" resultType="list" resultMap="MeetingResult">
-		<![CDATA[select a.*, b.name from tb_meeting_board a join tb_user b on(a.user_no = b.user_no) order by mb_no desc]]>
+	<select id="meetingListView" resultType="list" resultMap="MeetingResult" parameterType="hashmap">
+		<![CDATA[
+		select * from(select rownum rnum, T.* from tb_meeting_board T) a join tb_user b on(a.user_no = b.user_no)
+		where a.rnum >= #{startRow} and a.rnum <= #{endRow} order by mb_no desc
+		]]>
 	</select>
 	
+	<!-- 게시글 개수 -->
+	<select id="getMeetingListCount" resultType="_int" parameterType="_int">
+		<![CDATA[
+			select count(*) from tb_meeting_board
+		]]>
+	</select>
 	<!-- 운동같이해요디테일 -->
 	<select id="selectDetail" resultType="Meeting" resultMap="MeetingResult">
 		<![CDATA[select a.*, b.name from tb_meeting_board a join tb_user b on(a.user_no = b.user_no) where mb_no=#{mb_no}]]>
@@ -100,11 +109,10 @@
 	</update> 
 	
 	<!--  운동같이해요 검색기능 -->
-	 <select id="searchList" parameterType="Meeting" resultMap="MeetingResult">
+	 <select id="meetingSearchList" parameterType="Meeting" resultMap="MeetingResult">
 		<![CDATA[select * from (select mb_no, name, title, meeting_date, upload_date, readcount from tb_meeting_board a
 				join tb_user b on(a.user_no = b.user_no) where ${searchOption} like '%'||#{searchKey}||'%' order by mb_no desc)]]>
 	</select>
-
 
 	<!--  게시글 갯수 -->
 	<select id="countOption" resultType="_int">
@@ -138,8 +146,17 @@
 	<!-- ======================================qna게시판====================================================== -->
 	<!--  qna 게시판 메인 -->
 	<select id="qnaListView" resultType="list" resultMap="CommunityResult">
-		<![CDATA[select a.*, b.name from tb_com_board a join tb_user b on(a.user_no = b.user_no) order by cb_no desc]]>
+		<![CDATA[select * from(select rownum rnum, T.* from tb_com_board T) a join tb_user b on(a.user_no = b.user_no)
+		where a.rnum >= #{startRow} and a.rnum <= #{endRow} order by cb_no desc]]>
 	</select>	
+	
+	<!-- 게시글 개수 -->
+	<select id="getQnAListCount" resultType="_int" parameterType="_int">
+		<![CDATA[
+				select count(*) from tb_com_board where board_property = 1
+		]]>
+	</select>
+	
 	<!--  qna 게시판 글쓰기 -->
 	<insert id="insertQnA" parameterType="Community" flushCache="true"
 		statementType="PREPARED" useGeneratedKeys="true" >
@@ -167,11 +184,31 @@
 	<![CDATA[update tb_com_board set readcount = readcount +1 where cb_no =#{cb_no}]]>
 	</update>
 	
+	<!--  커뮤니티게시글 갯수 -->
+	<select id="communityCountList" resultType="_int">
+		<![CDATA[select count(*) from tb_com_board where ${searchOption} like '%'||#{searchKey}||'%']]>
+	</select>
+	
+	
 	<!-- ======================================리뷰 게시판====================================================== -->
 	<!-- 리뷰게시판 메인 -->
-	<select id="reviewListView" resultType="list" resultMap="CommunityResult">
-		<![CDATA[select a.*, b.name from tb_com_board a join tb_user b on(a.user_no = b.user_no) order by cb_no desc]]>
+	<!-- <select id="reviewListView" resultType="list" resultMap="CommunityResult">
+		<![CDATA[select * from (select cb_no, name, title, upload_date, readcount from tb_com_board a
+				join tb_user b on(a.user_no = b.user_no) where ${searchOption} like '%'||#{searchKey}||'%' order by cb_no desc)]]>
 	</select>
+ -->
+	<select id="reviewListView" resultType="list" resultMap="CommunityResult">
+		<![CDATA[select * from(select rownum rnum, T.* from tb_com_board T) a join tb_user b on(a.user_no = b.user_no)
+		where a.rnum >= #{startRow} and a.rnum <= #{endRow} order by cb_no desc]]>
+	</select>
+	
+	<!-- 게시글 개수 -->
+	<select id="getReviewListCount" resultType="_int" parameterType="_int">
+		<![CDATA[
+			select count(*) from tb_com_board where board_property = 0
+		]]>
+	</select>
+
 	
 	<!-- 리뷰게시판 디테일 -->
 	<select id="reviewDetail" resultType="Community" resultMap="CommunityResult">
@@ -205,9 +242,9 @@
 	 </insert> 
 	    
     <!-- 댓글 목록 -->
-    <select id="meetingCommentList" resultType="MeetingComment">
-        <![CDATA[SELECT a.*, b.name from tb_mb_comment a join tb_user b on(a.user_no = b.user_no)
-		where a.user_no = b.user_no and mb_no = 1 order by mbc_no]]>
+    <select id="MeetingCommentList" resultType="MeetingComment">
+        <![CDATA[select mbc_no, mb_no, content, b.name, reply_date from tb_mb_comment a
+        join tb_user b on (a.user_no = b.user_no) order by mbc_no]]>
     </select>
 	 
 	

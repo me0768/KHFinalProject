@@ -25,7 +25,7 @@ public interface CommunityBoardService {
 			//게시글 조회수
 			void meetingCount(int no, HttpServletRequest request);
 			//목록
-			ArrayList<MeetingBoard> meetingListView();
+			ArrayList<MeetingBoard> meetingListView(int currentPage, int limit);
 			//등록
 			int meetingInsert(MeetingBoard meetingboard);
 			//삭제
@@ -39,10 +39,10 @@ public interface CommunityBoardService {
 			//찾기
 			List<MeetingBoard>	meetingSearch(String searchOption, String searchKey);
 			//게시글 갯수
-			int countOption(String searchOption, String searchKey);
+			int getMeetingListCount();
 		//운동같이해요 게시판 댓글
 			//댓글 불러오기
-			 List<MeetingComment> meetingCommentList(int mno);
+			 List<MeetingComment> meetingCommentList(int mc_no);
 			//댓글 입력
 			 void insertMeetingComment(MeetingComment meetingComment);
 			//댓글 삭제
@@ -50,8 +50,8 @@ public interface CommunityBoardService {
 			//댓글 수정
 			 void updateMeetingComment(MeetingComment meetingComment);
 		//리뷰 게시판
-			//목록
-				ArrayList<CommunityBoard> reviewListView();
+			//목록,검색
+				List<CommunityBoard> reviewListView(int currentPage, int limit, String searchOption, String searchKey);
 				//등록
 				int reviewInsert(CommunityBoard communityboard);
 				//삭제
@@ -62,8 +62,8 @@ public interface CommunityBoardService {
 				int reviewUpdatePage(CommunityBoard community);
 				//디테일
 				CommunityBoard reviewDetail(int no);
-				//찾기
-				ArrayList<CommunityBoard> reviewSearch(int page, int limit,String findType, String searchKey);
+				//게시글 갯수
+				int getReviewListCount();
 			
 		//리뷰 게시판 댓글
 				//댓글 불러오기
@@ -79,7 +79,7 @@ public interface CommunityBoardService {
 				//게시글 조회수
 					void communityCount(int no, HttpServletRequest request);
 				//목록
-					ArrayList<CommunityBoard> qnaListView();
+					List<CommunityBoard> qnaListView(int currentPage, int limit, String searchOption, String searchKey);
 					//등록
 					int qnaInsert(CommunityBoard communityboard);
 					//삭제
@@ -90,9 +90,8 @@ public interface CommunityBoardService {
 					int qnaUpdatePage(CommunityBoard community);
 					//디테일
 					CommunityBoard qnaDetail(int no);
-					//찾기
-					ArrayList<CommunityBoard> qnaSearch(int page, int limit,String findType, String searchKey);
-			
+					//게시글 갯수
+					int getQnAListCount();
 		//qna 게시판 댓글	
 					//댓글 불러오기
 					 ArrayList<CommunityComment> qnaCommentList(int mbc_no);
@@ -102,6 +101,9 @@ public interface CommunityBoardService {
 					 void deleteQnAComment(int mbc_no, int mb_no, int user_no);
 					//댓글 수정
 					 void updateQnAComment(int mb_no, int mbc_no, int user_no, String content);
+					
+					
+					
 				
 				
 }

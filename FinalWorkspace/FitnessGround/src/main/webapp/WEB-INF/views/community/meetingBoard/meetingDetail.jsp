@@ -56,11 +56,21 @@
    <a href="meeting.do" class="btn">목록</a><br>
     </div>
    <!-- =========================댓글 쓰는 공간================================== -->
-    <p>----------Comment---------</p>   
+    <p>댓글</p><hr> 
+    <div id="meeting_comment_list">
     
-  
-
-
+    
+    </div>  
+	
+	
+	<div id="meeting_comment_insert">
+		${sessionScope.user.name}
+		<input type="text" id="input_meeting" placeholder="댓글을 입력하세요">
+		<button type="submit" id="meetingCommentBtn" class="btn">댓글입력</button>
+	</div>
+	
+	<hr>
+	
        
     <c:import url="../../include/main/footer.jsp" />
     <c:import url="../../include/common/end.jsp" />

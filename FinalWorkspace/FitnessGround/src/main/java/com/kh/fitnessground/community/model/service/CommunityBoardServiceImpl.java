@@ -1,6 +1,7 @@
 package com.kh.fitnessground.community.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -50,9 +51,15 @@ public class CommunityBoardServiceImpl implements CommunityBoardService {
 	
 
 	@Override
-	public ArrayList<MeetingBoard> meetingListView() {
-		// TODO Auto-generated method stub
-		return communityBoardDao.meetingListView();
+	public ArrayList<MeetingBoard> meetingListView(int currentPage, int limit) {
+		HashMap<String, Object> parameters = new HashMap<String, Object>();
+		int startRow=(currentPage - 1) * limit + 1;
+		int endRow=startRow + limit - 1;
+		
+		parameters.put("startRow", startRow);
+		parameters.put("endRow", endRow);
+		
+		return communityBoardDao.meetingListView(parameters);
 	}
 
 	@Override
@@ -89,16 +96,17 @@ public class CommunityBoardServiceImpl implements CommunityBoardService {
 	}
 	
 	@Override
-	public int countOption(String searchOption, String searchKey){
-		return communityBoardDao.countOption(searchOption, searchKey);
+	public int getMeetingListCount() {
+		
+		return communityBoardDao.getMeetingListCount();
 	}
 	
 	//운동같이해요 게시판 댓글 ------------------------------------------------------------------------
 
 	 // 댓글 목록
     @Override
-    public List<MeetingComment> meetingCommentList(int mno) {
-        return communityBoardDao.meetingCommentList(mno);
+    public List<MeetingComment> meetingCommentList(int mc_no) {
+        return communityBoardDao.meetingCommentList(mc_no);
     }
     // 댓글 작성
     @Override
@@ -122,8 +130,18 @@ public class CommunityBoardServiceImpl implements CommunityBoardService {
 
 	//리뷰 게시판---------------------------------------------------------------------------------------------------------------
 	@Override
-	public ArrayList<CommunityBoard> reviewListView() {
-		return communityBoardDao.reviewListView();
+	public List<CommunityBoard> reviewListView(int currentPage, int limit, String searchOption, String searchKey) {
+		HashMap<String, Object> parameters = new HashMap<String, Object>();
+		int startRow=(currentPage - 1) * limit + 1;
+		int endRow=startRow + limit - 1;
+		
+		parameters.put("startRow", startRow);
+		parameters.put("endRow", endRow);
+		parameters.put("searchOption", searchOption);
+		parameters.put("searchKey", searchKey);
+		
+		
+		return communityBoardDao.reviewListView(parameters);
 	}
 
 	@Override
@@ -152,13 +170,14 @@ public class CommunityBoardServiceImpl implements CommunityBoardService {
 		// TODO Auto-generated method stub
 		return communityBoardDao.reviewDetail(no);
 	}
-
+	
 	@Override
-	public ArrayList<CommunityBoard> reviewSearch(int page, int limit, String findType, String searchKey) {
-		// TODO Auto-generated method stub
-		return communityBoardDao.reviewSearch(page, limit, findType, searchKey);
+	public int getReviewListCount() {
+		
+		return communityBoardDao.getReviewListCount();
 	}
-
+	
+	//=================================================================================================
 	
 	//리뷰게시판 댓글
 	@Override
@@ -190,10 +209,20 @@ public class CommunityBoardServiceImpl implements CommunityBoardService {
 		 communityBoardDao.communityCount(no);
 	}
 	@Override
-	public ArrayList<CommunityBoard> qnaListView() {
-		return communityBoardDao.qnaListView();
+	public List<CommunityBoard> qnaListView(int currentPage, int limit, String searchOption, String searchKey) {
+		HashMap<String, Object> parameters = new HashMap<String, Object>();
+		int startRow=(currentPage - 1) * limit + 1;
+		int endRow=startRow + limit - 1;
+		
+		parameters.put("startRow", startRow);
+		parameters.put("endRow", endRow);
+		parameters.put("searchOption", searchOption);
+		parameters.put("searchKey", searchKey);
+		
+		
+		return communityBoardDao.qnaListView(parameters);
 	}
-
+	
 	@Override
 	public int qnaInsert(CommunityBoard communityboard) {
 		// TODO Auto-generated method stub
@@ -220,12 +249,15 @@ public class CommunityBoardServiceImpl implements CommunityBoardService {
 		// TODO Auto-generated method stub
 		return communityBoardDao.qnadDetail(no);
 	}
-
+	
 	@Override
-	public ArrayList<CommunityBoard> qnaSearch(int page, int limit, String findType, String searchKey) {
-		// TODO Auto-generated method stub
-		return communityBoardDao.qnaSearch(page, limit, findType, searchKey);
+	public int getQnAListCount() {
+		
+		return communityBoardDao.getQnAListCount();
 	}
+
+	//==============================================댓글==================================================
+	
 	//qna 게시판 댓글
 	@Override
 	public ArrayList<CommunityComment> qnaCommentList(int mbc_no) {
@@ -250,6 +282,8 @@ public class CommunityBoardServiceImpl implements CommunityBoardService {
 		// TODO Auto-generated method stub
 		communityBoardDao.updateQnAComment(mb_no, mbc_no, user_no, content);
 	}
+
+	
 
 	
 }

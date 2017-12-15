@@ -130,7 +130,77 @@
 		function write() {
 			location.href = "qnaInsert.do";
 			}
-	</script>
+		function qnaLoadList(page)
+		{
+			$.ajax({
+				url:"qnaLoadList.do",
+				type:"post",
+				dataType:"json",
+				data: {"page":page},
+				success: function(data){
+					console.log(data.currentPage);
+					console.log(data.maxPage);
+					console.log(data.list);
+					var jsonStr = JSON.stringfy(data);
+					
+			var json = JSON.parse(jsonStr);
+			
+			var values = "";
+			
+			for(var i in json.list)
+				{
+			 	
+				values += "<tr><td>" + json.list[i].cb_no
+										+ "</td>"
+										+ "<td><a href='qnaDetail.do?no="
+										+ json.list[i].cb_no + "'>"
+										+ json.list[i].title + "</a></td><td>"
+										+ json.list[i].name + "</td><td>"
+										+ json.list[i].upload_date
+										+ "</td><td>" + json.list[i].readcount
+										+ "</td></tr>";
+
+				}
+			
+				$("qnalist").html(values);
+				
+				var valuesPaging="";
+				
+				if(data.currentPage <= 1){
+					valuesPaging+=" <li class='disabled'>" +
+				    "<a href='#' aria-label='Previous'>" +
+	                "<span aria-hidden='true'>&laquo;</span></a></li>";
+				}  else {
+	            	valuesPaging += "<li><a href='javascript:qnaLoadList(" + (data.currentPage - 1) + ")'  aria-label='Previous'>"
+		             + "<span aria-hidden='true'>&laquo;</span></a></li>";
+	           	}
+				
+				for(var i = data.startPage; i<=data.endPage; i++)
+					{
+						if(data.currentPage == i)
+							{
+							  valuesPaging+="<li class='disabled'>"+"<a href='#'>"+ i + "</a></li>";
+			        		} else {
+			        			 valuesPaging+="<li><a href='javascript:qnaLoadList(" + i + ")'>"+ i + "</a></li>";
+			        		}
+					}
+				
+				if(data.currentPage >= data.maxPage)
+					{
+					valuesPaging+= "<li class='disabled'>" + 
+		            "<a href='#' aria-label='Next'>"+
+		                "<span aria-hidden='true'>&raquo;</span></a></li>";
+		            } else {
+		            	valuesPaging += "<li><a href='javascript:qnaLoadList(" + (data.currentPage + 1)+ "') aria-label='Next'>" +
+		                "<span aria-hidden='true'>&raquo;</span></a></li>";
+		            }
+				
+				$("#qnapaging").html(valuesPaging);
+							}
+						
+					});
+				}
+			</script>
 
 
 <br><br>
@@ -144,20 +214,22 @@
 <br>
 <div id="community_search_div" align="left">
 			<div align="left">
-			<form class="form-group" role="form" action="#" method="get" >
-				<select class="btn" name="searchValue" id="findType">
-					<option value="findTitle">제목</option>
-					<option value="findWriter">글쓴이</option>
-					<option value="findCategory">카테고리</option>
+			<form class="form-group" name="form1" role="form" action="qna.do" method="post" >
+				<select class="btn" name="searchOption" id="findType">
+					<option value="title"<c:out value="${map.searchOption == 'title'?'selected':''}"/> >제목</option>
+<!-- 이름으로 해야함..--><option value="cb_no"<c:out value="${map.searchOption == 'cb_no'?'selected':''}"/> >이름</option>
+					<option value="content"<c:out value="${map.searchOption == 'content'?'selected':''}"/> >내용</option>
 				</select> 
-				<input name ="searchValue" type="search" id="searchKey" placeholder="검색어를 입력해주세요 " class="btn2">
-				<button type="submit" id="searchSubmit" value="검색" class="btn">검색</button><br>
-							
-			</form>				
+				<input name ="searchKey"   id="searchKey" value="${map.searchKey}" placeholder="제목으로 검색" class="form-control">
+				<button type="submit" value="검색" class="btn">검색</button><br>
+			
+			</form>
+				
 				<c:if test="${sessionScope.user.name != null }">
 				<a href="qnaInsert.do" class="btn" id="write">글쓰기</a>					
 				</c:if>
-				
+
+	<h1>게시물 갯수:${qna.listCount}개</h1>				
 </div>
 </div>
 <div id="community_table_div">
@@ -178,9 +250,9 @@
       <th scope="col">조회수</th>
     </tr>
  
-  <tbody>
+  <tbody id="qnalist">
  
-	<c:forEach items="${list }" var="cm"> 
+	<c:forEach items="${qna.list }" var="cm"> 
 		<c:if test="${cm.board_property == 1}">
     <tr>
       <td>${cm.cb_no}</td>
@@ -195,10 +267,58 @@
   
   </tbody>
 </table>
+<div id="paging">
+	<nav>
+	 <ul class="pagination" id="qnapaging">
+	 	<c:if test="${qna.currentPage <= 1}">
+	 	<li class = "disabled">
+	 	 <a href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    </c:if>
+    
+     <c:if test="${qna.currentPage > 1}">
+    <li>
+      <a href="javascript:qnaLoadList(${qna.currentPage - 1})" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    </c:if>
+    
+    <c:forEach var="i" begin="${qna.startPage}" end="${qna.endPage}" step="1">
+    <c:if test="${qna.currentPage eq i}">
+    	<li class="disabled"><a href="#">${i}</a></li>
+    </c:if>
+    
+    <c:if test="${qna.currentPage ne i}">
+    	<li><a href='javascript:qnaLoadList(${i})'>${i}</a></li>
+    </c:if>
+    
+    </c:forEach>
+    
+    <c:if test="${qna.currentPage >= qna.maxPage}">
+     <li class="disabled">
+    <a href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+       </li>
+    </c:if>
+    
+    <c:if test="${qna.currentPage < qna.maxPage}">
+     <li>
+    <a href='javascript:qnaLoadList(${qna.currentPage + 1})' aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+       </li>
+    </c:if>
+   
+  </ul>
+</nav>
+
 </div>
-<div> 
-여기는 페이지 처리 해야해 도영...
 </div>
+
 
     <c:import url="../../include/main/footer.jsp" />
     <c:import url="../../include/common/end.jsp" />

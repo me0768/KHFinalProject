@@ -86,7 +86,6 @@
 	table#community_table td {
 		white-space: nowrap;
 		overflow: hidden;
-		text-overflow: ellipsis;
 	}
 </style>
 	
@@ -94,7 +93,7 @@
 	<c:import url="../../include/common/headend.jsp" />
     
    
-	<div id="page-wrapper">
+	 <div id="page-wrapper">
 		<!-- Header -->
 		<div id="mypage_header">
             <!-- Nav -->
@@ -124,12 +123,81 @@
 			$("#write").on("click", function(e){
 				e.preventDefault();
 				write();
-			})
-		})
+			});
+		});
+		
 		function write() {
 			location.href = "meetingInsert.do";
-			}
+		}
+		
+		function meetingLoadList(page)
+		{
+			$.ajax({
+				url:"meetingLoadlist.do",
+				type: "post",
+				dataType: "json",
+				data: {"page":page},
+				success: function(data)
+				{
+					console.log(data.currentPage);
+					console.log(data.maxPage);
+					console.log(data.list);
+					var jsonStr = JSON.stringify(data);
+                    
+		            var json = JSON.parse(jsonStr);
+		            
+		            var values = "";
+		            
+		            for(var i in json.list)
+		            {
+		            	values += "<tr><td>" + json.list[i].mb_no + "</td>"+ "<td><a href='meetingDetail.do?no=" + json.list[i].mb_no + "'>" +
+		            			json.list[i].title + "</a></td><td>" + json.list[i].name + "</td><td>" +
+		            			json.list[i].meeting_date + "</td><td>" + 
+		            			json.list[i].upload_date + "</td><td>" 
+		            			+ json.list[i].readcount + "</td></tr>";
+		            }
+		            
+		            $("#meetinglist").html(values);
+					
+		            var valuesPaging="";
+		            
+		            if(data.currentPage <= 1){
+		            	valuesPaging+="<li class='disabled'>" + 
+			              "<a href='#' aria-label='Previous'>" +
+			                "<span aria-hidden='true'>&laquo;</span></a></li>";
+		            } else {
+		            	valuesPaging += "<li><a href='javascript:meetingLoadList(" + (data.currentPage - 1) + ")'  aria-label='Previous'>"
+			             + "<span aria-hidden='true'>&laquo;</span></a></li>";
+		            }
+		            
+		           for(var i = data.startPage; i<=data.endPage; i++)
+		        	{
+		        	   if(data.currentPage == i)
+		        		{
+		        		  valuesPaging+="<li class='disabled'>"+"<a href='#'>"+ i + "</a></li>";
+		        		} else {
+		        			 valuesPaging+="<li><a href='javascript:meetingLoadList(" + i + ")'>"+ i + "</a></li>";
+		        		}
+		
+		        	}
+		           
+		            if(data.currentPage >= data.maxPage)
+		            {
+		            	valuesPaging+= "<li class='disabled'>" + 
+				            "<a href='#' aria-label='Next'>"+
+				                "<span aria-hidden='true'>&raquo;</span></a></li>";
+		            } else {
+		            	valuesPaging += "<li><a href='javascript:meetingLoadList(" + (data.currentPage + 1)+ "') aria-label='Next'>" +
+		                "<span aria-hidden='true'>&raquo;</span></a></li>";
+		            }
+		            
+		            $("#meetingpaging").html(valuesPaging);
+				}
+			});
+		}
+		
 	</script>
+	
 <br><br>
 <h1 align="center">운동같이해요</h1>
 <br>
@@ -156,7 +224,7 @@
 				<a href="meetingInsert.do" class="btn" id="write">글쓰기</a>					
 				</c:if>
 
-	<h1>게시물 갯수:${map.count}개</h1>				
+	<h1>게시물 갯수:${meeting.listCount}개</h1>				
 </div>
 </div>
 <div id="community_table_div">
@@ -179,13 +247,11 @@
       <th>조회수</th>
     </tr>
   
-  <tbody>  	
-	<c:forEach items="${list }" var="cm"> 
+  <tbody id="meetinglist">
+	<c:forEach items="${meeting.list }" var="cm"> 
     <tr>
       <td>${cm.mb_no}</td>
-      <td><a href="meetingDetail.do?no=${cm.mb_no}">${cm.title}</a>
-      
-      </td>
+      <td><a href="meetingDetail.do?no=${cm.mb_no}">${cm.title}</a></td>
       <td>${cm.name}</td>
       <td>${cm.meeting_date}</td>
       <td>${cm.upload_date}</td>
@@ -194,6 +260,58 @@
    </c:forEach>
   </tbody>
 </table>
+<div id="paging">
+	<nav>
+  <ul class="pagination" id="meetingpaging">
+    
+    <c:if test="${meeting.currentPage <= 1}">
+    <li class="disabled">
+      <a href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    </c:if>
+    
+    <c:if test="${meeting.currentPage > 1}">
+    <li>
+      <a href="javascript:meetingLoadList(${meeting.currentPage - 1})" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    </c:if>
+    
+    <c:forEach var="i" begin="${meeting.startPage}" end="${meeting.endPage}" step="1">
+    <c:if test="${meeting.currentPage eq i}">
+    	<li class="disabled"><a href="#">${i}</a></li>
+    </c:if>
+    
+    <c:if test="${meeting.currentPage ne i}">
+    	<li><a href='javascript:meetingLoadList(${i})'>${i}</a></li>
+    </c:if>
+    
+    </c:forEach>
+    
+    <c:if test="${meeting.currentPage >= meeting.maxPage}">
+     <li class="disabled">
+    <a href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+       </li>
+    </c:if>
+    
+    <c:if test="${meeting.currentPage < meeting.maxPage}">
+     <li>
+    <a href='javascript:meetingLoadList(${meeting.currentPage + 1})' aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+       </li>
+    </c:if>
+   
+      
+   
+  </ul>
+</nav>
+</div>
 </div>
 <div>
 여기는 페이지 처리 해야해 도영...

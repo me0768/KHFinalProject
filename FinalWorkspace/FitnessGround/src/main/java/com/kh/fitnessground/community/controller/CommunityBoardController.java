@@ -8,8 +8,11 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -40,13 +43,93 @@ public class CommunityBoardController {
 		
 	//운동같이해요 게시판----------------------------------------------------------------------------------------------------
 				//리스트
-				@RequestMapping(value = "meeting.do", method = RequestMethod.GET)
-				public ModelAndView meetingBoard(HttpServletRequest request) {
+				@RequestMapping(value = "meeting.do")
+				public ModelAndView meetingBoard() {
 					ModelAndView mv = new ModelAndView("community/meetingBoard/meetingBoard");
-					ArrayList<MeetingBoard> list = communityBoardService.meetingListView();
-					mv.addObject("list", list);
+					int currentPage = 1;
+					int limit = 10;
+					
+					ArrayList<MeetingBoard> list = communityBoardService.meetingListView(currentPage, limit);
+							System.out.println("list : " + list);
+					Map<String, Object> map = new HashMap<String, Object>();
+					int listCount = communityBoardService.getMeetingListCount();
+					
+					int maxPage = (int) ((double) listCount / limit + 0.9);
+					 
+					int startPage = (((int) ((double) currentPage / limit + 0.9)) - 1) * limit + 1;
+						
+					int endPage = startPage + limit - 1;
+					
+					 if (maxPage < endPage)
+				            endPage = maxPage;
+					 
+					 map.put("currentPage", currentPage);
+			         map.put("listCount", listCount);
+			         map.put("maxPage", maxPage);
+			         map.put("startPage", startPage);
+			         map.put("endPage", endPage);
+			         map.put("limit", limit);
+			         map.put("list", list);
+
+					mv.addObject("meeting", map);
+					
 					return mv;
 				}
+				
+				@RequestMapping(value = "meetingLoadlist.do")
+				@ResponseBody
+				public ModelAndView meetingLoadList(ModelAndView mv, @RequestParam("page") int page) {
+					// = new ModelAndView("community/meetingBoard/meetingBoard");
+					
+					int currentPage = page;
+					int limit = 10;
+					ArrayList<MeetingBoard> list = communityBoardService.meetingListView(currentPage, limit);
+								
+					Map<String, Object> map = new HashMap<String, Object>();
+					int listCount = communityBoardService.getMeetingListCount();
+					
+					
+					int maxPage = (int) ((double) listCount / limit + 0.9);
+					 
+					int startPage = (((int) ((double) currentPage / limit + 0.9)) - 1) * limit + 1;
+						
+					int endPage = startPage + limit - 1;
+					
+					 if (maxPage < endPage)
+				            endPage = maxPage;
+					 
+					 map.put("currentPage", currentPage);
+			         map.put("listCount", listCount);
+			         map.put("maxPage", maxPage);
+			         map.put("startPage", startPage);
+			         map.put("endPage", endPage);
+			         map.put("limit", limit);
+			         
+			         JSONArray jar = new JSONArray();
+			        
+			         for(MeetingBoard mb : list)
+			         {
+			        	 JSONObject jmb = new JSONObject();
+			        	 jmb.put("mb_no", mb.getMb_no());
+			        	 jmb.put("user_no", mb.getUser_no());
+			        	 jmb.put("title", mb.getTitle());
+			        	 jmb.put("content", mb.getContent());
+			        	 jmb.put("meeting_date", mb.getMeeting_date().toString());
+			        	 jmb.put("upload_date", mb.getUpload_date().toString());
+			        	 jmb.put("readcount", mb.getReadcount());
+			        	 jmb.put("name", mb.getName());
+			        	 jar.add(jmb);
+			        	 
+			         }
+			         
+			        map.put("list", jar);
+			        mv.addAllObjects(map);
+			        
+			        mv.setViewName("jsonView");
+					
+					return mv;
+				}
+				
 				//글쓰기페이지 이동
 				@RequestMapping(value ="meetingInsert.do", method = RequestMethod.GET)
 				public String meetingInsert() {
@@ -114,58 +197,108 @@ public class CommunityBoardController {
 					List<MeetingBoard> list= communityBoardService.meetingSearch(searchOption, searchKey);
 					
 					//갯수
-					int count = communityBoardService.countOption(searchOption, searchKey);
+					int listCount = communityBoardService.getMeetingListCount();
 					ModelAndView mv = new ModelAndView("community/meetingBoard/meetingBoard");
 					mv.addObject("list", list);
-					mv.addObject("count",count);
+					mv.addObject("listCount",listCount);
 					mv.addObject("searchOption", searchOption);
 					mv.addObject("searchKey", searchKey);
 					return mv;
 				}
-				
-			
-		
-	//운동같이해요 댓글----------------------------------------------------------------------------------------
-				// 댓글 입력
-			    @RequestMapping("insertMeetingComment.do")
-			    public void insertMeetingComment(@ModelAttribute MeetingComment meetingComment, HttpSession session){
-			        int user_no = (int) session.getAttribute("user_no");
-			        meetingComment.setUser_no(user_no);
-			        communityBoardService.insertMeetingComment(meetingComment);
-			    }
-			    
-			    // 댓글 목록(@Controller방식 : veiw(화면)를 리턴)
-			    @RequestMapping("meetingCommentList.do")
-			    public ModelAndView meetingCommentList(@RequestParam int mno, ModelAndView mv){
-			        List<MeetingComment> mclist = communityBoardService.meetingCommentList(mno);
-			        // 뷰이름 지정
-			        mv.setViewName("community/meetingBoard/meetingDetail");
-			        // 뷰에 전달할 데이터 지정
-			        mv.addObject("mclist", mclist);
-			        // replyList.jsp로 포워딩
-			        return mv;
-			    }
-			    
-			    // 댓글 목록(@RestController Json방식으로 처리 : 데이터를 리턴)
-			    @RequestMapping("meetingCommentListJson.do")
-			    @ResponseBody // 리턴데이터를 json으로 변환(생략가능)
-			    public List<MeetingComment> meetingCommentListJson(@RequestParam int mno){
-			    	List<MeetingComment> list = communityBoardService.meetingCommentList(mno);
-			        return list;
-			    }
-
-	
 	
 	//qna 게시판-------------------------------------------------------------------------------------------------------
 				//리스트
-				@RequestMapping(value = "qna.do", method = RequestMethod.GET)
-				public ModelAndView qnaBoard(HttpServletRequest request) {
+				@RequestMapping(value = "qna.do")
+				public ModelAndView qnaBoard(@RequestParam(defaultValue="title") String searchOption, 
+												@RequestParam(defaultValue="") String searchKey) {
 					ModelAndView mv = new ModelAndView("community/qnaBoard/qnaBoard");
-					ArrayList<CommunityBoard> list = communityBoardService.qnaListView();					
-					mv.addObject("list", list);
+					int currentPage = 1;
+					int limit = 10;
+					
+					List<CommunityBoard> list= communityBoardService.qnaListView(currentPage, limit, searchOption, searchKey);
+					System.out.println("list = " + list);
+									
+					Map<String, Object> map = new HashMap<String, Object>();
+					//갯수
+					int listCount = communityBoardService.getQnAListCount();
+					
+					int maxPage = (int) ((double) listCount / limit + 0.9);
+					
+					int startPage = (((int) ((double) currentPage / limit + 0.9)) -1) * limit + 1;
+					
+					int endPage = startPage + limit - 1;
+					
+					if(maxPage < endPage)
+						endPage = maxPage;
+					
+					map.put("currentPage", currentPage);
+					map.put("listCount", listCount);
+					map.put("maxPage", maxPage);
+					map.put("startPage", startPage);
+					map.put("endPage", endPage);
+					map.put("limit", limit);
+					map.put("list", list);
+					
+					mv.addObject("qna", map);
+					
+					return mv;
+				}
+				//json 리스트
+				@RequestMapping(value= "qnaLoadList.do")
+				@ResponseBody
+				public ModelAndView qnaLoaList(ModelAndView mv, @RequestParam("page") int page,@RequestParam(defaultValue="title") String searchOption, 
+																@RequestParam(defaultValue="") String searchKey){
+					
+					int currentPage = page;
+					int limit = 10;
+					List<CommunityBoard> list = communityBoardService.qnaListView(currentPage, limit, searchOption, searchKey);
+					
+					Map<String, Object> map = new HashMap<String, Object>();
+					
+					int listCount = communityBoardService.getQnAListCount();
+					
+					int maxPage = (int) ((double) listCount / limit + 0.9);
+					
+					int startPage = (((int) ((double)currentPage / limit + 0.9)) - 1) * limit + 1;
+					
+					int endPage = startPage + limit - 1;
+					
+					if(maxPage < endPage)
+						endPage = maxPage;
+					
+					map.put("searchOption", searchOption);
+					map.put("searchKey", searchKey);
+					map.put("listCount", listCount);
+					map.put("maxPage", maxPage);
+					map.put("startPage", startPage);
+					map.put("endPage", endPage);
+					map.put("limit", limit);
+					
+					JSONArray jar = new JSONArray();
+					
+					for(CommunityBoard cb : list)
+					{
+						JSONObject jmb = new JSONObject();
+						jmb.put("cb_no", cb.getCb_no());
+						jmb.put("user_no", cb.getUser_no());
+						jmb.put("title", cb.getTitle());
+						jmb.put("content", cb.getContent());
+						jmb.put("upload_date", cb.getUpload_date().toString());
+						jmb.put("board_property", cb.getBoard_property());
+						jmb.put("readcount", cb.getReadcount());
+						jmb.put("name",  cb.getName());
+						
+						jar.add(jmb);
+					}
+					
+					map.put("list", jar);
+					mv.addAllObjects(map);
+					mv.setViewName("jsonView");
+					
 					return mv;
 				}
 				
+								
 				//글쓰기 페이지로 이동
 				@RequestMapping(value="qnaInsert.do", method= RequestMethod.GET)
 				public String  qnaInsert() {
@@ -225,19 +358,99 @@ public class CommunityBoardController {
 					return mv;
 				}			
 				
-		
-	//qna 게시판 댓글-------------------------------------------------------------------------------------------------------
-		
-		
+			
 	//리뷰 게시판-------------------------------------------------------------------------------------------------------
-				//리스트
-				@RequestMapping(value = "review.do", method = RequestMethod.GET)
-				public ModelAndView reviewBoard(HttpServletRequest request) {
+				//리스트,검색
+				@RequestMapping(value = "review.do")
+				public ModelAndView reviewBoard(@RequestParam(defaultValue="title") String searchOption, 
+												@RequestParam(defaultValue="") String searchKey) {
+					
 					ModelAndView mv = new ModelAndView("community/reviewBoard/reviewBoard");
-					ArrayList<CommunityBoard> list = communityBoardService.reviewListView();
-					mv.addObject("list", list);
+					int currentPage = 1;
+					int limit = 10;
+					
+					List<CommunityBoard> list= communityBoardService.reviewListView(currentPage, limit,searchOption, searchKey);
+					Map<String, Object> map = new HashMap<String, Object>();
+					//갯수
+					int listCount = communityBoardService.getReviewListCount();
+					
+					int maxPage = (int) ((double) listCount / limit + 0.9);
+					
+					int startPage = (((int) ((double) currentPage / limit + 0.9)) -1) * limit + 1;
+					
+					int endPage = startPage + limit - 1;
+					
+					if(maxPage < endPage)
+						endPage = maxPage;
+					
+					map.put("currentPage", currentPage);
+					map.put("listCount", listCount);
+					map.put("maxPage", maxPage);
+					map.put("startPage", startPage);
+					map.put("endPage", endPage);
+					map.put("limit", limit);
+					map.put("list", list);
+					
+					mv.addObject("review", map);
+					
 					return mv;
 				}
+				
+				//json 리스트
+				@RequestMapping(value= "reviewLoadList.do")
+				@ResponseBody
+				public ModelAndView reviewLoadList(ModelAndView mv, @RequestParam("page") int page,@RequestParam(defaultValue="title") String searchOption, 
+																@RequestParam(defaultValue="") String searchKey){
+					
+					int currentPage = page;
+					int limit = 10;
+					List<CommunityBoard> list = communityBoardService.reviewListView(currentPage, limit, searchOption, searchKey);
+					
+					Map<String, Object> map = new HashMap<String, Object>();
+					
+					int listCount = communityBoardService.getReviewListCount();
+					
+					int maxPage = (int) ((double) listCount / limit + 0.9);
+					
+					int startPage = (((int) ((double)currentPage / limit + 0.9)) - 1) * limit + 1;
+					
+					int endPage = startPage + limit - 1;
+					
+					if(maxPage < endPage)
+						endPage = maxPage;
+					
+					map.put("searchOption", searchOption);
+					map.put("searchKey", searchKey);
+					map.put("listCount", listCount);
+					map.put("maxPage", maxPage);
+					map.put("startPage", startPage);
+					map.put("endPage", endPage);
+					map.put("limit", limit);
+					
+					JSONArray jar = new JSONArray();
+					
+					for(CommunityBoard cb : list)
+					{
+						JSONObject jmb = new JSONObject();
+						jmb.put("cb_no", cb.getCb_no());
+						jmb.put("user_no", cb.getUser_no());
+						jmb.put("title", cb.getTitle());
+						jmb.put("content", cb.getContent());
+						jmb.put("upload_date", cb.getUpload_date().toString());
+						jmb.put("board_property", cb.getBoard_property());
+						jmb.put("readcount", cb.getReadcount());
+						jmb.put("name",  cb.getName());
+						
+						jar.add(jmb);
+					}
+					
+					map.put("list", jar);
+					mv.addAllObjects(map);
+					mv.setViewName("jsonView");
+					
+					return mv;
+				}
+			
 				//글쓰기페이지 이동
 				@RequestMapping(value ="reviewInsert.do", method = RequestMethod.GET)
 				public String reviewInsert() {
@@ -246,7 +459,7 @@ public class CommunityBoardController {
 				//글쓰기페이지 저장
 				@RequestMapping(value ="reviewInsert.do", method = RequestMethod.POST)
 				public String reviewInsertPage(CommunityBoard community) {
-					//System.out.println(community);
+					System.out.println(community);
 					int result = communityBoardService.reviewInsert(community);
 					//1이상 result 값이면 리스트로이동 
 					if(result>0){
@@ -298,7 +511,21 @@ public class CommunityBoardController {
 					mv.addObject("community", communityOrigin);
 					return mv;
 				}
-		
+				
+	//운동같이해요 댓글-----------------------------------------------------------------------------------------------------
+			
+				//댓글 목록..
+				@RequestMapping("MeetingCommentList.do")
+				public ModelAndView meetingCommentList(@RequestParam int mc_no){
+					List<MeetingComment> mclist = communityBoardService.meetingCommentList(mc_no);
+					ModelAndView mv = new ModelAndView("community/meetingBoard/meetingBoard");
+					mv.addObject("mclist", mclist);
+					return mv;
+				}
+				
+			    
+			 
+	//qna 게시판 댓글 --------------------------------------------------------------------------------------------------------		    
 	//리뷰게시판 게시판 댓글-------------------------------------------------------------------------------------------------------
 	
 }

@@ -46,8 +46,8 @@ public class CommunityBoardDao {
 		sqlSession.update("community.meetingCount", no);
     }
 
-	public ArrayList<MeetingBoard> meetingListView() {
-		List<MeetingBoard> mlist = sqlSession.selectList("community.meetingListView");
+	public ArrayList<MeetingBoard> meetingListView(HashMap<String, Object> parameters) {
+		List<MeetingBoard> mlist = sqlSession.selectList("community.meetingListView", parameters);
 		ArrayList<MeetingBoard> list = new ArrayList<MeetingBoard>(mlist);
 		return list;
 	}
@@ -85,23 +85,23 @@ public class CommunityBoardDao {
 		map.put("searchOption", searchOption);
 		map.put("searchKey", searchKey);
 		
-		return sqlSession.selectList("community.searchList",map);
+		return sqlSession.selectList("community.meetingSearchList",map);
 	}
 	
-	public int countOption(String searchOption, String searchKey){
-		
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("searchOption", searchOption);
-		map.put("searchKey", searchKey);
-		return sqlSession.selectOne("community.countOption",map);
+	public int getMeetingListCount() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("community.getMeetingListCount");
 	}
+
+	
+	
 
 		
 	//운동같이해요 게시판 댓글-----------------------------------------------------------------------
 	// 댓글 목록
  
-    public List<MeetingComment> meetingCommentList(int mno) {
-        return sqlSession.selectList("community.meetingCommentList", mno);
+    public List<MeetingComment> meetingCommentList(int mc_no) {
+        return sqlSession.selectList("community.meetingCommentList", mc_no);
     }
     // 댓글 작성
    
@@ -135,9 +135,9 @@ public class CommunityBoardDao {
 	}
 	
 	//리뷰 게시판-------------------------------------------------------------------------------------------------------------------
-	public ArrayList<CommunityBoard> reviewListView() {
-		List<CommunityBoard> clist = sqlSession.selectList("community.reviewListView");
-		ArrayList<CommunityBoard> list = new ArrayList<CommunityBoard>(clist);
+	public List<CommunityBoard> reviewListView(HashMap<String, Object> parameters) {
+		List<CommunityBoard> list = sqlSession.selectList("community.reviewListView", parameters);
+		
 		return list;
 	}
 
@@ -162,12 +162,13 @@ public class CommunityBoardDao {
 		CommunityBoard community = sqlSession.selectOne("community.reviewDetail", no);
 		return community;
 	}
-
-	public ArrayList<CommunityBoard> reviewSearch(int page, int limit, String findType, String searchKey) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
+	public int getReviewListCount() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("community.getReviewListCount");
+	}
+
+
 	//리뷰 게시판 댓글-------------------------------------------------------------------------------------------------------
 	
 	public ArrayList<CommunityComment> reviewCommentList(int mbc_no) {
@@ -196,9 +197,9 @@ public class CommunityBoardDao {
 		sqlSession.update("community.communityCount", no);
     }
 	
-	public ArrayList<CommunityBoard> qnaListView() {
-		List<CommunityBoard> clist = sqlSession.selectList("community.qnaListView");
-		ArrayList<CommunityBoard> list = new ArrayList<CommunityBoard>(clist);
+	public List<CommunityBoard> qnaListView(HashMap<String, Object> parameters) {
+			List<CommunityBoard> list = sqlSession.selectList("community.qnaListView", parameters);
+				
 		return list;
 	}
 	
@@ -226,12 +227,13 @@ public class CommunityBoardDao {
 		CommunityBoard community = sqlSession.selectOne("community.qnaDetail", no);
 		return community;
 	}
-
-	public ArrayList<CommunityBoard> qnaSearch(int page, int limit, String findType, String searchKey) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
+	
+	public int getQnAListCount() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("community.getQnAListCount");
+	}
+
 	//qna 게시판 댓글--------------------------------------------------------------------------------------------------
 	
 	public ArrayList<CommunityComment> qnaCommentList(int mbc_no) {

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.codec.multipart.SynchronossPartHttpMessageReader;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,83 +51,83 @@ public class AdminController {
 
 	// 관리자 메인뷰 이동
 	@RequestMapping(value = "adminMain.do")
-	public ModelAndView adminmain(User user, BusinessRequest businessRequest, @RequestParam(value = "level", required = false, defaultValue = "0") int level,
-				GymQnABoard gymqnaboard, @RequestParam(value="receiver", required = false, defaultValue = "1") int receiver) {
-		
+	public ModelAndView adminmain(User user, BusinessRequest businessRequest,
+			@RequestParam(value = "level", required = false, defaultValue = "0") int level, GymQnABoard gymqnaboard,
+			@RequestParam(value = "receiver", required = false, defaultValue = "1") int receiver) {
+
 		System.out.println("adminMain.do실행됨...");
 		// 리퀘스트 파람 -> 자동으로 값을 받아옴
 		// 근데 받아올 데이터가 없으면 required=false -> 꼭필요하지 않다 라는 뜻
 		// defaultValue="0" -> 기본값설정 / 그러니깐 값이 없을때는 0으로 한다 라는뜻
 		ModelAndView mv = new ModelAndView("admin/adminMain");
-		int request = adminService.RequestCount(level);//헬스장등록요청 갯수 승인상태가 0 인것만 (미승인=0/승인=1)
-		int message = adminService.Message(receiver);//관리자에게 온 문의 갯수 리시버가 1(관리자user_no) 이고, 응답 상태가 0 인것만(미응답=0/응답=1)
-		
-		
+		int request = adminService.RequestCount(level);// 헬스장등록요청 갯수 승인상태가 0 인것만/ (미승인=0/승인=1)
+		int message = adminService.Message(receiver);// 관리자에게 온 문의 갯수 리시버가 1(관리자user_no) 이고, 응답상태가 0 인것만(미응답=0/응답=1)
+
 		ArrayList<User> gymRlist = adminService.GymRequest(level);// 헬스장 요청 정보 최신순 3개만리스트로 불러오기 승인상태 0인것만
-		ArrayList<GymQnABoard> qnalist = adminService.GymQnABoard(receiver);// + 메세지 요청 최신 3개 미응답이고 리시버가 1인 것만 리스트로 불러오기
-		
+		ArrayList<GymQnABoard> qnalist = adminService.GymQnABoard(receiver);// 메세지 요청 최신 3개 미응답이고 리시버가 1인 것만 리스트로 불러오기
+
 		mv.addObject("request", request);
 		mv.addObject("message", message);
 		mv.addObject("gymRlist", gymRlist);
 		mv.addObject("qnalist", qnalist);
-		System.out.println("등록요청 수 :" +request);
-		System.out.println("등록요청gymRlist : " +gymRlist);
-		System.out.println("문의 수 :" +message);
+		System.out.println("등록요청 수 :" + request);
+		System.out.println("등록요청gymRlist : " + gymRlist);
+		System.out.println("문의 수 :" + message);
 		System.out.println("문의요청list : " + qnalist);
 		return mv;
 	}
-	
-	/*// 관리자 메인뷰 이동
-		@RequestMapping(value = "adminNav.do")
-		public ModelAndView adminNav(User user, @RequestParam(value = "level", required = false, defaultValue = "0") int level,
-					 @RequestParam(value="receiver", required = false, defaultValue = "1") int receiver) {
-			
-			System.out.println("adminNav.do실행됨...");
-			// 리퀘스트 파람 -> 자동으로 값을 받아옴
-			// 근데 받아올 데이터가 없으면 required=false -> 꼭필요하지 않다 라는 뜻
-			// defaultValue="0" -> 기본값설정 / 그러니깐 값이 없을때는 0으로 한다 라는뜻
-			ModelAndView mv = new ModelAndView("admin/common/nav");
-			int request = adminService.RequestCount(level); //헬스장등록요청 갯수 승인상태가 0 인것만 (미승인=0/승인=1)
-			int message = adminService.Message(receiver); //관리자에게 온 문의 갯수 리시버가 1(관리자user_no) 이고, 응답 상태가 0 인것만(미응답=0/응답=1)
-			
-			ArrayList<User> list = adminService.GymRequest(level); // 헬스장 요청 정보 최신순 3개만리스트로 불러오기 승인상태 0인것만
-			
-			mv.addObject("request", request);
-			mv.addObject("message", message);
-			mv.addObject("list", list);
-			
-			System.out.println("등록요청 수 :" +request);
-			System.out.println("등록요청list : " +list);
-			System.out.println("문의 수 :" +message);
-			System.out.println("문의요청list : ");
-			return mv;
-		}*/
-	
-	
+
+	/*
+	 * // 관리자 메인뷰 이동
+	 * 
+	 * @RequestMapping(value = "adminNav.do") public ModelAndView adminNav(User
+	 * user, @RequestParam(value = "level", required = false, defaultValue =
+	 * "0") int level,
+	 * 
+	 * @RequestParam(value="receiver", required = false, defaultValue = "1") int
+	 * receiver) {
+	 * 
+	 * System.out.println("adminNav.do실행됨..."); // 리퀘스트 파람 -> 자동으로 값을 받아옴 // 근데
+	 * 받아올 데이터가 없으면 required=false -> 꼭필요하지 않다 라는 뜻 // defaultValue="0" -> 기본값설정
+	 * / 그러니깐 값이 없을때는 0으로 한다 라는뜻 ModelAndView mv = new
+	 * ModelAndView("admin/common/nav"); int request =
+	 * adminService.RequestCount(level); //헬스장등록요청 갯수 승인상태가 0 인것만 (미승인=0/승인=1)
+	 * int message = adminService.Message(receiver); //관리자에게 온 문의 갯수 리시버가
+	 * 1(관리자user_no) 이고, 응답 상태가 0 인것만(미응답=0/응답=1)
+	 * 
+	 * ArrayList<User> list = adminService.GymRequest(level); // 헬스장 요청 정보 최신순
+	 * 3개만리스트로 불러오기 승인상태 0인것만
+	 * 
+	 * mv.addObject("request", request); mv.addObject("message", message);
+	 * mv.addObject("list", list);
+	 * 
+	 * System.out.println("등록요청 수 :" +request); System.out.println("등록요청list : "
+	 * +list); System.out.println("문의 수 :" +message);
+	 * System.out.println("문의요청list : "); return mv; }
+	 */
 
 	// 관리자 차트뷰 이동
 	@RequestMapping(value = "charts.do")
-	public ModelAndView charts(User user, BusinessRequest businessRequest, @RequestParam(value = "level", required = false, defaultValue = "0") int level,
-			GymQnABoard gymqnaboard, @RequestParam(value="receiver", required = false, defaultValue = "1") int receiver) {
-		
+	public ModelAndView charts(User user, BusinessRequest businessRequest,
+			@RequestParam(value = "level", required = false, defaultValue = "0") int level, GymQnABoard gymqnaboard,
+			@RequestParam(value = "receiver", required = false, defaultValue = "1") int receiver) {
+
 		ModelAndView mv = new ModelAndView("admin/charts");
-		
+
 		int request = adminService.RequestCount(level);
 		int message = adminService.Message(receiver);
-				
+
 		ArrayList<User> gymRlist = adminService.GymRequest(level);
 		ArrayList<GymQnABoard> qnalist = adminService.GymQnABoard(receiver);
-		
-		
+
 		mv.addObject("request", request);
 		mv.addObject("message", message);
 		mv.addObject("gymRlist", gymRlist);
 		mv.addObject("qnalist", qnalist);
-		
+
 		return mv;
 	}
-	
-	
+
 	// 관리자 로그아웃
 	@RequestMapping(value = "/adminlogout.do")
 	public String logoutMethod(HttpServletRequest request, HttpServletResponse response) {
@@ -138,136 +139,157 @@ public class AdminController {
 		return "main";
 	}
 
-
 	// 회원 리스트 출력
 	@RequestMapping(value = "adminuserlist.do")
-	public ModelAndView UserListMethod(User user, BusinessRequest businessRequest, @RequestParam(value = "level", required = false, defaultValue = "0") int level,
-			GymQnABoard gymqnaboard, @RequestParam(value="receiver", required = false, defaultValue = "1") int receiver) {
-		
+	public ModelAndView UserListMethod(User user, BusinessRequest businessRequest,
+			@RequestParam(value = "level", required = false, defaultValue = "0") int level, GymQnABoard gymqnaboard,
+			@RequestParam(value = "receiver", required = false, defaultValue = "1") int receiver) {
+
 		ModelAndView mv = new ModelAndView("admin/userlist/userlist");
-		
-		int request = adminService.RequestCount(level);//헬스장등록요청 갯수 승인상태가 0 인것만 (미승인=0/승인=1)
-		int message = adminService.Message(receiver);//관리자에게 온 문의 갯수 리시버가 1(관리자user_no) 이고, 응답 상태가 0 인것만(미응답=0/응답=1)
-				
-		ArrayList<User> gymRlist = adminService.GymRequest(level);// 헬스장 요청 정보 최신순 3개만리스트로 불러오기 승인상태 0인것만
-		ArrayList<GymQnABoard> qnalist = adminService.GymQnABoard(receiver);// + 메세지 요청 최신 3개 미응답이고 리시버가 1인 것만 리스트로 불러오기
+
+		int request = adminService.RequestCount(level);// 헬스장등록요청 갯수 승인상태가 0 인것만
+														// (미승인=0/승인=1)
+		int message = adminService.Message(receiver);// 관리자에게 온 문의 갯수 리시버가
+														// 1(관리자user_no) 이고, 응답
+														// 상태가 0 인것만(미응답=0/응답=1)
+
+		ArrayList<User> gymRlist = adminService.GymRequest(level);// 헬스장 요청 정보
+																	// 최신순
+																	// 3개만리스트로
+																	// 불러오기 승인상태
+																	// 0인것만
+		ArrayList<GymQnABoard> qnalist = adminService.GymQnABoard(receiver);// +
+																			// 메세지
+																			// 요청
+																			// 최신
+																			// 3개
+																			// 미응답이고
+																			// 리시버가
+																			// 1인
+																			// 것만
+																			// 리스트로
+																			// 불러오기
 		ArrayList<User> list = adminService.userlist(level);
 		mv.addObject("request", request);
 		mv.addObject("message", message);
 		mv.addObject("gymRlist", gymRlist);
 		mv.addObject("qnalist", qnalist);
 		mv.addObject("list", list);
-		
+
 		return mv;
 	}
 
 	// 사업자 리스트 출력(헬스장 등록요청 처리)
 	@RequestMapping(value = "adminbusinesslist.do")
-	public ModelAndView BuisnessListMethod(User user, BusinessRequest businessRequest, @RequestParam(value = "level", required = false, defaultValue = "0") int level,
-			GymQnABoard gymqnaboard, @RequestParam(value="receiver", required = false, defaultValue = "1") int receiver ) {
-		
+	public ModelAndView BuisnessListMethod(User user, BusinessRequest businessRequest,
+			@RequestParam(value = "level", required = false, defaultValue = "0") int level, GymQnABoard gymqnaboard,
+			@RequestParam(value = "receiver", required = false, defaultValue = "1") int receiver) {
+
 		ModelAndView mv = new ModelAndView("admin/userlist/userbusinesslist");
-		
+
 		int request = adminService.RequestCount(level);
 		int message = adminService.Message(receiver);
-				
+
 		ArrayList<User> gymRlist = adminService.GymRequest(level);
 		ArrayList<GymQnABoard> qnalist = adminService.GymQnABoard(receiver);
 		ArrayList<User> list = adminService.businesslist(receiver);
-		
+
 		mv.addObject("request", request);
 		mv.addObject("message", message);
 		mv.addObject("gymRlist", gymRlist);
 		mv.addObject("qnalist", qnalist);
 		mv.addObject("list", list);
-		
+
 		return mv;
 	}
 
 	// 사업자 헬스장 등록요청 리스트 출력(헬스장 등록요청 처리)
 	@RequestMapping(value = "adminbusinessRequestlist.do")
-	public ModelAndView BuisnessRequestListMethod(User user, BusinessRequest businessRequest, @RequestParam(value = "level", required = false, defaultValue = "0") int level,
-			GymQnABoard gymqnaboard, @RequestParam(value="receiver", required = false, defaultValue = "1") int receiver) {
-		
+	public ModelAndView BuisnessRequestListMethod(User user, BusinessRequest businessRequest,
+			@RequestParam(value = "level", required = false, defaultValue = "0") int level, GymQnABoard gymqnaboard,
+			@RequestParam(value = "receiver", required = false, defaultValue = "1") int receiver) {
+
 		ModelAndView mv = new ModelAndView("admin/userlist/userbusinessRequestlist");
-		
+
 		int request = adminService.RequestCount(level);
 		int message = adminService.Message(receiver);
-				
+
 		ArrayList<User> gymRlist = adminService.GymRequest(level);
 		ArrayList<GymQnABoard> qnalist = adminService.GymQnABoard(receiver);
 		ArrayList<User> list = adminService.businessRequestlist(receiver);
-		
+
 		mv.addObject("request", request);
 		mv.addObject("message", message);
 		mv.addObject("gymRlist", gymRlist);
 		mv.addObject("qnalist", qnalist);
 		mv.addObject("list", list);
-		
+
 		return mv;
 	}
 
-
 	// mettingBoard 리스트 출력
 	@RequestMapping(value = "adminMettingBoard.do")
-	public ModelAndView mettingBoardListMethod(User user, BusinessRequest businessRequest, @RequestParam(value = "level", required = false, defaultValue = "0") int level,
-			GymQnABoard gymqnaboard, @RequestParam(value="receiver", required = false, defaultValue = "1") int receiver) {
-		
+	public ModelAndView mettingBoardListMethod(User user, BusinessRequest businessRequest,
+			@RequestParam(value = "level", required = false, defaultValue = "0") int level, GymQnABoard gymqnaboard,
+			@RequestParam(value = "receiver", required = false, defaultValue = "1") int receiver) {
+
 		ModelAndView mv = new ModelAndView("admin/boardlist/meetingboard");
-		
+
 		int request = adminService.RequestCount(level);
 		int message = adminService.Message(receiver);
-				
+
 		ArrayList<User> gymRlist = adminService.GymRequest(level);
 		ArrayList<GymQnABoard> qnalist = adminService.GymQnABoard(receiver);
 		ArrayList<MeetingBoard> list = communityBoardService.meetingListView();
-		
+
 		mv.addObject("request", request);
 		mv.addObject("message", message);
 		mv.addObject("gymRlist", gymRlist);
 		mv.addObject("qnalist", qnalist);
 		mv.addObject("list", list);
-		
+
 		return mv;
 	}
 
 	// qnaBoard 리스트 출력
 	@RequestMapping(value = "adminQNABoard.do")
-	public ModelAndView qnaBoardListMethod(User user, BusinessRequest businessRequest, @RequestParam(value = "level", required = false, defaultValue = "0") int level,
-			GymQnABoard gymqnaboard, @RequestParam(value="receiver", required = false, defaultValue = "1") int receiver) {
-		
+	public ModelAndView qnaBoardListMethod(User user, BusinessRequest businessRequest,
+			@RequestParam(value = "level", required = false, defaultValue = "0") int level, GymQnABoard gymqnaboard,
+			@RequestParam(value = "receiver", required = false, defaultValue = "1") int receiver) {
+
 		ModelAndView mv = new ModelAndView("admin/boardlist/qnaboard");
-		
+
 		int request = adminService.RequestCount(level);
 		int message = adminService.Message(receiver);
-				
+
 		ArrayList<User> gymRlist = adminService.GymRequest(level);
 		ArrayList<GymQnABoard> qnalist = adminService.GymQnABoard(receiver);
 		ArrayList<CommunityBoard> list = communityBoardService.qnaListView();
-		
+
 		mv.addObject("request", request);
 		mv.addObject("message", message);
 		mv.addObject("gymRlist", gymRlist);
 		mv.addObject("qnalist", qnalist);
 		mv.addObject("list", list);
-		
+
 		return mv;
 	}
 
 	// reviewBoard 리스트 출력
 	@RequestMapping(value = "adminReviewBoard.do")
-	public ModelAndView reviewBoardListMethod(User user, BusinessRequest businessRequest, @RequestParam(value = "level", required = false, defaultValue = "0") int level,
-			GymQnABoard gymqnaboard, @RequestParam(value="receiver", required = false, defaultValue = "1") int receiver) {
-		
+	public ModelAndView reviewBoardListMethod(User user, BusinessRequest businessRequest,
+			@RequestParam(value = "level", required = false, defaultValue = "0") int level, GymQnABoard gymqnaboard,
+			@RequestParam(value = "receiver", required = false, defaultValue = "1") int receiver) {
+
 		ModelAndView mv = new ModelAndView("admin/boardlist/reviewboard");
-		
+
 		int request = adminService.RequestCount(level);
 		int message = adminService.Message(receiver);
-				
+
 		ArrayList<User> gymRlist = adminService.GymRequest(level);
 		ArrayList<GymQnABoard> qnalist = adminService.GymQnABoard(receiver);
 		ArrayList<CommunityBoard> list = communityBoardService.reviewListView();
-		
+
 		mv.addObject("request", request);
 		mv.addObject("message", message);
 		mv.addObject("gymRlist", gymRlist);
@@ -325,16 +347,16 @@ public class AdminController {
 
 	// 관리자가 사업자회원상태 비활성화(계정 비활성화 + 등록된 헬스장도 비활성화)
 	@RequestMapping(value = "adminBusinessBack.do")
-						public ModelAndView adminBusinessStateBackMethod(@RequestParam(value = "user_no") int user_no,
-								HttpServletRequest request) {
-							System.out.println("넘어옴?");
-							System.out.println(user_no);
-							ModelAndView mv = new ModelAndView("admin/userlist/userbusinesslist");
-							adminService.adminBusinessStateBack(user_no);
-							
-							mv.setViewName("jsonView");
-							return mv;
-						}
+	public ModelAndView adminBusinessStateBackMethod(@RequestParam(value = "user_no") int user_no,
+			HttpServletRequest request) {
+		System.out.println("넘어옴?");
+		System.out.println(user_no);
+		ModelAndView mv = new ModelAndView("admin/userlist/userbusinesslist");
+		adminService.adminBusinessStateBack(user_no);
+
+		mv.setViewName("jsonView");
+		return mv;
+	}
 
 	// 사용자가 등록요청한 헬스장 관리자에서 승인하기(approval_state 1로 변경)
 	@RequestMapping(value = "gymRequest.do")
@@ -395,50 +417,83 @@ public class AdminController {
 		mv.setViewName("jsonView");
 		return mv;
 	}
-	
+
 	// 문의함 페이지 이동
-	@RequestMapping(value="adminQnABoard.do")
-	public ModelAndView adminBoardMethod(User user, BusinessRequest businessRequest, @RequestParam(value = "level", required = false, defaultValue = "0") int level,
-			GymQnABoard gymqnaboard, @RequestParam(value="receiver", required = false, defaultValue = "1") int receiver){
-		
+	@RequestMapping(value = "adminQnABoard.do")
+	public ModelAndView adminBoardMethod(User user, BusinessRequest businessRequest,
+			@RequestParam(value = "level", required = false, defaultValue = "0") int level, GymQnABoard gymqnaboard,
+			@RequestParam(value = "receiver", required = false, defaultValue = "1") int receiver) {
+
 		ModelAndView mv = new ModelAndView("admin/adminBoard");
-		
+
 		int request = adminService.RequestCount(level);
 		int message = adminService.Message(receiver);
-		
+
 		ArrayList<User> gymRlist = adminService.GymRequest(level);
 		ArrayList<GymQnABoard> qnalist = adminService.GymQnABoard(receiver);
 		ArrayList<GymQnABoard> list = adminService.adminBoard();
-	
+
 		mv.addObject("request", request);
 		mv.addObject("message", message);
 		mv.addObject("gymRlist", gymRlist);
 		mv.addObject("qnalist", qnalist);
 		mv.addObject("list", list);
-		
+
 		return mv;
 	}
-	
-	
-	/*// 게시글보기 에서 작성자이름 클릭시 작성자 정보 모달띄우기
-		@RequestMapping(value = "userDetail.do")
-		public ModelAndView userDetailMethod(@RequestParam(value = "user_no") int user_no, HttpServletRequest request) {
-			
-			System.out.println(user_no);
-			ModelAndView mv = new ModelAndView("#");
-			
 
-			return mv;
-		}*/
+	@RequestMapping(value = "/adminmeetingInsert.do", method = RequestMethod.POST)
+	public String adminMeetingInsertMethod(MeetingBoard mboard) {
+		System.out.println(mboard);
+
+		int result = adminService.meetingBoardInsert(mboard);
+		// 1이상 result 값이면 리스트로이동
+		if (result > 0) {
+			return "redirect:/adminMettingBoard.do";
+		} else {
+			return "redirect:/adminMettingBoard.do";
+		}
+
+	}
+
+	@RequestMapping(value = "/adminqnaInsert.do", method = RequestMethod.POST)
+	public String adminQnaInsertMethod(CommunityBoard cboard) {
+		System.out.println(cboard);
+
+		int result = adminService.qnaBoardInsert(cboard);
+		// 1이상 result 값이면 리스트로이동
+		if (result > 0) {
+			return "redirect:/adminQNABoard.do";
+		} else {
+			return "redirect:/adminQNABoard.do";
+		}
+
+	}
+
+	@RequestMapping(value="/adminreviewInsert.do", method=RequestMethod.POST)
+	public String adminReviewInsertMethod(CommunityBoard cboard){
+		System.out.println(cboard);
 	
-	
-	
+		int result = adminService.reviewBoardInsert(cboard);
+		//1이상 result 값이면 리스트로이동 
+		if(result>0){
+			return "redirect:/adminReviewBoard.do";
+		}else{
+			return "redirect:/adminReviewBoard.do";
+		}
+		
+	}
 	/*
-	 * 1. 회원 / 사업자 구분 리스트 출력 >> 회원 리스트 user꺼 불러오기 2. 사업자 회원가입후 헬스장 등록 요청(승인전) 출력
-	 * >> 회원 리스트 + TB_GYM 조인 후 '헬스장 등록승인여부' 칼럼 이용 3. 운동법 리스트 출력 >> 준일,미향 꺼 사용
-	 * /리스트 불러오고, 추가, 수정, 삭제 자리만 뷰에 만들기 4. 게시판 리스트 출력 >> 도영형꺼 사용 / 리스트 불러오고, 추가,
-	 * 수정, 삭제 자리만 뷰에 만들기 3-2, 4-2. 운동법, 게시판 리스트를 제목 / 작성자로 검색하기 5. 헬스장 리스트 출력
-	 * >>TB_GYM 테이블 정보 불러오기 6. 일별 방문자 통계 7. 지역별 헬스장 분포 통계 8. 동영상 조회수 통계 9.
+	 * // 게시글보기 에서 작성자이름 클릭시 작성자 정보 모달띄우기
+	 * 
+	 * @RequestMapping(value = "userDetail.do") public ModelAndView
+	 * userDetailMethod(@RequestParam(value = "user_no") int user_no,
+	 * HttpServletRequest request) {
+	 * 
+	 * System.out.println(user_no); ModelAndView mv = new ModelAndView("#");
+	 * 
+	 * 
+	 * return mv; }
 	 */
 
 }

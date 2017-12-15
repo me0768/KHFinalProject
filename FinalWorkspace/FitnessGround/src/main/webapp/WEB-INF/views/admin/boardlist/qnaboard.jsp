@@ -6,7 +6,6 @@
 <c:import url="../common/head.jsp" />
 
 <style type="text/css">
-
 </style>
 
 
@@ -61,7 +60,8 @@ function qnaDelete(cb_no){
 	<div class="container-fluid">
 		<!-- Breadcrumbs-->
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="adminMain.do">Fitness Ground</a></li>
+			<li class="breadcrumb-item"><a href="adminMain.do">Fitness
+					Ground</a></li>
 			<li class="breadcrumb-item active">메인으로 이동</li>
 		</ol>
 		<!-- Example DataTables Card-->
@@ -73,123 +73,132 @@ function qnaDelete(cb_no){
 					<button class="btn btn-warning" onclick="adminMettingBoard();">Meeting</button>
 					<button class="btn btn-warning" onclick="adminQNABoard();">Q&A</button>
 					<button class="btn btn-warning" onclick="adminReviewBoard();">Review</button>
-					<button class="btn btn-warning" onclick="registerView();" align="right" >공지사항 등록</button>
+					<button class="btn btn-warning" onclick="registerView();"
+						align="right">공지사항 등록</button>
 
 
 				</div>
 			</div>
 
-				<div class="card-body">
-					<div class="table-responsive">
-						<table class="table table-bordered" id="dataTable" width="100%"
-							cellspacing="0">
-							<thead>
-								<tr>
-									<th>번호</th>
-									<th>작성자</th>
-									<th>제목</th>
-									<th>작성일</th>
-									<th>조회수</th>
-									<th>관리</th>
-								</tr>
-							</thead>
+			<div class="card-body">
+				<div class="table-responsive">
+					<table class="table table-bordered" id="dataTable" width="100%"
+						cellspacing="0">
+						<thead>
+							<tr>
+								<th>번호</th>
+								<th>작성자</th>
+								<th>제목</th>
+								<th>작성일</th>
+								<th>조회수</th>
+								<th>관리</th>
+							</tr>
+						</thead>
 
-							<tbody>
-								<c:forEach var="item" items="${list }" varStatus="status">
+						<tbody>
+							<c:forEach var="item" items="${list }" varStatus="status">
 								<c:if test="${item.board_property == 1}">
 									<tr>
 										<%-- <td><input type="checkbox" class="deleteCheckBox"
 											name="deleteCheckBox" value="${item.user_no} " /></td> --%>
 										<td>${status.count }</td>
 										<td>${item.name }</td>
-										<td>
-										<a  href="qnaDetail.do" data-target=".${item.cb_no}"
-											data-toggle="modal">${item.title }</a></td>
-										<div class="modal fade ${item.cb_no}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+										<td><a href="meetingDetail.do"
+											data-target=".${item.cb_no}" data-toggle="modal">${item.title }</a></td>
+										<div class="modal fade ${item.cb_no }" tabindex="-1"
+											role="dialog" aria-labelledby="myLargeModalLabel"
+											aria-hidden="true">
 											<div class="modal-dialog">
 												<div class="modal-content">
-												
 													<!-- header -->
 													<div class="modal-header" align="top">
-														<!-- 닫기(x) 버튼 -->
-														<button type="button" class="close" data-dismiss="modal">×</button>
-														<!-- header title -->
-														<h4 class="modal-title" align="center">${item.title}</h4>
-													<div>
-													
-													<!-- body -->
-													<div class="modal-body" align="center">${item.content}</div>
-													<p align="center">${item.name}</p>
-     											
-													<!-- Footer -->
-													<div class="modal-footer" >
-														Footer
-														<button type="button" class="btn btn-default"
-															data-dismiss="modal">닫기</button>
+														<h4 class="modal-title" align="center">제목 :
+															${item.title}</h4>
+														<button type="button" class="close" data-dismiss="modal"
+															align="right">x</button>
 													</div>
+
+													<!-- body -->
+													<div class="modal-body" align="left">
+														<p align="right">작성자 : ${item.user_no}</p>
+														<p align="right">작성일 : ${item.upload_date}</p>
+														<hr>
+														<h4>내용 :</h4>
+														<p>${item.content}</p>
+													</div>
+													<!-- Footer -->
+													<div class="modal-footer"></div>
+
 												</div>
+
 											</div>
-										</div>
-										</div>
+
 										</div>
 										<td>${item.upload_date }</td>
 										<td>${item.readcount }</td>
-										<td><button class="btn btn-primary" onclick="qnaDelete(${item.cb_no});">삭제</button></td>
+										<td><button class="btn btn-primary"
+												onclick="qnaDelete(${item.cb_no});">삭제</button></td>
 
 									</tr>
-									</c:if>
-								</c:forEach>
-							</tbody>
-						</table>
-					</div>
+								</c:if>
+							</c:forEach>
+						</tbody>
+					</table>
 				</div>
-				
-							<!-- Modal -->
-  <div class="modal fade" id="registerView" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" id="workout-dialog">
-    
-      <div class="modal-content" >
-      
-        <div class="modal-header">  
-          <h2 class="modal-title" id="qnaBoard" color="red"style="color: black">Q&A 게시판 공지사항 등록하기 </h2>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">x</button>
-        
-        </div>
-        	<div class="modal-body">
-				<div id="insert_all_div" style="border: 1px solid;">
-				<br>
-					<form id="register_form" name='meeting' method="post" action="qnaInsert.do">
-						<input name="user_no" type="hidden" value="${sessionScope.user.user_no }" />
-							<div id="div_head">
-								<p>
-									제목
-							<input name="title" type="text" placeholder="제목을 입력해주세요." />
-								</p>				
-							</div>
-				<textarea name="content" id="editor1" placeholder="내용을 입력해주세요.."></textarea>
-				<script>
+			</div>
+
+			<!-- Modal -->
+			<div class="modal fade" id="registerView" tabindex="-1" role="dialog"
+				aria-labelledby="myLargeModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-lg" id="workout-dialog">
+
+					<div class="modal-content">
+
+						<div class="modal-header">
+							<h2 class="modal-title" id="qnaBoard" color="red"
+								style="color: black">Q&A 게시판 공지사항 등록하기</h2>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">x</button>
+
+						</div>
+						<form id="register_form" name='Community' method="post" action="adminqnaInsert.do">
+							<input name="user_no" type="hidden" value="${sessionScope.user.user_no }" />
+
+							<div class="modal-body">
+								<div id="insert_all_div" style="border: 1px solid;">
+									<br>
+									<div id="div_head">
+										<p>
+											제목 <input name="title" type="text" placeholder="제목을 입력해주세요." />
+										</p>
+									</div>
+									<textarea name="content" id="editor1"
+										placeholder="내용을 입력해주세요.."></textarea>
+									<script>
 					CKEDITOR.replace('editor1');
 				</script>
-				
-					
+
+
+								</div>
+
+							</div>
+							<div class="modal-footer">
+								<button type="submit" class="btn btn-primary">Register</button>
+
+								<button type="button" class="btn btn-default"
+									data-dismiss="modal">Close</button>
+							</div>
+						</form>
+					</div>
+
 				</div>
-											
-		  </div>
-				<div class="modal-footer">
-					<button type="submit" class="btn btn-primary" >Register</button>
-					</form>
-      				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      			</div>
-	  </div>
-			
-     </div>
-      	
-  </div>
-				
-				
-				<div class="card-footer small text-muted">Updated yesterday at
-					11:59 PM</div>
-		
+
+			</div>
+
+
+			<div class="card-footer small text-muted">Updated yesterday at
+				11:59 PM</div>
+
 		</div>
 		<!-- /.container-fluid-->
 		<!-- /.content-wrapper-->
@@ -198,7 +207,7 @@ function qnaDelete(cb_no){
 		<a class="scroll-to-top rounded" href="#page-top"> <i
 			class="fa fa-angle-up"></i>
 		</a>
-		
-		</div>
+
 	</div>
-	<c:import url="../common/end.jsp" />
+</div>
+<c:import url="../common/end.jsp" />

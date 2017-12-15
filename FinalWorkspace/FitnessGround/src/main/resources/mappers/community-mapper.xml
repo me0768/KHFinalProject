@@ -111,7 +111,29 @@
 		<![CDATA[select count(*) from tb_meeting_board where ${searchOption} like '%'||#{searchKey}||'%']]>
 	</select>
 	
+	<!-- 관리자 MeetingBoard 공지사항 글쓰기 -->
+	<insert id="adminMeetingBoardInsert" parameterType="Meeting" flushCache="true"
+		statementType="PREPARED" useGeneratedKeys="true" >
+		<![CDATA[
+		insert into tb_meeting_board values(mb_seq.nextval,#{user_no},#{title},#{content},null,default,default)
+		]]>
+	</insert>
 	
+	<!-- 관리자QnABoard 공지사항 글쓰기 -->
+	<insert id="adminQnaBoardInsert" parameterType="Community" flushCache="true"
+		statementType="PREPARED" useGeneratedKeys="true" >
+		<![CDATA[
+		insert into tb_com_board values(cb_seq.nextval,#{user_no},#{title},#{content},1,default,default)
+		]]>
+	</insert>
+	
+	<!-- 관리자QnABoard 공지사항 글쓰기 -->
+	<insert id="adminReviewBoardInsert" parameterType="Community" flushCache="true"
+		statementType="PREPARED" useGeneratedKeys="true" >
+		<![CDATA[
+		insert into tb_com_board values(cb_seq.nextval,#{user_no},#{title},#{content},0,default,default)
+		]]>
+	</insert>
 	
 	<!-- ======================================qna게시판====================================================== -->
 	<!--  qna 게시판 메인 -->

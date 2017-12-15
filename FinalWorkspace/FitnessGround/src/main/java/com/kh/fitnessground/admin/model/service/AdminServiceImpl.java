@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.fitnessground.admin.model.dao.AdminDao;
+import com.kh.fitnessground.community.model.vo.CommunityBoard;
+import com.kh.fitnessground.community.model.vo.MeetingBoard;
 import com.kh.fitnessground.gym.model.vo.GymQnABoard;
 import com.kh.fitnessground.user.model.dao.UserDao;
 import com.kh.fitnessground.user.model.vo.User;
@@ -129,6 +131,25 @@ public class AdminServiceImpl  implements AdminService{
 	@Override
 	public ArrayList<GymQnABoard> GymQnABoard(int receiver) {
 		return adminDao.GymQnABoard(receiver);
+	}
+
+
+	@Override
+	public int meetingBoardInsert(MeetingBoard mboard) {
+		return adminDao.meetingBoardInsert(mboard);
+		
+	}
+
+
+	@Override
+	public int qnaBoardInsert(CommunityBoard cboard) {
+		return adminDao.qnaBoardInsert(cboard);
+	}
+
+
+	@Override
+	public int reviewBoardInsert(CommunityBoard cboard) {
+		return adminDao.reviewBoardInsert(cboard);
 	}
 
 

@@ -7,6 +7,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.fitnessground.community.model.vo.CommunityBoard;
+import com.kh.fitnessground.community.model.vo.MeetingBoard;
 import com.kh.fitnessground.gym.model.vo.GymQnABoard;
 import com.kh.fitnessground.user.model.vo.User;
 import com.kh.fitnessground.workout.yoga.model.vo.Yoga;
@@ -108,6 +110,21 @@ public class AdminDao {
 		List<GymQnABoard> glist = sqlSession.selectList("gym.GymQnABoard", receiver);
 		ArrayList<GymQnABoard> list = new ArrayList<GymQnABoard>(glist);
 		return list;
+	}
+
+	public int meetingBoardInsert(MeetingBoard mboard) {
+		int result = sqlSession.insert("community.adminMeetingBoardInsert", mboard);
+		return result;
+	}
+
+	public int qnaBoardInsert(CommunityBoard cboard) {
+		int result = sqlSession.insert("community.adminQnaBoardInsert", cboard);
+		return result;
+	}
+
+	public int reviewBoardInsert(CommunityBoard cboard) {
+		int result = sqlSession.insert("community.adminReviewBoardInsert", cboard);
+		return result;
 	}
 
 

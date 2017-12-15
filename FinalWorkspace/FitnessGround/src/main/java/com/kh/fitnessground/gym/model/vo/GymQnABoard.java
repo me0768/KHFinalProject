@@ -14,12 +14,14 @@ public class GymQnABoard {
 	private int q_level;
 	private int ref_no;
 	private int response_state;
+	private String email;
+	private String name;
 	
 	public GymQnABoard() {
 		super();
 	}
 	public GymQnABoard(int q_no, String sender, String receiver, String title, String content, String original_filename,
-			String rename_filename, Date write_date, int q_level, int ref_no, int response_state) {
+			String rename_filename, Date write_date, int q_level, int ref_no, int response_state, String email, String name) {
 		super();
 		this.q_no = q_no;
 		this.sender = sender;
@@ -32,6 +34,8 @@ public class GymQnABoard {
 		this.q_level = q_level;
 		this.ref_no = ref_no;
 		this.response_state = response_state;
+		this.email = email;
+		this.name = name;
 	}
 	
 	public int getQ_no() {
@@ -100,6 +104,19 @@ public class GymQnABoard {
 	}
 	public void setResponse_state(int response_state) {
 		this.response_state = response_state;
+	}
+		
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	@Override
 	public String toString() {

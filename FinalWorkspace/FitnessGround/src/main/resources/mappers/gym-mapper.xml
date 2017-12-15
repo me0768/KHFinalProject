@@ -16,6 +16,8 @@
 		<result property="q_level" column="q_level" />
 		<result property="ref_no" column="ref_no" />
 		<result property="response_state" column="response_state" />
+		<result property="email" column="email" />
+		<result property="name" column="name" />
 	</resultMap>
 	
 	<resultMap id="resultBusinessRequest" type="BusinessRequest">
@@ -29,6 +31,13 @@
 		<id property="user_level" column="user_level"/>
 		<id property="user_state" column="user_state"/>
 		<id property="register_date" column="register_date"/>
+		<id property="category" column="category"/>
+		<id property="rename_image" column="rename_image" />
+		<id property="op_time" column="op_time" />
+		<id property="tel" column="tel" />
+		<id property="phone" column="phone" />
+		<id property="price" column="price" />
+		<id property="description" column="description" />
 		
 		
 	</resultMap>
@@ -79,23 +88,23 @@
 	
 	<select id="businessRequest" parameterType="_int" resultMap="resultBusinessRequest" resultType="list">
 		<![CDATA[ 
-		select user_no, user_state, email, name, gym_no, gym_name, location, approval_state, register_date
+		select *
 		 from tb_gym  join (select * from tb_user where user_level=#{level}) using(user_no)
 
 		]]>
 	</select>
 	
-	<select id="topGymRequest" parameterType="_int" resultMap="resultGymRequest" resultType="list">
+	<select id="topGymRequest" parameterType="_int" resultMap="resultBusinessRequest" resultType="list">
 		<![CDATA[ 
-		select  * from  TB_GYM 
-		where   rownum < 4 and approval_state = #{level}  order by register_date, gym_no asc
-
+		select  gym_no, gym_name, location, user_no, email, name, register_date, category
+		from  TB_GYM  g join tb_user u using(user_no)
+		where   rownum < 4 and approval_state = #{level} order by register_date, gym_no asc
 		]]>
 	</select>
 	
 	<select id="GymQnABoard" parameterType="_int" resultMap="resultGymQnABoard" resultType="list">
 		<![CDATA[ 
-		select * from tb_qna 
+		select * from tb_qna q join tb_user u on(q.sender = u.user_no) 
 		where rownum < 4 and receiver = #{receiver} and response_state=0 order by write_date, q_no asc
 
 		]]>

@@ -29,12 +29,6 @@
 					</ul>
 				</li>
 				
-				<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
-					<a class="nav-link" href="charts.do">
-					 	<i class="fa fa-fw fa-area-chart"></i> 
-					 	<span class="nav-link-text">통계관리</span>
-					</a>
-				</li>
 				<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
 					<a class="nav-link nav-link-collapse collapsed" data-toggle="collapse"
 					href="#collapse-second" data-parent="#Accordion">
@@ -62,6 +56,12 @@
 					</a>
 				</li>
 				
+				<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
+					<a class="nav-link" href="charts.do">
+					 	<i class="fa fa-fw fa-area-chart"></i> 
+					 	<span class="nav-link-text">통계관리</span>
+					</a>
+				</li>
 				
 			</ul>
 			
@@ -89,14 +89,16 @@
 						
 						<div class="dropdown-divider"></div>
 						
-						<a class="dropdown-item" href="#"> <strong>user_no : ${qnaitem.sender }<br> qna_no : ${qnaitem.q_no }</strong> 
 						<span class="small float-right text-muted">${qnaitem.write_date }</span>
-							<div class="dropdown-message small">제목 : ${qnaitem.title } 
+						<a class="dropdown-item" href="#"> <strong>작성자 이메일 : ${qnaitem.email }<br>작성자 이름 : ${qnaitem.name }</strong> 
+									
+							<div class="dropdown-message small">
+							<br>제목 : ${qnaitem.title } 
 							<br>내용 : ${qnaitem.content }</div>
 						</a>
 					</c:forEach>
 						 <div class="dropdown-divider"></div>
-						<a class="dropdown-item small" href="#">자세히보기</a>
+						<a class="dropdown-item small" href="adminQnABoard.do">자세히보기</a>
 					
 				<!-- 헬스장 등록요청 최신3개 출력 -->
 				<li class="nav-item dropdown"><a
@@ -115,11 +117,11 @@
 						<c:forEach var="ritem" items="${gymRlist }" varStatus="status">
 						
 						<div class="dropdown-divider"></div>
-						
-						<a class="dropdown-item" href="#"> <strong>user_no : ${ritem.user_no }<br>gym_no : ${ritem.gym_no }</strong> 
 						<span class="small float-right text-muted">${ritem.register_date }</span>
+						<a class="dropdown-item" href="#"> <strong>사업자 이메일 : ${ritem.email }<br>사업자 이름 : ${ritem.name }</strong> 
+						
 							<div class="dropdown-message small">
-							<br>이름 : ${ritem.gym_name }
+							<br>상호 : ${ritem.gym_name }
 							<br>종류 : ${ritem.category } 
 							<br>지역 : ${ritem.location }</div>
 						</a>
@@ -127,7 +129,7 @@
 				
 					
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item small" href="#">자세히보기</a>
+						<a class="dropdown-item small" href="adminbusinessRequestlist.do">자세히보기</a>
 					</div></li>
 				<li class="nav-item">
 					<form class="form-inline my-2 my-lg-0 mr-lg-2">

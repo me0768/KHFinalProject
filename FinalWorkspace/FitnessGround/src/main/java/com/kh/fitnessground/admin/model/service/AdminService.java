@@ -2,6 +2,8 @@ package com.kh.fitnessground.admin.model.service;
 
 import java.util.ArrayList;
 
+import com.kh.fitnessground.community.model.vo.CommunityBoard;
+import com.kh.fitnessground.community.model.vo.MeetingBoard;
 import com.kh.fitnessground.gym.model.vo.GymQnABoard;
 import com.kh.fitnessground.user.model.vo.User;
 
@@ -58,6 +60,15 @@ public interface AdminService {
 	ArrayList<GymQnABoard> adminBoard();
 
 	ArrayList<GymQnABoard> GymQnABoard(int receiver);
+
+
+	int meetingBoardInsert(MeetingBoard mboard);
+
+
+	int qnaBoardInsert(CommunityBoard cboard);
+
+
+	int reviewBoardInsert(CommunityBoard cboard);
 
 
 

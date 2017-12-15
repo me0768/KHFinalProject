@@ -100,65 +100,36 @@ function registerView(){
 											name="deleteCheckBox" value="${item.user_no} " /></td> --%>
 										<td>${status.count }</td>
 										<td>${item.name }</td>
-										<div class="modal fade ${item.user_no}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-											<div class="modal-dialog">
-												<div class="modal-content">
-												
-													<!-- header -->
-													<div class="modal-header" align="top">
-														<!-- 닫기(x) 버튼 -->
-														<button type="button" class="close" data-dismiss="modal">×</button>
-														<!-- header title -->
-														<h4 class="modal-title" align="center">유저번호 : ${item.user_no}</h4>
-													<div>
-													
-													<!-- body -->
-													<div class="modal-body" align="center">유저이름 : ${item.name}</div>
-													<p align="center">${item.name}</p>
-     											
-													<!-- Footer -->
-													<div class="modal-footer" >
-														Footer
-														<button type="button" class="btn btn-default"
-															data-dismiss="modal">닫기</button>
-													</div>
-												</div>
-											</div>
-										</div>
-										
-										</div>
-										</div>
-										
 										<td>
 										<a  href="meetingDetail.do" data-target=".${item.mb_no}"
 											data-toggle="modal">${item.title }</a></td>
-										<div class="modal fade ${item.mb_no}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+										<div class="modal fade ${item.mb_no }" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 											<div class="modal-dialog">
 												<div class="modal-content">
-												
 													<!-- header -->
 													<div class="modal-header" align="top">
-														<!-- 닫기(x) 버튼 -->
-														<button type="button" class="close" data-dismiss="modal">×</button>
-														<!-- header title -->
-														<h4 class="modal-title" align="center">${item.title}</h4>
-													<div>
+														<h4 class="modal-title" align="center">제목 : ${item.title}</h4>
+														<button type="button" class="close" data-dismiss="modal" align="right">x</button>
+													</div>
 													
 													<!-- body -->
-													<div class="modal-body" align="center">${item.content}</div>
-													<p align="center">${item.name}</p>
-     											
-													<!-- Footer -->
-													<div class="modal-footer" >
-														Footer
-														<button type="button" class="btn btn-default"
-															data-dismiss="modal">닫기</button>
+													<div class="modal-body" align="left">
+													<p align="right">작성자 : ${item.user_no}</p>
+													<p align="right">작성일 : ${item.upload_date}</p><hr>
+													<h4>내용 : </h4><p>${item.content}</p>
 													</div>
+     											<!-- Footer -->
+													<div class="modal-footer" >
+														
+														
+													</div>
+													</div>
+													
 												</div>
+												
 											</div>
-										</div>
-										</div>
-										</div>
+										
+										
 										<td>${item.upload_date }</td>
 										<td>${item.readcount }</td>
 										<td><button class="btn btn-primary" onclick="meetingBoardDelete(${item.mb_no});">삭제</button></td>
@@ -182,31 +153,37 @@ function registerView(){
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">x</button>
         
         </div>
+        <form id="register_form" name="mboard" method="post" action="adminmeetingInsert.do">
+        <input type="hidden" name="user_no" value="${sessionScope.user.user_no }">
         	<div class="modal-body">
 				<div id="insert_all_div" style="border: 1px solid;">
 				<br>
-					<form id="register_form" name='meeting' method="post" action="meetingInsert.do">
-						<input name="user_no" type="hidden" value="${sessionScope.user.user_no }" />
+					
+						
 							<div id="div_head">
 								<p>
 									제목
-							<input name="title" type="text" placeholder="제목을 입력해주세요." />
+							<input name="title" type="text" placeholder="제목을 입력해주세요."/>
 								</p>				
 							</div>
+							
 				<textarea name="content" id="editor1" placeholder="내용을 입력해주세요.."></textarea>
 				<script>
 					CKEDITOR.replace('editor1');
 				</script>
 				
-					
 				</div>
 											
 		  </div>
 				<div class="modal-footer">
+					
 					<button type="submit" class="btn btn-primary" >Register</button>
-					</form>
+					
       				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       			</div>
+      			
+      			</form>
+      			
 	  </div>
 			
      </div>

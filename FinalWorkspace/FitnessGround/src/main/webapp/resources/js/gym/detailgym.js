@@ -40,3 +40,19 @@ $(document).ready(function(){
 	 }
  }
  
+ function scrollmove(data){
+	 var info = $("#info").scrollTop();
+	 var schedule = $("#schedule").scrollTop();
+	 var location = $("#location").scrollTop();
+	 console.log("info : " + info + ", sch : " + schedule + ", loc : " + location);
+	 if(data == 1){
+		 $("#scrollView").scrollTop(0);
+		 return false;
+	 } else if (data == 2){
+		 $("#scrollView").scrollTop(600);
+		 return false;
+	 } else {
+		 $("#scrollView").scrollTop(1200);
+		 return false;
+	 } 
+ }

@@ -113,18 +113,7 @@
 			    </ul>
 			 </div>
 			 <script type="text/javascript">
-			      	 function scrollmove(data){
-						 if(data == 1){
-							 $("#scrollView").scrollTop(0);
-							 return false;
-						 } else if (data == 2){
-							 $("#scrollView").scrollTop(600);
-							 return false;
-						 } else {
-							 $("#scrollView").scrollTop(1200);
-							 return false;
-						 } 
-					 }
+			      	 
 			 </script>
 		</nav>
 		<div id="contents">

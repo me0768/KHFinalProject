@@ -20,6 +20,14 @@
 	color: #FF5C7F;
 	margin-left: 15px;
 }
+input[type="search"]{
+	margin-left: 5vw !important;
+}
+.dataTables_filter>label{
+	height: 5vh;
+	margin-left: 20vw !important;
+	width: 30vw;
+}
 
 /*수정하기view 부분 */
 #edit-td{

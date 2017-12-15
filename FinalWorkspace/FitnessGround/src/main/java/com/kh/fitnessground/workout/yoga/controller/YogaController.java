@@ -182,8 +182,9 @@ public class YogaController {
 			ModelAndView mv = new ModelAndView("admin/videolist");
 			/*request.setCharacterEncoding("utf-8");*/
 			yogaService.updateYoga(yoga, request);
-			ArrayList<Yoga> list = yogaService.selectAllList();
+			ArrayList<Yoga> list = yogaService.selectWList(yoga);
 			mv.addObject("list", list);
+			mv.setViewName("jsonView");
 			return mv;
 		}
 
@@ -201,9 +202,9 @@ public class YogaController {
 		}
 
 		// 동영상 delete(복수선택 체크박스로)
-		@RequestMapping(value = "/yldelete.do")
+		@RequestMapping(value = "/deletel.do", method = RequestMethod.POST)
 		public ModelAndView YogaListDeleteMethod(List<Yoga> dellist, HttpServletRequest request) {
-			ModelAndView mv = new ModelAndView("/workout/yogaCategory");
+			ModelAndView mv = new ModelAndView("admin/videolist");
 			yogaService.deleteYogaList(dellist, request);
 			ArrayList<Yoga> ylist = yogaService.selectAllYList();
 			mv.addObject("yogalist", ylist);

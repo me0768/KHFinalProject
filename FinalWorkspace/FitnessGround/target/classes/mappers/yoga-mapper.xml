@@ -48,7 +48,7 @@
 	
 	<!-- 운동종류별 list select-->
 	<select id="selectWList" parameterType="Yoga" resultType="list" resultMap="yogaResult">
-		select * from tb_video_board where category1 = #{category1} order by v_no desc
+		select * from tb_video_board where category1 = #{category1} order by v_no
 	</select>
 
 	<!-- 플레이리스트 동영상 한번에 insert하기 Multi-row Insert -->

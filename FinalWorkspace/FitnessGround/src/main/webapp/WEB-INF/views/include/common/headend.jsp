@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="/fitnessground/resources/css/common/login.css" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
-<body class="homepage">
+<body class="homepage" id="page-top">
 
 <!-- java script 파일 로드 -->
 <script type="text/javascript" src="/fitnessground/resources/js/jquery.min.js"></script> 

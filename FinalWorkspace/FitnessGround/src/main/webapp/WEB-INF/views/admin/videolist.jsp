@@ -51,10 +51,11 @@
 					<option value="3">복근집중운동</option>
 					<option value="3">전신운동</option>
 					<option value="3">하체운동</option>
-					<option value="4">맨몸운동1</option>
-					<option value="4">맨몸운동2</option>
-					<option value="4">맨몸운동3</option>
-					<option value="4">맨몸운동4</option>
+					<option value="4">팔굽혀 펴기</option>
+					<option value="4">하체 운동</option>
+					<option value="4">철봉 운동</option>
+					<option value="4">전신 프로그램</option>
+					<option value="4">초보자를 위한 3개월 프로그램</option>
 					
 				</select>
 				<input type="text" class="form-control" placeholder="playlist Id입력" id="playlist_id">
@@ -67,32 +68,33 @@
 			<div id="card-result"></div>
 			<div class="card-body">
 					<div class="table-responsive">
-						
+							
 							<table class="table table-bordered" id="dataTable" width="100%"
 								cellspacing="0">
 								<thead>
 									<tr>
+										<th id="ch"><input type="checkbox" id="selectall"/></th>
 										<th>Index</th>
 										<th>Title</th>
 										<th>운동</th>
 										<th>category</th>
-										
 										<th>조회수</th>
 										<th>관리</th>
 									</tr>
 								</thead>
 								<tbody id="rows">
-
+									
 									<c:forEach var="item" items="${list }" varStatus="status">
 										<tr id="tr-${item.v_no }">
+											<td><input type="checkbox" class="case" name="case" value="${item.v_no }"/></td>
 											<td>${item.v_no }</td>
 											<td>${item.title }</td>
 											<td>${item.category1 }</td>
 											<td>${item.category2 }</td>
 											<td>${item.readcount }</td>
 											<td><a class="cps" aria-expanded="false" data-target = "#collapse${item.v_no }" data-toggle="collapse" href="#collapse${item.v_no }">
-                                 <button type="submit" class="btn btn-success btn-sm" onclick="editView(${item.v_no})">수정</button></a>
-												<button type="submit" class="btn btn-warning btn-sm"
+                                 				<button type="submit" class="btn btn-primary btn-sm" onclick="editView(${item.v_no})">수정</button></a>
+												<button type="submit" class="btn btn-danger btn-sm"
 															onclick="deleteOne(${item.v_no})">삭제</button>
 											</td>
 
@@ -110,6 +112,25 @@
 		
 		
 		<script type="text/javascript">
+		
+		/*template layout때문에 수정 */
+		$(document).ready(function(){
+			var value = '<i class="fa fa-search" aria-hidden="true"></i>&nbsp;&nbsp;<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="dataTable">';
+			$('.dataTables_filter>label').html(value);//검색바 아이콘으로 바꿈 	
+			
+			var value2 = '<a href="javascript: deleteSelected()"><button class="btn btn-info"><i class="fa fa-trash-o" aria-hidden="true"></i></button></a>'+
+			'<span>&nbsp;&nbsp;Show</span> <select name="dataTable_length" aria-controls="dataTable" class="form-control form-control-sm">'+
+			'<option value="10">10</option><option value="25">25</option><option value="50">50</option>'+
+			'<option value="100">100</option></select><span> entries</span>' ;
+			$('.dataTables_length>label').html(value2); //삭제버튼 붙이기 
+			
+			$("#ch").removeClass("sorting_asc");//체크박스th에 필터표시 안뜨도록
+			
+			$("#selectall").click(function(){
+			    $('input:checkbox').not(this).prop('checked', this.checked);
+			}); ///이게무슨코드야........이해를하고쓰자...//ajax방식은 insert처럼하면될듯.insert랑다른점은얘는 v_no만다넘겨준다는것?..!
+			
+		});		
 		
 		/*운동 선택 시 category 바뀌도록 */
 		$(document).ready(function(){
@@ -276,20 +297,21 @@
 				"<option value='3'>복근집중운동</option>"+
 				"<option value='3'>전신운동</option>"+
 				"<option value='3'>하체운동</option>"+
-				"<option value='4'>맨몸운동1</option>"+
-				"<option value='4'>맨몸운동2</option>"+
-				"<option value='4'>맨몸운동3</option>"+
-				"<option value='4'>맨몸운동4</option></select><br>"+
+				"<option value='4'>팔굽혀 펴기</option>"+
+				"<option value='4'>하체 운동</option>"+
+				"<option value='4'>철봉 운동</option>"+
+				"<option value='4'>전신 프로그램</option>"+
+				"<option value='4'>초보자를 위한 3개월 프로그램</option></select><br>"+
 				"<label for='content'>내용</label>"+
 				"<textarea class='form-control' id='v-content' rows='5'></textarea><br>"+
 				"<a class='btn btn-primary' id='edit-btn' href='javascript: update("+v_no+")' role='button'>수정</a>"+"</td></tr>";
 			
-			$('.collapse').toggle(inserttr(), removetr());	
+			$('#collapse'+v_no).toggle(inserttr(), removetr());	
 			function inserttr(){
 				$(value).insertAfter(id);
 			}
 			function removetr(){
-				$('.show').remove();
+				$('#collapse'+v_no).removeClass("show");
 			}
 			
 			//category1 선택하면 자동으로 category2 바뀜
@@ -362,6 +384,8 @@
 				type: "post",
 				success: function(result){
 					alert("수정되었습니다.");
+					var category1 = result.list[0].category1;
+					listing(category1);
 				},
 				error: function(request, status, errorData) {
 					alert("error code : " + request.status + "\n"
@@ -384,7 +408,7 @@
 				type : "post",
 				success : function(result) {
 					console.log("전송성공:");
-					$('#card-result').append('<div class="alert alert-success" role="alert">삭제되었습니다!</div>');
+					alert("삭제되었습니다!");
 					setTimeout(function(){
 						window.location.reload();
 					}, 1500);
@@ -398,8 +422,34 @@
 						
 		}//deleteOne(v_no) ends...
 		
-	
-		
+		/*Delete 여러개 한꺼번에(체크박스선택된것) */
+		function deleteSelected(){
+			var selected = [];
+			$('#selectall input:checked').each(function() {
+			    selected.push($(this).attr('name'));
+			});
+			$.ajax({
+				url : "deletel.do",
+				data : queryString,
+				dataType: "json",
+				type : "post",
+				success : function(result) {
+					console.log("전송성공:");
+					alert("삭제되었습니다!");
+					setTimeout(function(){
+						window.location.reload();
+					}, 700);
+				},
+				error : function(request, status, errorData) {
+					alert("error code : " + request.status + "\n"
+							+ "message : " + request.responseText + "\n"
+							+ "error : " + errorData);
+				}
+			}) //ajax ends..
+			
+			
+		}//deleteSelected() ends...
+
 		</script>
 		
 		

@@ -14,7 +14,12 @@
 }
 
 #map{
- height: 700px;
+	margin-left: 100px;
+	height: 750px;
+}
+
+#container{
+	width: 1600px;	
 }
 
 #thumbnail{
@@ -22,16 +27,26 @@
 	width: 60vw;
 	height: 60vh;
 }
-
-#healthlist{
+#list{
+	width: 17vw;
+}
+#healthlist#publiclist{
 	display: inline-block;
 }
+#health-desc#public-desc{
+	display: inline-block;
+}
+#wrapper{
+	display: block;
+	
+}
+
+#panel{
+	width: 630px;
+}
+
 #pagination{
 	display: block;
 	margin-left: 50px;
 	align: center;
-}
-
-a {
-	display: block;
 }

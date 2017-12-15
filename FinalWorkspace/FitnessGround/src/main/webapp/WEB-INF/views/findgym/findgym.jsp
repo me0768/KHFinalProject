@@ -52,9 +52,9 @@
 				
 				for(var i in json.gymlist)
 				{
-					values += "<a href=''>" + "<img src=" + json.gymlist[i].rename_image + " style='height:100px; weight:100px;'>" + "</a>" + 
-							json.gymlist[i].gym_name + "<br/>" + 
-							json.gymlist[i].location + "<br/>";
+					values += "<a href=''>" + "<div id='wrapper'><img src='/fitnessground/resources/images/pic01.jpg' style='height:100px; weight:100px;'>" + "</a>" + 
+							"<div id='health-desc'>"+json.gymlist[i].gym_name + "<br/>" + 
+							json.gymlist[i].location + "<br/></div></div>";
 				}
 				
 				console.log(values);
@@ -110,9 +110,13 @@
 				
 				for(var i in json.publiclist)
 				{
-					values += json.publiclist[i].public_name + "<br/>" + json.publiclist[i].location + "<br/>";
+					values += "<a href=''>" + "<div id='wrapper'><a href='#'><img src='/fitnessground/resources/images/pic01.jpg' style='height:100px; weight:100px;'></a>" +
+								"<div id='public-desc'>" + json.publiclist[i].public_name + "<br/>" + json.publiclist[i].location + "<br/></div></div>";
 				}
-				
+				"<a href=''>" + "<div id='wrapper'><a href='#'><img src='/fitnessground/resources/images/pic01.jpg' style='height:100px; weight:100px;'>" + "</a>" + 
+				"<div id='health-desc'>"+json.gymlist[i].gym_name + "<br/>" + 
+				json.gymlist[i].location + "<br/></div></div>";
+		
 				console.log(values);
 				$("#publiclist").html(values);
 				
@@ -171,12 +175,12 @@
 			</div>
 			
 			<div class="row">
-				<div role="tabpanel">
+				<div role="tabpanel" id="panel">
 					<!-- Nav tabs -->
-					<ul class="nav nav-tabs" role="tablist">
-						<li role="presentation" class="active"><a href="#home"
+					<ul class="nav nav-tabs" role="tablist" style="text-align:center;">
+						<li role="presentation" class="active" id="list"><a href="#home"
 							aria-controls="home" role="tab" data-toggle="tab">헬스장 찾기</a></li>
-						<li role="presentation"><a href="#profile"
+						<li role="presentation" id="list"><a href="#profile"
 							aria-controls="profile" role="tab" data-toggle="tab">공공체육시설 찾기</a></li>
 					</ul>
 					
@@ -186,9 +190,11 @@
 							<div class="row">
 										<div id="healthlist">
 										<c:forEach var="glist" items="${gympage.list}">
-										<a href='#'><img src="${glist.rename_image }" style="height:100px; weight:100px;"></a>
-										${glist.gym_name}<br/>
+										<div id='wrapper'>
+										<a href='#'><img src="/fitnessground/resources/images/pic01.jpg" style="height:100px; weight:100px;"></a>
+										<div id="health-desc">${glist.gym_name}<br/>
 										${glist.location}<br/>
+										</div></div>
 										</c:forEach>
 										</div>
 							</div>
@@ -236,9 +242,14 @@
 							<div class="row">
 								<div id="publiclist">
 									<c:forEach var="plist" items="${gympage.plist}">
+									<div id="wrapper">
+									<a href='#'><img src="/fitnessground/resources/images/pic01.jpg" style="height:100px; weight:100px;"></a>
+										<div id="public-desc">
 										${plist.public_name}<br/>
 										${plist.location}<br/>
-										</c:forEach>
+										</div>
+									</div>
+										</c:forEach>										
 								</div>
 								</div>
 							<div id="paging">
@@ -284,16 +295,15 @@
 				</div>
 				
 			</div>
-		</div>
-		<div class="col-md-8 ">
+			<div class="col-md-6 ">
 			<div id="map">
 				<script type="text/javascript"
 					src="/fitnessground/resources/js/gym/gymmap.js"></script>
 			</div>
+			</div>
 		</div>
 	</div>
 	<!-- row -->
-</div>
 <!-- container -->
 <c:import url="../include/main/footer.jsp" />
 <c:import url="../include/common/end.jsp" />

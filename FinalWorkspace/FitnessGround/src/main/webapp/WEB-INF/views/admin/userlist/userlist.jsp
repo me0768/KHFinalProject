@@ -98,14 +98,14 @@
 						<form name="userForm">
 							<table class="table table-bordered" id="dataTable" width="100%"	cellspacing="0">
 								<thead>
-									<tr>
+									<tr align="center">
 										<th>Index</th>
 										<th>Email</th>
 										<th>Name</th>
 										<th>NickName</th>
 										<th>Phone</th>
 										<th>Level</th>
-										<th>상태</th>
+										<th>State</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -119,21 +119,21 @@
 												<tr id="inactive">
 											</c:when>
 										</c:choose>
-											<td>${status.count }</td>
-											<td>${item.email }</td>
-											<td>${item.name }</td>
-											<td>${item.nickname }</td>
-											<td>${item.phone }</td>
-											<td>${item.user_level }</td>
+											<td align="center">${status.count }</td>
+											<td align="center">${item.email }</td>
+											<td align="center">${item.name }</td>
+											<td align="center">${item.nickname }</td>
+											<td align="center">${item.phone }</td>
+											<td align="center">${item.user_level }</td>
 											<c:choose>
 												<c:when test="${item.user_state==0}">
 
-													<td><button type="submit" class="btn btn-primary"
+													<td align="center"><button type="submit" class="btn btn-primary"
 															onclick="userChange(${item.user_no});">비활성화</button></td>
 												</c:when>
 												<c:when test="${item.user_state==1}">
 
-													<td><button type="submit" class="btn btn-primary"
+													<td align="center"><button type="submit" class="btn btn-primary"
 															onclick="userBack(${item.user_no});">활성화</button></td>
 												</c:when>
 

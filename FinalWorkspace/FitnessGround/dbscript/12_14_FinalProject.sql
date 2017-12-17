@@ -1065,12 +1065,12 @@ PROMPT TB_MYPAGE_SCHEDULE 샘플데이터 입력끝!
 
 -- 문의하기 샘플 데이터
 PROMPT TB_QNA 샘플데이터 입력중..
-insert into tb_qna values(USER_SEQ.NEXTVAL, 2, 1, '테스트문의', '이것은 테스트', NULL, NULL, SYSDATE-4, DEFAULT, USER_SEQ.NEXTVAL, DEFAULT);
-insert into tb_qna values(USER_SEQ.NEXTVAL, 2, 1, '사업자가 보낸 문의 제대로 가나요?', '문의합니다', NULL, NULL, SYSDATE-3, DEFAULT, USER_SEQ.NEXTVAL, DEFAULT);
-insert into tb_qna values(USER_SEQ.NEXTVAL, 3, 1, '회원이 보낸 문의', '왔나염?', NULL, NULL, SYSDATE-3, DEFAULT, USER_SEQ.NEXTVAL, DEFAULT);
-insert into tb_qna values(USER_SEQ.NEXTVAL, 3, 1, '회원이 보낸 문의', '왔나염?', NULL, NULL, SYSDATE-1, DEFAULT, USER_SEQ.NEXTVAL, DEFAULT);
-insert into tb_qna values(USER_SEQ.NEXTVAL, 4, 1, '회원이 보낸 문의', '왔나염?', NULL, NULL, SYSDATE-2, DEFAULT, USER_SEQ.NEXTVAL, DEFAULT);
-insert into tb_qna values(USER_SEQ.NEXTVAL, 5, 1, '회원이 보낸 문의', '왔나염?', NULL, NULL, SYSDATE-7, DEFAULT, USER_SEQ.NEXTVAL, DEFAULT);
+insert into tb_qna values(qna_SEQ.NEXTVAL, 2, 1, '테스트문의', '이것은 테스트', NULL, NULL, SYSDATE-4, DEFAULT, qna_SEQ.NEXTVAL, DEFAULT);
+insert into tb_qna values(qna_SEQ.NEXTVAL, 2, 1, '사업자가 보낸 문의 제대로 가나요?', '문의합니다', NULL, NULL, SYSDATE-3, DEFAULT, qna_SEQ.NEXTVAL, DEFAULT);
+insert into tb_qna values(qna_SEQ.NEXTVAL, 3, 1, '회원이 보낸 문의', '왔나염?', NULL, NULL, SYSDATE-3, DEFAULT, qna_SEQ.NEXTVAL, DEFAULT);
+insert into tb_qna values(qna_SEQ.NEXTVAL, 3, 1, '회원이 보낸 문의', '왔나염?', NULL, NULL, SYSDATE-1, DEFAULT, qna_SEQ.NEXTVAL, DEFAULT);
+insert into tb_qna values(qna_SEQ.NEXTVAL, 4, 1, '회원이 보낸 문의', '왔나염?', NULL, NULL, SYSDATE-2, DEFAULT, qna_SEQ.NEXTVAL, DEFAULT);
+insert into tb_qna values(qna_SEQ.NEXTVAL, 5, 1, '회원이 보낸 문의', '왔나염?', NULL, NULL, SYSDATE-7, DEFAULT, qna_SEQ.NEXTVAL, DEFAULT);
 PROMPT TB_QNA 샘플데이터 입력끝!
 
 --공공시설 샘플 데이터

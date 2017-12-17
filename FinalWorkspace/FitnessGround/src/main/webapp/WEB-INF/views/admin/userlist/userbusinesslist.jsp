@@ -100,14 +100,14 @@
 						<table class="table table-bordered" id="dataTable" width="100%"
 							cellspacing="0">
 							<thead>
-								<tr>
+								<tr align="center">
 									<th>Index</th>
 									<th>Email</th>
 									<th>Name</th>
 									<th>NickName</th>
 									<th>Phone</th>
 									<th>Level</th>
-									<th>상태</th>
+									<th>State</th>
 								</tr>
 							</thead>
 							<!-- <tfoot>
@@ -123,7 +123,7 @@
 							<tbody>
 							<form id="massiveDeleteForm">
 								<c:forEach var="item" items="${list }" varStatus="status">
-									<tr>
+									<tr align="center">
 										<td>${status.count }</td>
 										<td>${item.email }</td>
 										<td>${item.name }</td>

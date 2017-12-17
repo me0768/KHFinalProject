@@ -85,25 +85,25 @@ function qnaDelete(cb_no){
 					<table class="table table-bordered" id="dataTable" width="100%"
 						cellspacing="0">
 						<thead>
-							<tr>
-								<th>번호</th>
-								<th>작성자</th>
-								<th>제목</th>
-								<th>작성일</th>
-								<th>조회수</th>
-								<th>관리</th>
+							<tr align="center">
+								<th>Index</th>
+								<th>Writer</th>
+								<th>Title</th>
+								<th>Date</th>
+								<th>Hits</th>
+								<th>Delete</th>
 							</tr>
 						</thead>
 
 						<tbody>
 							<c:forEach var="item" items="${list }" varStatus="status">
 								<c:if test="${item.board_property == 1}">
-									<tr>
+									<tr align="center">
 										<%-- <td><input type="checkbox" class="deleteCheckBox"
 											name="deleteCheckBox" value="${item.user_no} " /></td> --%>
 										<td>${status.count }</td>
 										<td>${item.name }</td>
-										<td><a href="meetingDetail.do"
+										<td align="left"><a href="meetingDetail.do"
 											data-target=".${item.cb_no}" data-toggle="modal">${item.title }</a></td>
 										<div class="modal fade ${item.cb_no }" tabindex="-1"
 											role="dialog" aria-labelledby="myLargeModalLabel"
@@ -120,7 +120,8 @@ function qnaDelete(cb_no){
 
 													<!-- body -->
 													<div class="modal-body" align="left">
-														<p align="right">작성자 : ${item.user_no}</p>
+														<p align="right">작성자 : ${item.name}</p>
+														<p align="right">이메일 : ${item.email }</p>
 														<p align="right">작성일 : ${item.upload_date}</p>
 														<hr>
 														<h4>내용 :</h4>

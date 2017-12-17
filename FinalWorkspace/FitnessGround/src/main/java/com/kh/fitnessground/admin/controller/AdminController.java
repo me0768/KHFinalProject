@@ -70,10 +70,10 @@ public class AdminController {
 		mv.addObject("message", message);
 		mv.addObject("gymRlist", gymRlist);
 		mv.addObject("qnalist", qnalist);
-		System.out.println("등록요청 수 :" + request);
+		/*System.out.println("등록요청 수 :" + request);
 		System.out.println("등록요청gymRlist : " + gymRlist);
 		System.out.println("문의 수 :" + message);
-		System.out.println("문의요청list : " + qnalist);
+		System.out.println("문의요청list : " + qnalist);*/
 		return mv;
 	}
 
@@ -240,7 +240,7 @@ public class AdminController {
 
 		ArrayList<User> gymRlist = adminService.GymRequest(level);
 		ArrayList<GymQnABoard> qnalist = adminService.GymQnABoard(receiver);
-		ArrayList<MeetingBoard> list = communityBoardService.meetingListView();
+		ArrayList<MeetingBoard> list = adminService.meetingListView();
 
 		mv.addObject("request", request);
 		mv.addObject("message", message);
@@ -264,7 +264,7 @@ public class AdminController {
 
 		ArrayList<User> gymRlist = adminService.GymRequest(level);
 		ArrayList<GymQnABoard> qnalist = adminService.GymQnABoard(receiver);
-		ArrayList<CommunityBoard> list = communityBoardService.qnaListView();
+		ArrayList<CommunityBoard> list = adminService.qnaListView();
 
 		mv.addObject("request", request);
 		mv.addObject("message", message);
@@ -288,7 +288,7 @@ public class AdminController {
 
 		ArrayList<User> gymRlist = adminService.GymRequest(level);
 		ArrayList<GymQnABoard> qnalist = adminService.GymQnABoard(receiver);
-		ArrayList<CommunityBoard> list = communityBoardService.reviewListView();
+		ArrayList<CommunityBoard> list = adminService.reviewListView();
 
 		mv.addObject("request", request);
 		mv.addObject("message", message);
@@ -442,47 +442,62 @@ public class AdminController {
 		return mv;
 	}
 
+	//관리자 - MeetingBoard에 공지사항 글쓰기
 	@RequestMapping(value = "/adminmeetingInsert.do", method = RequestMethod.POST)
 	public String adminMeetingInsertMethod(MeetingBoard mboard) {
 		System.out.println(mboard);
 
 		int result = adminService.meetingBoardInsert(mboard);
-		// 1이상 result 값이면 리스트로이동
 		if (result > 0) {
-			return "redirect:/adminMettingBoard.do";
+			return "redirect:adminMettingBoard.do";
 		} else {
-			return "redirect:/adminMettingBoard.do";
+			return "redirect:adminMettingBoard.do";
 		}
 
 	}
 
+	//관리자 - QnABoard에 공지사항 글쓰기
 	@RequestMapping(value = "/adminqnaInsert.do", method = RequestMethod.POST)
 	public String adminQnaInsertMethod(CommunityBoard cboard) {
 		System.out.println(cboard);
 
 		int result = adminService.qnaBoardInsert(cboard);
-		// 1이상 result 값이면 리스트로이동
 		if (result > 0) {
-			return "redirect:/adminQNABoard.do";
+			return "redirect:adminQNABoard.do";
 		} else {
-			return "redirect:/adminQNABoard.do";
+			return "redirect:adminQNABoard.do";
 		}
 
 	}
 
+	//관리자 - ReviewBoard에 공지사항 글쓰기
 	@RequestMapping(value="/adminreviewInsert.do", method=RequestMethod.POST)
 	public String adminReviewInsertMethod(CommunityBoard cboard){
 		System.out.println(cboard);
 	
 		int result = adminService.reviewBoardInsert(cboard);
-		//1이상 result 값이면 리스트로이동 
 		if(result>0){
-			return "redirect:/adminReviewBoard.do";
+			return "redirect:adminReviewBoard.do";
 		}else{
-			return "redirect:/adminReviewBoard.do";
+			return "redirect:adminReviewBoard.do";
 		}
 		
 	}
+		
+	//관리자 - 문의에 대한 답변 쓰기
+	@RequestMapping(value="/qnaResponse.do", method=RequestMethod.POST)
+	public String qnaResponseMethod(GymQnABoard gqboard){
+		System.out.println(gqboard);
+		
+		int result = adminService.qnaResponse(gqboard);
+		if(result>0){
+			return "redirect:adminQnABoard.do";
+		}else{
+			return "redirect:adminQnABoard.do";
+		}
+			
+	}	
+		
 	/*
 	 * // 게시글보기 에서 작성자이름 클릭시 작성자 정보 모달띄우기
 	 * 
@@ -493,7 +508,8 @@ public class AdminController {
 	 * System.out.println(user_no); ModelAndView mv = new ModelAndView("#");
 	 * 
 	 * 
-	 * return mv; }
+	 * return mv; 
+	 * }
 	 */
 
 }

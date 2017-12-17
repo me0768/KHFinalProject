@@ -104,16 +104,16 @@
 					<div class="table-responsive">
 						<table class="table table-bordered" id="dataTable" width="100%"	cellspacing="0">
 							<thead>
-								<tr>
-									<th>유저번호</th>
-									<th>유저상태</th>
-									<th>이메일</th>
-									<th>이름</th>
-									<th>헬스장번호</th>
-									<th>헬스장이름</th>
-									<th>지역</th>
-									<th>요청날짜</th>
-									<th>승인여부</th>
+								<tr align="center">
+									<th>Index</th>
+									<th>State</th>
+									<th>Email</th>
+									<th>Name</th>
+									<th>Gym_No</th>
+									<th>Gym_Name</th>
+									<th>Location</th>
+									<th>Date</th>
+									<th>Permission</th>
 								</tr>
 							</thead>
 							<!-- <tfoot>
@@ -128,8 +128,8 @@
               </tfoot> -->
 							<tbody>
 								<c:forEach var="item" items="${list }" varStatus="status">
-									<tr>
-										<td>${item.user_no }</td>
+									<tr align="center">
+										<td>${status.count }</td>
 										<td>${item.user_state }</td>
 										<td>${item.email }</td>
 										<td>${item.name }</td>

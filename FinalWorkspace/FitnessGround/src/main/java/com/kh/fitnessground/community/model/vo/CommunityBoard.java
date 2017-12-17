@@ -11,7 +11,8 @@ public class CommunityBoard {
 	private String content;		//게시글 내용
 	private int board_property;	//게시판특성 0=후기 / 1=Q&A
 	private Date upload_date;   //작성일자
-	private int readcount;		//조회수
+	private int readcount;		//조회수	
+	private String email;
 	
 	
 	public CommunityBoard() {
@@ -20,7 +21,7 @@ public class CommunityBoard {
 
 
 	public CommunityBoard(int cb_no, int user_no, String name, String title, String content, int board_property,
-			Date upload_date, int readcount) {
+			Date upload_date, int readcount, String email) {
 		super();
 		this.cb_no = cb_no;
 		this.user_no = user_no;
@@ -30,6 +31,17 @@ public class CommunityBoard {
 		this.board_property = board_property;
 		this.upload_date = upload_date;
 		this.readcount = readcount;
+		this.email = email;
+	}
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 

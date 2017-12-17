@@ -71,6 +71,18 @@ public interface AdminService {
 	int reviewBoardInsert(CommunityBoard cboard);
 
 
+	ArrayList<MeetingBoard> meetingListView();
+
+
+	ArrayList<CommunityBoard> qnaListView();
+
+
+	ArrayList<CommunityBoard> reviewListView();
+
+
+	int qnaResponse(GymQnABoard gqboard);
+
+
 
 
 }

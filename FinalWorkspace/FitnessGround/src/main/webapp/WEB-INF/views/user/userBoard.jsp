@@ -84,7 +84,7 @@
 					<c:choose>
 						<c:when test="${!empty qlist}">
 							<c:forEach items="${qlist}" var="q" varStatus="st">
-								<c:url var="detail" value="">
+								<c:url var="detail" value="gymQnaDetailView.do">
 									<c:param name="q_no" value="${q.q_no}"/>
 								</c:url>
 								<tr>

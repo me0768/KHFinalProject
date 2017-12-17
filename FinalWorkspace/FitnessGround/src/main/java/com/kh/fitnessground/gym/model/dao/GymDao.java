@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.fitnessground.gym.model.vo.Gym;
+import com.kh.fitnessground.gym.model.vo.GymQnABoard;
 import com.kh.fitnessground.gym.model.vo.GymReview;
 import com.kh.fitnessground.gym.model.vo.GymSchedule;
 import com.kh.fitnessground.gym.model.vo.PublicGym;
@@ -108,6 +109,26 @@ public class GymDao {
 
 	public Gym selectOne(Gym gym) {
 		return sqlSession.selectOne("gym.detailselect", gym);
+	}
+
+	public void insertGymQnABoard(HashMap<String, Object> parameters) {
+		sqlSession.insert("gym.insertGymQnABoard", parameters);
+	}
+
+	public GymQnABoard selectGymQnABoard(int q_no) {
+		return sqlSession.selectOne("gym.selectGymQnABoard", q_no);
+	}
+
+	public void deleteGymQnABoard(int q_no) {
+		sqlSession.delete("gym.deleteGymQnABoard", q_no);
+	}
+
+	public void updateGymQnABoard(GymQnABoard b) {
+		sqlSession.update("gym.updateGymQnABoard", b);
+	}
+
+	public void insertGymQnaBoardAnswer(GymQnABoard b) {
+		sqlSession.insert("gym.insertGymQnABoardAnswer", b);
 	}
 
 	

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -202,9 +203,22 @@ public class YogaController {
 		}
 
 		// 동영상 delete(복수선택 체크박스로)
-		@RequestMapping(value = "/deletel.do", method = RequestMethod.POST)
-		public ModelAndView YogaListDeleteMethod(List<Yoga> dellist, HttpServletRequest request) {
+		@RequestMapping(value = "/deletemany.do", method = RequestMethod.POST)
+		@ResponseBody
+		public ModelAndView YogaListDeleteMethod(@RequestBody String param, HttpServletRequest request) throws Exception {
 			ModelAndView mv = new ModelAndView("admin/videolist");
+			request.setCharacterEncoding("utf-8");
+			String[] arr = param.substring(1,param.length()-1).split(",");
+			
+			List<Integer> dellist = new ArrayList<Integer>();
+			System.out.println("length:"+arr.length);
+			for(int i=0;i<arr.length;i++) {
+				System.out.println(arr[i].substring(1, arr[i].length()-1)+":::");
+				int no = Integer.parseInt(arr[i].substring(1, arr[i].length()-1));
+				dellist.add(no);
+			}
+			System.out.println(dellist.get(0)+"arraylist");
+			
 			yogaService.deleteYogaList(dellist, request);
 			ArrayList<Yoga> ylist = yogaService.selectAllYList();
 			mv.addObject("yogalist", ylist);

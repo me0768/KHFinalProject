@@ -50,11 +50,8 @@ public class YogaDao {
 		sqlSession.delete("yoga.deleteYoga", yoga);
 	}
 
-	public void deleteYogaList(List<Integer> dellist) {
-		for(int i=0;i<dellist.size();i++) {
-			System.out.println(dellist.get(i));
-			sqlSession.delete("yoga.deleteYoga", dellist.get(i));
-		}
+	public void deleteYogaList(List<Yoga> dellist) {
+		sqlSession.delete("yoga.deleteYogaList", dellist);
 	}
 
 	public void addReadCount(int v_no) {

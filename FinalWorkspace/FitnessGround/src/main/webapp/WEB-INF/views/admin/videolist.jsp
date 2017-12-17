@@ -51,11 +51,11 @@
 					<option value="3">복근집중운동</option>
 					<option value="3">전신운동</option>
 					<option value="3">하체운동</option>
-					<option value="4">맨몸푸시업</option>
-					<option value="4">맨몸하체</option>
-					<option value="4">맨몸철봉</option>
-					<option value="4">맨몸전신</option>
-					<option value="4">맨몸초보자</option>
+					<option value="4">팔굽혀 펴기</option>
+					<option value="4">하체 운동</option>
+					<option value="4">철봉 운동</option>
+					<option value="4">전신 프로그램</option>
+					<option value="4">초보자를 위한 3개월 프로그램</option>
 					
 				</select>
 				<input type="text" class="form-control" placeholder="playlist Id입력" id="playlist_id">
@@ -74,7 +74,7 @@
 								<thead>
 									<tr>
 										<th id="ch"><input type="checkbox" id="selectall"/></th>
-										<th>v_no</th>
+										<th>Index</th>
 										<th>Title</th>
 										<th>운동</th>
 										<th>category</th>
@@ -297,11 +297,11 @@
 				"<option value='3'>복근집중운동</option>"+
 				"<option value='3'>전신운동</option>"+
 				"<option value='3'>하체운동</option>"+
-				"<option value='4'>맨몸푸시업</option>"+
-				"<option value='4'>맨몸하체</option>"+
-				"<option value='4'>맨몸철봉</option>"+
-				"<option value='4'>맨몸전신</option>"+
-				"<option value='4'>맨몸초보자</option></select><br>"+
+				"<option value='4'>팔굽혀 펴기</option>"+
+				"<option value='4'>하체 운동</option>"+
+				"<option value='4'>철봉 운동</option>"+
+				"<option value='4'>전신 프로그램</option>"+
+				"<option value='4'>초보자를 위한 3개월 프로그램</option></select><br>"+
 				"<label for='content'>내용</label>"+
 				"<textarea class='form-control' id='v-content' rows='5'></textarea><br>"+
 				"<a class='btn btn-primary' id='edit-btn' href='javascript: update("+v_no+")' role='button'>수정</a>"+"</td></tr>";
@@ -424,19 +424,18 @@
 		
 		/*Delete 여러개 한꺼번에(체크박스선택된것) */
 		function deleteSelected(){
-			var checkedlist = [];
-			$('input[type="checkbox"]:checked').each(function() {
-			    checkedlist.push($(this).attr('value'));
+			var selected = [];
+			$('#selectall input:checked').each(function() {
+			    selected.push($(this).attr('name'));
 			});
-			console.log(checkedlist+"selected");
 			$.ajax({
-				url : "deletemany.do",
-				data : JSON.stringify(checkedlist),
+				url : "deletel.do",
+				data : queryString,
+				dataType: "json",
 				type : "post",
-				contentType : "application/json; charset=utf-8",
 				success : function(result) {
 					console.log("전송성공:");
-					alert("선택한 동영상이 삭제되었습니다.");
+					alert("삭제되었습니다!");
 					setTimeout(function(){
 						window.location.reload();
 					}, 700);

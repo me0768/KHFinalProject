@@ -63,12 +63,13 @@
 	delete from tb_video_board where v_no = #{v_no}
 	</delete>
 
-	<!-- 체크박스 선택한것들 Delete -->
+	<!-- Multi-row Delete -->
 	<delete id="deleteYogaList" parameterType="_int" flushCache="true" statementType="PREPARED">
-	delete from tb_video_board where v_no = #{v_no}
-	<!-- <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
-       		
- 	</foreach> -->
+	delete from tb_video_board where v_no in 
+	<foreach item="item" index="index" collection="list"
+     			open="(" separator="," close=")">
+       		#{v_no}
+ 	</foreach>
  	</delete>
  	
  	<!-- 수정 View 용 select-->

@@ -17,11 +17,10 @@ public interface YogaService {
 	void insertYoga(List<Yoga> ylist, HttpServletRequest request);
 	void updateYoga(Yoga yoga, HttpServletRequest request);
 	void deleteYoga(Yoga yoga, HttpServletRequest request);
-	void deleteYogaList(List<Integer> dellist, HttpServletRequest request);
+	void deleteYogaList(List<Yoga> dellist, HttpServletRequest request);
 	void addReadCount(int v_no, HttpServletRequest request);
 	ArrayList<Yoga> selectAllList();
 	ArrayList<Yoga> selectWList(Yoga yoga);
-	
 	
 	
 }

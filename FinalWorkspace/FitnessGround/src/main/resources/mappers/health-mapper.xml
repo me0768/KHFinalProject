@@ -30,7 +30,7 @@
 		]]>
 	</select>
 	
-	<!-- 부위별 영상 select -->
+	<!-- 네이버 헬스 동영상 부위별 영상 select -->
 	<select id="selectCategoryList" parameterType = "health" resultType="list" resultMap="resultCategoryList">
 		<![CDATA[
 			select * from tb_video_board where category1 = #{category1} and category2 like '%' ||#{category2}|| '%'
@@ -44,5 +44,17 @@
 		]]>
 		
 	</update>
+	
+	<!-- 맨몸운동 -->
+	
+	<select id = "selectHomeTraning" resultType="list" resultMap = "resultCategoryList">
+		<![CDATA[
+			select v_no, title, content, category1, category2, url, readcount from 
+			(select rownum, v_no, title, content, category1, category2, url, readcount 
+			from (select * from tb_video_board where category1 = '맨몸운동' order by readcount desc) 
+			where rownum <6)
+
+		]]>
+	</select>
 	
 </mapper>

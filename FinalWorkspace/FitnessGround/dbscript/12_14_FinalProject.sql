@@ -754,6 +754,7 @@ INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'하체지방이여 지구를 �
 INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'콩필라테스 / 홈트레이닝 / 전신 운동 / 탄탄 바디 만들기 / 뱃살 빼기 / 힙업 운동 / PILATES used chair','콩필라테스 / 홈트레이닝 / 전신 운동 / 탄탄 바디 만들기 / 뱃살 빼기 / 힙업 운동 / PILATES used chair','필라테스','하체운동','E2BD5ExpCP8',0);
 
 --헬스 네이버 동영상 샘플 데이터 삽입
+PROMPT TB_VIDEO_BOARD 헬스 네이버 샘플데이터 입력중!
 -- 가슴 운동
 insert into tb_video_board values(vb_seq.nextval,'벤치 프레스 - 머신','머신 벤치 프레스는 바벨이 머신에 고정되어 있어서 초보자들도 쉽게 컨트롤할 수 있는 운동방법입니다. 바벨이나 덤벨 벤치 프레스 운동 전에 자세를 교정하고 대흉근의 긴장감을 미리 느껴보는 연습을 하기에는 최적의 운동입니다. 벤치에 앉아 엉덩이와 견갑골을 등받이에 최대한 붙입니다. 허리는 10cm가량 아치형을 만들어줍니다. 바와 전환이 수직이 되는 곳에 손을 위치시킵니다. 발걸이와 바를 동시에 밀어 팔꿈치가 펴진 상태에서 시작합니다. 바가 몸쪽으로 오는 것과 동시에 가슴을 턱 쪽으로 들고 가슴이 압막하는 느낌을 받도록 하면서 바와 가슴이 수평이 될 때까지 내립니다. 바를 겨드랑이 사이에 힘을 준다는 느낌으로 다시 밀어줍니다. 동작을 반복합니다.','헬스','가슴 운동','http://serviceapi.rmcnmv.naver.com/flash/outKeyPlayer.nhn?vid=31479A5CD8B2B74D5D6E021DC9E8493B2099^outKey=V128e2483d923e7fcc55066fb526a2c868b1e4b800fa344a8341066fb526a2c868b1e^controlBarMovable=true^jsCallable=true^isAutoPlay=false^skinName=tvcast_white',default);
 insert into tb_video_board values(vb_seq.nextval,'벤치 프레스 - 바벨, 플랫', '바벨 벤치 프레스는 가슴운동을 하는 프리웨이트 운동 중에서 가장 기본이 되는 운동방법입니다. 대흉근의 전체적인 크기를 키워주고 대흉근, 삼각근, 상완삼두근의 참여를 유도해서 강하면서도 균형 있는 상체를 만드는 데 효과적입니다. 벤치에 누워 엉덩이와 견갑골을 등받이에 붙입니다. 허리는 10cm가량 아치형을 만들어줍니다. 어깨 두 배 너비로 바를 잡고 눈이 바벨과 수직이 되도록 합니다. 바를 들어 가슴 중앙과 바가 수직이 되도록 위치시킨 후 팔꿈치를 살짝 구부려 고정시킵니다. 가슴과 바가 자석처럼 서로 만나는 느낌으로 가슴 위쪽 5~10cm까지 저항을 느끼면서 당겨줍니다. 겨드랑이에 힘을 준다는 느낌으로 다시 밀어줍니다. 동작을 반복합니다.','헬스','가슴 운동','http://serviceapi.rmcnmv.naver.com/flash/outKeyPlayer.nhn?vid=ABD5295DF4C8FEF06D992BDF3FAC6A9B59F0^outKey=V12927b731d923dec7869d4b48883e32cea9e3a0c31c90033a026d4b48883e32cea9e^controlBarMovable=true^jsCallable=true^isAutoPlay=false^skinName=tvcast_white',default);
@@ -886,6 +887,183 @@ insert into tb_video_board values(vb_seq.nextval,'카프레이즈 - 시티드','
 insert into tb_video_board values(vb_seq.nextval,'카프레이즈 - 싱글 레그','약한 쪽 종아리를 운동함으로써 양쪽 발의 균형을 맞추는 데 유용한 운동이다. 장소에 구애 받지 않고 어디서나 쉽게 할 수 있다는 장점이 있다.','헬스','종아리','http://serviceapi.rmcnmv.naver.com/flash/outKeyPlayer.nhn?vid=DD8C1DF3E7B7AD31333404CC676647DAE467^outKey=V1212bbbb649de919f5e7f82aaab48539591afb218bfa5ad44b7ff82aaab48539591a^controlBarMovable=true^jsCallable=true^isAutoPlay=false^skinName=tvcast_white',default);
 insert into tb_video_board values(vb_seq.nextval,'카프레이즈 - 머신','레그 프레스 머신에서 실시하는 종아리 운동이다. 스탠딩 자세에서 하는 운동과 달리 허리의 추가적인 스트레스를 피할 수 있다는 장점이 있다. 종아리 근육에 대한 집중을 더욱 느낄 수 있고, 자신의 몸무게만큼 고중량으로 실시할 수 있다.','헬스','종아리','http://serviceapi.rmcnmv.naver.com/flash/outKeyPlayer.nhn?vid=1255934BC7773B6B927EBA51898851D750DA^outKey=V127f754232dc7ea041a47e48f7778b839e76aa9da2ab5e7c22977e48f7778b839e76^controlBarMovable=true^jsCallable=true^isAutoPlay=false^skinName=tvcast_white',default);
 PROMPT TB_VIDEO_BOARD 샘플데이터 입력끝!
+
+PROMPT TB_VIDEO_BOARD 맨몸운동 샘플데이터 입력중!
+--맨몸 푸쉬업
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런 조성준] 푸쉬업 정석 50개를 한번에 할수 있어야 합니다.','[데스런 조성준] 푸쉬업 정석 50개를 한번에 할수 있어야 합니다.','맨몸운동','맨몸푸시업','zIAN2E6rJ9A',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런 조성준] 한팔 푸쉬업 하는 법.','[데스런 조성준] 한팔 푸쉬업 하는 법.','맨몸운동','맨몸푸시업','ijB_oV8uy4g',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런 조성준] 스토리볼 3화차. 어깨깡패를 만드는 푸쉬업들.(흰두푸쉬업응용, 무빙푸쉬업)','[데스런 조성준] 스토리볼 3화차. 어깨깡패를 만드는 푸쉬업들.(흰두푸쉬업응용, 무빙푸쉬업)','맨몸운동','맨몸푸시업','JNdLbWWrsmg',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런 조성준]다음 스토리볼 2화차. 팔굽혀펴기 하는 방법.','[데스런 조성준]다음 스토리볼 2화차. 팔굽혀펴기 하는 방법.','맨몸운동','맨몸푸시업','d-WsdYkZZAY',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런 조성준] 김무열 팔굽혀펴기로 유명해진 무빙 푸쉬업! 그리고 타이거밴드.','[데스런 조성준] 김무열 팔굽혀펴기로 유명해진 무빙 푸쉬업! 그리고 타이거밴드.','맨몸운동','맨몸푸시업','bHqLxWJxv-g',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런 홈트레이닝] 푸쉬업 초보. 초보자의 팔굽혀펴기 방법 강좌. Beginners Push Up Workout + Variations - Calisthenics Workout','[데스런 홈트레이닝] 푸쉬업 초보. 초보자의 팔굽혀펴기 방법 강좌. Beginners Push Up Workout + Variations - Calisthenics Workout','맨몸운동','맨몸푸시업','hw963Pcqqzc',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런 홈트레이닝] 맨몸운동의 모든것! 데스런 티져영상(운동자극영상) !턱걸이 자세 턱걸이 효과. 푸쉬업 자세, 푸쉬업 효과, 팔굽혀펴기 종류','[데스런 홈트레이닝] 맨몸운동의 모든것! 데스런 티져영상(운동자극영상) !턱걸이 자세 턱걸이 효과. 푸쉬업 자세, 푸쉬업 효과, 팔굽혀펴기 종류','맨몸운동','맨몸푸시업','mgSkFpUazWQ',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[DeSLun] 30가지 푸쉬업 방법. 30 Best Push Up Exercise, push up Workout + Variations - Calisthenics Workout','[DeSLun] 30가지 푸쉬업 방법. 30 Best Push Up Exercise, push up Workout + Variations - Calisthenics Workout','맨몸운동','맨몸푸시업','ZhBf1CW8O6c',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런 홈트레이닝] 가슴운동. 가슴터뜨리기! (푸쉬업 점프, 푸쉬업, 푸쉬업 플라이)','[데스런 홈트레이닝] 가슴운동. 가슴터뜨리기! (푸쉬업 점프, 푸쉬업, 푸쉬업 플라이)','맨몸운동','맨몸푸시업','sxHOXMxrXBo',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런 조성준] 맨몸 어깨운동, 물구나무 푸쉬업 연습하기.','[데스런 조성준] 맨몸 어깨운동, 물구나무 푸쉬업 연습하기.','맨몸운동','맨몸푸시업','FLSiF025WDU',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런 조성준] 스토리볼 ′닥치고 데스런′ 물구나무 푸쉬업으로 가는 길.','[데스런 조성준] 스토리볼 ′닥치고 데스런′ 물구나무 푸쉬업으로 가는 길.','맨몸운동','맨몸푸시업','1b87dEf1OxU',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런 조성준] 팔굽혀펴기의 세가지 레벨.','[데스런 조성준] 팔굽혀펴기의 세가지 레벨.','맨몸운동','맨몸푸시업','As0Ex24uuxM',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'′닥치고 데스런′ 서적물 푸쉬업 파트 운동 미리보기','′닥치고 데스런′ 서적물 푸쉬업 파트 운동 미리보기','맨몸운동','맨몸푸시업','h-83kGfSEws',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런 조성준] 짧은시간에 끝내는 상체운동!','[데스런 조성준] 짧은시간에 끝내는 상체운동!','맨몸운동','맨몸푸시업','mSKsVBRBfLs',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런 조성준] 10가지 팔굽혀펴기. 가슴 삼두 집중자극!','[데스런 조성준] 10가지 팔굽혀펴기. 가슴 삼두 집중자극!','맨몸운동','맨몸푸시업','H0DW3b3CG_4',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런 조성준]물구나무(handstand) 곧게 서기 연습','[데스런 조성준]물구나무(handstand) 곧게 서기 연습','맨몸운동','맨몸푸시업','rUb8fYDGWh4',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런 조성준] 푸쉬업의 정석','[데스런 조성준] 푸쉬업의 정석','맨몸운동','맨몸푸시업','3141MY-PIDs',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런 조성준] 타이거밴드 푸쉬업(tiger bend)','[데스런 조성준] 타이거밴드 푸쉬업(tiger bend)','맨몸운동','맨몸푸시업','fHgkrt7PGVI',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런 조성준] 어깨 집중 푸쉬업!','[데스런 조성준] 어깨 집중 푸쉬업!','맨몸운동','맨몸푸시업','tWXn_qhHqjQ',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런 조성준] 푸쉬업 최고난이도. 아즈텍, 슈퍼맨 푸쉬업 배워보기.','[데스런 조성준] 푸쉬업 최고난이도. 아즈텍, 슈퍼맨 푸쉬업 배워보기.','맨몸운동','맨몸푸시업','Zly8T49JzC8',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런 조성준] 물구나무(handstand) 1년동안의 연습과정.','[데스런 조성준] 물구나무(handstand) 1년동안의 연습과정.','맨몸운동','맨몸푸시업','YUQaH6OLuwU',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런 조성준] 깊숙히 내리는 푸쉬업. (가슴 어깨에 더 강한 자극을 주는)','[데스런 조성준] 깊숙히 내리는 푸쉬업. (가슴 어깨에 더 강한 자극을 주는)','맨몸운동','맨몸푸시업','npZpbQEaHUE',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런 조성준] 푸쉬업 삼두 특훈!','[데스런 조성준] 푸쉬업 삼두 특훈!','맨몸운동','맨몸푸시업','NismXk4TjHc',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 초보자가 1년동안 해야하는 단계별 푸쉬업.','[데스런] 초보자가 1년동안 해야하는 단계별 푸쉬업.','맨몸운동','맨몸푸시업','RtdLw0bdtg4',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 상체 다 잡는 푸쉬업!','[데스런] 상체 다 잡는 푸쉬업!','맨몸운동','맨몸푸시업','J16mLsObECg',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 한세트로 끝내는 어깨운동 프로그램.','[데스런] 한세트로 끝내는 어깨운동 프로그램.','맨몸운동','맨몸푸시업','EBRR1OAw3qo',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 25가지의 푸쉬업 종류.','[데스런] 25가지의 푸쉬업 종류.','맨몸운동','맨몸푸시업','Npx3ygB2eRY',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 푸쉬업을 단 1회도 못한다면?','[데스런] 푸쉬업을 단 1회도 못한다면?','맨몸운동','맨몸푸시업','G8RHvjiDlXQ',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 어깨 깡패 만드는 짧고 굵은 운동법!','[데스런] 어깨 깡패 만드는 짧고 굵은 운동법!','맨몸운동','맨몸푸시업','uuBLKJHWsnk',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 플란체. 물구나무를 하고 싶다면 꼭 봐야 할 영상.','[데스런] 플란체. 물구나무를 하고 싶다면 꼭 봐야 할 영상.','맨몸운동','맨몸푸시업','yCLz2qerd0w',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 물구나무 2년. 겪어갈 과정들.','[데스런] 물구나무 2년. 겪어갈 과정들.','맨몸운동','맨몸푸시업','91JhjVuae_E',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런]90도푸쉬업(할로우백프레스).Hollow Back Press. 90 degree push up. .','[데스런]90도푸쉬업(할로우백프레스).Hollow Back Press. 90 degree push up. .','맨몸운동','맨몸푸시업','_3GhCsp0F7c',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 운동을 하며, 시간이 몇년이 지나며.하면 할수록 느끼는것(물구나무 푸쉬업, 핸드스탠드)','[데스런] 운동을 하며, 시간이 몇년이 지나며.하면 할수록 느끼는것(물구나무 푸쉬업, 핸드스탠드)','맨몸운동','맨몸푸시업','RxhO6OzwNIE',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 극강의 전신운동. handstand press 하는법.','[데스런] 극강의 전신운동. handstand press 하는법.','맨몸운동','맨몸푸시업','WweNSQMaCSo',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 90도 푸쉬업, 할로우백 프레스 하는법 강좌 (How to 90degree push up, Hollow back press)','[데스런] 90도 푸쉬업, 할로우백 프레스 하는법 강좌 (How to 90degree push up, Hollow back press)','맨몸운동','맨몸푸시업','dWGhZaVT1OI',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 누가 푸쉬업을 초보자들의 운동이라 했는가.','[데스런] 누가 푸쉬업을 초보자들의 운동이라 했는가.','맨몸운동','맨몸푸시업','ANgeGZNmAiY',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 힌두 푸쉬업 하는법과 변형방법.','[데스런] 힌두 푸쉬업 하는법과 변형방법.','맨몸운동','맨몸푸시업','vhFqzT_D3kc',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 가장 현실적인 최고의 어깨운동','[데스런] 가장 현실적인 최고의 어깨운동','맨몸운동','맨몸푸시업','_k128PS7G5o',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 푸쉬업 바를 사용하는 이유','[데스런] 푸쉬업 바를 사용하는 이유','맨몸운동','맨몸푸시업','2wWWWWhzSj8',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 푸쉬업 얼만큼 밀어붙여 보셨습니까 !!','[데스런] 푸쉬업 얼만큼 밀어붙여 보셨습니까 !!','맨몸운동','맨몸푸시업','-P01D-1vFJo',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 팔꿈치각도에 따라 달라지는 푸쉬업의 자극부위','[데스런] 팔꿈치각도에 따라 달라지는 푸쉬업의 자극부위','맨몸운동','맨몸푸시업','0UKxBB7TxBw',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 푸쉬업바로 할수 있는 12가지 푸쉬업 방법.','[데스런] 푸쉬업바로 할수 있는 12가지 푸쉬업 방법.','맨몸운동','맨몸푸시업','VHaDQNhGg3c',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 한팔 푸쉬업 제대로 하는법.','[데스런] 한팔 푸쉬업 제대로 하는법.','맨몸운동','맨몸푸시업','9NO4SC-ly-0',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 푸쉬업을 제일 힘들게 하는법.','[데스런] 푸쉬업을 제일 힘들게 하는법.','맨몸운동','맨몸푸시업','sdfs65IImGk',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] LIVE강좌! 맨몸운동 푸쉬업으로는 어깨운동을 할수 없다? 충분하다!','[데스런] LIVE강좌! 맨몸운동 푸쉬업으로는 어깨운동을 할수 없다? 충분하다!','맨몸운동','맨몸푸시업','yZZvA12zMy4',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] LIVE강좌! 왕초보의 물구나무 연습방법','[데스런] LIVE강좌! 왕초보의 물구나무 연습방법','맨몸운동','맨몸푸시업','HIRqOgQG-dQ',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 딱 90개로 전면. 측면. 후면 삼각근 다 뿌게기!!','[데스런] 딱 90개로 전면. 측면. 후면 삼각근 다 뿌게기!!','맨몸운동','맨몸푸시업','V8FXCKsqJis',0);
+
+--맨몸하체
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런 조성준] 무릎통증 완화와 강화를 위한 운동','[데스런 조성준] 무릎통증 완화와 강화를 위한 운동','맨몸운동','맨몸하체','ZsdsneSS1_Q',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'′닥치고 데스런′ 서적물 하체파트 운동 미리보기','′닥치고 데스런′ 서적물 하체파트 운동 미리보기','맨몸운동','맨몸하체','AKNbtY1P_dE',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 한쪽 다리가 불편하신 한 장애인 데스러너를 위한 운동법.','[데스런] 한쪽 다리가 불편하신 한 장애인 데스러너를 위한 운동법.','맨몸운동','맨몸하체','zDSv8DKk1Jw',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런 조성준] 서전트 점프와 제자리 멀리뛰기 기록향상을 위한 운동법.','[데스런 조성준] 서전트 점프와 제자리 멀리뛰기 기록향상을 위한 운동법.','맨몸운동','맨몸하체','dVx1fakE-C4',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런 홈트레이닝] 맨몸 하체운동, 단계별 맨몸 스쿼트와 런지','[데스런 홈트레이닝] 맨몸 하체운동, 단계별 맨몸 스쿼트와 런지','맨몸운동','맨몸하체','Ij5b22zQss0',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[DeSLun] Barbell Squat (바벨 스쿼트) 하체운동, 다리운동.','[DeSLun] Barbell Squat (바벨 스쿼트) 하체운동, 다리운동.','맨몸운동','맨몸하체','FrpiPGuFo3s',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런 조성준] 종아리 발목 컴플렉스 보완 운동법.','[데스런 조성준] 종아리 발목 컴플렉스 보완 운동법.','맨몸운동','맨몸하체','yfuW4XTkVi8',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런 조성준] 맨몸으로 할수 있는 하체 운동','[데스런 조성준] 맨몸으로 할수 있는 하체 운동','맨몸운동','맨몸하체','RS-RQzwoqFY',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 어디서든 할수있는 하체운동 3가지.','[데스런] 어디서든 할수있는 하체운동 3가지.','맨몸운동','맨몸하체','w_m6LuOeB2I',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 스쿼트와 런지를 이용한 15가지 맨몸하체운동','[데스런] 스쿼트와 런지를 이용한 15가지 맨몸하체운동','맨몸운동','맨몸하체','wOwm3LX1w0c',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 스쿼트 자세가 안나오는 분들에게.','[데스런] 스쿼트 자세가 안나오는 분들에게.','맨몸운동','맨몸하체','G6z6TXM1ODM',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] ′남자는 코어′ 그대로 따라가면 되는 복근 하체 운동.','[데스런] ′남자는 코어′ 그대로 따라가면 되는 복근 하체 운동.','맨몸운동','맨몸하체','KPw3FURInJY',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 올바른 스쿼트 자세와 잘못된 스쿼트 자세','[데스런] 올바른 스쿼트 자세와 잘못된 스쿼트 자세','맨몸운동','맨몸하체','2X0gaKAtZjk',0);
+--맨몸 철봉
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런 조성준] 프론트 레버 하는법.','[데스런 조성준] 프론트 레버 하는법.','맨몸운동','맨몸철봉','wi9QlRGQ1EA',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런 조성준] 풀업과 친업의 차이','[데스런 조성준] 풀업과 친업의 차이','맨몸운동','맨몸철봉','01bTUwck3M0',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런 조성준] 턱걸이 할때의 ′숄더 팩킹′. 하는 방법','[데스런 조성준] 턱걸이 할때의 ′숄더 팩킹′. 하는 방법','맨몸운동','맨몸철봉','zJIG1fH00cs',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[닥치고 데스런] 맨몸운동 자극!!','[닥치고 데스런] 맨몸운동 자극!!','맨몸운동','맨몸철봉','1WYsR-nPJ_k',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'′닥치고 데스런′ 서적물 턱걸이 파트 운동 미리보기','′닥치고 데스런′ 서적물 턱걸이 파트 운동 미리보기','맨몸운동','맨몸철봉','B-aVTyVFzMQ',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런 조성준] 다음 스토리볼 4회차 ′등에 호랑이를 새기는 법′ 턱걸이 원샷. 턱걸이하는법. 턱걸이 늘리기','[데스런 조성준] 다음 스토리볼 4회차 ′등에 호랑이를 새기는 법′ 턱걸이 원샷. 턱걸이하는법. 턱걸이 늘리기','맨몸운동','맨몸철봉','yHrNRqdj2wg',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런 조성준] 다음 스토리볼 ′닥치고 데스런′ 0회차 티져영상!','[데스런 조성준] 다음 스토리볼 ′닥치고 데스런′ 0회차 티져영상!','맨몸운동','맨몸철봉','PWI4wxgzRok',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런 조성준] 철봉 닦기. 턱걸이 장인!','[데스런 조성준] 철봉 닦기. 턱걸이 장인!','맨몸운동','맨몸철봉','WAcpCeE4nEo',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런 조성준] 오뚜기 턱걸이! 프론트레버 + 풀업, 친업. (ICE CREAM MAKER)','[데스런 조성준] 오뚜기 턱걸이! 프론트레버 + 풀업, 친업. (ICE CREAM MAKER)','맨몸운동','맨몸철봉','uYu-299mqfU',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런 조성준] 소지섭 턱걸이로 유명해진. 아쳐풀업과 타입라이터 풀업.','[데스런 조성준] 소지섭 턱걸이로 유명해진. 아쳐풀업과 타입라이터 풀업.','맨몸운동','맨몸철봉','qdmj1sXsBfw',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런 조성준] 왕초보의 턱걸이 하는법 강좌.','[데스런 조성준] 왕초보의 턱걸이 하는법 강좌.','맨몸운동','맨몸철봉','6Rtr9nZzTHU',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런 DeSLun]턱걸이 철봉 운동자극. pull up step Motivation.','[데스런 DeSLun]턱걸이 철봉 운동자극. pull up step Motivation.','맨몸운동','맨몸철봉','qQRIgdjQ8cA',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런 홈트레이닝] 한손턱걸이. 한팔턱걸이 하는법. One Arm Pull Up Tutorial.','[데스런 홈트레이닝] 한손턱걸이. 한팔턱걸이 하는법. One Arm Pull Up Tutorial.','맨몸운동','맨몸철봉','nVVMjfjYGng',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런 남자 홈트레이닝] 턱걸이 초보자 단계별 턱걸이 늘리기. 머슬업, 한손턱걸이까지 !! 20단계의 턱걸이 자세(풀업,친업)강좌.','[데스런 남자 홈트레이닝] 턱걸이 초보자 단계별 턱걸이 늘리기. 머슬업, 한손턱걸이까지 !! 20단계의 턱걸이 자세(풀업,친업)강좌.','맨몸운동','맨몸철봉','X58wPg7Vlig',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'(턱걸이 완결판, 머슬업, 철봉 운동 마스터) Hardcore pull up workout. Higher Power Bar Calisthenics Motivation!!','(턱걸이 완결판, 머슬업, 철봉 운동 마스터) Hardcore pull up workout. Higher Power Bar Calisthenics Motivation!!','맨몸운동','맨몸철봉','DLJs0wc1tpY',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런 조성준] 턱걸이 50개의 위력!','[데스런 조성준] 턱걸이 50개의 위력!','맨몸운동','맨몸철봉','phwHD3mptig',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런 조성준] 34세 아저씨의 흔한 철봉놀이!','[데스런 조성준] 34세 아저씨의 흔한 철봉놀이!','맨몸운동','맨몸철봉','mPm8yP8PoPw',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런 조성준] 짧은시간에 끝내는 상체운동!','[데스런 조성준] 짧은시간에 끝내는 상체운동!','맨몸운동','맨몸철봉','mSKsVBRBfLs',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런 조성준] 턱걸이를 잘 못해도 등운동이 됩니다.','[데스런 조성준] 턱걸이를 잘 못해도 등운동이 됩니다.','맨몸운동','맨몸철봉','vUPhgproxsY',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런 조성준] 머슬업 하는법 강좌','[데스런 조성준] 머슬업 하는법 강좌','맨몸운동','맨몸철봉','0ecjH4iA6YU',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런 조성준] 턱걸이 30개 원샷!','[데스런 조성준] 턱걸이 30개 원샷!','맨몸운동','맨몸철봉','jP84MsRzgZ0',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런 조성준] 턱걸이의 정석','[데스런 조성준] 턱걸이의 정석','맨몸운동','맨몸철봉','xVI-Ycul58k',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런 조성준] 철봉에 매달려서 하는 복근과 코어 운동.','[데스런 조성준] 철봉에 매달려서 하는 복근과 코어 운동.','맨몸운동','맨몸철봉','kVHGMwmR240',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런 조성준] 아쳐풀업(archer pull up), 타입라이터 풀업(type writer pull up) 하는법.','[데스런 조성준] 아쳐풀업(archer pull up), 타입라이터 풀업(type writer pull up) 하는법.','맨몸운동','맨몸철봉','TwItaFCZ8vM',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런 조성준] 4세트로 끝내는 턱걸이!','[데스런 조성준] 4세트로 끝내는 턱걸이!','맨몸운동','맨몸철봉','WMmmEkC6xdw',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 철봉에서 하는 복근 써클!','[데스런] 철봉에서 하는 복근 써클!','맨몸운동','맨몸철봉','iGenFeM04go',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 슬로우 머슬업(slow muscle up) 하는법 강좌!','[데스런] 슬로우 머슬업(slow muscle up) 하는법 강좌!','맨몸운동','맨몸철봉','vm2aRT2V4Lc',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 초보자들이 턱걸이를 할때 주의해야 할 것들.','[데스런] 초보자들이 턱걸이를 할때 주의해야 할 것들.','맨몸운동','맨몸철봉','lrtbu5WE0_4',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 현실적으로 운동할때 할수 있는 12종류의 턱걸이.','[데스런] 현실적으로 운동할때 할수 있는 12종류의 턱걸이.','맨몸운동','맨몸철봉','8jTxiUU8Cuw',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 등, 어깨 한번에 잡는 턱걸이.','[데스런] 등, 어깨 한번에 잡는 턱걸이.','맨몸운동','맨몸철봉','oc0Vy7KYGk4',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 철봉에 매달려서 최소 2분을 버텨야 하는 이유.','[데스런] 철봉에 매달려서 최소 2분을 버텨야 하는 이유.','맨몸운동','맨몸철봉','dGnexvOEcNc',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 백레버 튜토리얼','[데스런] 백레버 튜토리얼','맨몸운동','맨몸철봉','nAwbYxmq_Ls',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 가장 현실적인 등운동. 턱걸이 늘리는법.','[데스런] 가장 현실적인 등운동. 턱걸이 늘리는법.','맨몸운동','맨몸철봉','HrFtP6CYTpk',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 턱걸이 할때 알아야 할 중요한 포인트','[데스런] 턱걸이 할때 알아야 할 중요한 포인트','맨몸운동','맨몸철봉','NCekGk19L-Y',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 아쳐풀업(Archer pull up) 의 뜻과 연습하는 방법.','[데스런] 아쳐풀업(Archer pull up) 의 뜻과 연습하는 방법.','맨몸운동','맨몸철봉','f9FKW-35A04',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 어깨 뒷쪽과 등상부를 책임지는 턱걸이.','[데스런] 어깨 뒷쪽과 등상부를 책임지는 턱걸이.','맨몸운동','맨몸철봉','Mrxapjl8FEE',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 대체 불가능한 최고의 상체운동. 턱걸이.','[데스런] 대체 불가능한 최고의 상체운동. 턱걸이.','맨몸운동','맨몸철봉','_J5ZyHogImI',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] ′남자는 등판′ 1분에 담아낸 현실적인 등운동의 모든것.','[데스런] ′남자는 등판′ 1분에 담아낸 현실적인 등운동의 모든것.','맨몸운동','맨몸철봉','l3ZxNjocXts',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 턱걸이를 잘 하기 위한 팁.','[데스런] 턱걸이를 잘 하기 위한 팁.','맨몸운동','맨몸철봉','v6JQirVR7Ro',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 턱걸이 빠르게 30개와 천천히 20개의 차이!','[데스런] 턱걸이 빠르게 30개와 천천히 20개의 차이!','맨몸운동','맨몸철봉','Bhx454mdois',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 등운동의 최고봉 턱걸이 하는법.','[데스런] 등운동의 최고봉 턱걸이 하는법.','맨몸운동','맨몸철봉','NC7I0Fhu1hU',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 맨몸 등운동 루틴!! (bodyweight back workout)','[데스런] 맨몸 등운동 루틴!! (bodyweight back workout)','맨몸운동','맨몸철봉','IcD4faJixmE',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 철봉에서 전신을 다 잡는 고강도 운동.','[데스런] 철봉에서 전신을 다 잡는 고강도 운동.','맨몸운동','맨몸철봉','CPI3oxN1hwE',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 왕초보의 턱걸이 하는 방법.(턱걸이를 한개도 못하는 분들에게)','[데스런] 왕초보의 턱걸이 하는 방법.(턱걸이를 한개도 못하는 분들에게)','맨몸운동','맨몸철봉','aAnWm93zLPE',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 야외 철봉에서 턱걸이 늘리기.','[데스런] 야외 철봉에서 턱걸이 늘리기.','맨몸운동','맨몸철봉','ceFD_JHlay0',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 슈퍼 슬로우 머슬업.','[데스런] 슈퍼 슬로우 머슬업.','맨몸운동','맨몸철봉','jkm0O3KtuHU',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] LIVE 강좌! 턱걸이 할때 어떻게. 어느 정도의 폭으로 잡아야 할까?','[데스런] LIVE 강좌! 턱걸이 할때 어떻게. 어느 정도의 폭으로 잡아야 할까?','맨몸운동','맨몸철봉','EbVOEdsomw8',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] LIVE 강좌! 턱걸이를 할때 어떻게 당기고 얼마나 올리고 내리나요?','[데스런] LIVE 강좌! 턱걸이를 할때 어떻게 당기고 얼마나 올리고 내리나요?','맨몸운동','맨몸철봉','NM15F0Jxulo',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] LIVE강좌! 맨몸운동 턱걸이 할때 몸의 포지션은 어떻게 해야 할까요?','[데스런] LIVE강좌! 맨몸운동 턱걸이 할때 몸의 포지션은 어떻게 해야 할까요?','맨몸운동','맨몸철봉','cSmaq1GfZe0',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 턱걸이를 몇세트로 몇개나 하면 되나요?','[데스런] 턱걸이를 몇세트로 몇개나 하면 되나요?','맨몸운동','맨몸철봉','6RBcSM_305E',0);
+
+--맨몸 전신
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 왕초보의 맨몸운동 프로그램','[데스런] 왕초보의 맨몸운동 프로그램','맨몸운동','맨몸전신','I2aBKBOlHXY',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 초중급자의 전신 맨몸운동 루틴','[데스런] 초중급자의 전신 맨몸운동 루틴','맨몸운동','맨몸전신','6jxYDoodKxs',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 어깨, 팔뚝, 복근, 맨몸운동 프로그램.','[데스런] 어깨, 팔뚝, 복근, 맨몸운동 프로그램.','맨몸운동','맨몸전신','X5L130x8CjQ',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 상체 전부 잡는 운동루틴','[데스런] 상체 전부 잡는 운동루틴','맨몸운동','맨몸전신','s62u2fioIFU',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 5분으로 끝내는 전신운동 프로그램.','[데스런] 5분으로 끝내는 전신운동 프로그램.','맨몸운동','맨몸전신','V88mWyfOVO4',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 수건을 이용한 부위별 전신운동','[데스런] 수건을 이용한 부위별 전신운동','맨몸운동','맨몸전신','dPV3zr28dZc',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 집에서 의자로 할수 있는 전신운동들.','[데스런] 집에서 의자로 할수 있는 전신운동들.','맨몸운동','맨몸전신','JRprAS_bMiM',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 누가 플랭크를 초보자 운동이라 했는가.','[데스런] 누가 플랭크를 초보자 운동이라 했는가.','맨몸운동','맨몸전신','i6FBDMAv1Rg',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 물구나무 2년. 겪어갈 과정들.','[데스런] 물구나무 2년. 겪어갈 과정들.','맨몸운동','맨몸전신','91JhjVuae_E',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 벽을 이용한 전신운동법.','[데스런] 벽을 이용한 전신운동법.','맨몸운동','맨몸전신','6uuc_EU9PLE',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 집에서 할수 있는 최고의 칼로리 소모 운동. 버피테스트.','[데스런] 집에서 할수 있는 최고의 칼로리 소모 운동. 버피테스트.','맨몸운동','맨몸전신','iyoxTs3shw0',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 부담없이 할수 있는 부위별 맨몸운동들.','[데스런] 부담없이 할수 있는 부위별 맨몸운동들.','맨몸운동','맨몸전신','dKh-57uhS3U',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 아무런 도구도 필요없는 전신 운동 프로그램.','[데스런] 아무런 도구도 필요없는 전신 운동 프로그램.','맨몸운동','맨몸전신','FHxlVtp79bs',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 운동을 빠르게 할때와 천천히 할때의 차이.','[데스런] 운동을 빠르게 할때와 천천히 할때의 차이.','맨몸운동','맨몸전신','kcwTygK-d8M',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 벤트암 플란체 하는법.','[데스런] 벤트암 플란체 하는법.','맨몸운동','맨몸전신','3GFDw84aJSM',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 공원에서 하는 전신운동 프로그램.','[데스런] 공원에서 하는 전신운동 프로그램.','맨몸운동','맨몸전신','QIheYuWlYgo',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 공원의 벤치도 훌륭한 운동 도구가 됩니다.','[데스런] 공원의 벤치도 훌륭한 운동 도구가 됩니다.','맨몸운동','맨몸전신','BactayPt5_g',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 지방을 태우는 7분 ′플랭크′ 프로그램','[데스런] 지방을 태우는 7분 ′플랭크′ 프로그램','맨몸운동','맨몸전신','YSnacMOWk7c',0);
+
+--맨몸 초보자 3개월
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 초보자를 위한 3개월 주3회 운동프로그램! 시작합니다!','[데스런] 초보자를 위한 3개월 주3회 운동프로그램! 시작합니다!','맨몸운동','맨몸초보자','GxrTYJE_mqk',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 맨몸운동 3개월 프로젝트 첫날','[데스런] 맨몸운동 3개월 프로젝트 첫날','맨몸운동','맨몸초보자','ML9kpnnRuDM',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 맨몸운동 3개월 프로젝트. -1주차 2번째-','[데스런] 맨몸운동 3개월 프로젝트. -1주차 2번째-','맨몸운동','맨몸초보자','byRMLKi3WLU',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 맨몸운동 3개월 프로젝트. -1주차 3번째-','[데스런] 맨몸운동 3개월 프로젝트. -1주차 3번째-','맨몸운동','맨몸초보자','W7nHYCp17hI',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 맨몸운동 3개월 프로젝트. -2주차 1번째-','[데스런] 맨몸운동 3개월 프로젝트. -2주차 1번째-','맨몸운동','맨몸초보자','VOQcu9sP8nc',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 맨몸운동 3개월 프로젝트. -2주차 2번째-','[데스런] 맨몸운동 3개월 프로젝트. -2주차 2번째-','맨몸운동','맨몸초보자','JdN-M2dol0I',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 맨몸운동 3개월 프로젝트 -2주차 3번째-','[데스런] 맨몸운동 3개월 프로젝트 -2주차 3번째-','맨몸운동','맨몸초보자','cO1AzCUgC-U',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 맨몸운동 3개월 프로젝트. -3주차 1번째-','[데스런] 맨몸운동 3개월 프로젝트. -3주차 1번째-','맨몸운동','맨몸초보자','9IH0HTd1FFQ',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 맨몸운동 3개월 프로젝트 -3주차 2번째-','[데스런] 맨몸운동 3개월 프로젝트 -3주차 2번째-','맨몸운동','맨몸초보자','u3HiqckG_-Y',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 맨몸운동 3개월 프로젝트 -3주차 3번째-','[데스런] 맨몸운동 3개월 프로젝트 -3주차 3번째-','맨몸운동','맨몸초보자','jAflGeEFR6c',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 맨몸운동 3개월 프로젝트 -4주차 1번째-','[데스런] 맨몸운동 3개월 프로젝트 -4주차 1번째-','맨몸운동','맨몸초보자','ifZNZh0MYME',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 맨몸운동 3개월 프로젝트. -4주차 2번째-','[데스런] 맨몸운동 3개월 프로젝트. -4주차 2번째-','맨몸운동','맨몸초보자','2TNeKbxzb8M',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 맨몸운동 3개월 프로젝트. -4주차 3번째-','[데스런] 맨몸운동 3개월 프로젝트. -4주차 3번째-','맨몸운동','맨몸초보자','xs3up9bFYbY',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 맨몸운동 3개월 프로젝트. -5주차 1번째-','[데스런] 맨몸운동 3개월 프로젝트. -5주차 1번째-','맨몸운동','맨몸초보자','TY062CHdXFw',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 맨몸운동 3개월 프로젝트. -5주차 2번째-','[데스런] 맨몸운동 3개월 프로젝트. -5주차 2번째-','맨몸운동','맨몸초보자','daK7sD8BFYg',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 맨몸운동 3개월 프로젝트. -5주차 3번째-','[데스런] 맨몸운동 3개월 프로젝트. -5주차 3번째-','맨몸운동','맨몸초보자','J6zthKolGIE',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 맨몸운동 3개월 프로젝트 -6주차 1번째-','[데스런] 맨몸운동 3개월 프로젝트 -6주차 1번째-','맨몸운동','맨몸초보자','9Cf2qG2V6jY',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 맨몸운동 3개월 프로젝트. -6주차 2번째-','[데스런] 맨몸운동 3개월 프로젝트. -6주차 2번째-','맨몸운동','맨몸초보자','T335bdSbqs8',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 맨몸운동 3개월 프로젝트. -6주차 3번째-','[데스런] 맨몸운동 3개월 프로젝트. -6주차 3번째-','맨몸운동','맨몸초보자','c5zYpOPfs_Q',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 맨몸운동 3개월 프로젝트. -7주차 1번째-','[데스런] 맨몸운동 3개월 프로젝트. -7주차 1번째-','맨몸운동','맨몸초보자','Q5OEmTFqrFY',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 맨몸운동 3개월 프로젝트. -7주차 2번째-','[데스런] 맨몸운동 3개월 프로젝트. -7주차 2번째-','맨몸운동','맨몸초보자','Z3eGqWJu7nQ',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 맨몸운동 3개월 프로젝트. -7주차 3번째-','[데스런] 맨몸운동 3개월 프로젝트. -7주차 3번째-','맨몸운동','맨몸초보자','7ZWW1E0Qqd0',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 맨몸운동 3개월 프로젝트. -8주차 1번째-','[데스런] 맨몸운동 3개월 프로젝트. -8주차 1번째-','맨몸운동','맨몸초보자','j0ajwpITV7I',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 맨몸운동 3개월 프로젝트. -8주차 2번째-','[데스런] 맨몸운동 3개월 프로젝트. -8주차 2번째-','맨몸운동','맨몸초보자','v02C4fw5sw4',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 맨몸운동 3개월 프로젝트. -8주차 3번째-','[데스런] 맨몸운동 3개월 프로젝트. -8주차 3번째-','맨몸운동','맨몸초보자','B-LHkomlj5M',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 맨몸운동 3개월 프로젝트. -9주차 1번째-','[데스런] 맨몸운동 3개월 프로젝트. -9주차 1번째-','맨몸운동','맨몸초보자','Xt5eP4G_QdY',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 맨몸운동 3개월 프로젝트. -9주차 2번째-','[데스런] 맨몸운동 3개월 프로젝트. -9주차 2번째-','맨몸운동','맨몸초보자','m1Tc11xaCis',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 맨몸운동 3개월 프로젝트. -9주차 3번째-','[데스런] 맨몸운동 3개월 프로젝트. -9주차 3번째-','맨몸운동','맨몸초보자','0shVKwRWaPY',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 맨몸운동 3개월 프로젝트. -10주차 1번째-','[데스런] 맨몸운동 3개월 프로젝트. -10주차 1번째-','맨몸운동','맨몸초보자','57W994XUqDg',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 맨몸운동 3개월 프로젝트. -10주차 2번째-','[데스런] 맨몸운동 3개월 프로젝트. -10주차 2번째-','맨몸운동','맨몸초보자','srzXsi-AWn4',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 맨몸운동 3개월 프로젝트. -10주차 3번째-','[데스런] 맨몸운동 3개월 프로젝트. -10주차 3번째-','맨몸운동','맨몸초보자','qoDqCcFNQgw',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 맨몸운동 3개월 프로젝트. -11주차 1번째-','[데스런] 맨몸운동 3개월 프로젝트. -11주차 1번째-','맨몸운동','맨몸초보자','bOEtlpe-mVo',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 맨몸운동 3개월 프로젝트. -11주차 2번째-','[데스런] 맨몸운동 3개월 프로젝트. -11주차 2번째-','맨몸운동','맨몸초보자','A5kKHrKQoWI',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 맨몸운동 3개월 프로젝트. -11주차 3번째-','[데스런] 맨몸운동 3개월 프로젝트. -11주차 3번째-','맨몸운동','맨몸초보자','eM4UzAra8dI',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 맨몸운동 3개월 프로젝트. -12주차 1번째-','[데스런] 맨몸운동 3개월 프로젝트. -12주차 1번째-','맨몸운동','맨몸초보자','iiS7plHQQgE',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 맨몸운동 3개월 프로젝트. -12주차 2번째-','[데스런] 맨몸운동 3개월 프로젝트. -12주차 2번째-','맨몸운동','맨몸초보자','4tYoYz9UxDY',0);
+INSERT INTO TB_VIDEO_BOARD VALUES(vb_seq.nextval,'[데스런] 맨몸운동 3개월 프로젝트 마지막날. -12주차 3번째-','[데스런] 맨몸운동 3개월 프로젝트 마지막날. -12주차 3번째-','맨몸운동','맨몸초보자','mnc8jxiapxo',0);
+
+PROMPT TB_VIDEO_BOARD 샘플데이터 입력 끝..
 
 -- TB_GYM 샘플 데이터
 PROMPT TB_GYM 샘플데이터 입력중..

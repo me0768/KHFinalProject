@@ -39,7 +39,7 @@
 	
 	<select id="selectLikeCount" parameterType="_int" resultType="int">
 		<![CDATA[
-			select count(*) from tb_like
+			select count(*) from tb_like where v_no=#{v_no}
 		]]>	
 	</select>
 	

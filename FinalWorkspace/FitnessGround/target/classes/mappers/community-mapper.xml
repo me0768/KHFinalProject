@@ -119,6 +119,27 @@
 		<![CDATA[select count(*) from tb_meeting_board where ${searchOption} like '%'||#{searchKey}||'%']]>
 	</select>
 	
+	<!-- 관리자 MeetingBoard 리스트 -->
+	<select id="meetingBoardList" resultType="list" resultMap="MeetingResult">
+		<![CDATA[
+		select * from tb_meeting_board join tb_user using(user_no)
+		]]>
+	</select>
+	
+	<!-- 관리자 QnABoard 리스트 -->
+	<select id="qnaBoardList" resultType="list" resultMap="CommunityResult">
+		<![CDATA[
+		select * from tb_com_board join tb_user using(user_no) where BOARD_PROPERTY = 1
+		]]>
+	</select>	
+	
+	<!-- 관리자 ReviewBoard 리스트 -->
+	<select id="reviewBoardList" resultType="list" resultMap="CommunityResult">
+		<![CDATA[
+		select * from tb_com_board join tb_user using(user_no) where BOARD_PROPERTY = 0
+		]]>
+	</select>
+	
 	<!-- 관리자 MeetingBoard 공지사항 글쓰기 -->
 	<insert id="adminMeetingBoardInsert" parameterType="Meeting" flushCache="true"
 		statementType="PREPARED" useGeneratedKeys="true" >

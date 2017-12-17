@@ -9,12 +9,19 @@
 
 <c:import url="common/headend.jsp" />
 
+<script src="//cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>
+
 <script type="text/javascript">
 function adminBoard(){
 	alert("응~ 클릭");
 	
 }
-
+function qnaResponse(sender){
+	alert("sender : " +sender);
+	
+	$("#qnaResponse").show(sender);
+	$("#qnaResponse").modal(sender);
+}
 
 /* 	function meetingBoardDelete(mb_no){
 		alert("버튼 클릭");
@@ -66,23 +73,25 @@ function adminBoard(){
 					<table class="table table-bordered" id="dataTable" width="100%"
 						cellspacing="0">
 						<thead>
-							<tr>
-								<th>번호</th>
-								<th>작성자</th>
-								<th>제목</th>
-								<th>작성일</th>
-								<th>관리</th>
+							<tr align="center">
+								<th>Index</th>
+								<th>User_no</th>
+								<th>Writer</th>
+								<th>Title</th>
+								<th>Date</th>
+								<th>State</th>
 							</tr>
 						</thead>
 
 						<tbody>
 							<c:forEach var="item" items="${list }" varStatus="status">
 								
-									<tr>
+									<tr align="center">
 										<%-- <td><input type="checkbox" class="deleteCheckBox"
 											name="deleteCheckBox" value="${item.user_no} " /></td> --%>
 										<td>${status.count }</td>
-										<td>${item.sender }</td>
+										<td>${item.user_no }</td>
+										<td>${item.name }</td>
 										<td><a href="#"	data-target=".${item.q_no}" data-toggle="modal">${item.title }</a></td>
 										
 									<div class="modal fade ${item.q_no }" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -90,14 +99,18 @@ function adminBoard(){
 												<div class="modal-content">
 													<!-- header -->
 													<div class="modal-header" align="top">
-														<h4 class="modal-title" align="left">Sender : ${item.sender}<br> title : ${item.title }</h4>
+														<h4 class="modal-title" align="center">Title : ${item.title }</h4>
 														<button type="button" class="close" data-dismiss="modal" align="right">x</button>
 													</div>
 													
 													<!-- body -->
 													<div class="modal-body" align="left">
-													<p>내용 : ${item.content}</p>
-													<p>작성일자 : ${item.write_date}</p>
+													<p align="right">Sender : ${item.name }</p>
+													<p align="right">Email : ${item.email }</p>
+													<p align="right">Date : ${item.write_date}</p><hr>
+													<p>Content : ${item.content}</p>
+													
+													
 													
 													</div>
      											<!-- Footer -->
@@ -112,7 +125,19 @@ function adminBoard(){
 										
 										</div>
 												<td>${item.write_date }</td>
-												<td><button class="btn btn-primary" onclick="reviewDelete(${item.q_no});">삭제</button></td>
+												<c:choose>
+												<c:when test="${item.response_state==0}">
+
+													<td><button type="submit" class="btn btn-primary"
+															onclick="qnaResponse(${item.sender});">답변</button></td>
+												</c:when>
+												<c:when test="${item.response_state==1}">
+
+													<td><button type="submit" class="btn btn-primary"
+															onclick="reviewDelete(${item.q_no});">삭제</button></td>
+												</c:when>
+
+											</c:choose>
 										
 									</tr>
 							</c:forEach>
@@ -120,6 +145,54 @@ function adminBoard(){
 					</table>
 				</div>
 			</div>
+			
+							<!-- Modal -->
+  <div class="modal fade" id="qnaResponse" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" id="workout-dialog">
+    
+      <div class="modal-content" id="workout-content">
+      
+        <div class="modal-header">  
+          <h2 class="modal-title" id="GymQnABoard" color="red"style="color: black">문의글 답변하기 </h2>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">x</button>
+        
+        </div>
+        <form id="register_form" name="mboard" method="post" action="qnaResponse.do">
+        <%-- <input type="hidden" name="user_no" value="${sessionScope.user.user_no }"> --%>
+        	<div class="modal-body">
+				<div id="insert_all_div" style="border: 1px solid;">
+				<br>
+					
+						
+							<div id="div_head">
+								<p>
+									제목
+							<input name="title" type="text" placeholder="제목을 입력해주세요."/>
+								</p>				
+							</div>
+							
+				<textarea name="content" id="editor1" placeholder="내용을 입력해주세요.."></textarea>
+				<script>
+					CKEDITOR.replace('editor1');
+				</script>
+				
+				</div>
+											
+		  </div>
+				<div class="modal-footer">
+					
+					<button type="submit" class="btn btn-primary" >Register</button>
+					
+      				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      			</div>
+      			
+      			</form>
+      			
+	  </div>
+			
+     </div>
+      	
+  </div>
 			<div class="card-footer small text-muted">Updated yesterday at
 				11:59 PM</div>
 

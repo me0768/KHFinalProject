@@ -127,6 +127,29 @@ public class AdminDao {
 		return result;
 	}
 
+	public ArrayList<MeetingBoard> meetingBoardList() {
+		List<MeetingBoard> list = sqlSession.selectList("community.meetingBoardList");
+		ArrayList<MeetingBoard> mlist = new ArrayList<MeetingBoard>(list);
+		return mlist;
+	}
+
+	public ArrayList<CommunityBoard> qnaBoardList() {
+		List<CommunityBoard> list = sqlSession.selectList("community.qnaBoardList");
+		ArrayList<CommunityBoard> clist = new ArrayList<CommunityBoard>(list);
+		return clist;
+	}
+
+	public ArrayList<CommunityBoard> reviewBoardList() {
+		List<CommunityBoard> list = sqlSession.selectList("community.reviewBoardList");
+		ArrayList<CommunityBoard> rlist = new ArrayList<CommunityBoard>(list);
+		return rlist;
+	}
+
+	public int qnaResponse(GymQnABoard gqboard) {
+		int result = sqlSession.insert("gym.adminQnAResponse", gqboard);
+		return result;
+	}
+
 
 	
 	

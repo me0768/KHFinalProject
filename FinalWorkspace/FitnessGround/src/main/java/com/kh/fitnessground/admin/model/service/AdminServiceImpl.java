@@ -153,6 +153,30 @@ public class AdminServiceImpl  implements AdminService{
 	}
 
 
+	@Override
+	public ArrayList<MeetingBoard> meetingListView() {
+		return adminDao.meetingBoardList();
+	}
+
+
+	@Override
+	public ArrayList<CommunityBoard> qnaListView() {
+		return adminDao.qnaBoardList();
+	}
+
+
+	@Override
+	public ArrayList<CommunityBoard> reviewListView() {
+		return adminDao.reviewBoardList();
+	}
+
+
+	@Override
+	public int qnaResponse(GymQnABoard gqboard) {
+		return adminDao.qnaResponse(gqboard);
+	}
+
+
 
 
 

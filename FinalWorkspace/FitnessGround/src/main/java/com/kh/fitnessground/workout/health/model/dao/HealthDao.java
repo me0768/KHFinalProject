@@ -101,6 +101,12 @@ public class HealthDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("comment.selectComment",vb_no);
 	}
+
+	public ArrayList<Health> selectHomeTraningList() {
+		// 맨몸운동 메인
+		ArrayList<Health> list = (ArrayList)sqlSession.selectList("health.selectHomeTraning");
+		return list;
+	}
 	
 	//좋아요
 }

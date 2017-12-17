@@ -13,10 +13,7 @@ public interface HealthService {
 	Health selectOneWorkout(int v_no); //번호에 따라서 띄워줄 객체 불러오는 메서드
 	ArrayList<Health> selectWorkoutCategoryList(Health health); //카테고리별 리스트 불러오는 메서드
 	void addReadCount(int v_no); //조회수 증가
-	void updateHealth(int v_no);
-	ArrayList<Health> selectAllList(String category1);
-	void deleteHealth(int v_no);
-	void deleteHealthList(ArrayList<Health> dellist);
+	
 	
 	ArrayList<Comment> selectCommentList(int v_no); //댓글 불러오기
 	void insertComment(Comment comment); //댓글 삽입
@@ -33,6 +30,7 @@ public interface HealthService {
 	void deleteMySchedule(Like like);	//마이스케줄에 삭제
 	void insertMySchedule(Like like);	//마이스케줄에 넣기
 	Comment selectComment(int vb_no);
+	ArrayList<Health> selectHomeTraningList();
 	
 	
 }

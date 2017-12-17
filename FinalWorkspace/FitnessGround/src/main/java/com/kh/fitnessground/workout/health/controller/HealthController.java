@@ -36,7 +36,7 @@ public class HealthController {
 		return mv;
 	}
 	
-	//헬스 (부위별 영상)
+	//헬스 (부위별 영상) ajax 
 	@RequestMapping(value="/part.do")	
 	public void selectCategorytListMethod(Health health,HttpServletResponse response) throws IOException{
 		
@@ -92,11 +92,37 @@ public class HealthController {
 		
 	//맨몸운동
 		
-	//맨몸운동 페이지 이동 
-	
+	//맨몸운동 메인 페이지	
 	@RequestMapping(value="/homeTraning.do")
-	public String playListView(){
-		return "/workout/homeTraning";
+	public ModelAndView HomeTraningListMethod(){
+		ModelAndView mv = new ModelAndView("/workout/homeTraningMain");
+		ArrayList<Health> list = healthService.selectHomeTraningList();
+		
+		for(Health h : list){
+			h.setTitle(h.getTitle().replaceAll("\\\"", "＇"));
+			h.setContent(h.getContent().replaceAll("\\\"", "＇"));// 쌍따옴표jsp출력 문제로 미리 치환
+		}
+		
+		mv.addObject("list",list);
+		return mv;		
+	}
+	
+	//맨몸운동 카테고리별
+	@RequestMapping(value="/htclist.do", method = RequestMethod.POST)
+	public ModelAndView homeTraningCategoryList(Health health){
+		ModelAndView mv = new ModelAndView("/workout/homeTraningMain");
+		
+		ArrayList<Health> htclist = healthService.selectWorkoutCategoryList(health);
+		
+		for(Health ht : htclist){
+			ht.setTitle(ht.getTitle().replaceAll("\\\"", "＇"));
+			ht.setContent(ht.getContent().replaceAll("\\\"", "＇"));// 쌍따옴표jsp출력 문제로 미리 치환
+		}
+		
+		mv.addObject("htclist",htclist);
+		mv.setViewName("jsonView");
+		return mv;
+		
 	}
 	
 	@RequestMapping(value="/playListinsert.do")	//input 태그에 playlist 값 입력 하면 db에 데이터를 넣어야됨..	//미향 부분 view 페이지 보고 참조...
@@ -115,40 +141,8 @@ public class HealthController {
 		
 		return mv;
 	}
-	
-	@RequestMapping(value="/healthupdate.do") //관리자 영상 내용 수정
-	public ModelAndView healthUpdateMethod(Health health){
-		String category1 = health.getCategory1();
-		ModelAndView mv = new ModelAndView("/workout/healthPlaylist");
-		healthService.updateHealth(health.getV_no());
-		ArrayList<Health> list = healthService.selectAllList(category1);
-		mv.addObject("list",list);
-		return mv;
-	}
-	
-	@RequestMapping(value="/hdelete.do") //관리자 한개 영상 삭제
-	public ModelAndView healthDeleteMethod(Health health){
-		String category1 = health.getCategory1();
-		ModelAndView mv = new ModelAndView("/workout/healthPlaylist");
-		healthService.deleteHealth(health.getV_no());
-		ArrayList<Health> list = healthService.selectAllList(category1);
-		mv.addObject("list",list);
-		return mv;
 		
-	}
 	
-	@RequestMapping(value="/listdelete.do")	//관리자 영상 복수 삭제
-	public ModelAndView healthListDeleteMethod(ArrayList<Health> dellist,Health health){
-		String category1 = health.getCategory1();
-		ModelAndView mv = new ModelAndView("/workout/healthPlaylist");
-		healthService.deleteHealthList(dellist);
-		ArrayList<Health> list = healthService.selectAllList(category1);
-		mv.addObject("list",list);
-		
-		return mv;
-	}
-	
-	//헬스 끝
 	
 	//주변 헬스장 검색 페이지 이동
 	@RequestMapping(value="aroundFitenessCenter.do")
@@ -156,7 +150,6 @@ public class HealthController {
 		return "";
 	}
 	
-	//맨몸운동... 다양한 헬스 운동 하고 나서 .. 생각.. 필요한 메서드들은 다양한 헬스운동과 같음
 	
 		
 	//댓글 
@@ -173,7 +166,7 @@ public class HealthController {
 		return mv;
 	}
 	
-	//댓글 insert 날짜 데이터..
+	//댓글 insert
 	@RequestMapping(value="/insertReply.do",method=RequestMethod.POST)
 	public void insertComment(Comment comment){
 	
@@ -206,8 +199,7 @@ public class HealthController {
 	@RequestMapping(value="/deleteReply.do",method=RequestMethod.POST)
 	public void deleteComment(Comment comment){
 		healthService.deleteComment(comment);
-	}
-	
+	}	
 	
 	//좋아요 테이블에 삽입, 삭제하는 메서드
 	@RequestMapping(value="/likeUp.do",method=RequestMethod.POST)

@@ -12,13 +12,14 @@ public class MeetingBoard {
 	private Date meeting_date; // 모임날짜
 	private Date upload_date; // 작성일자
 	private int readcount; // 조회수
+	private String email;
 
 	public MeetingBoard() {
 		super();
 	}
 
 	public MeetingBoard(int mb_no, int user_no, String name, String title, String content, Date meeting_date,
-			Date upload_date, int readcount) {
+			Date upload_date, int readcount, String email) {
 		super();
 		this.mb_no = mb_no;
 		this.user_no = user_no;
@@ -28,6 +29,15 @@ public class MeetingBoard {
 		this.meeting_date = meeting_date;
 		this.upload_date = upload_date;
 		this.readcount = readcount;
+		this.email = email;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public int getMb_no() {

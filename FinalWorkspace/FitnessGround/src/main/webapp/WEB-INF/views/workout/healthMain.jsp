@@ -20,6 +20,9 @@
 #health_text{
 	margin-top: 21vh;
 }
+#healthCategory{
+	margin-top:10vh;
+}
 
 </style>	
 

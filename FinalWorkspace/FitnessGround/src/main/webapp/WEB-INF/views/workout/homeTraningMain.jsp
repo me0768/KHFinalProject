@@ -67,15 +67,15 @@
 		<div class="wrap">
 			<div class="tab-wrap" id="press-cate">
 				<ul class="tab-list">
-					<li id="tab-li"><a href="javascript: category('팔굽혀펴기')">팔굽혀 펴기</a></li>
+					<li id="tab-li"><a href="javascript: category('맨몸푸시업')">팔굽혀 펴기</a></li>
 					<li id="vertical-bar"><span>|</span></li>
-					<li id="tab-li"><a href="javascript: category('하체운동')">하체 운동</a></li>
+					<li id="tab-li"><a href="javascript: category('맨몸하체')">하체 운동</a></li>
 					<li id="vertical-bar"><span>|</span></li>
-					<li id="tab-li"><a href="javascript: category('철봉운동')">철봉 운동</a></li>
+					<li id="tab-li"><a href="javascript: category('맨몸철봉')">철봉 운동</a></li>
 					<li id="vertical-bar"><span>|</span></li>
-					<li id="tab-li"><a href="javascript: category('전신프로그램')">전신 프로그램</a></li>
+					<li id="tab-li"><a href="javascript: category('맨몸전신')">전신 프로그램</a></li>
 					<li id="vertical-bar"><span>|</span></li>
-					<li id="tab-li"><a href="javascript: category('초보자')">초보자를 위한 3개월 프로그램</a></li>
+					<li id="tab-li"><a href="javascript: category('맨몸초보자')">초보자를 위한 3개월 프로그램</a></li>
 				</ul>
 
 			</div>
@@ -182,17 +182,17 @@
 	<!-- 동영상 리스트 view -->
 	<div class="workout-videos">
 		<c:if test="${!empty list}">
-			<c:forEach items="${list}" var="y" varStatus="st">
+			<c:forEach items="${list}" var="ht" varStatus="st">
 					
 				<div class="video">
-					<div id="video-iframe${y.v_no}">
+					<div id="video-iframe${ht.v_no}">
 					</div>
 					<div id="video-info">
 						<div class="time">
-						<span class="video-time" id="v-time${y.v_no}"></span>
+						<span class="video-time" id="v-time${ht.v_no}"></span>
 						</div>
 						<span id="video-text">
-						<a href='javascript:detailView(${y.v_no} , "${y.category1}" , "${y.category2}")'>${y.title }</a></span> 
+						<a href='javascript:detailView(${ht.v_no} , "${ht.category1}" , "${ht.category2}")'>${ht.title }</a></span> 
 						<%-- <span id="video-text"><c:url var="detail" value="#detail" /></span> --%>
 						
 					</div>
@@ -208,11 +208,12 @@
 
 //category별 ajax로 동영상 가져오기 
 function category(category2){
-	var category = category2;
+	var category1 = "맨몸운동";
+	var category2 = category2;
 	console.log(category);
-	var queryString = { "category2": category };
+	var queryString = { "category1":category1 , "category2": category2 };
 	$.ajax({
-		url: 'yclist.do',
+		url: 'htclist.do',
 		data : queryString,
 		type : "post",
 		dataType: "json",
@@ -223,12 +224,12 @@ function category(category2){
           var url;
           var content;
   
-          for(var i=0;i<result.clist.length;i++){
+          for(var i=0;i<result.htclist.length;i++){
         	  (function(title, vid, content){
-	          var no = result.clist[i].v_no;
-	          title = result.clist[i].title;
-	          vid = result.clist[i].url;
-	          content = result.clist[i].content;
+	          var no = result.htclist[i].v_no;
+	          title = result.htclist[i].title;
+	          vid = result.htclist[i].url;
+	          content = result.htclist[i].content;
 	          var value ="<div class='video'><div id='video-iframe"+no+"'></div><div id='video-info'><div class='time'><span class='video-time' id='v-time"+no+"'></span>"+
 					"</div><span id='video-text'><a href='javascript:detailView("+no+")'>"+title+"</a></span></div></div>";
 		

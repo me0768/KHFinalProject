@@ -51,15 +51,11 @@ public class CommunityBoardServiceImpl implements CommunityBoardService {
 	
 
 	@Override
-	public ArrayList<MeetingBoard> meetingListView(int currentPage, int limit) {
-		HashMap<String, Object> parameters = new HashMap<String, Object>();
+	public List<MeetingBoard> meetingListView(int currentPage, int limit, String searchOption, String searchKey) {
 		int startRow=(currentPage - 1) * limit + 1;
 		int endRow=startRow + limit - 1;
-		
-		parameters.put("startRow", startRow);
-		parameters.put("endRow", endRow);
-		
-		return communityBoardDao.meetingListView(parameters);
+				
+		return communityBoardDao.meetingListView(startRow, endRow, searchOption, searchKey);
 	}
 
 	@Override
@@ -91,57 +87,37 @@ public class CommunityBoardServiceImpl implements CommunityBoardService {
 	}
 
 	@Override
-	public List<MeetingBoard>	meetingSearch(String searchOption, String searchKey) {
-		return communityBoardDao.meetingSearch(searchOption, searchKey);
-	}
-	
-	@Override
 	public int getMeetingListCount() {
 		
 		return communityBoardDao.getMeetingListCount();
 	}
 	
 	//운동같이해요 게시판 댓글 ------------------------------------------------------------------------
-
-	 // 댓글 목록
-    @Override
-    public List<MeetingComment> meetingCommentList(int mc_no) {
-        return communityBoardDao.meetingCommentList(mc_no);
-    }
-    // 댓글 작성
-    @Override
-    public void insertMeetingComment(MeetingComment meetingComment) {
-        communityBoardDao.insertMeetingComment(meetingComment);
-    }
-    // 댓글 수정
-    @Override
-    public void updateMeetingComment(MeetingComment meetingComment) {
-        // TODO Auto-generated method stub
- 
-    }
-    // 댓글 삭제
-    @Override
-    public void deleteMeetingComment(int mno) {
-        // TODO Auto-generated method stub
- 
-    }
- 
-
+	//목록
+	@Override
+	public List<MeetingComment> meetingCommentList(int mb_no){
+		return communityBoardDao.meetingCommentList(mb_no);
+	}
+	//삽입
+	@Override
+	public void meetingCommentInsert(MeetingComment meetingComment){
+		communityBoardDao.meetingCommentInsert(meetingComment);
+	}
+	//삭제
+	@Override
+	public void meetingCommentDelete(int mbc_no){
+		communityBoardDao.meetingCommentDelete(mbc_no);
+	}
 
 	//리뷰 게시판---------------------------------------------------------------------------------------------------------------
 	@Override
 	public List<CommunityBoard> reviewListView(int currentPage, int limit, String searchOption, String searchKey) {
-		HashMap<String, Object> parameters = new HashMap<String, Object>();
+		
 		int startRow=(currentPage - 1) * limit + 1;
 		int endRow=startRow + limit - 1;
 		
-		parameters.put("startRow", startRow);
-		parameters.put("endRow", endRow);
-		parameters.put("searchOption", searchOption);
-		parameters.put("searchKey", searchKey);
-		
-		
-		return communityBoardDao.reviewListView(parameters);
+			
+		return communityBoardDao.reviewListView(startRow, endRow, searchOption, searchKey);
 	}
 
 	@Override
@@ -210,17 +186,10 @@ public class CommunityBoardServiceImpl implements CommunityBoardService {
 	}
 	@Override
 	public List<CommunityBoard> qnaListView(int currentPage, int limit, String searchOption, String searchKey) {
-		HashMap<String, Object> parameters = new HashMap<String, Object>();
 		int startRow=(currentPage - 1) * limit + 1;
 		int endRow=startRow + limit - 1;
 		
-		parameters.put("startRow", startRow);
-		parameters.put("endRow", endRow);
-		parameters.put("searchOption", searchOption);
-		parameters.put("searchKey", searchKey);
-		
-		
-		return communityBoardDao.qnaListView(parameters);
+		return communityBoardDao.qnaListView(startRow, endRow, searchOption, searchKey);
 	}
 	
 	@Override

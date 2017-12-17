@@ -16,12 +16,13 @@ public class GymQnABoard {
 	private int response_state;
 	private String email;
 	private String name;
+	private int user_no;
 	
 	public GymQnABoard() {
 		super();
 	}
 	public GymQnABoard(int q_no, String sender, String receiver, String title, String content, String original_filename,
-			String rename_filename, Date write_date, int q_level, int ref_no, int response_state, String email, String name) {
+			String rename_filename, Date write_date, int q_level, int ref_no, int response_state, String email, String name, int user_no) {
 		super();
 		this.q_no = q_no;
 		this.sender = sender;
@@ -36,8 +37,15 @@ public class GymQnABoard {
 		this.response_state = response_state;
 		this.email = email;
 		this.name = name;
+		this.user_no = user_no;
 	}
 	
+	public int getUser_no() {
+		return user_no;
+	}
+	public void setUser_no(int user_no) {
+		this.user_no = user_no;
+	}
 	public int getQ_no() {
 		return q_no;
 	}

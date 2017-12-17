@@ -25,7 +25,7 @@ public interface CommunityBoardService {
 			//게시글 조회수
 			void meetingCount(int no, HttpServletRequest request);
 			//목록
-			ArrayList<MeetingBoard> meetingListView(int currentPage, int limit);
+			List<MeetingBoard> meetingListView(int currentPage, int limit, String searchOption, String searchKey);
 			//등록
 			int meetingInsert(MeetingBoard meetingboard);
 			//삭제
@@ -36,19 +36,17 @@ public interface CommunityBoardService {
 			int meetingUpdatePage(MeetingBoard meeting);
 			//디테일
 			MeetingBoard meetingDetail(int no);
-			//찾기
-			List<MeetingBoard>	meetingSearch(String searchOption, String searchKey);
 			//게시글 갯수
 			int getMeetingListCount();
 		//운동같이해요 게시판 댓글
-			//댓글 불러오기
-			 List<MeetingComment> meetingCommentList(int mc_no);
-			//댓글 입력
-			 void insertMeetingComment(MeetingComment meetingComment);
-			//댓글 삭제
-			 void deleteMeetingComment(int mno);
-			//댓글 수정
-			 void updateMeetingComment(MeetingComment meetingComment);
+			//목록
+			List<MeetingComment> meetingCommentList(int mb_no);
+			//입력
+			void meetingCommentInsert(MeetingComment meetingComment);
+			//삭제
+			void meetingCommentDelete(int mbc_no);
+			
+			
 		//리뷰 게시판
 			//목록,검색
 				List<CommunityBoard> reviewListView(int currentPage, int limit, String searchOption, String searchKey);
@@ -101,6 +99,11 @@ public interface CommunityBoardService {
 					 void deleteQnAComment(int mbc_no, int mb_no, int user_no);
 					//댓글 수정
 					 void updateQnAComment(int mb_no, int mbc_no, int user_no, String content);
+					
+				
+					 
+					 
+					
 					
 					
 					

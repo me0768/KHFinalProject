@@ -10,7 +10,7 @@
 				<li><a href="healthMain.do">헬스</a></li>
 				<li><a href="yogaMain.do">요가</a></li>
 				<li><a href="pilatesMain.do">필라테스</a></li>
-				<li><a href="#">맨몸운동</a>
+				<li><a href="homeTraning.do">맨몸운동</a>
 					<!-- <ul>
 						<li><a href="#">Lorem ipsum dolor</a></li>
 						<li><a href="#">Phasellus consequat</a></li>

@@ -8,18 +8,20 @@ public class MeetingComment {
 	private String content;	//댓글 내용
 	private int user_no;	//작성자
 	private Date Reply_date;	//작성일자
-	
+	private String name; //작성자
+		
 	public MeetingComment() {
 		super();
 	}
 
-	public MeetingComment(int mbc_no, int mb_no, String content, int user_no, Date reply_date) {
+	public MeetingComment(int mbc_no, int mb_no, String content, int user_no, Date reply_date, String name) {
 		super();
 		this.mbc_no = mbc_no;
 		this.mb_no = mb_no;
 		this.content = content;
 		this.user_no = user_no;
 		Reply_date = reply_date;
+		this.name = name;
 	}
 
 	public int getMbc_no() {
@@ -62,13 +64,21 @@ public class MeetingComment {
 		Reply_date = reply_date;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	@Override
 	public String toString() {
 		return "MeetingComment [mbc_no=" + mbc_no + ", mb_no=" + mb_no + ", content=" + content + ", user_no=" + user_no
-				+ ", Reply_date=" + Reply_date + "]";
+				+ ", Reply_date=" + Reply_date + ", name=" + name + "]";
 	}
 	
-	
+
 	
 	
 }

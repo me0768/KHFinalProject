@@ -46,10 +46,20 @@ public class CommunityBoardDao {
 		sqlSession.update("community.meetingCount", no);
     }
 
-	public ArrayList<MeetingBoard> meetingListView(HashMap<String, Object> parameters) {
-		List<MeetingBoard> mlist = sqlSession.selectList("community.meetingListView", parameters);
-		ArrayList<MeetingBoard> list = new ArrayList<MeetingBoard>(mlist);
-		return list;
+	public List<MeetingBoard> meetingListView(int startRow, int endRow, String searchOption, String searchKey) {
+		 Map<String, Object> map = new HashMap<String, Object>();
+		 map.put("startRow", startRow); 
+	     map.put("endRow", endRow);
+	     map.put("searchKey", "%" + searchKey + "%");  
+	     if(searchOption.equals("")){
+	    	 return sqlSession.selectList("community.meetingListView", map);
+	     }
+	     else if(searchOption.equals("title")) {
+	         return sqlSession.selectList("community.meetingTitleSearch", map);
+	      }else if(searchOption.equals("name")){
+	         return sqlSession.selectList("community.meetingNameSearch", map);
+	      }else
+	    	 return sqlSession.selectList("community.meetingContentSearch", map);
 	}
 
 	public int meetingInsert(MeetingBoard meetingboard) {
@@ -79,15 +89,6 @@ public class CommunityBoardDao {
 		return meeting;
 	}
 
-	public List<MeetingBoard> meetingSearch(String searchOption, String searchKey) {
-		
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("searchOption", searchOption);
-		map.put("searchKey", searchKey);
-		
-		return sqlSession.selectList("community.meetingSearchList",map);
-	}
-	
 	public int getMeetingListCount() {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("community.getMeetingListCount");
@@ -99,46 +100,34 @@ public class CommunityBoardDao {
 		
 	//운동같이해요 게시판 댓글-----------------------------------------------------------------------
 	// 댓글 목록
- 
-    public List<MeetingComment> meetingCommentList(int mc_no) {
-        return sqlSession.selectList("community.meetingCommentList", mc_no);
-    }
-    // 댓글 작성
-   
-    public void insertMeetingComment(MeetingComment meetingComment) {
-        sqlSession.insert("community.insertMeetingComment", meetingComment);
-    }
-    // 댓글 수정
-   
-    public void updateMeetingComment(MeetingComment meetingComment) {
-        // TODO Auto-generated method stub
- 
-    }
-    // 댓글 삭제
-   
-    public void deleteMeetingComment(int mno) {
-        // TODO Auto-generated method stub
- 
-    }
-
- 
-
-
-	public void deleteMeetingComment(int mbc_no, int mb_no, int user_no) {
-		// TODO Auto-generated method stub
-		
+		public List<MeetingComment> meetingCommentList(int mb_no) {
+		return sqlSession.selectList("community.meetingCommentList", mb_no);
 	}
-
-	public void updateMeetingComment(int mb_no, int mbc_no, int user_no, String content) {
-		// TODO Auto-generated method stub
+	// 댓글 삽입
+		public void meetingCommentInsert(MeetingComment meetingComment){
+			sqlSession.insert("community.meetingCommentInsert", meetingComment);
+		}
 		
-	}
+	// 댓글 삭제
+		public void meetingCommentDelete(int mbc_no){
+			sqlSession.delete("community.meetingCommentDelete", mbc_no);
+		}
 	
 	//리뷰 게시판-------------------------------------------------------------------------------------------------------------------
-	public List<CommunityBoard> reviewListView(HashMap<String, Object> parameters) {
-		List<CommunityBoard> list = sqlSession.selectList("community.reviewListView", parameters);
-		
-		return list;
+	public List<CommunityBoard> reviewListView(int startRow, int endRow, String searchOption, String searchKey) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		 map.put("startRow", startRow); 
+	     map.put("endRow", endRow);
+	     map.put("searchKey", "%" + searchKey + "%");  
+	     if(searchOption.equals("")){
+	    	 return sqlSession.selectList("community.reviewListView", map);
+	     }
+	     else if(searchOption.equals("title")) {
+	         return sqlSession.selectList("community.reviewTitleSearch", map);
+	      }else if(searchOption.equals("name")){
+	         return sqlSession.selectList("community.reviewNameSearch", map);
+	      }else
+	    	 return sqlSession.selectList("community.reviewContentSearch", map);
 	}
 
 	public int reviewInsert(CommunityBoard communityboard) {
@@ -197,10 +186,21 @@ public class CommunityBoardDao {
 		sqlSession.update("community.communityCount", no);
     }
 	
-	public List<CommunityBoard> qnaListView(HashMap<String, Object> parameters) {
-			List<CommunityBoard> list = sqlSession.selectList("community.qnaListView", parameters);
-				
-		return list;
+	public List<CommunityBoard> qnaListView(int startRow, int endRow, String searchOption, String searchKey) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		 map.put("startRow", startRow); 
+	     map.put("endRow", endRow);
+	     map.put("searchKey", "%" + searchKey + "%");  
+	     if(searchOption.equals("")){
+	    	 return sqlSession.selectList("community.qnaListView", map);
+	     }
+	     else if(searchOption.equals("title")) {
+	         return sqlSession.selectList("community.qnaTitleSearch", map);
+	      }else if(searchOption.equals("name")){
+	         return sqlSession.selectList("community.qnaNameSearch", map);
+	      }else
+	    	 return sqlSession.selectList("community.qnaContentSearch", map);
+	      	
 	}
 	
 	public int qnaInsert(CommunityBoard communityboard) {
@@ -255,6 +255,9 @@ public class CommunityBoardDao {
 		// TODO Auto-generated method stub
 		
 	}
+
+	
+
 
 	
 

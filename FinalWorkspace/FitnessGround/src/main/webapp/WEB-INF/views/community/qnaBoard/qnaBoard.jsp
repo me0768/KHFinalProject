@@ -5,8 +5,8 @@
 	<c:import url="../../include/common/head.jsp" />
 	
 	
-	 <style type="text/css">
-	body {
+	<style type="text/css">
+ 	body {
 		font-family: "Open Sans", sans-serif;
 		line-height: 1.25;
 	}
@@ -18,25 +18,23 @@
 	}
 	
 	
+
 	div#community_category_div {
 		padding-left: 23%;
-		
 	}
-	div#community_search_div{		
+	div#community_search_div{
+		
 		margin-left: 15%;
 	}
-	
 	select#findType{
 		height: 30px;
 		width: 70px;
 		font-size: 14px;
 	}
-	
 	input#searchKey{
 		height: 25px; 
 		width: 200px;
-	}
-		
+		}
 	input#searchKey placeholder{
 		color: #F3F3F3;
 		font-size: 14px;
@@ -48,6 +46,7 @@
 		height:25pt;
 		font-size:8pt;
 		
+		
 	}
 
 	div#community_table_div{
@@ -55,17 +54,19 @@
 		padding-right:9%;
 	}
 	table#community_table {
+		
 		border: 1px solid #ccc;
 		border-collapse: collapse;
 		table-layout: fixed;
 		width: 80%;
 	}
-
+	
 	table#community_table tr {
 		border: 1px solid #ddd;
 		padding: .35em;
 	}
 	
+
 	table#community_table tr:nth-child(even) {
 		background: #f8f8f8;
 	}
@@ -81,11 +82,10 @@
 		letter-spacing: .1em;
 		text-transform: uppercase;
 	}
-
+	
 	table#community_table td {
 		white-space: nowrap;
 		overflow: hidden;
-		text-overflow: ellipsis;
 	}
 </style>
 	
@@ -93,9 +93,7 @@
 	<c:import url="../../include/common/headend.jsp" />
     
    
-
-
-	<div id="page-wrapper">
+	 <div id="page-wrapper">
 		<!-- Header -->
 		<div id="mypage_header">
             <!-- Nav -->
@@ -107,7 +105,7 @@
 		</div>
     </div>
     
-  
+   
  
    <script type="text/javascript">
 
@@ -120,89 +118,88 @@
 		function qnaPage() {
 			location.href = "qna.do";
 		}
-
+		
 		$(document).ready(function(){
 			$("#write").on("click", function(e){
 				e.preventDefault();
 				write();
-			})
-		})
+			});
+		});
+		
 		function write() {
 			location.href = "qnaInsert.do";
-			}
+		}
+		
 		function qnaLoadList(page)
 		{
 			$.ajax({
 				url:"qnaLoadList.do",
-				type:"post",
-				dataType:"json",
+				type: "post",
+				dataType: "json",
 				data: {"page":page},
-				success: function(data){
+				success: function(data)
+				{
 					console.log(data.currentPage);
 					console.log(data.maxPage);
 					console.log(data.list);
-					var jsonStr = JSON.stringfy(data);
+					var jsonStr = JSON.stringify(data);
+                    
+		            var json = JSON.parse(jsonStr);
+		            
+		            var values = "";
+		            
+		            for(var i in json.list)
+		            {
+		             	if(json.list[i].board_property == 1){
+		             		
+		             	values += "<tr><td>" + json.list[i].cb_no + "</td>"+ "<td><a href='qnaDetail.do?no=" + json.list[i].cb_no + "'>" +
+		            			json.list[i].title + "</a></td><td>" + json.list[i].name + "</td><td>" +
+		            			json.list[i].upload_date + "</td><td>" 
+		            			+ json.list[i].readcount + "</td></tr>";
+		             	}
+		            }
+		            
+		            $("#qnalist").html(values);
 					
-			var json = JSON.parse(jsonStr);
-			
-			var values = "";
-			
-			for(var i in json.list)
-				{
-			 	
-				values += "<tr><td>" + json.list[i].cb_no
-										+ "</td>"
-										+ "<td><a href='qnaDetail.do?no="
-										+ json.list[i].cb_no + "'>"
-										+ json.list[i].title + "</a></td><td>"
-										+ json.list[i].name + "</td><td>"
-										+ json.list[i].upload_date
-										+ "</td><td>" + json.list[i].readcount
-										+ "</td></tr>";
-
-				}
-			
-				$("qnalist").html(values);
-				
-				var valuesPaging="";
-				
-				if(data.currentPage <= 1){
-					valuesPaging+=" <li class='disabled'>" +
-				    "<a href='#' aria-label='Previous'>" +
-	                "<span aria-hidden='true'>&laquo;</span></a></li>";
-				}  else {
-	            	valuesPaging += "<li><a href='javascript:qnaLoadList(" + (data.currentPage - 1) + ")'  aria-label='Previous'>"
-		             + "<span aria-hidden='true'>&laquo;</span></a></li>";
-	           	}
-				
-				for(var i = data.startPage; i<=data.endPage; i++)
-					{
-						if(data.currentPage == i)
-							{
-							  valuesPaging+="<li class='disabled'>"+"<a href='#'>"+ i + "</a></li>";
-			        		} else {
-			        			 valuesPaging+="<li><a href='javascript:qnaLoadList(" + i + ")'>"+ i + "</a></li>";
-			        		}
-					}
-				
-				if(data.currentPage >= data.maxPage)
-					{
-					valuesPaging+= "<li class='disabled'>" + 
-		            "<a href='#' aria-label='Next'>"+
-		                "<span aria-hidden='true'>&raquo;</span></a></li>";
+		            var valuesPaging="";
+		            
+		            if(data.currentPage <= 1){
+		            	valuesPaging+="<li class='disabled'>" + 
+			              "<a href='#' aria-label='Previous'>" +
+			                "<span aria-hidden='true'>&laquo;</span></a></li>";
+		            } else {
+		            	valuesPaging += "<li><a href='javascript:qnaLoadList(" + (data.currentPage - 1) + ")'  aria-label='Previous'>"
+			             + "<span aria-hidden='true'>&laquo;</span></a></li>";
+		            }
+		            
+		           for(var i = data.startPage; i<=data.endPage; i++)
+		        	{
+		        	   if(data.currentPage == i)
+		        		{
+		        		  valuesPaging+="<li class='disabled'>"+"<a href='#'>"+ i + "</a></li>";
+		        		} else {
+		        			 valuesPaging+="<li><a href='javascript:qnaLoadList(" + i + ")'>"+ i + "</a></li>";
+		        		}
+		
+		        	}
+		           
+		            if(data.currentPage >= data.maxPage)
+		            {
+		            	valuesPaging+= "<li class='disabled'>" + 
+				            "<a href='#' aria-label='Next'>"+
+				                "<span aria-hidden='true'>&raquo;</span></a></li>";
 		            } else {
 		            	valuesPaging += "<li><a href='javascript:qnaLoadList(" + (data.currentPage + 1)+ "') aria-label='Next'>" +
 		                "<span aria-hidden='true'>&raquo;</span></a></li>";
 		            }
-				
-				$("#qnapaging").html(valuesPaging);
-							}
-						
-					});
+		            
+		            $("#qnapaging").html(valuesPaging);
 				}
-			</script>
-
-
+			});
+		}
+		
+	</script>
+	
 <br><br>
 <h1 align="center">Q & A</h1>
 <br>
@@ -234,7 +231,7 @@
 </div>
 <div id="community_table_div">
 <table id="community_table">
-
+  <thead>
   		<colgroup>
 			<col width="10%"/>
 			<col width="*%"/>
@@ -243,16 +240,16 @@
 			<col width="10%"/>
 		</colgroup>
     <tr>
-      <th scope="col">번호</th>
-      <th scope="col">제목</th>
-      <th scope="col">글쓴이</th>
-      <th scope="col">작성일</th>
-      <th scope="col">조회수</th>
+      <th>번호</th>
+      <th>제목</th>
+      <th>글쓴이</th>
+      <th>작성일</th>
+      <th>조회수</th>
     </tr>
- 
+  
   <tbody id="qnalist">
  
-	<c:forEach items="${qna.list }" var="cm"> 
+	<c:forEach items="${qna.list}" var="cm"> 
 		<c:if test="${cm.board_property == 1}">
     <tr>
       <td>${cm.cb_no}</td>
@@ -261,6 +258,7 @@
       <td>${cm.name}</td>
       <td>${cm.upload_date}</td>
       <td>${cm.readcount}</td>
+    
     </tr>
     </c:if>
    </c:forEach>
@@ -269,16 +267,17 @@
 </table>
 <div id="paging">
 	<nav>
-	 <ul class="pagination" id="qnapaging">
-	 	<c:if test="${qna.currentPage <= 1}">
-	 	<li class = "disabled">
-	 	 <a href="#" aria-label="Previous">
+  <ul class="pagination" id="qnapaging">
+    
+    <c:if test="${qna.currentPage <= 1}">
+    <li class="disabled">
+      <a href="#" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
       </a>
     </li>
     </c:if>
     
-     <c:if test="${qna.currentPage > 1}">
+    <c:if test="${qna.currentPage > 1}">
     <li>
       <a href="javascript:qnaLoadList(${qna.currentPage - 1})" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
@@ -312,16 +311,11 @@
       </a>
        </li>
     </c:if>
-   
-  </ul>
+ </ul>
 </nav>
-
 </div>
 </div>
 
 
     <c:import url="../../include/main/footer.jsp" />
     <c:import url="../../include/common/end.jsp" />
-    
-  
-    

@@ -72,7 +72,7 @@ public class YogaServiceImpl implements YogaService{
 		yogaDao.deleteYoga(yoga);
 	}
 	@Override
-	public void deleteYogaList(List<Yoga> dellist, HttpServletRequest request) {
+	public void deleteYogaList(List<Integer> dellist, HttpServletRequest request) {
 		yogaDao.deleteYogaList(dellist);
 	}
 }

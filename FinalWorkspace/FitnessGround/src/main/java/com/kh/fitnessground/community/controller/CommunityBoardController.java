@@ -1,19 +1,16 @@
 package com.kh.fitnessground.community.controller;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.fitnessground.community.model.service.CommunityBoardService;
 import com.kh.fitnessground.community.model.vo.CommunityBoard;
+import com.kh.fitnessground.community.model.vo.CommunityComment;
 import com.kh.fitnessground.community.model.vo.MeetingBoard;
 import com.kh.fitnessground.community.model.vo.MeetingComment;
 
@@ -562,9 +560,40 @@ public class CommunityBoardController {
 		
 		
 		
-	// qna 게시판 댓글
-	// --------------------------------------------------------------------------------------------------------
-	// 리뷰게시판 게시판
-	// 댓글-------------------------------------------------------------------------------------------------------
-
+	// 커뮤니티 게시판 댓글
+		//목록
+				@SuppressWarnings("unchecked")
+				@RequestMapping(value="communityCommentList.do")
+				public ModelAndView communityCommentList(ModelAndView mv, int cb_no){
+					
+					List<CommunityComment> cblist = communityBoardService.communityCommentList(cb_no);
+					Map<String,Object> map = new HashMap<String,Object>();
+							
+					JSONArray jmblist = new JSONArray();
+					for(CommunityComment cc : cblist){
+						JSONObject jmb = new JSONObject();
+						jmb.put("cbc_no", cc.getCbc_no());
+						jmb.put("cb_no", cc.getCb_no());
+						jmb.put("content", cc.getContent());
+						jmb.put("user_no", cc.getUser_no());
+						jmb.put("reply_date", cc.getReply_date().toString());
+						jmb.put("name", cc.getName());
+						
+						jmblist.add(jmb);
+					}	
+					map.put("cblist", jmblist);
+					mv.addAllObjects(map);
+					mv.setViewName("jsonView");
+					return mv;
+				}
+				//삽입
+				@RequestMapping(value="communityCommentInsert.do",method=RequestMethod.POST)
+				public void communityCommentInsert(CommunityComment communityComment){
+					communityBoardService.communityCommentInsert(communityComment);
+				}
+				//삭제
+				@RequestMapping(value="communityCommentDelete.do",method=RequestMethod.POST)
+				public void communityCommentDelete(@RequestParam("cbc_no")int cbc_no){
+					communityBoardService.communityCommentDelete(cbc_no);
+				}
 }

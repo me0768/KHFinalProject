@@ -63,16 +63,6 @@ public interface CommunityBoardService {
 				//게시글 갯수
 				int getReviewListCount();
 			
-		//리뷰 게시판 댓글
-				//댓글 불러오기
-				 ArrayList<CommunityComment> reviewCommentList(int mbc_no);
-				//댓글 입력
-				 void insertReviewComment(int mb_no, int user_no, String content);
-				//댓글 삭제
-				 void deleteReviewComment(int mbc_no, int mb_no, int user_no);
-				//댓글 수정
-				 void updateReviewComment(int mb_no, int mbc_no, int user_no, String content);
-			
 		//qna 게시판
 				//게시글 조회수
 					void communityCount(int no, HttpServletRequest request);
@@ -90,16 +80,14 @@ public interface CommunityBoardService {
 					CommunityBoard qnaDetail(int no);
 					//게시글 갯수
 					int getQnAListCount();
-		//qna 게시판 댓글	
-					//댓글 불러오기
-					 ArrayList<CommunityComment> qnaCommentList(int mbc_no);
-					//댓글 입력
-					 void insertQnAComment(int mb_no, int user_no, String content);
-					//댓글 삭제
-					 void deleteQnAComment(int mbc_no, int mb_no, int user_no);
-					//댓글 수정
-					 void updateQnAComment(int mb_no, int mbc_no, int user_no, String content);
-					
+		//커뮤니티 게시판 댓글	
+					//목록
+					List<CommunityComment> communityCommentList(int cb_no);
+					//삽입
+					void communityCommentInsert(CommunityComment communityComment);
+					//삭제
+					void communityCommentDelete(int cbc_no);
+				
 				
 					 
 					 

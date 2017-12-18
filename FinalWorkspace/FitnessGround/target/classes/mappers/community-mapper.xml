@@ -34,6 +34,14 @@
       <result property="reply_date" column="REPLY_DATE" jdbcType="DATE" javaType="java.sql.Date"/>
    </resultMap>
    
+    <resultMap id="CommunityCommentResult" type="CommunityComment">
+      <id property="cbc_no" column="CBC_NO" />
+      <result property="cb_no" column="CB_NO" />
+      <result property="user_no" column="USER_NO" />
+        <result property="content" column="CONTENT" />
+      <result property="reply_date" column="REPLY_DATE" jdbcType="DATE" javaType="java.sql.Date"/>
+   </resultMap>
+   
    <resultMap id="MyPageCommunity" type="ComAndMeet">
       <result property="board_no" column="CB_NO" />
       <result property="category_no" column="BOARD_PROPERTY" />
@@ -296,6 +304,23 @@
 	<!-- 삭제  -->
 	<delete id="meetingCommentDelete" parameterType="_int">
 		<![CDATA[delete from tb_mb_comment where mbc_no= #{mbc_no}]]>
+	</delete>	
+	
+	 <!-- ========================================커뮤니티 댓글 ============================================= -->
+	 <!-- 목록 -->
+	<select id="communityCommentList" parameterType="_int" resultType="list" resultMap="CommunityCommentResult">
+		<![CDATA[select a.*,b.name from tb_cb_comment a 
+        join tb_user b on (a.user_no = b.user_no) where cb_no=#{cb_no} order by cbc_no desc]]>
+	</select>
+	<!-- 삽입  -->
+	<insert id="communityCommentInsert" parameterType="CommunityComment" flushCache="true" statementType="PREPARED">
+	   <![CDATA[insert into tb_cb_comment values (cbc_seq.nextval,#{cb_no},#{user_no},#{content},sysdate)]]>
+	</insert>
+	
+
+	<!-- 삭제  -->
+	<delete id="communityCommentDelete" parameterType="_int">
+		<![CDATA[delete from tb_cb_comment where cbc_no= #{cbc_no}]]>
 	</delete>	
 	
 	<!-- ======================================마이페이지 - 작성 목록 불러오기 용====================================================== -->

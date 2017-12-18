@@ -284,9 +284,10 @@
 	<select id="mygymlist" resultType="list" resultMap="resultGym" parameterType="Gym">
 		<![CDATA[
 			select gym_no, gym_name, rename_image, op_time,
-				   tel, phone, price, category, description, location, user_no
+				   tel, phone, price, category, description, location, user_no, approval_state
 			from tb_gym
 			where user_no = #{user_no} and approval_state in (0,1)
+			order by approval_state desc
 		]]>
 	</select>
 	

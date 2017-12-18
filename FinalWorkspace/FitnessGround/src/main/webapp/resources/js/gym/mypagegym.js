@@ -18,9 +18,15 @@ $(document).ready(function(){
 				$("#regcount").html(values);
 				var gymlist = '';
 				for(var i=0; i < data.gymcount; i++ ){
+					var approval = '';
 					var image = data.list[i].rename_image.split(',');
 					if( image[0] == "" ){
 						image[0] = '로고.png';
+					}
+					if ( data.list[i].approval_state == 1 ){
+						approval += "<label style='color: green'>&nbsp;(승인)</label>";
+					} else {
+						approval += "<label style='color: red'>&nbsp;(미승인)</label>";
 					}
 					gymlist += 
 					'<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px; margin-bottom: 5px;">' +
@@ -28,7 +34,7 @@ $(document).ready(function(){
 							'<img src="resources/images/gymimages/' + image[0] + '" id="gymimg">' +
 						'</div>' +
 						'<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="padding-left: 5px; paading-right: 5px;">' +
-							'<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px; font-size: 8pt; font-weight: bold;"><a href="detailgym.do?gym_no=' + data.list[i].gym_no + '">' + data.list[i].gym_name + '</a></div>' +
+							'<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px; font-size: 8pt; font-weight: bold;"><label><a href="detailgym.do?gym_no=' + data.list[i].gym_no + '">' + data.list[i].gym_name + '</a></label>' + approval + '</div>' +
 							'<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px; font-size: 8pt;">분류 : ' + data.list[i].category + '</div>' +
 							'<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px; font-size: 8pt;">전화번호 : ' + data.list[i].tel + '</div>' +
 							'<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px; font-size: 8pt;">H.P : ' + data.list[i].phone + '</div>' +

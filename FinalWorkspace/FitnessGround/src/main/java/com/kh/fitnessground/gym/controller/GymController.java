@@ -416,14 +416,28 @@ public class GymController {
 	@RequestMapping(value="/gymQnADel.do")
 	public ModelAndView gymQnADeleteMethod(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("redirect:/userboard.do?userno="+request.getParameter("userno"));
-		gymService.deleteGymQnABoard(Integer.parseInt(request.getParameter("q_no")));
+		int q_no = Integer.parseInt(request.getParameter("q_no"));
+		GymQnABoard b = gymService.selectGymQnABoard(q_no);
+		gymService.deleteGymQnABoard(q_no);
+		if(b.getQ_level() == 1) {
+			gymService.updateGymQnABoardResponse(b.getRef_no(), 0);
+		}
 		return mv; 
 	}
 	// 헬스장 문의하기 게시글 수정 또는 답변 뷰 이동
 	@RequestMapping(value="/gymQnAUpAndAnswerView.do")
 	public ModelAndView gymQnAUpViewMethod(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("gym/gymQnAUpAndAnswer");
-		mv.addObject("board", gymService.selectGymQnABoard(Integer.parseInt(request.getParameter("q_no"))));
+		GymQnABoard b = gymService.selectGymQnABoard(Integer.parseInt(request.getParameter("q_no")));
+		String originalFileName = b.getOriginal_filename();
+		String[] originalFileNames;
+		if(originalFileName!=null) {
+			originalFileNames = originalFileName.split(",");
+			int[] index = new int[originalFileNames.length];
+			for(int i=0; i<index.length; i++) index[i] = i;
+			mv.addObject("originalFileNames", originalFileNames);
+		}
+		mv.addObject("board", b);
 		mv.addObject("mode", request.getParameter("mode"));
 		return mv; 
 	}
@@ -439,6 +453,7 @@ public class GymController {
 	public ModelAndView gymQnAAnswerMethod(GymQnABoard b, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("redirect:/userboard.do?userno="+b.getSender());
 		gymService.insertGymQnABoardAnswer(b);
+		gymService.updateGymQnABoardResponse(b.getRef_no(), 1);
 		return mv; 
 	}
 }

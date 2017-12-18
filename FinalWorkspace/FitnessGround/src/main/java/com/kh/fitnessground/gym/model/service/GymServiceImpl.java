@@ -155,4 +155,12 @@ public class GymServiceImpl implements GymService{
 	public void insertGymQnABoardAnswer(GymQnABoard b) {
 		gymDao.insertGymQnaBoardAnswer(b);
 	}
+
+	@Override
+	public void updateGymQnABoardResponse(int ref_no, int responseSt) {
+		HashMap<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("ref_no", ref_no);
+		parameters.put("responseSt", responseSt);
+		gymDao.updateGymQnABoardResponse(parameters);
+	}
 }

@@ -56,5 +56,6 @@ public interface GymService {
 		void deleteGymQnABoard(int q_no);
 		void updateGymQnABoard(GymQnABoard b);
 		void insertGymQnABoardAnswer(GymQnABoard b);
+		void updateGymQnABoardResponse(int ref_no, int responseSt);
 
 }

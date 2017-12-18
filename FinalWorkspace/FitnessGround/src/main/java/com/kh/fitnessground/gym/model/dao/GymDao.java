@@ -131,5 +131,9 @@ public class GymDao {
 		sqlSession.insert("gym.insertGymQnABoardAnswer", b);
 	}
 
+	public void updateGymQnABoardResponse(HashMap<String, Object> parameters) {
+		sqlSession.update("gym.updateGymQnABoardResponse", parameters);
+	}
+
 	
 }

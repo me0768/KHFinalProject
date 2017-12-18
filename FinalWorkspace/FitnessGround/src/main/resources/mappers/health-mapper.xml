@@ -45,7 +45,7 @@
 		
 	</update>
 	
-	<!-- 맨몸운동 -->
+	<!-- 맨몸운동 메인 조회수 탑 5 출력-->
 	
 	<select id = "selectHomeTraning" resultType="list" resultMap = "resultCategoryList">
 		<![CDATA[
@@ -55,6 +55,10 @@
 			where rownum <6)
 
 		]]>
+	</select>
+	
+	<select id="selectVideoCount" resultType="_int" parameterType="Health">
+		select count(*) from tb_video_board where category1=#{category1} and category2=#{category2}
 	</select>
 	
 </mapper>

@@ -31,6 +31,7 @@ public interface HealthService {
 	void insertMySchedule(Like like);	//마이스케줄에 넣기
 	Comment selectComment(int vb_no);
 	ArrayList<Health> selectHomeTraningList();
+	int selectVideoCount(Health health);	//맨몸운동 영상별 카운트
 	
 	
 }

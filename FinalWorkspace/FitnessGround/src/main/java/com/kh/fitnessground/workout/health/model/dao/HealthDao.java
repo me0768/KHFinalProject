@@ -107,6 +107,11 @@ public class HealthDao {
 		ArrayList<Health> list = (ArrayList)sqlSession.selectList("health.selectHomeTraning");
 		return list;
 	}
+
+	public int selectVideoCount(Health health) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("health.selectVideoCount",health);
+	}
 	
 	//좋아요
 }

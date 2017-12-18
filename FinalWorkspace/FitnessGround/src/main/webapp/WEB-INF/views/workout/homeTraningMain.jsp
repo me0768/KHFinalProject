@@ -95,7 +95,14 @@
 							<i class="fa fa-search" aria-hidden="true"></i>
 						</button>
 					</div>
+				
+				<div id="video-count">
+					
 				</div>
+				
+				</div>
+				
+				
 				
 				<hr id="video-line">
 			</div>
@@ -223,6 +230,8 @@ function category(category2){
           var title;
           var url;
           var content;
+         
+          console.log(result.count);
   
           for(var i=0;i<result.htclist.length;i++){
         	  (function(title, vid, content){
@@ -238,7 +247,7 @@ function category(category2){
 				}else{
 				  $('.workout-videos').append(value);
 	          	}
-	
+				
 				var duration; 
 				var thumbnail;
 				var timeid = '#v-time'+no;
@@ -312,6 +321,7 @@ function category(category2){
 				}(i));//api codes exit
           };//for문종료 
 
+      	$("#video-count").html("영상 갯수 : " + result.count);
           
        },
        error : function(request, status, errorData){

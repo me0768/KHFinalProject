@@ -124,6 +124,12 @@ public class HealthServiceImpl implements HealthService{
 		// 맨몸운동 메인
 		return healthDao.selectHomeTraningList();
 	}
+
+	@Override
+	public int selectVideoCount(Health health) {
+		// 맨몸운동 영상별 카운트
+		return healthDao.selectVideoCount(health);
+	}
 	
 		
 	

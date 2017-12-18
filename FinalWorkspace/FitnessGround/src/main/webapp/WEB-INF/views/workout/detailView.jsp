@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+
 <!-- Modal -->
   <div class="modal fade" id="detailView" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" id="workout-dialog">
@@ -149,7 +150,7 @@
 				console.log(data.commentList);
 				//스크롤 바로 수정 해야함
 				for(var i =0; i<data.commentList.length;i++){
-					values += "<hr>" +"작성자 : " + data.commentList[i].name + "내용: " + data.commentList[i].content+ " 날짜 : " + data.commentList[i].stringReplyDate
+					values += "작성자 : " + data.commentList[i].name + "내용: " + data.commentList[i].content+ " 날짜 : " + data.commentList[i].stringReplyDate
 					
 					if(user_no==data.commentList[i].user_no){ //내가 쓴 댓글 삭제
 						
@@ -175,13 +176,20 @@
 		
 		var content = $("#reply-input").val();
 		var vb_no = $("#vb_no").val();
-		if(content=="" || content==null){
+		
+	
+		var user_no = $("#user_no").val();
+		console.log(user_no);
+		
+		if(!user_no){
+			loginMessage();
+			return false;
+		}else if(user_no!=="" && (content=="" || content==null)){
 			alert("댓글 내용을 입력 해 주세요!");
 			focus("#reply-input");
 			return false;
 		}
-	
-		var user_no = $("#user_no").val();
+		
 		console.log("insertComment vb_no : " + vb_no);
 	
 		var queryString ={"v_no" : v_no,"content" : content,"user_no":user_no,"vb_no":vb_no};

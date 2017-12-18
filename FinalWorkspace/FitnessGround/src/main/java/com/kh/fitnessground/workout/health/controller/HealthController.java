@@ -113,34 +113,22 @@ public class HealthController {
 		ModelAndView mv = new ModelAndView("/workout/homeTraningMain");
 		
 		ArrayList<Health> htclist = healthService.selectWorkoutCategoryList(health);
+		int count = healthService.selectVideoCount(health);
+		
+		System.out.println("count : " + count);
 		
 		for(Health ht : htclist){
 			ht.setTitle(ht.getTitle().replaceAll("\\\"", "＇"));
 			ht.setContent(ht.getContent().replaceAll("\\\"", "＇"));// 쌍따옴표jsp출력 문제로 미리 치환
 		}
-		
+		mv.addObject("count",count);
 		mv.addObject("htclist",htclist);
 		mv.setViewName("jsonView");
 		return mv;
 		
 	}
 	
-	@RequestMapping(value="/playListinsert.do")	//input 태그에 playlist 값 입력 하면 db에 데이터를 넣어야됨..	//미향 부분 view 페이지 보고 참조...
-	public ModelAndView HealthInsertMethod(ArrayList<Health> healthList,HttpServletRequest request){
-		//insert 작업 해야됨
-		
-		ModelAndView mv = new ModelAndView("/workout/healthPlaylist");
-		
-		return mv;
-	}
-	@RequestMapping(value="/updateview.do") //수정하는 뷰로 이동하는 메서드
-	public ModelAndView healthUpdateViewMethod(HttpServletRequest request){
-		ModelAndView mv = new ModelAndView("/workout/videoUpdateView");
-		Health health = healthService.selectOneWorkout(Integer.parseInt(request.getParameter("v_no")));
-		mv.addObject("health",health);
-		
-		return mv;
-	}
+	
 		
 	
 	
@@ -169,26 +157,23 @@ public class HealthController {
 	//댓글 insert
 	@RequestMapping(value="/insertReply.do",method=RequestMethod.POST)
 	public void insertComment(Comment comment){
-	
+		
 			
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String strDate = sdf.format(Calendar.getInstance().getTime());	//현재 날짜..
 			
 		java.sql.Date sqlDate = java.sql.Date.valueOf(strDate);
 		
-		System.out.println(sqlDate);
 		
 		comment.setReply_date(sqlDate);
 		comment.setStringReplyDate(strDate);
 		
-		
-		System.out.println("comment : "+comment);
-				
+								
 		healthService.insertComment(comment);	//sqlDate 형식으로 insert 했음
 		//select 해 욜떄 null 로 나옴
 				
 		ArrayList<Comment> selectCommentList = healthService.selectCommentList(comment.getV_no());
-		System.out.println("selectCommentList" + selectCommentList);
+		
 		
 				
 		
@@ -209,8 +194,6 @@ public class HealthController {
 		
 		int checkLikeTable = healthService.checkLikeTable(like); //좋아요 테이블에 있는지 확인하는 변수
 		// 있으면 1 없으면 0
-		System.out.println("좋아요 테이블 체크 : " + checkLikeTable);
-		System.out.println(like);
 		
 		int userLoginCheck = like.getUser_no();
 		

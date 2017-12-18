@@ -3,10 +3,6 @@
 
     <c:import url="./include/common/head.jsp" />
 
-    <style type="text/css">
-
-    </style>
-
     <c:import url="include/common/headend.jsp" />
 
     <div id="page-wrapper">

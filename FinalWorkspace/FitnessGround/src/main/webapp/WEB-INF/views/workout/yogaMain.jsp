@@ -22,12 +22,6 @@
 <!-- Modal -->
 	<c:import url="detailView.jsp" />
 
-<!-- yoga head 부분  -->
-
-<!-- <div id="workout-head">
-	<h2 id="workout-title">Yoga</h2>
-</div> -->
-
 <!-- yoga body -->
 <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12" id="workout-body">
 
@@ -84,6 +78,7 @@
 				</div>
 				
 				<hr id="video-line">
+				
 			</div>
 		</div>
 	</div>
@@ -190,7 +185,7 @@
 </div>
 		
 <script type="text/javascript">
-//modal 띄우기(title,url, content 값을 모달로)
+/* //modal 띄우기(title,url, content 값을 모달로)
 $('#detailView').on('show.bs.modal', function (event) {
 	  var tag = $(event.relatedTarget); // sth that triggered the modal
 	  var title = tag.data('title'); // Extract info from data-* attributes
@@ -203,7 +198,7 @@ $('#detailView').on('show.bs.modal', function (event) {
 	  modal.find('.modal-play').html("<iframe id='video-play' src='https://www.youtube.com/embed/"+vid+"' frameborder='0'"+
 				"gesture='media' allow='encrypted-media' allowfullscreen></iframe>");
 	  modal.find('#span-content').text(content);
-	})
+	}) */
 
 //category별 ajax로 동영상 가져오기 
 function category(category2){

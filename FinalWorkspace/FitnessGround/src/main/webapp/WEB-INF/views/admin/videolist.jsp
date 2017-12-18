@@ -20,11 +20,11 @@
 		
 		<ol class="breadcrumb">
 		<h3 id="page-title">&nbsp;동영상관리</h3>
-			<li class="breadcrumb-item active ct"><a href="adminylist.do" id="active">ALL </a></li>
-			<li class="breadcrumb-item ct"><a href="javascript: listing('헬스')" >헬스</a> </li>
-			<li class="breadcrumb-item ct"><a href="javascript: listing('요가')">요가 </a></li>
-			<li class="breadcrumb-item ct"><a href="javascript: listing('필라테스')">필라테스</a></li>
-			<li class="breadcrumb-item ct"><a href="javascript: listing('맨몸운동')">맨몸운동 </a></li>
+			<li class="breadcrumb-item active ct"><a href="adminylist.do" id="active" class="all">ALL </a></li>
+			<li class="breadcrumb-item ct"><a href="javascript: listing('헬스')" class="헬스" >헬스</a> </li>
+			<li class="breadcrumb-item ct"><a href="javascript: listing('요가')" class="요가">요가 </a></li>
+			<li class="breadcrumb-item ct"><a href="javascript: listing('필라테스')" class="필라테스">필라테스</a></li>
+			<li class="breadcrumb-item ct"><a href="javascript: listing('맨몸운동')" class="맨몸운동">맨몸운동 </a></li>
 		</ol>
 
 		<!-- Example DataTables Card-->
@@ -150,6 +150,9 @@
 		
 		/*운동종류별 목록 ajax로 select */
 		function listing(category1){
+			$('#active').removeAttr('id','active');
+			$('.'+category1).attr('id', 'active');
+			$('.all').removeAttr('id','active');
 			var category = category1;
 			console.log(category);
 			var queryString = { "category1": category };
@@ -168,6 +171,7 @@
 		          var url;
 		          var readcount;
 		          var content; //나중에 update할때 필요하면쓰기 
+		          var value;
 		  
          	for(var i=0;i<result.clist.length;i++){
         	  (function(v_no, title, category1, category2, vid, readcount, content){
@@ -178,7 +182,7 @@
 		          vid = result.clist[i].url;
 		          readcount = result.clist[i].readcount;
 		          content = result.clist[i].content;
-		          var value ="<tr><td><input type='checkbox' class='case' name='case' value='"+v_no+"'/></td><td>"+v_no+"</td>"+
+		          value +="<tr><td><input type='checkbox' class='case' name='case' value='"+v_no+"'/></td><td>"+v_no+"</td>"+
 						"<td>"+title+"</td>"+
 						"<td>"+category1+"</td>"+
 						"<td>"+category2+"</td>"+
@@ -187,13 +191,14 @@
 						"<td><button type='submit' class='btn btn-primary btn-sm' onclick='editView("+v_no+")'>수정</button>"+
 						"<button type='submit' class='btn btn-danger btn-sm' onclick='deleteOne("+v_no+")'>삭제</button></td></tr>";
 		
-					if(i==0){
+					/* if(i==0){
 						$('#rows').html(value);
 					}else{
 					  $('#rows').append(value);
-		          	}
+		          	} */
 				
 				}(i));//IIFE codes exit
+        	  $('#rows').html(value);
           		};//for문종료  
 
           
@@ -209,8 +214,8 @@
 		/*YoutubeAPI호출, Ajax 관리자 INSERT*/
 		function insert(){
 			console.log("insert() works!");
-			var category1 = $("#select-workout").val(); //선택된 운동종류 
-			var category2 = $("#select-ct").val(); //선택된 카테고리
+			var category1 = $("#select-workout option:selected").text(); //선택된 운동종류 
+			var category2 = $("#select-ct option:selected").text(); //선택된 카테고리
 			var playlist = $("#playlist_id").val(); //입력된 playlistId
 			var vTitle;
 			var vDesc;
@@ -260,7 +265,8 @@
 						contentType : "application/json; charset=utf-8",
 						success : function(result) {
 							console.log("전송성공:");
-							$('#card-result').append('<div class="alert alert-success" role="alert">playlist가 추가되었습니다!</div>');
+							$('#card-result').append('<div class="alert alert-success" role="alert">"'+vTitle+'" 외 '+(jarr.length-1)+'개의 영상이 추가되었습니다!</div>');
+							listing(category1);
 						},
 						error : function(request, status, errorData) {
 							alert("error code : " + request.status + "\n"

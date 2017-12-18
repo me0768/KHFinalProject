@@ -53,7 +53,7 @@
 		// Dropdowns.
 		$('#nav > ul').dropotron({
 			mode : 'fade',
-			speed : 350,
+			speed : 200,
 			noOpenerFade : true,
 			alignment : 'center'
 		});

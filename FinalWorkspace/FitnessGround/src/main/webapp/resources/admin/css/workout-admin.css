@@ -18,7 +18,9 @@
 }
 #active{
 	color: #FF5C7F;
-	margin-left: 15px;
+}
+.all{
+	margin-left: 15px !important;
 }
 input[type="search"]{
 	margin-left: 5vw !important;

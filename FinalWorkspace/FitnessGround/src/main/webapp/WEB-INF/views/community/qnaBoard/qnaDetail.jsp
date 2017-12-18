@@ -33,7 +33,72 @@
 		</div>
     </div>
     
+      <script type="text/javascript">
+ 	
+    //목록
+    function communityCommentList(cb_no){
+   		$.ajax({
+   			 url:"communityCommentList.do",
+   			 type:"post",
+   			 dataType:"json",
+   			 data:{"cb_no": cb_no},
+   			 success: function(data)
+   			 {
+   				 console.log(data);
+   				 console.log(data.cblist);
+   				 var values = "";
+   				 
+   				 for(var i in data.cblist)
+   					 {
+   					 values += "<div class='jumbotron'><div class='col-md-2 text-center'><b>" + data.cblist[i].name + "<b></div>"+
+   					"<div class='col-md-6 text-center'>" +  data.cblist[i].content + "</div><div class='col-md-2 text-center'>" + data.cblist[i].reply_date+ "</div><div class='col-md-2 text-right'><a class='btn' type='submit' onclick='communityCommentDelete("+data.cblist[i].cb_no+","+ data.cblist[i].cbc_no +")'>삭제</a></div>"
+   					+"</div>";
+   					 }
+   			    $("#communityCommentList").html(values);
+   			 }
+   		});
+   	}
     
+  	function communityCommentInsert(cb_no){
+  		var content = $("#commentInsert").val();
+  		var user_no = $("#user_no").val();
+  		$.ajax({
+  				url:"communityCommentInsert.do",
+  				type:"post",
+  				data :{"cb_no":cb_no,"content":content,"user_no":user_no},
+  				async:false
+  		});
+  		console.clear();
+  		$("#commentInsert").val('');
+  		communityCommentList(cb_no);
+  	}
+  	
+  	function communityCommentDelete(cb_no,cbc_no){ //댓글 delete
+  	
+		$.ajax({
+			url:"communityCommentDelete.do",
+			type:"post",
+			data:{"cbc_no":cbc_no},
+			async:false
+		});
+		console.clear();
+		communityCommentList(cb_no);
+		
+	}
+    
+  	$(window).on("load", function() {
+  		$('#commentInsert').on('keydown', function(e) {
+  			var keyCode = e.which;
+
+  			if (keyCode === 13) { // Enter Key
+  				communityCommentInsert(${community.cb_no});
+  				console.clear();
+  			}
+  		});	
+	});
+  	
+	</script>
+     <div class="container">
       
     
     <br>
@@ -52,9 +117,26 @@
    <a href="qnaUpdate.do?no=${community.cb_no}" class="btn">수정</a>
    <a href="qnaDelete.do?no=${community.cb_no}" class="btn">삭제</a>
    <a href="qna.do" class="btn">목록</a>
-    댓글 쓰는곳..   zz 
-    
-    </div>
-       
+     </div>
+     <!-- =========================댓글 쓰는 공간================================== -->
+    <!--  댓글  -->
+    <p align="center">---------------------------------------- 댓글 ---------------------------- </p>
+ 	<!--  댓글 입력 -->
+ 	
+ 	<div id="communityCommentInsert" class="input-group" >
+ 		<input type="text"  class="form-control" id="commentInsert" placeholder="댓글을 입력하세요">
+		<input type="hidden" id="user_no" value="${sessionScope.user.user_no}">
+		<span class="input-group-btn">
+        <button class="btn btn-default" type="button" id="commentInsertBtn" onclick="communityCommentInsert(${community.cb_no});">입력</button>
+     	</span>
+	</div>	
+	
+   <!--댓글 목록-->
+   <div id="communityCommentList">
+   	<script type="text/javascript">
+   		communityCommentList("${community.cb_no}");
+   	</script>    
+   </div>   
+   </div>    
     <c:import url="../../include/main/footer.jsp" />
     <c:import url="../../include/common/end.jsp" />

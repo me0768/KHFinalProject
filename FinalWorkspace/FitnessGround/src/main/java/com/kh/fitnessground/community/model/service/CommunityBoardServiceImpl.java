@@ -152,33 +152,7 @@ public class CommunityBoardServiceImpl implements CommunityBoardService {
 		
 		return communityBoardDao.getReviewListCount();
 	}
-	
-	//=================================================================================================
-	
-	//리뷰게시판 댓글
-	@Override
-	public ArrayList<CommunityComment> reviewCommentList(int mbc_no) {
-		// TODO Auto-generated method stub
-		return communityBoardDao.reviewCommentList(mbc_no);
-	}
-
-	@Override
-	public void insertReviewComment(int mb_no, int user_no, String content) {
-		// TODO Auto-generated method stub
-		communityBoardDao.insertReviewComment(mb_no, user_no, content);
-	}
-
-	@Override
-	public void deleteReviewComment(int mbc_no, int mb_no, int user_no) {
-		// TODO Auto-generated method stub
-		communityBoardDao.deleteReviewComment(mbc_no, mb_no, user_no);
-	}
-
-	@Override
-	public void updateReviewComment(int mb_no, int mbc_no, int user_no, String content) {
-		// TODO Auto-generated method stub
-		communityBoardDao.updateReviewComment(mb_no, mbc_no, user_no, content);
-	}
+			
 	//qna 게시판---------------------------------------------------------------------------------------------------------
 	@Override
 	public void communityCount(int no, HttpServletRequest request){
@@ -224,35 +198,21 @@ public class CommunityBoardServiceImpl implements CommunityBoardService {
 		
 		return communityBoardDao.getQnAListCount();
 	}
-
 	//==============================================댓글==================================================
-	
-	//qna 게시판 댓글
-	@Override
-	public ArrayList<CommunityComment> qnaCommentList(int mbc_no) {
-		// TODO Auto-generated method stub
-		return communityBoardDao.qnaCommentList(mbc_no);
-	}
 
 	@Override
-	public void insertQnAComment(int mb_no, int user_no, String content) {
-		// TODO Auto-generated method stub
-		communityBoardDao.insertQnAComment(mb_no, user_no, content);
+	public List<CommunityComment> communityCommentList(int cb_no){
+		return communityBoardDao.communityCommentList(cb_no);
 	}
-
+	//삽입
 	@Override
-	public void deleteQnAComment(int mbc_no, int mb_no, int user_no) {
-		// TODO Auto-generated method stub
-		communityBoardDao.deleteQnAComment(mbc_no, mb_no, user_no);
+	public void communityCommentInsert(CommunityComment communityComment){
+		communityBoardDao.communityCommentInsert(communityComment);
 	}
-
+	//삭제
 	@Override
-	public void updateQnAComment(int mb_no, int mbc_no, int user_no, String content) {
-		// TODO Auto-generated method stub
-		communityBoardDao.updateQnAComment(mb_no, mbc_no, user_no, content);
+	public void communityCommentDelete(int cbc_no){
+		communityBoardDao.communityCommentDelete(cbc_no);
 	}
-
-	
-
-	
+		
 }

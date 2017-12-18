@@ -7,7 +7,7 @@ public class MeetingComment {
 	private int mb_no; //운동 하자 게시글 번호
 	private String content;	//댓글 내용
 	private int user_no;	//작성자
-	private Date Reply_date;	//작성일자
+	private Date reply_date;	//작성일자
 	private String name; //작성자
 		
 	public MeetingComment() {
@@ -20,7 +20,7 @@ public class MeetingComment {
 		this.mb_no = mb_no;
 		this.content = content;
 		this.user_no = user_no;
-		Reply_date = reply_date;
+		this.reply_date = reply_date;
 		this.name = name;
 	}
 
@@ -57,11 +57,11 @@ public class MeetingComment {
 	}
 
 	public Date getReply_date() {
-		return Reply_date;
+		return reply_date;
 	}
 
 	public void setReply_date(Date reply_date) {
-		Reply_date = reply_date;
+		this.reply_date = reply_date;
 	}
 
 	public String getName() {
@@ -75,7 +75,7 @@ public class MeetingComment {
 	@Override
 	public String toString() {
 		return "MeetingComment [mbc_no=" + mbc_no + ", mb_no=" + mb_no + ", content=" + content + ", user_no=" + user_no
-				+ ", Reply_date=" + Reply_date + ", name=" + name + "]";
+				+ ", Reply_date=" + reply_date + ", name=" + name + "]";
 	}
 	
 

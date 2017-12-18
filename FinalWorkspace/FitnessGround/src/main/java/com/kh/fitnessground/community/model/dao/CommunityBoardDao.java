@@ -157,29 +157,6 @@ public class CommunityBoardDao {
 		return sqlSession.selectOne("community.getReviewListCount");
 	}
 
-
-	//리뷰 게시판 댓글-------------------------------------------------------------------------------------------------------
-	
-	public ArrayList<CommunityComment> reviewCommentList(int mbc_no) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public void insertReviewComment(int mb_no, int user_no, String content) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void deleteReviewComment(int mbc_no, int mb_no, int user_no) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void updateReviewComment(int mb_no, int mbc_no, int user_no, String content) {
-		// TODO Auto-generated method stub
-		
-	}
-	
 	//qna 게시판--------------------------------------------------------------------------------------
 	
 	public void communityCount(int no) {
@@ -236,27 +213,17 @@ public class CommunityBoardDao {
 
 	//qna 게시판 댓글--------------------------------------------------------------------------------------------------
 	
-	public ArrayList<CommunityComment> qnaCommentList(int mbc_no) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<CommunityComment> communityCommentList(int cb_no) {
+		return sqlSession.selectList("community.communityCommentList", cb_no);
 	}
 
-	public void insertQnAComment(int mb_no, int user_no, String content) {
-		// TODO Auto-generated method stub
-		
+	public void communityCommentInsert(CommunityComment communityComment) {
+		sqlSession.insert("community.communityCommentInsert", communityComment);
 	}
 
-	public void deleteQnAComment(int mbc_no, int mb_no, int user_no) {
-		// TODO Auto-generated method stub
-		
+	public void communityCommentDelete(int cbc_no) {
+		sqlSession.delete("community.communityCommentDelete", cbc_no);
 	}
-
-	public void updateQnAComment(int mb_no, int mbc_no, int user_no, String content) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	
 
 
 	

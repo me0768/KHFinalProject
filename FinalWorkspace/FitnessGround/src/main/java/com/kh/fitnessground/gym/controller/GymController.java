@@ -106,6 +106,7 @@ public class GymController {
 		ModelAndView mv = new ModelAndView();
 		int gymcount = gymService.regCount(gym);
 		ArrayList<Gym> list = gymService.mygymlist(gym);
+		System.out.println(list);
 		mv.addObject("gymcount", gymcount);
 		mv.addObject("list", list);
 		mv.setViewName("jsonView");

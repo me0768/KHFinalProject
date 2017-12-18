@@ -34,68 +34,10 @@
 			<c:import url="../user/register.jsp" />
 		</div>
 	</div>
-	<div class="container">
-		<div class="panel panel-default" id="panelOne">
-			<div class="panel-heading" role="tab" id="headingOne">
-				<h4 class="panel-title">
-					<a data-toggle="collapse" data-parent="#accordion"
-						href="#collapseOne" aria-expanded="true"
-						aria-controls="collapseOne" id="panel1">
-						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-						&nbsp;&nbsp;헬스장 사진
-					</a>
-				</h4>
-			</div>
-			<div id="collapseOne" class="panel-collapse collapse"
-				role="tabpanel" aria-labelledby="headingOne">
-				<div class="panel-body">
-					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="mainimage">
-						<!-- 이미지 드래그 앤 드롭 -->
-						<div class='bigimage' id='bigimage' style='width: 360px; height: 360px;'>
-							<img src="/fitnessground/resources/images/gymimages/draganddrop.png" style="width: 300px; height: 108px; border-radius: 10px; margin-top: 126; margin-left: 30px;">
-						</div>
-					</div>
-					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="image_list">
-						<div>
-							<div class="col-md-12">
-					                <div id="Carousel" class="carousel slide">
-					                 
-					                <ol class="carousel-indicators">
-					                    <!-- <li data-target="#Carousel" data-slide-to="0" class="active"></li>
-					                    <li data-target="#Carousel" data-slide-to="1"></li> -->
-					                </ol>
-					                 
-					                 
-						                <!-- Carousel items -->
-						                <div class="carousel-inner">
-						                    
-						              	<div class="item active">
-						                	<div id="li1">
-						                	 	<!-- 목록 생성 -->
-						                	</div><!-- .row -->
-						                </div><!-- .item -->
-		
-						                </div><!-- .carousel-inner -->
-						                
-										<!-- 버튼 생성 -->
-					                </div><!-- .Carousel -->
-					                 
-							</div>
-						</div>
-					</div>
-					
-
-						<div>
-							<div class="input_wrap">
-								<a href="javascript:" onclick="fileUploadAction();"
-									class="btn btn-danger my_button">이미지 업로드</a> <input type="file"
-									id="input_imgs" multiple />
-							</div>
-						</div>
-
-				</div>
-				<!-- panel body -->
-			</div>
+	<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
+		<div id="tip">
+			<h3>헬스장 등록</h3>
+			<h5>모든 정보를 입력해야 등록창이 활성화 됩니다!</h5>
 		</div>
 		<div class="panel panel-default" id="panelTwo">
 			<div class="panel-heading" role="tab" id="headingTwo">
@@ -108,7 +50,7 @@
 					</a>
 				</h4>
 			</div>
-			<div id="collapseTwo" class="panel-collapse collapse"
+			<div id="collapseTwo" class="panel-collapse collapse in"
 				role="tabpanel" aria-labelledby="headingTwo">
 				<div class="panel-body">
 				
@@ -184,6 +126,68 @@
 				</div>
 			</div>
 		</div>
+		<div class="panel panel-default" id="panelOne">
+			<div class="panel-heading" role="tab" id="headingOne">
+				<h4 class="panel-title">
+					<a data-toggle="collapse" data-parent="#accordion"
+						href="#collapseOne" aria-expanded="true"
+						aria-controls="collapseOne" id="panel1">
+						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+						&nbsp;&nbsp;헬스장 사진
+					</a>
+				</h4>
+			</div>
+			<div id="collapseOne" class="panel-collapse collapse"
+				role="tabpanel" aria-labelledby="headingOne">
+				<div class="panel-body">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="mainimage">
+						<!-- 이미지 드래그 앤 드롭 -->
+						<div class='bigimage' id='bigimage' style='width: 360px; height: 360px;'>
+							<img src="/fitnessground/resources/images/gymimages/draganddrop.png" style="width: 300px; height: 108px; border-radius: 10px; margin-top: 126; margin-left: 30px;">
+						</div>
+					</div>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="image_list">
+						<div>
+							<div class="col-md-12">
+					                <div id="Carousel" class="carousel slide">
+					                 
+					                <ol class="carousel-indicators">
+					                    <!-- <li data-target="#Carousel" data-slide-to="0" class="active"></li>
+					                    <li data-target="#Carousel" data-slide-to="1"></li> -->
+					                </ol>
+					                 
+					                 
+						                <!-- Carousel items -->
+						                <div class="carousel-inner">
+						                    
+						              	<div class="item active">
+						                	<div id="li1">
+						                	 	<!-- 목록 생성 -->
+						                	</div><!-- .row -->
+						                </div><!-- .item -->
+		
+						                </div><!-- .carousel-inner -->
+						                
+										<!-- 버튼 생성 -->
+					                </div><!-- .Carousel -->
+					                 
+							</div>
+						</div>
+					</div>
+					
+
+						<div>
+							<div class="input_wrap">
+								<a href="javascript:" onclick="fileUploadAction();"
+									class="btn btn-danger my_button">이미지 업로드</a> <input type="file"
+									id="input_imgs" multiple />
+							</div>
+						</div>
+
+				</div>
+				<!-- panel body -->
+			</div>
+		</div>
 		<div class="panel panel-default" id="panelThree">
 			<div class="panel-heading" role="tab" id="headingThree">
 				<h4 class="panel-title">
@@ -234,7 +238,7 @@
 					</a>
 				</h4>
 			</div>
-			<div id="collapsefour" class="panel-collapse collapse in"
+			<div id="collapsefour" class="panel-collapse collapse"
 				role="tabpanel" aria-labelledby="headingfour">
 				<div class="panel-body">				
 					<div class="input-group col-lg-12 col-md-12 col-sm-12 col-xs-12">

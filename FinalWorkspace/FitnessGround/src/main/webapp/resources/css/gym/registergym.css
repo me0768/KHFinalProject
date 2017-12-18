@@ -1,7 +1,7 @@
 .where {
   display: block;
   margin: 25px 15px;
-  font-size: 11px;
+  font-size: 11pt;
   color: #000;
   text-decoration: none;
   font-family: verdana;
@@ -31,9 +31,9 @@
 .checks input[type="checkbox"] + label:before {  /* 가짜 체크박스 */
   content: ' ';
   display: inline-block;
-  width: 40px;  /* 체크박스의 너비를 지정 */
-  height: 40px;  /* 체크박스의 높이를 지정 */
-  line-height: 40px; /* 세로정렬을 위해 높이값과 일치 */
+  width: 25px;  /* 체크박스의 너비를 지정 */
+  height: 25px;  /* 체크박스의 높이를 지정 */
+  line-height: 25px; /* 세로정렬을 위해 높이값과 일치 */
   margin: 0px;
   text-align: right; 
   vertical-align: middle;
@@ -64,15 +64,15 @@
   width: 17px;
   height: 17px;
   line-height: 17px;
-  font-size: 11px;
+  font-size: 11pt;
 }
 
 .checks.etrans input[type="checkbox"] + label {
-  padding-left: 45px;
-  padding-top: 10px;
+  padding-left: 30px;
+  padding-top: 0px;
   padding-bottom: 10px;
-  padding-right: 20px;
-  font-size: 20pt;
+  padding-right: 10px;
+  font-size: 13pt;
   margin-bottom: 10px;
 }
 .checks.etrans input[type="checkbox"] + label:before {
@@ -253,4 +253,21 @@
 
 #panelOne {
 	margin-top: 20px;
+}
+
+#tip > h3{
+	margin-left: 20px;
+	margin-top: 20px;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+#tip > h5{
+	margin-left: 10px;
+	margin-bottom: 20px;
+	color: #5b5b5bdb;
+}
+
+#gymregisterbtn{
+	margin-bottom: 20px;
 }

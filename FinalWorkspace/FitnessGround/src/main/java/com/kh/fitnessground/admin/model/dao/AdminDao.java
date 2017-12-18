@@ -150,6 +150,10 @@ public class AdminDao {
 		return result;
 	}
 
+	public Object qnaBoardUpdate(int responseQ_no) {
+		return sqlSession.update("gym.qnaBoardUpdate", responseQ_no);
+	}
+
 
 	
 	

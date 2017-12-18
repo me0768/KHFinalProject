@@ -83,6 +83,9 @@ public interface AdminService {
 	int qnaResponse(GymQnABoard gqboard);
 
 
+	void qnaBoardUpdate(int responseQ_no);
+
+
 
 
 }

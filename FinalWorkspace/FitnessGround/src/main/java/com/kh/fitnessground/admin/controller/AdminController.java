@@ -486,9 +486,10 @@ public class AdminController {
 		
 	//관리자 - 문의에 대한 답변 쓰기
 	@RequestMapping(value="/qnaResponse.do", method=RequestMethod.POST)
-	public String qnaResponseMethod(GymQnABoard gqboard){
-		System.out.println(gqboard);
+	public String qnaResponseMethod(GymQnABoard gqboard, int responseQ_no){
+		System.out.println("response_state 바꿔야할 q_no(답변된 q_no): " +responseQ_no);
 		
+		adminService.qnaBoardUpdate(responseQ_no);
 		int result = adminService.qnaResponse(gqboard);
 		if(result>0){
 			return "redirect:adminQnABoard.do";
@@ -498,18 +499,5 @@ public class AdminController {
 			
 	}	
 		
-	/*
-	 * // 게시글보기 에서 작성자이름 클릭시 작성자 정보 모달띄우기
-	 * 
-	 * @RequestMapping(value = "userDetail.do") public ModelAndView
-	 * userDetailMethod(@RequestParam(value = "user_no") int user_no,
-	 * HttpServletRequest request) {
-	 * 
-	 * System.out.println(user_no); ModelAndView mv = new ModelAndView("#");
-	 * 
-	 * 
-	 * return mv; 
-	 * }
-	 */
 
 }

@@ -328,6 +328,7 @@ CREATE TABLE TB_QNA(
   Q_NO NUMBER CONSTRAINT PK_Q PRIMARY KEY,
   SENDER NUMBER NOT NULL,
   RECEIVER NUMBER NOT NULL,
+  GYM_NO number, 
   TITLE VARCHAR2(100) NOT NULL,
   CONTENT VARCHAR2(4000) NOT NULL,
   ORIGINAL_FILENAME VARCHAR2(4000),
@@ -340,6 +341,7 @@ CREATE TABLE TB_QNA(
 COMMENT ON COLUMN TB_QNA.Q_NO IS '문의하기 번호';
 COMMENT ON COLUMN TB_QNA.SENDER IS '보낸이';
 COMMENT ON COLUMN TB_QNA.RECEIVER IS '받는이';
+COMMENT ON COLUMN TB_QNA.GYM_NO IS '문의받는헬스장번호';
 COMMENT ON COLUMN TB_QNA.TITLE IS '문의하기제목';
 COMMENT ON COLUMN TB_QNA.CONTENT IS '문의하기내용';
 COMMENT ON COLUMN TB_QNA.ORIGINAL_FILENAME IS '원래 파일 이름';
@@ -355,6 +357,8 @@ ALTER TABLE TB_QNA
   ADD CONSTRAINT FK2_Q FOREIGN KEY(RECEIVER) REFERENCES TB_USER(USER_NO);
 ALTER TABLE TB_QNA
   ADD CONSTRAINT FK3_Q FOREIGN KEY(REF_NO) REFERENCES TB_QNA(Q_NO);
+ALTER TABLE TB_QNA
+  ADD CONSTRAINT FK4_Q FOREIGN KEY(GYM_NO) REFERENCES TB_GYM(GYM_NO);
   
   
 -- 좋아요 테이블 생성
@@ -1243,12 +1247,12 @@ PROMPT TB_MYPAGE_SCHEDULE 샘플데이터 입력끝!
 
 -- 문의하기 샘플 데이터
 PROMPT TB_QNA 샘플데이터 입력중..
-insert into tb_qna values(qna_SEQ.NEXTVAL, 2, 1, '테스트문의', '이것은 테스트', NULL, NULL, SYSDATE-4, DEFAULT, qna_SEQ.NEXTVAL, DEFAULT);
-insert into tb_qna values(qna_SEQ.NEXTVAL, 2, 1, '사업자가 보낸 문의 제대로 가나요?', '문의합니다', NULL, NULL, SYSDATE-3, DEFAULT, qna_SEQ.NEXTVAL, DEFAULT);
-insert into tb_qna values(qna_SEQ.NEXTVAL, 3, 1, '회원이 보낸 문의', '왔나염?', NULL, NULL, SYSDATE-3, DEFAULT, qna_SEQ.NEXTVAL, DEFAULT);
-insert into tb_qna values(qna_SEQ.NEXTVAL, 3, 1, '회원이 보낸 문의', '왔나염?', NULL, NULL, SYSDATE-1, DEFAULT, qna_SEQ.NEXTVAL, DEFAULT);
-insert into tb_qna values(qna_SEQ.NEXTVAL, 4, 1, '회원이 보낸 문의', '왔나염?', NULL, NULL, SYSDATE-2, DEFAULT, qna_SEQ.NEXTVAL, DEFAULT);
-insert into tb_qna values(qna_SEQ.NEXTVAL, 5, 1, '회원이 보낸 문의', '왔나염?', NULL, NULL, SYSDATE-7, DEFAULT, qna_SEQ.NEXTVAL, DEFAULT);
+insert into tb_qna values(QNA_SEQ.NEXTVAL, 2, 1, null, '테스트문의', '이것은 테스트', NULL, NULL, SYSDATE-4, DEFAULT, QNA_SEQ.NEXTVAL, DEFAULT);
+insert into tb_qna values(QNA_SEQ.NEXTVAL, 2, 1, null, '사업자가 보낸 문의 제대로 가나요?', '문의합니다', NULL, NULL, SYSDATE-3, DEFAULT, QNA_SEQ.NEXTVAL, DEFAULT);
+insert into tb_qna values(QNA_SEQ.NEXTVAL, 3, 1, null, '회원이 보낸 문의', '왔나염?', NULL, NULL, SYSDATE-3, DEFAULT, QNA_SEQ.NEXTVAL, DEFAULT);
+insert into tb_qna values(QNA_SEQ.NEXTVAL, 3, 1, null, '회원이 보낸 문의', '왔나염?', NULL, NULL, SYSDATE-1, DEFAULT, QNA_SEQ.NEXTVAL, DEFAULT);
+insert into tb_qna values(QNA_SEQ.NEXTVAL, 4, 1, null, '회원이 보낸 문의', '왔나염?', NULL, NULL, SYSDATE-2, DEFAULT, QNA_SEQ.NEXTVAL, DEFAULT);
+insert into tb_qna values(QNA_SEQ.NEXTVAL, 5, 1, null, '회원이 보낸 문의', '왔나염?', NULL, NULL, SYSDATE-7, DEFAULT, QNA_SEQ.NEXTVAL, DEFAULT);
 PROMPT TB_QNA 샘플데이터 입력끝!
 
 --공공시설 샘플 데이터

@@ -361,8 +361,15 @@
 			<if test="original_filename != null">#{original_filename}, #{rename_filename},</if>
 			<if test="original_filename == null">null, null, </if>
 		<![CDATA[
-			default, 1, #{q_no}, default)
+			default, 1, #{q_no}, 1)
 		]]>
 	</insert>
+	<update id="updateGymQnABoardResponse" parameterType="hashmap" flushCache="true" statementType="PREPARED" >
+		<![CDATA[
+		update tb_qna 
+	    set RESPONSE_STATE=#{responseSt}
+		where q_no = #{ref_no}
+		]]>
+	</update>
 	
 </mapper>

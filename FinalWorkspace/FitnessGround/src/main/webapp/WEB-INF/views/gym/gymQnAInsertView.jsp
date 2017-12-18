@@ -4,6 +4,7 @@
 <c:import url="../include/common/head.jsp" />
 <link rel="stylesheet" href="/fitnessground/resources/css/gym/gymQnA.css" />	
 <c:import url="../include/common/headend.jsp" />
+<!-- <script src="//cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script> -->
 
 <c:if test="${ sessionScope.user == null }">
 	<script type="text/javascript">
@@ -46,16 +47,19 @@
 	<table>
 		<tr>
 			<th>제목</th>
-			<td colspan="2" style="padding-bottom:50px;"><input class="form-control" name="title"></td>
+			<td colspan="2" style="padding-bottom:60px;"><input class="form-control" name="title"></td>
 		</tr>
 		<tr>
-			<th>내용</th>
-			<td colspan="2"><textarea rows="15" class="form-control" name="content" onkeyup="ckWordLen(this, 10)"></textarea></td>
+			<th></th>
+			<td colspan="2"><textarea rows="15" class="form-control" id="editor1" name="content" onkeyup="ckWordLen(this, 1500)"></textarea></td>
 		</tr>
 		<tr>
-			<td colspan="3" id="textCount" style="padding-bottom:40px;">0/1500</td>
+			<td colspan="2" id="textCount" style="padding-bottom:40px;">0/1500</td>
 		</tr>
 	</table>
+	<!-- <script>
+		CKEDITOR.replace('editor1');
+	</script> -->
 	<table id="fileDiv">
 		<tr>
 			<th>첨부파일</th>
@@ -75,7 +79,7 @@
 
 <!-- 모바일 -->
 <div class="col-sm-12 visible-xs visible-sm visible-md hidden-lg" id="gymQTitleSm">${gymName}에 문의</div>
-<div class="col-sm-12 visible-xs visible-sm visible-md hidden-lgg" id="gymQContentSm">
+<div class="col-sm-12 visible-xs visible-sm visible-md hidden-lg" id="gymQContentSm">
 	<form action="gymQnAInsert.do" id="gymQnAForm" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="sender" value="${sessionScope.user.user_no}">
 	<input type="hidden" name="receiver" value="${gymNo}">
@@ -83,7 +87,7 @@
 		<tr><th colspan="2" >제목</th></tr>
 		<tr><td colspan="2" style="padding-bottom:25px;"><input class="form-control" name="title"></td></tr>
 		<tr><th colspan="2" >내용</th></tr>
-		<tr><td colspan="2" ><textarea rows="15" class="form-control" name="content" onkeyup="ckWordLen(this, 10)"></textarea></td></tr>
+		<tr><td colspan="2" ><textarea rows="15" class="form-control" name="content" onkeyup="ckWordLen(this, 1500)"></textarea></td></tr>
 		<tr><td colspan="2" id="textCount" style="padding-bottom:20px;">0/1500</td></tr>
 		<tr><th colspan="2" >첨부파일</th></tr>
 	</table>

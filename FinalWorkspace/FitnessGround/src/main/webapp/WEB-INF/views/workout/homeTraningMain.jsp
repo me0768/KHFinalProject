@@ -67,15 +67,15 @@
 		<div class="wrap">
 			<div class="tab-wrap" id="press-cate">
 				<ul class="tab-list">
-					<li id="tab-li"><a href="javascript: category('맨몸푸시업')">팔굽혀 펴기</a></li>
+					<li id="tab-li"><a href="javascript: category('맨몸푸시업')">팔굽혀 펴기</a><span>(${pushUpCount})</span></li>
 					<li id="vertical-bar"><span>|</span></li>
-					<li id="tab-li"><a href="javascript: category('맨몸하체')">하체 운동</a></li>
+					<li id="tab-li"><a href="javascript: category('맨몸하체')">하체 운동</a><span>(${lowerBodyCount})</span></li>
 					<li id="vertical-bar"><span>|</span></li>
-					<li id="tab-li"><a href="javascript: category('맨몸철봉')">철봉 운동</a></li>
+					<li id="tab-li"><a href="javascript: category('맨몸철봉')">철봉 운동</a><span>(${pullUpCount})</span></li>
 					<li id="vertical-bar"><span>|</span></li>
-					<li id="tab-li"><a href="javascript: category('맨몸전신')">전신 프로그램</a></li>
+					<li id="tab-li"><a href="javascript: category('맨몸전신')">전신 프로그램</a><span>(${entireBodyCount})</span></li>
 					<li id="vertical-bar"><span>|</span></li>
-					<li id="tab-li"><a href="javascript: category('맨몸초보자')">초보자를 위한 3개월 프로그램</a></li>
+					<li id="tab-li"><a href="javascript: category('맨몸초보자')">초보자를 위한 3개월 프로그램</a><span>(${beginnerCount})</span></li>
 				</ul>
 
 			</div>
@@ -95,10 +95,6 @@
 							<i class="fa fa-search" aria-hidden="true"></i>
 						</button>
 					</div>
-				
-				<div id="video-count">
-					
-				</div>
 				
 				</div>
 				
@@ -231,8 +227,6 @@ function category(category2){
           var url;
           var content;
          
-          console.log(result.count);
-  
           for(var i=0;i<result.htclist.length;i++){
         	  (function(title, vid, content){
 	          var no = result.htclist[i].v_no;
@@ -320,8 +314,7 @@ function category(category2){
 					
 				}(i));//api codes exit
           };//for문종료 
-
-      	$("#video-count").html("영상 갯수 : " + result.count);
+    	
           
        },
        error : function(request, status, errorData){

@@ -102,6 +102,17 @@ public class HealthController {
 			h.setTitle(h.getTitle().replaceAll("\\\"", "＇"));
 			h.setContent(h.getContent().replaceAll("\\\"", "＇"));// 쌍따옴표jsp출력 문제로 미리 치환
 		}
+		int pushUpCount = healthService.selectVideoCount("맨몸푸시업");
+		int lowerBodyCount = healthService.selectVideoCount("맨몸하체");
+		int pullUpCount = healthService.selectVideoCount("맨몸철봉");
+		int entireBodyCount = healthService.selectVideoCount("맨몸전신");
+		int beginnerCount = healthService.selectVideoCount("맨몸초보자");
+		
+		mv.addObject("pushUpCount", pushUpCount);
+		mv.addObject("lowerBodyCount", lowerBodyCount);
+		mv.addObject("pullUpCount", pullUpCount);
+		mv.addObject("entireBodyCount", entireBodyCount);
+		mv.addObject("beginnerCount", beginnerCount);
 		
 		mv.addObject("list",list);
 		return mv;		
@@ -113,15 +124,11 @@ public class HealthController {
 		ModelAndView mv = new ModelAndView("/workout/homeTraningMain");
 		
 		ArrayList<Health> htclist = healthService.selectWorkoutCategoryList(health);
-		int count = healthService.selectVideoCount(health);
-		
-		System.out.println("count : " + count);
 		
 		for(Health ht : htclist){
 			ht.setTitle(ht.getTitle().replaceAll("\\\"", "＇"));
 			ht.setContent(ht.getContent().replaceAll("\\\"", "＇"));// 쌍따옴표jsp출력 문제로 미리 치환
 		}
-		mv.addObject("count",count);
 		mv.addObject("htclist",htclist);
 		mv.setViewName("jsonView");
 		return mv;
@@ -170,9 +177,6 @@ public class HealthController {
 		
 								
 		healthService.insertComment(comment);	//sqlDate 형식으로 insert 했음
-		//select 해 욜떄 null 로 나옴
-				
-		ArrayList<Comment> selectCommentList = healthService.selectCommentList(comment.getV_no());
 		
 		
 				
@@ -224,19 +228,7 @@ public class HealthController {
 		
 		//좋아요 테이블에서 특정 게시물 좋아요 갯수..
 		int likeCount= healthService.selectLikeCount(like.getV_no());
-		
 		int checkLikeTable = healthService.checkLikeTable(like);
-					
-		
-		if(checkLikeTable==0){
-			System.out.println("좋아요 안누른 상태");
-			likeCount = likeCount-1;
-		}
-		if(checkLikeTable==1){
-			System.out.println("좋아요 누른 상태");
-			likeCount = likeCount-1;
-			
-		}		
 		
 		mv.addObject("checkLikeTable",checkLikeTable);
 		mv.addObject("likeCount",likeCount);

@@ -287,6 +287,7 @@
 		var category1 = "헬스";
 		var category2 = part;
 		
+		
 		if ( part == 'chest')
 			category2 = "가슴";
 		else if (part == 'shoulders')
@@ -321,26 +322,31 @@
 				var json = JSON.parse(jsonStr);
 				
 				var values = "";
+			
 				
 				/* 문자열 매개변수 넘길때 "" 를 \ 이용해서 같이 넘겨야됨.. */
 				for(var i in json.list){
-					values +="<div class='video'>" +
+					values += /* "<div class='video'>" +
 						"<iframe id='video-thumbnail' width='250' src="+ decodeURIComponent(json.list[i].url).replace(/\^/g,"&") +
 							"frameborder='0' gesture='media' allow='encrypted-media' allowfullscreen name='iframe'></iframe>"+
 						"<a href='javascript:detailView("
 								+ json.list[i].v_no + ",\"" + decodeURIComponent(json.list[i].category1) + "\"," 
 								+ "\"" + decodeURIComponent(json.list[i].category2).replace(/\+/g," ") +"\");'><div id='video-cover'></div></a>"+
-						/* "<p id='video_text'><a href='javascript:detailView("
-								+ json.list[i].v_no + "," + decodeURIComponent(json.list[i].category1) + "," + decodeURIComponent(json.list[i].category2).replace(/\+/g," ") +
-								")'>" 
-								+ decodeURIComponent(json.list[i].title).replace(/\+/g," ")+"</a></p>"+
-								
-								 */
 						"<p id='health_text'><a href='javascript:detailView("
 								+ json.list[i].v_no + ",\"" + decodeURIComponent(json.list[i].category1) + "\"," 
 								+ "\"" + decodeURIComponent(json.list[i].category2).replace(/\+/g," ") +"\");'>" 
 								+ decodeURIComponent(json.list[i].title).replace(/\+/g," ")+"</a></p>"+
-					"</div>"		
+					"</div>"  */ 
+						"<div class='video'>" +
+						"<img src='/fitnessground/resources/images/health/basic_image.JPG' id='video-thumbnail' width='250' >" +
+						"<a href='javascript:detailView("
+								+ json.list[i].v_no + ",\"" + decodeURIComponent(json.list[i].category1) + "\"," 
+								+ "\"" + decodeURIComponent(json.list[i].category2).replace(/\+/g," ") +"\");'>" + decodeURIComponent(json.list[i].title).replace(/\+/g," ") + "</a>"+
+						/* "<p id='health_text'><a href='javascript:detailView("
+								+ json.list[i].v_no + ",\"" + decodeURIComponent(json.list[i].category1) + "\"," 
+								+ "\"" + decodeURIComponent(json.list[i].category2).replace(/\+/g," ") +"\");'>" 
+								+ decodeURIComponent(json.list[i].title).replace(/\+/g," ")+"</a></p>"+ */
+					"</div>" 
 		
 				}
 				

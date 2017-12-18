@@ -126,9 +126,9 @@ public class HealthServiceImpl implements HealthService{
 	}
 
 	@Override
-	public int selectVideoCount(Health health) {
+	public int selectVideoCount(String category2) {
 		// 맨몸운동 영상별 카운트
-		return healthDao.selectVideoCount(health);
+		return healthDao.selectVideoCount(category2);
 	}
 	
 		

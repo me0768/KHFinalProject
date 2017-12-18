@@ -151,7 +151,7 @@
 				console.log(data.commentList);
 				//스크롤 바로 수정 해야함
 				for(var i =0; i<data.commentList.length;i++){
-					values += "작성자 : " + data.commentList[i].name + "내용: " + data.commentList[i].content+ " 날짜 : " + data.commentList[i].stringReplyDate
+					values += "작성자 : " + data.commentList[i].name + "내용: " + data.commentList[i].content+ " 날짜 : " + data.commentList[i].stringReplyDate + "<hr>"
 					
 					if(user_no==data.commentList[i].user_no){ //내가 쓴 댓글 삭제
 						
@@ -254,25 +254,31 @@
 			
 		});
 		
-		selectLikeCount(v_no);
+		selectLikeCount(v_no);	//좋아요 갯수 다시 뿌려주기
 	}
 	
 	function selectLikeCount(v_no){
-		var user_no = $("#user_no").val();	//로그인 되있는 유저 번호
-		
+		var user_no = $("#user_no").val();
 		$.ajax({
 			url:"likeCount.do",
 			dataType:"json",
 			type:"post",
 			data:{"v_no":v_no,"user_no":user_no},
 			success:function(data){
-				var likeCount = data.likeCount;
-				if(user_no){
-					if(data.checkLikeTable==0)//로그인 되있을경우
-						$("#like_count").html(likeCount+"명이 게시물을 좋아합니다.");	
-					if(data.checkLikeTable==1)
-						$("#like_count").html("회원님 외" + likeCount + "명이 게시물을 좋아합니다.");	
-				}else{ //비회원
+				var likeCount = data.likeCount;	
+				var checkLikeTable = data.checkLikeTable;
+				
+				if(user_no){ //로그인 한경우 
+					if(likeCount==1 && checkLikeTable == 1){	//나 혼자 좋아요 눌럿을 때
+						$("#like_count").html("회원님이 이 게시물을 좋아합니다.");	
+					}else if(likeCount==0 && checkLikeTable == 0){	//아무도 좋아요 안눌렀을 때
+						$("#like_count").html(likeCount + " 명이 이 게시물을 좋아합니다")
+					}else if(likeCount!=0 && checkLikeTable ==1){ //이미 좋아요를 클릭한 상황
+						$("#like_count").html("회원 님 외 " + (likeCount-1) + "명이 이 게시물을 좋아합니다.");
+					}else if(likeCount !=0 && checkLikeTable ==0){
+						$("#like_count").html(likeCount + " 명이 이 게시물을 좋아합니다.")
+					}
+				}else{
 					$("#like_count").html(likeCount + " 명이 게시물을 좋아합니다");
 				}
 			},

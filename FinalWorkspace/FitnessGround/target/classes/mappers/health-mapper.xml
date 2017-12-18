@@ -57,8 +57,8 @@
 		]]>
 	</select>
 	
-	<select id="selectVideoCount" resultType="_int" parameterType="Health">
-		select count(*) from tb_video_board where category1=#{category1} and category2=#{category2}
+	<select id="selectVideoCount" resultType="_int" parameterType="String">
+		select count(*) from tb_video_board where category1='맨몸운동' and category2=#{category2}
 	</select>
 	
 </mapper>

@@ -28,34 +28,7 @@ $( document ).ready(function() {
 		});
 });
 
-/* function qnaResponse(sender){
-	alert("sender : " +sender);
-	
-	$("#qnaResponse").show();
-	$("#qnaResponse").modal();
-}
- */
-/* 	function meetingBoardDelete(mb_no){
-		alert("버튼 클릭");
-		
-		$.ajax({
-			url : "meetingBoardDelete.do",
-			dataType : "json",
-			type : "post",
-			data : {"mb_no" : mb_no},
-			success : function(result){
-				alert("삭제 하였습니다.")
-				location.href = "adminMettingBoard.do";
-			},
-			error : function(request, status, error){
-				alert("error code : " +request.status + "\n"
-						+ "message : " +request.responseText + "\n"
-						+ "error : " + errorData);
-				
-			}
-			
-		})
-	} */
+
 </script>
 
 <c:import url="common/nav.jsp" />
@@ -115,7 +88,7 @@ $( document ).ready(function() {
 												<c:when test="${item.response_state==1}">
 
 													<td><button type="submit" class="btn btn-primary"
-															onclick="reviewDelete(${item.q_no});">삭제</button></td>
+															onclick="reviewDelete(${item.q_no});">답변완료</button></td>
 												</c:when>
 
 											</c:choose>

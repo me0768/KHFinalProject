@@ -126,6 +126,7 @@ public class AdminController {
 		ArrayList<User> gymRlist = adminService.GymRequest(level);// 헬스장 요청 정보 최신순 3개만리스트로 불러오기 승인상태 0인것만
 		ArrayList<GymQnABoard> qnalist = adminService.GymQnABoard(receiver);//메세지 요청 최신3개 미응답이고 리시버가 1인 것만 리스트로 불러오기																		
 		ArrayList<User> list = adminService.userlist(level);
+		System.out.println("회원 정보 : " +list);
 		mv.addObject("request", request);
 		mv.addObject("message", message);
 		mv.addObject("gymRlist", gymRlist);
@@ -341,8 +342,7 @@ public class AdminController {
 	// MeetingBoard 게시글 삭제
 	@RequestMapping(value = "meetingBoardDelete.do")
 	public ModelAndView meetingBoardDeleteMethod(@RequestParam(value = "mb_no") int mb_no, HttpServletRequest request) {
-		System.out.println("등록 취소 요청넘어옴");
-		System.out.println(mb_no);
+		
 		ModelAndView mv = new ModelAndView("admin/boardlist/meetingboard");
 		adminService.meetingBoardDelete(mb_no);
 
@@ -353,8 +353,7 @@ public class AdminController {
 	// QNABoard 게시글 삭제
 	@RequestMapping(value = "qnaBoardDelete.do")
 	public ModelAndView qnaBoardDeleteMethod(@RequestParam(value = "cb_no") int cb_no, HttpServletRequest request) {
-		System.out.println("등록 취소 요청넘어옴");
-		System.out.println(cb_no);
+		
 		ModelAndView mv = new ModelAndView("admin/boardlist/qnaboard");
 		adminService.qnaBoardDelete(cb_no);
 
@@ -365,8 +364,7 @@ public class AdminController {
 	// ReviewBoard 게시글 삭제
 	@RequestMapping(value = "reviewBoardDelete.do")
 	public ModelAndView reviewBoardDeleteMethod(@RequestParam(value = "cb_no") int cb_no, HttpServletRequest request) {
-		System.out.println("등록 취소 요청넘어옴");
-		System.out.println(cb_no);
+		
 		ModelAndView mv = new ModelAndView("admin/boardlist/reviewboard");
 		adminService.reviewBoardDelete(cb_no);
 
@@ -444,7 +442,7 @@ public class AdminController {
 	@RequestMapping(value="/qnaResponse.do", method=RequestMethod.POST)
 	public String qnaResponseMethod(GymQnABoard gqboard, int responseQ_no){
 		System.out.println("response_state 바꿔야할 q_no(답변된 q_no): " +responseQ_no);
-		
+		System.out.println("gqboard : "+gqboard);
 		adminService.qnaBoardUpdate(responseQ_no);
 		int result = adminService.qnaResponse(gqboard);
 		if(result>0){

@@ -33,7 +33,7 @@
 			type : "post",
 			data : {"user_no" : user_no},
 			success: function(result){
-				alert(user_no + " 회원이 비활성화되었습니다.")
+				alert(user_no + " 회원이 비활성화되었습니다. ")
 				location.href="adminuserlist.do";
 			},
 			error : function(request, status, error){
@@ -69,9 +69,14 @@
 		})
 	}
 	
-	function check(user_no){
+	function checkUser(date){
 		
-		alert=("이미 탈퇴한 계정입니다.");
+		alert(date+" 탈퇴 예정인 사용자입니다.");
+				  
+				 
+		
+
+		
 	}
 	
 
@@ -130,27 +135,30 @@
 											<td align="center">${item.nickname }</td>
 											<td align="center">${item.phone }</td>
 											<td align="center">${item.user_level }</td>
+											
+											<c:if test="${item.delete_date eq null }">
 											<c:choose>
-												
-												
-												<c:when test="${item.user_state==0}">
+																							
+												<c:when test="${item.user_state == 0}">
 
 													<td align="center"><button type="submit" class="btn btn-primary"
 															onclick="userChange(${item.user_no});">비활성화</button></td>
 												</c:when>
-												<c:when test="${item.user_state==1}">
+												<c:when test="${item.user_state == 1}">
 
 													<td align="center"><button type="submit" class="btn btn-primary"
 															onclick="userBack(${item.user_no});">활성화</button></td>
 												</c:when>
 												
-												
-												<c:when test="${item.delete_date != null }">
-												
-													<td align="center"><button type="button" class="btn btn-primary"
-													onclick="check(${item.user_no});">탈퇴계정</button>
-												</c:when>
+																		
 											</c:choose>
+											</c:if>
+											<c:if test="${item.delete_date ne null }" >
+											
+													<td align="center">
+													<button class="btn btn-primary" onclick="checkUser('${item.delete_date}');">탈퇴계정</button></td>
+												
+											</c:if>
 
 										</tr>
 									</c:forEach>
@@ -160,6 +168,8 @@
 						</form>
 						</div>
 				</div>
+				
+  
 				<div class="card-footer small text-muted">Updated yesterday at
 					11:59 PM</div>
 			

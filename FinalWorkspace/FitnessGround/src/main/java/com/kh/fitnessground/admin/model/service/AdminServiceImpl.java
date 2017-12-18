@@ -177,6 +177,13 @@ public class AdminServiceImpl  implements AdminService{
 	}
 
 
+	@Override
+	public void qnaBoardUpdate(int responseQ_no) {
+		return adminDao.qnaBoardUpdate(responseQ_no);
+		
+	}
+
+
 
 
 

@@ -12,17 +12,29 @@
 <script src="//cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>
 
 <script type="text/javascript">
-function adminBoard(){
-	alert("응~ 클릭");
-	
-}
-function qnaResponse(sender){
+$( document ).ready(function() {
+	$('#qnaResponse').on('show.bs.modal', function (event) {
+		  var button = $(event.relatedTarget)
+		  var sender = button.data('sender')
+		  var qno = button.data('qno')
+		  
+		  console.log("sender: "+sender+", qno: "+qno);
+		  
+		  var modal = $(this)
+		 
+		 $('#responseQ_no').val(qno)
+		  modal.find('#receiver').val(sender)
+		 
+		});
+});
+
+/* function qnaResponse(sender){
 	alert("sender : " +sender);
 	
-	$("#qnaResponse").show(sender);
-	$("#qnaResponse").modal(sender);
+	$("#qnaResponse").show();
+	$("#qnaResponse").modal();
 }
-
+ */
 /* 	function meetingBoardDelete(mb_no){
 		alert("버튼 클릭");
 		
@@ -93,7 +105,22 @@ function qnaResponse(sender){
 										<td>${item.user_no }</td>
 										<td>${item.name }</td>
 										<td><a href="#"	data-target=".${item.q_no}" data-toggle="modal">${item.title }</a></td>
+										<td>${item.write_date }</td>
+											<c:choose>
+												<c:when test="${item.response_state==0}">
+
+													<td>
+													<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#qnaResponse" data-sender="${item.sender }" data-qno="${item.q_no}">답변</button></td>
+												</c:when>
+												<c:when test="${item.response_state==1}">
+
+													<td><button type="submit" class="btn btn-primary"
+															onclick="reviewDelete(${item.q_no});">삭제</button></td>
+												</c:when>
+
+											</c:choose>
 										
+									</tr>
 									<div class="modal fade ${item.q_no }" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 											<div class="modal-dialog">
 												<div class="modal-content">
@@ -112,6 +139,7 @@ function qnaResponse(sender){
 													
 													
 													
+													
 													</div>
      											<!-- Footer -->
 													<div class="modal-footer" >
@@ -124,22 +152,6 @@ function qnaResponse(sender){
 											</div>
 										
 										</div>
-												<td>${item.write_date }</td>
-												<c:choose>
-												<c:when test="${item.response_state==0}">
-
-													<td><button type="submit" class="btn btn-primary"
-															onclick="qnaResponse(${item.sender});">답변</button></td>
-												</c:when>
-												<c:when test="${item.response_state==1}">
-
-													<td><button type="submit" class="btn btn-primary"
-															onclick="reviewDelete(${item.q_no});">삭제</button></td>
-												</c:when>
-
-											</c:choose>
-										
-									</tr>
 							</c:forEach>
 						</tbody>
 					</table>
@@ -158,8 +170,12 @@ function qnaResponse(sender){
         
         </div>
         <form id="register_form" name="mboard" method="post" action="qnaResponse.do">
-        <%-- <input type="hidden" name="user_no" value="${sessionScope.user.user_no }"> --%>
+        
         	<div class="modal-body">
+        	<input type="hidden" id="responseQ_no" name="responseQ_no" value="">
+        	<input type="hidden" id="receiver" name="receiver" value="">
+        	<input type="hidden" id="sender" name="sender" value="${sessionScope.user.user_no }">
+        	
 				<div id="insert_all_div" style="border: 1px solid;">
 				<br>
 					

@@ -41,7 +41,7 @@
 					<li><a href="healthMain.do"><span>헬스</span></a></li>
 					<li class="in"><a href="#"><span>요가</span></a></li>
 					<li><a href="pilatesMain.do"><span>필라테스</span></a></li>
-					<li><a href="#"><span>맨몸운동</span></a></li>
+					<li><a href="homeTraning.do"><span>맨몸운동</span></a></li>
 				</ul>
 			</div>
 		</div>

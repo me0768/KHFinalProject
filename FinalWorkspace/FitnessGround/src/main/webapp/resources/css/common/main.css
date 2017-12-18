@@ -2258,7 +2258,7 @@ input[type="search"] {
 /* Nav */
 
 	#nav {
-		position: absolute;
+		position: fixed;
 		top: 0;
 		left: 0;
 		width: 100%;
@@ -2266,6 +2266,8 @@ input[type="search"] {
 		padding: 1.5em 0 1.5em 0;
 		z-index: 1;
 		overflow: hidden;
+		background: black;
+		box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.75);
 	}
 
 		#nav > ul {

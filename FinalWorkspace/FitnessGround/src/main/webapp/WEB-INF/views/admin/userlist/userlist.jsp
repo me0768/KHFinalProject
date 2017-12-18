@@ -69,6 +69,11 @@
 		})
 	}
 	
+	function check(user_no){
+		
+		alert=("이미 탈퇴한 계정입니다.");
+	}
+	
 
 	
 </script>
@@ -126,6 +131,8 @@
 											<td align="center">${item.phone }</td>
 											<td align="center">${item.user_level }</td>
 											<c:choose>
+												
+												
 												<c:when test="${item.user_state==0}">
 
 													<td align="center"><button type="submit" class="btn btn-primary"
@@ -136,7 +143,13 @@
 													<td align="center"><button type="submit" class="btn btn-primary"
 															onclick="userBack(${item.user_no});">활성화</button></td>
 												</c:when>
-
+												
+												
+												<c:when test="${item.delete_date != null }">
+												
+													<td align="center"><button type="button" class="btn btn-primary"
+													onclick="check(${item.user_no});">탈퇴계정</button>
+												</c:when>
 											</c:choose>
 
 										</tr>

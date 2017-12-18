@@ -77,34 +77,7 @@ public class AdminController {
 		return mv;
 	}
 
-	/*
-	 * // 관리자 메인뷰 이동
-	 * 
-	 * @RequestMapping(value = "adminNav.do") public ModelAndView adminNav(User
-	 * user, @RequestParam(value = "level", required = false, defaultValue =
-	 * "0") int level,
-	 * 
-	 * @RequestParam(value="receiver", required = false, defaultValue = "1") int
-	 * receiver) {
-	 * 
-	 * System.out.println("adminNav.do실행됨..."); // 리퀘스트 파람 -> 자동으로 값을 받아옴 // 근데
-	 * 받아올 데이터가 없으면 required=false -> 꼭필요하지 않다 라는 뜻 // defaultValue="0" -> 기본값설정
-	 * / 그러니깐 값이 없을때는 0으로 한다 라는뜻 ModelAndView mv = new
-	 * ModelAndView("admin/common/nav"); int request =
-	 * adminService.RequestCount(level); //헬스장등록요청 갯수 승인상태가 0 인것만 (미승인=0/승인=1)
-	 * int message = adminService.Message(receiver); //관리자에게 온 문의 갯수 리시버가
-	 * 1(관리자user_no) 이고, 응답 상태가 0 인것만(미응답=0/응답=1)
-	 * 
-	 * ArrayList<User> list = adminService.GymRequest(level); // 헬스장 요청 정보 최신순
-	 * 3개만리스트로 불러오기 승인상태 0인것만
-	 * 
-	 * mv.addObject("request", request); mv.addObject("message", message);
-	 * mv.addObject("list", list);
-	 * 
-	 * System.out.println("등록요청 수 :" +request); System.out.println("등록요청list : "
-	 * +list); System.out.println("문의 수 :" +message);
-	 * System.out.println("문의요청list : "); return mv; }
-	 */
+
 
 	// 관리자 차트뷰 이동
 	@RequestMapping(value = "charts.do")
@@ -147,28 +120,11 @@ public class AdminController {
 
 		ModelAndView mv = new ModelAndView("admin/userlist/userlist");
 
-		int request = adminService.RequestCount(level);// 헬스장등록요청 갯수 승인상태가 0 인것만
-														// (미승인=0/승인=1)
-		int message = adminService.Message(receiver);// 관리자에게 온 문의 갯수 리시버가
-														// 1(관리자user_no) 이고, 응답
-														// 상태가 0 인것만(미응답=0/응답=1)
+		int request = adminService.RequestCount(level);// 헬스장등록요청 갯수 승인상태가 0 인것만 (미승인=0/승인=1)
+		int message = adminService.Message(receiver);// 관리자에게 온 문의 갯수 리시버가 1(관리자user_no) 이고, 응답 상태가 0 인것만(미응답=0/응답=1)
 
-		ArrayList<User> gymRlist = adminService.GymRequest(level);// 헬스장 요청 정보
-																	// 최신순
-																	// 3개만리스트로
-																	// 불러오기 승인상태
-																	// 0인것만
-		ArrayList<GymQnABoard> qnalist = adminService.GymQnABoard(receiver);// +
-																			// 메세지
-																			// 요청
-																			// 최신
-																			// 3개
-																			// 미응답이고
-																			// 리시버가
-																			// 1인
-																			// 것만
-																			// 리스트로
-																			// 불러오기
+		ArrayList<User> gymRlist = adminService.GymRequest(level);// 헬스장 요청 정보 최신순 3개만리스트로 불러오기 승인상태 0인것만
+		ArrayList<GymQnABoard> qnalist = adminService.GymQnABoard(receiver);//메세지 요청 최신3개 미응답이고 리시버가 1인 것만 리스트로 불러오기																		
 		ArrayList<User> list = adminService.userlist(level);
 		mv.addObject("request", request);
 		mv.addObject("message", message);

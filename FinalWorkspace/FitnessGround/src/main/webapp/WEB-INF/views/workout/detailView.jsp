@@ -22,12 +22,13 @@
 					</div>
 					<hr>
 					
-					<div id="like_up">
-						<!-- <button type="submit" id="like-btn" onclick="likeUp()">
-							좋아요 </button>
-						<span id="like" style="color:black; font-size:13px">//좋아요 갯수 :</span>  -->
+					<div id="like_up">	<!-- 좋아요 -->
+						
 					</div>					
-					<div id="read_count" style="color:black; font-size:13px"></div>
+					<br>
+					<div id="read_count" style="color:black; font-size:13px"> <!-- 조회수 -->
+					
+					</div>
 				
 					<c:if test="${sessionScope.user==null }">
 						<div id="nvideo-reply" style="color:black;">
@@ -90,11 +91,11 @@
 	
 	function viewVideo(v_no){ //모달창에서 영상 띄워주는 메서드 (조회수, 제목, 설명 ,좋아요 누르는부분)
 		var user_no = $("#user_no").val();
-		console.log(user_no);
+				
 		$.ajax({
 			url:"detail.do",
 			dataType:"json",
-			type:"get",
+			type:"post",
 			data : {"v_no" : v_no},
 			success:function(data){
 			
@@ -118,7 +119,7 @@
 
 			like='<button type="submit" class="btn btn-default" id="like-btn" onclick="likeUp(' + v_no 	+ ',' + 
 					'\'' + responseData.category1 +'\'' + ',' + '\'' + responseData.category2  + '\'' +')"><span class="glyphicon glyphicon-thumbs-up" aria-="true"></span> </button>' +
-			'<span style="color:black; font-size:13px">//좋아요 :</span>'+
+			'<span style="color:black; font-size:13px"></span>'+
 			'<span id="like_count" style="color:black; font-size:13px">' + likeCount + '</span>'
 				
 			$("#read_count").html("조회수  : " + responseData.readcount);
@@ -226,11 +227,7 @@
 		var userLoginCheck = 0;
 		var checkLikeTable = 0;
 		var user_no = $("#user_no").val();
-		
-		console.log(v_no);
-		console.log(user_no);
-		console.log("좋아요" + category1);
-		console.log("좋아요 " + category2);
+
 		
 		$.ajax({
 			url:"likeUp.do",
@@ -261,14 +258,23 @@
 	}
 	
 	function selectLikeCount(v_no){
+		var user_no = $("#user_no").val();	//로그인 되있는 유저 번호
+		
 		$.ajax({
 			url:"likeCount.do",
 			dataType:"json",
 			type:"post",
-			data:{"v_no":v_no},
+			data:{"v_no":v_no,"user_no":user_no},
 			success:function(data){
 				var likeCount = data.likeCount;
-				$("#like_count").html(likeCount + "개");
+				if(user_no){
+					if(data.checkLikeTable==0)//로그인 되있을경우
+						$("#like_count").html(likeCount+"명이 게시물을 좋아합니다.");	
+					if(data.checkLikeTable==1)
+						$("#like_count").html("회원님 외" + likeCount + "명이 게시물을 좋아합니다.");	
+				}else{ //비회원
+					$("#like_count").html(likeCount + " 명이 게시물을 좋아합니다");
+				}
 			},
 			error: function(request, status, errorData){
 				alert("error code : " + request.status + "\n"

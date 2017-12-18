@@ -37,7 +37,7 @@ $(document).ready(function(){
 			var oStartDt = new Date(m_oMonth.getTime());
 			// 1일에서 1일의 요일을 빼면 그 주 첫번째 날이 나온다.
 			oStartDt.setDate(oStartDt.getDate() - oStartDt.getDay());
-
+			
 			for(var i=0; i<100; i++) {
 				if(i % 7 == 0) {
 					arrTable.push('<tr>');
@@ -51,7 +51,7 @@ $(document).ready(function(){
 				if( sClass.includes("not-this-month")){
 					arrTable.push('<td class="'+sClass+'"><div>' + oStartDt.getDate() + '</div></td>');
 				} else {
-					arrTable.push('<td class="'+sClass+'" id="' + m_oMonth.getFullYear() + (m_oMonth.getMonth()+1)  + oStartDt.getDate() + '" onclick="dayclick(' + m_oMonth.getFullYear() + ', ' + (m_oMonth.getMonth()+1) + ', ' + oStartDt.getDate() + ');"><div>' + oStartDt.getDate() + '</div></td>');
+					arrTable.push('<td class="'+sClass+'" id="' + m_oMonth.getFullYear() + (m_oMonth.getMonth()+1)  + oStartDt.getDate() + '"><div>' + oStartDt.getDate() + '</div></td>');
 				}
 				oStartDt.setDate(oStartDt.getDate() + 1);
 
@@ -65,8 +65,10 @@ $(document).ready(function(){
 			arrTable.push('</tbody></table>');
 
 			$('#calendar').html(arrTable.join(""));
-
-			that.changeMonth();
+			
+			that.dbschedule(m_oMonth.getFullYear(), (m_oMonth.getMonth()+1), oStartDt.getDate());
+			
+			that.changeMonth();			
 		}
 
 	    /* Next, Prev 버튼 이벤트 */
@@ -96,4 +98,37 @@ $(document).ready(function(){
 		this.getYearMonth = function(oDate) {
 			return oDate.getFullYear() + '년 ' + (oDate.getMonth() + 1) + '월';
 		}
-	}
+		
+		this.dbschedule = function(year, month, day){
+			var gym_no = $("#jsgym_no").val();
+			var queryString = { "gym_no": gym_no };
+			
+			$.ajax({
+				url: 'dbschedule.do',
+				data: queryString,
+				async: false,
+				dataType: 'json',
+				type: 'post',
+				success: function(data){
+					var i = 0;
+					for(var t=1; t < 32; t++){
+						var ym = (data.list[i].strDate.replace("-", "")).substr(0,6);
+						var values = '';
+						// 년월이 같은지 확인
+						if( ym == year + "" + month ){
+							// 디비 날짜랑 일 같은지 확인
+							if( (data.list[i].strDate.replace("-", "")).substr(7,2) == t){
+								values += "<button class='btn btn-danger' style='padding: 0px; font-size: 8pt;'>" + data.list[i].schedule_time + " " + data.list[i].title + "</button>";
+								$("#" + ym + t + "").append(values);
+								i++;
+								t--;
+								if(i == data.list.length){
+									break;
+								}
+							}
+						}
+					}
+				}
+			});
+		}
+	} 

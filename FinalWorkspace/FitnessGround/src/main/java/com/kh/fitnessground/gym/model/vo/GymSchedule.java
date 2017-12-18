@@ -8,6 +8,7 @@ public class GymSchedule {
 	private Date day;
 	private String schedule_time;
 	private String title;
+	private String strDate;
 	
 	public GymSchedule() {
 		super();
@@ -20,6 +21,15 @@ public class GymSchedule {
 		this.day = day;
 		this.schedule_time = schedule_time;
 		this.title = title;
+	}
+
+	public GymSchedule(int gs_no, int gym_no, String schedule_time, String title, String strDate) {
+		super();
+		this.gs_no = gs_no;
+		this.gym_no = gym_no;
+		this.schedule_time = schedule_time;
+		this.title = title;
+		this.strDate = strDate;
 	}
 
 	public int getGs_no() {
@@ -62,11 +72,21 @@ public class GymSchedule {
 		this.title = title;
 	}
 
+	public String getStrDate() {
+		return strDate;
+	}
+
+	public void setStrDate(String strDate) {
+		this.strDate = strDate;
+	}
+
 	@Override
 	public String toString() {
 		return "GymSchedule [gs_no=" + gs_no + ", gym_no=" + gym_no + ", day=" + day + ", schedule_time="
 				+ schedule_time + ", title=" + title + "]";
 	}
+	
+	
 	
 	
 }

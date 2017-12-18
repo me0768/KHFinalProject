@@ -37,7 +37,7 @@
 	<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
 		<div id="tip">
 			<h3>헬스장 등록</h3>
-			<h5>모든 정보를 입력해야 등록창이 활성화 됩니다!</h5>
+			<h5>모든 정보를 입력해야 등록버튼이 활성화 됩니다!</h5>
 		</div>
 		<div class="panel panel-default" id="panelTwo">
 			<div class="panel-heading" role="tab" id="headingTwo">

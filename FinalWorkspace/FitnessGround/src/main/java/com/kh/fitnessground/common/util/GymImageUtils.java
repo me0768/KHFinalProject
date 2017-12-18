@@ -13,11 +13,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-@Component("gymFileUtils")
-public class GymFileUtils {
+@Component("gymImageUtils")
+public class GymImageUtils {
 
 	public List<Map<String, Object>> parseInsertFileInfo(HttpServletRequest request) throws Exception {
-		final String filePath = request.getSession().getServletContext().getRealPath("/resources/files/gym/");
+		final String filePath = request.getSession().getServletContext().getRealPath("/resources/images/gymimages/");
 		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
 		Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
 		MultipartFile multipartFile = null;

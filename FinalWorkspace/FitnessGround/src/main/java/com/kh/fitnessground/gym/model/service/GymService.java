@@ -3,6 +3,7 @@ package com.kh.fitnessground.gym.model.service;
 import java.util.ArrayList;
 
 import com.kh.fitnessground.gym.model.vo.Gym;
+import com.kh.fitnessground.gym.model.vo.GymQnABoard;
 import com.kh.fitnessground.gym.model.vo.GymReview;
 import com.kh.fitnessground.gym.model.vo.GymSchedule;
 import com.kh.fitnessground.gym.model.vo.PublicGym;
@@ -49,5 +50,11 @@ public interface GymService {
 		void deleteGym(Gym gym);
 		
 		Gym selectOne(Gym gym);
+		
+		void insertGymQnABoard(GymQnABoard b, int mode);
+		GymQnABoard selectGymQnABoard(int q_no);
+		void deleteGymQnABoard(int q_no);
+		void updateGymQnABoard(GymQnABoard b);
+		void insertGymQnABoardAnswer(GymQnABoard b);
 
 }

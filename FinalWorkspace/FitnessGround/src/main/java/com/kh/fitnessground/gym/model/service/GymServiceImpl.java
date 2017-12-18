@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.fitnessground.gym.model.dao.GymDao;
 import com.kh.fitnessground.gym.model.vo.Gym;
+import com.kh.fitnessground.gym.model.vo.GymQnABoard;
 import com.kh.fitnessground.gym.model.vo.GymReview;
 import com.kh.fitnessground.gym.model.vo.GymSchedule;
 import com.kh.fitnessground.gym.model.vo.PublicGym;
@@ -125,5 +126,33 @@ public class GymServiceImpl implements GymService{
 	@Override
 	public Gym selectOne(Gym gym) {
 		return gymDao.selectOne(gym);
+	}
+
+	@Override
+	public void insertGymQnABoard(GymQnABoard b, int mode) {
+		HashMap<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("board", b);
+		parameters.put("mode", mode);
+		gymDao.insertGymQnABoard(parameters);
+	}
+
+	@Override
+	public GymQnABoard selectGymQnABoard(int q_no) {
+		return gymDao.selectGymQnABoard(q_no);
+	}
+
+	@Override
+	public void deleteGymQnABoard(int q_no) {
+		gymDao.deleteGymQnABoard(q_no);
+	}
+
+	@Override
+	public void updateGymQnABoard(GymQnABoard b) {
+		gymDao.updateGymQnABoard(b);
+	}
+
+	@Override
+	public void insertGymQnABoardAnswer(GymQnABoard b) {
+		gymDao.insertGymQnaBoardAnswer(b);
 	}
 }

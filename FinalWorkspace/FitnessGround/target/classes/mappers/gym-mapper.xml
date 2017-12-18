@@ -19,6 +19,7 @@
 		<result property="email" column="email" />
 		<result property="name" column="name" />
 		<result property="user_no" column="user_no" />
+		<result property="gym_name" column="gym_name" />
 	</resultMap>
 	
 	<resultMap id="resultBusinessRequest" type="BusinessRequest">
@@ -305,4 +306,63 @@
 			where gym_no = #{gym_no}
 		]]>
 	</select>
+	
+	<insert id="insertGymQnABoard" parameterType="hashmap" flushCache="true"
+		statementType="PREPARED" useGeneratedKeys="true" >
+		<![CDATA[
+			insert into tb_qna
+			values (qna_seq.nextval, #{board.sender}, 
+		]]>
+			<if test="mode == 1">
+				1, null, 
+			</if>
+			<if test="mode != 1">(select user_no from tb_gym where gym_no=#{board.receiver}), #{board.receiver}, </if>
+		<![CDATA[
+			#{board.title}, #{board.content}, 
+		]]>
+			<if test="board.original_filename != null">#{board.original_filename}, #{board.rename_filename},</if>
+			<if test="board.original_filename == null">null, null, </if>
+		<![CDATA[
+			default, default, qna_seq.nextval, default)
+		]]>
+	</insert>
+	<select id="selectGymQnABoard" parameterType="_int" resultMap="resultGymQnABoard" resultType="list">
+		<![CDATA[ 
+			select * from tb_qna q
+			join tb_user u on (q.sender = u.user_no) 
+			left join tb_gym using (gym_no) 
+			where q_no=#{q_no}
+		]]>
+	</select>
+	<delete id="deleteGymQnABoard" parameterType="_int"
+		flushCache="true" statementType="PREPARED" >
+		<![CDATA[
+		delete from tb_qna where q_no = #{q_no}
+		]]>
+	</delete>
+	<update id="updateGymQnABoard" parameterType="GymQnABoard" flushCache="true" statementType="PREPARED" >
+		<![CDATA[
+		update tb_qna  
+	    set content=#{content}, title=#{title}
+		where q_no = #{q_no}
+		]]>
+	</update>
+	<insert id="insertGymQnABoardAnswer" parameterType="GymQnABoard" flushCache="true"
+		statementType="PREPARED" useGeneratedKeys="true" >
+		<![CDATA[
+			insert into tb_qna
+			values (qna_seq.nextval, #{sender}, #{receiver}, 
+		]]>
+			<if test="gym_name != null">(select gym_no from tb_gym where gym_name=#{gym_name}),</if>
+			<if test="gym_name == null">null,</if>
+		<![CDATA[
+			#{title}, #{content},
+		]]>
+			<if test="original_filename != null">#{original_filename}, #{rename_filename},</if>
+			<if test="original_filename == null">null, null, </if>
+		<![CDATA[
+			default, 1, #{q_no}, default)
+		]]>
+	</insert>
+	
 </mapper>

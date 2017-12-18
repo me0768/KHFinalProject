@@ -135,6 +135,10 @@ public class GymDao {
 		List<GymSchedule> list = sqlSession.selectList("gymschedule.selectGymSchedule", gs); 
 		return (ArrayList<GymSchedule>)list;
 	}
+	
+	public void updateGymQnABoardResponse(HashMap<String, Object> parameters) {
+		sqlSession.update("gym.updateGymQnABoardResponse", parameters);
+	}
 
 	
 }

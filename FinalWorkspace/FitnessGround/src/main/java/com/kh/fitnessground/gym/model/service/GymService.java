@@ -62,7 +62,7 @@ public interface GymService {
 		
 		void insertGymQnABoardAnswer(GymQnABoard b);
 		
-		
 		ArrayList<GymSchedule> dbschedule(GymSchedule gs);
 
+		void updateGymQnABoardResponse(int ref_no, int responseSt);
 }

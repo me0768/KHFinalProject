@@ -136,7 +136,6 @@ public class GymController {
 	@RequestMapping(value="/deletegym.do", method=RequestMethod.POST)
 	public ModelAndView deleteGym(Gym gym, HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView();
-		System.out.println(gym);
 		gymService.deleteGym(gym);
 		mv.addObject("gym", 1);
 		mv.setViewName("jsonView");
@@ -149,6 +148,16 @@ public class GymController {
 		ModelAndView mv = new ModelAndView("gym/detailgym");
 		Gym g = gymService.selectOne(gym);
 		mv.addObject("gym", g);
+		return mv;
+	}
+	
+	// 헬스장 달력 불러오기
+	@RequestMapping(value="/dbschedule.do", method=RequestMethod.POST)
+	public ModelAndView dbschedule(GymSchedule gs, HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mv = new ModelAndView();
+		ArrayList<GymSchedule> list = gymService.dbschedule(gs);
+		mv.addObject("list", list);
+		mv.setViewName("jsonView");
 		return mv;
 	}
 	

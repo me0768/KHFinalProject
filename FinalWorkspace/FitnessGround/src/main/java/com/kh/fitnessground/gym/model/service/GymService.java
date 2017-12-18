@@ -52,9 +52,17 @@ public interface GymService {
 		Gym selectOne(Gym gym);
 		
 		void insertGymQnABoard(GymQnABoard b, int mode);
+		
 		GymQnABoard selectGymQnABoard(int q_no);
+		
 		void deleteGymQnABoard(int q_no);
+	
+		
 		void updateGymQnABoard(GymQnABoard b);
+		
 		void insertGymQnABoardAnswer(GymQnABoard b);
+		
+		
+		ArrayList<GymSchedule> dbschedule(GymSchedule gs);
 
 }

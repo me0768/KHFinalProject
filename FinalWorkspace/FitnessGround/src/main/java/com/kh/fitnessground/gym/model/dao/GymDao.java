@@ -131,5 +131,10 @@ public class GymDao {
 		sqlSession.insert("gym.insertGymQnABoardAnswer", b);
 	}
 
+	public ArrayList<GymSchedule> dbschedule(GymSchedule gs) {
+		List<GymSchedule> list = sqlSession.selectList("gymschedule.selectGymSchedule", gs); 
+		return (ArrayList<GymSchedule>)list;
+	}
+
 	
 }

@@ -4,10 +4,18 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="gymschedule">
 
-	<resultMap id="resultGymSchedule" type="GymSchedule">
+	<resultMap id="resultSchedule" type="GymSchedule">
 		<id property="gs_no" column="gs_no" />
 		<result property="gym_no" column="gym_no" />
 		<result property="day" column="day" />
+		<result property="schedule_time" column="schedule_time" />
+		<result property="title" column="title" />
+	</resultMap>
+	
+	<resultMap id="resultGymSchedule" type="GymSchedule">
+		<id property="gs_no" column="gs_no" />
+		<result property="gym_no" column="gym_no" />
+		<result property="strDate" column="day" />
 		<result property="schedule_time" column="schedule_time" />
 		<result property="title" column="title" />
 	</resultMap>
@@ -19,4 +27,12 @@
 			values (gs_seq.nextval, #{gym_no}, #{day}, #{schedule_time}, #{title})
 		]]>
 	</insert>
+	
+	<select id="selectGymSchedule" parameterType="GymSchedule" resultMap="resultGymSchedule" resultType="list">
+		<![CDATA[
+			select *
+			from tb_gym_schedule
+			where gym_no = #{gym_no}
+		]]>
+	</select>
 </mapper>

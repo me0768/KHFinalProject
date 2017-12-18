@@ -155,4 +155,9 @@ public class GymServiceImpl implements GymService{
 	public void insertGymQnABoardAnswer(GymQnABoard b) {
 		gymDao.insertGymQnaBoardAnswer(b);
 	}
+
+	@Override
+	public ArrayList<GymSchedule> dbschedule(GymSchedule gs) {
+		return gymDao.dbschedule(gs);
+	}
 }

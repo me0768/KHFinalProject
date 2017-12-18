@@ -265,6 +265,7 @@
 				</div>
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;" id="location">
 					<!-- 지도 -->
+					<input type="hidden" id="jsgym_no" value="${ gym.gym_no }">
 					<input type="hidden" id="jsgym_name" value="${ gym.gym_name }">
 					<input type="hidden" id="jscategory" value="${ gym.category }">
 					<input type="hidden" id="jstel" value="${ gym.tel }">

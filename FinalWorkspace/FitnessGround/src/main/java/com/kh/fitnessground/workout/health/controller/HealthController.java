@@ -70,7 +70,7 @@ public class HealthController {
 	
 	}
 	
-	@RequestMapping(value="/detail.do")	//썸네일 누르면 누른 v_no로 모달창에서 동영상 재생.. 썸네일은 어케하지..
+	@RequestMapping(value="/detail.do",method = RequestMethod.POST)	//썸네일 누르면 누른 v_no로 모달창에서 동영상 재생.. 썸네일은 어케하지..
 	public ModelAndView workOutDetail(Health health, HttpServletResponse response){
 		//v_no를 파라미터로 보내면 v_no에 따른 health 객체 v_no 만
 		int v_no = health.getV_no();
@@ -196,18 +196,20 @@ public class HealthController {
 		// 있으면 1 없으면 0
 		
 		int userLoginCheck = like.getUser_no();
-		
-		if(checkLikeTable==1 && like.getUser_no()!=0){	//있으면 한 영상 좋아요를 누른 사람이 또 좋아요를 누르면
-			//좋아요 테이블에서 삭제
+
+		if (checkLikeTable == 0 && userLoginCheck != 0) {
+			// 좋아요 처음 클릭
+			// 좋아요 테이블에 넣음
+			healthService.insertLike(like);
+			healthService.insertMySchedule(like);
+
+		} else if (checkLikeTable == 1 && userLoginCheck != 0) {
+			// 좋아요 두번 클릭
+			// 좋아요 테이블에서 삭제
 			healthService.deleteLike(like);
 			healthService.deleteMySchedule(like);
-			
-		}else if(checkLikeTable==0 && like.getUser_no()!=0){ //없으면 한 영상에 좋아요를 안누른 사람이면
-			//좋아요 테이블에 넣음
-			healthService.insertLike(like);	
-			healthService.insertMySchedule(like);
-			
-		}		
+
+		}	
 		
 		mv.addObject("userLoginCheck",userLoginCheck);
 		mv.addObject("checkLikeTable",checkLikeTable);
@@ -220,7 +222,23 @@ public class HealthController {
 	public ModelAndView likeCount(Like like){
 		ModelAndView mv = new ModelAndView();
 		
-		int likeCount = healthService.selectLikeCount(like.getV_no());
+		//좋아요 테이블에서 특정 게시물 좋아요 갯수..
+		int likeCount= healthService.selectLikeCount(like.getV_no());
+		
+		int checkLikeTable = healthService.checkLikeTable(like);
+					
+		
+		if(checkLikeTable==0){
+			System.out.println("좋아요 안누른 상태");
+			likeCount = likeCount-1;
+		}
+		if(checkLikeTable==1){
+			System.out.println("좋아요 누른 상태");
+			likeCount = likeCount-1;
+			
+		}		
+		
+		mv.addObject("checkLikeTable",checkLikeTable);
 		mv.addObject("likeCount",likeCount);
 		mv.setViewName("jsonView");
 		

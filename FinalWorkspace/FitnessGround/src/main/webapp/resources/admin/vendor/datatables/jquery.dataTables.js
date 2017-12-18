@@ -1548,7 +1548,7 @@
 	 * Find the unique elements in a source array.
 	 *
 	 * @param  {array} src Source array
-	 * @return {array} Array of unique items
+	 * @return {array} Array of unique entries
 	 * @ignore
 	 */
 	var _unique = function ( src )
@@ -10117,7 +10117,7 @@
 	
 	
 		/**
-		 * This parameter allows you to readily specify the entries in the length drop
+		 * This parameter allows you to readily specify the items in the length drop
 		 * down menu that DataTables shows when pagination is enabled. It can be
 		 * either a 1D array of options which will be used for both the displayed
 		 * option and the value, or a 2D array which will use the array in the first
@@ -10382,7 +10382,7 @@
 		 * Enable or disable the display of a 'processing' indicator when the table is
 		 * being processed (e.g. a sort). This is particularly useful for tables with
 		 * large amounts of data where it can take a noticeable amount of time to sort
-		 * the entries.
+		 * the items.
 		 *  @type boolean
 		 *  @default false
 		 *
@@ -10668,7 +10668,7 @@
 	
 		/**
 		 * When rendering large numbers in the information element for the table
-		 * (i.e. "Showing 1 to 10 of 57 entries") DataTables will render large numbers
+		 * (i.e. "Showing 1 to 10 of 57 items") DataTables will render large numbers
 		 * to have a comma separator for the 'thousands' units (e.g. 1 million is
 		 * rendered as "1,000,000") to help readability for the end user. This
 		 * function will override the default method DataTables uses.
@@ -11656,7 +11656,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sSearch": "Search:",
+			"sSearch": "<button class='btn btn-info'><i class='fa fa-search' aria-hidden='true'></i></button>",
 	
 	
 			/**

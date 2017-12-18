@@ -114,21 +114,17 @@
 		<script type="text/javascript">
 		
 		/*template layout때문에 수정 */
+		
 		$(document).ready(function(){
-			var value = '<i class="fa fa-search" aria-hidden="true"></i>&nbsp;&nbsp;<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="dataTable">';
-			$('.dataTables_filter>label').html(value);//검색바 아이콘으로 바꿈 	
 			
-			var value2 = '<a href="javascript: deleteSelected()"><button class="btn btn-info"><i class="fa fa-trash-o" aria-hidden="true"></i></button></a>'+
-			'<span>&nbsp;&nbsp;Show</span> <select name="dataTable_length" aria-controls="dataTable" class="form-control form-control-sm">'+
-			'<option value="10">10</option><option value="25">25</option><option value="50">50</option>'+
-			'<option value="100">100</option></select><span> entries</span>' ;
-			$('.dataTables_length>label').html(value2); //삭제버튼 붙이기 
+			var value2 = '<a href="javascript: deleteSelected()"><button class="btn btn-info" id="delete-btn"><i class="fa fa-trash-o" aria-hidden="true"></i></button></a>';
+			$('.dataTables_length>label').prepend(value2); //삭제버튼 붙이기 
 			
 			$("#ch").removeClass("sorting_asc");//체크박스th에 필터표시 안뜨도록
 			
 			$("#selectall").click(function(){
 			    $('input:checkbox').not(this).prop('checked', this.checked);
-			}); ///이게무슨코드야........이해를하고쓰자...//ajax방식은 insert처럼하면될듯.insert랑다른점은얘는 v_no만다넘겨준다는것?..!
+			});
 			
 		});		
 		
@@ -182,7 +178,7 @@
 		          vid = result.clist[i].url;
 		          readcount = result.clist[i].readcount;
 		          content = result.clist[i].content;
-		          var value ="<tr><td>"+v_no+"</td>"+
+		          var value ="<tr><td><input type='checkbox' class='case' name='case' value='"+v_no+"'/></td><td>"+v_no+"</td>"+
 						"<td>"+title+"</td>"+
 						"<td>"+category1+"</td>"+
 						"<td>"+category2+"</td>"+

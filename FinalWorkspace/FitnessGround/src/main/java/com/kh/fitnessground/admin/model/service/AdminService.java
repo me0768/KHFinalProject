@@ -6,6 +6,7 @@ import com.kh.fitnessground.community.model.vo.CommunityBoard;
 import com.kh.fitnessground.community.model.vo.MeetingBoard;
 import com.kh.fitnessground.gym.model.vo.GymQnABoard;
 import com.kh.fitnessground.user.model.vo.User;
+import com.kh.fitnessground.workout.health.model.vo.Health;
 
 public interface AdminService {
 
@@ -84,6 +85,11 @@ public interface AdminService {
 
 
 	Object qnaBoardUpdate(int responseQ_no);
+
+
+	ArrayList<Health> HealthList();
+
+
 
 
 

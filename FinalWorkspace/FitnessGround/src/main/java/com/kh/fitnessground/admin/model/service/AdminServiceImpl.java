@@ -11,6 +11,7 @@ import com.kh.fitnessground.community.model.vo.MeetingBoard;
 import com.kh.fitnessground.gym.model.vo.GymQnABoard;
 import com.kh.fitnessground.user.model.dao.UserDao;
 import com.kh.fitnessground.user.model.vo.User;
+import com.kh.fitnessground.workout.health.model.vo.Health;
 
 @Service("adminService")
 public class AdminServiceImpl  implements AdminService{
@@ -183,6 +184,11 @@ public class AdminServiceImpl  implements AdminService{
 		
 	}
 
+
+	@Override
+	public ArrayList<Health> HealthList() {
+		return adminDao.HealthList();
+	}
 
 
 

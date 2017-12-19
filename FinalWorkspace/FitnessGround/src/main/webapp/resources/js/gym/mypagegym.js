@@ -43,7 +43,7 @@ $(document).ready(function(){
 						'<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12" style="padding: 0px;">' +
 							'<div class="btn-group col-xs-12" role="group" aria-label="..." style="padding: 0px;">' +
 							  '<button type="button" class="btn btn-default col-xs-4" style="padding: 2px; font-size: 8pt;" onclick="location.href=\'detailgym.do?gym_no=' + data.list[i].gym_no + '\'">보기</button>' +
-							  '<button type="button" class="btn btn-default col-xs-4" style="padding: 2px; font-size: 8pt;" onclick="updategym(' + data.list[i].gym_no + ')">수정</button>' +
+							  '<button type="button" class="btn btn-default col-xs-4" style="padding: 2px; font-size: 8pt;" onclick="location.href=\'updategym.do?gym_no=' + data.list[i].gym_no + '\'">수정</button>' +
 							  '<button type="button" class="btn btn-default col-xs-4" style="padding: 2px; font-size: 8pt;" onclick="deletegym(' + data.list[i].gym_no + ',' + user_no + ',\'' + data.list[i].gym_name + '\')">삭제</button>' +
 							'</div>' +
 						'</div>' +
@@ -90,8 +90,8 @@ $(document).ready(function(){
 							'</div>' +
 							'<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12" style="padding: 0px;">' +
 								'<div class="btn-group col-xs-12" role="group" aria-label="..." style="padding: 0px;">' +
-								  '<button type="button" class="btn btn-default col-xs-4" style="padding: 2px; font-size: 8pt;" onclick="detailgym(' + data.list[i].gym_no + ')">보기</button>' +
-								  '<button type="button" class="btn btn-default col-xs-4" style="padding: 2px; font-size: 8pt;" onclick="updategym(' + data.list[i].gym_no + ')">수정</button>' +
+								  '<button type="button" class="btn btn-default col-xs-4" style="padding: 2px; font-size: 8pt;" onclick="location.href=\'detailgym.do?gym_no=' + data.list[i].gym_no + '\'">보기</button>' +
+								  '<button type="button" class="btn btn-default col-xs-4" style="padding: 2px; font-size: 8pt;" onclick="location.href=\'updategym.do?gym_no=' + data.list[i].gym_no + '\'">수정</button>' +
 								  '<button type="button" class="btn btn-default col-xs-4" style="padding: 2px; font-size: 8pt;" onclick="deletegym(' + data.list[i].gym_no + ',' + user_no + ',\'' + data.list[i].gym_name + '\')">삭제</button>' +
 								'</div>' +
 							'</div>' +
@@ -139,12 +139,4 @@ $(document).ready(function(){
 			alert("헬스장 삭제를 취소하였습니다.");
 			return false;
 		}
-	}
-	
-	function detailgym(gym_no){
-		alert("디테일뷰로 이동" + gym_no);
-	}
-	
-	function updategym(gym_no){
-		alert("업데이트뷰로 이동" + gym_no);
 	}

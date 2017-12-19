@@ -125,11 +125,10 @@ public class GymController {
 		return mv;
 	}
 	
-	// 헬스장 수정
+	// 헬스장 수정으로 이동
 	@RequestMapping(value="/updategym.do")
 	public ModelAndView updateGym(Gym gym, HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mv = new ModelAndView();
-		System.out.println("헬스장 업데이트" + gym);
+		ModelAndView mv = new ModelAndView("gym/updategym");
 		return mv;
 	}
 	

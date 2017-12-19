@@ -57,6 +57,9 @@ body .fc { /* extra precedence to overcome jqui */
 	font-size: 1em; /* normalize */
 	white-space: nowrap;
 	cursor: pointer;
+ 	color: #333333 !important;
+  	background: white;
+  	border-color: #cccccc !important;
 }
 
 /* Firefox has an annoying inner border */
@@ -950,6 +953,8 @@ NOTE: use percentage font sizes or else old IE chokes
 
 .fc-toolbar h2 {
 	margin: 0;
+	color:black;
+	font-size:25pt;
 }
 
 /* button layering (for border precedence) */

@@ -31,7 +31,7 @@
 	}
  </script>
 
-<div class="modal modal-center fade bs-example-modal-sm" id="profileEdit">
+<div class="modal modal-center fade bs-example-modal-sm" id="profileEdit" style="z-index:100;">
 	<div class="modal-dialog modal-center modal-sm">
 		<div class="modal-content">
 			<div class="modal-header" id="login_header">

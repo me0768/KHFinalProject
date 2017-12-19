@@ -209,7 +209,7 @@ public class UserController {
 		ModelAndView mv = new ModelAndView("user/userDetail");
 		return mv; 
 	}
-	// 회원정보 수정 및 비밀번호 수정, 회원탈퇴에서 원비밀번호 확인 ajax
+	// 회원정보 수정 및 비밀번호 수정 및 회원탈퇴에서 원비밀번호 확인 ajax
 	@RequestMapping(value="/pwdCk.do")
 	@ResponseBody
 	public String PwdCheckMethod(User user, HttpServletRequest request, HttpServletResponse response) {

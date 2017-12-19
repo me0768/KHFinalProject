@@ -29,18 +29,18 @@ $(document).ready(function(){
 						approval += "<label style='color: red'>&nbsp;(미승인)</label>";
 					}
 					gymlist += 
-					'<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px; margin-bottom: 5px;">' +
-						'<div class="col-lg-3 col-md-3 col-sm-3 col-sm-offset-0  col-xs-6 col-xs-offset-3" style="padding: 5px;">' +
-							'<img src="resources/images/gymimages/' + image[0] + '" id="gymimg">' +
+					'<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="gymInfo">' +
+						'<div class="col-lg-3 col-md-3 col-sm-3 col-sm-offset-0  col-xs-6 col-xs-offset-3" style="padding:5px;">' +
+							'<img src="resources/images/gymimages/' + image[0] + '" id="gymimg" class="img-thumbnail">' +
 						'</div>' +
-						'<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="padding-left: 5px; paading-right: 5px;">' +
+						'<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="padding-left:10px; paading-right:5px;">' +
 							'<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px; font-size: 8pt; font-weight: bold;"><label><a href="detailgym.do?gym_no=' + data.list[i].gym_no + '">' + data.list[i].gym_name + '</a></label>' + approval + '</div>' +
 							'<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px; font-size: 8pt;">분류 : ' + data.list[i].category + '</div>' +
 							'<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px; font-size: 8pt;">전화번호 : ' + data.list[i].tel + '</div>' +
 							'<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px; font-size: 8pt;">H.P : ' + data.list[i].phone + '</div>' +
 							'<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px; font-size: 8pt;">지역 : ' + data.list[i].location + '</div>' +
 						'</div>' +
-						'<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12" style="padding: 0px;">' +
+						'<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12" style="padding:0px;">' +
 							'<div class="btn-group col-xs-12" role="group" aria-label="..." style="padding: 0px;">' +
 							  '<button type="button" class="btn btn-default col-xs-4" style="padding: 2px; font-size: 8pt;" onclick="location.href=\'detailgym.do?gym_no=' + data.list[i].gym_no + '\'">보기</button>' +
 							  '<button type="button" class="btn btn-default col-xs-4" style="padding: 2px; font-size: 8pt;" onclick="location.href=\'updategym.do?gym_no=' + data.list[i].gym_no + '\'">수정</button>' +

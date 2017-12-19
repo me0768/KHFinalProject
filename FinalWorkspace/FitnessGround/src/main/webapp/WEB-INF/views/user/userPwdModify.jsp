@@ -5,6 +5,10 @@
 	<link rel="stylesheet" href="/fitnessground/resources/css/user/mypage.css" />
     <c:import url="../include/common/headend.jsp" />
 	<script type="text/javascript">
+		$(function(){
+			$('#myPageBar nav ul #uPwd').addClass('activeMenu');	
+		});
+	
 		function newPwdCheck(){
 			var pwd1 = $("input[name='newpwd']").val();
 			var pwd2 = $("input[name='newpwdck']").val();

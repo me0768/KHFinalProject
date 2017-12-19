@@ -2,7 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<nav id="nav">
+<c:import url="/WEB-INF/views/user/profileEdit.jsp"/>
+
+<nav id="nav" style="height:85px;">
 	<ul>
 		<li><a href="main.do">Home</a></li>
 		<li><a href="healthMain.do">운동법</a>
@@ -25,22 +27,27 @@
 			<li><a href="javascript:login()">로그인</a></li>
 		</c:if>
 		<c:if test="${ sessionScope.user != null}">
-			<li><a href="#">${sessionScope.user.name }님</a>
+			<li><a href="mypage.do?userno=${sessionScope.user.user_no}">${sessionScope.user.name }님</a>
 				<ul>
+					<c:if test="${ sessionScope.user.user_level == 1 }">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="padding-left: 0px; padding-right: 0px; margin-top:12%;">
+					</c:if>
+					<c:if test="${ sessionScope.user.user_level ne 1 }">
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="padding-left: 0px; padding-right: 0px; margin-top:10px;">
+					</c:if>
 					<c:if test="${null eq sessionScope.user.rename_image}">
-						<img src="/fitnessground/resources/images/myimages/nullicon.png" class="img-circle" style="width: 85px; height: 85px; background:#022D41;">
+						<a href="javascript:profileEdit()"><img src="/fitnessground/resources/images/myimages/nullicon.png" class="img-circle" style="width: 85px; height: 85px; background:#022D41;"></a>
 					</c:if>
 					<c:if test="${null ne sessionScope.user.rename_image}">
-						<img src="/fitnessground/resources/images/myimages/${ sessionScope.user.rename_image }" class="img-circle" style="width: 85px; height: 85px;">
+						<a href="javascript:profileEdit()"><img src="/fitnessground/resources/images/myimages/${ sessionScope.user.rename_image }" class="img-circle" style="width: 85px; height: 85px;"></a>
 					</c:if>
 					</div>
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-					<li><a href="mypage.do?userno=${sessionScope.user.user_no}">MyPage</a></li>
-					<li><a href="userboard.do?userno=${sessionScope.user.user_no}">내 문의내역</a></li>
+					<li><a href="mypage.do?userno=${sessionScope.user.user_no}">마이페이지</a></li>
 					<c:if test="${ sessionScope.user.user_level == 1 }">
-						<li><a href="moveregistergym.do">헬스장 등록</a></li>
+						<li><a href="moveregistergym.do">헬스장등록</a></li>
 					</c:if>
+					<li><a href="userboard.do?userno=${sessionScope.user.user_no}">문의내역</a></li>
 					<li><a href="logout.do">로그아웃</a></li>
 					</div>
 				</ul>

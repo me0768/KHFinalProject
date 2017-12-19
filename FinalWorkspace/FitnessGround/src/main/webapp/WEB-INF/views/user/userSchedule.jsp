@@ -67,8 +67,9 @@
 	
     <script type="text/javascript">
     	$(function (){
-    		setCalendar();
+			$('#myPageBar nav ul #uSchedule').addClass('activeMenu');	
     		
+    		setCalendar();    		
     		var list = new Array();
     		var event = new Object();
     		var date = $("input[name=usDate]");

@@ -15,13 +15,18 @@
 		</script>
 	</c:if>
 	
+	<script type="text/javascript">
+    	$(function (){
+			$('#myPageBar nav ul #uHome').addClass('activeMenu');
+    	});
+	</script>
+	
     <c:if test="${ sessionScope.user != null }">
 	<div id="page-wrapper">
 		<!-- Header -->
 		<div id="mypage_header">
             <!-- Nav -->
 			<c:import url="../include/main/nav.jsp" />	
-			<c:import url="profileEdit.jsp"/>
 			<c:import url="login.jsp"/>
 			<c:import url="findidpwd.jsp"/>
 			<c:import url="register.jsp"/>
@@ -151,7 +156,7 @@
 			</div>
 		</div>
 		<div class="col-md-5 col-sm-12" id="registerGymBt">
-			<Button class="btn btn-default" onclick="location.href='moveregistergym.do'">헬스장 등록하기</Button>
+			<Button class="btn btn-default" onclick="location.href='moveregistergym.do'">새 헬스장 등록</Button>
 		</div>
 	</c:if>
 	</c:if>	

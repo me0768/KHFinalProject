@@ -5,21 +5,15 @@
 	<link rel="stylesheet" href="/fitnessground/resources/css/user/mypage.css" />
     <c:import url="../include/common/headend.jsp" />
     
-  <!--   <script type="text/javascript">
-	    $(function (){
-	    	$( window ).resize(function open_chatroom(){
-	    		var windowWidth = $( window ).width();
-	    		if(windowWidth < 1200) {
-	    	        $('#userInfoModify').css("margin-top","10px");
-	    	        /* $('#userDetailContent span').removeClass('btn-lg'); */
-	    		} else {
-	    			$('#userInfoModify').css("margin-top","50px;");
-	    	        /* $('#userDetailContent span').addClass('btn-lg'); */
-	    		}
-	    	});
-	    });
-	</script> -->
-	<script type="text/javascript">
+ 	<script type="text/javascript">
+		$(function(){
+			$('#myPageBar nav ul #uPwd').removeClass('activeMenu');
+			$('#myPageBar nav ul #uBoard').removeClass('activeMenu');
+			$('#myPageBar nav ul #uSchedule').removeClass('activeMenu');
+			$('#myPageBar nav ul #uDel').removeClass('activeMenu');
+			$('#myPageBar nav ul #uDetail').addClass('activeMenu');	
+		});
+	
 		function pwdCk(){
 			var result = false;
 			var pwd = $('input[name="userpwd"]').val();
@@ -83,57 +77,49 @@
 		<c:import url="../include/user/myPageBar.jsp"/>
 	</div>
 	
-    <div class="col-md-6 col-md-offset-3 col-sm-12 hidden-xs hidden-sm hidden-md visible-lg" id="userDetailTitle">
-    	<div class="col-md-1"><img src="/fitnessground/resources/images/myimages/nullicon.png" class="img-rounded"></div>
-    	<div class="col-md-9 col-md-offset-1" id="userDetailTitleInfo"><h1>${sessionScope.user.name}님의 회원정보</h1>정보 변경 시, 비밀번호를 입력하신 후 하단의 수정 버튼을 눌러주세요.</div>
-    </div>
-    <div class="col-md-6 col-md-offset-3 col-sm-12 visible-xs visible-sm visible-md hidden-lg" id="userDetailTitle">
-    	<h1 id="smallH">${sessionScope.user.name}님의 회원정보</h1>
-    	<p id="smallP">비밀번호를 입력하신 후 하단의 수정 버튼을 눌러주세요.</p>
-    </div>
-    
-    <form id="userDetailContentForm" action="" method="post" class="hidden-xs hidden-sm hidden-md visible-lg"><div class="col-md-6 col-md-offset-3 col-sm-12">
-    	<input type="hidden" value="${sessionScope.user.user_no}" name="user_no">
-    	<div  id="userDetailContent"><table>
-    		<tr>
-    			<td><span class="btn-lg glyphicon glyphicon-envelope" aria-hidden="true"> E-mail</span></td>
-    			<td><input type="email" value="${sessionScope.user.email}" name="email" class="form-control" readonly></td>
-    		</tr>
-    		<tr>
-    			<td><span class="btn-lg glyphicon glyphicon-pencil" aria-hidden="true"> 비밀번호</span></td>
-    			<td><input type="password" name="userpwd" value="" class="form-control"></td>
-    		</tr>
-    		<tr>
-    			<td><span class="btn-lg glyphicon glyphicon-user" aria-hidden="true"> 이름</span></td>
-    			<td><input type="text" value="${sessionScope.user.name}" name="name" class="form-control"></td>
-    		</tr>
-    		<tr>
-    			<td><span class="btn-lg glyphicon glyphicon-star" aria-hidden="true"> 닉네임</span></td>
-    			<td><input type="text" value="${sessionScope.user.nickname}" name="nickname" class="form-control"></td>
-    		</tr>
-    		<tr>
-    			<td><span class="btn-lg glyphicon glyphicon-phone" aria-hidden="true"> 전화번호</span></td>
-    			<td><input type="tel" value="${sessionScope.user.phone}" name="phone" class="form-control"></td>
-    		</tr>
-    	</table></div>
-    	<div align="right" id="userInfoModify"><button type="submit" class="btn btn-default" onclick="return pwdCk();">수정</button></div>
-    </div></form>
-    <form id="userDetailContentForm" action="" method="post" class="visible-xs visible-sm visible-md hidden-lg"><div class="col-md-6 col-md-offset-3 col-sm-12">
-    	<input type="hidden" value="${sessionScope.user.user_no}" name="user_no">
-    	<div  id="userDetailContentSmall"><table>
-    		<tr><td><span class="btn-lg glyphicon glyphicon-envelope" aria-hidden="true"> E-mail</span></td></tr>
-    		<tr><td><input type="email" value="${sessionScope.user.email}" name="email" class="form-control"></td></tr>
-    		<tr><td><span class="btn-lg glyphicon glyphicon-pencil" aria-hidden="true"> 비밀번호</span></td></tr>
-    		<tr><td><input type="password" name="userpwd" value="" class="form-control"></td></tr>
-    		<tr><td><span class="btn-lg glyphicon glyphicon-user" aria-hidden="true"> 이름</span></td></tr>
-    		<tr><td><input type="text" value="${sessionScope.user.name}" name="name" class="form-control"></td></tr>
-    		<tr><td><span class="btn-lg glyphicon glyphicon-star" aria-hidden="true"> 닉네임</span></td>
-    		<tr><td><input type="text" value="${sessionScope.user.nickname}" name="nickname" class="form-control"></td></tr>
-    		<tr><td><span class="btn-lg glyphicon glyphicon-phone" aria-hidden="true"> 전화번호</span></td></tr>
-    		<tr><td><input type="tel" value="${sessionScope.user.phone}" name="phone" class="form-control"></td></tr>
-    	</table></div>
-    	<div align="right" id="userInfoModifySmall"><button type="submit" class="btn btn-default" onclick="return pwdCk();">수정</button></div>
-    </div></form>    
+	<div class="col-md-offset-2 col-md-8 col-sm-12" id="userDetail" style="margin-top:120px;">
+			<table id="uDetailTitle" align="center">
+				<tr><th>${sessionScope.user.name}님의 기본정보</th></tr>				
+			</table>
+		<div id="uDetailContent">
+			<div class="col-md-4" align="center" id="profileImg">
+				<a href="javascript:profileEdit()">
+					<c:if test="${null eq sessionScope.user.rename_image}">
+						<img src="/fitnessground/resources/images/myimages/nullicon.png" class="img-circle" style="background:#022D41;">
+					</c:if>
+					<c:if test="${null ne sessionScope.user.rename_image}">
+						<img src="/fitnessground/resources/images/myimages/${sessionScope.user.rename_image}" class="img-circle" style="background:#022D41;">
+					</c:if>
+				</a><br>
+				<a href="javascript:profileEdit()" class="btn btn-default" style="margin-top:30px;">이미지 변경</a>
+			</div>
+			<div class="col-md-8" id="profileContent">
+				<form id="userDetailContentForm" action="" method="post"><table>
+					<tr>
+						<th><i class="fa fa-envelope" aria-hidden="true" style="margin-right:15px; width:20px;"></i> E-mail</th>
+						<td><input type="email" value="${sessionScope.user.email}" name="email" class="form-control" readonly></td>
+					</tr>
+					<tr>
+						<th><i class="fa fa-lock" aria-hidden="true" style="margin-right:15px; width:20px;"></i> 비밀번호</th>
+						<td><input type="password" name="userpwd" value="" class="form-control"></td>
+					</tr>
+					<tr>
+						<th><i class="fa fa-user" aria-hidden="true" style="margin-right:15px; width:20px;"></i> 이름</th>
+						<td><input type="text" value="${sessionScope.user.name}" name="name" class="form-control"></td>
+					</tr>
+					<tr>
+						<th><i class="fa fa-user-secret" aria-hidden="true" style="margin-right:15px; width:20px;"></i> 닉네임</th>
+						<td><input type="text" value="${sessionScope.user.nickname}" name="nickname" class="form-control"></td>
+					</tr>					
+					<tr>
+						<th><i class="fa fa-phone-square" aria-hidden="true" style="margin-right:15px; width:20px;"></i> Phone</th>
+						<td><input type="tel" value="${sessionScope.user.phone}" name="phone" class="form-control"></td>
+					</tr>
+					<tr><th colspan="2"><button type="submit" class="btn btn-default" style="width:100%;" onclick="return pwdCk();">수정</button></th></tr>
+				</table></form>
+			</div>
+		</div>
+	</div>   
     </c:if>
     
     <c:import url="../include/main/footer.jsp" />

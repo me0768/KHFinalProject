@@ -5,8 +5,12 @@
 	<link rel="stylesheet" href="/fitnessground/resources/css/user/mypage.css" />
 	<link rel="stylesheet" href="http://www.w3ii.com/lib/w3.css">
     <c:import url="../include/common/headend.jsp" />
-	
+
 	<script type="text/javascript">
+		$(function(){
+			$('#myPageBar nav ul #uBoard').addClass('activeMenu');	
+		});	
+		
 		function qSearch() {
 			location.href="userBoardSearch.do?searchKeyword="+$('input[name="searchQKeyword"]').val()+"&userno="+${sessionScope.user.user_no};
 		}

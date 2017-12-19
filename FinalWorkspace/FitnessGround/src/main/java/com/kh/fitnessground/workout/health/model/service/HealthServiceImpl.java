@@ -136,6 +136,12 @@ public class HealthServiceImpl implements HealthService{
 		// 검색
 		return healthDao.selectSearchList(keyWord);
 	}
+
+	@Override	//제목으로 검색 카운트
+	public int selectSearchVideoCount(String keyWord) {
+		// TODO Auto-generated method stub
+		return healthDao.selectSearchVideoCount(keyWord);
+	}
 	
 		
 	

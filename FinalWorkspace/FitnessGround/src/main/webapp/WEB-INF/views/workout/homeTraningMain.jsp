@@ -55,7 +55,7 @@
 					<li><a href="healthMain.do"><span>헬스</span></a></li>
 					<li><a href="yogaMain.do"><span>요가</span></a></li>
 					<li><a href="pilatesMain.do"><span>필라테스</span></a></li>
-					<li class="in"><a href="#"><span>맨몸운동</span></a></li>
+					<li class="in"><a href="homeTraning.do"><span>맨몸운동</span></a></li>
 				</ul>
 			</div>
 		</div>
@@ -81,7 +81,7 @@
 			</div>
 			<div class="sort-area">
 				<select name="sort" id="sort">
-					<option value="1">All</option>
+					<option value="1" selected="selected">All</option>
 					<option value="2">최신순</option>
 					<option value="3">인기순</option>
 				</select>
@@ -107,7 +107,7 @@
 		</div>
 	</div>
 	<!-- thumbnail & 재생시간 youtube API call -->
-					<script type="text/javascript">
+		<script type="text/javascript">
 					var list = new Array(); 
 					var duration; 
 					var thumbnail;
@@ -183,10 +183,13 @@
 						/* } */
 						/* }); */
 					</c:forEach>
-					</script>
+				</script>
 	<!-- 동영상 리스트 view -->
 	<div class="workout-videos">
 		<c:if test="${!empty list}">
+			<c:if test="${!empty keyWord}">
+				<div class="col-sm-12 col-md-12 col-lg-12 col-xs-12" id="search-count"> '${keyWord}' 검색 갯수 : ${searchCount }</div>
+			</c:if>
 			<c:forEach items="${list}" var="ht" varStatus="st">
 					
 				<div class="video">
@@ -204,7 +207,7 @@
 				</div>
 			
 			</c:forEach>
-		</c:if>
+		</c:if>		
 	</div>
 </div>
 		

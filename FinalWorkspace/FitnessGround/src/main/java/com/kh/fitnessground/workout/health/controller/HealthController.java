@@ -217,8 +217,8 @@ public class HealthController {
 		String keyWord = request.getParameter("searchKeyWord");
 		System.out.println(keyWord);
 		
-		ArrayList<Health> list = healthService.selectSearchList(keyWord);
-		System.out.println(list);
+		ArrayList<Health> slist = healthService.selectSearchList(keyWord);
+		System.out.println(slist);
 		
 		int pushUpCount = healthService.selectVideoCount("맨몸푸시업");
 		int lowerBodyCount = healthService.selectVideoCount("맨몸하체");
@@ -226,13 +226,16 @@ public class HealthController {
 		int entireBodyCount = healthService.selectVideoCount("맨몸전신");
 		int beginnerCount = healthService.selectVideoCount("맨몸초보자");
 		
-
+		int searchCount = healthService.selectSearchVideoCount(keyWord);
+		
+		mv.addObject("searchCount",searchCount);
+		mv.addObject("keyWord",keyWord);
 		mv.addObject("pushUpCount", pushUpCount);
 		mv.addObject("lowerBodyCount", lowerBodyCount);
 		mv.addObject("pullUpCount", pullUpCount);
 		mv.addObject("entireBodyCount", entireBodyCount);
 		mv.addObject("beginnerCount", beginnerCount);
-		mv.addObject("htclist", list);
+		mv.addObject("list", slist);
 		
 		
 		

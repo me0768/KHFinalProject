@@ -68,4 +68,7 @@
 		]]>
 	</select>
 	
+	<select id="HealthList" resultType="list" resultMap = "resultCategoryList">
+		select  category1,  sum(readcount) from tb_video_board group by category1
+	</select>
 </mapper>

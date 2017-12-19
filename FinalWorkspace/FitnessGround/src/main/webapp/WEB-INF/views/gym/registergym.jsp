@@ -34,7 +34,7 @@
 			<c:import url="../user/register.jsp" />
 		</div>
 	</div>
-	<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
+	<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
 		<div id="tip">
 			<h3>헬스장 등록</h3>
 			<h5>모든 정보를 입력해야 등록버튼이 활성화 됩니다!</h5>
@@ -54,7 +54,7 @@
 				role="tabpanel" aria-labelledby="headingTwo">
 				<div class="panel-body">
 				
-						<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 							<div class="input-group">
 							<span class="input-group-addon" id="basic-addon1">
 								<span class="glyphicon glyphicon-pencil" class="input-group-addon" aria-hidden="true"></span>
@@ -91,7 +91,7 @@
 							</div>
 							
 						</div>
-						<div class="col-lg-8 col-md-8 col-sm-6 col-xs-0" style="height: 200px;">
+						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-0" style="height: 200px;">
 							
 						</div>
 						

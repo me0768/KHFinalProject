@@ -74,6 +74,7 @@
 			url : "login.do",
 			dataType : "json",
 			type : "get",
+			async : false,
 			data : queryString,
 			success : function(responseData){
 				var data = responseData.user;
@@ -88,18 +89,18 @@
 				if( responseData.user.user_level == 2){
 					location.href = "adminMain.do";
 				} else {
-					location.reload();
+					location.href="main.do";
 				}
 				if( responseData.user.tmppwd_tf == 1 ) {
 					alert("임시비밀번호로 로그인하였습니다.\n비밀번호를 변경해주세요!");
 					location.href = "userpwd.do";
 				}
-				/* 수정 - 비밀번호 변경 나오면 여기에 tmppwd_tf여부 확인하고 변경 페이지로 */
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
 		        alert("에러 발생~~ \n" + textStatus + " : " + errorThrown);
 		    }
 		});
+		
 	}
 	
 	// 엔터키로 로그인
@@ -113,21 +114,3 @@
 			logincheck();
 		}
 	});
-	
-	// Caps Lock 키 확인
-	function fnKeyPress(e){
-		var keyCode = 0;
-		var shiftKey = false;
-		keyCode = e.keyCode;
-		shiftKey = e.shiftKey;
-		if ((keyCode >= 65 && keyCode <= 90) && !shiftKey)
-			$('[data-toggle="tooltip"]').tooltip("show");
-		else
-			$('[data-toggle="tooltip"]').tooltip("hide");
-	}
-	function fnKeyDown(e){
-	var keyCode  = 0;
-		keyCode = e.keyCode;
-		if (keyCode == 20)
-			$('[data-toggle="tooltip"]').tooltip("hide");
-	}

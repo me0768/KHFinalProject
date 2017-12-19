@@ -47,6 +47,8 @@ var arr = new Array();
 			$("#panel1").html(check);
 			$("#panelOne").css({'boader-color':'#B0F6AC', 'box-shadow':'0 0 1px 1px rgb(117, 254, 109)'});
 			$("#headingOne").css("color","green");
+			$("#upbtn2").css({'background-color':'#11a6b7', 'border-color':'#0f91a0', 'color':'#ffffff'});
+			$("#upbtn2").prop("disabled", false);
 			checkimage = 1;
 			registergymcheck()
 		}
@@ -414,10 +416,26 @@ var arr = new Array();
 		var checktel = 0;
 		var checkphone = 0;
 		var checkprice = 0;
-		var checkbox0 = 0;
-		var checkbox1 = 0;
-		var checkbox2 = 0;
-		var checkbox3 = 0;
+		if($("#ex_chk0").prop("checked")){
+			var checkbox0 = 1;
+		} else {
+			var checkbox0 = 0;
+		}
+		if($("#ex_chk1").prop("checked")){
+			var checkbox1 = 1;
+		} else {
+			var checkbox1 = 0;
+		}
+		if($("#ex_chk2").prop("checked")){
+			var checkbox2 = 1;
+		} else {
+			var checkbox2 = 0;
+		}
+		if($("#ex_chk3").prop("checked")){
+			var checkbox3 = 1;
+		} else {
+			var checkbox3 = 0;
+		}
 		var checkdesc = 0;		
 		
 		function gymemptycheck(){
@@ -486,17 +504,21 @@ var arr = new Array();
 			var sum = checkgymname + checkoptime + checktel + checkphone + checkprice + checkdesc;
 			var checkbox = checkbox0 + checkbox1 + checkbox2 + checkbox3;	
 			if( sum == 6 && checkbox > 0 ){
-				var check = "<span class='glyphicon glyphicon-ok' aria-hidden='true'></span>&nbsp;&nbsp;헬스장 정보";
+				var check = "<span class='glyphicon glyphicon-ok' aria-hidden='true'></span>&nbsp;&nbsp;헬스장 정보 변경";
 				$("#panel2").html(check);
 				$("#panelTwo").css({'boader-color':'#B0F6AC', 'box-shadow':'0 0 1px 1px rgb(117, 254, 109)'});
 				$("#headingTwo").css("color","green");
+				$("#upbtn1").css({'background-color':'#11a6b7', 'border-color':'#0f91a0', 'color':'#ffffff'});
+				$("#upbtn1").prop("disabled", false);
 				checkinfo = 1;
 				registergymcheck();
 			} else{
-				var check = "<span class='glyphicon glyphicon-remove' aria-hidden='true'></span>&nbsp;&nbsp;헬스장 정보";
+				var check = "<span class='glyphicon glyphicon-remove' aria-hidden='true'></span>&nbsp;&nbsp;헬스장 정보 변경";
 				$("#panel2").html(check);
 				$("#panelTwo").css({'boader-color':'#F60808', 'box-shadow':'0 0 1px 1px rgb(232, 13, 13)'});
 				$("#headingTwo").css("color","red");
+				$("#upbtn1").css({'background-color':'#fe424d', 'border-color':'#fe2935', 'color':'#ffffff'});
+				$("#upbtn1").prop("disabled", true);
 				checkinfo = 0;
 				registergymcheck();
 			}
@@ -547,7 +569,7 @@ var arr = new Array();
 		
 		
 		// *********************************************
-		// 지도
+		// 달력
 		// *********************************************	
 		var map = new naver.maps.Map("map", {
 			center : new naver.maps.LatLng(37.3595316, 127.1052133),
@@ -627,6 +649,8 @@ var arr = new Array();
 								$("#panel4").html(check);
 								$("#panelFour").css({'boader-color':'#B0F6AC', 'box-shadow':'0 0 1px 1px rgb(117, 254, 109)'});
 								$("#headingFour").css("color","green");
+								$("#upbtn4").css({'background-color':'#11a6b7', 'border-color':'#0f91a0', 'color':'#ffffff'});
+								$("#upbtn4").prop("disabled", false);
 								resultaddr = item.address;
 								checkloc = 1;
 								registergymcheck();
@@ -715,32 +739,26 @@ var arr = new Array();
 			}
 		}
 
-		// 이미지 파일로 헬스장 생성
-		function registergym(user_no){
+		// 이미지 파일 수정
+		function registergym(user_no, gym_no){
 			//이미지 다중파일 가져와야함
 			var formd = new FormData();
 			for(var i=0; i < arr.length; i++){
-				if(i == (arr.length - 1)){
-					formd.append(i, arr[i]);
-				} else {
-					formd.append(i, arr[i]);
-				}
+				formd.append(i, arr[i]);
+				formd.append("gym_no", gym_no);
+				formd.append("user_no", user_no);
 			}
 			 $.ajax({
 		            type : 'post',
-		            url : 'imagereg.do',
+		            url : 'imageup.do',
 		            data : formd,
 		            processData : false,
 		            contentType : false,
 		            cachae: false,
-		            async: false,
-		            success: function(data){
-		            	contentInsert(user_no, data.gym.gym_no);
-		            },
-		            error: function(data){
-		            	alert("실패");
-		            }
-			 });			
+		            async: false
+			 });
+			 alert("이미지가 변경되었습니다.")
+			 location.reload();
 		}
 		
 		// 헬스장 데이터 삽입
@@ -767,10 +785,7 @@ var arr = new Array();
 				category += '맨몸운동';
 			}
 			var description = $("#gymdesc").val();
-			//헬스장 달력정보
-			//추가해야함,,
 			
-			//헬스장 주소
 			var queryString = { "gym_name": gym_name,
 								"op_time": op_time, 
 								"tel": tel, 
@@ -778,20 +793,17 @@ var arr = new Array();
 								"price": price, 
 								"category": category, 
 								"description": description, 
-								"location": resultaddr, 
 								"user_no": user_no,
 								"gym_no": gym_no };
 			
 			$.ajax({
-				url: 'contentreg.do',
+				url: 'contentup.do',
 				type: 'post',
 				async: false,
-				data: queryString,
-				success: function(data){
-					schedulereg(user_no, gym_no);
-				}
+				data: queryString
 			});
-			
+			alert("헬스장 정보가 변경되었습니다.");
+			location.reload();
 		}
 		
 		// 스케줄 등록
@@ -813,6 +825,19 @@ var arr = new Array();
 					});
 				}
 			}
-			alert("헬스장이 등록되었습니다. \n관리자의 승인 후에 '운동시설찾기'에 \n보여지게 됩니다.");
-			location.href='mypage.do?userno='+ user_no +'';
+			alert("헬스장 일정이 추가되었습니다.");
+			location.reload();
+		}
+		
+		// 위치 변경
+		function locationup(user_no, gym_no){
+			var queryString = { "user_no": user_no, "gym_no": gym_no, "location": resultaddr };
+			$.ajax({
+				url: 'locationup.do',
+				data: queryString,
+				async: false,
+				type: 'post'
+			});
+			alert("헬스장 위치가 변경되었습니다.");
+			location.reload();
 		}

@@ -59,10 +59,12 @@ public class GymController {
 		String originalFileName = "";
 		String renameFileName = "";
 		
-		for(int i = 0; i < list.size(); i++) {
+		for(int i = 0; i < list.size()-1; i++) {
 			originalFileName += list.get(i).get("original_fileName")+",";
 			renameFileName += list.get(i).get("rename_fileName")+",";
 		}
+		originalFileName += list.get(list.size()-1).get("original_fileName");
+		renameFileName += list.get(list.size()-1).get("rename_fileName");
 		if(originalFileName != "" || !originalFileName.equals("")) {
 			gym.setOriginal_image(originalFileName);
 			gym.setRename_image(renameFileName);
@@ -129,6 +131,57 @@ public class GymController {
 	@RequestMapping(value="/updategym.do")
 	public ModelAndView updateGym(Gym gym, HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView("gym/updategym");
+		Gym g = gymService.selectOne(gym);
+		mv.addObject("gym", g);
+		return mv;
+	}
+	
+	//헬스장 정보 수정
+	@RequestMapping(value="/contentup.do")
+	public ModelAndView updatecontent(Gym gym){
+		ModelAndView mv = new ModelAndView();
+		gymService.updatecontent(gym);
+		Gym g = gymService.selectOne(gym);
+		mv.addObject("gym", g);
+		mv.setViewName("jsonView");
+		return mv;
+	}
+	
+	//헬스장 위치 변경
+	@RequestMapping(value="/locationup.do", method=RequestMethod.POST)
+	public ModelAndView updateLocation(Gym gym) {
+		ModelAndView mv = new ModelAndView();
+		gymService.updateLocation(gym);
+		Gym g = gymService.selectOne(gym);
+		mv.addObject("gym", g);
+		mv.setViewName("jsonView");
+		return mv;
+	}
+	
+	// 헬스장 이미지 수정
+	@RequestMapping(value="/imageup.do", method=RequestMethod.POST)
+	public ModelAndView multiImageUpdate(Gym gym, Map<String, Object> map, HttpServletRequest request, HttpServletResponse response) throws Exception{
+		List<Map<String, Object>> list = gymImageUtils.parseInsertFileInfo(request);
+		String originalFileName = "";
+		String renameFileName = "";
+		
+		for(int i = 0; i < list.size()-1; i++) {
+			originalFileName += list.get(i).get("original_fileName")+",";
+			renameFileName += list.get(i).get("rename_fileName")+",";
+		}
+		originalFileName += list.get(list.size()-1).get("original_fileName");
+		renameFileName += list.get(list.size()-1).get("rename_fileName");
+		if(originalFileName != "" || !originalFileName.equals("")) {
+			gym.setOriginal_image(originalFileName);
+			gym.setRename_image(renameFileName);
+		}
+		System.out.println(gym);
+		gymService.updategymimg(gym);
+		
+		ModelAndView mv = new ModelAndView();
+		Gym g = gymService.selectfromImg(gym);
+		mv.addObject("gym", g);
+		mv.setViewName("jsonView");
 		return mv;
 	}
 	
@@ -156,6 +209,7 @@ public class GymController {
 	public ModelAndView dbschedule(GymSchedule gs, HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView();
 		ArrayList<GymSchedule> list = gymService.dbschedule(gs);
+		System.out.println(list);
 		mv.addObject("list", list);
 		mv.setViewName("jsonView");
 		return mv;

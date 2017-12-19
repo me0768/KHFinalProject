@@ -111,19 +111,21 @@ $(document).ready(function(){
 				type: 'post',
 				success: function(data){
 					var i = 0;
-					for(var t=1; t < 32; t++){
-						var ym = (data.list[i].strDate.replace("-", "")).substr(0,6);
-						var values = '';
-						// 년월이 같은지 확인
-						if( ym == year + "" + month ){
-							// 디비 날짜랑 일 같은지 확인
-							if( (data.list[i].strDate.replace("-", "")).substr(7,2) == t){
-								values += "<button class='btn btn-danger' style='padding: 0px; font-size: 8pt;'>" + data.list[i].schedule_time + " " + data.list[i].title + "</button>";
-								$("#" + ym + t + "").append(values);
-								i++;
-								t--;
-								if(i == data.list.length){
-									break;
+					if( data.list.length != 0){
+						for(var t=1; t < 32; t++){
+							var ym = (data.list[i].strDate.replace("-", "")).substr(0,6);
+							var values = '';
+							// 년월이 같은지 확인
+							if( ym == year + "" + month ){
+								// 디비 날짜랑 일 같은지 확인
+								if( (data.list[i].strDate.replace("-", "")).substr(7,2) == t){
+									values += "<button class='btn btn-danger' style='padding: 0px; font-size: 8pt;'>" + data.list[i].schedule_time + " " + data.list[i].title + "</button>";
+									$("#" + ym + t + "").append(values);
+									i++;
+									t--;
+									if(i == data.list.length){
+										break;
+									}
 								}
 							}
 						}

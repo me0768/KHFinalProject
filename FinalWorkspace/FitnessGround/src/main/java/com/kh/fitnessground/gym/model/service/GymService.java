@@ -65,4 +65,10 @@ public interface GymService {
 		ArrayList<GymSchedule> dbschedule(GymSchedule gs);
 
 		void updateGymQnABoardResponse(int ref_no, int responseSt);
+		
+		void updatecontent(Gym gym);
+		
+		void updateLocation(Gym gym);
+		
+		void updategymimg(Gym gym);
 }

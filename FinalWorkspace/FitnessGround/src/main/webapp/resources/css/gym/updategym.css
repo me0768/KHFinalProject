@@ -1,0 +1,280 @@
+.where {
+  display: block;
+  margin: 25px 15px;
+  font-size: 11pt;
+  color: #000;
+  text-decoration: none;
+  font-family: verdana;
+  font-style: italic;
+}
+
+.checks {position: relative;}
+
+.checks input[type="checkbox"] {  /* 실제 체크박스는 화면에서 숨김 */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip:rect(0,0,0,0);
+  border: 0
+}
+.checks input[type="checkbox"] + label {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+.checks input[type="checkbox"] + label:before {  /* 가짜 체크박스 */
+  content: ' ';
+  display: inline-block;
+  width: 25px;  /* 체크박스의 너비를 지정 */
+  height: 25px;  /* 체크박스의 높이를 지정 */
+  line-height: 25px; /* 세로정렬을 위해 높이값과 일치 */
+  margin: 0px;
+  text-align: right; 
+  vertical-align: middle;
+  background: #fafafa;
+  border: 1px solid #cacece;
+  border-radius : 3px;
+  box-shadow: 0px 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+}
+.checks input[type="checkbox"] + label:active:before,
+.checks input[type="checkbox"]:checked + label:active:before {
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+}
+
+.checks input[type="checkbox"]:checked + label:before {  /* 체크박스를 체크했을때 */ 
+  content: '\2714';  /* 체크표시 유니코드 사용 */
+  color: #99a1a7;
+  text-shadow: 1px 1px #fff;
+  background: #e9ecee;
+  border-color: #adb8c0;
+  box-shadow: 0px 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1);
+}
+
+.checks.small input[type="checkbox"] + label {
+  font-size: 12px;
+}
+
+.checks.small input[type="checkbox"] + label:before {
+  width: 17px;
+  height: 17px;
+  line-height: 17px;
+  font-size: 11pt;
+}
+
+.checks.etrans input[type="checkbox"] + label {
+  padding-left: 30px;
+  padding-top: 0px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+  font-size: 13pt;
+  margin-bottom: 10px;
+}
+.checks.etrans input[type="checkbox"] + label:before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin-top: 0;
+  opacity: .6;
+  box-shadow: none;
+  border: 3px solid #333;
+  border-color: #333;
+  -webkit-transition: all .12s, border-color .08s;
+  transition: all .12s, border-color .08s;
+}
+
+.checks.etrans input[type="checkbox"]:checked + label:before {
+  position: absolute;
+  content: "";
+  width: 10px;
+  top: -5px;
+  left: 5px;
+  border-radius: 0;
+  opacity:1; 
+  border: 3px solid #333;
+  background: transparent;
+  border-color:transparent 3px #333 3px #333 transparent;
+  border-top-color:transparent;
+  border-left-color:transparent;
+  -ms-transform:rotate(45deg);
+  -webkit-transform:rotate(45deg);
+  transform:rotate(45deg);
+}
+
+.no-csstransforms .checks.etrans input[type="checkbox"]:checked + label:before {
+  /*content:"\2713";*/
+  content: "\2714";
+  top: 0;
+  left: 0;
+  width: 21px;
+  line-height: 21px;
+  color: #6cc0e5;
+  text-align: center;
+  border: 1px solid #6cc0e5;
+}
+
+.carousel-control {
+		left: -12px;
+	    height: 40px;
+		width: 40px !important;
+	    background: none repeat scroll 0 0 #222222;
+	    border: 4px solid #FFFFFF;
+	    border-radius: 23px 23px 23px 23px;
+	    margin-top: 55px;
+	}
+	.carousel-control.right {
+		right: -12px;
+	}
+	/* The indicators */
+	.carousel-indicators {
+		right: 50%;
+		top: auto;
+		bottom: -10px;
+		margin-right: -19px;
+	}
+	/* The colour of the indicators */
+	.carousel-indicators li {
+		background: #cecece;
+	}
+	.carousel-indicators .active {
+	background: #428bca;
+	}
+	
+	.carousel-inner{
+		padding-left: 30px;
+		padding-right: 30px;
+	}
+	
+	#image_list {
+		disyplay: inline-block;
+		border: 2px solid #3333338a;
+		border-radius: 10px;
+		height: 150px;
+		padding: 0px;
+		margin-top: 10px;
+	}
+	
+	#mainimage{
+		disyplay: inline-block;
+		border: 2px dashed #3333338a;
+		border-radius: 10px;
+		padding: 0px;
+		height: 400px;
+		padding-top: 20px;
+	}
+	
+	#Carousel{
+		display: block;
+		padding-top: 20px;
+		padding-bottom: 0px;
+	}
+	
+	#imagelist{
+		width: 100%;
+		height: 70%;
+	}
+	
+	a.thumbnail{
+		padding: 0px;
+		border: 0px;
+	}
+	
+	.my_button{
+		margin-top: 10px;
+	}
+	
+	.bigimage {
+		margin-left: auto;
+		margin-right: auto;
+	}
+	
+	.panel-body .input-group, .btn-group{
+		margin-bottom: 10px;
+	}
+	
+	td{
+		text-align: left:
+	}
+	
+		.wrap {
+	width: 500px;
+	margin: 0 auto;
+}
+.btn-holder {
+	text-align: center;
+	margin: 10px 0 10px 0;
+}
+#calendar table {
+	border-collapse: collapse;
+	text-align: center;
+}
+#calendar table thead td {
+	height: 30px;
+	font-weight: bold;
+}	
+#calendar table td {
+	border: solid 1px #000;
+}
+#calendar table td.date-cell {
+	height: 50px;
+}
+#calendar table td.sun {
+	color: red;
+}
+#calendar table td.sat {
+	color: blue;
+}
+#calendar table td.not-this-month {
+	background: #ddd;
+	color: #999;
+}
+
+#datesettings{
+	position: fixed;
+	display: none;
+	width: 70vw;
+	height: 25vh;
+	top: 100vh;
+	right: 0px;
+	background-color: white;
+	left: 15vw;
+	z-index: 999;
+	border: 1px solid black;
+}
+
+#dateinsert {
+	padding-right: 30px;
+}
+
+#panelOne {
+	margin-top: 20px;
+}
+
+#tip > h3{
+	margin-left: 20px;
+	margin-top: 20px;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+#tip > h5{
+	margin-left: 10px;
+	margin-bottom: 20px;
+	color: #5b5b5bdb;
+}
+
+#gymregisterbtn{
+	margin-bottom: 20px;
+}
+
+#upbtn1, #upbtn2, #upbtn3, #upbtn4 {
+	font-size: 8pt;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	text-align: right;
+}

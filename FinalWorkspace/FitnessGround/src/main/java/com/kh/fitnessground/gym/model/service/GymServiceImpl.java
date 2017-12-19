@@ -167,4 +167,19 @@ public class GymServiceImpl implements GymService{
 		parameters.put("responseSt", responseSt);
 		gymDao.updateGymQnABoardResponse(parameters);
 	}
+
+	@Override
+	public void updatecontent(Gym gym) {
+		gymDao.updatecontent(gym);
+	}
+
+	@Override
+	public void updateLocation(Gym gym) {
+		gymDao.updateLocation(gym);
+	}
+
+	@Override
+	public void updategymimg(Gym gym) {
+		gymDao.updategymImg(gym);
+	}
 }

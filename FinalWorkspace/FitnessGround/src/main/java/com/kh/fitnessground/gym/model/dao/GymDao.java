@@ -140,5 +140,17 @@ public class GymDao {
 		sqlSession.update("gym.updateGymQnABoardResponse", parameters);
 	}
 
+	public void updatecontent(Gym gym) {
+		sqlSession.update("gym.updateContent", gym);
+	}
+
+	public void updateLocation(Gym gym) {
+		sqlSession.update("gym.updateLocation", gym);
+	}
+
+	public void updategymImg(Gym gym) {
+		sqlSession.update("gym.updateImg", gym);
+	}
+
 	
 }

@@ -381,4 +381,34 @@
 		]]>
 	</update>
 	
+	<update id="updateContent" parameterType="Gym" flushCache="true" statementType="PREPARED">
+		<![CDATA[
+			update tb_gym
+			set gym_name = #{ gym_name },
+				op_time = #{ op_time },
+				tel = #{ tel },
+				phone = #{ phone },
+				price = #{ price },
+				category = #{ category },
+				description = #{ description }
+			where user_no = #{ user_no } and gym_no = #{ gym_no }
+		]]>
+	</update>
+	
+	<update id="updateLocation" parameterType="Gym" flushCache="true" statementType="PREPARED">
+		<![CDATA[
+			update tb_gym
+			set location = #{ location }
+			where user_no = #{ user_no } and gym_no = #{ gym_no }
+		]]>
+	</update>
+	
+	<update id="updateImg" parameterType="Gym" flushCache="true" statementType="PREPARED">
+		<![CDATA[
+			update tb_gym
+			set original_image = #{ original_image },
+				rename_image = #{ rename_image }
+			where gym_no = #{ gym_no } and user_no = #{ user_no }
+		]]>
+	</update>
 </mapper>

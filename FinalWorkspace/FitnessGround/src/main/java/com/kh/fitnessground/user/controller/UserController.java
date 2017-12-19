@@ -356,7 +356,7 @@ public class UserController {
 	// 내 게시글 검색
 	@RequestMapping(value="/userBoardSearch.do")
 	public ModelAndView userBoardSearchMethod(HttpServletRequest request) {
-		
+		 
 		ModelAndView mv = new ModelAndView("user/userBoard");
 		
 		String keyword = request.getParameter("searchKeyword");

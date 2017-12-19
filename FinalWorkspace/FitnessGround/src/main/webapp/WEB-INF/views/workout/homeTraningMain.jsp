@@ -75,7 +75,7 @@
 					<li id="vertical-bar"><span>|</span></li>
 					<li id="tab-li"><a href="javascript: category('맨몸전신')">전신 프로그램</a><span>(${entireBodyCount})</span></li>
 					<li id="vertical-bar"><span>|</span></li>
-					<li id="tab-li"><a href="javascript: category('맨몸초보자')">초보자를 위한 3개월 프로그램</a><span>(${beginnerCount})</span></li>
+					<li id="tab-li"><a href="javascript: category('맨몸초보자')">초보자</a><span>(${beginnerCount})</span></li>
 				</ul>
 
 			</div>
@@ -86,14 +86,16 @@
 					<option value="3">인기순</option>
 				</select>
 				<!-- animated 검색바 -->
+				
 			
 				<div class="srch_wrpr">
 					<div class="srch_sb_cnt">
-						<input type="text" name="text_bar" id="v-srch" class="sech_txt_inpt"
-							placeholder="Type to search...">
-						<button class="srch_btn">
+						<input type="text" name="searchKeyWord" id="title-search" class="sech_txt_inpt"
+							placeholder="제목으로 검색" name="searchKeyWord" onkeydown="javascript: if(event.keyCode==13){titleSearch();}">
+						<button class="srch_btn" onclick="titleSearch();">
 							<i class="fa fa-search" aria-hidden="true"></i>
 						</button>
+						
 					</div>
 				
 				</div>
@@ -323,6 +325,12 @@ function category(category2){
                 + "\n" + "error : " + errorData);
        }
 	});
+}
+
+function titleSearch(){
+	var searchKeyWord = $("#title-search").val();
+	console.log(searchKeyWord);
+	location.href="homeTraningSearch.do?searchKeyWord="+searchKeyWord;
 }
 </script>
 

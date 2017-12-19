@@ -227,6 +227,35 @@ public class HealthController {
 		
 	}
 	
+	@RequestMapping(value="/homeTraningSearch.do")
+	public ModelAndView searchList(HttpServletRequest request){
+		ModelAndView mv = new ModelAndView("workout/homeTraningMain");
+		
+		String keyWord = request.getParameter("searchKeyWord");
+		System.out.println(keyWord);
+		
+		ArrayList<Health> list = healthService.selectSearchList(keyWord);
+		System.out.println(list);
+		
+		int pushUpCount = healthService.selectVideoCount("맨몸푸시업");
+		int lowerBodyCount = healthService.selectVideoCount("맨몸하체");
+		int pullUpCount = healthService.selectVideoCount("맨몸철봉");
+		int entireBodyCount = healthService.selectVideoCount("맨몸전신");
+		int beginnerCount = healthService.selectVideoCount("맨몸초보자");
+		
+
+		mv.addObject("pushUpCount", pushUpCount);
+		mv.addObject("lowerBodyCount", lowerBodyCount);
+		mv.addObject("pullUpCount", pullUpCount);
+		mv.addObject("entireBodyCount", entireBodyCount);
+		mv.addObject("beginnerCount", beginnerCount);
+		mv.addObject("htclist", list);
+		
+		
+		
+		return mv;
+	}
+	
 	
 		
 	

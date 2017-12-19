@@ -244,7 +244,9 @@ input[type="search"] {
 	}
 
 	@media screen and (max-width: 736px) {
-
+		
+	
+	
 		.container.\31 25\25 {
 			width: 100%;
 			max-width: 125%;
@@ -2148,6 +2150,8 @@ input[type="search"] {
 		}
 
 /* Header */
+
+@media screen and (min-width: 736px){
 	#mypage_header {
 		background-image: url("/fitnessground/resources/images/header.jpg");
 		background-size: cover;
@@ -2167,6 +2171,7 @@ input[type="search"] {
 		padding: 7.5em 0 2em 0;
 		cursor: default;
 	}
+}
 
 		#header:before {
 			content: '';
@@ -2177,7 +2182,7 @@ input[type="search"] {
 
 		#header .inner {
 			position: relative;
-			z-index: 1;
+			z-index: 10;
 			margin: 0;
 			display: inline-block;
 			vertical-align: middle;
@@ -2944,7 +2949,7 @@ input[type="search"] {
 
 				#navPanel .link {
 					position: relative;
-					z-index: 1;
+					z-index: 10;
 					display: block;
 					text-decoration: none;
 					padding: 0.5em;

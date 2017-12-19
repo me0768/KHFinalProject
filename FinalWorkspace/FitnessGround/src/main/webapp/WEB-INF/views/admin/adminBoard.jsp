@@ -87,8 +87,10 @@ $( document ).ready(function() {
 												</c:when>
 												<c:when test="${item.response_state==1}">
 
-													<td><button type="submit" class="btn btn-primary"
-															onclick="reviewDelete(${item.q_no});">답변완료</button></td>
+													<td><button type="submit" class="btn btn-info"
+															onclick="qnaModify(${item.q_no});">수정</button>
+															<button type="submit"  class="btn btn-success"
+															onclick="qnaConfirm(${item.q_no});">확인</button></td>
 												</c:when>
 
 											</c:choose>

@@ -92,11 +92,14 @@ public class AdminController {
 
 		ArrayList<User> gymRlist = adminService.GymRequest(level);
 		ArrayList<GymQnABoard> qnalist = adminService.GymQnABoard(receiver);
+		ArrayList<Health> hlist = adminService.HealthList();
 
+		System.out.println("조회수별 헬스 조회 : "+hlist);
 		mv.addObject("request", request);
 		mv.addObject("message", message);
 		mv.addObject("gymRlist", gymRlist);
 		mv.addObject("qnalist", qnalist);
+		mv.addObject("hlist",hlist);
 
 		return mv;
 	}

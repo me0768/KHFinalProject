@@ -61,4 +61,8 @@
 		select count(*) from tb_video_board where category1='맨몸운동' and category2=#{category2}
 	</select>
 	
+	
+	<select id="HealthList" resultType="list" resultMap = "resultCategoryList">
+		select  category1,  sum(readcount) from tb_video_board group by category1
+	</select>
 </mapper>

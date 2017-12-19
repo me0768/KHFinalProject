@@ -11,6 +11,7 @@ import com.kh.fitnessground.community.model.vo.CommunityBoard;
 import com.kh.fitnessground.community.model.vo.MeetingBoard;
 import com.kh.fitnessground.gym.model.vo.GymQnABoard;
 import com.kh.fitnessground.user.model.vo.User;
+import com.kh.fitnessground.workout.health.model.vo.Health;
 import com.kh.fitnessground.workout.yoga.model.vo.Yoga;
 
 @Repository("adminDao")
@@ -153,6 +154,14 @@ public class AdminDao {
 	public Object qnaBoardUpdate(int responseQ_no) {
 		return sqlSession.update("gym.qnaBoardUpdate", responseQ_no);
 	}
+
+	public ArrayList<Health> HealthList() {
+		List<Health> list = sqlSession.selectList("health.HealthList");
+		ArrayList<Health> hlist = new ArrayList<Health>(list);
+		
+		return hlist;
+	}
+
 
 
 	

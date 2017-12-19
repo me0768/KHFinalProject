@@ -60,67 +60,19 @@ public class YogaController {
 				y.setContent(y.getContent().replaceAll("\\\"", "＇"));// 쌍따옴표jsp출력 문제로 미리 치환
 				}
 			System.out.println(list);
+			int count1 = yogaService.selectVideoCount("빈야사");
+			int count2 = yogaService.selectVideoCount("다이어트");
+			int count3 = yogaService.selectVideoCount("체형교정");
+			int count4 = yogaService.selectVideoCount("부위별");
+			int count5 = yogaService.selectVideoCount("초보자");
+			
 			mv.addObject("list", list);
-			
-			String clientID="ruv96TRHNK8A6XvNLhkO";
-	        String clientSecret = "L2Y9X7t1_5";
-	        try {
-	        URL url = new URL("https://openapi.naver.com/v1/search/encyc.xml?query=Squat-Barbell");
-	        
-	        URLConnection urlConn=url.openConnection(); //openConnection 해당 요청에 대해서 쓸 수 있는 connection 객체 
-	        
-	        urlConn.setRequestProperty("X-Naver-Client-ID", clientID);
-	        urlConn.setRequestProperty("X-Naver-Client-Secret", clientSecret);
-	        
-	        BufferedReader br = new BufferedReader(new InputStreamReader(urlConn.getInputStream()));
-	        
-	        String data="";
-	        String msg = null;
-	        while((msg = br.readLine())!=null)
-	        {
-//	            System.out.println(msg);
-	            data += msg;
-	        }
-	        
-	        List<Yoga> slist = null; //결과데이터 담을 리스트 
-//	        System.out.println(data); //응답받은 xml문서 xml문서로부터 내가 원하는 값 탐색하기(xml 파싱)
-	         XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
-	         XmlPullParser parser = factory.newPullParser(); //연결하는거 담고 
-	         parser.setInput(new StringReader(data));
-	         int eventType= parser.getEventType();
-	         Yoga b = null;
-	         while(eventType != XmlPullParser.END_DOCUMENT){
-	             switch(eventType){
-	             case XmlPullParser.END_DOCUMENT://문서의 끝 
-	                 break;
-	             case XmlPullParser.START_DOCUMENT:
-	                 slist = new ArrayList<Yoga>();
-	                 break;
-	             case XmlPullParser.START_TAG:{ //무조건 시작하면 만남 
-	                 String tag = parser.getName();
-	                 switch(tag){
-	                 case "items": //items가 열렸다는것은 새로운 책이 나온다는것 
-	                     b = new Yoga();
-	                     break;
-	                 case "thumbnail":
-	                     System.out.println(parser.nextText());
-	                     break;
-	                 }
-	                 break;
-	             }
-	         }
-	             eventType =parser.next();
-	    
-	    }
-	    for(Yoga Yoga:list)
-	        System.out.println(Yoga);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-			
-			
-			
-			
+			mv.addObject("count1", count1);
+			mv.addObject("count2", count2);
+			mv.addObject("count3", count3);
+			mv.addObject("count4", count4);
+			mv.addObject("count5", count5);
+
 			return mv;
 		}
 		//pilates main list(조회수 top 5)
@@ -129,7 +81,16 @@ public class YogaController {
 			ModelAndView mv = new ModelAndView("/workout/pilatesMain");
 			ArrayList<Yoga> list = yogaService.selectAllPList();
 			System.out.println(list);
+			int count1 = yogaService.selectVideoCount("스트레칭");
+			int count2 = yogaService.selectVideoCount("복근집중운동");
+			int count3 = yogaService.selectVideoCount("전신운동");
+			int count4 = yogaService.selectVideoCount("하체운동");
+			
 			mv.addObject("list", list);
+			mv.addObject("count1", count1);
+			mv.addObject("count2", count2);
+			mv.addObject("count3", count3);
+			mv.addObject("count4", count4);
 			return mv;
 		}
 
@@ -145,7 +106,19 @@ public class YogaController {
 				y.setContent(y.getContent().replaceAll("\\\"", "＇"));// 쌍따옴표jsp출력 문제로 미리 치환
 			}
 			
+			
+			int count1 = yogaService.selectVideoCount("빈야사");
+			int count2 = yogaService.selectVideoCount("다이어트");
+			int count3 = yogaService.selectVideoCount("체형교정");
+			int count4 = yogaService.selectVideoCount("부위별");
+			int count5 = yogaService.selectVideoCount("초보자");
+			
 			mv.addObject("clist", clist);
+			mv.addObject("count1", count1);
+			mv.addObject("count2", count2);
+			mv.addObject("count3", count3);
+			mv.addObject("count4", count4);
+			mv.addObject("count5", count5);
 			mv.setViewName("jsonView");
 			return mv;
 		}

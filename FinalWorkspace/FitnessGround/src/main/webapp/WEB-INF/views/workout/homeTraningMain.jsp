@@ -67,15 +67,15 @@
 		<div class="wrap">
 			<div class="tab-wrap" id="press-cate">
 				<ul class="tab-list">
-					<li id="tab-li"><a href="javascript: category('맨몸푸시업')">팔굽혀 펴기</a><span>(${pushUpCount})</span></li>
+					<li id="tab-li"><a href="javascript: category('맨몸푸시업')">팔굽혀 펴기</a><span id="count">(${pushUpCount})</span></li>
 					<li id="vertical-bar"><span>|</span></li>
-					<li id="tab-li"><a href="javascript: category('맨몸하체')">하체 운동</a><span>(${lowerBodyCount})</span></li>
+					<li id="tab-li"><a href="javascript: category('맨몸하체')">하체 운동</a><span id="count">(${lowerBodyCount})</span></li>
 					<li id="vertical-bar"><span>|</span></li>
-					<li id="tab-li"><a href="javascript: category('맨몸철봉')">철봉 운동</a><span>(${pullUpCount})</span></li>
+					<li id="tab-li"><a href="javascript: category('맨몸철봉')">철봉 운동</a><span id="count">(${pullUpCount})</span></li>
 					<li id="vertical-bar"><span>|</span></li>
-					<li id="tab-li"><a href="javascript: category('맨몸전신')">전신 프로그램</a><span>(${entireBodyCount})</span></li>
+					<li id="tab-li"><a href="javascript: category('맨몸전신')">전신 프로그램</a><span id="count">(${entireBodyCount})</span></li>
 					<li id="vertical-bar"><span>|</span></li>
-					<li id="tab-li"><a href="javascript: category('맨몸초보자')">초보자</a><span>(${beginnerCount})</span></li>
+					<li id="tab-li"><a href="javascript: category('맨몸초보자')">초보자</a><span id="count">(${beginnerCount})</span></li>
 				</ul>
 
 			</div>
@@ -339,4 +339,8 @@ function titleSearch(){
 
 
 <c:import url="../include/main/footer.jsp" />
+<!-- Scroll to Top Button-->
+		<a class="scroll-to-top rounded" href="#page-top"> 
+		<i class="fa fa-angle-up"></i>
+		</a>
 <c:import url="../include/common/end.jsp" />				 

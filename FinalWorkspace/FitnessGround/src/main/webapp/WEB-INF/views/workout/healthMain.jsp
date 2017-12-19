@@ -5,26 +5,7 @@
 <c:import url="../include/common/head.jsp" />
 <link rel="stylesheet" href="/fitnessground/resources/css/workout/workout.css"/>	
 <!-- <link rel="stylesheet" href="/fitnessground/resources/css/workout/detailView.css"/> -->
-<style>
-.mapster_el, #myimage, #mapster_wrap_0{
-	margin-left: 5vw;
-    margin-top: 5vh;
-}
-.explain{
-	 margin-left: 8vw;
-    margin-top: 20vh;
-}
-#healthVideo{
-	margin-left: -6vw;
-}
-#health_text{
-	margin-top: 21vh;
-}
-#healthCategory{
-	margin-top:10vh;
-}
-
-</style>	
+<link rel="stylesheet" href="/fitnessground/resources/css/workout/health.css"/>	
 
 <c:import url="../include/common/headend.jsp" />
 <script type="text/javascript"
@@ -250,6 +231,13 @@
 			<div class ="col-sm-offset-2">
 				<p id="healthCategory"></p>
 					<div class="workout_videos">
+						<div id="loadingDiv">
+						  <div class="loader">
+						    <svg class="circular" viewBox="25 25 50 50">
+						      <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+						    </svg>
+						  </div>
+						</div>
 						<div class="row justify-content-center" id="healthVideo">
 							
 							
@@ -269,7 +257,7 @@
 	    };               
 	});
 	
-	
+	$('#loadingDiv').hide(); 
 	$('#myimage').
 		mapster({
 			fillColor:'ff0000',
@@ -279,10 +267,13 @@
 		});
 	
 	
+	
 
 	
 	function popUp(part){	//ajax 처리..
 		console.log("part : " + part);
+		
+		$('#loadingDiv').show();
 		
 		var category1 = "헬스";
 		var category2 = part;
@@ -329,7 +320,7 @@
 					values += /* "<div class='video'>" +
 						"<iframe id='video-thumbnail' width='250' src="+ decodeURIComponent(json.list[i].url).replace(/\^/g,"&") +
 							"frameborder='0' gesture='media' allow='encrypted-media' allowfullscreen name='iframe'></iframe>"+
-						"<a href='javascript:detailView("
+						"<a id='v-title' href='javascript:detailView("
 								+ json.list[i].v_no + ",\"" + decodeURIComponent(json.list[i].category1) + "\"," 
 								+ "\"" + decodeURIComponent(json.list[i].category2).replace(/\+/g," ") +"\");'><div id='video-cover'></div></a>"+
 						"<p id='health_text'><a href='javascript:detailView("
@@ -339,7 +330,7 @@
 					"</div>"  */ 
 						"<div class='video'>" +
 						"<img src='"+decodeURIComponent(json.list[i].url)+"' id='video-thumbnail' width='250' >" +
-						"<a href='javascript:detailView("
+						"<a id='v-title' href='javascript:detailView("
 								+ json.list[i].v_no + ",\"" + decodeURIComponent(json.list[i].category1) + "\"," 
 								+ "\"" + decodeURIComponent(json.list[i].category2).replace(/\+/g," ") +"\");'>" + decodeURIComponent(json.list[i].title).replace(/\+/g," ") + "</a>"+
 						/* "<p id='health_text'><a href='javascript:detailView("
@@ -347,11 +338,12 @@
 								+ "\"" + decodeURIComponent(json.list[i].category2).replace(/\+/g," ") +"\");'>" 
 								+ decodeURIComponent(json.list[i].title).replace(/\+/g," ")+"</a></p>"+ */
 					"</div>" 
-		
+					
 				}
 				
 				$("#healthCategory").html(category2 + "운동 동영상");
 				$("#healthVideo").html(values);
+				$('#loadingDiv').hide();
 				
 				
 			},
@@ -367,4 +359,8 @@
 
 
 <c:import url="../include/main/footer.jsp"></c:import>
+<!-- Scroll to Top Button-->
+		<a class="scroll-to-top rounded" href="#page-top"> 
+		<i class="fa fa-angle-up"></i>
+		</a>
 <c:import url="../include/common/end.jsp"></c:import>

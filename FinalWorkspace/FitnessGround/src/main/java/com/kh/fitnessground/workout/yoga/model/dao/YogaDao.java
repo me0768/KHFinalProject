@@ -77,4 +77,8 @@ public class YogaDao {
 		return y;
 	}
 
+	public int selectVideoCount(String category2) {
+		return sqlSession.selectOne("yoga.selectVideoCount",category2);
+	}
+
 }

@@ -47,13 +47,13 @@
 		<div class="wrap">
 			<div class="tab-wrap" id="press-cate">
 				<ul class="tab-list">
-					<li id="tab-li"><a href="javascript: category('스트레칭')">스트레칭</a></li>
+					<li id="tab-li"><a href="javascript: category('스트레칭')">스트레칭</a><span id="count">(${count1})</span></li>
 					<li id="vertical-bar"><span>|</span></li>
-					<li id="tab-li"><a href="javascript: category('복근집중운동')">복근집중운동</a></li>
+					<li id="tab-li"><a href="javascript: category('복근집중운동')">복근집중운동</a><span id="count">(${count2})</span></li>
 					<li id="vertical-bar"><span>|</span></li>
-					<li id="tab-li"><a href="javascript: category('전신운동')">전신운동</a></li>
+					<li id="tab-li"><a href="javascript: category('전신운동')">전신운동</a><span id="count">(${count3})</span></li>
 					<li id="vertical-bar"><span>|</span></li>
-					<li id="tab-li"><a href="javascript: category('하체운동')">하체운동</a></li>
+					<li id="tab-li"><a href="javascript: category('하체운동')">하체운동</a><span id="count">(${count4})</span></li>
 				</ul>
 
 			</div>

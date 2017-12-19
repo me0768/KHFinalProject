@@ -130,6 +130,12 @@ public class HealthServiceImpl implements HealthService{
 		// 맨몸운동 영상별 카운트
 		return healthDao.selectVideoCount(category2);
 	}
+
+	@Override	//제목으로 검색
+	public ArrayList<Health> selectSearchList(String keyWord) {
+		// 검색
+		return healthDao.selectSearchList(keyWord);
+	}
 	
 		
 	

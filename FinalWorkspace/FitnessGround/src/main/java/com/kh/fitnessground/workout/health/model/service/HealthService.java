@@ -32,6 +32,7 @@ public interface HealthService {
 	Comment selectComment(int vb_no);
 	ArrayList<Health> selectHomeTraningList();
 	int selectVideoCount(String category2);	//맨몸운동 영상별 카운트
+	ArrayList<Health> selectSearchList(String keyWord);
 	
 	
 }

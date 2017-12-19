@@ -37,6 +37,7 @@ import com.kh.fitnessground.gym.model.service.GymService;
 import com.kh.fitnessground.gym.model.vo.Gym;
 import com.kh.fitnessground.gym.model.vo.GymQnABoard;
 import com.kh.fitnessground.gym.model.vo.GymSchedule;
+import com.kh.fitnessground.gym.model.vo.NaverMap;
 import com.kh.fitnessground.gym.model.vo.PublicGym;
 
 import oracle.sql.DATE;
@@ -519,4 +520,36 @@ public class GymController {
 		gymService.updateGymQnABoardResponse(b.getRef_no(), 1);
 		return mv; 
 	}
+	
+
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value="publicmap.do")
+	@ResponseBody
+	public ModelAndView publicMap(ModelAndView mv, NaverMap nmap)
+	{
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		ArrayList<PublicGym> publiclist = gymService.publicMaplist(nmap);
+		JSONArray jar = new JSONArray();
+		System.out.println("nmap : " + nmap);
+		System.out.println(publiclist);
+		
+		for(PublicGym pgym : publiclist)
+		{
+			JSONObject jlist = new JSONObject();
+			jlist.put("public_name", pgym.getPublic_name());
+			jlist.put("location", pgym.getLocation());
+			jlist.put("lat", pgym.getLat());
+			jlist.put("lng", pgym.getLng());
+			jlist.put("tel", pgym.getTel());
+			
+			jar.add(jlist);
+		}
+		map.put("publiclist", jar);
+		mv.addAllObjects(map);
+		mv.setViewName("jsonView");
+		
+		return mv;
+	}
+
+
 }

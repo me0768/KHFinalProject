@@ -6,6 +6,7 @@ import com.kh.fitnessground.gym.model.vo.Gym;
 import com.kh.fitnessground.gym.model.vo.GymQnABoard;
 import com.kh.fitnessground.gym.model.vo.GymReview;
 import com.kh.fitnessground.gym.model.vo.GymSchedule;
+import com.kh.fitnessground.gym.model.vo.NaverMap;
 import com.kh.fitnessground.gym.model.vo.PublicGym;
 
 public interface GymService {
@@ -71,4 +72,5 @@ public interface GymService {
 		void updateLocation(Gym gym);
 		
 		void updategymimg(Gym gym);
+		ArrayList<PublicGym> publicMaplist(NaverMap nmap);
 }

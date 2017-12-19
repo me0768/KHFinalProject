@@ -152,5 +152,12 @@ public class GymDao {
 		sqlSession.update("gym.updateImg", gym);
 	}
 
+	public ArrayList<PublicGym> publicMapList(HashMap<String, Object> parameters) {
+		List<PublicGym> list = sqlSession.selectList("gym.publicMapList", parameters);
+		System.out.println(parameters);
+		System.out.println(list);
+		return new ArrayList<PublicGym>(list) ;
+	}
+
 	
 }

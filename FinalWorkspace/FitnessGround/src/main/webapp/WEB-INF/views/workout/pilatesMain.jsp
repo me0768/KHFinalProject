@@ -7,25 +7,7 @@
 <link rel="stylesheet"
 	href="/fitnessground/resources/css/workout/workout.css" />
 
-<!-- headend 대신 넣는 코드(removed jquery.min.js)  -->
-	<!-- css 파일 로드-->
-	 <link rel="stylesheet" href="/fitnessground/resources/css/bootstrap.css">
-	<link rel="stylesheet" href="/fitnessground/resources/css/common/compiled_main.css" />
-	<link rel="stylesheet" href="/fitnessground/resources/css/common/main.css" />
-	<link rel="stylesheet" href="/fitnessground/resources/css/common/login.css" />
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-	</head>
-	<body class="homepage">
-	
-	<!-- java script 파일 로드 -->
-	<script type="text/javascript" src="/fitnessground/resources/js/jquery-3.2.1.js"></script>
-	<script type="text/javascript" src="/fitnessground/resources/js/bootstrap.js"></script>
-	<script type="text/javascript" src="/fitnessground/resources/js/common/jquery.scrolly.min.js"></script>
-	<script type="text/javascript" src="/fitnessground/resources/js/common/jquery.dropotron.min.js"></script>
-	<script type="text/javascript" src="/fitnessground/resources/js/common/jquery.onvisible.min.js"></script>
-	<script type="text/javascript" src="/fitnessground/resources/js/common/skel.min.js"></script>
-	<script type="text/javascript" src="/fitnessground/resources/js/common/util.js"></script>
-	<script type="text/javascript" src="/fitnessground/resources/js/common/main.js"></script>
+<c:import url="../include/common/headend.jsp" />
 	
 <script type="text/javascript" src="/fitnessground/resources/js/workout/workout.js"></script>
 
@@ -37,15 +19,8 @@
 	<c:import url="../user/findidpwd.jsp"/>
 	<c:import url="../user/register.jsp"/>
 </div> 
-
 <!-- Modal -->
 	<c:import url="detailView.jsp" />
-
-<!-- yoga head 부분  -->
-
-<!-- <div id="workout-head">
-	<h2 id="workout-title">Yoga</h2>
-</div> -->
 
 <!-- yoga body -->
 <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12" id="workout-body">
@@ -195,9 +170,7 @@
 						<span class="video-time" id="v-time${y.v_no}"></span>
 						</div>
 						<span id="video-text">
-						<a href="#workout-modal" data-toggle="modal" data-title="${y.title }" data-url="${y.url }" data-content="${y.content }"
-						data-target="#detailView">${y.title}</a>
-						</span> 
+						<a href='javascript:detailView(${y.v_no} , "${y.category1}" , "${y.category2}")'>${y.title }</a></span> 
 						<%-- <span id="video-text"><c:url var="detail" value="#detail" /></span> --%>
 						
 					</div>
@@ -209,7 +182,7 @@
 </div>
 		
 <script type="text/javascript">
-//modal 띄우기(title,url, content 값을 모달로)
+/* //modal 띄우기(title,url, content 값을 모달로)
 $('#detailView').on('show.bs.modal', function (event) {
 	  var tag = $(event.relatedTarget); // sth that triggered the modal
 	  var title = tag.data('title'); // Extract info from data-* attributes
@@ -221,7 +194,7 @@ $('#detailView').on('show.bs.modal', function (event) {
 	  modal.find('.modal-play').html("<iframe id='video-play' src='https://www.youtube.com/embed/"+vid+"' frameborder='0'"+
 				"gesture='media' allow='encrypted-media' allowfullscreen></iframe>");
 	  modal.find('#span-content').text(content);
-	})
+	}) */
 
 //category별 ajax로 동영상 가져오기 
 function category(category2){
@@ -340,6 +313,11 @@ function category(category2){
 }
 </script>
 
-
 <c:import url="../include/main/footer.jsp" />
+<!-- Scroll to Top Button-->
+		<a class="scroll-to-top rounded" href="#page-top"> 
+		<i class="fa fa-angle-up"></i>
+		</a>
+
+
 <c:import url="../include/common/end.jsp" />

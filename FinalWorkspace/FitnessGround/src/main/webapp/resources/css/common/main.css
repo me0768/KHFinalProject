@@ -49,6 +49,12 @@ input[type="search"] {
 	text-align: center;
 	font-size: 1rem;
 }
+#start-btn{
+	text-decoration: none;
+}
+#start-btn:hover{
+	background: #022D41;
+}
 /*
 	Helios by HTML5 UP
 	html5up.net | @ajlkn
@@ -2205,6 +2211,7 @@ input[type="search"] {
 			text-align: center;
 			font-size: 1.25em;
 			padding: 0;
+
 		}
 
 		#header hr {
@@ -2233,7 +2240,7 @@ input[type="search"] {
 
 		body.homepage #header:after {
 			content: '';
-			background: #022D41;
+			background: black;
 			display: block;
 			position: absolute;
 			left: 0;
@@ -2241,14 +2248,14 @@ input[type="search"] {
 			width: 100%;
 			height: 100%;
 			opacity: 0;
-			-moz-transition: opacity 2.5s ease-in-out;
-			-webkit-transition: opacity 2.5s ease-in-out;
-			-ms-transition: opacity 2.5s ease-in-out;
-			transition: opacity 2.5s ease-in-out;
-			-moz-transition-delay: 0.5s;
-			-webkit-transition-delay: 0.5s;
-			-ms-transition-delay: 0.5s;
-			transition-delay: 0.5s;
+			-moz-transition: opacity 1.8s ease-in-out;
+			-webkit-transition: opacity 1.8s ease-in-out;
+			-ms-transition: opacity 1.8s ease-in-out;
+			transition: opacity 1.8s ease-in-out;
+			-moz-transition-delay: 0.3s;
+			-webkit-transition-delay: 0.3s;
+			-ms-transition-delay: 0.3s;
+			transition-delay: 0.3s;
 		}
 
 	body.homepage.is-loading #header:after {
@@ -2311,7 +2318,12 @@ input[type="search"] {
 				-moz-transition: color 0.35s ease-in-out, border-color 0.35s ease-in-out;
 				-webkit-transition: color 0.35s ease-in-out, border-color 0.35s ease-in-out;
 				-ms-transition: color 0.35s ease-in-out, border-color 0.35s ease-in-out;
-				transition: color 0.35s ease-in-out, border-color 0.35s ease-in-out;
+				transition: color 0.1s ease-in-out, border-color 0.1s ease-in-out;
+			}
+			
+			#nav > ul > li:hover{
+				color: #11A6B7;
+				
 			}
 
 				#nav > ul > li.active {
@@ -2657,6 +2669,7 @@ input[type="search"] {
 			#banner {
 				padding-left: 2em;
 				padding-right: 2em;
+				text-decoration: none;
 			}
 
 		/* Footer */
@@ -2833,10 +2846,10 @@ input[type="search"] {
 				-webkit-backface-visibility: hidden;
 				-ms-backface-visibility: hidden;
 				backface-visibility: hidden;
-				-moz-transition: -moz-transform 0.5s ease;
-				-webkit-transition: -webkit-transform 0.5s ease;
-				-ms-transition: -ms-transform 0.5s ease;
-				transition: transform 0.5s ease;
+				-moz-transition: -moz-transform 0.3s ease;
+				-webkit-transition: -webkit-transform 0.3s ease;
+				-ms-transition: -ms-transform 0.3s ease;
+				transition: transform 0.3s ease;
 				padding-bottom: 1px;
 			}
 
@@ -2845,10 +2858,10 @@ input[type="search"] {
 				-webkit-backface-visibility: hidden;
 				-ms-backface-visibility: hidden;
 				backface-visibility: hidden;
-				-moz-transition: -moz-transform 0.5s ease;
-				-webkit-transition: -webkit-transform 0.5s ease;
-				-ms-transition: -ms-transform 0.5s ease;
-				transition: transform 0.5s ease;
+				-moz-transition: -moz-transform 0.3s ease;
+				-webkit-transition: -webkit-transform 0.3s ease;
+				-ms-transition: -ms-transform 0.3s ease;
+				transition: transform 0.3s ease;
 				display: block;
 				height: 44px;
 				left: 0;
@@ -2901,10 +2914,10 @@ input[type="search"] {
 				-webkit-transform: translateY(-50vh);
 				-ms-transform: translateY(-50vh);
 				transform: translateY(-50vh);
-				-moz-transition: -moz-transform 0.5s ease;
-				-webkit-transition: -webkit-transform 0.5s ease;
-				-ms-transition: -ms-transform 0.5s ease;
-				transition: transform 0.5s ease;
+				-moz-transition: -moz-transform 0.3s ease;
+				-webkit-transition: -webkit-transform 0.3s ease;
+				-ms-transition: -ms-transform 0.3s ease;
+				transition: transform 0.3s ease;
 				display: block;
 				height: 50vh;
 				left: 0;
@@ -2926,7 +2939,6 @@ input[type="search"] {
 					top: 0;
 					width: 100%;
 					height: 100%;
-					background: url("images/overlay.png");
 					background-size: 128px 128px;
 				}
 

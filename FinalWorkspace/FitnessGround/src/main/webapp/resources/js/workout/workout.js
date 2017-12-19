@@ -15,8 +15,10 @@ $(document).scroll(function() {
     $('.scroll-to-top').fadeOut();
   }
 });
-// Configure tooltips globally
-$('[data-toggle="tooltip"]').tooltip()
+// Configure tooltips globally 
+/*$('[data-toggle="tooltip"]').tooltip()*/
+
+
 // Smooth scrolling using jQuery easing
 $(document).on('click', 'a.scroll-to-top', function(event) {
   var $anchor = $(this);

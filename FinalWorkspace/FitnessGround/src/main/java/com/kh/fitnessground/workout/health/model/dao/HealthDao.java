@@ -108,9 +108,9 @@ public class HealthDao {
 		return list;
 	}
 
-	public int selectVideoCount(Health health) {
+	public int selectVideoCount(String category2) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("health.selectVideoCount",health);
+		return sqlSession.selectOne("health.selectVideoCount",category2);
 	}
 	
 	//좋아요

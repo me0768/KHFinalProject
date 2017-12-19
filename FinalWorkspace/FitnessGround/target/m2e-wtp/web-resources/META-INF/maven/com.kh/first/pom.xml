@@ -21,6 +21,10 @@
 			<url>https://maven.atlassian.com/3rdparty/</url>
 		</repository>
 	</repositories>
+	
+	
+	
+
 
 	<dependencies>
 		<!-- Spring -->
@@ -48,6 +52,13 @@
 			<artifactId>aspectjrt</artifactId>
 			<version>${org.aspectj-version}</version>
 		</dependency>
+		
+		<!-- xml parsing -->
+		<dependency>
+        <groupId>net.sf.sociaal</groupId>
+        <artifactId>xmlpull-xpp3</artifactId>
+        <version>3.0.0.20130526</version>
+    </dependency>
 		<!-- MyBatis -->
 		<dependency>
 			<groupId>org.mybatis</groupId>

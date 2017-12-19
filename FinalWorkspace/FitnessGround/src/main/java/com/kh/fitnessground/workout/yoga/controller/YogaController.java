@@ -1,5 +1,10 @@
 package com.kh.fitnessground.workout.yoga.controller;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.StringReader;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +25,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlPullParserFactory;
 
 import com.kh.fitnessground.admin.model.service.AdminService;
 import com.kh.fitnessground.admin.model.vo.BusinessRequest;
@@ -45,7 +52,7 @@ public class YogaController {
 
 		// yoga 메인 list(조회수 top 5)
 		@RequestMapping(value = "/yogaMain.do")
-		public ModelAndView YogaListMethod(HttpServletRequest request) {
+		public ModelAndView YogaListMethod(HttpServletRequest request) throws XmlPullParserException {
 			ModelAndView mv = new ModelAndView("/workout/yogaMain");
 			ArrayList<Yoga> list = yogaService.selectAllYList();
 			for(Yoga y : list) {
@@ -54,6 +61,66 @@ public class YogaController {
 				}
 			System.out.println(list);
 			mv.addObject("list", list);
+			
+			String clientID="ruv96TRHNK8A6XvNLhkO";
+	        String clientSecret = "L2Y9X7t1_5";
+	        try {
+	        URL url = new URL("https://openapi.naver.com/v1/search/encyc.xml?query=Squat-Barbell");
+	        
+	        URLConnection urlConn=url.openConnection(); //openConnection 해당 요청에 대해서 쓸 수 있는 connection 객체 
+	        
+	        urlConn.setRequestProperty("X-Naver-Client-ID", clientID);
+	        urlConn.setRequestProperty("X-Naver-Client-Secret", clientSecret);
+	        
+	        BufferedReader br = new BufferedReader(new InputStreamReader(urlConn.getInputStream()));
+	        
+	        String data="";
+	        String msg = null;
+	        while((msg = br.readLine())!=null)
+	        {
+//	            System.out.println(msg);
+	            data += msg;
+	        }
+	        
+	        List<Yoga> slist = null; //결과데이터 담을 리스트 
+//	        System.out.println(data); //응답받은 xml문서 xml문서로부터 내가 원하는 값 탐색하기(xml 파싱)
+	         XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+	         XmlPullParser parser = factory.newPullParser(); //연결하는거 담고 
+	         parser.setInput(new StringReader(data));
+	         int eventType= parser.getEventType();
+	         Yoga b = null;
+	         while(eventType != XmlPullParser.END_DOCUMENT){
+	             switch(eventType){
+	             case XmlPullParser.END_DOCUMENT://문서의 끝 
+	                 break;
+	             case XmlPullParser.START_DOCUMENT:
+	                 slist = new ArrayList<Yoga>();
+	                 break;
+	             case XmlPullParser.START_TAG:{ //무조건 시작하면 만남 
+	                 String tag = parser.getName();
+	                 switch(tag){
+	                 case "items": //items가 열렸다는것은 새로운 책이 나온다는것 
+	                     b = new Yoga();
+	                     break;
+	                 case "thumbnail":
+	                     System.out.println(parser.nextText());
+	                     break;
+	                 }
+	                 break;
+	             }
+	         }
+	             eventType =parser.next();
+	    
+	    }
+	    for(Yoga Yoga:list)
+	        System.out.println(Yoga);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+			
+			
+			
+			
 			return mv;
 		}
 		//pilates main list(조회수 top 5)
@@ -211,13 +278,11 @@ public class YogaController {
 			String[] arr = param.substring(1,param.length()-1).split(",");
 			
 			List<Integer> dellist = new ArrayList<Integer>();
-			System.out.println("length:"+arr.length);
+			
 			for(int i=0;i<arr.length;i++) {
-				System.out.println(arr[i].substring(1, arr[i].length()-1)+":::");
 				int no = Integer.parseInt(arr[i].substring(1, arr[i].length()-1));
 				dellist.add(no);
 			}
-			System.out.println(dellist.get(0)+"arraylist");
 			
 			yogaService.deleteYogaList(dellist, request);
 			ArrayList<Yoga> ylist = yogaService.selectAllYList();

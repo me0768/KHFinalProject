@@ -10,7 +10,7 @@
 		<p>Watch workout videos, find your gym and communicate with people! </p>
 	</header>
 	<footer>
-		<a href="#banner" class="button circled scrolly">Start</a>
+		<a href="#banner" class="button circled scrolly" id="start-btn">Start</a>
 		<a class="return-top" href="#"><i class="fa fa-chevron-circle-up fa-4x" aria-hidden="true"></i></a>
 	</footer>
 </div>

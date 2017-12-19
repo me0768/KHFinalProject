@@ -338,7 +338,7 @@
 								+ decodeURIComponent(json.list[i].title).replace(/\+/g," ")+"</a></p>"+
 					"</div>"  */ 
 						"<div class='video'>" +
-						"<img src='/fitnessground/resources/images/health/basic_image.JPG' id='video-thumbnail' width='250' >" +
+						"<img src='"+decodeURIComponent(json.list[i].url)+"' id='video-thumbnail' width='250' >" +
 						"<a href='javascript:detailView("
 								+ json.list[i].v_no + ",\"" + decodeURIComponent(json.list[i].category1) + "\"," 
 								+ "\"" + decodeURIComponent(json.list[i].category2).replace(/\+/g," ") +"\");'>" + decodeURIComponent(json.list[i].title).replace(/\+/g," ") + "</a>"+

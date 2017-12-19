@@ -52,114 +52,97 @@ public class HealthController {
 	
 		ArrayList<Health> list = healthService.selectWorkoutCategoryList(health);
 		
+		/* NAVER api code */
 		String clientID="ruv96TRHNK8A6XvNLhkO";
         String clientSecret = "L2Y9X7t1_5";
-        String keyword = list.get(0).getTitle().replaceAll(" ", "");//띄어쓰기돼있는건 에러나서 공백 없앰..
-       System.out.println(keyword);
+        ArrayList<String> srcarr = new ArrayList<String>();
+        ArrayList<String> keyarr = new ArrayList<String>();
+        for(int i=0;i<list.size();i++) {
+        	keyarr.add(list.get(i).getTitle().replaceAll(" ", ""));
+        }
+        System.out.println(keyarr.toString()); //검색할 동영상 제목들 다 keyarr에 넣어둠
         String query = "";
         String src = "";
-        try {
-        	   query = URLEncoder.encode(keyword,"UTF-8");
-        	  } catch (UnsupportedEncodingException e1) {
-        	   e1.printStackTrace();
-        	  }
-        System.out.println(query+":query");
-        try {
-        URL url = new URL("https://openapi.naver.com/v1/search/encyc.xml?query="+query);
         
-        URLConnection urlConn=url.openConnection(); //openConnection 해당 요청에 대해서 쓸 수 있는 connection 객체 
+        for(int i=0;i<keyarr.size();i++) {
+        	
+	        try {
+	        	  query = URLEncoder.encode(keyarr.get(i),"UTF-8");
+	        	} catch (UnsupportedEncodingException e1) {
+	        	  e1.printStackTrace();
+	        	}
+	        int j = 0;
+	        try {
+		        URL url = new URL("https://openapi.naver.com/v1/search/encyc.xml?query="+query);
+		        URLConnection urlConn=url.openConnection(); 
+		        urlConn.setRequestProperty("X-Naver-Client-ID", clientID);
+		        urlConn.setRequestProperty("X-Naver-Client-Secret", clientSecret);
+		        BufferedReader br = new BufferedReader(new InputStreamReader(urlConn.getInputStream()));
+		        String data="";
+		        String msg = null;
+		        while((msg = br.readLine())!=null)
+		        {
+		            data += msg;
+		        }
+		       
+		         XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+		         XmlPullParser parser = factory.newPullParser(); //연결하는거 담고 
+		         parser.setInput(new StringReader(data));
+		         int eventType= parser.getEventType();
+		       
+		         while(eventType != XmlPullParser.END_DOCUMENT){
+		             switch(eventType){
+		             case XmlPullParser.END_DOCUMENT://문서의 끝 
+		                 break;
+		             case XmlPullParser.START_DOCUMENT:
+		                 break;
+		             case XmlPullParser.END_TAG:{
+		                 String tag = parser.getName();
+		                 break;
+		             }
+		             case XmlPullParser.START_TAG: 
+		            	 if (parser.getName().equals("thumbnail")) {
+		            		 src = parser.nextText();
+		            		 if(src.contains("muploader")&&j==0) {
+		            			 srcarr.add(src);  //query하나에 썸네일 하나만 srcarr에 담도록 - j가 0일때만 담음  
+		            			 System.out.println("srcarr:"+srcarr.toString());
+		            			 j++;  
+		            		 }
+		            	 }
+		         }
+		             eventType =parser.next();
+		         }
+		         
+		        }catch(Exception e) {
+					e.printStackTrace();
+		        }
+        	}
         
-        urlConn.setRequestProperty("X-Naver-Client-ID", clientID);
-        urlConn.setRequestProperty("X-Naver-Client-Secret", clientSecret);
-        
-        BufferedReader br = new BufferedReader(new InputStreamReader(urlConn.getInputStream()));
-        
-        String data="";
-        String msg = null;
-        while((msg = br.readLine())!=null)
-        {
-//            System.out.println(msg);
-            data += msg;
-        }
-        
-        List<Health> slist = null; //결과데이터 담을 리스트 
-//        System.out.println(data); //응답받은 xml문서 xml문서로부터 내가 원하는 값 탐색하기(xml 파싱)
-         XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
-         XmlPullParser parser = factory.newPullParser(); //연결하는거 담고 
-         parser.setInput(new StringReader(data));
-         int eventType= parser.getEventType();
-         Health b = null;
-         while(eventType != XmlPullParser.END_DOCUMENT){
-             switch(eventType){
-             case XmlPullParser.END_DOCUMENT://문서의 끝 
-                 break;
-             case XmlPullParser.START_DOCUMENT:
-                 slist = new ArrayList<Health>();
-                 break;
-             case XmlPullParser.END_TAG:{
-                 String tag = parser.getName();
-                 if(tag.equals("item")){
-                     slist.add(b);
-                     b = null;
-                 }
-             }
-             case XmlPullParser.START_TAG:{ //무조건 시작하면 만남 
-                 String tag = parser.getName();
-                 switch(tag){
-                 case "items": //items가 열렸다는것은 새로운 책이 나온다는것 
-                     b = new Health();
-                     break;
-                 case "thumbnail":
-                     System.out.println(parser.nextText()+"SSS");
-                     System.out.println(src+"src");
-                     if(b!=null) {
-                    	 b.setTitle(parser.nextText());
-                    	 src = parser.nextText();
-                     }
-                     /*src = parser.nextText();  <---이거를해야하는데 자꾸 오류남..*/
-                     /*if(parser.nextText().contains("muploader"))
-                    	 src = parser.nextText();*/
-                     break;
-                 }
-                 break;
-             }
-         }
-             eventType =parser.next();
-    
-    }
-    for(Health Health:slist)
-        System.out.println(":::"+Health);
-	}catch(Exception e){
-		e.printStackTrace();
-	}
-		
-		System.out.println("src:"+src);
-		
+        	/* view로 내보내기 */
+			JSONObject sendJson = new JSONObject();
+			JSONArray jarr = new JSONArray();
+			int index = 0;
+			for(Health h : list){
+				JSONObject jhealth = new JSONObject();
+				jhealth.put("v_no", h.getV_no());
+				jhealth.put("title", URLEncoder.encode(h.getTitle(),"utf-8"));
+				jhealth.put("content", URLEncoder.encode(h.getContent(),"utf-8"));
+				jhealth.put("category1", URLEncoder.encode(h.getCategory1(),"utf-8"));
+				jhealth.put("category2", URLEncoder.encode(h.getCategory2(),"utf-8"));
+				jhealth.put("url", URLEncoder.encode(srcarr.get(index),"utf-8"));
+				jhealth.put("readcount", h.getReadcount());
 				
-		JSONObject sendJson = new JSONObject();
-		JSONArray jarr = new JSONArray();
-		
-		for(Health h : list){
-			JSONObject jhealth = new JSONObject();
-			jhealth.put("v_no", h.getV_no());
-			jhealth.put("title", URLEncoder.encode(h.getTitle(),"utf-8"));
-			jhealth.put("content", URLEncoder.encode(h.getContent(),"utf-8"));
-			jhealth.put("category1", URLEncoder.encode(h.getCategory1(),"utf-8"));
-			jhealth.put("category2", URLEncoder.encode(h.getCategory2(),"utf-8"));
-			jhealth.put("url", URLEncoder.encode(h.getUrl(),"utf-8"));
-			jhealth.put("readcount", h.getReadcount());
+				jarr.add(jhealth);
+				index++;
+			}
 			
-			jarr.add(jhealth);
-		}
-		
-		sendJson.put("list", jarr);
-		
-		response.setContentType("aplication/json; charset=utf-8"); 
-		PrintWriter out = response.getWriter();
-		out.println(sendJson.toJSONString());
-		out.flush();
-		out.close();
-	
+			sendJson.put("list", jarr);
+			
+			response.setContentType("aplication/json; charset=utf-8"); 
+			PrintWriter out = response.getWriter();
+			out.println(sendJson.toJSONString());
+			out.flush();
+			out.close();
 	}
 	
 	@RequestMapping(value="/detail.do",method = RequestMethod.POST)	//썸네일 누르면 누른 v_no로 모달창에서 동영상 재생.. 썸네일은 어케하지..

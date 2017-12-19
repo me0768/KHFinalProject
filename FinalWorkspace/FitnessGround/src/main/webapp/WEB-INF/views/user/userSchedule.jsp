@@ -62,8 +62,8 @@
 			
 	<c:import url="../workout/detailView.jsp" />
 	<c:import url="./userScheduleEdit.jsp"/>
-	<div id="calendar" class="col-md-offset-2 col-md-8"></div>
 	
+	<div id="calendar" class="col-md-offset-2 col-md-8" style="margin-bottom:90px !important;"></div>
 	
     <script type="text/javascript">
     	$(function (){

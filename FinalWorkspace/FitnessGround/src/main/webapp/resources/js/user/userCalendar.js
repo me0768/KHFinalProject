@@ -1,7 +1,12 @@
 function setCalendar() {
 	var $calendar = $('#calendar').fullCalendar({
 		locale: "ko",
-	    height: 'auto',
+	    height: 'auto',  
+	    header: {
+	    	left:   'prev',
+	        center: 'title',
+	        right:  'next'
+	    },
 	    eventLimit: true,
 		selectable: true,
 		select: function(start, end, jsEvent, view) {

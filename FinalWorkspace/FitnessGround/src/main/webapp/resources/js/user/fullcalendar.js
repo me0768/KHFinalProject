@@ -12301,6 +12301,7 @@ var Toolbar = /** @class */ (function () {
             el.append(this.renderSection('left'))
                 .append(this.renderSection('right'))
                 .append(this.renderSection('center'))
+                .append('<div class="col-md-8 col-md-offset-2 col-sm-12" id="userSTitle"><div style="margin-top:10px;"><a id="usLike">운동 동영상</a> 시청 후 <a id="usLike">좋아요</a> 버튼을 누르시거나, <a id="usIn">직접 입력</a>하여 운동 스케줄을 관리할 수 있습니다.</div></div>')
                 .append('<div class="fc-clear"/>');
         }
         else {

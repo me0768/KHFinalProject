@@ -1,7 +1,20 @@
 @CHARSET "UTF-8";
 
+body {
+	background:white !important;
+}
+
+
+
+/* 
+	마이페이지 헤더바 CSS
+*/
 #myPageBar {
-	margin-top: 100px;
+	position : fixed;
+	z-index:10;
+	width:100%;
+	margin-top:0px;
+	padding-top:0px;
 }
 #myPageBar h1 a:hover, #myPageBar h1 a:visited, #myPageBar h1 a:link{
 	text-decoration: none;
@@ -10,39 +23,39 @@
 #myPageBar #sm_title {
 	font-size: 25px;
 }
+#myPageBar nav {
+	padding-left:23%;
+	padding-top:5px;
+	padding-bottom:5px;
+}
 #myPageBar nav ul li {
 	float: left;
 }
-#myPageBar nav ul li:nth-child(1) {
-	font-size: 55px;
-	margin-right: 110px;
-}
-#myPageBar nav ul li:nth-child(1) a:hover {
-	text-decoration: none;
-}
-#myPageBar nav ul li:nth-child(2), #myPageBar nav ul li:nth-child(3),
-	#myPageBar nav ul li:nth-child(4), #myPageBar nav ul li:nth-child(5),
-	#myPageBar nav ul li:nth-child(6) {
-	font-size: 17px;
-	margin-right: 65px;
-	margin-top: 35px;
-}
 
 
 
-/*  */
+/*
+	마이페이지 메인
+*/
 .mypage_info {
-	box-shadow: 2px 2px 2px rgba(204, 197, 185, 0.5);
+	border:1px solid #dedede;
+	border-radius:0.3rem;
 	background-color: #FFFFFF;
 	color: #252422;
-	margin-top: 100px;
-	margin-bottom:120px;
-	height:500px;
+	margin-top: 120px;
+	margin-bottom:110px;
+	height:520px;
+	padding-left: 0px !important;
+  	padding-right: 0px !important;
+	margin-left:15px;
+	margin-right:15px;
 }
 .mypage_info_title {
-	box-shadow: 2px 2px 2px rgba(204, 197, 185, 0.5);
-	background-color: #022D41;
-	color:white;
+	border-bottom:1px solid #dedede;
+	border-top-left-radius:0.3rem;
+	border-top-right-radius:0.3rem;
+	background-color: #f5f5f5;
+	color:#000;
 	height:230px;
 	width:100%;
 }
@@ -56,7 +69,8 @@
 }
 .mypage_info_title p {
 	text-align:center;
-	margin-top:15px;
+	margin-top:25px;
+	font-size:16pt;
 }
 .mypage_info_content {
 	padding:10px;
@@ -73,61 +87,126 @@
 }
 .mypage_info_content button {
 	width:90%;
+	color:black;
 }
 
-.mypage_schedule, .mypage_gymmanage {
-	box-shadow: 2px 2px 2px rgba(204, 197, 185, 0.5);
+.mypage_schedule_y {
+	padding-left: 0px !important;
+  	padding-right: 0px !important;
+	border:1px solid #dedede;
+	border-radius:0.3rem;
 	background-color: #FFFFFF;
 	color: #252422;
-	margin-top: 100px;
-	margin-bottom:120px;
-	height:500px;
+	margin-top: 120px;
+	margin-left:15px;
+	margin-right:15px;
+	height:233px;
 }
-.mypage_schedule #moreS {
-	margin-top:40px;
+.mypage_schedule_t {
+	padding-left: 0px !important;
+  	padding-right: 0px !important;
+	border:1px solid #dedede;
+	border-radius:0.3rem;
+	background-color: #FFFFFF;
+	color: #252422;
+	margin-top: 10px;
+	margin-left:15px;
+	margin-right:15px;
+	height:233px;
 }
-.mypage_schedule #yesterdaySchedule, .mypage_schedule #todaySchedule {
-	height:200px;
-	padding:20px;
-	padding-top:30px;
+.mypage_schedule_bt {
+	padding-left: 0px !important;
+  	padding-right: 0px !important;
+	margin-top: 10px;
+	margin-left:15px;
+	margin-right:15px;
+	margin-bottom:110px;
 }
-.mypage_schedule div table thead th {
-	font-size:15pt;
-	font-weight:bold;
+.mypage_schedule_bt Button {
+	width:100%;
 }
-.mypage_schedule div table thead td {
-	margin-right:20px;
+#yesterdayScheduleTitle, #todayScheduleTitle {
+	border-top-left-radius:0.3rem;
+	border-top-right-radius:0.3rem;
+	background:#f5f5f5;
 }
-.mypage_schedule div table tbody {
-	margin-top:50px;
+#yesterdayScheduleTitle table, #todayScheduleTitle table {
+	border-bottom:1px solid #dedede; 
 }
-.mypage_schedule div table tbody td {
-	font-size:10pt;
-	text-indent:10px;
+#yesterdayScheduleTitle th, #todayScheduleTitle th {
+	padding-top:10px;
+	padding-bottom:10px;
+	padding-left:20px;
+	color:black;
+}
+#yesterdayScheduleTitle td, #todayScheduleTitle td {
+	padding-right:20px;
+}
+#yesterdayScheduleContent, #todayScheduleContent {
+	font-size:11pt;
+	padding-left:20px;
+	max-height: 140px;
+	overflow: hidden;
+	overflow-y: auto;
+}
+
+/*
+	마이페이지 메인 - 헬스장 정보
+*/
+.mypage_gymmanage {
+	padding-left: 0px !important;
+  	padding-right: 0px !important;
+	border:1px solid #dedede;
+	border-radius:0.3rem;
+	background-color: #FFFFFF;
+	color: black;
+	margin-top: 120px;
+	margin-left:15px;
+	margin-rigth:15px;
+	height:476px;
+}
+#gymlist {
+	max-height: 350px;
+	overflow: hidden;
+	overflow-y: auto;
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+#gymimg {
+	height: 110px;
+	width: 100%;
+}
+#regcount {
+	border-top-left-radius:0.3rem;
+	border-top-right-radius:0.3rem;
+	border-bottom:1px solid #dedede; 
+	background:#f5f5f5;
+	padding-top:5px;
+	padding-bottom:5px;
+}
+#gymsearchdiv {
+	margin-top:10px;
+}
+#registerGymBt {
+	margin-top:10px;
+	margin-left:15px;
+	margin-rigth:15px;
+	padding-left: 0px !important;
+  	padding-right: 0px !important;
+	margin-bottom:110px;
+}
+#registerGymBt Button {
+	height:34px;
+	width:100%;
 }
 
 
-
-/* */
-/* #userDetailTitle {
-	margin-top:100px;
-}
-#userDetailTitle h1 {
-	font-size:40px;
-}
-#userDetailTitle p{
-	font-size:13pt;
-	margin-left:10px;
-}
-#userDetailTitle #smallH {
-	font-size:25px;
-}
-#userDetailTitle #smallP {
-	font-size:9pt;
-	margin-left:5px;
-} */
+/*
+	회원정보
+*/
 #userDetailTitle {
-	margin-top:100px;	
+	color: black;
+	margin-top:120px;	
 }
 #userDetailTitle img {
 	width:100px;
@@ -140,6 +219,7 @@
 }
 #userDetailTitle #userDetailTitleInfo h1 {
 	font-size:40px;
+	color:black;
 }
 #userDetailTitle #smallH {
 	font-size:25px;
@@ -152,7 +232,8 @@
 	margin-bottom:120px;
 }
 #userDetailContent {
-	box-shadow: 2px 2px 2px rgba(204, 197, 185, 0.5);
+	border:1px solid #dedede;
+	border-radius:0.3rem;
 	background-color: #FFFFFF;
 	color: #252422;
 	margin-top: 50px;
@@ -164,7 +245,7 @@
 }
 #userInfoModify {
 	margin-top:50px;
-	margin-bottom:120px;
+	margin-bottom:110px;
 }
 #userInfoModify button {
 	width:100px;
@@ -186,9 +267,11 @@
 
 
 
-/* */
+/* 
+	비밀번호변경
+*/
 #userPwdMTitle {
-	margin-top:100px;	
+	margin-top:120px;	
 }
 #userPwdMTitle img {
 	width:100px;
@@ -201,6 +284,7 @@
 }
 #userPwdMTitle #userPwdTitleInfo h1 {
 	font-size:40px;
+	color:black;
 }
 #userPwdMTitle #smallH {
 	font-size:25px;
@@ -213,7 +297,8 @@
 	margin-bottom:120px;
 }
 #userPwdContent {
-	box-shadow: 2px 2px 2px rgba(204, 197, 185, 0.5);
+	border:1px solid #dedede;
+	border-radius:0.3rem;
 	background-color: #FFFFFF;
 	color: #252422;
 	margin-top: 50px;
@@ -225,7 +310,7 @@
 }
 #userPwdModify {
 	margin-top:50px;
-	margin-bottom:120px;
+	margin-bottom:110px;
 }
 #userPwdModify button {
 	width:100px;
@@ -251,7 +336,9 @@
 
 
 
-/*  */
+/* 
+	게시글관리
+*/
 .userBoardNav {
 	margin-top:120px;
 	margin-bottom:20px;
@@ -293,12 +380,14 @@
 	text-align:center;
 }
 .boardPage {
-	margin-bottom:120px;
+	margin-bottom:110px;
 }
 
 
 
-/*  */
+/*
+	회원탈퇴  
+*/
 #deleteInfo {
 	box-shadow: 2px 2px 2px rgba(194, 194, 194, 0.5);
 	background:#f0f2f2;
@@ -331,26 +420,35 @@
 }
 
 
-/**/
+
+/*
+	운동 스케줄
+*/
+#userSTitle {
+	color: black;
+	font-size:12pt;
+	text-align:center;
+}
+#userSTitle h1 {
+	font-size:40px;
+	color:black;
+}
+#userSTitle #usLike, #userSTitle #usLike:hover, #userSTitle #usLike:visited, #userSTitle #usLike:link{
+	text-decoration: none;
+	color: #022D41;
+	font-weight:bold;
+}
+#userSTitle #usIn, #userSTitle #usIn:hover, #userSTitle #usIn:visited, #userSTitle #usIn:link{
+	text-decoration: none;
+	color: #ebab36;
+	font-weight:bold;
+}
+
+
+
+
+
 #searchInfo {
 	margin-left:45px;
 	color:#FE424D;
-}
-
-#gymlist {
-	max-height: 360px;
-	overflow: hidden;
-	overflow-y: auto;
-	margin-top: 15px;
-	margin-bottom: 15px;
-}
-
-#gymimg {
-	height: 110px;
-	width: 100%;
-}
-
-#regcount {
-	margin-top: 5px;
-	margin-bottom: 5px;
 }

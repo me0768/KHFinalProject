@@ -203,7 +203,7 @@
 		flushCache="true" statementType="PREPARED" >
 		<![CDATA[
 		update tb_user 
-		set pwd=#{pwd}  
+		set pwd=#{pwd}, TMPPWD_TF=0 
 		where user_no = #{user_no}
 		]]>
 	</update>

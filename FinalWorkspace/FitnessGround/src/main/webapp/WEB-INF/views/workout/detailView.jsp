@@ -290,8 +290,11 @@
 		});
 	}
 	
-	
-
+	$(function (){
+	$('#detailView').on('hidden.bs.modal', function () {
+	     location.reload();
+	});
+	});
 	
 	
 </script>

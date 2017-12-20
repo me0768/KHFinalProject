@@ -63,11 +63,6 @@
 		]]>
 	</select>
 	
-	<select id="selectWorkoutLikeDesList" resultType="list" resultMap="resultCategoryList" parameterType="Health">
-		<![CDATA[
-			 
-		]]>
-	</select>
 	
 	<select id="selectVideoCount" resultType="_int" parameterType="String">
 		select count(*) from tb_video_board where category1='맨몸운동' and category2=#{category2}

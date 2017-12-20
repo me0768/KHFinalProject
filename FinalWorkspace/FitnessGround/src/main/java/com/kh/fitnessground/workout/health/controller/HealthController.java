@@ -247,7 +247,8 @@ public class HealthController {
 		ModelAndView mv = new ModelAndView();
 		ArrayList<Health> list = null;
 		
-			
+		
+		
 		String selectValue = request.getParameter("selectValue");
 		if(health.getCategory2()!=null){
 		
@@ -261,12 +262,31 @@ public class HealthController {
 				list = healthService.selectWorkoutCategoryList(health);
 				
 			}else if(selectValue.equals("좋아요수")){
-				list = healthService.selectWorkoutLikeDesList(health);
-				System.out.println("좋아요수 리스트 : " + list);
+				list = healthService.selectWorkoutCategoryList(health);
+				
+				int countArr[] = new int[list.size()];
+				
+				for(int i=0; i<list.size();i++){
+					countArr[i] = healthService.selectLikeCount(list.get(i).getV_no());
+				}
+				
+				//좋아요수 내림차순 정렬
+				for(int i=0; i<countArr.length; i++){
+					for(int j=i+1; j<countArr.length; j++){
+						if(countArr[i]<countArr[j]){
+							Health tmp = list.get(i);
+							list.set(i, list.get(j));
+							list.set(j,tmp);
+						}
+					}
+				}
+
+				
+			
 			}else if(selectValue.equals("조회수")){
 				
 				list = healthService.selectWorkoutReadCountList(health);
-				System.out.println("조회수 리스트: " + list);
+			
 			}
 		}
 		mv.addObject("list",list);

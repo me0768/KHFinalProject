@@ -130,7 +130,7 @@ public class HealthDao {
 
 	public ArrayList<Health> selectWorkoutLikeDesList(Health health) {
 		// TODO Auto-generated method stub
-		return (ArrayList)sqlSession.selectList("health.selectWorkoutLikeDesList",health);
+		return (ArrayList)sqlSession.selectList("health.selectCategoryList",health);
 	}
 	
 	//좋아요

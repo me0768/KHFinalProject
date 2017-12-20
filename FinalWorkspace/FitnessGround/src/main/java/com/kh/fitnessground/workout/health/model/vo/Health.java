@@ -1,6 +1,6 @@
 package com.kh.fitnessground.workout.health.model.vo;
 
-public class Health {
+public class Health{
 	
 	
 	private int v_no;
@@ -74,6 +74,8 @@ public class Health {
 		return "Health [v_no=" + v_no + ", title=" + title + ", content=" + content + ", category1=" + category1
 				+ ", category2=" + category2 + ", url=" + url + ", readcount=" + readcount + "]";
 	}
+
+	
 	
 	
 }

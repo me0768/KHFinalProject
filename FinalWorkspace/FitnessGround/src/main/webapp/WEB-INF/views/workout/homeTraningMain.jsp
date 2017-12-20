@@ -70,40 +70,31 @@
 				
 				</div>
 				<ul class="tab-list">
-					<li id="tab-li"><a href="javascript: category('맨몸푸시업')">팔굽혀 펴기
-							<input type="hidden" id="sort-category1" value="맨몸푸시업" >
-						</a><span id="count">(${pushUpCount})</span></li>
+					<li id="tab-li"><a href="javascript: category('맨몸푸시업')">팔굽혀 펴기</a><span id="count">(${pushUpCount})</span></li>
+					<li id="vertical-bar"><span>|</span></li>					
+					
+					<li id="tab-li"><a href="javascript: category('맨몸하체')">하체 운동</a><span id="count">(${lowerBodyCount})</span></li>
 					<li id="vertical-bar"><span>|</span></li>
 					
-					<li id="tab-li"><a href="javascript: category('맨몸하체')">하체 운동
-							
-						</a><span id="count">(${lowerBodyCount})</span></li>
-					
+					<li id="tab-li"><a href="javascript: category('맨몸철봉')">철봉 운동</a><span id="count">(${pullUpCount})</span></li>
 					<li id="vertical-bar"><span>|</span></li>
 					
-					<li id="tab-li"><a href="javascript: category('맨몸철봉')">철봉 운동
-							
-						</a><span id="count">(${pullUpCount})</span></li>
+					<li id="tab-li"><a href="javascript: category('맨몸전신')">전신 프로그램</a><span id="count">(${entireBodyCount})</span></li>
 					
 					<li id="vertical-bar"><span>|</span></li>
-					<li id="tab-li"><a href="javascript: category('맨몸전신')">전신 프로그램
-							
-						</a><span id="count">(${entireBodyCount})</span></li>
-					<li id="vertical-bar"><span>|</span></li>
-					<li id="tab-li"><a href="javascript: category('맨몸초보자')">초보자
-							
-						</a><span id="count">(${beginnerCount})</span></li>
+					<li id="tab-li"><a href="javascript: category('맨몸초보자')">초보자</a><span id="count">(${beginnerCount})</span></li>
 				</ul>
 
 			</div>
 			
 			<div class="sort-area">
-				
-				<select name="sort" id="sort" onchange="sortList();">
-					<option value="All" selected="selected">All</option>
-					<option value="좋아요수">좋아요순</option>
-					<option value="조회수">조회수</option>
-				</select>
+				<div id="select-div">
+					<!-- <select name="sort" id="sort" onchange="sortList();">
+						<option value="All" selected="selected">All</option>
+						<option value="좋아요수">좋아요수</option>
+						<option value="조회수">조회수</option>
+					</select> -->
+				</div> 
 				<!-- animated 검색바 -->
 				
 				<div class="srch_wrpr">
@@ -202,11 +193,19 @@
 					</c:forEach>
 				</script>
 	<!-- 동영상 리스트 view --> <!-- 제목으로 검색 리스트 -->
+		
 	<div class="workout-videos">
+		
+		
+		<c:if test="${empty list }">	<!-- 제목 검색 리스트 없을때 -->
+			<div class="col-sm-12 col-md-12 col-lg-12 col-xs-12" id="search-count"> '${keyWord}' 검색 갯수: ${searchCount }</div>
+		</c:if>
+		
 		<c:if test="${!empty list}">
 			<c:if test="${!empty keyWord}">
 				<div class="col-sm-12 col-md-12 col-lg-12 col-xs-12" id="search-count"> '${keyWord}' 검색 갯수 : ${searchCount }</div>
 			</c:if>
+			
 			<c:forEach items="${list}" var="ht" varStatus="st">
 					
 				<div class="video">
@@ -237,6 +236,15 @@ function category(category2){
 	var values = "<input type='hidden' id='selectCate' value=" + category2 + ">"
 	console.log(values);
 	$("#hidecate").html(values);
+	
+	var selectBox = '<select name="sort" id="sort" onchange="sortList();">'+
+		'<option value="All" selected="selected">All</option>' +
+		'<option value="좋아요수">좋아요수</option>'+
+		'<option value="조회수">조회수</option>' +
+	'</select>' 
+	
+	$("#select-div").html(selectBox);
+	
 	
 	//console.log(category);
 	var queryString = { "category1":category1 , "category2": category2 };
@@ -368,7 +376,8 @@ function sortList(){
 	var title;
     var url;
     var content;
-		
+	
+    $("#sort-count").html(selectValue + " 정렬");
 	console.log("selectVale : " + selectValue);
 	console.log("category2 : " + category2 );
 	
@@ -381,9 +390,7 @@ function sortList(){
 		dataType:"json",
 		async:false,
 		success:function(result){
-			console.log("셀렉박스에 따른 에이작스");
-			
-			
+						
 			  for(var i=0;i<result.list.length;i++){
 	        	  (function(title, vid, content){
 		          var no = result.list[i].v_no;

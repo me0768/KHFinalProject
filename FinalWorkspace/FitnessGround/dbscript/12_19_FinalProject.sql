@@ -59,6 +59,9 @@ PROMPT DROPPING TB_QNA TABLE..
 DROP TABLE TB_LIKE CASCADE CONSTRAINTS;
 PROMPT DROPPING TB_LIKE TABLE..
 
+-- 방문자 테이블
+DROP TABLE TB_VISIT;
+PROMPT DROPPING TB_VISIT TABLE..
 
 
 
@@ -409,6 +412,13 @@ COMMENT ON COLUMN TB_PUBLIC_GYM.END_TIME IS '종료 시간';
 --공공시설 테이블 컬럼 속성 변경
 ALTER TABLE "TB_PUBLIC_GYM" MODIFY ("PUBLIC_NAME" NOT NULL ENABLE);
 
+-- 방문자 테이블 생성
+CREATE TABLE TB_VISIT(  
+  V_DATE DATE
+);
+
+COMMENT ON COLUMN TB_VISIT.V_DATE IS '방문자 수';
+
 
 
 ------------- 시퀀스 생성 ----------------
@@ -532,6 +542,12 @@ INSERT INTO TB_USER VALUES(USER_SEQ.NEXTVAL, 'dlrbdus02@naver.com', '$2a$10$Xwj2
 INSERT INTO TB_USER VALUES(USER_SEQ.NEXTVAL, 'vaseline584@naver.com', '$2a$10$wiMg9.PSdH4akf476MvVR.t6iVEY36conMRdJTJohqZtEU9OQyHnO', '또이규연', '또이규연', '010-2122-6374', 0, NULL, 0, NULL, NULL, 0);
 INSERT INTO TB_USER VALUES(USER_SEQ.NEXTVAL, 'vaseline02@naver.com', '$2a$10$s9FRq3HzDIySGlrlbixbXOntOssZNjPDCQuTtmyVxnISRahwohMhO', '사업자이규연', '사업자이규연', '010-6357-2634', 1, NULL, 0, NULL, NULL, 0);
 PROMPT TB_USER 샘플데이터 입력끝!
+
+PROMPT TB_VISIT 샘플데이터 입력중..
+insert into tb_visit values (to_date('10-06-2016', 'MM-dd-yyyy'));
+insert into tb_visit values (to_date('11-07-2017', 'MM-dd-yyyy'));
+insert into tb_visit values (to_date('12-20-2017', 'MM-dd-yyyy'));
+PROMPT TB_VISIT 샘플데이터 입력끝!
 
 
 -- 커뮤니티 샘플 데이터
@@ -7463,3 +7479,4 @@ END;
 COMMIT;
 
 PROMPT FITNESSGORUND 자료입력 끝...
+

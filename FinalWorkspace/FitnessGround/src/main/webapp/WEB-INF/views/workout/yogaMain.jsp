@@ -47,15 +47,15 @@
 		<div class="wrap">
 			<div class="tab-wrap" id="press-cate">
 				<ul class="tab-list">
-					<li id="tab-li"><a href="javascript: category('빈야사')">빈야사요가</a></li>
+					<li id="tab-li"><a href="javascript: category('빈야사')">빈야사</a><span id="count">(${count1})</span></li>
 					<li id="vertical-bar"><span>|</span></li>
-					<li id="tab-li"><a href="javascript: category('다이어트')">다이어트요가</a></li>
+					<li id="tab-li"><a href="javascript: category('다이어트')">다이어트</a><span id="count">(${count2})</span></li>
 					<li id="vertical-bar"><span>|</span></li>
-					<li id="tab-li"><a href="javascript: category('체형교정')">체형교정요가</a></li>
+					<li id="tab-li"><a href="javascript: category('체형교정')">체형교정</a><span id="count">(${count3})</span></li>
 					<li id="vertical-bar"><span>|</span></li>
-					<li id="tab-li"><a href="javascript: category('부위별')">부위별요가</a></li>
+					<li id="tab-li"><a href="javascript: category('부위별')">부위별요가</a><span id="count">(${count4})</span></li>
 					<li id="vertical-bar"><span>|</span></li>
-					<li id="tab-li"><a href="javascript: category('초보자')">초보자를위한 요가</a></li>
+					<li id="tab-li"><a href="javascript: category('초보자')">초보자</a><span id="count">(${count5})</span></li>
 				</ul>
 
 			</div>

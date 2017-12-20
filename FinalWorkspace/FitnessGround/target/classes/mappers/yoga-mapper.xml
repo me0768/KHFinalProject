@@ -92,5 +92,9 @@
  		]]>
  	
  	</update>
+ 	<!-- 카테고리별 동영상개수 -->
+ 	<select id="selectVideoCount" resultType="_int" parameterType="String">
+		select count(*) from tb_video_board where category2=#{category2}
+	</select>
 
 </mapper>

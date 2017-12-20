@@ -42,6 +42,12 @@ public class YogaServiceImpl implements YogaService{
 	public void addReadCount(int v_no, HttpServletRequest request) {
 		yogaDao.addReadCount(v_no);
 	}
+	
+	@Override
+	public int selectVideoCount(String category2) {
+		// 맨몸운동 영상별 카운트
+		return yogaDao.selectVideoCount(category2);
+	}
 
 	@Override
 	public ArrayList<Yoga> selectAllList(){

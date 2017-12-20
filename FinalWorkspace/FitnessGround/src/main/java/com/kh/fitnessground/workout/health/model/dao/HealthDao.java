@@ -117,6 +117,11 @@ public class HealthDao {
 		// TODO Auto-generated method stub
 		return (ArrayList)sqlSession.selectList("health.selectSearchList",keyWord);
 	}
+
+	public int selectSearchVideoCount(String keyWord) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("health.selectSearchVideoCount",keyWord);
+	}
 	
 	//좋아요
 }

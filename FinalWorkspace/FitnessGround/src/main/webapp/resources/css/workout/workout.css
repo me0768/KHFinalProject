@@ -220,20 +220,11 @@ body{
 	width: 300px;
 	height: 30px;
 }
-.srch_btn{
-	height: 35px;
-	width: 35px;
-}
+
 
 
 /* workout_nav상단바 */
 
-.tab-list>li{
-		float:left;
-		margin: 1vh 2vw;
-	}
-	
-	
 .tab-content .item{display:none}
 .tab-content .item.in{display:block}.tab-list.tab-a{margin:29px 0}
 .tab-list.tab-a li{float:left}.tab-list.tab-a li a{display:block;padding-right:60px;text-decoration:none}
@@ -265,7 +256,16 @@ body{
     position: relative;
     top: 5vh;
     left: 14vw;
-}
+	}
+	.srch_btn{
+	height: 35px;
+	width: 35px;
+	}
+	.tab-list>li{
+			float:left;
+			margin: 1vh 2vw;
+	}
+
 	/* 카테고리 */
 	ul.tab li{margin:0;padding:0}ul.tab:after,ul.tab:before{content:" ";display:table}ul.tab:after{clear:both}ul.tab>li{float:left}
 	.tab-list{margin:0;padding:0;list-style:none;font-weight:normal;clear:both;position:relative;*zoom:1}
@@ -341,7 +341,7 @@ body{
 	}
 	.workout-videos{
     position: relative;
-    top: 5vh;
+    top: 13vh;
     left: 14vw;
 }
 	
@@ -372,8 +372,29 @@ ul{
 	position: absolute;
     top: 18vh;
     left: 80vw;
+    height: 30px;
+    width: 30px;
 }
-
+.tab-list>li {
+    float: left;
+    margin: 0 1vw;
+    display: inline-block;
+}
+#press-cate{
+	margin-left: 9vw;
+	
+}
+#title-search {
+    position: relative;
+    top: 13vh;
+    right: 40vw;
+    width: 30vw;
+    height: 4vh;
+    font-size: 0.9rem;
+}
+#count{
+	font-size:0.7rem;
+}
 
 	
 }

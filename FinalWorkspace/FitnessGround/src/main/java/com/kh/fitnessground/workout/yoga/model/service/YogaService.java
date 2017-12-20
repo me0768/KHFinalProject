@@ -21,6 +21,7 @@ public interface YogaService {
 	void addReadCount(int v_no, HttpServletRequest request);
 	ArrayList<Yoga> selectAllList();
 	ArrayList<Yoga> selectWList(Yoga yoga);
+	int selectVideoCount(String string);
 	
 	
 	

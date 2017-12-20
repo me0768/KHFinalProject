@@ -57,7 +57,7 @@ function searchCoordinateToAddress(latlng) {
 		
 		marker = new naver.maps.Marker({
 			map: map,
-			position: location,
+			position: latlng,
 			title: "나의 위치",
 			zIndex: 150		
 	});	
@@ -98,7 +98,16 @@ function searchAddressToCoordinate(address) {
 				'<h4 style="margin-top:5px;">검색 주소 : '+ response.result.userquery
 				+ '</h4><br />', addrType + ' ' + item.address + '<br />',
 				'&nbsp&nbsp&nbsp -> ' + point.x + ',' + point.y, '</div>' ].join('\n'));
+		
 		map.setCenter(point);
+		
+		marker = new naver.maps.Marker({
+			map: map,
+			position: point,
+			title: "나의 위치",
+			zIndex: 150		
+		});	
+		
 		infoWindow.open(map, point); 
 		});
 }
@@ -153,12 +162,12 @@ function initMap() {
 		searchAddressToCoordinate($('#address').val());
 	});
 	
-	new naver.maps.Event.addListener(map, 'zoom_changed', function(){
+	naver.maps.Event.addListener(map, 'zoom_changed', function(){
 		//줌에 변경이 있을경우실행됨
 		setGymlist(map);
 	});
 	  
-	new naver.maps.Event.addListener(map, 'dragend', function(){
+	naver.maps.Event.addListener(map, 'dragend', function(){
 		//화면이동이 끝나면 실행됨 
 		setGymlist(map);
 	});
@@ -172,7 +181,7 @@ function initMap() {
 	// searchAddressToCoordinate('용산구');
 }
 
-// geolocation 코드
+// geolocation 성공 시 실행 함수
 function onSuccessGeolocation(position) {
 	var location = new naver.maps.LatLng(position.coords.latitude,
 			position.coords.longitude);
@@ -180,9 +189,9 @@ function onSuccessGeolocation(position) {
 	
 	marker = new naver.maps.Marker({
 			map: map,
-			position: location,
+			position: center,
 			title: "나의 위치",
-			zIndex: 150		
+			zIndex: 150
 	});	
 	
 	infoWindow.setContent('<div style="padding:20px;"><h5 style="margin-bottom:5px;color:#f00;">Geolocation not supported</h5>'
@@ -210,8 +219,7 @@ function onSuccessGeolocation(position) {
 function onErrorGeolocation() {
 	var center = map.getCenter();
 
-	infoWindow
-			.setContent('<div style="padding:20px;">'
+	infoWindow.setContent('<div style="padding:20px;">'
 					+ '<h5 style="margin-bottom:5px;color:#f00;">Geolocation failed!</h5>'
 					+ "latitude: " + center.lat() + "<br />longitude: "
 					+ center.lng() + '</div>');
@@ -234,34 +242,11 @@ function onLoadGeolocation(){
 										+ "<br />longitude: "
 										+ center.lng()
 										+ '</div>');
-						infoWindow.open(map, center);
+		infoWindow.open(map, center);
 	}
 }
 
-/*
- * function onLoadGym(map, plant_no){ var mapBounds = map.getBounds(); //지도 화면의
- * 좌표 경계 반환 var minLat = mapBounds.minY(); // 최소 위도 최소 y좌표 반환 var maxLat =
- * mapBounds.maxY(); // 최대 위도 최대 y좌표 반환 var minLng = mapBounds.minX(); // 최소 경도
- * 최소 x좌표 반환 var maxLng = mapBounds.maxX(); // 최대 경도 최대 x좌표 반환
- * 
- * var queryString = { "plant_no" : plant_no, "minLat" : minLat, "maxLat" :
- * maxLat, "minLng" : minLng, "maxLng" : matLng, };
- * 
- * $.ajax({ url : "ajax/gymmap.do", data: queryString, type: "post", dataType:
- * "json",
- * 
- * success: function(data){ var jsonStr = JSON.stringify(data); var json =
- * JSON.parse(jsonStr); for(var i in json.gymlist) // 최소 경도 위도 부터 최대 경도 안에 위치한
- * 장소 검색하여 반환 { var marker; var gymlist = json.gymlist[i];
- * 
- * marker = new naver.maps.Marker({ map:map, position: new
- * naver.maps.LatLng(gymlist.lat, gymlist.lng), title: gymlist.gym_name, zIndex:
- * 100 icon: {url: '/이미지 경로', size: new naver.maps.Size(44, 44), origin: new
- * naver.maps.Point(0, 0), anchor: new naver.maps.Point(22, 44) } }); } }); }
- */  
-
 function setGymlist(map){
-	console.clear();
 	console.log(markers);
 	for (var i = 0, ii = this.markers.length; i < ii; i++) {
 		this.markers[i].setMap(null);
@@ -293,18 +278,21 @@ function onLoadPublic(map){
 		success:function(data){
 			var jsonStr = JSON.stringify(data);
 			var json=JSON.parse(jsonStr);
-			
-			console.log(data);
-			
+			console.log(data.publiclist);
+			console.log(data.publiclist.lat);
+			console.log(data.publiclist.lng);
+			var marker;
+			var infoWindow;
 			for(var i in json.publiclist)
 			{
-				var marker;
+				
 				marker = new naver.maps.Marker({
 					map: map,
 					position: new naver.maps.LatLng(json.publiclist[i].lat, json.publiclist[i].lng),
 					title: json.publiclist[i].public_name,
 					zIndex: 150,
 					icon:{
+						url: "/fitnessground/resources/images/public_marker.png",
 						size : new naver.maps.Size(44, 44),
 						origin : new naver.maps.Point(0, 0),
 						anchor : new naver.maps.Point(22, 44)
@@ -318,12 +306,10 @@ function onLoadPublic(map){
 								json.publiclist[i].homepage + "</p>"+
 								"</div>"].join("");
 			
-			var infoWindow = new naver.maps.InfoWindow({
+			infoWindow = new naver.maps.InfoWindow({
 				anchorSkew: true,
 				content: contentString
 			});		
-			
-			console.log(marker);
 			
 			markers.push(marker);
 			infoWindows.push(infoWindow);	
@@ -331,7 +317,7 @@ function onLoadPublic(map){
 			
 			for(var i = 0, ii=markers.length; i < ii; i++)
 			{
-				new naver.maps.Event.addListener(markers[i], 'click', getClickHandler(i));
+				naver.maps.Event.addListener(markers[i], 'click', getClickHandler(i));
 			}
 			
 			// map.setCenter(location);
@@ -345,19 +331,19 @@ function onLoadPublic(map){
 
 function getClickHandler(seq) { // 클릭 이벤트 핸들러 추가하는 함수
 	return function(e) {
-		var marker = markers[seq], infoWindow = infoWindows[seq];
+		var marker = markers[seq];
+		var infoWindow = infoWindows[seq];
 
 		if (infoWindow.getMap()) {
 			infoWindow.close();
 		} else {
 			infoWindow.open(map, marker);
-	
 		}
-	}
+	};
 }
 
 $(window).on("load", function() {
 	initMap();
-	//setGymlist(map);
+	onLoadGeolocation();
 	onLoadPublic(map);
 });

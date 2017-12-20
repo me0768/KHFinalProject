@@ -55,11 +55,10 @@ public class GymController {
 	
 	// 헬스장 이미지 등록
 	@RequestMapping(value="/imagereg.do", method=RequestMethod.POST)
-	public ModelAndView multiImageUpload(Gym gym, Map<String, Object> map, HttpServletRequest request, HttpServletResponse response) throws Exception{		
+	public ModelAndView multiImageUpload(Gym gym, Map<String, Object> map, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		List<Map<String, Object>> list = gymImageUtils.parseInsertFileInfo(request);
 		String originalFileName = "";
 		String renameFileName = "";
-		
 		for(int i = 0; i < list.size()-1; i++) {
 			originalFileName += list.get(i).get("original_fileName")+",";
 			renameFileName += list.get(i).get("rename_fileName")+",";
@@ -70,8 +69,8 @@ public class GymController {
 			gym.setOriginal_image(originalFileName);
 			gym.setRename_image(renameFileName);
 		}
+		System.out.println(gym);
 		gymService.RegisterGymImage(gym);
-		
 		ModelAndView mv = new ModelAndView();
 		Gym g = gymService.selectfromImg(gym);
 		mv.addObject("gym", g);

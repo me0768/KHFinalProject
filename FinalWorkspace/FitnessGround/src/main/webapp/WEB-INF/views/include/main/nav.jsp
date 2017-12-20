@@ -43,7 +43,12 @@
 					</c:if>
 					</div>
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-					<li><a href="mypage.do?userno=${sessionScope.user.user_no}">마이페이지</a></li>
+					<c:if test="${ sessionScope.user.user_level == 2 }">
+						<li><a href="adminMain.do">관리자페이지</a></li>
+					</c:if>
+					<c:if test="${ sessionScope.user.user_level != 2 }">
+						<li><a href="mypage.do?userno=${sessionScope.user.user_no}">마이페이지</a></li>
+					</c:if>
 					<c:if test="${ sessionScope.user.user_level == 1 }">
 						<li><a href="moveregistergym.do">헬스장등록</a></li>
 					</c:if>

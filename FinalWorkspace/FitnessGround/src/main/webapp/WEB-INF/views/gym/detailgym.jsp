@@ -64,6 +64,7 @@
 		background-color: #ffffff;
 		border-top-left-radius: 10px;
 		border-top-right-radius: 10px;
+		margin-top: 20px;
 	}
 	
 	#contents {
@@ -136,6 +137,14 @@
 		background: #ddd;
 		color: #999;
 	}
+	
+	#adminback{
+		position: absolute;
+		background: rbga(0,0,0,0);
+		top: 5vh;
+		left: 5vw;
+		z-index: 10;
+	}
 </style>
 
 <c:import url="../include/common/headend.jsp" />
@@ -155,6 +164,13 @@
 			<c:import url="../user/register.jsp" />
 		</div>
 	</div>
+	
+	<c:if test="${ sessionScope.user.user_level == 2 }">
+		<div id="adminback">
+			<button class="btn btn-info" onclick="adminpage();">관리자 헬스장 목록으로 이동</button>
+		</div>
+	</c:if>
+	
 	<div class="container" id="background">
 		<nav id="navbar-example" class="navbar navbar-default navbar-static" role="navigation">
 			<div class="navbar form-control" id="anchor">

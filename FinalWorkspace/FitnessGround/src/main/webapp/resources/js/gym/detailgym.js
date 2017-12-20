@@ -198,3 +198,7 @@ $(document).ready(function(){
 					});
 	
 	naver.maps.onJSContentLoaded = initGeocoder;
+	
+	function adminpage(){
+		location.href="adminbusinessRequestlist.do";
+	}

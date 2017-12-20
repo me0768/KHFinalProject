@@ -266,7 +266,7 @@
 	
 	<select id="selectfromImg" resultType="Gym" parameterType="Gym">
 		<![CDATA[
-			select *
+			select gym_no
 			from tb_gym
 			where rename_image = #{rename_image}
 		]]>

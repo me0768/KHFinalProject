@@ -88,12 +88,12 @@
 		<id property="approval_state" column="approval_state"/>
 	</resultMap>
 	
-	<resultMap id="resultNaverMap" type="NaverMap">
+	<!-- <resultMap id="resultNaverMap" type="NaverMap">
 		<result property="minLat" column="minLat"/>
 		<result property="maxLat" column="maxLat"/>
 		<result property="minLng" column="minLng"/>
 		<result property="maxLat" column="maxLng"/>
-	</resultMap>
+	</resultMap> -->
 	
 	<select id="businessRequest" parameterType="_int" resultMap="resultBusinessRequest" resultType="list">
 		<![CDATA[ 

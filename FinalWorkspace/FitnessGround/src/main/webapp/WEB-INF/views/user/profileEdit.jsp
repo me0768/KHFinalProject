@@ -68,11 +68,6 @@
 <script type="text/javascript">
 	function profileEdit() {
 		$("#profileEdit").show();
-		$("#login").hide();
-		$("#register").hide();
-		$("#detectidpwd").hide();
-		$("#findidname").val('');
-		$("#findidphone").val('');
 		$("#profileEdit").modal();
 	}
 </script>

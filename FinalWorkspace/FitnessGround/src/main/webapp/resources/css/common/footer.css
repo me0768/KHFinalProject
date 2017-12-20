@@ -1,0 +1,43 @@
+@CHARSET "UTF-8";
+
+p a:link, p a:visited, p a:active {
+	text-decoration: none;
+	color:white;
+}
+p a:hover {
+	text-decoration: none;
+	color:#ebab36;
+}
+
+#footerQna {
+	padding-top:30px;
+	margin-bottom:30px;
+	padding-bottom:20px;
+	/* border-bottom:1px solid rgba(128, 128, 128, 0.2); */
+}
+#footerQnaTitle {
+	padding-top:10%;
+	padding-bottom:20px;
+}
+#footerQnaTitle table th {
+	color:white;
+	font-size:30pt;
+	text-align:left;
+}
+#footerQnaTitle table td {
+	color:#ebebeb;
+	text-align:left;
+}
+#footerQnaContent table th {
+	color:#ececec;
+	font-weight:bold;
+}
+#footerQnaContent table td {
+	align:center !important;
+}
+#footerQnaContent table td input, #footerQnaContent table td textarea, #footerQnaContent table button {
+	width:100%;
+	background:#022D41;
+	color:white;
+	border:1px solid white;
+}

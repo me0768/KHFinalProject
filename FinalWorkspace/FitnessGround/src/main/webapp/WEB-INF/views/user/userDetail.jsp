@@ -13,11 +13,36 @@
 			$('#myPageBar nav ul #uDel').removeClass('activeMenu');
 			$('#myPageBar nav ul #uDetail').addClass('activeMenu');	
 		});
-	
+		
+		function phoneHyphen() {
+			var phone = $("#phone").val();
+			if(phone.length == 3){
+				phone += "-";
+				$("input[name='phone']").val(phone);
+			}else if(phone.length == 8){
+				phone += "-";
+				$("input[name='phone']").val(phone);
+			} else if (phone.length > 13){
+				phone = phone.substr(0,13);
+				$("input[name='phone']").val(phone);
+			}
+		}
+		
 		function pwdCk(){
 			var result = false;
 			var pwd = $('input[name="userpwd"]').val();
 			var user_no = $('input[name="user_no"]').val();
+			var phone = $("#phone").val();
+			if(phone.length!=13) {
+				alert("전화번호를 확인해주세요.");
+				return false;
+			}
+			var nickname = $('#nickname').val();
+			if(nickname=="") {
+				alert("닉네임을 입력해주세요.");
+				return false;
+			}
+			
 			$.ajax({
 				url : "pwdCk.do",
 				dataType : "json",
@@ -94,7 +119,9 @@
 				<a href="javascript:profileEdit()" class="btn btn-default" style="margin-top:30px;">이미지 변경</a>
 			</div>
 			<div class="col-md-8" id="profileContent">
-				<form id="userDetailContentForm" action="" method="post"><table>
+				<form id="userDetailContentForm" action="" method="post">
+				<input type="hidden" value="${sessionScope.user.user_no}" name="user_no">
+				<table>
 					<tr>
 						<th><i class="fa fa-envelope" aria-hidden="true" style="margin-right:15px; width:20px;"></i> E-mail</th>
 						<td><input type="email" value="${sessionScope.user.email}" name="email" class="form-control" readonly></td>
@@ -105,15 +132,15 @@
 					</tr>
 					<tr>
 						<th><i class="fa fa-user" aria-hidden="true" style="margin-right:15px; width:20px;"></i> 이름</th>
-						<td><input type="text" value="${sessionScope.user.name}" name="name" class="form-control"></td>
+						<td><input type="text" value="${sessionScope.user.name}" name="name" class="form-control" readonly></td>
 					</tr>
 					<tr>
 						<th><i class="fa fa-user-secret" aria-hidden="true" style="margin-right:15px; width:20px;"></i> 닉네임</th>
-						<td><input type="text" value="${sessionScope.user.nickname}" name="nickname" class="form-control"></td>
+						<td><input type="text" value="${sessionScope.user.nickname}" id="nickname" name="nickname" class="form-control"></td>
 					</tr>					
 					<tr>
 						<th><i class="fa fa-phone-square" aria-hidden="true" style="margin-right:15px; width:20px;"></i> Phone</th>
-						<td><input type="tel" value="${sessionScope.user.phone}" name="phone" class="form-control"></td>
+						<td><input type="text" value="${sessionScope.user.phone}" id="phone" name="phone" class="form-control" oninput="phoneHyphen();"></td>
 					</tr>
 					<tr><th colspan="2"><button type="submit" class="btn btn-default" style="width:100%;" onclick="return pwdCk();">수정</button></th></tr>
 				</table></form>

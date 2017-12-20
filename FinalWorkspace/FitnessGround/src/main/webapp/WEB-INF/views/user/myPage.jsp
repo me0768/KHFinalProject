@@ -92,7 +92,7 @@
 				<c:forEach items="${yesterday}" var="s" varStatus="st">
 				<div>
 					<c:if test="${null eq s.content}">
-						<a href="javascript:detailView('${s.v_no}', '${s.category1}', '${s.category2}');">${s.title}</a>
+						<a href="javascript:detailView('${s.v_no}', '${s.category1}', '${s.category2}', '1');">${s.title}</a>
 					</c:if>
 					<c:if test="${null ne s.content}">
 						<a href="javascript:userScheduleDetail('${s.s_no}', '${s.content}', '1');">${s.content}</a>
@@ -121,7 +121,7 @@
 				<c:forEach items="${today}" var="s" varStatus="st">
 				<div>
 					<c:if test="${null eq s.content}">
-						<a href="javascript:detailView('${s.v_no}', '${s.category1}', '${s.category2}');">${s.title}</a>
+						<a href="javascript:detailView('${s.v_no}', '${s.category1}', '${s.category2}', '1');">${s.title}</a>
 					</c:if>
 					<c:if test="${null ne s.content}">
 						<a href="javascript:userScheduleDetail('${s.s_no}', '${s.content}', '1');">${s.content}</a>

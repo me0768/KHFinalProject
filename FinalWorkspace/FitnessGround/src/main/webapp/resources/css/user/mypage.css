@@ -301,77 +301,8 @@ body {
 #uDetailContent table td {
 	padding-left:20px;
 	padding-right:50px;
-}
-	
-	
-	
-	
-	
-	
-	
-	
-
-
-
-#userDetailTitle {
-	color: black;
-	margin-top:120px;	
-}
-#userDetailTitle img {
-	width:100px;
-	height:100px;
-	background:#cecece;
-}
-#userDetailTitle #userDetailTitleInfo {
-	margin-top:12px;
-	font-size:12pt;
-}
-#userDetailTitle #userDetailTitleInfo h1 {
-	font-size:40px;
-	color:black;
-}
-#userDetailTitle #smallH {
-	font-size:25px;
-}
-#userDetailTitle #smallP {
-	font-size:9pt;
-	margin-left:5px;
-}
-#userDetailContentForm {
-	margin-bottom:120px;
-}
-#userDetailContent {
-	border:1px solid #dedede;
-	border-radius:0.3rem;
-	background-color: #FFFFFF;
-	color: #252422;
-	margin-top: 50px;
-	padding:40px;
-	padding-bottom:60px;
-}
-#userDetailContent table tr td {
 	padding-top:20px;
-}
-#userInfoModify {
-	margin-top:50px;
-	margin-bottom:110px;
-}
-#userInfoModify button {
-	width:100px;
-}
-#userDetailContentSmall {
-	box-shadow: 2px 2px 2px rgba(204, 197, 185, 0.5);
-	background-color: #FFFFFF;
-	color: #252422;
-	margin-top:20px;
-	padding:20px;
-}
-#userInfoModifySmall {
-	margin-top:30px;
-	margin-bottom:120px;
-}
-#userInfoModifySmall button {
-	width:100%;
+	padding-bottom:20px;
 }
 
 

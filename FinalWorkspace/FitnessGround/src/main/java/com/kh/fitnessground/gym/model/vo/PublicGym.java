@@ -5,8 +5,8 @@ public class PublicGym implements java.io.Serializable{
 	private String category;
 	private String category_public;
 	private String location;
-	private int lng;
-	private int lat;
+	private double lng;
+	private double lat;
 	private String tel;
 	private String homepage;
 	private String op_time;
@@ -14,7 +14,7 @@ public class PublicGym implements java.io.Serializable{
 	
 	public PublicGym(){}
 
-	public PublicGym(String public_name, String category, String category_public, String location, int lng, int lat,
+	public PublicGym(String public_name, String category, String category_public, String location, double lng, double lat,
 			String tel, String homepage, String op_time, String end_time) {
 		super();
 		this.public_name = public_name;
@@ -61,19 +61,19 @@ public class PublicGym implements java.io.Serializable{
 		this.location = location;
 	}
 
-	public int getLng() {
+	public double getLng() {
 		return lng;
 	}
 
-	public void setLng(int lng) {
+	public void setLng(double lng) {
 		this.lng = lng;
 	}
 
-	public int getLat() {
+	public double getLat() {
 		return lat;
 	}
 
-	public void setLat(int lat) {
+	public void setLat(double lat) {
 		this.lat = lat;
 	}
 

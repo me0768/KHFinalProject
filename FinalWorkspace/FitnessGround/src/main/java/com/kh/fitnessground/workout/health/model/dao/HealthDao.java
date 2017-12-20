@@ -122,6 +122,16 @@ public class HealthDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("health.selectSearchVideoCount",keyWord);
 	}
+
+	public ArrayList<Health> selectWorkoutReadCountList(Health health) {
+		// TODO Auto-generated method stub
+		return (ArrayList)sqlSession.selectList("health.selectWorkoutReadCountList",health);
+	}
+
+	public ArrayList<Health> selectWorkoutLikeDesList(Health health) {
+		// TODO Auto-generated method stub
+		return (ArrayList)sqlSession.selectList("health.selectWorkoutLikeDesList",health);
+	}
 	
 	//좋아요
 }

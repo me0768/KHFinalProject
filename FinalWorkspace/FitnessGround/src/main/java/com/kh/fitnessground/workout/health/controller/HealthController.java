@@ -242,6 +242,37 @@ public class HealthController {
 		return mv;
 	}
 	
+	@RequestMapping(value="/sortList.do", method=RequestMethod.POST)
+	public ModelAndView sortList(HttpServletRequest request,Health health){
+		ModelAndView mv = new ModelAndView();
+		ArrayList<Health> list = null;
+		
+			
+		String selectValue = request.getParameter("selectValue");
+		if(health.getCategory2()!=null){
+		
+			System.out.println("category1:" + health.getCategory1());
+			System.out.println("category2:" + health.getCategory2());
+			System.out.println("선택 값 : "+selectValue);
+			/*ArrayList<Health> sortList = healthService.selectAllList();*/
+		
+			
+			if(selectValue.equals("All")){
+				list = healthService.selectWorkoutCategoryList(health);
+				
+			}else if(selectValue.equals("좋아요수")){
+				list = healthService.selectWorkoutLikeDesList(health);
+				System.out.println("좋아요수 리스트 : " + list);
+			}else if(selectValue.equals("조회수")){
+				
+				list = healthService.selectWorkoutReadCountList(health);
+				System.out.println("조회수 리스트: " + list);
+			}
+		}
+		mv.addObject("list",list);
+		mv.setViewName("jsonView");
+		return mv;
+	}
 	
 		
 	

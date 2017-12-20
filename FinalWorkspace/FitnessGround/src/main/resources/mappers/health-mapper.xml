@@ -52,8 +52,20 @@
 			select v_no, title, content, category1, category2, url, readcount from 
 			(select rownum, v_no, title, content, category1, category2, url, readcount 
 			from (select * from tb_video_board where category1 = '맨몸운동' order by readcount desc) 
-			where rownum <6)
+			where rownum <9)
 
+		]]>
+	</select>
+	
+	<select id="selectWorkoutReadCountList" resultType="list" resultMap="resultCategoryList" parameterType="Health">
+		<![CDATA[
+			select * from tb_video_board where category1=#{category1} and category2=#{category2} order by readcount desc
+		]]>
+	</select>
+	
+	<select id="selectWorkoutLikeDesList" resultType="list" resultMap="resultCategoryList" parameterType="Health">
+		<![CDATA[
+			 
 		]]>
 	</select>
 	

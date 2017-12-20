@@ -142,6 +142,18 @@ public class HealthServiceImpl implements HealthService{
 		// TODO Auto-generated method stub
 		return healthDao.selectSearchVideoCount(keyWord);
 	}
+
+	@Override
+	public ArrayList<Health> selectWorkoutReadCountList(Health health) {
+		// TODO Auto-generated method stub
+		return healthDao.selectWorkoutReadCountList(health);
+	}
+
+	@Override
+	public ArrayList<Health> selectWorkoutLikeDesList(Health health) {
+		// TODO Auto-generated method stub
+		return healthDao.selectWorkoutLikeDesList(health);
+	}
 	
 		
 	

@@ -20,16 +20,39 @@
   	div#community_main{
   	padding-left:100pt;
   	}
-	 div#community_div{
+	div#community_div_meeting{
 	float:left;
 	padding-left:100pt;
 	font-weight:bold;
-	font-size:9pt;
+	font-size:8pt;
+	width:30%;
+	}
+	div#community_div_riview{
+	float:left;
+	padding-left:30pt;
+	font-weight:bold;
+	font-size:8pt;
+	width:30%;
+	}
+	div#community_div_qna{
+	float:left;
+	padding-left:30pt;
+	font-weight:bold;
+	font-size:8pt;
+	width:30%;
 	}
 	button#community_detail{
+	position:relative;
+	left:30%;
+	background-color:#11A6B7;
+	color:white;
 	font-size:1pt;
-	
+	width:50px;
+	heigth:5px;
 	} 
+	table#detail_table{
+	text-overflow:ellipsis;
+	}
   </style>
 	
 	
@@ -65,38 +88,69 @@ function qnaPage(){
 <div id="community_main">
 <h1 id=community_title>커뮤니티</h1>
 <br><br><br>
-<div id="community_div">
-<h4 id="community_h4">운동같이해요 &nbsp;&nbsp;<button id="community_detail"onclick="meetingPage();">더보기</button></h4>
+<div id="community_div_meeting">
+<h4 id="community_h4">운동같이해요<button class="btn btn-default" id="community_detail"onclick="meetingPage();">더보기</button></h4>
 <c:forEach items="${mlist}" var="mb">
-<table>
-
-<tr><td>${mb.name}</td> <td><a href="meetingDetail.do?no=${mb.mb_no}">${mb.title}</a></td><td>${mb.upload_date}</td></tr><hr>
+<table id="detail_table">
+		<colgroup>
+			<col width="25%"/>
+			<col width="50%"/>
+			<col width="25%"/>
+		</colgroup>
+	<tr>
+		<td>${mb.name}</td> 
+		<td><a href="meetingDetail.do?no=${mb.mb_no}">${mb.title}</a></td>
+		<td>${mb.upload_date}</td>
+	</tr><hr>
 </table>
  </c:forEach>
 
 <hr>
 </div>
-<div id="community_div">
-<h4 id="community_h4">리뷰&nbsp;&nbsp;<button id="community_detail" onclick="reviewPage();">더보기</button></h4>
+<div id="community_div_riview">
+<h4 id="community_h4">리뷰<button class="btn btn-default" id="community_detail" onclick="reviewPage();">더보기</button></h4>
 <c:forEach items="${rlist }" var="rb">
 	
-<table>
-<tr><td>${rb.name}</td> <td><a href="reviewDetail.do?no=${rb.cb_no}">${rb.title}</a></td><td>${rb.upload_date}</td></tr><hr>
+<table id="detail_table">
+		<colgroup>
+			<col width="25%"/>
+			<col width="50%"/>
+			<col width="25%"/>
+		</colgroup>
+	<tr>
+		<td>${rb.name}</td> 
+		<td><a href="reviewDetail.do?no=${rb.cb_no}">${rb.title}</a></td>
+		<td>${rb.upload_date}</td>
+	</tr><hr>
 </table>
-  
+
  </c:forEach>
 
 <hr>
 </div>
 
-<div id="community_div">
-<h4 id="community_h4">Q & A&nbsp;&nbsp;<button id="community_detail" onclick="qnaPage();">더보기</button></h4>
+<div id="community_div_qna">
+<h4 id="community_h4">Q & A<button class="btn btn-default" id="community_detail" onclick="qnaPage();">더보기</button></h4>
 <c:forEach items="${qlist }" var="qb">
 
-<table>
-<tr><td>${qb.name}</td> <td><a href="qnaDetail.do?no=${qb.cb_no}">${qb.title}</a></td><td>${qb.upload_date}</td></tr><hr>
+<table id="detail_table">
+
+	
+		<colgroup>
+			<col width="25%"/>
+			<col width="50%"/>
+			<col width="25%"/>
+		</colgroup>
+	<tr>
+		<td>${qb.name}</td> 
+		<td><a href="qnaDetail.do?no=${qb.cb_no}">${qb.title}</a></td>
+		<td>${qb.upload_date}</td>
+
+		
+	</tr><hr>
 
 </table>
+
  </c:forEach>
 <hr>
 </div>

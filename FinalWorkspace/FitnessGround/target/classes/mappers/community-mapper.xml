@@ -59,7 +59,7 @@
 	
 	<!-- 전체리스트 -->
 	<select id="meetingView" resultType="list" resultMap="MeetingResult">
-		<![CDATA[select * from (select mb_no,name, title, upload_date from tb_meeting_board a join tb_user b on (a.user_no = b.user_no)where 5 >= rownum order by mb_no desc)]]>
+		<![CDATA[select * from (select mb_no,name, title, upload_date from tb_meeting_board a join tb_user b on (a.user_no = b.user_no)where 5 >= rownum and title = substr(title,0,15) order by mb_no desc)]]>
 	</select>
 	
 	<select id="reviewView" resultType="list" resultMap="CommunityResult">
@@ -116,6 +116,14 @@
 			select count(*) from tb_meeting_board
 		]]>
 	</select>
+	
+	<!-- 게시글 내용 개수 -->
+	<select id="getMeetingContentListCount" resultType="_int" parameterType="_int">
+		<![CDATA[
+			select count(*) from tb_meeting_board where content like #{content}
+		]]>
+	</select>
+
 	<!-- 운동같이해요디테일 -->
 	<select id="selectDetail" resultType="Meeting" resultMap="MeetingResult">
 		<![CDATA[select a.*, b.name from tb_meeting_board a join tb_user b on(a.user_no = b.user_no) where mb_no=#{mb_no}]]>
@@ -307,13 +315,12 @@
 		]]>
 	</select>
 	
-	<!-- 게시글 개수 -->
+	<!-- 게시글 총 갯수-->
 	<select id="getReviewListCount" resultType="_int" parameterType="_int">
 		<![CDATA[
 			select count(*) from tb_com_board where board_property =0
 		]]>
 	</select>
-
 	
 	<!-- 리뷰게시판 디테일 -->
 	<select id="reviewDetail" resultType="Community" resultMap="CommunityResult">

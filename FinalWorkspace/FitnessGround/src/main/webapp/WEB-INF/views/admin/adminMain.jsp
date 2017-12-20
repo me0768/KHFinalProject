@@ -10,6 +10,14 @@
 	
 <c:import url="common/headend.jsp" />
 
+    <c:if test="${ sessionScope.user == null }">
+		<script type="text/javascript">
+			$(function (){
+				alert("로그인이 필요합니다.");
+				location.href="main.do";
+			});
+		</script>
+	</c:if>
 
 <c:import url="common/nav.jsp" />
 
@@ -30,7 +38,7 @@
 						</div>
 						<div class="mr-5">${message }개의 새로운 문의</div>
 					</div>
-					<a class="card-footer text-white clearfix small z-1" href="adminQnABoard.do">
+					<a class="card-footer text-white clearfix small z-1" href="adminQuestionBoard.do">
 						<span class="float-left">View Details</span> <span
 						class="float-right"> <i class="fa fa-angle-right"></i>
 					</span>
@@ -43,7 +51,7 @@
 						<div class="card-body-icon">
 							<i class="fa fa-fw fa-list"></i>
 						</div>
-						<div class="mr-5">${request }개의 헬스장 등록요청</div>
+						<div class="mr-5">${gymrequest }개의 헬스장 등록요청</div>
 					</div>
 					<a class="card-footer text-white clearfix small z-1" href="adminbusinessRequestlist.do">
 						<span class="float-left">View Details</span> <span

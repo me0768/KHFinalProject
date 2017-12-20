@@ -30,7 +30,7 @@ public class BusinessRequest {
 	
 	
 	public BusinessRequest(int gym_no, String gym_name, String location, int user_no, int approval_state, String email,
-			String name, int user_level, int user_state, Date register_date, String category, String rename_image, String op_time, String tel, String phone, String description ) {
+			String name, int user_level, int user_state, Date register_date, String category, String rename_image, String op_time, String tel, String phone, String price, String description ) {
 		super();
 		this.gym_no = gym_no;
 		this.gym_name = gym_name;

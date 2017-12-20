@@ -2,6 +2,7 @@ package com.kh.fitnessground.admin.model.service;
 
 import java.util.ArrayList;
 
+import com.kh.fitnessground.admin.model.vo.Visit;
 import com.kh.fitnessground.community.model.vo.CommunityBoard;
 import com.kh.fitnessground.community.model.vo.MeetingBoard;
 import com.kh.fitnessground.gym.model.vo.GymQnABoard;
@@ -88,6 +89,15 @@ public interface AdminService {
 
 
 	ArrayList<Health> HealthList();
+
+	int visitCount();
+
+
+	int getTotalCount(Visit visit);
+
+	int getTodayCount(Visit visit);
+
+
 
 
 

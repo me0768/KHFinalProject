@@ -7,6 +7,7 @@ import java.util.Locale;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSessionEvent;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.codec.multipart.SynchronossPartHttpMessageReader;
@@ -19,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.fitnessground.admin.model.service.AdminService;
 import com.kh.fitnessground.admin.model.vo.BusinessRequest;
+import com.kh.fitnessground.admin.model.vo.Visit;
 import com.kh.fitnessground.community.model.service.CommunityBoardService;
 import com.kh.fitnessground.community.model.vo.CommunityBoard;
 import com.kh.fitnessground.community.model.vo.MeetingBoard;
@@ -49,27 +51,45 @@ public class AdminController {
 	@Autowired
 	private AdminService adminService;
 
+	
+	
 	// 관리자 메인뷰 이동
 	@RequestMapping(value = "adminMain.do")
 	public ModelAndView adminmain(User user, BusinessRequest businessRequest,
 			@RequestParam(value = "level", required = false, defaultValue = "0") int level, GymQnABoard gymqnaboard,
-			@RequestParam(value = "receiver", required = false, defaultValue = "1") int receiver) {
-
+			@RequestParam(value = "receiver", required = false, defaultValue = "1") int receiver, HttpServletRequest request, HttpServletResponse response, Visit visit) {
+		HttpSession session = request.getSession();	
 		System.out.println("adminMain.do실행됨...");
 		// 리퀘스트 파람 -> 자동으로 값을 받아옴
 		// 근데 받아올 데이터가 없으면 required=false -> 꼭필요하지 않다 라는 뜻
 		// defaultValue="0" -> 기본값설정 / 그러니깐 값이 없을때는 0으로 한다 라는뜻
 		ModelAndView mv = new ModelAndView("admin/adminMain");
-		int request = adminService.RequestCount(level);// 헬스장등록요청 갯수 승인상태가 0 인것만/ (미승인=0/승인=1)
+		int gymrequest = adminService.RequestCount(level);// 헬스장등록요청 갯수 승인상태가 0 인것만/ (미승인=0/승인=1)
 		int message = adminService.Message(receiver);// 관리자에게 온 문의 갯수 리시버가 1(관리자user_no) 이고, 응답상태가 0 인것만(미응답=0/응답=1)
-
+		
 		ArrayList<User> gymRlist = adminService.GymRequest(level);// 헬스장 요청 정보 최신순 3개만리스트로 불러오기 승인상태 0인것만
 		ArrayList<GymQnABoard> qnalist = adminService.GymQnABoard(receiver);// 메세지 요청 최신 3개 미응답이고 리시버가 1인 것만 리스트로 불러오기
 
-		mv.addObject("request", request);
+		//방문자수 
+			
+		/*// 총 방문자 수
+		int total = adminService.getTotalCount(visit);
+
+		// 오늘 방문자 수
+		int today = adminService.getTodayCount(visit);
+		System.out.println("총 방문자 수 : " +total);
+		System.out.println("오늘 방문자 수 : " +today);
+		
+
+		
+		session.setAttribute("total", total);
+		session.setAttribute("today", today);*/
+		
+		mv.addObject("gymrequest", gymrequest);
 		mv.addObject("message", message);
 		mv.addObject("gymRlist", gymRlist);
 		mv.addObject("qnalist", qnalist);
+		
 		/*System.out.println("등록요청 수 :" + request);
 		System.out.println("등록요청gymRlist : " + gymRlist);
 		System.out.println("문의 수 :" + message);
@@ -87,7 +107,7 @@ public class AdminController {
 
 		ModelAndView mv = new ModelAndView("admin/charts");
 
-		int request = adminService.RequestCount(level);
+		int gymrequest = adminService.RequestCount(level);
 		int message = adminService.Message(receiver);
 
 		ArrayList<User> gymRlist = adminService.GymRequest(level);
@@ -95,7 +115,7 @@ public class AdminController {
 		ArrayList<Health> hlist = adminService.HealthList();
 
 		System.out.println("조회수별 헬스 조회 : "+hlist);
-		mv.addObject("request", request);
+		mv.addObject("gymrequest", gymrequest);
 		mv.addObject("message", message);
 		mv.addObject("gymRlist", gymRlist);
 		mv.addObject("qnalist", qnalist);
@@ -123,14 +143,14 @@ public class AdminController {
 
 		ModelAndView mv = new ModelAndView("admin/userlist/userlist");
 
-		int request = adminService.RequestCount(level);// 헬스장등록요청 갯수 승인상태가 0 인것만 (미승인=0/승인=1)
+		int gymrequest = adminService.RequestCount(level);// 헬스장등록요청 갯수 승인상태가 0 인것만 (미승인=0/승인=1)
 		int message = adminService.Message(receiver);// 관리자에게 온 문의 갯수 리시버가 1(관리자user_no) 이고, 응답 상태가 0 인것만(미응답=0/응답=1)
 
 		ArrayList<User> gymRlist = adminService.GymRequest(level);// 헬스장 요청 정보 최신순 3개만리스트로 불러오기 승인상태 0인것만
 		ArrayList<GymQnABoard> qnalist = adminService.GymQnABoard(receiver);//메세지 요청 최신3개 미응답이고 리시버가 1인 것만 리스트로 불러오기																		
 		ArrayList<User> list = adminService.userlist(level);
 		System.out.println("회원 정보 : " +list);
-		mv.addObject("request", request);
+		mv.addObject("gymrequest", gymrequest);
 		mv.addObject("message", message);
 		mv.addObject("gymRlist", gymRlist);
 		mv.addObject("qnalist", qnalist);
@@ -147,14 +167,14 @@ public class AdminController {
 
 		ModelAndView mv = new ModelAndView("admin/userlist/userbusinesslist");
 
-		int request = adminService.RequestCount(level);
+		int gymrequest = adminService.RequestCount(level);
 		int message = adminService.Message(receiver);
 
 		ArrayList<User> gymRlist = adminService.GymRequest(level);
 		ArrayList<GymQnABoard> qnalist = adminService.GymQnABoard(receiver);
 		ArrayList<User> list = adminService.businesslist(receiver);
 
-		mv.addObject("request", request);
+		mv.addObject("gymrequest", gymrequest);
 		mv.addObject("message", message);
 		mv.addObject("gymRlist", gymRlist);
 		mv.addObject("qnalist", qnalist);
@@ -171,14 +191,14 @@ public class AdminController {
 
 		ModelAndView mv = new ModelAndView("admin/userlist/userbusinessRequestlist");
 
-		int request = adminService.RequestCount(level);
+		int gymrequest = adminService.RequestCount(level);
 		int message = adminService.Message(receiver);
 
 		ArrayList<User> gymRlist = adminService.GymRequest(level);
 		ArrayList<GymQnABoard> qnalist = adminService.GymQnABoard(receiver);
 		ArrayList<User> list = adminService.businessRequestlist(receiver);
 
-		mv.addObject("request", request);
+		mv.addObject("gymrequest", gymrequest);
 		mv.addObject("message", message);
 		mv.addObject("gymRlist", gymRlist);
 		mv.addObject("qnalist", qnalist);
@@ -195,14 +215,14 @@ public class AdminController {
 
 		ModelAndView mv = new ModelAndView("admin/boardlist/meetingboard");
 
-		int request = adminService.RequestCount(level);
+		int gymrequest = adminService.RequestCount(level);
 		int message = adminService.Message(receiver);
 
 		ArrayList<User> gymRlist = adminService.GymRequest(level);
 		ArrayList<GymQnABoard> qnalist = adminService.GymQnABoard(receiver);
 		ArrayList<MeetingBoard> list = adminService.meetingListView();
 
-		mv.addObject("request", request);
+		mv.addObject("gymrequest", gymrequest);
 		mv.addObject("message", message);
 		mv.addObject("gymRlist", gymRlist);
 		mv.addObject("qnalist", qnalist);
@@ -219,14 +239,14 @@ public class AdminController {
 
 		ModelAndView mv = new ModelAndView("admin/boardlist/qnaboard");
 
-		int request = adminService.RequestCount(level);
+		int gymrequest = adminService.RequestCount(level);
 		int message = adminService.Message(receiver);
 
 		ArrayList<User> gymRlist = adminService.GymRequest(level);
 		ArrayList<GymQnABoard> qnalist = adminService.GymQnABoard(receiver);
 		ArrayList<CommunityBoard> list = adminService.qnaListView();
 
-		mv.addObject("request", request);
+		mv.addObject("gymrequest", gymrequest);
 		mv.addObject("message", message);
 		mv.addObject("gymRlist", gymRlist);
 		mv.addObject("qnalist", qnalist);
@@ -243,14 +263,14 @@ public class AdminController {
 
 		ModelAndView mv = new ModelAndView("admin/boardlist/reviewboard");
 
-		int request = adminService.RequestCount(level);
+		int gymrequest = adminService.RequestCount(level);
 		int message = adminService.Message(receiver);
 
 		ArrayList<User> gymRlist = adminService.GymRequest(level);
 		ArrayList<GymQnABoard> qnalist = adminService.GymQnABoard(receiver);
 		ArrayList<CommunityBoard> list = adminService.reviewListView();
 
-		mv.addObject("request", request);
+		mv.addObject("gymrequest", gymrequest);
 		mv.addObject("message", message);
 		mv.addObject("gymRlist", gymRlist);
 		mv.addObject("qnalist", qnalist);
@@ -376,21 +396,21 @@ public class AdminController {
 	}
 
 	// 문의함 페이지 이동
-	@RequestMapping(value = "adminQnABoard.do")
+	@RequestMapping(value = "adminQuestionBoard.do")
 	public ModelAndView adminBoardMethod(User user, BusinessRequest businessRequest,
 			@RequestParam(value = "level", required = false, defaultValue = "0") int level, GymQnABoard gymqnaboard,
 			@RequestParam(value = "receiver", required = false, defaultValue = "1") int receiver) {
 
 		ModelAndView mv = new ModelAndView("admin/adminBoard");
 
-		int request = adminService.RequestCount(level);
+		int gymrequest = adminService.RequestCount(level);
 		int message = adminService.Message(receiver);
 
 		ArrayList<User> gymRlist = adminService.GymRequest(level);
 		ArrayList<GymQnABoard> qnalist = adminService.GymQnABoard(receiver);
 		ArrayList<GymQnABoard> list = adminService.adminBoard();
 
-		mv.addObject("request", request);
+		mv.addObject("gymrequest", gymrequest);
 		mv.addObject("message", message);
 		mv.addObject("gymRlist", gymRlist);
 		mv.addObject("qnalist", qnalist);
@@ -449,12 +469,39 @@ public class AdminController {
 		adminService.qnaBoardUpdate(responseQ_no);
 		int result = adminService.qnaResponse(gqboard);
 		if(result>0){
-			return "redirect:adminQnABoard.do";
+			return "redirect:adminQuestionBoard.do";
 		}else{
-			return "redirect:adminQnABoard.do";
+			return "redirect:adminQuestionBoard.do";
 		}
 			
 	}	
+	
+	
+	/*public void sessionCreated(HttpSessionEvent sessionEve) {
+
+		if (sessionEve.getSession().isNew()) {
+			execute(sessionEve);
+		}
+	}
+
+	private void execute(HttpSessionEvent sessionEve) {
+
+		// 방문자 수 증가
+		adminService.visitCount();
+
+		// 총 방문자 수
+		int totalCount = adminService.getTotalCount();
+
+		// 오늘 방문자 수
+		int todayCount = adminService.getTodayCount();
+
+		HttpSession session = sessionEve.getSession();
+		session.setAttribute("totalCount", totalCount);
+		session.setAttribute("todayCount", todayCount);
+		
+		
+	}*/
+	
 		
 
 }

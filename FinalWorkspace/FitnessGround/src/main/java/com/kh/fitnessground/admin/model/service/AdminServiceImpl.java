@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.fitnessground.admin.model.dao.AdminDao;
+import com.kh.fitnessground.admin.model.vo.Visit;
 import com.kh.fitnessground.community.model.vo.CommunityBoard;
 import com.kh.fitnessground.community.model.vo.MeetingBoard;
 import com.kh.fitnessground.gym.model.vo.GymQnABoard;
@@ -188,6 +189,25 @@ public class AdminServiceImpl  implements AdminService{
 	@Override
 	public ArrayList<Health> HealthList() {
 		return adminDao.HealthList();
+	}
+
+
+	@Override
+	public int visitCount() {
+		return adminDao.visitCount();
+		
+	}
+
+
+	@Override
+	public int getTotalCount(Visit visit) {
+		return adminDao.getTotalCount(visit);
+	}
+
+
+	@Override
+	public int getTodayCount(Visit visit) {
+		return adminDao.getTodayCount(visit);
 	}
 
 

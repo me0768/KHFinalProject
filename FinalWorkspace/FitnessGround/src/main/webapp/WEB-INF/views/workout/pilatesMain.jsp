@@ -47,13 +47,13 @@
 		<div class="wrap">
 			<div class="tab-wrap" id="press-cate">
 				<ul class="tab-list">
-					<li id="tab-li"><a href="javascript: category('스트레칭')">스트레칭</a><span id="count">(${count1})</span></li>
+					<li id="tab-li"><a href="javascript: category('스트레칭')">스트레칭<span id="count">(${count1})</span></a></li>
 					<li id="vertical-bar"><span>|</span></li>
-					<li id="tab-li"><a href="javascript: category('복근집중운동')">복근집중운동</a><span id="count">(${count2})</span></li>
+					<li id="tab-li"><a href="javascript: category('복근집중운동')">복근집중운동<span id="count">(${count2})</span></a></li>
 					<li id="vertical-bar"><span>|</span></li>
-					<li id="tab-li"><a href="javascript: category('전신운동')">전신운동</a><span id="count">(${count3})</span></li>
+					<li id="tab-li"><a href="javascript: category('전신운동')">전신운동<span id="count">(${count3})</span></a></li>
 					<li id="vertical-bar"><span>|</span></li>
-					<li id="tab-li"><a href="javascript: category('하체운동')">하체운동</a><span id="count">(${count4})</span></li>
+					<li id="tab-li"><a href="javascript: category('하체운동')">하체운동<span id="count">(${count4})</span></a></li>
 				</ul>
 
 			</div>
@@ -163,8 +163,10 @@
 			<c:forEach items="${list}" var="y" varStatus="st">
 					
 				<div class="video">
+					<a href='javascript:detailView(${y.v_no} , "${y.category1}" , "${y.category2}")'>
 					<div id="video-iframe${y.v_no}">
 					</div>
+					</a>
 					<div id="video-info">
 						<div class="time">
 						<span class="video-time" id="v-time${y.v_no}"></span>
@@ -219,7 +221,7 @@ function category(category2){
 	          title = result.clist[i].title;
 	          vid = result.clist[i].url;
 	          content = result.clist[i].content;
-	          var value ="<div class='video'><div id='video-iframe"+no+"'></div><div id='video-info'><div class='time'><span class='video-time' id='v-time"+no+"'></span>"+
+	          var value ="<div class='video'><a href='javascript:detailView("+no+")'><div id='video-iframe"+no+"'></div></a><div id='video-info'><div class='time'><span class='video-time' id='v-time"+no+"'></span>"+
 					"</div><span id='video-text'><a href='#' data-toggle='modal' data-target='#detailView' "+
 					"data-title='"+title+"' data-url='"+vid+"' data-content='"+content+"'>"+title+"</a></span></div></div>";
 		

@@ -57,6 +57,8 @@ public class YogaController {
 			ArrayList<Yoga> list = yogaService.selectAllYList();
 			for(Yoga y : list) {
 				y.setTitle(y.getTitle().replaceAll("\\\"", "＇"));
+				if(y.getTitle().length()>40)
+					y.setTitle(y.getTitle().replaceAll("\\\"", "＇").substring(0, 40)+"..");
 				y.setContent(y.getContent().replaceAll("\\\"", "＇"));// 쌍따옴표jsp출력 문제로 미리 치환
 				}
 			System.out.println(list);
@@ -80,6 +82,12 @@ public class YogaController {
 		public ModelAndView YogaPListMethod(HttpServletRequest request) {
 			ModelAndView mv = new ModelAndView("/workout/pilatesMain");
 			ArrayList<Yoga> list = yogaService.selectAllPList();
+			for(Yoga y : list) {
+				y.setTitle(y.getTitle().replaceAll("\\\"", "＇"));
+				if(y.getTitle().length()>40)
+					y.setTitle(y.getTitle().replaceAll("\\\"", "＇").substring(0, 40)+"..");
+				y.setContent(y.getContent().replaceAll("\\\"", "＇"));// 쌍따옴표jsp출력 문제로 미리 치환
+				}
 			System.out.println(list);
 			int count1 = yogaService.selectVideoCount("스트레칭");
 			int count2 = yogaService.selectVideoCount("복근집중운동");
@@ -103,6 +111,8 @@ public class YogaController {
 			ArrayList<Yoga> clist = yogaService.selectCList(yoga);
 			for(Yoga y : clist) {
 				y.setTitle(y.getTitle().replaceAll("\\\"", "＇"));
+				if(y.getTitle().length()>40)
+					y.setTitle(y.getTitle().replaceAll("\\\"", "＇").substring(0, 40)+"..");
 				y.setContent(y.getContent().replaceAll("\\\"", "＇"));// 쌍따옴표jsp출력 문제로 미리 치환
 			}
 			

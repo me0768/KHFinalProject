@@ -11,6 +11,7 @@ import com.kh.fitnessground.gym.model.vo.Gym;
 import com.kh.fitnessground.gym.model.vo.GymQnABoard;
 import com.kh.fitnessground.gym.model.vo.GymReview;
 import com.kh.fitnessground.gym.model.vo.GymSchedule;
+import com.kh.fitnessground.gym.model.vo.NaverMap;
 import com.kh.fitnessground.gym.model.vo.PublicGym;
 
 @Service("gymService")
@@ -181,5 +182,17 @@ public class GymServiceImpl implements GymService{
 	@Override
 	public void updategymimg(Gym gym) {
 		gymDao.updategymImg(gym);
+	}
+
+	@Override
+	public ArrayList<PublicGym> publicMaplist(NaverMap nmap) {
+HashMap<String, Object> parameters = new HashMap<String, Object>();
+		
+		parameters.put("minLat", nmap.getMinLat());
+		parameters.put("maxLat", nmap.getMaxLat());
+		parameters.put("minLng", nmap.getMinLng());
+		parameters.put("maxLng", nmap.getMaxLng());
+		
+		return gymDao.publicMapList(parameters);
 	}
 }

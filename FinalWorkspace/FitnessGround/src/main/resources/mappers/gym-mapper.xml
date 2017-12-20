@@ -88,6 +88,13 @@
 		<id property="approval_state" column="approval_state"/>
 	</resultMap>
 	
+	<resultMap id="resultNaverMap" type="NaverMap">
+		<result property="minLat" column="minLat"/>
+		<result property="maxLat" column="maxLat"/>
+		<result property="minLng" column="minLng"/>
+		<result property="maxLat" column="maxLng"/>
+	</resultMap>
+	
 	<select id="businessRequest" parameterType="_int" resultMap="resultBusinessRequest" resultType="list">
 		<![CDATA[ 
 		select *
@@ -211,7 +218,7 @@
 	<!-- 체육관 찾기 -->
 	<select id="selectGymList" resultType="list" resultMap="resultGymRequest" parameterType="hashmap">
 		<![CDATA[
-			select * from(select rownum rnum, T.* from tb_gym T) a where a.rnum >= #{startRow} and a.rnum <= #{endRow}
+			select * from(select rownum rnum, T.* from tb_gym T where approval_state = 1) a where a.rnum >= #{startRow} and a.rnum <= #{endRow}  
 		]]>
 	</select>
 	
@@ -411,4 +418,20 @@
 			where gym_no = #{ gym_no } and user_no = #{ user_no }
 		]]>
 	</update>
+	
+	<select id="nearestPublicGym" parameterType="hashmap" resultType="list" resultMap="resultPublicRequest">
+         <![CDATA[
+            select public_name, location, lng, lat, tel, phone from(
+         select public_name, location, DISTNACE_WGS84(#{lat}, #{lng}, to_number(lat,'999.99999999') , to_number(lng,'999.99999999')) as DISTANCE
+         from tb_public_gym
+         order by DISTANCE asc) where rownum = 1
+           ]]>
+   </select>
+   
+   <select id="publicMapList" parameterType="hashmap" resultType="list" resultMap="resultPublicRequest">
+   		<![CDATA[
+   			select * from tb_public_gym where (lat between #{minLat} and #{maxLat}) and (lng between #{minLng} and #{maxLng})
+   		]]>
+   </select>
+	
 </mapper>

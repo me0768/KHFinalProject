@@ -8,14 +8,29 @@
 	height: 400px;
 }
 
+#login{
+	position: fixed;
+    top: 10vh;
+}
+.btn[disabled] #loginbtn{
+	background: #022D41;
+}
+#loginbtn:hover{
+	background: #193E4D;
+}
 
+.modal-backdrop.in.fade{
+	height: 100% !important;
+}
 
 #loginfield, #emailfield, #pwdfield, #nicknamefield, #emailboader {
 	display: inline-block;
 	margin-top: 10px;
 
 }
-
+#finda{
+	line-height: 1.6em;
+}
 #findinput {
 	margin-left: 10px;
 	margin-right: 10px;

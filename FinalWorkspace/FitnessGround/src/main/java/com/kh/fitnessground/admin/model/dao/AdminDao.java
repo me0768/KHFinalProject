@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.fitnessground.admin.model.vo.Visit;
 import com.kh.fitnessground.community.model.vo.CommunityBoard;
 import com.kh.fitnessground.community.model.vo.MeetingBoard;
 import com.kh.fitnessground.gym.model.vo.GymQnABoard;
@@ -160,6 +161,20 @@ public class AdminDao {
 		ArrayList<Health> hlist = new ArrayList<Health>(list);
 		
 		return hlist;
+	}
+
+	public int visitCount() {
+		return sqlSession.insert("visit.visitCount");
+	}
+
+	public int getTotalCount(Visit visit) {
+		int totalCount = sqlSession.selectOne("visit.totalCount", visit);
+		return totalCount;
+	}
+
+	public int getTodayCount(Visit visit) {
+		int todayCount = sqlSession.selectOne("visit.todayCount", visit);
+		return todayCount;
 	}
 
 

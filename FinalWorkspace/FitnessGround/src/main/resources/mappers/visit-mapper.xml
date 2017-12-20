@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="visit">
+
+
+	<resultMap id="resultVisit" type="Visit">
+		<result property="visit" column="visit" jdbcType="DATE"
+			javaType="java.sql.Date" />
+	</resultMap>
+
+	<insert id="visitCount" parameterType="Visit" flushCache="true"
+		statementType="PREPARED" useGeneratedKeys="true">
+		<![CDATA[
+			insert into tb_visit values (sysdate)
+		]]>
+	</insert>
+
+	<select id="totalCount" resultType="_int" resultMap="resultVisit">
+		<![CDATA[
+			select count(*) from tb_visit
+		]]>
+
+	</select>
+
+	<select id="todayCount" resultType="_int" resultMap="resultVisit">
+		<![CDATA[
+			select count(*) from tb_visit
+			where substr(to_char(v_date), 1, 9) = to_date(sysdate, 'yy/MM/dd')	
+		]]>
+
+	</select>
+
+</mapper>

@@ -10,7 +10,14 @@
 </style>
 
 <c:import url="../common/headend.jsp" />
-
+ <c:if test="${ sessionScope.user == null }">
+		<script type="text/javascript">
+			$(function (){
+				alert("로그인이 필요합니다.");
+				location.href="main.do";
+			});
+		</script>
+	</c:if>
 <script type="text/javascript">
 	function userlistPage(){
 		location.href="adminuserlist.do"

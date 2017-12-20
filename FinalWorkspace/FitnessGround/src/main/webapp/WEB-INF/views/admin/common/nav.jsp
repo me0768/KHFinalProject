@@ -50,7 +50,7 @@
 					</a>
 				</li>
 				<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
-					<a class="nav-link" href="adminQnABoard.do"> 
+					<a class="nav-link" href="adminQuestionBoard.do"> 
 						<i class="fa fa-question-circle-o"></i> 
 							<span class="nav-link-text">문의 관리</span>
 					</a>
@@ -106,7 +106,7 @@
 					href="#" data-toggle="dropdown" aria-haspopup="true"
 					aria-expanded="false"> <i class="fa fa-fw fa-bell"></i> <span
 						class="d-lg-none">Request <span
-							class="badge badge-pill badge-warning">${request } New</span>
+							class="badge badge-pill badge-warning">${gymrequest } New</span>
 					</span> <span class="indicator text-warning d-none d-lg-block"> <i
 							class="fa fa-fw fa-circle"></i>
 					</span>

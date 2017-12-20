@@ -6,14 +6,10 @@
 <c:import url="../common/head.jsp" />
 
 <style type="text/css">
-
 </style>
 
 
 <c:import url="../common/headend.jsp" />
-
-
-
 
 <script type="text/javascript">
 	function userlistPage(){
@@ -75,7 +71,7 @@
 		})
 		
 		
-	}
+	}	
 	
 </script>
 <c:import url="../common/nav.jsp" />
@@ -134,35 +130,7 @@
 										<td>${item.email }</td>
 										<td>${item.name }</td>
 										<td>${item.gym_no }</td>
-										<td><a href="/detailgym.do" data-target=".${item.gym_no}" data-toggle="modal">${item.gym_name }</a></td>
-										<div class="modal fade ${item.gym_no }" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-											<div class="modal-dialog">
-												<div class="modal-content">
-													<!-- header -->
-													<div class="modal-header" align="top">
-														<h4 class="modal-title" align="center">헬스장이름 : ${item.gym_name}</h4>
-														<button type="button" class="close" data-dismiss="modal" align="right">x</button>
-													</div>
-													
-													<!-- body -->
-													<div class="modal-body" align="left">
-													<p>이메일 : ${item.email}</p>
-													<p>이름 : ${item.name}</p>
-													<p>지역 : ${item.location}</p>
-													<p>등록일자 : ${item.register_date}</p>
-													
-													</div>
-     											<!-- Footer -->
-													<div class="modal-footer" >
-														
-														
-													</div>
-													
-												</div>
-												
-											</div>
-										
-										</div>
+										<td><a href="detailgym.do?gym_no=${ item.gym_no }">${item.gym_name }</a></td>
 										<td>${item.location }</td>
 										<td>${item.register_date }</td>
 										<c:choose>
@@ -198,4 +166,5 @@
 		</div>
 		
 	</div>
+	
 	<c:import url="../common/end.jsp" />

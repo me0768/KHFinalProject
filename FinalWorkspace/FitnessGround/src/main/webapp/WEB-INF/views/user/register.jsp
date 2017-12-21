@@ -87,11 +87,11 @@ function emailcheck(){
 	var email = $("#registeremail").val();
 	var queryString = { "email": email };
 	if(!email.includes("@") || ( !email.includes(".com") && !email.includes(".kr"))){
-		$("#registeremail").css({'boader-color':'#F60808', 'box-shadow':'0 0 1px 1px rgb(232, 13, 13)'});		
+		$("#registeremail").css({'border-color':'#F60808', 'box-shadow':'0 0 1px 1px rgb(232, 13, 13)'});		
 	} else if ( email == null){
-		$("#registeremail").css({'boader-color':'#F60808', 'box-shadow':'0 0 1px 1px rgb(232, 13, 13)'});
+		$("#registeremail").css({'border-color':'#F60808', 'box-shadow':'0 0 1px 1px rgb(232, 13, 13)'});
 	} else {
-		$("#registeremail").css({'boader-color':'#B0F6AC', 'box-shadow':'0 0 1px 1px rgb(117, 254, 109)'});
+		$("#registeremail").css({'border-color':'#B0F6AC', 'box-shadow':'0 0 1px 1px rgb(117, 254, 109)'});
 	}
 	$.ajax({
 		url : "emailCheck.do",
@@ -119,7 +119,7 @@ function emailcheck(){
 				var value = '';
 				value += "<div style='color: red;'> * 이미 사용되고있는 이메일 입니다. </div>";
 				$("#emailfield").html(value);
-				$("#registeremail").css({'boader-color':'#F60808', 'box-shadow':'0 0 1px 1px rgb(232, 13, 13)'});
+				$("#registeremail").css({'border-color':'#F60808', 'box-shadow':'0 0 1px 1px rgb(232, 13, 13)'});
 			}
 		}
 	});
@@ -131,19 +131,19 @@ function pwdcheck(){
 	var pwd2 = $("#registerpwd2").val();
 	var value = '';
 	 if(pwd1 != pwd2){
-		$("#registerpwd").css({'boader-color':'#F60808', 'box-shadow':'0 0 1px 1px rgb(232, 13, 13)'});
-		$("#registerpwd2").css({'boader-color':'#F60808', 'box-shadow':'0 0 1px 1px rgb(232, 13, 13)'});
+		$("#registerpwd").css({'border-color':'#F60808', 'box-shadow':'0 0 1px 1px rgb(232, 13, 13)'});
+		$("#registerpwd2").css({'border-color':'#F60808', 'box-shadow':'0 0 1px 1px rgb(232, 13, 13)'});
 		value = "<div style='color: red;'> * 비밀번호가 서로 다릅니다. </div>";
 		$("#pwdfield").html(value);
 	}
 	else if ( pwd1 == '' && pwd2 == ''){
-		$("#registerpwd").css({'boader-color':'#F60808', 'box-shadow':'0 0 1px 1px rgb(232, 13, 13)'});
-		$("#registerpwd2").css({'boader-color':'#F60808', 'box-shadow':'0 0 1px 1px rgb(232, 13, 13)'});
+		$("#registerpwd").css({'border-color':'#F60808', 'box-shadow':'0 0 1px 1px rgb(232, 13, 13)'});
+		$("#registerpwd2").css({'border-color':'#F60808', 'box-shadow':'0 0 1px 1px rgb(232, 13, 13)'});
 		value = "<div style='color: red;'> * 비밀번호를 입력하세요. </div>";
 		$("#pwdfield").html(value);
 	}  else {
-		$("#registerpwd").css({'boader-color':'#B0F6AC', 'box-shadow':'0 0 1px 1px rgb(117, 254, 109)'});
-		$("#registerpwd2").css({'boader-color':'#B0F6AC', 'box-shadow':'0 0 1px 1px rgb(117, 254, 109)'});
+		$("#registerpwd").css({'border-color':'#B0F6AC', 'box-shadow':'0 0 1px 1px rgb(117, 254, 109)'});
+		$("#registerpwd2").css({'border-color':'#B0F6AC', 'box-shadow':'0 0 1px 1px rgb(117, 254, 109)'});
 		value = "<div style='color: green;'> * 비밀번호가 일치합니다. </div>";
 		$("#pwdfield").html(value);
 		pwdval = 1;
@@ -167,11 +167,11 @@ function nicknamecheck(){
 				if(nickname == ''){
 					value += "<div style='color: red;'> * 닉네임을 입력하세요. </div>";
 					$("#nicknamefield").html(value);
-					$("#registernickname").css({'boader-color':'#F60808', 'box-shadow':'0 0 1px 1px rgb(232, 13, 13)'});
+					$("#registernickname").css({'border-color':'#F60808', 'box-shadow':'0 0 1px 1px rgb(232, 13, 13)'});
 				} else {
 					value += "<div style='color: green;'> * 사용할 수 있는 닉네임 입니다. </div>";
 					$("#nicknamefield").html(value);
-					$("#registernickname").css({'boader-color':'#B0F6AC', 'box-shadow':'0 0 1px 1px rgb(117, 254, 109)'});
+					$("#registernickname").css({'border-color':'#B0F6AC', 'box-shadow':'0 0 1px 1px rgb(117, 254, 109)'});
 					nicknameval = 1;
 					onregisterbtn();
 				}
@@ -180,7 +180,7 @@ function nicknamecheck(){
 				var value = '';
 				value += "<div style='color: red;'> * 이미 사용되고있는 닉네임 입니다. </div>";
 				$("#nicknamefield").html(value);
-				$("#registernickname").css({'boader-color':'#F60808', 'box-shadow':'0 0 1px 1px rgb(232, 13, 13)'});
+				$("#registernickname").css({'border-color':'#F60808', 'box-shadow':'0 0 1px 1px rgb(232, 13, 13)'});
 			}
 		}
 	});
@@ -190,9 +190,9 @@ function nicknamecheck(){
 function namecheck(){
 	var name = $("#registername").val();
 	if(name == ""){
-		$("#registername").css({'boader-color':'#F60808', 'box-shadow':'0 0 1px 1px rgb(232, 13, 13)'});
+		$("#registername").css({'border-color':'#F60808', 'box-shadow':'0 0 1px 1px rgb(232, 13, 13)'});
 	} else  if(name != ""){
-		$("#registername").css({'boader-color':'#B0F6AC', 'box-shadow':'0 0 1px 1px rgb(117, 254, 109)'});
+		$("#registername").css({'border-color':'#B0F6AC', 'box-shadow':'0 0 1px 1px rgb(117, 254, 109)'});
 		nameval = 1;
 		onregisterbtn();
 	}
@@ -219,7 +219,7 @@ function phonecheck(){
 		phonecheckajax(phone);
 		
 	} else {
-		$("#registerphone").css({'boader-color':'#F60808', 'box-shadow':'0 0 1px 1px rgb(232, 13, 13)'});
+		$("#registerphone").css({'border-color':'#F60808', 'box-shadow':'0 0 1px 1px rgb(232, 13, 13)'});
 	}
 }
 
@@ -234,12 +234,12 @@ function phonecheckajax(phone){
 		success : function(responseData){
 			var data = responseData.user;
 			if(data == null){
-				$("#registerphone").css({'boader-color':'#B0F6AC', 'box-shadow':'0 0 1px 1px rgb(117, 254, 109)'});
+				$("#registerphone").css({'border-color':'#B0F6AC', 'box-shadow':'0 0 1px 1px rgb(117, 254, 109)'});
 				phoneval = 1;
 				onregisterbtn();
 			}
 			else {
-				$("#registerphone").css({'boader-color':'#F60808', 'box-shadow':'0 0 1px 1px rgb(232, 13, 13)'});
+				$("#registerphone").css({'border-color':'#F60808', 'box-shadow':'0 0 1px 1px rgb(232, 13, 13)'});
 			}
 		}
 	});

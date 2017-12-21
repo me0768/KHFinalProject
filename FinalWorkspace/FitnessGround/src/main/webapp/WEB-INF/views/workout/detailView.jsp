@@ -83,15 +83,29 @@
       viewVideo(v_no); //모달창에서 영상 띄워주는 메서드         
       
       selectComment(v_no); 
-      var contentHeight = $("#video_explain").outerHeight();
-      var modalHeight = $("#workout-content").height();
-      if(contentHeight==0){
-    	  contentHeight = 96;
+      /*modal 댓글창 크기 조정 */
+      if( screen.width <= 480 ) {
+	      var contentHeight = $("#video_explain").outerHeight();
+	      var modalHeight = $("#workout-content").height();
+	      if(contentHeight==0){
+	    	  contentHeight = 96;
+	      }
+	      var replyHeight = (modalHeight - contentHeight - 433);
+	      console.log("mobileheights:"+contentHeight+"__"+modalHeight+"__"+replyHeight);
+	      $("#reply_content").css({'max-height': replyHeight});
+      }else{
+    	  var contentHeight = $("#video_explain").outerHeight();
+	      var modalHeight = $("#workout-content").height();
+	      if(contentHeight==0){
+	    	  contentHeight = 96;
+	      }
+	      var replyHeight = (modalHeight - contentHeight - 300);
+	      console.log("heights:"+contentHeight+"__"+modalHeight+"__"+replyHeight);
+	      $("#reply_content").css({'max-height': replyHeight});
       }
-      var replyHeight = (modalHeight - contentHeight - 300);
-      console.log("heights:"+contentHeight+"__"+modalHeight+"__"+replyHeight);
-      $("#reply_content").css({'max-height': replyHeight});
       
+      
+      /*댓글 엔터키 입력*/
       $("#reply-input").keydown(function(key){
          if(key.keyCode==13){
             insertComment(v_no);
@@ -229,6 +243,7 @@
       });
    
       selectComment(v_no);
+      alert("댓글이 삭제되었습니다");
       
    }
    

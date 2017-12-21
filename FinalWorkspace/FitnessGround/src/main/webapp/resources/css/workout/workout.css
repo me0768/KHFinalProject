@@ -133,7 +133,9 @@ body{
 	width: 250px;
 	height: 141px;
 }
-
+#video_title{
+	color: black;
+}
 
 #workout-modal{
 	/* position: relative;
@@ -147,6 +149,7 @@ body{
 #video-text{
 	margin: 0 auto;
 	font-size: 1rem;
+	color: black;
 }
 .time{
 	position: relative;
@@ -291,7 +294,7 @@ body{
     vertical-align: middle;
     touch-action: manipulation;
     cursor: pointer;
-    background-color: white ;
+    background-color: transparent ;
     color: #022D41;
     border: 1px solid transparent;
     white-space: nowrap;
@@ -486,6 +489,57 @@ ul{
 #count{
 	font-size:0.7rem;
 }
+/*mobile modal*/
+.modal-header{
+	padding-top:2px;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+#video-play{
+	margin-top: 0;
+	width: 90vw;
+	height: 55vw;
+}
+#video_explain{
+	width: 88vw;
+	line-height: 1.4rem;
+}
+#workout-dialog {
+    width: 98vw !important;
+    margin: 5vh 1vw !important;
+    height: 95vh !important;
+}
+#workout-content {
+	height: 100vh;
+}
+	
+#like-btn{
+	width: 6vw;
+}
+#like-up{
+	width: 80vw;t
+}
+#reply-input{
+	width: 74vw;
+	display: inline-block;
+}
+#reply-btn{
+	width: 10vw;
+	margin: 0 0;
+	display: inline-block;
+}
+.modal-desc, #reply_content{
+	width: 88vw;
+}
+#del-btn{
+	display: inline-block;
+    width: 6vw;
+}
+::-webkit-scrollbar {
+	display: none;
+} 
+
+
 /* mobile ends*/
 
 	

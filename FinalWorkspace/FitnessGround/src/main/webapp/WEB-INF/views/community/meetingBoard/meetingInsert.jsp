@@ -16,7 +16,7 @@ div#all_div {
 }
 
 div#insert_all_div {
-	border: 1px solid;
+	border: 1px solid gray;
 }
 
 div#div_head {
@@ -28,18 +28,18 @@ form#editor_form {
 	padding-right: 10%;
 }
 
-a#write {
-	left: 47%;
-	width: 30pt;
+button#write {
+	color:black;
+	width: 60pt;
 	height: 30pt;
-	font-size: 12pt;
+	font-size: 10pt;
 }
 
-a#list {
-	left: 47%;
-	width: 30pt;
-	height: 30pt;
-	font-size: 12pt;
+
+input#title{
+height:30pt;
+width:250pt;
+font-size:10pt;
 }
 
 textarea#editor1 {
@@ -79,44 +79,30 @@ textarea#editor1 {
 <br>
 <h1 align="center">운동같이해요</h1>
 <br>
-<div id="all_div">
-	<div id="insert_all_div">
-		<br>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		<form id="editor_form" name='meeting' method="post" action="meetingInsert.do">
 			<input name="user_no" type="hidden" value="${sessionScope.user.user_no }" />
-			<div id="div_head">
-				<p>
-					제목
-					<input name="title" type="text" placeholder="제목을 입력해주세요." />
-				</p>
-				<p>파일첨부</p>
-				<p>모임날짜<input name="meeting_date" type="date" /></p>
-				
+			<div class="form-group">
+				<p>제목<input class="input-group input-group-lg" id="title" name="title" type="text" placeholder="제목" /></p>
+				<p>모임날짜 &nbsp;<input style="width:100pt;"id="title" name="meeting_date" type="date" /></p>
 			</div>
-			<div>
-
-				<textarea name="content" id="editor1" placeholder="내용을 입력해주세요.."></textarea>
+			<div class="form-group">
+				<textarea name="content" id="editor2" placeholder="내용을 입력해주세요.."></textarea>
 				<script>
-					CKEDITOR.replace('editor1');
+					CKEDITOR.replace('editor2');
 				</script>
-				<input type="submit" name="업로드" value="작성하기" id="write">
+				<br>
+				<button type="submit" class="btn btn_primary btn-lg pull-right" name="업로드" id="write">작성</button>
+				<a href="#this" class="btn" id="list">목록</a>
+			</div>
 		</form>
+		</div>
 	</div>
-	<br>
-</div>
 </div>
 <br>
 <br>
-
-<a align="center" href="#this" class="btn" id="list">목록</a>
 <br>
-<br>
-<br>
-
-
-
-
-
-
 <c:import url="../../include/main/footer.jsp" />
 <c:import url="../../include/common/end.jsp" />

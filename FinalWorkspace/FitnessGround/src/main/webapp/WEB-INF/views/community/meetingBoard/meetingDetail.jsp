@@ -51,7 +51,7 @@
 	}	
     //목록
     function meetingCommentList(mb_no){
-    	var user_no = $("user_no").val();
+    	var user_no = $("#user_no").val();
    		$.ajax({
    			 url:"meetingCommentList.do",
    			 type:"post",
@@ -65,12 +65,19 @@
    				 
    				 for(var i in data.mblist)
    					 {
-   					 		
-   					 values += "<div class='jumbotron'><div class='col-md-2 text-center'><b>" + data.mblist[i].name + "<b></div>"+
-   					"<div class='col-md-6 text-center'>" +  data.mblist[i].content + "</div><div class='col-md-2 text-center'>" + data.mblist[i].reply_date
-   					+ "</div><div class='col-md-2 text-right'><a class='btn' type='submit' onclick='meetingCommentDelete("+data.mblist[i].mb_no+","+ data.mblist[i].mbc_no +")'>삭제</a></div>"
-   					+"</div>";
-   					 }
+   					  	
+   					 	values += "<div class='jumbotron'><div class='col-md-2 text-center'><b>" + data.mblist[i].name + "<b></div>"+
+      					"<div class='col-md-6 text-center'>" +  data.mblist[i].content + "</div><div class='col-md-2 text-center'>" + data.mblist[i].reply_date +"</div>";
+      					
+      					if(user_no == data.mblist[i].user_no){
+   	      					values += "<div class='col-md-2 text-right'><a class='btn' type='submit' onclick='meetingCommentDelete("+data.mblist[i].mb_no+","+ data.mblist[i].mbc_no +")'>삭제</a></div>"
+   	      					}
+      					
+      					values +="</div>";
+      					
+   						
+   					
+   				 }
    			    $("#meetingCommentList").html(values);
    			 }
    		});
@@ -122,8 +129,9 @@
 	});
   	
 	</script>
-	<cbody>
+	
      <div class="container">
+     <input type="hidden" id="user_no" value="${sessionScope.user.user_no}">
     <br>
     <h1 id="community_title" align="center">${meeting.title}</h1><br>
      <div id="detail_ail_div" align="center"> 
@@ -143,8 +151,10 @@
    </c:if>
    <a href="meeting.do" class="btn">목록</a><br>
     </div>
+    
    <!-- =========================댓글 쓰는 공간================================== -->
     <!--  댓글  -->
+    <cbody>
    <br><h5 align="center">-------- 댓글 --------</h5><br> 
 	
  	<!--  댓글 입력 -->

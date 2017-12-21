@@ -45,6 +45,7 @@
   	}	
     //목록
     function communityCommentList(cb_no){
+    	var user_no = $("#user_no").val();
    		$.ajax({
    			 url:"communityCommentList.do",
    			 type:"post",
@@ -59,8 +60,13 @@
    				 for(var i in data.cblist)
    					 {
    					 values += "<div class='jumbotron'><div class='col-md-2 text-center'><b>" + data.cblist[i].name + "<b></div>"+
-   					"<div class='col-md-6 text-center'>" +  data.cblist[i].content + "</div><div class='col-md-2 text-center'>" + data.cblist[i].reply_date+ "</div><div class='col-md-2 text-right'><a class='btn' type='submit' onclick='communityCommentDelete("+data.cblist[i].cb_no+","+ data.cblist[i].cbc_no +")'>삭제</a></div>"
-   					+"</div>";
+   					"<div class='col-md-6 text-center'>" +  data.cblist[i].content + "</div><div class='col-md-2 text-center'>" + data.cblist[i].reply_date+ "</div>"
+
+   					if(user_no == data.cblist[i].user_no){
+   					values += "<div class='col-md-2 text-right'><a class='btn' type='submit' onclick='communityCommentDelete("+data.cblist[i].cb_no+","+ data.cblist[i].cbc_no +")'>삭제</a></div>"
+   					}
+					 values +="</div>";
+   					
    					 }
    			    $("#communityCommentList").html(values);
    			 }
@@ -113,9 +119,9 @@
 	});
   	
 	</script>
-	<cbody>
+	
      <div class="container">
-      
+       <input type="hidden" id="user_no" value="${sessionScope.user.user_no}">
     
     <br>
     <h1 align="center">${community.title}</h1>
@@ -138,6 +144,7 @@
      </div>
      <!-- =========================댓글 쓰는 공간================================== -->
     <!--  댓글  -->
+    <cbody>
     <br><h5 align="center">-------- 댓글 --------</h5><br>
  	<!--  댓글 입력 -->
  	<c:if test="${sessionScope.user==null}">

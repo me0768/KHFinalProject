@@ -23,6 +23,10 @@ public interface YogaService {
 	ArrayList<Yoga> selectWList(Yoga yoga);
 	int selectVideoCount(String string);
 	
+	int selectSearchVideoCount(String keyWord,String category1);
+	ArrayList<Yoga> selectSearchList(String keyWord, String category1);
+	ArrayList<Yoga> selectWorkoutReadCountList(Yoga yoga);
+	
 	
 	
 }

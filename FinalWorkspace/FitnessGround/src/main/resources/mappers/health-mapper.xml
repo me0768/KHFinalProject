@@ -23,6 +23,17 @@
 		<result property="readcount" column="readcount"/>	
 	</resultMap>
 	
+	
+	<resultMap id="like" type="Health">
+		<id property="v_no" column="v_no"/>
+		<result property="title" column="title" />
+		<result property="content" column="content"/>
+		<result property="category1" column="category1"/>
+		<result property="category2" column="category2"/>
+		<result property="url" column="url"/>
+		<result property="readcount" column="readcount"/>
+			
+	</resultMap>
 	<!-- 네이버 헬스 동영상 하나 select -->
 	<select id="selectOneWorkout" parameterType ="_int" resultType="Health" resultMap="resultWorkOut">
 		<![CDATA[
@@ -72,6 +83,20 @@
 	
 		<![CDATA[
 			select * from tb_video_board where category1='맨몸운동' and title like '%' ||#{keyWord}|| '%'
+		]]>
+	</select>
+	
+	<select id="selectLikeCountlist" resultType="list" parameterType="Health" resultMap="resultWorkOut">
+		<![CDATA[
+			select *
+			from (select v_no,NVL(likecount, 0) as tt, title,content,category1,category2,url,readcount
+				  from tb_video_board
+				  left outer join ( select v_no, count(*) as likecount
+				                    from tb_like
+				                    group by v_no )
+				 using ( v_no ))
+			where category1=#{category1} and category2=#{category2}
+			order by tt desc
 		]]>
 	</select>
 	

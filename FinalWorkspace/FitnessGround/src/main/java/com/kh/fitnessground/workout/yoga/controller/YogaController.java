@@ -1,10 +1,5 @@
 package com.kh.fitnessground.workout.yoga.controller;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.StringReader;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,14 +20,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlPullParserFactory;
 
 import com.kh.fitnessground.admin.model.service.AdminService;
 import com.kh.fitnessground.admin.model.vo.BusinessRequest;
 import com.kh.fitnessground.gym.model.vo.GymQnABoard;
 import com.kh.fitnessground.user.model.vo.User;
+import com.kh.fitnessground.workout.health.model.service.HealthService;
+import com.kh.fitnessground.workout.health.model.vo.Health;
 import com.kh.fitnessground.workout.yoga.model.service.YogaService;
 import com.kh.fitnessground.workout.yoga.model.vo.Yoga;
 
@@ -43,6 +38,9 @@ public class YogaController {
 
 	@Autowired
 	private YogaService yogaService;
+	
+	@Autowired
+	private HealthService healthService;
 	
 	@Autowired
 	private AdminService adminService;
@@ -273,6 +271,104 @@ public class YogaController {
 			return mv;
 		}
 		
+		//제목으로 검색
+		@RequestMapping(value="/yogaSearch.do")
+		public ModelAndView searchList(HttpServletRequest request){
+			
+			ModelAndView mv = null;
+			
+			String keyWord = request.getParameter("searchKeyWord");
+			String category1 =request.getParameter("category1");
+			
+			if(category1.equals("요가")){
+				mv = new ModelAndView("workout/yogaMain");
+				int count1 = yogaService.selectVideoCount("빈야사");
+				int count2 = yogaService.selectVideoCount("다이어트");
+				int count3 = yogaService.selectVideoCount("체형교정");
+				int count4 = yogaService.selectVideoCount("부위별");
+				int count5 = yogaService.selectVideoCount("초보자");
+				
+				mv.addObject("count1", count1);
+				mv.addObject("count2", count2);
+				mv.addObject("count3", count3);
+				mv.addObject("count4", count4);
+				mv.addObject("count5", count5);
+				
+			}else if(category1.equals("필라테스")){
+				int count1 = yogaService.selectVideoCount("스트레칭");
+				int count2 = yogaService.selectVideoCount("복근집중운동");
+				int count3 = yogaService.selectVideoCount("전신운동");
+				int count4 = yogaService.selectVideoCount("하체운동");
+				mv = new ModelAndView("workout/pilatesMain");
+				
+				mv.addObject("count1", count1);
+				mv.addObject("count2", count2);
+				mv.addObject("count3", count3);
+				mv.addObject("count4", count4);
+				
+			}
+			
+			ArrayList<Yoga> slist = yogaService.selectSearchList(keyWord,category1);
+			
+					int searchCount = yogaService.selectSearchVideoCount(keyWord,category1);
+			
+			mv.addObject("list", slist);
+			
+			mv.addObject("keyWord",keyWord);
+			mv.addObject("searchCount",searchCount);
+			
+			
+			return mv;
+		}
 		
+		@RequestMapping(value="ypSortList.do", method=RequestMethod.POST)
+		public ModelAndView sortList(HttpServletRequest request, Yoga yoga){
+			ModelAndView mv = new ModelAndView();
+			ArrayList<Yoga> list = null;
+			
+			
+			
+			String selectValue = request.getParameter("selectValue");
+			if(yoga.getCategory2()!=null){
+			
+				System.out.println("category1:" + yoga.getCategory1());
+				System.out.println("category2:" + yoga.getCategory2());
+				System.out.println("선택 값 : "+selectValue);
+				/*ArrayList<Health> sortList = healthService.selectAllList();*/
+			
+				
+				if(selectValue.equals("All")){
+					list = yogaService.selectCList(yoga);
+					
+				}else if(selectValue.equals("좋아요수")){
+					list = yogaService.selectCList(yoga);
+					
+					int countArr[] = new int[list.size()];
+					
+					for(int i=0; i<list.size();i++){
+						countArr[i] = healthService.selectLikeCount(list.get(i).getV_no());
+						System.out.println(countArr[i]);
+					}
+					
+					//좋아요수 내림차순 정렬
+					for(int i=0; i<countArr.length; i++){
+						for(int j=i+1; j<countArr.length; j++){
+							if(countArr[i]<countArr[j]){
+								Yoga tmp = list.get(i);
+								list.set(i, list.get(j));
+								list.set(j,tmp);
+							}				
+						}
+					}
+				}else if(selectValue.equals("조회수")){
+					
+					list = yogaService.selectWorkoutReadCountList(yoga);
+					System.out.println(list);
+				}
+			}
+			mv.addObject("list",list);
+			mv.setViewName("jsonView");
+			return mv;
+		}
 
 }

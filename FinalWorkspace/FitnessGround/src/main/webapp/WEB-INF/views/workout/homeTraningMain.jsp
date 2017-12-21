@@ -66,23 +66,23 @@
 		<!-- news-section-tab -->
 		<div class="wrap">
 			<div class="tab-wrap" id="press-cate">
-				<div id="hidecate">
+				<div id="hidecate">	<!-- 카테고리별 셀렉박스 알아내는 자리 -->
 				
 				</div>
 				<ul class="tab-list">
-					<li id="tab-li"><a href="javascript: category('맨몸푸시업')">팔굽혀 펴기</a><span id="count">(${pushUpCount})</span></li>
+					<li id="tab-li"><a href="javascript: category('맨몸푸시업')">팔굽혀 펴기<span id="count">(${pushUpCount})</span></a></li>
 					<li id="vertical-bar"><span>|</span></li>					
 					
-					<li id="tab-li"><a href="javascript: category('맨몸하체')">하체 운동</a><span id="count">(${lowerBodyCount})</span></li>
+					<li id="tab-li"><a href="javascript: category('맨몸하체')">하체 운동<span id="count">(${lowerBodyCount})</span></a></li>
 					<li id="vertical-bar"><span>|</span></li>
 					
-					<li id="tab-li"><a href="javascript: category('맨몸철봉')">철봉 운동</a><span id="count">(${pullUpCount})</span></li>
+					<li id="tab-li"><a href="javascript: category('맨몸철봉')">철봉 운동<span id="count">(${pullUpCount})</span></a></li>
 					<li id="vertical-bar"><span>|</span></li>
 					
-					<li id="tab-li"><a href="javascript: category('맨몸전신')">전신 프로그램</a><span id="count">(${entireBodyCount})</span></li>
+					<li id="tab-li"><a href="javascript: category('맨몸전신')">전신 프로그램<span id="count">(${entireBodyCount})</span></a></li>
 					
 					<li id="vertical-bar"><span>|</span></li>
-					<li id="tab-li"><a href="javascript: category('맨몸초보자')">초보자</a><span id="count">(${beginnerCount})</span></li>
+					<li id="tab-li"><a href="javascript: category('맨몸초보자')">초보자<span id="count">(${beginnerCount})</span></a></li>
 				</ul>
 
 			</div>
@@ -100,7 +100,7 @@
 				<div class="srch_wrpr">
 					<div class="srch_sb_cnt">
 						<input type="text" name="searchKeyWord" id="title-search" class="sech_txt_inpt"
-							placeholder="제목으로 검색" name="searchKeyWord" onkeydown="javascript: if(event.keyCode==13){titleSearch();}">
+							placeholder="제목으로 검색" onkeydown="javascript: if(event.keyCode==13){titleSearch();}">
 						<button class="srch_btn" onclick="titleSearch();">
 							<i class="fa fa-search" aria-hidden="true"></i>
 						</button>
@@ -195,8 +195,7 @@
 	<!-- 동영상 리스트 view --> <!-- 제목으로 검색 리스트 -->
 		
 	<div class="workout-videos">
-		
-		
+				
 		<c:if test="${empty list }">	<!-- 제목 검색 리스트 없을때 -->
 			<div class="col-sm-12 col-md-12 col-lg-12 col-xs-12" id="search-count"> '${keyWord}' 검색 갯수: ${searchCount }</div>
 		</c:if>
@@ -209,8 +208,10 @@
 			<c:forEach items="${list}" var="ht" varStatus="st">
 					
 				<div class="video">
+				<a href='javascript:detailView(${ht.v_no} , "${ht.category1}" , "${ht.category2}")'>
 					<div id="video-iframe${ht.v_no}">
 					</div>
+				</a>
 					<div id="video-info">
 						<div class="time">
 						<span class="video-time" id="v-time${ht.v_no}"></span>
@@ -234,7 +235,7 @@ function category(category2){
 	var category2 = category2;
 	
 	var values = "<input type='hidden' id='selectCate' value=" + category2 + ">"
-	console.log(values);
+	
 	$("#hidecate").html(values);
 	
 	var selectBox = '<select name="sort" id="sort" onchange="sortList();">'+
@@ -377,10 +378,7 @@ function sortList(){
     var url;
     var content;
 	
-    $("#sort-count").html(selectValue + " 정렬");
-	console.log("selectVale : " + selectValue);
-	console.log("category2 : " + category2 );
-	
+    	
 	var queryString = {"selectValue":selectValue,"category1":category1,"category2":category2};
 		
 	$.ajax({

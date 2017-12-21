@@ -81,4 +81,16 @@ public class YogaDao {
 		return sqlSession.selectOne("yoga.selectVideoCount",category2);
 	}
 
+	public ArrayList<Yoga> selectSearchList(HashMap<String,String> parameters) {
+		return (ArrayList)sqlSession.selectList("yoga.selectSearchList",parameters);
+	}
+
+	public int selectSearchVideoCount(HashMap<String,String> parameters) {
+		return sqlSession.selectOne("yoga.selectSearchVideoCount",parameters);
+	}
+
+	public ArrayList<Yoga> selectWorkoutReadCountList(Yoga yoga) {
+		return (ArrayList)sqlSession.selectList("yoga.selectWorkoutReadCountList",yoga);
+	}
+
 }

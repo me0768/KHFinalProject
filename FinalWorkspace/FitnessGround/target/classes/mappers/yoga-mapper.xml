@@ -96,5 +96,28 @@
  	<select id="selectVideoCount" resultType="_int" parameterType="String">
 		select count(*) from tb_video_board where category2=#{category2}
 	</select>
+	
+	<!-- 제목으로 검색 -->
+	<select id="selectSearchList" resultType="list" parameterType="hashmap" resultMap="yogaResult">
+	
+		<![CDATA[
+			select * from tb_video_board where category1=#{category1} and title like '%' ||#{keyWord}|| '%'
+		]]>
+	</select>
+	
+	<!-- 제목으로 검색 카운트 -->
+	<select id="selectSearchVideoCount" resultType="_int" parameterType="hashmap">
+		select count(*) from tb_video_board where category1=#{category1} and title like '%' ||#{keyWord}|| '%'
+	</select>
+	
+	<!-- 조회수 정렬 -->	
+	<select id="selectWorkoutReadCountList" resultType="list" resultMap="yogaResult" parameterType="Yoga">
+	<![CDATA[
+		select * from tb_video_board where category1=#{category1} and category2=#{category2} order by readcount desc
+	]]>
+	</select>
+	
+	
+	
 
 </mapper>

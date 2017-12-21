@@ -71,6 +71,7 @@
       console.log(category2);
       $("input[name=mypageStat]").val(mypageStat);
       
+      selectComment(v_no); //댓글
       var comment = '<input type="text" id="reply-input" placeholder="댓글을 입력하세요">' +
                 '<input type="hidden" id="user_no" value="' + ${sessionScope.user.user_no}  + '" >' +
                 /* '<input type="hidden" id="user" value="' + ${sessionScope.user}  + '" >' +  */

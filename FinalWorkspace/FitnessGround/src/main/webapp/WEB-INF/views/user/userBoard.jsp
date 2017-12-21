@@ -9,6 +9,18 @@
 	<script type="text/javascript">
 		$(function(){
 			$('#myPageBar nav ul #uBoard').addClass('activeMenu');	
+			
+			$('#liQ').click(function(event){
+				event.preventDefault();
+				$('#liQ').parent().addClass('in');
+				$('#liC').parent().removeClass('in');
+			});
+			
+			$('#liC').click(function(event){
+				event.preventDefault();
+				$('#liC').parent().addClass('in');
+				$('#liQ').parent().removeClass('in');
+			});
 		});	
 		
 		function qSearch() {
@@ -51,12 +63,12 @@
 				<div class="tab-wrap">
 					<ul class="tab-list tab-b is-col-3">
 						<c:if test="${com eq 'no'}">
-					  	<li><a href="#qna" aria-controls="qna" role="tab" data-toggle="tab" style="padding-top:10px; padding-bottom:10px;">문의내역</a></li>
-					  	<li><a href="#community" aria-controls="community" role="tab" data-toggle="tab" style="padding-top:10px; padding-bottom:10px;">커뮤니티</a></li>
+					  	<li class="in"><a id="liQ" href="#qna" aria-controls="qna" role="tab" data-toggle="tab" style="padding-top:10px; padding-bottom:10px;">문의내역</a></li>
+					  	<li><a id="liC" href="#community" aria-controls="community" role="tab" data-toggle="tab" style="padding-top:10px; padding-bottom:10px;">커뮤니티</a></li>
 						</c:if>
 					  	<c:if test="${com eq 'ok'}">
 					  	<li><a href="#qna" aria-controls="qna" role="tab" data-toggle="tab" style="padding-top:10px; padding-bottom:10px;">문의내역</a></li>
-					  	<li><a href="#community" aria-controls="community" role="tab" data-toggle="tab" style="padding-top:10px; padding-bottom:10px;">커뮤니티_게시글</a></li>
+					  	<li class="in"><a href="#community" aria-controls="community" role="tab" data-toggle="tab" style="padding-top:10px; padding-bottom:10px;">커뮤니티_게시글</a></li>
 					  	</c:if>
 					</ul>
 				</div>

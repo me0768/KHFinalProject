@@ -3,7 +3,8 @@
 
 	<c:import url="../include/common/head.jsp" />	
 	<link rel="stylesheet" href="/fitnessground/resources/css/user/mypage.css" />
-	<link rel="stylesheet" href="/fitnessground/resources/css/user/fullcalendar.css" />		
+	<link rel="stylesheet" href="/fitnessground/resources/css/user/fullcalendar.css" />	
+	<link rel="stylesheet" href="/fitnessground/resources/css/workout/workout.css" />		
     <c:import url="../include/common/headend.jsp" />
     
     <style>

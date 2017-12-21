@@ -134,7 +134,7 @@
          
          /* 모달창 왼쪽에 영상 띄워주는 부분 */   
          if(category1=="헬스"){
-            src="<iframe width='600' height='400' src="+ responseData.url.replace(/\^/g,"&")
+        	 src="<iframe id='video-play' src="+ responseData.url.replace(/\^/g,"&")
             +"frameborder='0' gesture='media' allow='encrypted-media' allowfullscreen name='iframe'></iframe>"
          }else{
             src= "<iframe id='video-play' src='https://www.youtube.com/embed/"+responseData.url+"' frameborder='0'"+

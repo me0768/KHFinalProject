@@ -215,7 +215,7 @@ public class HealthController {
 		ModelAndView mv = new ModelAndView("workout/homeTraningMain");
 		
 		String keyWord = request.getParameter("searchKeyWord");
-		System.out.println(keyWord);
+		
 		
 		ArrayList<Health> slist = healthService.selectSearchList(keyWord);
 		System.out.println(slist);
@@ -262,8 +262,11 @@ public class HealthController {
 				list = healthService.selectWorkoutCategoryList(health);
 				
 			}else if(selectValue.equals("좋아요수")){
-				list = healthService.selectWorkoutCategoryList(health);
+				/*list = healthService.selectWorkoutCategoryList(health);*/
+				list = healthService.selectLikeCountList(health);
 				
+				System.out.println(list);
+				/*System.out.println("들어옴");
 				int countArr[] = new int[list.size()];
 				
 				for(int i=0; i<list.size();i++){
@@ -279,10 +282,7 @@ public class HealthController {
 							list.set(j,tmp);
 						}
 					}
-				}
-
-				
-			
+				}*/			
 			}else if(selectValue.equals("조회수")){
 				
 				list = healthService.selectWorkoutReadCountList(health);
@@ -322,30 +322,32 @@ public class HealthController {
 	//댓글 insert
 	@RequestMapping(value="/insertReply.do",method=RequestMethod.POST)
 	public void insertComment(Comment comment){
-		
-			
+				
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String strDate = sdf.format(Calendar.getInstance().getTime());	//현재 날짜..
 			
 		java.sql.Date sqlDate = java.sql.Date.valueOf(strDate);
-		
-		
+			
 		comment.setReply_date(sqlDate);
 		comment.setStringReplyDate(strDate);
 		
+	
 								
 		healthService.insertComment(comment);	//sqlDate 형식으로 insert 했음
 		
-		
-				
 		
 	}
 		
 	
 	//댓글 삭제
 	@RequestMapping(value="/deleteReply.do",method=RequestMethod.POST)
-	public void deleteComment(Comment comment){
-		healthService.deleteComment(comment);
+	public ModelAndView deleteComment(Comment comment){
+		
+		ModelAndView mv = new ModelAndView("workout/detailView");
+	    healthService.deleteComment(comment);
+	    mv.setViewName("jsonView");
+	      
+	    return mv;
 	}	
 	
 	//좋아요 테이블에 삽입, 삭제하는 메서드

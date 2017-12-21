@@ -1,6 +1,7 @@
 package com.kh.fitnessground.workout.yoga.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -80,5 +81,29 @@ public class YogaServiceImpl implements YogaService{
 	@Override
 	public void deleteYogaList(List<Integer> dellist, HttpServletRequest request) {
 		yogaDao.deleteYogaList(dellist);
+	}
+
+	@Override
+	public ArrayList<Yoga> selectSearchList(String keyWord,String category1) {
+		// 제목으로 검색
+		HashMap<String,String> parameters = new HashMap<String,String>();
+		parameters.put("keyWord", keyWord);
+		parameters.put("category1", category1);
+		return yogaDao.selectSearchList(parameters);
+	}
+
+	@Override
+	public int selectSearchVideoCount(String keyWord,String category1) {
+		// TODO Auto-generated method stub
+		HashMap<String,String> parameters = new HashMap<String,String>();
+		parameters.put("keyWord", keyWord);
+		parameters.put("category1", category1);
+		return yogaDao.selectSearchVideoCount(parameters);
+	}
+
+	@Override
+	public ArrayList<Yoga> selectWorkoutReadCountList(Yoga yoga) {
+		// TODO Auto-generated method stub
+		return yogaDao.selectWorkoutReadCountList(yoga);
 	}
 }

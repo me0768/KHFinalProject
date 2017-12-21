@@ -43,19 +43,25 @@
     <div id="myPageBar">
 		<c:import url="../include/user/myPageBar.jsp"/>
 	</div>
-	
-	<br><div role="tabpanel" class="userBoardNav col-md-8 col-md-offset-2 col-sm-12">
+
+	<br><div role="tabpanel" class="userBoardNav">
 		<!-- Nav tabs -->
-		<ul class="nav nav-tabs" role="tablist" id="navTitle">
-			<c:if test="${com eq 'no'}">
-		  	<li role="presentation" class="active col-md-6 col-sm-6"><a href="#qna" aria-controls="qna" role="tab" data-toggle="tab">문의내역</a></li>
-		  	<li role="presentation" class="col-md-6 col-sm-6"><a href="#community" aria-controls="community" role="tab" data-toggle="tab">커뮤니티</a></li>
-			</c:if>
-		  	<c:if test="${com eq 'ok'}">
-		  	<li role="presentation" class="col-md-6 col-sm-6"><a href="#qna" aria-controls="qna" role="tab" data-toggle="tab">문의내역</a></li>
-		  	<li role="presentation" class="active col-md-6 col-sm-6"><a href="#community" aria-controls="community" role="tab" data-toggle="tab">커뮤니티_게시글</a></li>
-		  	</c:if>
-		</ul>
+		<div class="container is-bg-a" style="margin-top:120px;">
+			<div class="wrap">
+				<div class="tab-wrap">
+					<ul class="tab-list tab-b is-col-3">
+						<c:if test="${com eq 'no'}">
+					  	<li><a href="#qna" aria-controls="qna" role="tab" data-toggle="tab" style="padding-top:10px; padding-bottom:10px;">문의내역</a></li>
+					  	<li><a href="#community" aria-controls="community" role="tab" data-toggle="tab" style="padding-top:10px; padding-bottom:10px;">커뮤니티</a></li>
+						</c:if>
+					  	<c:if test="${com eq 'ok'}">
+					  	<li><a href="#qna" aria-controls="qna" role="tab" data-toggle="tab" style="padding-top:10px; padding-bottom:10px;">문의내역</a></li>
+					  	<li><a href="#community" aria-controls="community" role="tab" data-toggle="tab" style="padding-top:10px; padding-bottom:10px;">커뮤니티_게시글</a></li>
+					  	</c:if>
+					</ul>
+				</div>
+			</div>
+		</div>
 		<!-- Tab panes -->
 		<div class="tab-content" style="margin-top:0px;">
 			<c:if test="${com eq 'no'}">

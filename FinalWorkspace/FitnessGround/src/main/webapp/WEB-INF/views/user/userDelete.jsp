@@ -101,7 +101,43 @@
 		<c:import url="../include/user/myPageBar.jsp"/>
 	</div>
     
-   <div class="col-md-6 col-md-offset-3 col-sm-12 hidden-xs hidden-sm hidden-md visible-lg" id="userDetailTitle">
+    <div class="col-md-offset-3 col-md-6 col-sm-12" id="userDelete" style="margin-top:120px;">
+		<table id="uDelTitle" align="center">
+			<tr><th>회원탈퇴</th></tr>	
+		</table>
+		<div id="uDelContent">
+			<div class="" id="delContent">
+				<form id="userPwdContentForm" action="" method="post">
+				<input type="hidden" value="${sessionScope.user.user_no}" name="user_no">
+				<table>
+					<tr id="deleteInfo"><td colspan="2">
+		    			<h1>탈퇴시 유의사항</h1>
+		    			<p>
+		    				회원 탈퇴시, 회원 정보 및 이용 기록 일부가 삭제되며 삭제된 데이터는 복구할 수 없습니다.<br>
+		    				또한 탈퇴 후, 7일 동안 재가입이 불가합니다.<br>
+		    				작성하신 게시글은 자동으로 삭제되지않으며 삭제를 원할 시,<br>회원 탈퇴를 하기 전에 모든 게시글을 삭제해주시기바랍니다.
+		    			</p>
+					</td></tr>	
+					<tr id="delPwd">
+						<th><i class="fa fa-lock" aria-hidden="true" style="margin-right:15px; width:20px;"></i> 비밀번호</th>
+						<td><input type="password" name="userpwd" class="form-control" oninput="pwdCheck();"></td>
+					</tr>
+					<tr id="delPwdCk">
+						<th><i class="fa fa-check-square-o" aria-hidden="true" style="margin-right:15px; width:20px;"></i> 비밀번호 확인</th>
+						<td><input type="password" name="userpwdck" class="form-control" oninput="pwdCheck();"></td>
+					</tr>
+					<tr><td colspan="2" id="userpwdfield">
+		    			<div style="color:red; text-align:right; font-size:10pt; padding-top:10px;">
+							* 비밀번호를 입력하세요.
+						</div>
+		    		</td></tr>
+					<tr id="pwdBt"><th colspan="2"><button type="submit" class="btn btn-default"  onclick="return pwdCk();">탈퇴</button></th></tr>
+				</table></form>
+			</div>
+		</div>
+	</div>
+    
+   <%-- <div class="col-md-6 col-md-offset-3 col-sm-12 hidden-xs hidden-sm hidden-md visible-lg" id="userDetailTitle">
     	<div class="col-md-1"><img src="/fitnessground/resources/images/myimages/nullicon.png" class="img-rounded"></div>
     	<div class="col-md-9 col-md-offset-1" id="userDetailTitleInfo"><h1>회원 탈퇴</h1>탈퇴하시려면 비밀번호를 입력하신 후, 탈퇴 버튼을 눌러주세요.</div>
     </div>
@@ -109,7 +145,6 @@
     	<h1 id="smallH">회원 탈퇴</h1>
     	<p id="smallP">탈퇴하시려면 비밀번호를 입력하신 후, 탈퇴 버튼을 눌러주세요.</p>
     </div>
-   
    <form id="userPwdContentForm" action="" method="post" class="hidden-xs hidden-sm hidden-md visible-lg"><div class="col-md-6 col-md-offset-3 col-sm-12">
     	<input type="hidden" value="${sessionScope.user.user_no}" name="user_no">
     	<div  id="userPwdContent"><table>
@@ -127,11 +162,11 @@
     		</tr>
     		<tr>
     			<td>비밀번호</td>
-    			<td><input type="password" name="userpwd" class="form-control" oninput="pwdCheck();"></td>
+    			<td></td>
     		</tr>
     		<tr>
     			<td>비밀번호 확인</td>
-    			<td><input type="password" name="userpwdck" class="form-control" oninput="pwdCheck();"></td>
+    			<td></td>
     		</tr>
     		<tr>
     			<td colspan="2" id="userpwdfield">
@@ -141,38 +176,8 @@
     			</td>
     		</tr>
     	</table></div>
-    	<div align="right" id="userPwdModify"><button type="submit" class="btn btn-default"  onclick="return pwdCk();">탈퇴</button></div>
-    </div></form>
-    <form id="usePwdContentForm" action="" method="post" class="visible-xs visible-sm visible-md hidden-lg"><div class="col-md-6 col-md-offset-3 col-sm-12">
-    	<input type="hidden" value="${sessionScope.user.user_no}" name="user_no">
-    	<div  id="userPwdContentSmall">
-    	<div class="col-sm-12" id="deleteInfoSm">
-    		<h1>탈퇴시 유의사항</h1>
-   			<p>
-   			회원 탈퇴시, 회원 정보 및 이용 기록이 모두 삭제되며 삭제된 데이터는 복구할 수 없습니다.<br>
-    		또한 탈퇴 후, 7일 동안 재가입이 불가합니다.<br>
-   			작성하신 게시글은 자동으로 삭제되지않으며 삭제를 원할 시, 회원 탈퇴를 하기 전에 모든 게시글을 삭제해주시기바랍니다.
-   			</p>
-   		</div>
-    	<table>
-    		<tr>
-    			<td>비밀번호</td>
-    			<td align="right"><input type="password" name="userpwd" class="form-control" oninput="pwdCheck();"></td>
-    		</tr>
-    		<tr>
-    			<td>비밀번호 확인</td>
-    			<td align="right"><input type="password" name="userpwdck" class="form-control" oninput="pwdCheck();"></td>
-    		</tr>
-    		<tr>
-    			<td colspan="2" id="userpwdfield">
-    				<div style="color:red; text-align:right; font-size:10pt;">
-					* 비밀번호를 입력하세요.
-					</div>
-    			</td>
-    		</tr>
-    	</table></div>
-    	<div align="right" id="userPwdSmall"><button type="submit" class="btn btn-default"  onclick="return pwdCk();">탈퇴</button></div>
-    </div></form>	
+    	<div align="right" id="userPwdModify"></div>
+    </div></form> --%>
     </c:if>
     
     <c:import url="../include/main/footer.jsp" />

@@ -90,8 +90,9 @@ public class CommunityBoardDao {
 	}
 
 	public int getMeetingListCount() {
-		// TODO Auto-generated method stub
+		
 		return sqlSession.selectOne("community.getMeetingListCount");
+		
 	}
 
 	
@@ -153,7 +154,6 @@ public class CommunityBoardDao {
 	}
 	
 	public int getReviewListCount() {
-		// TODO Auto-generated method stub
 		return sqlSession.selectOne("community.getReviewListCount");
 	}
 

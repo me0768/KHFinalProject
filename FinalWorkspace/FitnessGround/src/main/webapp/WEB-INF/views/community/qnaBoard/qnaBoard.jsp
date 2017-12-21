@@ -6,88 +6,99 @@
 	
 	
 	<style type="text/css">
- 	body {
-		font-family: "Open Sans", sans-serif;
-		line-height: 1.25;
-	}
-	
-	h1 {
-		font-weight: bold; 
-		font-size : 20pt;
-		color: black;
-	}
-	
-	
-
-	div#community_category_div {
-		padding-left: 23%;
-	}
-	div#community_search_div{
-		
-		margin-left: 15%;
-	}
-	select#findType{
-		height: 30px;
-		width: 70px;
-		font-size: 14px;
-	}
-	input#searchKey{
-		height: 25px; 
-		width: 200px;
+	 	body {
+			font-family: "Open Sans", sans-serif;
+			line-height: 1.25;
 		}
-	input#searchKey placeholder{
-		color: #F3F3F3;
-		font-size: 14px;
-	}
-
-	button#community_writer_btn{
-		left:63%;
-		width:70pt;
-		height:25pt;
-		font-size:8pt;
 		
+		h1 {
+			font-weight: bold; 
+			font-size : 20pt;
+			color: black;
+		}
 		
-	}
-
-	div#community_table_div{
-		padding-left:23%;
-		padding-right:9%;
-	}
-	table#community_table {
+		a#btn{
+		position:relative;
+		background-color:#11A6B7;
+		color:white;
+		left:54%;
+		}
 		
-		border: 1px solid #ccc;
-		border-collapse: collapse;
-		table-layout: fixed;
-		width: 80%;
-	}
 	
-	table#community_table tr {
-		border: 1px solid #ddd;
-		padding: .35em;
-	}
+		div#community_category_div {
+			padding-left:23%;
+			height:5%;
+		}
+		div#community_search_div{
+			margin-left: 23%;
+		}
+		select#findType{
+			height: 30px;
+			width: 70px;
+			font-size: 14px;
+		}
+		input#searchKey{
+			height: 25px; 
+			width: 200px;
+			}
+		input#searchKey placeholder{
+			color: #F3F3F3;
+			font-size: 14px;
+		}
 	
-
-	table#community_table tr:nth-child(even) {
-		background: #f8f8f8;
-	}
+		button#community_writer_btn{
+			left:63%;
+			width:70pt;
+			height:25pt;
+			font-size:8pt;
+			
+			
+		}
+		button#community_detail{
+			width:22%;
+			
+		}
 	
-	table#community_table th, table td {
-		padding: .625em;
-		text-align: center;
-	}
-
-	table#community_table th {
-		background: #D8D8D8;
-		font-size: .85em;
-		letter-spacing: .1em;
-		text-transform: uppercase;
-	}
+		div#community_table_div{
+			padding-left:23%;
+			padding-right:9%;
+		}
+		table#community_table {
+			
+			border: 1px solid #ccc;
+			border-collapse: collapse;
+			table-layout: fixed;
+			width: 80%;
+			font-size:10pt;
+		}
+		
+		table#community_table tr {
+			border: 1px solid #ddd;
+			padding: .35em;
+		}
+		
 	
-	table#community_table td {
-		white-space: nowrap;
-		overflow: hidden;
-	}
-</style>
+		table#community_table tr:nth-child(even) {
+			background: #f8f8f8;
+		}
+		
+		table#community_table th, table td {
+			padding: .625em;
+			text-align: center;
+		}
+	
+		table#community_table th {
+			background: #D8D8D8;
+			font-size: .85em;
+			letter-spacing: .1em;
+			text-transform: uppercase;
+		}
+		
+		table#community_table td {
+			white-space: nowrap;
+			overflow: hidden;
+		}
+	</style>
 	
 	
 	<c:import url="../../include/common/headend.jsp" />
@@ -118,6 +129,9 @@
 		function qnaPage() {
 			location.href = "qna.do";
 		}
+		function loginCheck(){
+			alert("로그인이 필요한 서비스 입니다.");
+		}	
 		
 		$(document).ready(function(){
 			$("#write").on("click", function(e){
@@ -221,12 +235,15 @@
 				<button type="submit" value="검색" class="btn">검색</button><br>
 			
 			</form>
-				
+			
+				<c:if test="${sessionScope.user==null }">
+				<h1>게시물 갯수:${qna.listCount}개<a id="btn" class="btn" onclick="loginCheck();">글쓰기</a></h1><br>			
+				</c:if>
 				<c:if test="${sessionScope.user.name != null }">
-				<a href="qnaInsert.do" class="btn" id="write">글쓰기</a>					
+				<h1>게시물 갯수:${qna.listCount}개<a href="qnaInsert.do" class="btn" id="btn">글쓰기</a></h1><br>							
 				</c:if>
 
-	<h1>게시물 갯수:${qna.listCount}개</h1>				
+					
 </div>
 </div>
 <div id="community_table_div">

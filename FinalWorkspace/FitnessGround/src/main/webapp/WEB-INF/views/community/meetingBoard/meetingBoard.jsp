@@ -6,29 +6,39 @@
 		
 		
 		<style type="text/css">
+		@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+   
+ 	
 	 	body {
 			font-family: "Open Sans", sans-serif;
 			line-height: 1.25;
 		}
 		
-		h1 {
+		h1#meeting_title {
+		font-family: 'Jeju Gothic';
 			font-weight: bold; 
 			font-size : 20pt;
 			color: black;
 		}
 		
-		
+		a#btn{
+		position:relative;
+		background-color:#11A6B7;
+		color:white;
+		left:54%;
+		}
+
 	
 		div#community_category_div {
-			padding-left: 23%;
+			padding-left:23%;
+			height:5%;
 		}
 		div#community_search_div{
-			
-			margin-left: 15%;
+			margin-left: 23%;
 		}
 		select#findType{
-			height: 30px;
-			width: 70px;
+			height:30px;
+			width: 52px;
 			font-size: 14px;
 		}
 		input#searchKey{
@@ -48,6 +58,10 @@
 			
 			
 		}
+		button#community_detail{
+			width:22%;
+			
+		}
 	
 		div#community_table_div{
 			padding-left:23%;
@@ -59,6 +73,7 @@
 			border-collapse: collapse;
 			table-layout: fixed;
 			width: 80%;
+			font-size:10pt;
 		}
 		
 		table#community_table tr {
@@ -77,6 +92,7 @@
 		}
 	
 		table#community_table th {
+			font-weight: bold;
 			background: #D8D8D8;
 			font-size: .85em;
 			letter-spacing: .1em;
@@ -118,6 +134,9 @@
 			function qnaPage() {
 				location.href = "qna.do";
 			}
+			function loginCheck(){
+				alert("로그인이 필요한 서비스 입니다.");
+			}	
 			
 			$(document).ready(function(){
 				$("#write").on("click", function(e){
@@ -199,7 +218,7 @@
 		</script>
 		
 	<br><br>
-	<h1 align="center">운동같이해요</h1>
+	<h1 id="meeting_title" align="center">운동같이해요</h1>
 	<br>
 	<div id="community_category_div">
 	<button id="community_detail"onclick="meetingPage();">운동같이해요</button> &nbsp;&nbsp;&nbsp;
@@ -207,25 +226,39 @@
 	<button id="community_detail"onclick="qnaPage();">Q & A</button>
 	</div>
 	<br>
-	<div id="community_search_div" align="left">
-				<div align="left">
-				<form class="form-group" name="form1" role="form" action="meeting.do" method="post" >
-					<select class="btn" name="searchOption" id="findType">
-						<option value="title"<c:out value="${map.searchOption == 'title'?'selected':''}"/> >제목</option>
-	<!-- 이름으로 해야함..--><option value="mb_no"<c:out value="${map.searchOption == 'mb_no'?'selected':''}"/> >이름</option>
-						<option value="content"<c:out value="${map.searchOption == 'content'?'selected':''}"/> >내용</option>
-					</select> 
-					<input name ="searchKey"   id="searchKey" value="${map.searchKey}" placeholder="제목으로 검색" class="form-control">
-					<button type="submit" value="검색" class="btn">검색</button><br>
-				
-				</form>
-					
-					<c:if test="${sessionScope.user.name != null }">
-					<a href="meetingInsert.do" class="btn" id="write">글쓰기</a>					
+	<div id="community_category_div">
+		<div class="row">
+			<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+			<form class="form-group" name="form1" role="form" action="meeting.do" method="post" >
+			<div class="input-group input-group-lg">
+			<span class="input-group-btn">
+			<select class="btn btn-default" style="width:80px;" name="searchOption">
+				<option value="title"<c:out value="${map.searchOption == 'title'?'selected':''}"/> >제목</option>
+				<option value="name"<c:out value="${map.searchOption == 'name'?'selected':''}"/> >이름</option>
+				<option value="content"<c:out value="${map.searchOption == 'content'?'selected':''}"/> >내용</option>
+			</select>
+			</span>
+			<input type="text" class="form-control" name ="searchKey"  value="${map.searchKey}" placeholder="Search for..">
+		 	<span class="input-group-btn">
+		  		<button class="btn btn-default" type="submit">검색</button>
+			</span>
+			<%-- <input name ="searchKey"   id="searchKey" value="${map.searchKey}" placeholder="제목으로 검색" class="form-control"> --%>
+			<!-- <button type="submit" class="btn">검색</button> -->
+			
+			</div></form>
+			</div>
+			</div>
+			<div class="row">			
+			<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+					<c:if test="${sessionScope.user==null}">
+					<h1>게시물 갯수:${meeting.listCount}개<a id="btn" class="btn btn-default" role="button" onclick="loginCheck();">글쓰기</a></h1><br>
 					</c:if>
-	
-		<h1>게시물 갯수:${meeting.listCount}개</h1>				
-	</div>
+					<c:if test="${sessionScope.user.name != null }">
+					<h1>게시물 갯수:${meeting.listCount}개<a href="meetingInsert.do" class="btn" id="btn">글쓰기</a></h1><br>			
+					</c:if>
+			</div>	
+			
+		</div>
 	</div>
 	<div id="community_table_div">
 	<table id="community_table">

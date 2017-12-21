@@ -59,15 +59,15 @@
 	
 	<!-- 전체리스트 -->
 	<select id="meetingView" resultType="list" resultMap="MeetingResult">
-		<![CDATA[select * from (select mb_no,name, title, upload_date from tb_meeting_board a join tb_user b on (a.user_no = b.user_no)where 5 >= rownum order by mb_no desc)]]>
+		<![CDATA[select * from (select mb_no,name, (substr(title,0,8)||'...') as title, upload_date from tb_meeting_board a join tb_user b on (a.user_no = b.user_no)where 5 >= rownum order by mb_no desc)]]>
 	</select>
 	
 	<select id="reviewView" resultType="list" resultMap="CommunityResult">
-		<![CDATA[select * from (select cb_no, name, title, upload_date from tb_com_board a join tb_user b on (a.user_no = b.user_no)where 5 >= rownum and board_property =0 order by cb_no desc)]]>
+		<![CDATA[select * from (select cb_no, name, (substr(title,0,8)||'...') as title, upload_date from tb_com_board a join tb_user b on (a.user_no = b.user_no)where 5 >= rownum and board_property =0 order by cb_no desc)]]>
 	</select>
 	
 	<select id="qnaView" resultType="list" resultMap="CommunityResult">
-		<![CDATA[select * from (select cb_no,name, title, upload_date from tb_com_board a join tb_user b on (a.user_no = b.user_no)where 5 >= rownum and board_property =1 order by cb_no desc)]]>
+		<![CDATA[select * from (select cb_no,name, (substr(title,0,8)||'...') as title, upload_date from tb_com_board a join tb_user b on (a.user_no = b.user_no)where 5 >= rownum and board_property =1 order by cb_no desc)]]>
 	</select>
 	
 	
@@ -92,7 +92,7 @@
 			) where rnum >=#{startRow} and rnum <=#{endRow} and title like #{searchKey}
 		]]>
 	</select>
-	<!--  qna 이름 검색  -->
+	<!--  운동같이해요 이름 검색  -->
 	<select id="meetingNameSearch" resultType="list" resultMap="MeetingResult">
 		<![CDATA[
 			select * from(select rownum as rnum, c.* from (select a.*,b.name from tb_meeting_board a 
@@ -101,7 +101,7 @@
 		]]>	
 	</select>
 			
-	<!--  qna 내용 검색-->	
+	<!--  운동같이해요 내용 검색-->	
 	<select id="meetingContentSearch" resultType="list" resultMap="MeetingResult">
 		<![CDATA[
 			select * from(select rownum as rnum, c.* from (select a.*,b.name from tb_meeting_board a 
@@ -116,6 +116,28 @@
 			select count(*) from tb_meeting_board
 		]]>
 	</select>
+	
+	<!-- 게시글 내용 개수 -->
+	<select id="getMeetingContentListCount" resultType="_int" parameterType="_int">
+		<![CDATA[
+			select count(*) from tb_meeting_board where content like #{content}
+		]]>
+	</select>
+	
+	<!-- 게시글 이름 개수 -->
+	<select id="getMeetingNameListCount" resultType="_int" parameterType="_int">
+		<![CDATA[
+			select count(*) from tb_meeting_board where content like #{content}
+		]]>
+	</select>
+	
+	<!-- 게시글 제목 개수 -->
+	<select id="getMeetingTitleListCount" resultType="_int" parameterType="String">
+		<![CDATA[
+			select count(*) from tb_meeting_board where content like #{content}
+		]]>
+	</select>
+
 	<!-- 운동같이해요디테일 -->
 	<select id="selectDetail" resultType="Meeting" resultMap="MeetingResult">
 		<![CDATA[select a.*, b.name from tb_meeting_board a join tb_user b on(a.user_no = b.user_no) where mb_no=#{mb_no}]]>
@@ -138,7 +160,7 @@
 	</select> 
 	<!-- 운동같이해요 수정 -->
 	<update id="updateMeetingPage" parameterType="Meeting" >
-	<![CDATA[update tb_meeting_board set content = #{content} where mb_no=#{mb_no}]]>
+	<![CDATA[update tb_meeting_board set content = #{content}, title = #{title}, meeting_date = #{meeting_date} where mb_no=#{mb_no}]]>
 	</update> 
 	
 	<!--  운동같이해요 검색기능 -->
@@ -256,7 +278,7 @@
 	</select>  
 	<!-- qna 수정 -->
 	<update id="updateQnAPage" parameterType="Community" >
-	<![CDATA[update tb_com_board set content = #{content} where cb_no=#{cb_no}]]>
+	<![CDATA[update tb_com_board set content = #{content}, title = #{title} where cb_no=#{cb_no}]]>
 	</update> 
 	
 	<!-- 조회수 증가 -->
@@ -307,13 +329,12 @@
 		]]>
 	</select>
 	
-	<!-- 게시글 개수 -->
+	<!-- 게시글 총 갯수-->
 	<select id="getReviewListCount" resultType="_int" parameterType="_int">
 		<![CDATA[
 			select count(*) from tb_com_board where board_property =0
 		]]>
 	</select>
-
 	
 	<!-- 리뷰게시판 디테일 -->
 	<select id="reviewDetail" resultType="Community" resultMap="CommunityResult">
@@ -336,7 +357,7 @@
 	</select>  
 	<!-- 리뷰 게시판 수정 -->
 	<update id="updateReviewPage" parameterType="Community" >
-	<![CDATA[update tb_com_board set content = #{content} where cb_no=#{cb_no}]]>
+	<![CDATA[update tb_com_board set content = #{content}, title = #{title} where cb_no=#{cb_no}]]>
 	</update> 
 	 
 	 <!-- ========================================운동같이해요 댓글 ============================================= -->

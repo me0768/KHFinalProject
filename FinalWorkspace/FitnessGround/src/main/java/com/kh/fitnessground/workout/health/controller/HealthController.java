@@ -262,27 +262,9 @@ public class HealthController {
 				list = healthService.selectWorkoutCategoryList(health);
 				
 			}else if(selectValue.equals("좋아요수")){
-				/*list = healthService.selectWorkoutCategoryList(health);*/
+				
 				list = healthService.selectLikeCountList(health);
-				
-				System.out.println(list);
-				/*System.out.println("들어옴");
-				int countArr[] = new int[list.size()];
-				
-				for(int i=0; i<list.size();i++){
-					countArr[i] = healthService.selectLikeCount(list.get(i).getV_no());
-				}
-				
-				//좋아요수 내림차순 정렬
-				for(int i=0; i<countArr.length; i++){
-					for(int j=i+1; j<countArr.length; j++){
-						if(countArr[i]<countArr[j]){
-							Health tmp = list.get(i);
-							list.set(i, list.get(j));
-							list.set(j,tmp);
-						}
-					}
-				}*/			
+							
 			}else if(selectValue.equals("조회수")){
 				
 				list = healthService.selectWorkoutReadCountList(health);

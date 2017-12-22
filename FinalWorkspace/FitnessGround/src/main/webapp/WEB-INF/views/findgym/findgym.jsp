@@ -30,6 +30,7 @@
 </script>
 
 <c:import url="../include/common/headend.jsp" />
+<script type="text/javascript" src="/fitnessground/resources/js/gym/gymmap.js"></script>
 
 <script type="text/javascript">
 	function loadGymList(page){
@@ -46,16 +47,20 @@
 				var jsonStr = JSON.stringify(data);
 														
 				var json = JSON.parse(jsonStr);
-				
+				console.log(json);
 				// 리스트 처리
 				var values="";
 				
 				for(var i in json.gymlist)
 				{
-					values += "<a href=''>" + "<div id='wrapper'><img src='/fitnessground/resources/images/pic01.jpg' style='height:100px; weight:100px;'>" + "</a>" + 
-							"<div id='health-desc'>"+json.gymlist[i].gym_name + "<br/>" + 
-							json.gymlist[i].location + "<br/></div></div>";
-				}
+					if(json.gymlist[i].rename_image == null){
+						values += "<div id='wrapper'><div id='health-desc'><a href='#'>" + json.gymlist[i].gym_name + "<br>" + json.gymlist[i].location + "<br>" + json.gymlist[i].tel + "</a></div>" +
+						"<div id='thumbnail'>" + "<a href='#'><img src='/fitnessground/resources/images/default_image.png' style='height:100px; width:100px;'></a></div></div>";
+					} else {
+						values += "<div id='wrapper'><div id='health-desc'><a href='#'>" + json.gymlist[i].gym_name + "<br>" + json.gymlist[i].location + "<br>" + json.gymlist[i].tel + "</a></div>" +
+						"<div id='thumbnail'>" + "<a href='#'><img src=" + json.gymlist[i].rename_image + " style='height:100px; width:100px;'></a></div></div>";
+					}
+				} 
 				
 				console.log(values);
 				$("#healthlist").html(values);
@@ -80,6 +85,9 @@
 					valuesPaging+="<li><a href='javascript:loadGymList(" + (data.currentPage + 1) + ")' aria-label='Next'><span aria-hidden='true'>&raquo;</span></a></li>";
 				}
 				$("#healthpaging").html(valuesPaging);
+				
+				
+				
 				},			
 			error : function(request, status, errorData){
 					alert("error code : " + request.status + "\n"
@@ -110,14 +118,16 @@
 				
 				for(var i in json.publiclist)
 				{
-					values += "<a href=''>" + "<div id='wrapper'><a href='#'><img src='/fitnessground/resources/images/pic01.jpg' style='height:100px; weight:100px;'></a>" +
-								"<div id='public-desc'>" + json.publiclist[i].public_name + "<br/>" + json.publiclist[i].location + "<br/></div></div>";
+					if(json.publiclist[i].tel == null){
+						values += "<div id='wrapper'><div id='public-desc'><a href='#'>" + json.publiclist[i].public_name + "<br>" + json.publiclist[i].location + "<br>" + 
+						"- </a></div>" + "<div id='thumbnail'><a href='#'><img src='/fitnessground/resources/images/default_image.png' style='height:100px; width:100px;'></a></div></div>";
+					} else {
+						values += "<div id='wrapper'><div id='public-desc'><a href='#'>" + json.publiclist[i].public_name + "<br>" + json.publiclist[i].location + "<br>" + 
+						json.publiclist[i].tel + "</a></div>" + "<div id='thumbnail'><a href='#'><img src='/fitnessground/resources/images/default_image.png' style='height:100px; width:100px;'></a></div></div>";
+					}
+					
 				}
-				"<a href=''>" + "<div id='wrapper'><a href='#'><img src='/fitnessground/resources/images/pic01.jpg' style='height:100px; weight:100px;'>" + "</a>" + 
-				"<div id='health-desc'>"+json.gymlist[i].gym_name + "<br/>" + 
-				json.gymlist[i].location + "<br/></div></div>";
-		
-				console.log(values);
+				
 				$("#publiclist").html(values);
 				
 				var valuesPaging="";
@@ -140,6 +150,7 @@
 					valuesPaging+="<li><a href='javascript:loadPublicList(" + (data.pcurrentPage + 1) + ")' aria-label='Next'><span aria-hidden='true'>&raquo;</span></a></li>";
 				}
 				$("#publicpaging").html(valuesPaging);
+				setGymlist(map);
 				},			
 			error : function(request, status, errorData){
 					alert("error code : " + request.status + "\n"
@@ -149,8 +160,6 @@
 		});
 		
 	}
-	
-	
 </script>
  
 <div id="container" class="container">
@@ -160,7 +169,7 @@
 	<div class="row">
 		<div class="col-md-4">
 			<div class="row">
-				<div class="input-group">
+				<div class="input-group" style="margin-top:30px">
 						<input type="text" class="form-control" id="address"
 							placeholder="Search for..." style='height:30px'> <span
 							class="input-group-btn">
@@ -191,10 +200,23 @@
 										<div id="healthlist">
 										<c:forEach var="glist" items="${gympage.list}">
 										<div id='wrapper'>
-										<a href='#'><img src="/fitnessground/resources/images/pic01.jpg" style="height:100px; weight:100px;"></a>
-										<div id="health-desc">${glist.gym_name}<br/>
-										${glist.location}<br/>
-										</div></div>
+										<div id="health-desc">
+										<a href='#'>
+										${glist.gym_name}<br>
+										${glist.location }<br>
+										${glist.tel }
+										</a>
+										</div>
+										<div id="thumbnail">
+										<c:if test="${empty glist.rename_image}">
+										<a href='#'><img src="/fitnessground/resources/images/default_image.png" style="width: 100px; height: 100px;"></a>
+										</c:if>
+										<c:if test="${not empty glist.rename_image }">
+										<<img src="${glist.rename_image }" style="width: 100px; height: 100px;">
+										</c:if>
+										
+										</div>
+										</div>
 										</c:forEach>
 										</div>
 							</div>
@@ -213,10 +235,11 @@
  						</c:if>
 						
 						<c:forEach var="i" begin="${gympage.startPage }" end="${gympage.endPage }" step="1">
- 						<c:if test="${gympage.currentPage eq i }">
+ 						<c:if test="${gympage.currentPage eq i }">`
  						<li class='disabled'><a href='#'>${i }</a></li>
  						<input type="hidden" name="page" value="${gympage.currentPage }">
  						</c:if>
+ 						
  						<c:if test="${gympage.currentPage ne i }">
  						<li><a href="javascript:loadGymList(${i })">${i }</a></li>
  						<input type="hidden" name="page" value="${i}">
@@ -242,16 +265,27 @@
 							<div class="row">
 								<div id="publiclist">
 									<c:forEach var="plist" items="${gympage.plist}">
-									<div id="wrapper">
-									<a href='#'><img src="/fitnessground/resources/images/pic01.jpg" style="height:100px; weight:100px;"></a>
-										<div id="public-desc">
-										${plist.public_name}<br/>
-										${plist.location}<br/>
-										</div>
+									<div id='wrapper'>
+									<div id="public-desc">
+									<a href='#'>
+									${plist.public_name }<br>
+									${plist.location }<br>
+									<c:if test="${empty plist.tel }">
+										-
+									</c:if>
+									<c:if test="${not empty plist.tel }">
+										${plist.tel }
+									</c:if>
+									</a>
 									</div>
-										</c:forEach>										
+									<div id="thumbnail">
+									<a href='#'><img src="/fitnessground/resources/images/default_image.png" style="height:100px; width:100px;"></a>
+									</div>										
+									</div>
+									</c:forEach>								
 								</div>
-								</div>
+							</div>
+
 							<div id="paging">
 							<nav>
 						<ul class="pagination" id="publicpaging">
@@ -293,17 +327,14 @@
 						</div>
 					</div>
 				</div>
-				
 			</div>
-			<div class="col-md-6 ">
+		
+			<div class="col-md-8 ">
 			<div id="map">
-				<script type="text/javascript"
-					src="/fitnessground/resources/js/gym/gymmap.js"></script>
+				<script type="text/javascript" src="/fitnessground/resources/js/gym/gymmap.js"></script>
 			</div>
-			</div>
-		</div>
-	</div>
-	<!-- row -->
-<!-- container -->
+			</div><!-- div class -->
+			</div> <!-- row -->
+		</div><!-- container -->
 <c:import url="../include/main/footer.jsp" />
 <c:import url="../include/common/end.jsp" />

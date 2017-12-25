@@ -292,6 +292,8 @@ public class GymController {
 			map.put("list", list);
 			map.put("plist", plist);
 			
+			if(request.getParameter("mode")!=null) mv.addObject("mode", request.getParameter("mode"));
+			
 			mv.addObject("gympage",map);
 			
 			return mv;
